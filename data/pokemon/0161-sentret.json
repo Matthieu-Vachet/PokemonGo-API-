@@ -1,0 +1,237 @@
+{
+  "id": "SENTRET",
+  "formId": "SENTRET",
+  "dexNr": 161,
+  "generation": 2,
+  "names": {
+    "English": "Sentret",
+    "German": "Wiesor",
+    "French": "Fouinette",
+    "Italian": "Sentret",
+    "Japanese": "オタチ",
+    "Korean": "꼬리선",
+    "Spanish": "Sentret"
+  },
+  "stats": {
+    "stamina": 111,
+    "attack": 79,
+    "defense": 73
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_NORMAL",
+    "names": {
+      "English": "Normal",
+      "German": "Normal",
+      "French": "Normal",
+      "Italian": "Normale",
+      "Japanese": "ノーマル",
+      "Korean": "노말",
+      "Spanish": "Normal"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "SCRATCH_FAST": {
+      "id": "SCRATCH_FAST",
+      "power": 6,
+      "energy": 4,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Scratch",
+        "German": "Kratzer",
+        "French": "Griffe",
+        "Italian": "Graffio",
+        "Japanese": "ひっかく",
+        "Korean": "할퀴기",
+        "Spanish": "Arañazo"
+      },
+      "combat": {
+        "energy": 2,
+        "power": 4,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "QUICK_ATTACK_FAST": {
+      "id": "QUICK_ATTACK_FAST",
+      "power": 10,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Quick Attack",
+        "German": "Ruckzuckhieb",
+        "French": "Vive-Attaque",
+        "Italian": "Attacco Rapido",
+        "Japanese": "でんこうせっか",
+        "Korean": "전광석화",
+        "Spanish": "Ataque Rápido"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "DIG": {
+      "id": "DIG",
+      "power": 100,
+      "energy": -50,
+      "durationMs": 4500,
+      "type": {
+        "type": "POKEMON_TYPE_GROUND",
+        "names": {
+          "English": "Ground",
+          "German": "Boden",
+          "French": "Sol",
+          "Italian": "Terra",
+          "Japanese": "じめん",
+          "Korean": "땅",
+          "Spanish": "Tierra"
+        }
+      },
+      "names": {
+        "English": "Dig",
+        "German": "Schaufler",
+        "French": "Tunnel",
+        "Italian": "Fossa",
+        "Japanese": "あなをほる",
+        "Korean": "구멍파기",
+        "Spanish": "Excavar"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "BRICK_BREAK": {
+      "id": "BRICK_BREAK",
+      "power": 40,
+      "energy": -33,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Brick Break",
+        "German": "Durchbruch",
+        "French": "Casse-Brique",
+        "Italian": "Breccia",
+        "Japanese": "かわらわり",
+        "Korean": "깨트리기",
+        "Spanish": "Demolición"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 50,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "GRASS_KNOT": {
+      "id": "GRASS_KNOT",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Grass Knot",
+        "German": "Strauchler",
+        "French": "Nœud Herbe",
+        "Italian": "Laccioerboso",
+        "Japanese": "くさむすび",
+        "Korean": "풀묶기",
+        "Spanish": "Hierba Lazo"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm161.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm161.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "FURRET",
+      "formId": "FURRET",
+      "candies": 25,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm161.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm161.s.icon.png"
+    }
+  ]
+}

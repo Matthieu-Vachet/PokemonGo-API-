@@ -1,0 +1,237 @@
+{
+  "id": "GRUBBIN",
+  "formId": "GRUBBIN",
+  "dexNr": 736,
+  "generation": 7,
+  "names": {
+    "English": "Grubbin",
+    "German": "Mabula",
+    "French": "Larvibule",
+    "Italian": "Grubbin",
+    "Japanese": "アゴジムシ",
+    "Korean": "턱지충이",
+    "Spanish": "Grubbin"
+  },
+  "stats": {
+    "stamina": 132,
+    "attack": 115,
+    "defense": 85
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_BUG",
+    "names": {
+      "English": "Bug",
+      "German": "Käfer",
+      "French": "Insecte",
+      "Italian": "Coleottero",
+      "Japanese": "むし",
+      "Korean": "벌레",
+      "Spanish": "Bicho"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "BUG_BITE_FAST": {
+      "id": "BUG_BITE_FAST",
+      "power": 5,
+      "energy": 6,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Bug Bite",
+        "German": "Käferbiss",
+        "French": "Piqûre",
+        "Italian": "Coleomorso",
+        "Japanese": "むしくい",
+        "Korean": "벌레먹기",
+        "Spanish": "Picadura"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 4,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "SPARK_FAST": {
+      "id": "SPARK_FAST",
+      "power": 4,
+      "energy": 6,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Spark",
+        "German": "Funkensprung",
+        "French": "Étincelle",
+        "Italian": "Scintilla",
+        "Japanese": "スパーク",
+        "Korean": "스파크",
+        "Spanish": "Chispa"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "X_SCISSOR": {
+      "id": "X_SCISSOR",
+      "power": 45,
+      "energy": -33,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "X-Scissor",
+        "German": "Kreuzschere",
+        "French": "Plaie Croix",
+        "Italian": "Forbice X",
+        "Japanese": "シザークロス",
+        "Korean": "시저크로스",
+        "Spanish": "Tijera X"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 65,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "VICE_GRIP": {
+      "id": "VICE_GRIP",
+      "power": 35,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Vise Grip",
+        "German": "Klammer",
+        "French": "Force Poigne",
+        "Italian": "Presa",
+        "Japanese": "はさむ",
+        "Korean": "찝기",
+        "Spanish": "Agarre"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "CRUNCH": {
+      "id": "CRUNCH",
+      "power": 65,
+      "energy": -33,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Crunch",
+        "German": "Knirscher",
+        "French": "Mâchouille",
+        "Italian": "Sgranocchio",
+        "Japanese": "かみくだく",
+        "Korean": "깨물어부수기",
+        "Spanish": "Triturar"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 70,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 20,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm736.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm736.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "CHARJABUG",
+      "formId": "CHARJABUG",
+      "candies": 25,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm736.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm736.s.icon.png"
+    }
+  ]
+}

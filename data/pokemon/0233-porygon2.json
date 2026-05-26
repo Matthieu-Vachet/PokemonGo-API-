@@ -1,0 +1,320 @@
+{
+  "id": "PORYGON2",
+  "formId": "PORYGON2",
+  "dexNr": 233,
+  "generation": 2,
+  "names": {
+    "English": "Porygon2",
+    "German": "Porygon2",
+    "French": "Porygon2",
+    "Italian": "Porygon2",
+    "Japanese": "ポリゴン２",
+    "Korean": "폴리곤2",
+    "Spanish": "Porygon2"
+  },
+  "stats": {
+    "stamina": 198,
+    "attack": 198,
+    "defense": 180
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_NORMAL",
+    "names": {
+      "English": "Normal",
+      "German": "Normal",
+      "French": "Normal",
+      "Italian": "Normale",
+      "Japanese": "ノーマル",
+      "Korean": "노말",
+      "Spanish": "Normal"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "HIDDEN_POWER_FAST": {
+      "id": "HIDDEN_POWER_FAST",
+      "power": 15,
+      "energy": 15,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Hidden Power",
+        "German": "Kraftreserve",
+        "French": "Puissance Cachée",
+        "Italian": "Introforza",
+        "Japanese": "めざめるパワー",
+        "Korean": "잠재파워",
+        "Spanish": "Poder Oculto"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 9,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "CHARGE_BEAM_FAST": {
+      "id": "CHARGE_BEAM_FAST",
+      "power": 7,
+      "energy": 14,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Charge Beam",
+        "German": "Ladestrahl",
+        "French": "Rayon Chargé",
+        "Italian": "Raggioscossa",
+        "Japanese": "チャージビーム",
+        "Korean": "차지빔",
+        "Spanish": "Rayo Carga"
+      },
+      "combat": {
+        "energy": 11,
+        "power": 5,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "LOCK_ON_FAST": {
+      "id": "LOCK_ON_FAST",
+      "power": 2,
+      "energy": 10,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Lock-On",
+        "German": "Zielschuss",
+        "French": "Verrouillage",
+        "Italian": "Localizza",
+        "Japanese": "ロックオン",
+        "Korean": "록온",
+        "Spanish": "Fijar Blanco"
+      },
+      "combat": {
+        "energy": 5,
+        "power": 1,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "SOLAR_BEAM": {
+      "id": "SOLAR_BEAM",
+      "power": 180,
+      "energy": -100,
+      "durationMs": 5000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Solar Beam",
+        "German": "Solarstrahl",
+        "French": "Lance-Soleil",
+        "Italian": "Solarraggio",
+        "Japanese": "ソーラービーム",
+        "Korean": "솔라빔",
+        "Spanish": "Rayo Solar"
+      },
+      "combat": {
+        "energy": -80,
+        "power": 150,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "HYPER_BEAM": {
+      "id": "HYPER_BEAM",
+      "power": 150,
+      "energy": -100,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Hyper Beam",
+        "German": "Hyperstrahl",
+        "French": "Ultralaser",
+        "Italian": "Iper Raggio",
+        "Japanese": "はかいこうせん",
+        "Korean": "파괴광선",
+        "Spanish": "Hiperrayo"
+      },
+      "combat": {
+        "energy": -80,
+        "power": 150,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ZAP_CANNON": {
+      "id": "ZAP_CANNON",
+      "power": 140,
+      "energy": -100,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Zap Cannon",
+        "German": "Blitzkanone",
+        "French": "Élecanon",
+        "Italian": "Falcecannone",
+        "Japanese": "でんじほう",
+        "Korean": "전자포",
+        "Spanish": "Electrocañón"
+      },
+      "combat": {
+        "energy": -80,
+        "power": 150,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 33,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "TRI_ATTACK": {
+      "id": "TRI_ATTACK",
+      "power": 75,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Tri Attack",
+        "German": "Triplette",
+        "French": "Triplattaque",
+        "Italian": "Tripletta",
+        "Japanese": "トライアタック",
+        "Korean": "트라이어택",
+        "Spanish": "Triataque"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 65,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 50,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm233.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm233.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "PORYGON_Z",
+      "formId": "PORYGON_Z_NORMAL",
+      "candies": 100,
+      "item": {
+        "id": "ITEM_GEN4_EVOLUTION_STONE",
+        "names": {
+          "English": "Sinnoh Stone",
+          "German": "Sinnoh-Stein",
+          "French": "Pierre Sinnoh",
+          "Italian": "Pietra Sinnoh",
+          "Japanese": "シンオウのいし",
+          "Korean": "신오의 돌",
+          "Spanish": "Piedra Sinnoh"
+        }
+      },
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm233.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm233.s.icon.png"
+    }
+  ]
+}

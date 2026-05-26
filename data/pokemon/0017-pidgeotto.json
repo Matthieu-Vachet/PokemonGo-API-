@@ -1,0 +1,248 @@
+{
+  "id": "PIDGEOTTO",
+  "formId": "PIDGEOTTO",
+  "dexNr": 17,
+  "generation": 1,
+  "names": {
+    "English": "Pidgeotto",
+    "German": "Tauboga",
+    "French": "Roucoups",
+    "Italian": "Pidgeotto",
+    "Japanese": "ピジョン",
+    "Korean": "피죤",
+    "Spanish": "Pidgeotto"
+  },
+  "stats": {
+    "stamina": 160,
+    "attack": 117,
+    "defense": 105
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_NORMAL",
+    "names": {
+      "English": "Normal",
+      "German": "Normal",
+      "French": "Normal",
+      "Italian": "Normale",
+      "Japanese": "ノーマル",
+      "Korean": "노말",
+      "Spanish": "Normal"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FLYING",
+    "names": {
+      "English": "Flying",
+      "German": "Flug",
+      "French": "Vol",
+      "Italian": "Volante",
+      "Japanese": "ひこう",
+      "Korean": "비행",
+      "Spanish": "Volador"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "WING_ATTACK_FAST": {
+      "id": "WING_ATTACK_FAST",
+      "power": 10,
+      "energy": 11,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Wing Attack",
+        "German": "Flügelschlag",
+        "French": "Cru-Ailes",
+        "Italian": "Attacco d’Ala",
+        "Japanese": "つばさでうつ",
+        "Korean": "날개치기",
+        "Spanish": "Ataque Ala"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "STEEL_WING_FAST": {
+      "id": "STEEL_WING_FAST",
+      "power": 14,
+      "energy": 8,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Steel Wing",
+        "German": "Stahlflügel",
+        "French": "Ailes d’Acier",
+        "Italian": "Alacciaio",
+        "Japanese": "はがねのつばさ",
+        "Korean": "강철날개",
+        "Spanish": "Ala de Acero"
+      },
+      "combat": {
+        "energy": 5,
+        "power": 7,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "TWISTER": {
+      "id": "TWISTER",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "names": {
+        "English": "Twister",
+        "German": "Windhose",
+        "French": "Ouragan",
+        "Italian": "Tornado",
+        "Japanese": "たつまき",
+        "Korean": "회오리",
+        "Spanish": "Ciclón"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "AERIAL_ACE": {
+      "id": "AERIAL_ACE",
+      "power": 55,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Aerial Ace",
+        "German": "Aero-Ass",
+        "French": "Aéropique",
+        "Italian": "Aeroassalto",
+        "Japanese": "つばめがえし",
+        "Korean": "제비반환",
+        "Spanish": "Golpe Aéreo"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "AIR_CUTTER": {
+      "id": "AIR_CUTTER",
+      "power": 55,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Air Cutter",
+        "German": "Windschnitt",
+        "French": "Tranch’Air",
+        "Italian": "Aerasoio",
+        "Japanese": "エアカッター",
+        "Korean": "에어커터",
+        "Spanish": "Aire Afilado"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 45,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 30,
+          "attackerAttackStatsChange": 1,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm17.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm17.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "PIDGEOT",
+      "formId": "PIDGEOT",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm17.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm17.s.icon.png"
+    }
+  ]
+}

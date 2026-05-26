@@ -1,0 +1,244 @@
+{
+  "id": "CHANSEY",
+  "formId": "CHANSEY",
+  "dexNr": 113,
+  "generation": 1,
+  "names": {
+    "English": "Chansey",
+    "German": "Chaneira",
+    "French": "Leveinard",
+    "Italian": "Chansey",
+    "Japanese": "ラッキー",
+    "Korean": "럭키",
+    "Spanish": "Chansey"
+  },
+  "stats": {
+    "stamina": 487,
+    "attack": 60,
+    "defense": 128
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_NORMAL",
+    "names": {
+      "English": "Normal",
+      "German": "Normal",
+      "French": "Normal",
+      "Italian": "Normale",
+      "Japanese": "ノーマル",
+      "Korean": "노말",
+      "Spanish": "Normal"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "POUND_FAST": {
+      "id": "POUND_FAST",
+      "power": 6,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Pound",
+        "German": "Klaps",
+        "French": "Écras’Face",
+        "Italian": "Botta",
+        "Japanese": "はたく",
+        "Korean": "막치기",
+        "Spanish": "Destructor"
+      },
+      "combat": {
+        "energy": 4,
+        "power": 4,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "ZEN_HEADBUTT_FAST": {
+      "id": "ZEN_HEADBUTT_FAST",
+      "power": 11,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Zen Headbutt",
+        "German": "Zen-Kopfstoß",
+        "French": "Psykoud’Boul",
+        "Italian": "Cozzata Zen",
+        "Japanese": "しねんのずつき",
+        "Korean": "사념의박치기",
+        "Spanish": "Cabezazo Zen"
+      },
+      "combat": {
+        "energy": 6,
+        "power": 8,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "PSYCHIC": {
+      "id": "PSYCHIC",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psychic",
+        "German": "Psychokinese",
+        "French": "Psyko",
+        "Italian": "Psichico",
+        "Japanese": "サイコキネシス",
+        "Korean": "사이코키네시스",
+        "Spanish": "Psíquico"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 75,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "HYPER_BEAM": {
+      "id": "HYPER_BEAM",
+      "power": 150,
+      "energy": -100,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Hyper Beam",
+        "German": "Hyperstrahl",
+        "French": "Ultralaser",
+        "Italian": "Iper Raggio",
+        "Japanese": "はかいこうせん",
+        "Korean": "파괴광선",
+        "Spanish": "Hiperrayo"
+      },
+      "combat": {
+        "energy": -80,
+        "power": 150,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "DAZZLING_GLEAM": {
+      "id": "DAZZLING_GLEAM",
+      "power": 100,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Dazzling Gleam",
+        "German": "Zauberschein",
+        "French": "Éclat Magique",
+        "Italian": "Magibrillio",
+        "Japanese": "マジカルシャイン",
+        "Korean": "매지컬샤인",
+        "Spanish": "Brillo Mágico"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm113.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm113.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "BLISSEY",
+      "formId": "BLISSEY_NORMAL",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": "NOVEMBER_2018",
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm113.cNOVEMBER_2018.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm113.cNOVEMBER_2018.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm113.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm113.s.icon.png"
+    }
+  ]
+}

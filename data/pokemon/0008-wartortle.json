@@ -1,0 +1,245 @@
+{
+  "id": "WARTORTLE",
+  "formId": "WARTORTLE",
+  "dexNr": 8,
+  "generation": 1,
+  "names": {
+    "English": "Wartortle",
+    "German": "Schillok",
+    "French": "Carabaffe",
+    "Italian": "Wartortle",
+    "Japanese": "カメール",
+    "Korean": "어니부기",
+    "Spanish": "Wartortle"
+  },
+  "stats": {
+    "stamina": 153,
+    "attack": 126,
+    "defense": 155
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_WATER",
+    "names": {
+      "English": "Water",
+      "German": "Wasser",
+      "French": "Eau",
+      "Italian": "Acqua",
+      "Japanese": "みず",
+      "Korean": "물",
+      "Spanish": "Agua"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "WATER_GUN_FAST": {
+      "id": "WATER_GUN_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Water Gun",
+        "German": "Aquaknarre",
+        "French": "Pistolet à O",
+        "Italian": "Pistolacqua",
+        "Japanese": "みずでっぽう",
+        "Korean": "물대포",
+        "Spanish": "Pistola Agua"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "BITE_FAST": {
+      "id": "BITE_FAST",
+      "power": 6,
+      "energy": 4,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Bite",
+        "German": "Biss",
+        "French": "Morsure",
+        "Italian": "Morso",
+        "Japanese": "かみつく",
+        "Korean": "물기",
+        "Spanish": "Mordisco"
+      },
+      "combat": {
+        "energy": 2,
+        "power": 4,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "AQUA_JET": {
+      "id": "AQUA_JET",
+      "power": 45,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Aqua Jet",
+        "German": "Wasserdüse",
+        "French": "Aqua-Jet",
+        "Italian": "Acquagetto",
+        "Japanese": "アクアジェット",
+        "Korean": "아쿠아제트",
+        "Spanish": "Acua Jet"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ICE_BEAM": {
+      "id": "ICE_BEAM",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Ice Beam",
+        "German": "Eisstrahl",
+        "French": "Laser Glace",
+        "Italian": "Geloraggio",
+        "Japanese": "れいとうビーム",
+        "Korean": "냉동빔",
+        "Spanish": "Rayo Hielo"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "HYDRO_PUMP": {
+      "id": "HYDRO_PUMP",
+      "power": 135,
+      "energy": -100,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Hydro Pump",
+        "German": "Hydropumpe",
+        "French": "Hydrocanon",
+        "Italian": "Idropompa",
+        "Japanese": "ハイドロポンプ",
+        "Korean": "하이드로펌프",
+        "Spanish": "Hidrobomba"
+      },
+      "combat": {
+        "energy": -75,
+        "power": 130,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm8.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm8.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "BLASTOISE",
+      "formId": "BLASTOISE_NORMAL",
+      "candies": 100,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": "JAN_2020_NOEVOLVE",
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm8.cJAN_2020_NOEVOLVE.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm8.cJAN_2020_NOEVOLVE.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": "SUMMER_2018",
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm8.cSUMMER_2018.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm8.cSUMMER_2018.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm8.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm8.s.icon.png"
+    }
+  ]
+}

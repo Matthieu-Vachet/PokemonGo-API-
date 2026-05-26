@@ -1,0 +1,470 @@
+{
+  "id": "CORSOLA",
+  "formId": "CORSOLA",
+  "dexNr": 222,
+  "generation": 2,
+  "names": {
+    "English": "Corsola",
+    "German": "Corasonn",
+    "French": "Corayon",
+    "Italian": "Corsola",
+    "Japanese": "サニーゴ",
+    "Korean": "코산호",
+    "Spanish": "Corsola"
+  },
+  "stats": {
+    "stamina": 146,
+    "attack": 118,
+    "defense": 156
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_WATER",
+    "names": {
+      "English": "Water",
+      "German": "Wasser",
+      "French": "Eau",
+      "Italian": "Acqua",
+      "Japanese": "みず",
+      "Korean": "물",
+      "Spanish": "Agua"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_ROCK",
+    "names": {
+      "English": "Rock",
+      "German": "Gestein",
+      "French": "Roche",
+      "Italian": "Roccia",
+      "Japanese": "いわ",
+      "Korean": "바위",
+      "Spanish": "Roca"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "TACKLE_FAST": {
+      "id": "TACKLE_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Tackle",
+        "German": "Tackle",
+        "French": "Charge",
+        "Italian": "Azione",
+        "Japanese": "たいあたり",
+        "Korean": "몸통박치기",
+        "Spanish": "Placaje"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "BUBBLE_FAST": {
+      "id": "BUBBLE_FAST",
+      "power": 10,
+      "energy": 12,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Bubble",
+        "German": "Blubber",
+        "French": "Écume",
+        "Italian": "Bolla",
+        "Japanese": "あわ",
+        "Korean": "거품",
+        "Spanish": "Burbuja"
+      },
+      "combat": {
+        "energy": 11,
+        "power": 8,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "ROCK_BLAST": {
+      "id": "ROCK_BLAST",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Rock Blast",
+        "German": "Felswurf",
+        "French": "Boule Roc",
+        "Italian": "Cadutamassi",
+        "Japanese": "ロックブラスト",
+        "Korean": "록블라스트",
+        "Spanish": "Pedrada"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 50,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "POWER_GEM": {
+      "id": "POWER_GEM",
+      "power": 80,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Power Gem",
+        "German": "Juwelenkraft",
+        "French": "Rayon Gemme",
+        "Italian": "Gemmoforza",
+        "Japanese": "パワージェム",
+        "Korean": "파워젬",
+        "Spanish": "Joya de Luz"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 85,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "BUBBLE_BEAM": {
+      "id": "BUBBLE_BEAM",
+      "power": 45,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Bubble Beam",
+        "German": "Blubbstrahl",
+        "French": "Bulles d’O",
+        "Italian": "Bollaraggio",
+        "Japanese": "バブルこうせん",
+        "Korean": "거품광선",
+        "Spanish": "Rayo Burbuja"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 25,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm222.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm222.s.icon.png"
+  },
+  "regionForms": {
+    "CORSOLA_GALARIAN": {
+      "id": "CORSOLA",
+      "formId": "CORSOLA_GALARIAN",
+      "dexNr": 222,
+      "generation": 2,
+      "names": {
+        "English": "Galarian Corsola",
+        "German": "Galar-Corasonn",
+        "French": "Corayon de Galar",
+        "Italian": "Corsola di Galar",
+        "Japanese": "ガラル サニーゴ",
+        "Korean": "가라르 코산호",
+        "Spanish": "Corsola de Galar"
+      },
+      "stats": {
+        "stamina": 155,
+        "attack": 116,
+        "defense": 182
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ASTONISH_FAST": {
+          "id": "ASTONISH_FAST",
+          "power": 7,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Astonish",
+            "German": "Erstauner",
+            "French": "Étonnement",
+            "Italian": "Sgomento",
+            "Japanese": "おどろかす",
+            "Korean": "놀래키기",
+            "Spanish": "Impresionar"
+          },
+          "combat": {
+            "energy": 10,
+            "power": 12,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "ROCK_BLAST": {
+          "id": "ROCK_BLAST",
+          "power": 50,
+          "energy": -33,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Rock Blast",
+            "German": "Felswurf",
+            "French": "Boule Roc",
+            "Italian": "Cadutamassi",
+            "Japanese": "ロックブラスト",
+            "Korean": "록블라스트",
+            "Spanish": "Pedrada"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 50,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "POWER_GEM": {
+          "id": "POWER_GEM",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Power Gem",
+            "German": "Juwelenkraft",
+            "French": "Rayon Gemme",
+            "Italian": "Gemmoforza",
+            "Japanese": "パワージェム",
+            "Korean": "파워젬",
+            "Spanish": "Joya de Luz"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 85,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "NIGHT_SHADE": {
+          "id": "NIGHT_SHADE",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Night Shade",
+            "German": "Nachtnebel",
+            "French": "Ombre Nocturne",
+            "Italian": "Ombra Notturna",
+            "Japanese": "ナイトヘッド",
+            "Korean": "나이트헤드",
+            "Spanish": "Tinieblas"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm222.fGALARIAN.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm222.fGALARIAN.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [
+        {
+          "id": "CURSOLA",
+          "formId": "CURSOLA_NORMAL",
+          "candies": 50,
+          "item": null,
+          "quests": []
+        }
+      ],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "GALARIAN",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm222.fGALARIAN.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm222.fGALARIAN.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm222.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm222.s.icon.png"
+    }
+  ]
+}

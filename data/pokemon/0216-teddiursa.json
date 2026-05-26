@@ -1,0 +1,316 @@
+{
+  "id": "TEDDIURSA",
+  "formId": "TEDDIURSA",
+  "dexNr": 216,
+  "generation": 2,
+  "names": {
+    "English": "Teddiursa",
+    "German": "Teddiursa",
+    "French": "Teddiursa",
+    "Italian": "Teddiursa",
+    "Japanese": "ヒメグマ",
+    "Korean": "깜지곰",
+    "Spanish": "Teddiursa"
+  },
+  "stats": {
+    "stamina": 155,
+    "attack": 142,
+    "defense": 93
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_NORMAL",
+    "names": {
+      "English": "Normal",
+      "German": "Normal",
+      "French": "Normal",
+      "Italian": "Normale",
+      "Japanese": "ノーマル",
+      "Korean": "노말",
+      "Spanish": "Normal"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "SCRATCH_FAST": {
+      "id": "SCRATCH_FAST",
+      "power": 6,
+      "energy": 4,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Scratch",
+        "German": "Kratzer",
+        "French": "Griffe",
+        "Italian": "Graffio",
+        "Japanese": "ひっかく",
+        "Korean": "할퀴기",
+        "Spanish": "Arañazo"
+      },
+      "combat": {
+        "energy": 2,
+        "power": 4,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "LICK_FAST": {
+      "id": "LICK_FAST",
+      "power": 5,
+      "energy": 6,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Lick",
+        "German": "Schlecker",
+        "French": "Léchouille",
+        "Italian": "Leccata",
+        "Japanese": "したでなめる",
+        "Korean": "핥기",
+        "Spanish": "Lengüetazo"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "CROSS_CHOP": {
+      "id": "CROSS_CHOP",
+      "power": 50,
+      "energy": -50,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Cross Chop",
+        "German": "Kreuzhieb",
+        "French": "Coup Croix",
+        "Italian": "Incrocolpo",
+        "Japanese": "クロスチョップ",
+        "Korean": "크로스촙",
+        "Spanish": "Tajo Cruzado"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "CRUNCH": {
+      "id": "CRUNCH",
+      "power": 65,
+      "energy": -33,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Crunch",
+        "German": "Knirscher",
+        "French": "Mâchouille",
+        "Italian": "Sgranocchio",
+        "Japanese": "かみくだく",
+        "Korean": "깨물어부수기",
+        "Spanish": "Triturar"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 70,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 20,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "PLAY_ROUGH": {
+      "id": "PLAY_ROUGH",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Play Rough",
+        "German": "Knuddler",
+        "French": "Câlinerie",
+        "Italian": "Carineria",
+        "Japanese": "じゃれつく",
+        "Korean": "치근거리기",
+        "Spanish": "Carantoña"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "TRAILBLAZE": {
+      "id": "TRAILBLAZE",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Trailblaze",
+        "German": "Wegbereiter",
+        "French": "Désherbaffe",
+        "Italian": "Apripista",
+        "Japanese": "くさわけ",
+        "Korean": "개척하기",
+        "Spanish": "Abrecaminos"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 65,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": 1,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "SWIFT": {
+      "id": "SWIFT",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Swift",
+        "German": "Sternschauer",
+        "French": "Météores",
+        "Italian": "Comete",
+        "Japanese": "スピードスター",
+        "Korean": "스피드스타",
+        "Spanish": "Rapidez"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm216.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm216.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "URSARING",
+      "formId": "URSARING_NORMAL",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": "HALLOWEEN_2025",
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm216.cHALLOWEEN_2025.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm216.cHALLOWEEN_2025.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm216.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm216.s.icon.png"
+    }
+  ]
+}

@@ -1,0 +1,320 @@
+{
+  "id": "BEWEAR",
+  "formId": "BEWEAR",
+  "dexNr": 760,
+  "generation": 7,
+  "names": {
+    "English": "Bewear",
+    "German": "Kosturso",
+    "French": "Chelours",
+    "Italian": "Bewear",
+    "Japanese": "キテルグマ",
+    "Korean": "이븐곰",
+    "Spanish": "Bewear"
+  },
+  "stats": {
+    "stamina": 260,
+    "attack": 226,
+    "defense": 141
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_NORMAL",
+    "names": {
+      "English": "Normal",
+      "German": "Normal",
+      "French": "Normal",
+      "Italian": "Normale",
+      "Japanese": "ノーマル",
+      "Korean": "노말",
+      "Spanish": "Normal"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FIGHTING",
+    "names": {
+      "English": "Fighting",
+      "German": "Kampf",
+      "French": "Combat",
+      "Italian": "Lotta",
+      "Japanese": "かくとう",
+      "Korean": "격투",
+      "Spanish": "Lucha"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "TACKLE_FAST": {
+      "id": "TACKLE_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Tackle",
+        "German": "Tackle",
+        "French": "Charge",
+        "Italian": "Azione",
+        "Japanese": "たいあたり",
+        "Korean": "몸통박치기",
+        "Spanish": "Placaje"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "LOW_KICK_FAST": {
+      "id": "LOW_KICK_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Low Kick",
+        "German": "Fußkick",
+        "French": "Balayage",
+        "Italian": "Colpo Basso",
+        "Japanese": "けたぐり",
+        "Korean": "안다리걸기",
+        "Spanish": "Patada Baja"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "SHADOW_CLAW_FAST": {
+      "id": "SHADOW_CLAW_FAST",
+      "power": 6,
+      "energy": 4,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Shadow Claw",
+        "German": "Dunkelklaue",
+        "French": "Griffe Ombre",
+        "Italian": "Ombrartigli",
+        "Japanese": "シャドークロー",
+        "Korean": "섀도클로",
+        "Spanish": "Garra Umbría"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 6,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "SUPER_POWER": {
+      "id": "SUPER_POWER",
+      "power": 85,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Superpower",
+        "German": "Kraftkoloss",
+        "French": "Surpuissance",
+        "Italian": "Troppoforte",
+        "Japanese": "ばかぢから",
+        "Korean": "엄청난힘",
+        "Spanish": "Fuerza Bruta"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 85,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": -1,
+          "attackerDefenseStatsChange": -1,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "PAYBACK": {
+      "id": "PAYBACK",
+      "power": 95,
+      "energy": -100,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Payback",
+        "German": "Gegenstoß",
+        "French": "Représailles",
+        "Italian": "Rivincita",
+        "Japanese": "しっぺがえし",
+        "Korean": "보복",
+        "Spanish": "Vendetta"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 110,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "STOMP": {
+      "id": "STOMP",
+      "power": 50,
+      "energy": -50,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Stomp",
+        "German": "Stampfer",
+        "French": "Écrasement",
+        "Italian": "Pestone",
+        "Japanese": "ふみつけ",
+        "Korean": "짓밟기",
+        "Spanish": "Pisotón"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": {
+    "DRAIN_PUNCH": {
+      "id": "DRAIN_PUNCH",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Drain Punch",
+        "German": "Ableithieb",
+        "French": "Vampi-Poing",
+        "Italian": "Assorbipugno",
+        "Japanese": "ドレインパンチ",
+        "Korean": "드레인펀치",
+        "Spanish": "Puño Drenaje"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 40,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": 1,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm760.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm760.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "WILDAREA_2025",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm760.fWILDAREA_2025.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm760.fWILDAREA_2025.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm760.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm760.s.icon.png"
+    }
+  ]
+}

@@ -1,0 +1,267 @@
+{
+  "id": "PELIPPER",
+  "formId": "PELIPPER",
+  "dexNr": 279,
+  "generation": 3,
+  "names": {
+    "English": "Pelipper",
+    "German": "Pelipper",
+    "French": "Bekipan",
+    "Italian": "Pelipper",
+    "Japanese": "ペリッパー",
+    "Korean": "패리퍼",
+    "Spanish": "Pelipper"
+  },
+  "stats": {
+    "stamina": 155,
+    "attack": 175,
+    "defense": 174
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_WATER",
+    "names": {
+      "English": "Water",
+      "German": "Wasser",
+      "French": "Eau",
+      "Italian": "Acqua",
+      "Japanese": "みず",
+      "Korean": "물",
+      "Spanish": "Agua"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FLYING",
+    "names": {
+      "English": "Flying",
+      "German": "Flug",
+      "French": "Vol",
+      "Italian": "Volante",
+      "Japanese": "ひこう",
+      "Korean": "비행",
+      "Spanish": "Volador"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "WATER_GUN_FAST": {
+      "id": "WATER_GUN_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Water Gun",
+        "German": "Aquaknarre",
+        "French": "Pistolet à O",
+        "Italian": "Pistolacqua",
+        "Japanese": "みずでっぽう",
+        "Korean": "물대포",
+        "Spanish": "Pistola Agua"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "WING_ATTACK_FAST": {
+      "id": "WING_ATTACK_FAST",
+      "power": 10,
+      "energy": 11,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Wing Attack",
+        "German": "Flügelschlag",
+        "French": "Cru-Ailes",
+        "Italian": "Attacco d’Ala",
+        "Japanese": "つばさでうつ",
+        "Korean": "날개치기",
+        "Spanish": "Ataque Ala"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "HYDRO_PUMP": {
+      "id": "HYDRO_PUMP",
+      "power": 135,
+      "energy": -100,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Hydro Pump",
+        "German": "Hydropumpe",
+        "French": "Hydrocanon",
+        "Italian": "Idropompa",
+        "Japanese": "ハイドロポンプ",
+        "Korean": "하이드로펌프",
+        "Spanish": "Hidrobomba"
+      },
+      "combat": {
+        "energy": -75,
+        "power": 130,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "HURRICANE": {
+      "id": "HURRICANE",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Hurricane",
+        "German": "Orkan",
+        "French": "Vent Violent",
+        "Italian": "Tifone",
+        "Japanese": "ぼうふう",
+        "Korean": "폭풍",
+        "Spanish": "Vendaval"
+      },
+      "combat": {
+        "energy": -65,
+        "power": 110,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "BLIZZARD": {
+      "id": "BLIZZARD",
+      "power": 130,
+      "energy": -100,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Blizzard",
+        "German": "Blizzard",
+        "French": "Blizzard",
+        "Italian": "Bora",
+        "Japanese": "ふぶき",
+        "Korean": "눈보라",
+        "Spanish": "Ventisca"
+      },
+      "combat": {
+        "energy": -75,
+        "power": 140,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "WEATHER_BALL_WATER": {
+      "id": "WEATHER_BALL_WATER",
+      "power": 55,
+      "energy": -33,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Weather Ball",
+        "German": "Meteorologe",
+        "French": "Ball’Météo",
+        "Italian": "Palla Clima",
+        "Japanese": "ウェザーボール",
+        "Korean": "웨더볼",
+        "Spanish": "Meteorobola"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm279.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm279.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm279.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm279.s.icon.png"
+    }
+  ]
+}

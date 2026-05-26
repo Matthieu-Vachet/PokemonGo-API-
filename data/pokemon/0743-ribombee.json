@@ -1,0 +1,273 @@
+{
+  "id": "RIBOMBEE",
+  "formId": "RIBOMBEE",
+  "dexNr": 743,
+  "generation": 7,
+  "names": {
+    "English": "Ribombee",
+    "German": "Bandelby",
+    "French": "Rubombelle",
+    "Italian": "Ribombee",
+    "Japanese": "アブリボン",
+    "Korean": "에리본",
+    "Spanish": "Ribombee"
+  },
+  "stats": {
+    "stamina": 155,
+    "attack": 198,
+    "defense": 146
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_BUG",
+    "names": {
+      "English": "Bug",
+      "German": "Käfer",
+      "French": "Insecte",
+      "Italian": "Coleottero",
+      "Japanese": "むし",
+      "Korean": "벌레",
+      "Spanish": "Bicho"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FAIRY",
+    "names": {
+      "English": "Fairy",
+      "German": "Fee",
+      "French": "Fée",
+      "Italian": "Folletto",
+      "Japanese": "フェアリー",
+      "Korean": "페어리",
+      "Spanish": "Hada"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "FAIRY_WIND_FAST": {
+      "id": "FAIRY_WIND_FAST",
+      "power": 9,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Fairy Wind",
+        "German": "Feenbrise",
+        "French": "Vent Féérique",
+        "Italian": "Vento di Fata",
+        "Japanese": "ようせいのかぜ",
+        "Korean": "요정의바람",
+        "Spanish": "Viento Feérico"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 4,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "STRUGGLE_BUG_FAST": {
+      "id": "STRUGGLE_BUG_FAST",
+      "power": 15,
+      "energy": 15,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Struggle Bug",
+        "German": "Käfertrutz",
+        "French": "Survinsecte",
+        "Italian": "Entomoblocco",
+        "Japanese": "むしのていこう",
+        "Korean": "벌레의저항",
+        "Spanish": "Estoicismo"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 9,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "CHARM_FAST": {
+      "id": "CHARM_FAST",
+      "power": 20,
+      "energy": 11,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Charm",
+        "German": "Charme",
+        "French": "Charme",
+        "Italian": "Fascino",
+        "Japanese": "あまえる",
+        "Korean": "애교부리기",
+        "Spanish": "Encanto"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 13,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "DAZZLING_GLEAM": {
+      "id": "DAZZLING_GLEAM",
+      "power": 100,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Dazzling Gleam",
+        "German": "Zauberschein",
+        "French": "Éclat Magique",
+        "Italian": "Magibrillio",
+        "Japanese": "マジカルシャイン",
+        "Korean": "매지컬샤인",
+        "Spanish": "Brillo Mágico"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "BUG_BUZZ": {
+      "id": "BUG_BUZZ",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Bug Buzz",
+        "German": "Käfergebrumm",
+        "French": "Bourdon",
+        "Italian": "Ronzio",
+        "Japanese": "むしのさざめき",
+        "Korean": "벌레의야단법석",
+        "Spanish": "Zumbido"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 100,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 30,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "DRAINING_KISS": {
+      "id": "DRAINING_KISS",
+      "power": 60,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Draining Kiss",
+        "German": "Diebeskuss",
+        "French": "Vampibaiser",
+        "Italian": "Assorbibacio",
+        "Japanese": "ドレインキッス",
+        "Korean": "드레인키스",
+        "Spanish": "Beso Drenaje"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm743.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm743.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm743.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm743.s.icon.png"
+    }
+  ]
+}

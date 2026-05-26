@@ -1,0 +1,5813 @@
+{
+  "id": "VIVILLON",
+  "formId": "VIVILLON",
+  "dexNr": 666,
+  "generation": 6,
+  "names": {
+    "English": "Vivillon",
+    "German": "Vivillon",
+    "French": "Prismillon",
+    "Italian": "Vivillon",
+    "Japanese": "ビビヨン",
+    "Korean": "비비용",
+    "Spanish": "Vivillon"
+  },
+  "stats": {
+    "stamina": 190,
+    "attack": 176,
+    "defense": 103
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_BUG",
+    "names": {
+      "English": "Bug",
+      "German": "Käfer",
+      "French": "Insecte",
+      "Italian": "Coleottero",
+      "Japanese": "むし",
+      "Korean": "벌레",
+      "Spanish": "Bicho"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FLYING",
+    "names": {
+      "English": "Flying",
+      "German": "Flug",
+      "French": "Vol",
+      "Italian": "Volante",
+      "Japanese": "ひこう",
+      "Korean": "비행",
+      "Spanish": "Volador"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "GUST_FAST": {
+      "id": "GUST_FAST",
+      "power": 25,
+      "energy": 20,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Gust",
+        "German": "Windstoß",
+        "French": "Tornade",
+        "Italian": "Raffica",
+        "Japanese": "かぜおこし",
+        "Korean": "바람일으키기",
+        "Spanish": "Tornado"
+      },
+      "combat": {
+        "energy": 12,
+        "power": 16,
+        "turns": 4,
+        "buffs": null
+      }
+    },
+    "STRUGGLE_BUG_FAST": {
+      "id": "STRUGGLE_BUG_FAST",
+      "power": 15,
+      "energy": 15,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Struggle Bug",
+        "German": "Käfertrutz",
+        "French": "Survinsecte",
+        "Italian": "Entomoblocco",
+        "Japanese": "むしのていこう",
+        "Korean": "벌레의저항",
+        "Spanish": "Estoicismo"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 9,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "BUG_BUZZ": {
+      "id": "BUG_BUZZ",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Bug Buzz",
+        "German": "Käfergebrumm",
+        "French": "Bourdon",
+        "Italian": "Ronzio",
+        "Japanese": "むしのさざめき",
+        "Korean": "벌레의야단법석",
+        "Spanish": "Zumbido"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 100,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 30,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "AERIAL_ACE": {
+      "id": "AERIAL_ACE",
+      "power": 55,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Aerial Ace",
+        "German": "Aero-Ass",
+        "French": "Aéropique",
+        "Italian": "Aeroassalto",
+        "Japanese": "つばめがえし",
+        "Korean": "제비반환",
+        "Spanish": "Golpe Aéreo"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ENERGY_BALL": {
+      "id": "ENERGY_BALL",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Energy Ball",
+        "German": "Energieball",
+        "French": "Éco-Sphère",
+        "Italian": "Energipalla",
+        "Japanese": "エナジーボール",
+        "Korean": "에너지볼",
+        "Spanish": "Energibola"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "HURRICANE": {
+      "id": "HURRICANE",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Hurricane",
+        "German": "Orkan",
+        "French": "Vent Violent",
+        "Italian": "Tifone",
+        "Japanese": "ぼうふう",
+        "Korean": "폭풍",
+        "Spanish": "Vendaval"
+      },
+      "combat": {
+        "energy": -65,
+        "power": 110,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fARCHIPELAGO.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fARCHIPELAGO.s.icon.png"
+  },
+  "regionForms": {
+    "VIVILLON_ARCHIPELAGO": {
+      "id": "VIVILLON",
+      "formId": "VIVILLON_ARCHIPELAGO",
+      "dexNr": 666,
+      "generation": 6,
+      "names": {
+        "English": "Vivillon (Archipelago Pattern)",
+        "German": "Vivillon (Archipelmuster)",
+        "French": "Prismillon (Motif Archipel)",
+        "Italian": "Vivillon (Motivo Arcipelago)",
+        "Japanese": "ビビヨン (ぐんとうのもよう)",
+        "Korean": "비비용 (군도의 모양)",
+        "Spanish": "Vivillon (Motivo Isleño)"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 176,
+        "defense": 103
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "GUST_FAST": {
+          "id": "GUST_FAST",
+          "power": 25,
+          "energy": 20,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Gust",
+            "German": "Windstoß",
+            "French": "Tornade",
+            "Italian": "Raffica",
+            "Japanese": "かぜおこし",
+            "Korean": "바람일으키기",
+            "Spanish": "Tornado"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "STRUGGLE_BUG_FAST": {
+          "id": "STRUGGLE_BUG_FAST",
+          "power": 15,
+          "energy": 15,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Struggle Bug",
+            "German": "Käfertrutz",
+            "French": "Survinsecte",
+            "Italian": "Entomoblocco",
+            "Japanese": "むしのていこう",
+            "Korean": "벌레의저항",
+            "Spanish": "Estoicismo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BUG_BUZZ": {
+          "id": "BUG_BUZZ",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Buzz",
+            "German": "Käfergebrumm",
+            "French": "Bourdon",
+            "Italian": "Ronzio",
+            "Japanese": "むしのさざめき",
+            "Korean": "벌레의야단법석",
+            "Spanish": "Zumbido"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "HURRICANE": {
+          "id": "HURRICANE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Hurricane",
+            "German": "Orkan",
+            "French": "Vent Violent",
+            "Italian": "Tifone",
+            "Japanese": "ぼうふう",
+            "Korean": "폭풍",
+            "Spanish": "Vendaval"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fARCHIPELAGO.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fARCHIPELAGO.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "VIVILLON_CONTINENTAL": {
+      "id": "VIVILLON",
+      "formId": "VIVILLON_CONTINENTAL",
+      "dexNr": 666,
+      "generation": 6,
+      "names": {
+        "English": "Vivillon (Continental Pattern)",
+        "German": "Vivillon (Kontinentalmuster)",
+        "French": "Prismillon (Motif Continent)",
+        "Italian": "Vivillon (Motivo Continentale)",
+        "Japanese": "ビビヨン (たいりくのもよう)",
+        "Korean": "비비용 (대륙의 모양)",
+        "Spanish": "Vivillon (Motivo Continental)"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 176,
+        "defense": 103
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "GUST_FAST": {
+          "id": "GUST_FAST",
+          "power": 25,
+          "energy": 20,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Gust",
+            "German": "Windstoß",
+            "French": "Tornade",
+            "Italian": "Raffica",
+            "Japanese": "かぜおこし",
+            "Korean": "바람일으키기",
+            "Spanish": "Tornado"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "STRUGGLE_BUG_FAST": {
+          "id": "STRUGGLE_BUG_FAST",
+          "power": 15,
+          "energy": 15,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Struggle Bug",
+            "German": "Käfertrutz",
+            "French": "Survinsecte",
+            "Italian": "Entomoblocco",
+            "Japanese": "むしのていこう",
+            "Korean": "벌레의저항",
+            "Spanish": "Estoicismo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BUG_BUZZ": {
+          "id": "BUG_BUZZ",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Buzz",
+            "German": "Käfergebrumm",
+            "French": "Bourdon",
+            "Italian": "Ronzio",
+            "Japanese": "むしのさざめき",
+            "Korean": "벌레의야단법석",
+            "Spanish": "Zumbido"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "HURRICANE": {
+          "id": "HURRICANE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Hurricane",
+            "German": "Orkan",
+            "French": "Vent Violent",
+            "Italian": "Tifone",
+            "Japanese": "ぼうふう",
+            "Korean": "폭풍",
+            "Spanish": "Vendaval"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fCONTINENTAL.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fCONTINENTAL.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "VIVILLON_ELEGANT": {
+      "id": "VIVILLON",
+      "formId": "VIVILLON_ELEGANT",
+      "dexNr": 666,
+      "generation": 6,
+      "names": {
+        "English": "Vivillon (Elegant Pattern)",
+        "German": "Vivillon (Prunkmuster)",
+        "French": "Prismillon (Motif Monarchie)",
+        "Italian": "Vivillon (Motivo Eleganza)",
+        "Japanese": "ビビヨン (みやびなもよう)",
+        "Korean": "비비용 (우아한 모양)",
+        "Spanish": "Vivillon (Motivo Oriental)"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 176,
+        "defense": 103
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "GUST_FAST": {
+          "id": "GUST_FAST",
+          "power": 25,
+          "energy": 20,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Gust",
+            "German": "Windstoß",
+            "French": "Tornade",
+            "Italian": "Raffica",
+            "Japanese": "かぜおこし",
+            "Korean": "바람일으키기",
+            "Spanish": "Tornado"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "STRUGGLE_BUG_FAST": {
+          "id": "STRUGGLE_BUG_FAST",
+          "power": 15,
+          "energy": 15,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Struggle Bug",
+            "German": "Käfertrutz",
+            "French": "Survinsecte",
+            "Italian": "Entomoblocco",
+            "Japanese": "むしのていこう",
+            "Korean": "벌레의저항",
+            "Spanish": "Estoicismo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BUG_BUZZ": {
+          "id": "BUG_BUZZ",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Buzz",
+            "German": "Käfergebrumm",
+            "French": "Bourdon",
+            "Italian": "Ronzio",
+            "Japanese": "むしのさざめき",
+            "Korean": "벌레의야단법석",
+            "Spanish": "Zumbido"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "HURRICANE": {
+          "id": "HURRICANE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Hurricane",
+            "German": "Orkan",
+            "French": "Vent Violent",
+            "Italian": "Tifone",
+            "Japanese": "ぼうふう",
+            "Korean": "폭풍",
+            "Spanish": "Vendaval"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fELEGANT.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fELEGANT.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "VIVILLON_FANCY": {
+      "id": "VIVILLON",
+      "formId": "VIVILLON_FANCY",
+      "dexNr": 666,
+      "generation": 6,
+      "names": {
+        "English": "Vivillon (Fancy Pattern)",
+        "German": "Vivillon (Fantasiemuster)",
+        "French": "Prismillon (Motif Fantaisie)",
+        "Italian": "Vivillon (Motivo Sbarazzino)",
+        "Japanese": "ビビヨン (ファンシーなもよう)",
+        "Korean": "비비용 (팬시한 모양)",
+        "Spanish": "Vivillon (Motivo Fantasía)"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 176,
+        "defense": 103
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "GUST_FAST": {
+          "id": "GUST_FAST",
+          "power": 25,
+          "energy": 20,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Gust",
+            "German": "Windstoß",
+            "French": "Tornade",
+            "Italian": "Raffica",
+            "Japanese": "かぜおこし",
+            "Korean": "바람일으키기",
+            "Spanish": "Tornado"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "STRUGGLE_BUG_FAST": {
+          "id": "STRUGGLE_BUG_FAST",
+          "power": 15,
+          "energy": 15,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Struggle Bug",
+            "German": "Käfertrutz",
+            "French": "Survinsecte",
+            "Italian": "Entomoblocco",
+            "Japanese": "むしのていこう",
+            "Korean": "벌레의저항",
+            "Spanish": "Estoicismo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BUG_BUZZ": {
+          "id": "BUG_BUZZ",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Buzz",
+            "German": "Käfergebrumm",
+            "French": "Bourdon",
+            "Italian": "Ronzio",
+            "Japanese": "むしのさざめき",
+            "Korean": "벌레의야단법석",
+            "Spanish": "Zumbido"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "HURRICANE": {
+          "id": "HURRICANE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Hurricane",
+            "German": "Orkan",
+            "French": "Vent Violent",
+            "Italian": "Tifone",
+            "Japanese": "ぼうふう",
+            "Korean": "폭풍",
+            "Spanish": "Vendaval"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fFANCY.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fFANCY.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "VIVILLON_GARDEN": {
+      "id": "VIVILLON",
+      "formId": "VIVILLON_GARDEN",
+      "dexNr": 666,
+      "generation": 6,
+      "names": {
+        "English": "Vivillon (Garden Pattern)",
+        "German": "Vivillon (Ziergartenmuster)",
+        "French": "Prismillon (Motif Verdure)",
+        "Italian": "Vivillon (Motivo Prato)",
+        "Japanese": "ビビヨン (ていえんのもよう)",
+        "Korean": "비비용 (정원의 모양)",
+        "Spanish": "Vivillon (Motivo Vergel)"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 176,
+        "defense": 103
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "GUST_FAST": {
+          "id": "GUST_FAST",
+          "power": 25,
+          "energy": 20,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Gust",
+            "German": "Windstoß",
+            "French": "Tornade",
+            "Italian": "Raffica",
+            "Japanese": "かぜおこし",
+            "Korean": "바람일으키기",
+            "Spanish": "Tornado"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "STRUGGLE_BUG_FAST": {
+          "id": "STRUGGLE_BUG_FAST",
+          "power": 15,
+          "energy": 15,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Struggle Bug",
+            "German": "Käfertrutz",
+            "French": "Survinsecte",
+            "Italian": "Entomoblocco",
+            "Japanese": "むしのていこう",
+            "Korean": "벌레의저항",
+            "Spanish": "Estoicismo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BUG_BUZZ": {
+          "id": "BUG_BUZZ",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Buzz",
+            "German": "Käfergebrumm",
+            "French": "Bourdon",
+            "Italian": "Ronzio",
+            "Japanese": "むしのさざめき",
+            "Korean": "벌레의야단법석",
+            "Spanish": "Zumbido"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "HURRICANE": {
+          "id": "HURRICANE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Hurricane",
+            "German": "Orkan",
+            "French": "Vent Violent",
+            "Italian": "Tifone",
+            "Japanese": "ぼうふう",
+            "Korean": "폭풍",
+            "Spanish": "Vendaval"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fGARDEN.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fGARDEN.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "VIVILLON_HIGH_PLAINS": {
+      "id": "VIVILLON",
+      "formId": "VIVILLON_HIGH_PLAINS",
+      "dexNr": 666,
+      "generation": 6,
+      "names": {
+        "English": "Vivillon (High Plains Pattern)",
+        "German": "Vivillon (Dürremuster)",
+        "French": "Prismillon (Motif Sécheresse)",
+        "Italian": "Vivillon (Motivo Deserto)",
+        "Japanese": "ビビヨン (こうやのもよう)",
+        "Korean": "비비용 (황야의 모양)",
+        "Spanish": "Vivillon (Motivo Estepa)"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 176,
+        "defense": 103
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "GUST_FAST": {
+          "id": "GUST_FAST",
+          "power": 25,
+          "energy": 20,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Gust",
+            "German": "Windstoß",
+            "French": "Tornade",
+            "Italian": "Raffica",
+            "Japanese": "かぜおこし",
+            "Korean": "바람일으키기",
+            "Spanish": "Tornado"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "STRUGGLE_BUG_FAST": {
+          "id": "STRUGGLE_BUG_FAST",
+          "power": 15,
+          "energy": 15,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Struggle Bug",
+            "German": "Käfertrutz",
+            "French": "Survinsecte",
+            "Italian": "Entomoblocco",
+            "Japanese": "むしのていこう",
+            "Korean": "벌레의저항",
+            "Spanish": "Estoicismo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BUG_BUZZ": {
+          "id": "BUG_BUZZ",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Buzz",
+            "German": "Käfergebrumm",
+            "French": "Bourdon",
+            "Italian": "Ronzio",
+            "Japanese": "むしのさざめき",
+            "Korean": "벌레의야단법석",
+            "Spanish": "Zumbido"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "HURRICANE": {
+          "id": "HURRICANE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Hurricane",
+            "German": "Orkan",
+            "French": "Vent Violent",
+            "Italian": "Tifone",
+            "Japanese": "ぼうふう",
+            "Korean": "폭풍",
+            "Spanish": "Vendaval"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fHIGH_PLAINS.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fHIGH_PLAINS.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "VIVILLON_ICY_SNOW": {
+      "id": "VIVILLON",
+      "formId": "VIVILLON_ICY_SNOW",
+      "dexNr": 666,
+      "generation": 6,
+      "names": {
+        "English": "Vivillon (Icy Snow Pattern)",
+        "German": "Vivillon (Frostmuster)",
+        "French": "Prismillon (Motif Blizzard)",
+        "Italian": "Vivillon (Motivo Nevi Perenni)",
+        "Japanese": "ビビヨン (ひょうせつのもよう)",
+        "Korean": "비비용 (빙설의 모양)",
+        "Spanish": "Vivillon (Motivo Polar)"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 176,
+        "defense": 103
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "GUST_FAST": {
+          "id": "GUST_FAST",
+          "power": 25,
+          "energy": 20,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Gust",
+            "German": "Windstoß",
+            "French": "Tornade",
+            "Italian": "Raffica",
+            "Japanese": "かぜおこし",
+            "Korean": "바람일으키기",
+            "Spanish": "Tornado"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "STRUGGLE_BUG_FAST": {
+          "id": "STRUGGLE_BUG_FAST",
+          "power": 15,
+          "energy": 15,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Struggle Bug",
+            "German": "Käfertrutz",
+            "French": "Survinsecte",
+            "Italian": "Entomoblocco",
+            "Japanese": "むしのていこう",
+            "Korean": "벌레의저항",
+            "Spanish": "Estoicismo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BUG_BUZZ": {
+          "id": "BUG_BUZZ",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Buzz",
+            "German": "Käfergebrumm",
+            "French": "Bourdon",
+            "Italian": "Ronzio",
+            "Japanese": "むしのさざめき",
+            "Korean": "벌레의야단법석",
+            "Spanish": "Zumbido"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "HURRICANE": {
+          "id": "HURRICANE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Hurricane",
+            "German": "Orkan",
+            "French": "Vent Violent",
+            "Italian": "Tifone",
+            "Japanese": "ぼうふう",
+            "Korean": "폭풍",
+            "Spanish": "Vendaval"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fICY_SNOW.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fICY_SNOW.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "VIVILLON_JUNGLE": {
+      "id": "VIVILLON",
+      "formId": "VIVILLON_JUNGLE",
+      "dexNr": 666,
+      "generation": 6,
+      "names": {
+        "English": "Vivillon (Jungle Pattern)",
+        "German": "Vivillon (Dschungelmuster)",
+        "French": "Prismillon (Motif Jungle)",
+        "Italian": "Vivillon (Motivo Giungla)",
+        "Japanese": "ビビヨン (ジャングルのもよう)",
+        "Korean": "비비용 (정글의 모양)",
+        "Spanish": "Vivillon (Motivo Jungla)"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 176,
+        "defense": 103
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "GUST_FAST": {
+          "id": "GUST_FAST",
+          "power": 25,
+          "energy": 20,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Gust",
+            "German": "Windstoß",
+            "French": "Tornade",
+            "Italian": "Raffica",
+            "Japanese": "かぜおこし",
+            "Korean": "바람일으키기",
+            "Spanish": "Tornado"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "STRUGGLE_BUG_FAST": {
+          "id": "STRUGGLE_BUG_FAST",
+          "power": 15,
+          "energy": 15,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Struggle Bug",
+            "German": "Käfertrutz",
+            "French": "Survinsecte",
+            "Italian": "Entomoblocco",
+            "Japanese": "むしのていこう",
+            "Korean": "벌레의저항",
+            "Spanish": "Estoicismo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BUG_BUZZ": {
+          "id": "BUG_BUZZ",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Buzz",
+            "German": "Käfergebrumm",
+            "French": "Bourdon",
+            "Italian": "Ronzio",
+            "Japanese": "むしのさざめき",
+            "Korean": "벌레의야단법석",
+            "Spanish": "Zumbido"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "HURRICANE": {
+          "id": "HURRICANE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Hurricane",
+            "German": "Orkan",
+            "French": "Vent Violent",
+            "Italian": "Tifone",
+            "Japanese": "ぼうふう",
+            "Korean": "폭풍",
+            "Spanish": "Vendaval"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fJUNGLE.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fJUNGLE.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "VIVILLON_MARINE": {
+      "id": "VIVILLON",
+      "formId": "VIVILLON_MARINE",
+      "dexNr": 666,
+      "generation": 6,
+      "names": {
+        "English": "Vivillon (Marine Pattern)",
+        "German": "Vivillon (Aquamarinmuster)",
+        "French": "Prismillon (Motif Rivage)",
+        "Italian": "Vivillon (Motivo Marino)",
+        "Japanese": "ビビヨン (マリンのもよう)",
+        "Korean": "비비용 (마린의 모양)",
+        "Spanish": "Vivillon (Motivo Marino)"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 176,
+        "defense": 103
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "GUST_FAST": {
+          "id": "GUST_FAST",
+          "power": 25,
+          "energy": 20,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Gust",
+            "German": "Windstoß",
+            "French": "Tornade",
+            "Italian": "Raffica",
+            "Japanese": "かぜおこし",
+            "Korean": "바람일으키기",
+            "Spanish": "Tornado"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "STRUGGLE_BUG_FAST": {
+          "id": "STRUGGLE_BUG_FAST",
+          "power": 15,
+          "energy": 15,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Struggle Bug",
+            "German": "Käfertrutz",
+            "French": "Survinsecte",
+            "Italian": "Entomoblocco",
+            "Japanese": "むしのていこう",
+            "Korean": "벌레의저항",
+            "Spanish": "Estoicismo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BUG_BUZZ": {
+          "id": "BUG_BUZZ",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Buzz",
+            "German": "Käfergebrumm",
+            "French": "Bourdon",
+            "Italian": "Ronzio",
+            "Japanese": "むしのさざめき",
+            "Korean": "벌레의야단법석",
+            "Spanish": "Zumbido"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "HURRICANE": {
+          "id": "HURRICANE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Hurricane",
+            "German": "Orkan",
+            "French": "Vent Violent",
+            "Italian": "Tifone",
+            "Japanese": "ぼうふう",
+            "Korean": "폭풍",
+            "Spanish": "Vendaval"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fMARINE.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fMARINE.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "VIVILLON_MEADOW": {
+      "id": "VIVILLON",
+      "formId": "VIVILLON_MEADOW",
+      "dexNr": 666,
+      "generation": 6,
+      "names": {
+        "English": "Vivillon (Meadow Pattern)",
+        "German": "Vivillon (Blumenmeermuster)",
+        "French": "Prismillon (Motif Floraison)",
+        "Italian": "Vivillon (Motivo Giardinfiore)",
+        "Japanese": "ビビヨン (はなぞののもよう)",
+        "Korean": "비비용 (화원의 모양)",
+        "Spanish": "Vivillon (Motivo Floral)"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 176,
+        "defense": 103
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "GUST_FAST": {
+          "id": "GUST_FAST",
+          "power": 25,
+          "energy": 20,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Gust",
+            "German": "Windstoß",
+            "French": "Tornade",
+            "Italian": "Raffica",
+            "Japanese": "かぜおこし",
+            "Korean": "바람일으키기",
+            "Spanish": "Tornado"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "STRUGGLE_BUG_FAST": {
+          "id": "STRUGGLE_BUG_FAST",
+          "power": 15,
+          "energy": 15,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Struggle Bug",
+            "German": "Käfertrutz",
+            "French": "Survinsecte",
+            "Italian": "Entomoblocco",
+            "Japanese": "むしのていこう",
+            "Korean": "벌레의저항",
+            "Spanish": "Estoicismo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BUG_BUZZ": {
+          "id": "BUG_BUZZ",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Buzz",
+            "German": "Käfergebrumm",
+            "French": "Bourdon",
+            "Italian": "Ronzio",
+            "Japanese": "むしのさざめき",
+            "Korean": "벌레의야단법석",
+            "Spanish": "Zumbido"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "HURRICANE": {
+          "id": "HURRICANE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Hurricane",
+            "German": "Orkan",
+            "French": "Vent Violent",
+            "Italian": "Tifone",
+            "Japanese": "ぼうふう",
+            "Korean": "폭풍",
+            "Spanish": "Vendaval"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fMEADOW.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fMEADOW.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "VIVILLON_MODERN": {
+      "id": "VIVILLON",
+      "formId": "VIVILLON_MODERN",
+      "dexNr": 666,
+      "generation": 6,
+      "names": {
+        "English": "Vivillon (Modern Pattern)",
+        "German": "Vivillon (Innovationsmuster)",
+        "French": "Prismillon (Motif Métropole)",
+        "Italian": "Vivillon (Motivo Trendy)",
+        "Japanese": "ビビヨン (モダンなもよう)",
+        "Korean": "비비용 (모던한 모양)",
+        "Spanish": "Vivillon (Motivo Moderno)"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 176,
+        "defense": 103
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "GUST_FAST": {
+          "id": "GUST_FAST",
+          "power": 25,
+          "energy": 20,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Gust",
+            "German": "Windstoß",
+            "French": "Tornade",
+            "Italian": "Raffica",
+            "Japanese": "かぜおこし",
+            "Korean": "바람일으키기",
+            "Spanish": "Tornado"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "STRUGGLE_BUG_FAST": {
+          "id": "STRUGGLE_BUG_FAST",
+          "power": 15,
+          "energy": 15,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Struggle Bug",
+            "German": "Käfertrutz",
+            "French": "Survinsecte",
+            "Italian": "Entomoblocco",
+            "Japanese": "むしのていこう",
+            "Korean": "벌레의저항",
+            "Spanish": "Estoicismo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BUG_BUZZ": {
+          "id": "BUG_BUZZ",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Buzz",
+            "German": "Käfergebrumm",
+            "French": "Bourdon",
+            "Italian": "Ronzio",
+            "Japanese": "むしのさざめき",
+            "Korean": "벌레의야단법석",
+            "Spanish": "Zumbido"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "HURRICANE": {
+          "id": "HURRICANE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Hurricane",
+            "German": "Orkan",
+            "French": "Vent Violent",
+            "Italian": "Tifone",
+            "Japanese": "ぼうふう",
+            "Korean": "폭풍",
+            "Spanish": "Vendaval"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fMODERN.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fMODERN.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "VIVILLON_MONSOON": {
+      "id": "VIVILLON",
+      "formId": "VIVILLON_MONSOON",
+      "dexNr": 666,
+      "generation": 6,
+      "names": {
+        "English": "Vivillon (Monsoon Pattern)",
+        "German": "Vivillon (Monsunmuster)",
+        "French": "Prismillon (Motif Cyclone)",
+        "Italian": "Vivillon (Motivo Pluviale)",
+        "Japanese": "ビビヨン (スコールのもよう)",
+        "Korean": "비비용 (스콜의 모양)",
+        "Spanish": "Vivillon (Motivo Monzón)"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 176,
+        "defense": 103
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "GUST_FAST": {
+          "id": "GUST_FAST",
+          "power": 25,
+          "energy": 20,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Gust",
+            "German": "Windstoß",
+            "French": "Tornade",
+            "Italian": "Raffica",
+            "Japanese": "かぜおこし",
+            "Korean": "바람일으키기",
+            "Spanish": "Tornado"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "STRUGGLE_BUG_FAST": {
+          "id": "STRUGGLE_BUG_FAST",
+          "power": 15,
+          "energy": 15,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Struggle Bug",
+            "German": "Käfertrutz",
+            "French": "Survinsecte",
+            "Italian": "Entomoblocco",
+            "Japanese": "むしのていこう",
+            "Korean": "벌레의저항",
+            "Spanish": "Estoicismo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BUG_BUZZ": {
+          "id": "BUG_BUZZ",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Buzz",
+            "German": "Käfergebrumm",
+            "French": "Bourdon",
+            "Italian": "Ronzio",
+            "Japanese": "むしのさざめき",
+            "Korean": "벌레의야단법석",
+            "Spanish": "Zumbido"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "HURRICANE": {
+          "id": "HURRICANE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Hurricane",
+            "German": "Orkan",
+            "French": "Vent Violent",
+            "Italian": "Tifone",
+            "Japanese": "ぼうふう",
+            "Korean": "폭풍",
+            "Spanish": "Vendaval"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fMONSOON.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fMONSOON.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "VIVILLON_OCEAN": {
+      "id": "VIVILLON",
+      "formId": "VIVILLON_OCEAN",
+      "dexNr": 666,
+      "generation": 6,
+      "names": {
+        "English": "Vivillon (Ocean Pattern)",
+        "German": "Vivillon (Ozeanmuster)",
+        "French": "Prismillon (Motif Soleil Levant)",
+        "Italian": "Vivillon (Motivo Oceanico)",
+        "Japanese": "ビビヨン (オーシャンのもよう)",
+        "Korean": "비비용 (오션의 모양)",
+        "Spanish": "Vivillon (Motivo Océano)"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 176,
+        "defense": 103
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "GUST_FAST": {
+          "id": "GUST_FAST",
+          "power": 25,
+          "energy": 20,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Gust",
+            "German": "Windstoß",
+            "French": "Tornade",
+            "Italian": "Raffica",
+            "Japanese": "かぜおこし",
+            "Korean": "바람일으키기",
+            "Spanish": "Tornado"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "STRUGGLE_BUG_FAST": {
+          "id": "STRUGGLE_BUG_FAST",
+          "power": 15,
+          "energy": 15,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Struggle Bug",
+            "German": "Käfertrutz",
+            "French": "Survinsecte",
+            "Italian": "Entomoblocco",
+            "Japanese": "むしのていこう",
+            "Korean": "벌레의저항",
+            "Spanish": "Estoicismo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BUG_BUZZ": {
+          "id": "BUG_BUZZ",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Buzz",
+            "German": "Käfergebrumm",
+            "French": "Bourdon",
+            "Italian": "Ronzio",
+            "Japanese": "むしのさざめき",
+            "Korean": "벌레의야단법석",
+            "Spanish": "Zumbido"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "HURRICANE": {
+          "id": "HURRICANE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Hurricane",
+            "German": "Orkan",
+            "French": "Vent Violent",
+            "Italian": "Tifone",
+            "Japanese": "ぼうふう",
+            "Korean": "폭풍",
+            "Spanish": "Vendaval"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fOCEAN.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fOCEAN.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "VIVILLON_POKEBALL": {
+      "id": "VIVILLON",
+      "formId": "VIVILLON_POKEBALL",
+      "dexNr": 666,
+      "generation": 6,
+      "names": {
+        "English": "Vivillon (Poké Ball Pattern)",
+        "German": "Vivillon (Pokéball-Muster)",
+        "French": "Prismillon (Motif Poké Ball)",
+        "Italian": "Vivillon (Motivo Poké Ball)",
+        "Japanese": "ビビヨン (ボールのもよう)",
+        "Korean": "비비용 (볼의 모양)",
+        "Spanish": "Vivillon (Motivo Poké Ball)"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 176,
+        "defense": 103
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "GUST_FAST": {
+          "id": "GUST_FAST",
+          "power": 25,
+          "energy": 20,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Gust",
+            "German": "Windstoß",
+            "French": "Tornade",
+            "Italian": "Raffica",
+            "Japanese": "かぜおこし",
+            "Korean": "바람일으키기",
+            "Spanish": "Tornado"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "STRUGGLE_BUG_FAST": {
+          "id": "STRUGGLE_BUG_FAST",
+          "power": 15,
+          "energy": 15,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Struggle Bug",
+            "German": "Käfertrutz",
+            "French": "Survinsecte",
+            "Italian": "Entomoblocco",
+            "Japanese": "むしのていこう",
+            "Korean": "벌레의저항",
+            "Spanish": "Estoicismo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BUG_BUZZ": {
+          "id": "BUG_BUZZ",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Buzz",
+            "German": "Käfergebrumm",
+            "French": "Bourdon",
+            "Italian": "Ronzio",
+            "Japanese": "むしのさざめき",
+            "Korean": "벌레의야단법석",
+            "Spanish": "Zumbido"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "HURRICANE": {
+          "id": "HURRICANE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Hurricane",
+            "German": "Orkan",
+            "French": "Vent Violent",
+            "Italian": "Tifone",
+            "Japanese": "ぼうふう",
+            "Korean": "폭풍",
+            "Spanish": "Vendaval"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fPOKEBALL.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fPOKEBALL.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "VIVILLON_POLAR": {
+      "id": "VIVILLON",
+      "formId": "VIVILLON_POLAR",
+      "dexNr": 666,
+      "generation": 6,
+      "names": {
+        "English": "Vivillon (Polar Pattern)",
+        "German": "Vivillon (Schneefeldmuster)",
+        "French": "Prismillon (Motif Banquise)",
+        "Italian": "Vivillon (Motivo Nordico)",
+        "Japanese": "ビビヨン (ゆきぐにのもよう)",
+        "Korean": "비비용 (설국의 모양)",
+        "Spanish": "Vivillon (Motivo Taiga)"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 176,
+        "defense": 103
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "GUST_FAST": {
+          "id": "GUST_FAST",
+          "power": 25,
+          "energy": 20,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Gust",
+            "German": "Windstoß",
+            "French": "Tornade",
+            "Italian": "Raffica",
+            "Japanese": "かぜおこし",
+            "Korean": "바람일으키기",
+            "Spanish": "Tornado"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "STRUGGLE_BUG_FAST": {
+          "id": "STRUGGLE_BUG_FAST",
+          "power": 15,
+          "energy": 15,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Struggle Bug",
+            "German": "Käfertrutz",
+            "French": "Survinsecte",
+            "Italian": "Entomoblocco",
+            "Japanese": "むしのていこう",
+            "Korean": "벌레의저항",
+            "Spanish": "Estoicismo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BUG_BUZZ": {
+          "id": "BUG_BUZZ",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Buzz",
+            "German": "Käfergebrumm",
+            "French": "Bourdon",
+            "Italian": "Ronzio",
+            "Japanese": "むしのさざめき",
+            "Korean": "벌레의야단법석",
+            "Spanish": "Zumbido"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "HURRICANE": {
+          "id": "HURRICANE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Hurricane",
+            "German": "Orkan",
+            "French": "Vent Violent",
+            "Italian": "Tifone",
+            "Japanese": "ぼうふう",
+            "Korean": "폭풍",
+            "Spanish": "Vendaval"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fPOLAR.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fPOLAR.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "VIVILLON_RIVER": {
+      "id": "VIVILLON",
+      "formId": "VIVILLON_RIVER",
+      "dexNr": 666,
+      "generation": 6,
+      "names": {
+        "English": "Vivillon (River Pattern)",
+        "German": "Vivillon (Flussdeltamuster)",
+        "French": "Prismillon (Motif Delta)",
+        "Italian": "Vivillon (Motivo Fluviale)",
+        "Japanese": "ビビヨン (たいがのもよう)",
+        "Korean": "비비용 (대하의 모양)",
+        "Spanish": "Vivillon (Motivo Oasis)"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 176,
+        "defense": 103
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "GUST_FAST": {
+          "id": "GUST_FAST",
+          "power": 25,
+          "energy": 20,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Gust",
+            "German": "Windstoß",
+            "French": "Tornade",
+            "Italian": "Raffica",
+            "Japanese": "かぜおこし",
+            "Korean": "바람일으키기",
+            "Spanish": "Tornado"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "STRUGGLE_BUG_FAST": {
+          "id": "STRUGGLE_BUG_FAST",
+          "power": 15,
+          "energy": 15,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Struggle Bug",
+            "German": "Käfertrutz",
+            "French": "Survinsecte",
+            "Italian": "Entomoblocco",
+            "Japanese": "むしのていこう",
+            "Korean": "벌레의저항",
+            "Spanish": "Estoicismo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BUG_BUZZ": {
+          "id": "BUG_BUZZ",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Buzz",
+            "German": "Käfergebrumm",
+            "French": "Bourdon",
+            "Italian": "Ronzio",
+            "Japanese": "むしのさざめき",
+            "Korean": "벌레의야단법석",
+            "Spanish": "Zumbido"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "HURRICANE": {
+          "id": "HURRICANE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Hurricane",
+            "German": "Orkan",
+            "French": "Vent Violent",
+            "Italian": "Tifone",
+            "Japanese": "ぼうふう",
+            "Korean": "폭풍",
+            "Spanish": "Vendaval"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fRIVER.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fRIVER.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "VIVILLON_SANDSTORM": {
+      "id": "VIVILLON",
+      "formId": "VIVILLON_SANDSTORM",
+      "dexNr": 666,
+      "generation": 6,
+      "names": {
+        "English": "Vivillon (Sandstorm Pattern)",
+        "German": "Vivillon (Sandmuster)",
+        "French": "Prismillon (Motif Sable)",
+        "Italian": "Vivillon (Motivo Sabbia)",
+        "Japanese": "ビビヨン (さじんのもよう)",
+        "Korean": "비비용 (사진의 모양)",
+        "Spanish": "Vivillon (Motivo Desierto)"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 176,
+        "defense": 103
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "GUST_FAST": {
+          "id": "GUST_FAST",
+          "power": 25,
+          "energy": 20,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Gust",
+            "German": "Windstoß",
+            "French": "Tornade",
+            "Italian": "Raffica",
+            "Japanese": "かぜおこし",
+            "Korean": "바람일으키기",
+            "Spanish": "Tornado"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "STRUGGLE_BUG_FAST": {
+          "id": "STRUGGLE_BUG_FAST",
+          "power": 15,
+          "energy": 15,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Struggle Bug",
+            "German": "Käfertrutz",
+            "French": "Survinsecte",
+            "Italian": "Entomoblocco",
+            "Japanese": "むしのていこう",
+            "Korean": "벌레의저항",
+            "Spanish": "Estoicismo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BUG_BUZZ": {
+          "id": "BUG_BUZZ",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Buzz",
+            "German": "Käfergebrumm",
+            "French": "Bourdon",
+            "Italian": "Ronzio",
+            "Japanese": "むしのさざめき",
+            "Korean": "벌레의야단법석",
+            "Spanish": "Zumbido"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "HURRICANE": {
+          "id": "HURRICANE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Hurricane",
+            "German": "Orkan",
+            "French": "Vent Violent",
+            "Italian": "Tifone",
+            "Japanese": "ぼうふう",
+            "Korean": "폭풍",
+            "Spanish": "Vendaval"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fSANDSTORM.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fSANDSTORM.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "VIVILLON_SAVANNA": {
+      "id": "VIVILLON",
+      "formId": "VIVILLON_SAVANNA",
+      "dexNr": 666,
+      "generation": 6,
+      "names": {
+        "English": "Vivillon (Savanna Pattern)",
+        "German": "Vivillon (Savannenmuster)",
+        "French": "Prismillon (Motif Mangrove)",
+        "Italian": "Vivillon (Motivo Savana)",
+        "Japanese": "ビビヨン (サバンナのもよう)",
+        "Korean": "비비용 (사바나의 모양)",
+        "Spanish": "Vivillon (Motivo Pantano)"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 176,
+        "defense": 103
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "GUST_FAST": {
+          "id": "GUST_FAST",
+          "power": 25,
+          "energy": 20,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Gust",
+            "German": "Windstoß",
+            "French": "Tornade",
+            "Italian": "Raffica",
+            "Japanese": "かぜおこし",
+            "Korean": "바람일으키기",
+            "Spanish": "Tornado"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "STRUGGLE_BUG_FAST": {
+          "id": "STRUGGLE_BUG_FAST",
+          "power": 15,
+          "energy": 15,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Struggle Bug",
+            "German": "Käfertrutz",
+            "French": "Survinsecte",
+            "Italian": "Entomoblocco",
+            "Japanese": "むしのていこう",
+            "Korean": "벌레의저항",
+            "Spanish": "Estoicismo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BUG_BUZZ": {
+          "id": "BUG_BUZZ",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Buzz",
+            "German": "Käfergebrumm",
+            "French": "Bourdon",
+            "Italian": "Ronzio",
+            "Japanese": "むしのさざめき",
+            "Korean": "벌레의야단법석",
+            "Spanish": "Zumbido"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "HURRICANE": {
+          "id": "HURRICANE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Hurricane",
+            "German": "Orkan",
+            "French": "Vent Violent",
+            "Italian": "Tifone",
+            "Japanese": "ぼうふう",
+            "Korean": "폭풍",
+            "Spanish": "Vendaval"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fSAVANNA.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fSAVANNA.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "VIVILLON_SUN": {
+      "id": "VIVILLON",
+      "formId": "VIVILLON_SUN",
+      "dexNr": 666,
+      "generation": 6,
+      "names": {
+        "English": "Vivillon (Sun Pattern)",
+        "German": "Vivillon (Sonnenmuster)",
+        "French": "Prismillon (Motif Zénith)",
+        "Italian": "Vivillon (Motivo Solare)",
+        "Japanese": "ビビヨン (たいようのもよう)",
+        "Korean": "비비용 (태양의 모양)",
+        "Spanish": "Vivillon (Motivo Solar)"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 176,
+        "defense": 103
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "GUST_FAST": {
+          "id": "GUST_FAST",
+          "power": 25,
+          "energy": 20,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Gust",
+            "German": "Windstoß",
+            "French": "Tornade",
+            "Italian": "Raffica",
+            "Japanese": "かぜおこし",
+            "Korean": "바람일으키기",
+            "Spanish": "Tornado"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "STRUGGLE_BUG_FAST": {
+          "id": "STRUGGLE_BUG_FAST",
+          "power": 15,
+          "energy": 15,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Struggle Bug",
+            "German": "Käfertrutz",
+            "French": "Survinsecte",
+            "Italian": "Entomoblocco",
+            "Japanese": "むしのていこう",
+            "Korean": "벌레의저항",
+            "Spanish": "Estoicismo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BUG_BUZZ": {
+          "id": "BUG_BUZZ",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Buzz",
+            "German": "Käfergebrumm",
+            "French": "Bourdon",
+            "Italian": "Ronzio",
+            "Japanese": "むしのさざめき",
+            "Korean": "벌레의야단법석",
+            "Spanish": "Zumbido"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "HURRICANE": {
+          "id": "HURRICANE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Hurricane",
+            "German": "Orkan",
+            "French": "Vent Violent",
+            "Italian": "Tifone",
+            "Japanese": "ぼうふう",
+            "Korean": "폭풍",
+            "Spanish": "Vendaval"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fSUN.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fSUN.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "VIVILLON_TUNDRA": {
+      "id": "VIVILLON",
+      "formId": "VIVILLON_TUNDRA",
+      "dexNr": 666,
+      "generation": 6,
+      "names": {
+        "English": "Vivillon (Tundra Pattern)",
+        "German": "Vivillon (Flockenmuster)",
+        "French": "Prismillon (Motif Glace)",
+        "Italian": "Vivillon (Motivo Manto di Neve)",
+        "Japanese": "ビビヨン (せつげんのもよう)",
+        "Korean": "비비용 (설원의 모양)",
+        "Spanish": "Vivillon (Motivo Tundra)"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 176,
+        "defense": 103
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "GUST_FAST": {
+          "id": "GUST_FAST",
+          "power": 25,
+          "energy": 20,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Gust",
+            "German": "Windstoß",
+            "French": "Tornade",
+            "Italian": "Raffica",
+            "Japanese": "かぜおこし",
+            "Korean": "바람일으키기",
+            "Spanish": "Tornado"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "STRUGGLE_BUG_FAST": {
+          "id": "STRUGGLE_BUG_FAST",
+          "power": 15,
+          "energy": 15,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Struggle Bug",
+            "German": "Käfertrutz",
+            "French": "Survinsecte",
+            "Italian": "Entomoblocco",
+            "Japanese": "むしのていこう",
+            "Korean": "벌레의저항",
+            "Spanish": "Estoicismo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BUG_BUZZ": {
+          "id": "BUG_BUZZ",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Buzz",
+            "German": "Käfergebrumm",
+            "French": "Bourdon",
+            "Italian": "Ronzio",
+            "Japanese": "むしのさざめき",
+            "Korean": "벌레의야단법석",
+            "Spanish": "Zumbido"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "HURRICANE": {
+          "id": "HURRICANE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Hurricane",
+            "German": "Orkan",
+            "French": "Vent Violent",
+            "Italian": "Tifone",
+            "Japanese": "ぼうふう",
+            "Korean": "폭풍",
+            "Spanish": "Vendaval"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fTUNDRA.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fTUNDRA.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "ARCHIPELAGO",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fARCHIPELAGO.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fARCHIPELAGO.s.icon.png"
+    },
+    {
+      "form": "CONTINENTAL",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fCONTINENTAL.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fCONTINENTAL.s.icon.png"
+    },
+    {
+      "form": "ELEGANT",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fELEGANT.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fELEGANT.s.icon.png"
+    },
+    {
+      "form": "FANCY",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fFANCY.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fFANCY.s.icon.png"
+    },
+    {
+      "form": "GARDEN",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fGARDEN.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fGARDEN.s.icon.png"
+    },
+    {
+      "form": "HIGH_PLAINS",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fHIGH_PLAINS.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fHIGH_PLAINS.s.icon.png"
+    },
+    {
+      "form": "ICY_SNOW",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fICY_SNOW.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fICY_SNOW.s.icon.png"
+    },
+    {
+      "form": "JUNGLE",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fJUNGLE.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fJUNGLE.s.icon.png"
+    },
+    {
+      "form": "MARINE",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fMARINE.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fMARINE.s.icon.png"
+    },
+    {
+      "form": "MEADOW",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fMEADOW.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fMEADOW.s.icon.png"
+    },
+    {
+      "form": "MODERN",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fMODERN.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fMODERN.s.icon.png"
+    },
+    {
+      "form": "MONSOON",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fMONSOON.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fMONSOON.s.icon.png"
+    },
+    {
+      "form": "OCEAN",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fOCEAN.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fOCEAN.s.icon.png"
+    },
+    {
+      "form": "POKEBALL",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fPOKEBALL.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fPOKEBALL.s.icon.png"
+    },
+    {
+      "form": "POLAR",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fPOLAR.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fPOLAR.s.icon.png"
+    },
+    {
+      "form": "RIVER",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fRIVER.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fRIVER.s.icon.png"
+    },
+    {
+      "form": "SANDSTORM",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fSANDSTORM.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fSANDSTORM.s.icon.png"
+    },
+    {
+      "form": "SAVANNA",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fSAVANNA.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fSAVANNA.s.icon.png"
+    },
+    {
+      "form": "SUN",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fSUN.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fSUN.s.icon.png"
+    },
+    {
+      "form": "TUNDRA",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fTUNDRA.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm666.fTUNDRA.s.icon.png"
+    }
+  ]
+}

@@ -1,0 +1,314 @@
+{
+  "id": "BUTTERFREE",
+  "formId": "BUTTERFREE",
+  "dexNr": 12,
+  "generation": 1,
+  "names": {
+    "English": "Butterfree",
+    "German": "Smettbo",
+    "French": "Papilusion",
+    "Italian": "Butterfree",
+    "Japanese": "バタフリー",
+    "Korean": "버터플",
+    "Spanish": "Butterfree"
+  },
+  "stats": {
+    "stamina": 155,
+    "attack": 167,
+    "defense": 137
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_BUG",
+    "names": {
+      "English": "Bug",
+      "German": "Käfer",
+      "French": "Insecte",
+      "Italian": "Coleottero",
+      "Japanese": "むし",
+      "Korean": "벌레",
+      "Spanish": "Bicho"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FLYING",
+    "names": {
+      "English": "Flying",
+      "German": "Flug",
+      "French": "Vol",
+      "Italian": "Volante",
+      "Japanese": "ひこう",
+      "Korean": "비행",
+      "Spanish": "Volador"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "STRUGGLE_BUG_FAST": {
+      "id": "STRUGGLE_BUG_FAST",
+      "power": 15,
+      "energy": 15,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Struggle Bug",
+        "German": "Käfertrutz",
+        "French": "Survinsecte",
+        "Italian": "Entomoblocco",
+        "Japanese": "むしのていこう",
+        "Korean": "벌레의저항",
+        "Spanish": "Estoicismo"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 9,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "CONFUSION_FAST": {
+      "id": "CONFUSION_FAST",
+      "power": 19,
+      "energy": 14,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Confusion",
+        "German": "Konfusion",
+        "French": "Choc Mental",
+        "Italian": "Confusione",
+        "Japanese": "ねんりき",
+        "Korean": "염동력",
+        "Spanish": "Confusión"
+      },
+      "combat": {
+        "energy": 14,
+        "power": 16,
+        "turns": 4,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "BUG_BUZZ": {
+      "id": "BUG_BUZZ",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Bug Buzz",
+        "German": "Käfergebrumm",
+        "French": "Bourdon",
+        "Italian": "Ronzio",
+        "Japanese": "むしのさざめき",
+        "Korean": "벌레의야단법석",
+        "Spanish": "Zumbido"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 100,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 30,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "PSYCHIC": {
+      "id": "PSYCHIC",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psychic",
+        "German": "Psychokinese",
+        "French": "Psyko",
+        "Italian": "Psichico",
+        "Japanese": "サイコキネシス",
+        "Korean": "사이코키네시스",
+        "Spanish": "Psíquico"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 75,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "SIGNAL_BEAM": {
+      "id": "SIGNAL_BEAM",
+      "power": 75,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Signal Beam",
+        "German": "Ampelleuchte",
+        "French": "Rayon Signal",
+        "Italian": "Segnoraggio",
+        "Japanese": "シグナルビーム",
+        "Korean": "시그널빔",
+        "Spanish": "Doble Rayo"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 75,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 20,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": {
+    "BUG_BITE_FAST": {
+      "id": "BUG_BITE_FAST",
+      "power": 5,
+      "energy": 6,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Bug Bite",
+        "German": "Käferbiss",
+        "French": "Piqûre",
+        "Italian": "Coleomorso",
+        "Japanese": "むしくい",
+        "Korean": "벌레먹기",
+        "Spanish": "Picadura"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 4,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm12.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm12.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": true,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": "FASHION_2021_NOEVOLVE",
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm12.cFASHION_2021_NOEVOLVE.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm12.cFASHION_2021_NOEVOLVE.s.icon.png"
+    },
+    {
+      "form": "GIGANTAMAX",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm12.fGIGANTAMAX.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm12.fGIGANTAMAX.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm12.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm12.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": "FASHION_2021_NOEVOLVE",
+      "isFemale": true,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm12.cFASHION_2021_NOEVOLVE.g2.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm12.cFASHION_2021_NOEVOLVE.g2.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": true,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm12.g2.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm12.g2.s.icon.png"
+    }
+  ]
+}

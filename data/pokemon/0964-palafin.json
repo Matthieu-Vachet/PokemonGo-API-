@@ -1,0 +1,968 @@
+{
+  "id": "PALAFIN",
+  "formId": "PALAFIN",
+  "dexNr": 964,
+  "generation": 9,
+  "names": {
+    "English": "Palafin",
+    "German": "Delfinator",
+    "French": "Superdofin",
+    "Italian": "Palafin",
+    "Japanese": "イルカマン",
+    "Korean": "돌핀맨",
+    "Spanish": "Palafin"
+  },
+  "stats": {
+    "stamina": 225,
+    "attack": 143,
+    "defense": 144
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_WATER",
+    "names": {
+      "English": "Water",
+      "German": "Wasser",
+      "French": "Eau",
+      "Italian": "Acqua",
+      "Japanese": "みず",
+      "Korean": "물",
+      "Spanish": "Agua"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "WATERFALL_FAST": {
+      "id": "WATERFALL_FAST",
+      "power": 13,
+      "energy": 7,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Waterfall",
+        "German": "Kaskade",
+        "French": "Cascade",
+        "Italian": "Cascata",
+        "Japanese": "たきのぼり",
+        "Korean": "폭포오르기",
+        "Spanish": "Cascada"
+      },
+      "combat": {
+        "energy": 10,
+        "power": 11,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "CHARM_FAST": {
+      "id": "CHARM_FAST",
+      "power": 20,
+      "energy": 11,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Charm",
+        "German": "Charme",
+        "French": "Charme",
+        "Italian": "Fascino",
+        "Japanese": "あまえる",
+        "Korean": "애교부리기",
+        "Spanish": "Encanto"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 13,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "COUNTER_FAST": {
+      "id": "COUNTER_FAST",
+      "power": 13,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Counter",
+        "German": "Konter",
+        "French": "Riposte",
+        "Italian": "Contrattacco",
+        "Japanese": "カウンター",
+        "Korean": "카운터",
+        "Spanish": "Contraataque"
+      },
+      "combat": {
+        "energy": 6,
+        "power": 8,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "AQUA_JET": {
+      "id": "AQUA_JET",
+      "power": 45,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Aqua Jet",
+        "German": "Wasserdüse",
+        "French": "Aqua-Jet",
+        "Italian": "Acquagetto",
+        "Japanese": "アクアジェット",
+        "Korean": "아쿠아제트",
+        "Spanish": "Acua Jet"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "WATER_PULSE": {
+      "id": "WATER_PULSE",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Water Pulse",
+        "German": "Aquawelle",
+        "French": "Vibraqua",
+        "Italian": "Idropulsar",
+        "Japanese": "みずのはどう",
+        "Korean": "물의파동",
+        "Spanish": "Hidropulso"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ICY_WIND": {
+      "id": "ICY_WIND",
+      "power": 65,
+      "energy": -33,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Icy Wind",
+        "German": "Eissturm",
+        "French": "Vent Glace",
+        "Italian": "Ventogelato",
+        "Japanese": "こごえるかぜ",
+        "Korean": "얼어붙은바람",
+        "Spanish": "Viento Hielo"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 60,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "DRAIN_PUNCH": {
+      "id": "DRAIN_PUNCH",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Drain Punch",
+        "German": "Ableithieb",
+        "French": "Vampi-Poing",
+        "Italian": "Assorbipugno",
+        "Japanese": "ドレインパンチ",
+        "Korean": "드레인펀치",
+        "Spanish": "Puño Drenaje"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 40,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": 1,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "ACROBATICS": {
+      "id": "ACROBATICS",
+      "power": 100,
+      "energy": -100,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Acrobatics",
+        "German": "Akrobatik",
+        "French": "Acrobatie",
+        "Italian": "Acrobazia",
+        "Japanese": "アクロバット",
+        "Korean": "애크러뱃",
+        "Spanish": "Acróbata"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 110,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": null,
+  "regionForms": {
+    "PALAFIN_HERO": {
+      "id": "PALAFIN",
+      "formId": "PALAFIN_HERO",
+      "dexNr": 964,
+      "generation": 9,
+      "names": {
+        "English": "Palafin (Hero Form)",
+        "German": "Delfinator (Heldenform)",
+        "French": "Superdofin (Forme Super)",
+        "Italian": "Palafin (Forma Possente)",
+        "Japanese": "イルカマン (マイティフォルム)",
+        "Korean": "돌핀맨 (마이티폼)",
+        "Spanish": "Palafin (Forma Heroica)"
+      },
+      "stats": {
+        "stamina": 225,
+        "attack": 322,
+        "defense": 196
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "WATERFALL_FAST": {
+          "id": "WATERFALL_FAST",
+          "power": 13,
+          "energy": 7,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Waterfall",
+            "German": "Kaskade",
+            "French": "Cascade",
+            "Italian": "Cascata",
+            "Japanese": "たきのぼり",
+            "Korean": "폭포오르기",
+            "Spanish": "Cascada"
+          },
+          "combat": {
+            "energy": 10,
+            "power": 11,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "CHARM_FAST": {
+          "id": "CHARM_FAST",
+          "power": 20,
+          "energy": 11,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Charm",
+            "German": "Charme",
+            "French": "Charme",
+            "Italian": "Fascino",
+            "Japanese": "あまえる",
+            "Korean": "애교부리기",
+            "Spanish": "Encanto"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 13,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "COUNTER_FAST": {
+          "id": "COUNTER_FAST",
+          "power": 13,
+          "energy": 9,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_FIGHTING",
+            "names": {
+              "English": "Fighting",
+              "German": "Kampf",
+              "French": "Combat",
+              "Italian": "Lotta",
+              "Japanese": "かくとう",
+              "Korean": "격투",
+              "Spanish": "Lucha"
+            }
+          },
+          "names": {
+            "English": "Counter",
+            "German": "Konter",
+            "French": "Riposte",
+            "Italian": "Contrattacco",
+            "Japanese": "カウンター",
+            "Korean": "카운터",
+            "Spanish": "Contraataque"
+          },
+          "combat": {
+            "energy": 6,
+            "power": 8,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "AQUA_JET": {
+          "id": "AQUA_JET",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Aqua Jet",
+            "German": "Wasserdüse",
+            "French": "Aqua-Jet",
+            "Italian": "Acquagetto",
+            "Japanese": "アクアジェット",
+            "Korean": "아쿠아제트",
+            "Spanish": "Acua Jet"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "WATER_PULSE": {
+          "id": "WATER_PULSE",
+          "power": 65,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Water Pulse",
+            "German": "Aquawelle",
+            "French": "Vibraqua",
+            "Italian": "Idropulsar",
+            "Japanese": "みずのはどう",
+            "Korean": "물의파동",
+            "Spanish": "Hidropulso"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 80,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ICY_WIND": {
+          "id": "ICY_WIND",
+          "power": 65,
+          "energy": -33,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_ICE",
+            "names": {
+              "English": "Ice",
+              "German": "Eis",
+              "French": "Glace",
+              "Italian": "Ghiaccio",
+              "Japanese": "こおり",
+              "Korean": "얼음",
+              "Spanish": "Hielo"
+            }
+          },
+          "names": {
+            "English": "Icy Wind",
+            "German": "Eissturm",
+            "French": "Vent Glace",
+            "Italian": "Ventogelato",
+            "Japanese": "こごえるかぜ",
+            "Korean": "얼어붙은바람",
+            "Spanish": "Viento Hielo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "DRAIN_PUNCH": {
+          "id": "DRAIN_PUNCH",
+          "power": 50,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FIGHTING",
+            "names": {
+              "English": "Fighting",
+              "German": "Kampf",
+              "French": "Combat",
+              "Italian": "Lotta",
+              "Japanese": "かくとう",
+              "Korean": "격투",
+              "Spanish": "Lucha"
+            }
+          },
+          "names": {
+            "English": "Drain Punch",
+            "German": "Ableithieb",
+            "French": "Vampi-Poing",
+            "Italian": "Assorbipugno",
+            "Japanese": "ドレインパンチ",
+            "Korean": "드레인펀치",
+            "Spanish": "Puño Drenaje"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 40,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": 1,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "ACROBATICS": {
+          "id": "ACROBATICS",
+          "power": 100,
+          "energy": -100,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Acrobatics",
+            "German": "Akrobatik",
+            "French": "Acrobatie",
+            "Italian": "Acrobazia",
+            "Japanese": "アクロバット",
+            "Korean": "애크러뱃",
+            "Spanish": "Acróbata"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "PALAFIN_ZERO": {
+      "id": "PALAFIN",
+      "formId": "PALAFIN_ZERO",
+      "dexNr": 964,
+      "generation": 9,
+      "names": {
+        "English": "Palafin (Zero Form)",
+        "German": "Delfinator (Alltagsform)",
+        "French": "Superdofin (Forme Ordinaire)",
+        "Italian": "Palafin (Forma Ingenua)",
+        "Japanese": "イルカマン (ナイーブフォルム)",
+        "Korean": "돌핀맨 (나이브폼)",
+        "Spanish": "Palafin (Forma Ingenua)"
+      },
+      "stats": {
+        "stamina": 225,
+        "attack": 143,
+        "defense": 144
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "WATERFALL_FAST": {
+          "id": "WATERFALL_FAST",
+          "power": 13,
+          "energy": 7,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Waterfall",
+            "German": "Kaskade",
+            "French": "Cascade",
+            "Italian": "Cascata",
+            "Japanese": "たきのぼり",
+            "Korean": "폭포오르기",
+            "Spanish": "Cascada"
+          },
+          "combat": {
+            "energy": 10,
+            "power": 11,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "CHARM_FAST": {
+          "id": "CHARM_FAST",
+          "power": 20,
+          "energy": 11,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Charm",
+            "German": "Charme",
+            "French": "Charme",
+            "Italian": "Fascino",
+            "Japanese": "あまえる",
+            "Korean": "애교부리기",
+            "Spanish": "Encanto"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 13,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "COUNTER_FAST": {
+          "id": "COUNTER_FAST",
+          "power": 13,
+          "energy": 9,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_FIGHTING",
+            "names": {
+              "English": "Fighting",
+              "German": "Kampf",
+              "French": "Combat",
+              "Italian": "Lotta",
+              "Japanese": "かくとう",
+              "Korean": "격투",
+              "Spanish": "Lucha"
+            }
+          },
+          "names": {
+            "English": "Counter",
+            "German": "Konter",
+            "French": "Riposte",
+            "Italian": "Contrattacco",
+            "Japanese": "カウンター",
+            "Korean": "카운터",
+            "Spanish": "Contraataque"
+          },
+          "combat": {
+            "energy": 6,
+            "power": 8,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "AQUA_JET": {
+          "id": "AQUA_JET",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Aqua Jet",
+            "German": "Wasserdüse",
+            "French": "Aqua-Jet",
+            "Italian": "Acquagetto",
+            "Japanese": "アクアジェット",
+            "Korean": "아쿠아제트",
+            "Spanish": "Acua Jet"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "WATER_PULSE": {
+          "id": "WATER_PULSE",
+          "power": 65,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Water Pulse",
+            "German": "Aquawelle",
+            "French": "Vibraqua",
+            "Italian": "Idropulsar",
+            "Japanese": "みずのはどう",
+            "Korean": "물의파동",
+            "Spanish": "Hidropulso"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 80,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ICY_WIND": {
+          "id": "ICY_WIND",
+          "power": 65,
+          "energy": -33,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_ICE",
+            "names": {
+              "English": "Ice",
+              "German": "Eis",
+              "French": "Glace",
+              "Italian": "Ghiaccio",
+              "Japanese": "こおり",
+              "Korean": "얼음",
+              "Spanish": "Hielo"
+            }
+          },
+          "names": {
+            "English": "Icy Wind",
+            "German": "Eissturm",
+            "French": "Vent Glace",
+            "Italian": "Ventogelato",
+            "Japanese": "こごえるかぜ",
+            "Korean": "얼어붙은바람",
+            "Spanish": "Viento Hielo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "DRAIN_PUNCH": {
+          "id": "DRAIN_PUNCH",
+          "power": 50,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FIGHTING",
+            "names": {
+              "English": "Fighting",
+              "German": "Kampf",
+              "French": "Combat",
+              "Italian": "Lotta",
+              "Japanese": "かくとう",
+              "Korean": "격투",
+              "Spanish": "Lucha"
+            }
+          },
+          "names": {
+            "English": "Drain Punch",
+            "German": "Ableithieb",
+            "French": "Vampi-Poing",
+            "Italian": "Assorbipugno",
+            "Japanese": "ドレインパンチ",
+            "Korean": "드레인펀치",
+            "Spanish": "Puño Drenaje"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 40,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": 1,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "ACROBATICS": {
+          "id": "ACROBATICS",
+          "power": 100,
+          "energy": -100,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Acrobatics",
+            "German": "Akrobatik",
+            "French": "Acrobatie",
+            "Italian": "Acrobazia",
+            "Japanese": "アクロバット",
+            "Korean": "애크러뱃",
+            "Spanish": "Acróbata"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": []
+}

@@ -1,0 +1,267 @@
+{
+  "id": "TROPIUS",
+  "formId": "TROPIUS",
+  "dexNr": 357,
+  "generation": 3,
+  "names": {
+    "English": "Tropius",
+    "German": "Tropius",
+    "French": "Tropius",
+    "Italian": "Tropius",
+    "Japanese": "トロピウス",
+    "Korean": "트로피우스",
+    "Spanish": "Tropius"
+  },
+  "stats": {
+    "stamina": 223,
+    "attack": 136,
+    "defense": 163
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_GRASS",
+    "names": {
+      "English": "Grass",
+      "German": "Pflanze",
+      "French": "Plante",
+      "Italian": "Erba",
+      "Japanese": "くさ",
+      "Korean": "풀",
+      "Spanish": "Planta"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FLYING",
+    "names": {
+      "English": "Flying",
+      "German": "Flug",
+      "French": "Vol",
+      "Italian": "Volante",
+      "Japanese": "ひこう",
+      "Korean": "비행",
+      "Spanish": "Volador"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "AIR_SLASH_FAST": {
+      "id": "AIR_SLASH_FAST",
+      "power": 12,
+      "energy": 8,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Air Slash",
+        "German": "Luftschnitt",
+        "French": "Lame d’Air",
+        "Italian": "Eterelama",
+        "Japanese": "エアスラッシュ",
+        "Korean": "에어슬래시",
+        "Spanish": "Tajo Aéreo"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 9,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "RAZOR_LEAF_FAST": {
+      "id": "RAZOR_LEAF_FAST",
+      "power": 13,
+      "energy": 7,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Razor Leaf",
+        "German": "Rasierblatt",
+        "French": "Tranch’Herbe",
+        "Italian": "Foglielama",
+        "Japanese": "はっぱカッター",
+        "Korean": "잎날가르기",
+        "Spanish": "Hoja Afilada"
+      },
+      "combat": {
+        "energy": 4,
+        "power": 9,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "STOMP": {
+      "id": "STOMP",
+      "power": 50,
+      "energy": -50,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Stomp",
+        "German": "Stampfer",
+        "French": "Écrasement",
+        "Italian": "Pestone",
+        "Japanese": "ふみつけ",
+        "Korean": "짓밟기",
+        "Spanish": "Pisotón"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "AERIAL_ACE": {
+      "id": "AERIAL_ACE",
+      "power": 55,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Aerial Ace",
+        "German": "Aero-Ass",
+        "French": "Aéropique",
+        "Italian": "Aeroassalto",
+        "Japanese": "つばめがえし",
+        "Korean": "제비반환",
+        "Spanish": "Golpe Aéreo"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "LEAF_BLADE": {
+      "id": "LEAF_BLADE",
+      "power": 70,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Leaf Blade",
+        "German": "Laubklinge",
+        "French": "Lame Feuille",
+        "Italian": "Fendifoglia",
+        "Japanese": "リーフブレード",
+        "Korean": "리프블레이드",
+        "Spanish": "Hoja Aguda"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "BRUTAL_SWING": {
+      "id": "BRUTAL_SWING",
+      "power": 65,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Brutal Swing",
+        "German": "Wirbler",
+        "French": "Centrifugifle",
+        "Italian": "Vorticolpo",
+        "Japanese": "ぶんまわす",
+        "Korean": "세차게휘두르기",
+        "Spanish": "Giro Vil"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm357.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm357.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm357.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm357.s.icon.png"
+    }
+  ]
+}

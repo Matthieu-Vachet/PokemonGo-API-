@@ -1,0 +1,418 @@
+{
+  "id": "PAWMOT",
+  "formId": "PAWMOT",
+  "dexNr": 923,
+  "generation": 9,
+  "names": {
+    "English": "Pawmot",
+    "German": "Pamomamo",
+    "French": "Pohmarmotte",
+    "Italian": "Pawmot",
+    "Japanese": "パーモット",
+    "Korean": "빠르모트",
+    "Spanish": "Pawmot"
+  },
+  "stats": {
+    "stamina": 172,
+    "attack": 232,
+    "defense": 141
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_ELECTRIC",
+    "names": {
+      "English": "Electric",
+      "German": "Elektro",
+      "French": "Électrik",
+      "Italian": "Elettro",
+      "Japanese": "でんき",
+      "Korean": "전기",
+      "Spanish": "Eléctrico"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FIGHTING",
+    "names": {
+      "English": "Fighting",
+      "German": "Kampf",
+      "French": "Combat",
+      "Italian": "Lotta",
+      "Japanese": "かくとう",
+      "Korean": "격투",
+      "Spanish": "Lucha"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "SPARK_FAST": {
+      "id": "SPARK_FAST",
+      "power": 4,
+      "energy": 6,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Spark",
+        "German": "Funkensprung",
+        "French": "Étincelle",
+        "Italian": "Scintilla",
+        "Japanese": "スパーク",
+        "Korean": "스파크",
+        "Spanish": "Chispa"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "CHARGE_BEAM_FAST": {
+      "id": "CHARGE_BEAM_FAST",
+      "power": 7,
+      "energy": 14,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Charge Beam",
+        "German": "Ladestrahl",
+        "French": "Rayon Chargé",
+        "Italian": "Raggioscossa",
+        "Japanese": "チャージビーム",
+        "Korean": "차지빔",
+        "Spanish": "Rayo Carga"
+      },
+      "combat": {
+        "energy": 11,
+        "power": 5,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "LOW_KICK_FAST": {
+      "id": "LOW_KICK_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Low Kick",
+        "German": "Fußkick",
+        "French": "Balayage",
+        "Italian": "Colpo Basso",
+        "Japanese": "けたぐり",
+        "Korean": "안다리걸기",
+        "Spanish": "Patada Baja"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "THUNDER_SHOCK_FAST": {
+      "id": "THUNDER_SHOCK_FAST",
+      "power": 4,
+      "energy": 7,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Thunder Shock",
+        "German": "Donnerschock",
+        "French": "Éclair",
+        "Italian": "Tuonoshock",
+        "Japanese": "でんきショック",
+        "Korean": "전기쇼크",
+        "Spanish": "Impactrueno"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 4,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "THUNDERBOLT": {
+      "id": "THUNDERBOLT",
+      "power": 80,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Thunderbolt",
+        "German": "Donnerblitz",
+        "French": "Tonnerre",
+        "Italian": "Fulmine",
+        "Japanese": "１０まんボルト",
+        "Korean": "10만볼트",
+        "Spanish": "Rayo"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "DISCHARGE": {
+      "id": "DISCHARGE",
+      "power": 65,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Discharge",
+        "German": "Ladungsstoß",
+        "French": "Coup d’Jus",
+        "Italian": "Scarica",
+        "Japanese": "ほうでん",
+        "Korean": "방전",
+        "Spanish": "Chispazo"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "WILD_CHARGE": {
+      "id": "WILD_CHARGE",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Wild Charge",
+        "German": "Stromstoß",
+        "French": "Éclair Fou",
+        "Italian": "Sprizzalampo",
+        "Japanese": "ワイルドボルト",
+        "Korean": "와일드볼트",
+        "Spanish": "Voltio Cruel"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 100,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": -2,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "CLOSE_COMBAT": {
+      "id": "CLOSE_COMBAT",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Close Combat",
+        "German": "Nahkampf",
+        "French": "Close Combat",
+        "Italian": "Zuffa",
+        "Japanese": "インファイト",
+        "Korean": "인파이트",
+        "Spanish": "A Bocajarro"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 100,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": -2,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "THUNDER_PUNCH": {
+      "id": "THUNDER_PUNCH",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Thunder Punch",
+        "German": "Donnerschlag",
+        "French": "Poing Éclair",
+        "Italian": "Tuonopugno",
+        "Japanese": "かみなりパンチ",
+        "Korean": "번개펀치",
+        "Spanish": "Puño Trueno"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": {
+    "BRICK_BREAK": {
+      "id": "BRICK_BREAK",
+      "power": 40,
+      "energy": -33,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Brick Break",
+        "German": "Durchbruch",
+        "French": "Casse-Brique",
+        "Italian": "Breccia",
+        "Japanese": "かわらわり",
+        "Korean": "깨트리기",
+        "Spanish": "Demolición"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 50,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    }
+  },
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm923.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm923.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm923.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm923.s.icon.png"
+    }
+  ]
+}

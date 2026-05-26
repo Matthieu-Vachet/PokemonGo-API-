@@ -1,0 +1,340 @@
+{
+  "id": "JUMPLUFF",
+  "formId": "JUMPLUFF",
+  "dexNr": 189,
+  "generation": 2,
+  "names": {
+    "English": "Jumpluff",
+    "German": "Papungha",
+    "French": "Cotovol",
+    "Italian": "Jumpluff",
+    "Japanese": "ワタッコ",
+    "Korean": "솜솜코",
+    "Spanish": "Jumpluff"
+  },
+  "stats": {
+    "stamina": 181,
+    "attack": 118,
+    "defense": 183
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_GRASS",
+    "names": {
+      "English": "Grass",
+      "German": "Pflanze",
+      "French": "Plante",
+      "Italian": "Erba",
+      "Japanese": "くさ",
+      "Korean": "풀",
+      "Spanish": "Planta"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FLYING",
+    "names": {
+      "English": "Flying",
+      "German": "Flug",
+      "French": "Vol",
+      "Italian": "Volante",
+      "Japanese": "ひこう",
+      "Korean": "비행",
+      "Spanish": "Volador"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "INFESTATION_FAST": {
+      "id": "INFESTATION_FAST",
+      "power": 9,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Infestation",
+        "German": "Plage",
+        "French": "Harcèlement",
+        "Italian": "Assillo",
+        "Japanese": "まとわりつく",
+        "Korean": "엉겨붙기",
+        "Spanish": "Acoso"
+      },
+      "combat": {
+        "energy": 12,
+        "power": 6,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "BULLET_SEED_FAST": {
+      "id": "BULLET_SEED_FAST",
+      "power": 7,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Bullet Seed",
+        "German": "Kugelsaat",
+        "French": "Balle Graine",
+        "Italian": "Semitraglia",
+        "Japanese": "タネマシンガン",
+        "Korean": "씨기관총",
+        "Spanish": "Semilladora"
+      },
+      "combat": {
+        "energy": 13,
+        "power": 5,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "FAIRY_WIND_FAST": {
+      "id": "FAIRY_WIND_FAST",
+      "power": 9,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Fairy Wind",
+        "German": "Feenbrise",
+        "French": "Vent Féérique",
+        "Italian": "Vento di Fata",
+        "Japanese": "ようせいのかぜ",
+        "Korean": "요정의바람",
+        "Spanish": "Viento Feérico"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 4,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "ENERGY_BALL": {
+      "id": "ENERGY_BALL",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Energy Ball",
+        "German": "Energieball",
+        "French": "Éco-Sphère",
+        "Italian": "Energipalla",
+        "Japanese": "エナジーボール",
+        "Korean": "에너지볼",
+        "Spanish": "Energibola"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "DAZZLING_GLEAM": {
+      "id": "DAZZLING_GLEAM",
+      "power": 100,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Dazzling Gleam",
+        "German": "Zauberschein",
+        "French": "Éclat Magique",
+        "Italian": "Magibrillio",
+        "Japanese": "マジカルシャイン",
+        "Korean": "매지컬샤인",
+        "Spanish": "Brillo Mágico"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "SOLAR_BEAM": {
+      "id": "SOLAR_BEAM",
+      "power": 180,
+      "energy": -100,
+      "durationMs": 5000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Solar Beam",
+        "German": "Solarstrahl",
+        "French": "Lance-Soleil",
+        "Italian": "Solarraggio",
+        "Japanese": "ソーラービーム",
+        "Korean": "솔라빔",
+        "Spanish": "Rayo Solar"
+      },
+      "combat": {
+        "energy": -80,
+        "power": 150,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "AERIAL_ACE": {
+      "id": "AERIAL_ACE",
+      "power": 55,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Aerial Ace",
+        "German": "Aero-Ass",
+        "French": "Aéropique",
+        "Italian": "Aeroassalto",
+        "Japanese": "つばめがえし",
+        "Korean": "제비반환",
+        "Spanish": "Golpe Aéreo"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": {
+    "ACROBATICS": {
+      "id": "ACROBATICS",
+      "power": 100,
+      "energy": -100,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Acrobatics",
+        "German": "Akrobatik",
+        "French": "Acrobatie",
+        "Italian": "Acrobazia",
+        "Japanese": "アクロバット",
+        "Korean": "애크러뱃",
+        "Spanish": "Acróbata"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 110,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm189.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm189.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm189.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm189.s.icon.png"
+    }
+  ]
+}

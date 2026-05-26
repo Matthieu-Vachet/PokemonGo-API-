@@ -1,0 +1,231 @@
+{
+  "id": "REMORAID",
+  "formId": "REMORAID",
+  "dexNr": 223,
+  "generation": 2,
+  "names": {
+    "English": "Remoraid",
+    "German": "Remoraid",
+    "French": "Rémoraid",
+    "Italian": "Remoraid",
+    "Japanese": "テッポウオ",
+    "Korean": "총어",
+    "Spanish": "Remoraid"
+  },
+  "stats": {
+    "stamina": 111,
+    "attack": 127,
+    "defense": 69
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_WATER",
+    "names": {
+      "English": "Water",
+      "German": "Wasser",
+      "French": "Eau",
+      "Italian": "Acqua",
+      "Japanese": "みず",
+      "Korean": "물",
+      "Spanish": "Agua"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "WATER_GUN_FAST": {
+      "id": "WATER_GUN_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Water Gun",
+        "German": "Aquaknarre",
+        "French": "Pistolet à O",
+        "Italian": "Pistolacqua",
+        "Japanese": "みずでっぽう",
+        "Korean": "물대포",
+        "Spanish": "Pistola Agua"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "MUD_SHOT_FAST": {
+      "id": "MUD_SHOT_FAST",
+      "power": 4,
+      "energy": 6,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_GROUND",
+        "names": {
+          "English": "Ground",
+          "German": "Boden",
+          "French": "Sol",
+          "Italian": "Terra",
+          "Japanese": "じめん",
+          "Korean": "땅",
+          "Spanish": "Tierra"
+        }
+      },
+      "names": {
+        "English": "Mud Shot",
+        "German": "Lehmschuss",
+        "French": "Tir de Boue",
+        "Italian": "Colpodifango",
+        "Japanese": "マッドショット",
+        "Korean": "머드샷",
+        "Spanish": "Disparo Lodo"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 3,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "AURORA_BEAM": {
+      "id": "AURORA_BEAM",
+      "power": 80,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Aurora Beam",
+        "German": "Aurorastrahl",
+        "French": "Onde Boréale",
+        "Italian": "Raggiaurora",
+        "Japanese": "オーロラビーム",
+        "Korean": "오로라빔",
+        "Spanish": "Rayo Aurora"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "WATER_PULSE": {
+      "id": "WATER_PULSE",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Water Pulse",
+        "German": "Aquawelle",
+        "French": "Vibraqua",
+        "Italian": "Idropulsar",
+        "Japanese": "みずのはどう",
+        "Korean": "물의파동",
+        "Spanish": "Hidropulso"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ROCK_BLAST": {
+      "id": "ROCK_BLAST",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Rock Blast",
+        "German": "Felswurf",
+        "French": "Boule Roc",
+        "Italian": "Cadutamassi",
+        "Japanese": "ロックブラスト",
+        "Korean": "록블라스트",
+        "Spanish": "Pedrada"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 50,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm223.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm223.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "OCTILLERY",
+      "formId": "OCTILLERY",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm223.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm223.s.icon.png"
+    }
+  ]
+}

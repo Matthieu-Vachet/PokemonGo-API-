@@ -1,0 +1,29 @@
+{
+  "name": "pokemon-go-api",
+  "version": "1.0.0",
+  "description": "Pokemon GO API",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "scrape": "node scraper-advanced.js",
+    "scrape:gen1": "node scraper-advanced.js 1 151",
+    "scrape:gen2": "node scraper-advanced.js 152 251",
+    "scrape:single": "node scraper-advanced.js"
+  },
+  "keywords": [
+    "pokemon",
+    "api",
+    "pokemon-go"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.16.1",
+    "cheerio": "^1.2.0",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

@@ -1,0 +1,250 @@
+{
+  "id": "ESPURR",
+  "formId": "ESPURR",
+  "dexNr": 677,
+  "generation": 6,
+  "names": {
+    "English": "Espurr",
+    "German": "Psiau",
+    "French": "Psystigri",
+    "Italian": "Espurr",
+    "Japanese": "ニャスパー",
+    "Korean": "냐스퍼",
+    "Spanish": "Espurr"
+  },
+  "stats": {
+    "stamina": 158,
+    "attack": 120,
+    "defense": 114
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_PSYCHIC",
+    "names": {
+      "English": "Psychic",
+      "German": "Psycho",
+      "French": "Psy",
+      "Italian": "Psico",
+      "Japanese": "エスパー",
+      "Korean": "에스퍼",
+      "Spanish": "Psíquico"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "CONFUSION_FAST": {
+      "id": "CONFUSION_FAST",
+      "power": 19,
+      "energy": 14,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Confusion",
+        "German": "Konfusion",
+        "French": "Choc Mental",
+        "Italian": "Confusione",
+        "Japanese": "ねんりき",
+        "Korean": "염동력",
+        "Spanish": "Confusión"
+      },
+      "combat": {
+        "energy": 14,
+        "power": 16,
+        "turns": 4,
+        "buffs": null
+      }
+    },
+    "SCRATCH_FAST": {
+      "id": "SCRATCH_FAST",
+      "power": 6,
+      "energy": 4,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Scratch",
+        "German": "Kratzer",
+        "French": "Griffe",
+        "Italian": "Graffio",
+        "Japanese": "ひっかく",
+        "Korean": "할퀴기",
+        "Spanish": "Arañazo"
+      },
+      "combat": {
+        "energy": 2,
+        "power": 4,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "PSYSHOCK": {
+      "id": "PSYSHOCK",
+      "power": 60,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psyshock",
+        "German": "Psychoschock",
+        "French": "Choc Psy",
+        "Italian": "Psicoshock",
+        "Japanese": "サイコショック",
+        "Korean": "사이코쇼크",
+        "Spanish": "Psicocarga"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ENERGY_BALL": {
+      "id": "ENERGY_BALL",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Energy Ball",
+        "German": "Energieball",
+        "French": "Éco-Sphère",
+        "Italian": "Energipalla",
+        "Japanese": "エナジーボール",
+        "Korean": "에너지볼",
+        "Spanish": "Energibola"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "PSYCHIC": {
+      "id": "PSYCHIC",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psychic",
+        "German": "Psychokinese",
+        "French": "Psyko",
+        "Italian": "Psichico",
+        "Japanese": "サイコキネシス",
+        "Korean": "사이코키네시스",
+        "Spanish": "Psíquico"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 75,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm677.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm677.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "MEOWSTIC",
+      "formId": "MEOWSTIC_NORMAL",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    },
+    {
+      "id": "MEOWSTIC",
+      "formId": "MEOWSTIC_FEMALE",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm677.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm677.s.icon.png"
+    }
+  ]
+}

@@ -1,0 +1,551 @@
+{
+  "id": "SLOWPOKE",
+  "formId": "SLOWPOKE",
+  "dexNr": 79,
+  "generation": 1,
+  "names": {
+    "English": "Slowpoke",
+    "German": "Flegmon",
+    "French": "Ramoloss",
+    "Italian": "Slowpoke",
+    "Japanese": "ヤドン",
+    "Korean": "야돈",
+    "Spanish": "Slowpoke"
+  },
+  "stats": {
+    "stamina": 207,
+    "attack": 109,
+    "defense": 98
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_WATER",
+    "names": {
+      "English": "Water",
+      "German": "Wasser",
+      "French": "Eau",
+      "Italian": "Acqua",
+      "Japanese": "みず",
+      "Korean": "물",
+      "Spanish": "Agua"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_PSYCHIC",
+    "names": {
+      "English": "Psychic",
+      "German": "Psycho",
+      "French": "Psy",
+      "Italian": "Psico",
+      "Japanese": "エスパー",
+      "Korean": "에스퍼",
+      "Spanish": "Psíquico"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "WATER_GUN_FAST": {
+      "id": "WATER_GUN_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Water Gun",
+        "German": "Aquaknarre",
+        "French": "Pistolet à O",
+        "Italian": "Pistolacqua",
+        "Japanese": "みずでっぽう",
+        "Korean": "물대포",
+        "Spanish": "Pistola Agua"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "CONFUSION_FAST": {
+      "id": "CONFUSION_FAST",
+      "power": 19,
+      "energy": 14,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Confusion",
+        "German": "Konfusion",
+        "French": "Choc Mental",
+        "Italian": "Confusione",
+        "Japanese": "ねんりき",
+        "Korean": "염동력",
+        "Spanish": "Confusión"
+      },
+      "combat": {
+        "energy": 14,
+        "power": 16,
+        "turns": 4,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "WATER_PULSE": {
+      "id": "WATER_PULSE",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Water Pulse",
+        "German": "Aquawelle",
+        "French": "Vibraqua",
+        "Italian": "Idropulsar",
+        "Japanese": "みずのはどう",
+        "Korean": "물의파동",
+        "Spanish": "Hidropulso"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "PSYSHOCK": {
+      "id": "PSYSHOCK",
+      "power": 60,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psyshock",
+        "German": "Psychoschock",
+        "French": "Choc Psy",
+        "Italian": "Psicoshock",
+        "Japanese": "サイコショック",
+        "Korean": "사이코쇼크",
+        "Spanish": "Psicocarga"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "PSYCHIC": {
+      "id": "PSYCHIC",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psychic",
+        "German": "Psychokinese",
+        "French": "Psyko",
+        "Italian": "Psichico",
+        "Japanese": "サイコキネシス",
+        "Korean": "사이코키네시스",
+        "Spanish": "Psíquico"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 75,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm79.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm79.s.icon.png"
+  },
+  "regionForms": {
+    "SLOWPOKE_GALARIAN": {
+      "id": "SLOWPOKE",
+      "formId": "SLOWPOKE_GALARIAN",
+      "dexNr": 79,
+      "generation": 1,
+      "names": {
+        "English": "Galarian Slowpoke",
+        "German": "Galar-Flegmon",
+        "French": "Ramoloss de Galar",
+        "Italian": "Slowpoke di Galar",
+        "Japanese": "ガラル ヤドン",
+        "Korean": "가라르 야돈",
+        "Spanish": "Slowpoke de Galar"
+      },
+      "stats": {
+        "stamina": 207,
+        "attack": 109,
+        "defense": 98
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "CONFUSION_FAST": {
+          "id": "CONFUSION_FAST",
+          "power": 19,
+          "energy": 14,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Confusion",
+            "German": "Konfusion",
+            "French": "Choc Mental",
+            "Italian": "Confusione",
+            "Japanese": "ねんりき",
+            "Korean": "염동력",
+            "Spanish": "Confusión"
+          },
+          "combat": {
+            "energy": 14,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "IRON_TAIL_FAST": {
+          "id": "IRON_TAIL_FAST",
+          "power": 14,
+          "energy": 6,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Tail",
+            "German": "Eisenschweif",
+            "French": "Queue de Fer",
+            "Italian": "Codacciaio",
+            "Japanese": "アイアンテール",
+            "Korean": "아이언테일",
+            "Spanish": "Cola Férrea"
+          },
+          "combat": {
+            "energy": 7,
+            "power": 10,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "SURF": {
+          "id": "SURF",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Surf",
+            "German": "Surfer",
+            "French": "Surf",
+            "Italian": "Surf",
+            "Japanese": "なみのり",
+            "Korean": "파도타기",
+            "Spanish": "Surf"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 75,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "PSYSHOCK": {
+          "id": "PSYSHOCK",
+          "power": 60,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Psyshock",
+            "German": "Psychoschock",
+            "French": "Choc Psy",
+            "Italian": "Psicoshock",
+            "Japanese": "サイコショック",
+            "Korean": "사이코쇼크",
+            "Spanish": "Psicocarga"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "PSYCHIC": {
+          "id": "PSYCHIC",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Psychic",
+            "German": "Psychokinese",
+            "French": "Psyko",
+            "Italian": "Psichico",
+            "Japanese": "サイコキネシス",
+            "Korean": "사이코키네시스",
+            "Spanish": "Psíquico"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 75,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm79.fGALARIAN.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm79.fGALARIAN.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [
+        {
+          "id": "SLOWBRO",
+          "formId": "SLOWBRO_GALARIAN",
+          "candies": 50,
+          "item": null,
+          "quests": [
+            {
+              "id": "SLOWBRO_G_EVOLUTION_QUEST",
+              "type": "QUEST_CATCH_POKEMON",
+              "names": {
+                "English": "Catch 30 Poison-type Pokémon",
+                "German": "Fange 30 Pokémon vom Typ Gift.",
+                "French": "Attrape 30 Pokémon de type Poison",
+                "Italian": "Cattura 30 Pokémon di tipo Veleno",
+                "Japanese": "どくタイプのポケモンを30匹捕まえる",
+                "Korean": "독타입 포켓몬을 30마리 잡는다",
+                "Spanish": "Captura 30 Pokémon de tipo Veneno"
+              }
+            }
+          ]
+        },
+        {
+          "id": "SLOWKING",
+          "formId": "SLOWKING_GALARIAN",
+          "candies": 50,
+          "item": null,
+          "quests": [
+            {
+              "id": "SLOWKING_G_EVOLUTION_QUEST",
+              "type": "QUEST_CATCH_POKEMON",
+              "names": {
+                "English": "Catch 30 Psychic-type Pokémon",
+                "German": "Fange 30 Pokémon vom Typ Psycho.",
+                "French": "Attrape 30 Pokémon de type Psy",
+                "Italian": "Cattura 30 Pokémon di tipo Psico",
+                "Japanese": "エスパータイプのポケモンを30匹捕まえる",
+                "Korean": "에스퍼타입 포켓몬을 30마리 잡는다",
+                "Spanish": "Captura 30 Pokémon de tipo Psíquico"
+              }
+            }
+          ]
+        }
+      ],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [
+    {
+      "id": "SLOWBRO",
+      "formId": "SLOWBRO_NORMAL",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    },
+    {
+      "id": "SLOWKING",
+      "formId": "SLOWKING_NORMAL",
+      "candies": 50,
+      "item": {
+        "id": "ITEM_KINGS_ROCK",
+        "names": {
+          "English": "King's Rock",
+          "German": "King-Stein",
+          "French": "Roche Royale",
+          "Italian": "Roccia di Re",
+          "Japanese": "おうじゃのしるし",
+          "Korean": "왕의징표석",
+          "Spanish": "Roca del Rey"
+        }
+      },
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": "PI_NOEVOLVE",
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm79.cPI_NOEVOLVE.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm79.cPI_NOEVOLVE.s.icon.png"
+    },
+    {
+      "form": "2020",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm79.f2020.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm79.f2020.s.icon.png"
+    },
+    {
+      "form": "GALARIAN",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm79.fGALARIAN.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm79.fGALARIAN.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm79.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm79.s.icon.png"
+    }
+  ]
+}

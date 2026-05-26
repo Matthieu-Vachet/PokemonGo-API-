@@ -1,0 +1,273 @@
+{
+  "id": "JIRACHI",
+  "formId": "JIRACHI",
+  "dexNr": 385,
+  "generation": 3,
+  "names": {
+    "English": "Jirachi",
+    "German": "Jirachi",
+    "French": "Jirachi",
+    "Italian": "Jirachi",
+    "Japanese": "ジラーチ",
+    "Korean": "지라치",
+    "Spanish": "Jirachi"
+  },
+  "stats": {
+    "stamina": 225,
+    "attack": 210,
+    "defense": 210
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_STEEL",
+    "names": {
+      "English": "Steel",
+      "German": "Stahl",
+      "French": "Acier",
+      "Italian": "Acciaio",
+      "Japanese": "はがね",
+      "Korean": "강철",
+      "Spanish": "Acero"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_PSYCHIC",
+    "names": {
+      "English": "Psychic",
+      "German": "Psycho",
+      "French": "Psy",
+      "Italian": "Psico",
+      "Japanese": "エスパー",
+      "Korean": "에스퍼",
+      "Spanish": "Psíquico"
+    }
+  },
+  "pokemonClass": "POKEMON_CLASS_MYTHIC",
+  "quickMoves": {
+    "CONFUSION_FAST": {
+      "id": "CONFUSION_FAST",
+      "power": 19,
+      "energy": 14,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Confusion",
+        "German": "Konfusion",
+        "French": "Choc Mental",
+        "Italian": "Confusione",
+        "Japanese": "ねんりき",
+        "Korean": "염동력",
+        "Spanish": "Confusión"
+      },
+      "combat": {
+        "energy": 14,
+        "power": 16,
+        "turns": 4,
+        "buffs": null
+      }
+    },
+    "CHARGE_BEAM_FAST": {
+      "id": "CHARGE_BEAM_FAST",
+      "power": 7,
+      "energy": 14,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Charge Beam",
+        "German": "Ladestrahl",
+        "French": "Rayon Chargé",
+        "Italian": "Raggioscossa",
+        "Japanese": "チャージビーム",
+        "Korean": "차지빔",
+        "Spanish": "Rayo Carga"
+      },
+      "combat": {
+        "energy": 11,
+        "power": 5,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "DAZZLING_GLEAM": {
+      "id": "DAZZLING_GLEAM",
+      "power": 100,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Dazzling Gleam",
+        "German": "Zauberschein",
+        "French": "Éclat Magique",
+        "Italian": "Magibrillio",
+        "Japanese": "マジカルシャイン",
+        "Korean": "매지컬샤인",
+        "Spanish": "Brillo Mágico"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "PSYCHIC": {
+      "id": "PSYCHIC",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psychic",
+        "German": "Psychokinese",
+        "French": "Psyko",
+        "Italian": "Psichico",
+        "Japanese": "サイコキネシス",
+        "Korean": "사이코키네시스",
+        "Spanish": "Psíquico"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 75,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "DOOM_DESIRE": {
+      "id": "DOOM_DESIRE",
+      "power": 65,
+      "energy": -33,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Doom Desire",
+        "German": "Kismetwunsch",
+        "French": "Carnareket",
+        "Italian": "Obbliderio",
+        "Japanese": "はめつのねがい",
+        "Korean": "파멸의소원",
+        "Spanish": "Deseo Oculto"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "AURA_SPHERE": {
+      "id": "AURA_SPHERE",
+      "power": 100,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Aura Sphere",
+        "German": "Aurasphäre",
+        "French": "Aurasphère",
+        "Italian": "Forzasfera",
+        "Japanese": "はどうだん",
+        "Korean": "파동탄",
+        "Spanish": "Esfera Aural"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm385.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm385.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm385.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm385.s.icon.png"
+    }
+  ]
+}

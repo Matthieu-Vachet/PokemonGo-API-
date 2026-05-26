@@ -1,0 +1,1826 @@
+{
+  "id": "MINIOR",
+  "formId": "MINIOR",
+  "dexNr": 774,
+  "generation": 7,
+  "names": {
+    "English": "Minior",
+    "German": "Meteno",
+    "French": "Météno",
+    "Italian": "Minior",
+    "Japanese": "メテノ",
+    "Korean": "메테노",
+    "Spanish": "Minior"
+  },
+  "stats": {
+    "stamina": 155,
+    "attack": 116,
+    "defense": 194
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_ROCK",
+    "names": {
+      "English": "Rock",
+      "German": "Gestein",
+      "French": "Roche",
+      "Italian": "Roccia",
+      "Japanese": "いわ",
+      "Korean": "바위",
+      "Spanish": "Roca"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FLYING",
+    "names": {
+      "English": "Flying",
+      "German": "Flug",
+      "French": "Vol",
+      "Italian": "Volante",
+      "Japanese": "ひこう",
+      "Korean": "비행",
+      "Spanish": "Volador"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "ROLLOUT_FAST": {
+      "id": "ROLLOUT_FAST",
+      "power": 15,
+      "energy": 19,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Rollout",
+        "German": "Walzer",
+        "French": "Roulade",
+        "Italian": "Rotolamento",
+        "Japanese": "ころがる",
+        "Korean": "구르기",
+        "Spanish": "Desenrollar"
+      },
+      "combat": {
+        "energy": 13,
+        "power": 7,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "TAKE_DOWN_FAST": {
+      "id": "TAKE_DOWN_FAST",
+      "power": 7,
+      "energy": 8,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Take Down",
+        "German": "Bodycheck",
+        "French": "Bélier",
+        "Italian": "Riduttore",
+        "Japanese": "とっしん",
+        "Korean": "돌진",
+        "Spanish": "Derribo"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 5,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "POWER_GEM": {
+      "id": "POWER_GEM",
+      "power": 80,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Power Gem",
+        "German": "Juwelenkraft",
+        "French": "Rayon Gemme",
+        "Italian": "Gemmoforza",
+        "Japanese": "パワージェム",
+        "Korean": "파워젬",
+        "Spanish": "Joya de Luz"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 85,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ANCIENT_POWER": {
+      "id": "ANCIENT_POWER",
+      "power": 70,
+      "energy": -33,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Ancient Power",
+        "German": "Antik-Kraft",
+        "French": "Pouvoir Antique",
+        "Italian": "Forzantica",
+        "Japanese": "げんしのちから",
+        "Korean": "원시의힘",
+        "Spanish": "Poder Pasado"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 60,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": 1,
+          "attackerDefenseStatsChange": 1,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "ACROBATICS": {
+      "id": "ACROBATICS",
+      "power": 100,
+      "energy": -100,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Acrobatics",
+        "German": "Akrobatik",
+        "French": "Acrobatie",
+        "Italian": "Acrobazia",
+        "Japanese": "アクロバット",
+        "Korean": "애크러뱃",
+        "Spanish": "Acróbata"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 110,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": null,
+  "regionForms": {
+    "MINIOR_BLUE": {
+      "id": "MINIOR",
+      "formId": "MINIOR_BLUE",
+      "dexNr": 774,
+      "generation": 7,
+      "names": {
+        "English": "Minior (Blue Plumage)",
+        "German": "Meteno (Blaugefiedert)",
+        "French": "Météno (Plumage Bleu)",
+        "Italian": "Minior (Piume Azzurre)",
+        "Japanese": "メテノ (ブルーフェザー)",
+        "Korean": "메테노 (블루 페더)",
+        "Spanish": "Minior (Plumaje Azul)"
+      },
+      "stats": {
+        "stamina": 155,
+        "attack": 218,
+        "defense": 131
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "ROLLOUT_FAST": {
+          "id": "ROLLOUT_FAST",
+          "power": 15,
+          "energy": 19,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Rollout",
+            "German": "Walzer",
+            "French": "Roulade",
+            "Italian": "Rotolamento",
+            "Japanese": "ころがる",
+            "Korean": "구르기",
+            "Spanish": "Desenrollar"
+          },
+          "combat": {
+            "energy": 13,
+            "power": 7,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "POWER_GEM": {
+          "id": "POWER_GEM",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Power Gem",
+            "German": "Juwelenkraft",
+            "French": "Rayon Gemme",
+            "Italian": "Gemmoforza",
+            "Japanese": "パワージェム",
+            "Korean": "파워젬",
+            "Spanish": "Joya de Luz"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 85,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ANCIENT_POWER": {
+          "id": "ANCIENT_POWER",
+          "power": 70,
+          "energy": -33,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Ancient Power",
+            "German": "Antik-Kraft",
+            "French": "Pouvoir Antique",
+            "Italian": "Forzantica",
+            "Japanese": "げんしのちから",
+            "Korean": "원시의힘",
+            "Spanish": "Poder Pasado"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": 1,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "ACROBATICS": {
+          "id": "ACROBATICS",
+          "power": 100,
+          "energy": -100,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Acrobatics",
+            "German": "Akrobatik",
+            "French": "Acrobatie",
+            "Italian": "Acrobazia",
+            "Japanese": "アクロバット",
+            "Korean": "애크러뱃",
+            "Spanish": "Acróbata"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "MINIOR_GREEN": {
+      "id": "MINIOR",
+      "formId": "MINIOR_GREEN",
+      "dexNr": 774,
+      "generation": 7,
+      "names": {
+        "English": "Minior (Green Plumage)",
+        "German": "Meteno (Grüngefiedert)",
+        "French": "Météno (Plumage Vert)",
+        "Italian": "Minior (Piume Verdi)",
+        "Japanese": "メテノ (グリーンフェザー)",
+        "Korean": "메테노 (그린 페더)",
+        "Spanish": "Minior (Plumaje Verde)"
+      },
+      "stats": {
+        "stamina": 155,
+        "attack": 218,
+        "defense": 131
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "ROLLOUT_FAST": {
+          "id": "ROLLOUT_FAST",
+          "power": 15,
+          "energy": 19,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Rollout",
+            "German": "Walzer",
+            "French": "Roulade",
+            "Italian": "Rotolamento",
+            "Japanese": "ころがる",
+            "Korean": "구르기",
+            "Spanish": "Desenrollar"
+          },
+          "combat": {
+            "energy": 13,
+            "power": 7,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "POWER_GEM": {
+          "id": "POWER_GEM",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Power Gem",
+            "German": "Juwelenkraft",
+            "French": "Rayon Gemme",
+            "Italian": "Gemmoforza",
+            "Japanese": "パワージェム",
+            "Korean": "파워젬",
+            "Spanish": "Joya de Luz"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 85,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ANCIENT_POWER": {
+          "id": "ANCIENT_POWER",
+          "power": 70,
+          "energy": -33,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Ancient Power",
+            "German": "Antik-Kraft",
+            "French": "Pouvoir Antique",
+            "Italian": "Forzantica",
+            "Japanese": "げんしのちから",
+            "Korean": "원시의힘",
+            "Spanish": "Poder Pasado"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": 1,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "ACROBATICS": {
+          "id": "ACROBATICS",
+          "power": 100,
+          "energy": -100,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Acrobatics",
+            "German": "Akrobatik",
+            "French": "Acrobatie",
+            "Italian": "Acrobazia",
+            "Japanese": "アクロバット",
+            "Korean": "애크러뱃",
+            "Spanish": "Acróbata"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "MINIOR_INDIGO": {
+      "id": "MINIOR",
+      "formId": "MINIOR_INDIGO",
+      "dexNr": 774,
+      "generation": 7,
+      "names": {
+        "English": "Minior",
+        "German": "Meteno",
+        "French": "Météno",
+        "Italian": "Minior",
+        "Japanese": "メテノ",
+        "Korean": "메테노",
+        "Spanish": "Minior"
+      },
+      "stats": {
+        "stamina": 155,
+        "attack": 218,
+        "defense": 131
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "ROLLOUT_FAST": {
+          "id": "ROLLOUT_FAST",
+          "power": 15,
+          "energy": 19,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Rollout",
+            "German": "Walzer",
+            "French": "Roulade",
+            "Italian": "Rotolamento",
+            "Japanese": "ころがる",
+            "Korean": "구르기",
+            "Spanish": "Desenrollar"
+          },
+          "combat": {
+            "energy": 13,
+            "power": 7,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "POWER_GEM": {
+          "id": "POWER_GEM",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Power Gem",
+            "German": "Juwelenkraft",
+            "French": "Rayon Gemme",
+            "Italian": "Gemmoforza",
+            "Japanese": "パワージェム",
+            "Korean": "파워젬",
+            "Spanish": "Joya de Luz"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 85,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ANCIENT_POWER": {
+          "id": "ANCIENT_POWER",
+          "power": 70,
+          "energy": -33,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Ancient Power",
+            "German": "Antik-Kraft",
+            "French": "Pouvoir Antique",
+            "Italian": "Forzantica",
+            "Japanese": "げんしのちから",
+            "Korean": "원시의힘",
+            "Spanish": "Poder Pasado"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": 1,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "ACROBATICS": {
+          "id": "ACROBATICS",
+          "power": 100,
+          "energy": -100,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Acrobatics",
+            "German": "Akrobatik",
+            "French": "Acrobatie",
+            "Italian": "Acrobazia",
+            "Japanese": "アクロバット",
+            "Korean": "애크러뱃",
+            "Spanish": "Acróbata"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "MINIOR_ORANGE": {
+      "id": "MINIOR",
+      "formId": "MINIOR_ORANGE",
+      "dexNr": 774,
+      "generation": 7,
+      "names": {
+        "English": "Minior",
+        "German": "Meteno",
+        "French": "Météno",
+        "Italian": "Minior",
+        "Japanese": "メテノ",
+        "Korean": "메테노",
+        "Spanish": "Minior"
+      },
+      "stats": {
+        "stamina": 155,
+        "attack": 218,
+        "defense": 131
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "ROLLOUT_FAST": {
+          "id": "ROLLOUT_FAST",
+          "power": 15,
+          "energy": 19,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Rollout",
+            "German": "Walzer",
+            "French": "Roulade",
+            "Italian": "Rotolamento",
+            "Japanese": "ころがる",
+            "Korean": "구르기",
+            "Spanish": "Desenrollar"
+          },
+          "combat": {
+            "energy": 13,
+            "power": 7,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "POWER_GEM": {
+          "id": "POWER_GEM",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Power Gem",
+            "German": "Juwelenkraft",
+            "French": "Rayon Gemme",
+            "Italian": "Gemmoforza",
+            "Japanese": "パワージェム",
+            "Korean": "파워젬",
+            "Spanish": "Joya de Luz"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 85,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ANCIENT_POWER": {
+          "id": "ANCIENT_POWER",
+          "power": 70,
+          "energy": -33,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Ancient Power",
+            "German": "Antik-Kraft",
+            "French": "Pouvoir Antique",
+            "Italian": "Forzantica",
+            "Japanese": "げんしのちから",
+            "Korean": "원시의힘",
+            "Spanish": "Poder Pasado"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": 1,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "ACROBATICS": {
+          "id": "ACROBATICS",
+          "power": 100,
+          "energy": -100,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Acrobatics",
+            "German": "Akrobatik",
+            "French": "Acrobatie",
+            "Italian": "Acrobazia",
+            "Japanese": "アクロバット",
+            "Korean": "애크러뱃",
+            "Spanish": "Acróbata"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "MINIOR_RED": {
+      "id": "MINIOR",
+      "formId": "MINIOR_RED",
+      "dexNr": 774,
+      "generation": 7,
+      "names": {
+        "English": "Minior",
+        "German": "Meteno",
+        "French": "Météno",
+        "Italian": "Minior",
+        "Japanese": "メテノ",
+        "Korean": "메테노",
+        "Spanish": "Minior"
+      },
+      "stats": {
+        "stamina": 155,
+        "attack": 218,
+        "defense": 131
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "ROLLOUT_FAST": {
+          "id": "ROLLOUT_FAST",
+          "power": 15,
+          "energy": 19,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Rollout",
+            "German": "Walzer",
+            "French": "Roulade",
+            "Italian": "Rotolamento",
+            "Japanese": "ころがる",
+            "Korean": "구르기",
+            "Spanish": "Desenrollar"
+          },
+          "combat": {
+            "energy": 13,
+            "power": 7,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "POWER_GEM": {
+          "id": "POWER_GEM",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Power Gem",
+            "German": "Juwelenkraft",
+            "French": "Rayon Gemme",
+            "Italian": "Gemmoforza",
+            "Japanese": "パワージェム",
+            "Korean": "파워젬",
+            "Spanish": "Joya de Luz"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 85,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ANCIENT_POWER": {
+          "id": "ANCIENT_POWER",
+          "power": 70,
+          "energy": -33,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Ancient Power",
+            "German": "Antik-Kraft",
+            "French": "Pouvoir Antique",
+            "Italian": "Forzantica",
+            "Japanese": "げんしのちから",
+            "Korean": "원시의힘",
+            "Spanish": "Poder Pasado"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": 1,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "ACROBATICS": {
+          "id": "ACROBATICS",
+          "power": 100,
+          "energy": -100,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Acrobatics",
+            "German": "Akrobatik",
+            "French": "Acrobatie",
+            "Italian": "Acrobazia",
+            "Japanese": "アクロバット",
+            "Korean": "애크러뱃",
+            "Spanish": "Acróbata"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "MINIOR_VIOLET": {
+      "id": "MINIOR",
+      "formId": "MINIOR_VIOLET",
+      "dexNr": 774,
+      "generation": 7,
+      "names": {
+        "English": "Minior",
+        "German": "Meteno",
+        "French": "Météno",
+        "Italian": "Minior",
+        "Japanese": "メテノ",
+        "Korean": "메테노",
+        "Spanish": "Minior"
+      },
+      "stats": {
+        "stamina": 155,
+        "attack": 218,
+        "defense": 131
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "ROLLOUT_FAST": {
+          "id": "ROLLOUT_FAST",
+          "power": 15,
+          "energy": 19,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Rollout",
+            "German": "Walzer",
+            "French": "Roulade",
+            "Italian": "Rotolamento",
+            "Japanese": "ころがる",
+            "Korean": "구르기",
+            "Spanish": "Desenrollar"
+          },
+          "combat": {
+            "energy": 13,
+            "power": 7,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "POWER_GEM": {
+          "id": "POWER_GEM",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Power Gem",
+            "German": "Juwelenkraft",
+            "French": "Rayon Gemme",
+            "Italian": "Gemmoforza",
+            "Japanese": "パワージェム",
+            "Korean": "파워젬",
+            "Spanish": "Joya de Luz"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 85,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ANCIENT_POWER": {
+          "id": "ANCIENT_POWER",
+          "power": 70,
+          "energy": -33,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Ancient Power",
+            "German": "Antik-Kraft",
+            "French": "Pouvoir Antique",
+            "Italian": "Forzantica",
+            "Japanese": "げんしのちから",
+            "Korean": "원시의힘",
+            "Spanish": "Poder Pasado"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": 1,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "ACROBATICS": {
+          "id": "ACROBATICS",
+          "power": 100,
+          "energy": -100,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Acrobatics",
+            "German": "Akrobatik",
+            "French": "Acrobatie",
+            "Italian": "Acrobazia",
+            "Japanese": "アクロバット",
+            "Korean": "애크러뱃",
+            "Spanish": "Acróbata"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "MINIOR_YELLOW": {
+      "id": "MINIOR",
+      "formId": "MINIOR_YELLOW",
+      "dexNr": 774,
+      "generation": 7,
+      "names": {
+        "English": "Minior (Yellow Plumage)",
+        "German": "Meteno (Gelbgefiedert)",
+        "French": "Météno (Plumage Jaune)",
+        "Italian": "Minior (Piume Gialle)",
+        "Japanese": "メテノ (イエローフェザー)",
+        "Korean": "메테노 (옐로 페더)",
+        "Spanish": "Minior (Plumaje Amarillo)"
+      },
+      "stats": {
+        "stamina": 155,
+        "attack": 218,
+        "defense": 131
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "ROLLOUT_FAST": {
+          "id": "ROLLOUT_FAST",
+          "power": 15,
+          "energy": 19,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Rollout",
+            "German": "Walzer",
+            "French": "Roulade",
+            "Italian": "Rotolamento",
+            "Japanese": "ころがる",
+            "Korean": "구르기",
+            "Spanish": "Desenrollar"
+          },
+          "combat": {
+            "energy": 13,
+            "power": 7,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "POWER_GEM": {
+          "id": "POWER_GEM",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Power Gem",
+            "German": "Juwelenkraft",
+            "French": "Rayon Gemme",
+            "Italian": "Gemmoforza",
+            "Japanese": "パワージェム",
+            "Korean": "파워젬",
+            "Spanish": "Joya de Luz"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 85,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ANCIENT_POWER": {
+          "id": "ANCIENT_POWER",
+          "power": 70,
+          "energy": -33,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Ancient Power",
+            "German": "Antik-Kraft",
+            "French": "Pouvoir Antique",
+            "Italian": "Forzantica",
+            "Japanese": "げんしのちから",
+            "Korean": "원시의힘",
+            "Spanish": "Poder Pasado"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": 1,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "ACROBATICS": {
+          "id": "ACROBATICS",
+          "power": 100,
+          "energy": -100,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Acrobatics",
+            "German": "Akrobatik",
+            "French": "Acrobatie",
+            "Italian": "Acrobazia",
+            "Japanese": "アクロバット",
+            "Korean": "애크러뱃",
+            "Spanish": "Acróbata"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": []
+}

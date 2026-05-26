@@ -1,0 +1,792 @@
+{
+  "id": "LATIAS",
+  "formId": "LATIAS",
+  "dexNr": 380,
+  "generation": 3,
+  "names": {
+    "English": "Latias",
+    "German": "Latias",
+    "French": "Latias",
+    "Italian": "Latias",
+    "Japanese": "ラティアス",
+    "Korean": "라티아스",
+    "Spanish": "Latias"
+  },
+  "stats": {
+    "stamina": 190,
+    "attack": 228,
+    "defense": 246
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_DRAGON",
+    "names": {
+      "English": "Dragon",
+      "German": "Drache",
+      "French": "Dragon",
+      "Italian": "Drago",
+      "Japanese": "ドラゴン",
+      "Korean": "드래곤",
+      "Spanish": "Dragón"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_PSYCHIC",
+    "names": {
+      "English": "Psychic",
+      "German": "Psycho",
+      "French": "Psy",
+      "Italian": "Psico",
+      "Japanese": "エスパー",
+      "Korean": "에스퍼",
+      "Spanish": "Psíquico"
+    }
+  },
+  "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+  "quickMoves": {
+    "DRAGON_BREATH_FAST": {
+      "id": "DRAGON_BREATH_FAST",
+      "power": 6,
+      "energy": 4,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "names": {
+        "English": "Dragon Breath",
+        "German": "Feuerodem",
+        "French": "Draco-Souffle",
+        "Italian": "Dragospiro",
+        "Japanese": "りゅうのいぶき",
+        "Korean": "용의숨결",
+        "Spanish": "Dragoaliento"
+      },
+      "combat": {
+        "energy": 4,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ZEN_HEADBUTT_FAST": {
+      "id": "ZEN_HEADBUTT_FAST",
+      "power": 11,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Zen Headbutt",
+        "German": "Zen-Kopfstoß",
+        "French": "Psykoud’Boul",
+        "Italian": "Cozzata Zen",
+        "Japanese": "しねんのずつき",
+        "Korean": "사념의박치기",
+        "Spanish": "Cabezazo Zen"
+      },
+      "combat": {
+        "energy": 6,
+        "power": 8,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "CHARM_FAST": {
+      "id": "CHARM_FAST",
+      "power": 20,
+      "energy": 11,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Charm",
+        "German": "Charme",
+        "French": "Charme",
+        "Italian": "Fascino",
+        "Japanese": "あまえる",
+        "Korean": "애교부리기",
+        "Spanish": "Encanto"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 13,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "PSYCHIC": {
+      "id": "PSYCHIC",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psychic",
+        "German": "Psychokinese",
+        "French": "Psyko",
+        "Italian": "Psichico",
+        "Japanese": "サイコキネシス",
+        "Korean": "사이코키네시스",
+        "Spanish": "Psíquico"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 75,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "OUTRAGE": {
+      "id": "OUTRAGE",
+      "power": 110,
+      "energy": -50,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "names": {
+        "English": "Outrage",
+        "German": "Wutanfall",
+        "French": "Colère",
+        "Italian": "Oltraggio",
+        "Japanese": "げきりん",
+        "Korean": "역린",
+        "Spanish": "Enfado"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 110,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "THUNDER": {
+      "id": "THUNDER",
+      "power": 100,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Thunder",
+        "German": "Donner",
+        "French": "Fatal-Foudre",
+        "Italian": "Tuono",
+        "Japanese": "かみなり",
+        "Korean": "번개",
+        "Spanish": "Trueno"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 100,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "AURA_SPHERE": {
+      "id": "AURA_SPHERE",
+      "power": 100,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Aura Sphere",
+        "German": "Aurasphäre",
+        "French": "Aurasphère",
+        "Italian": "Forzasfera",
+        "Japanese": "はどうだん",
+        "Korean": "파동탄",
+        "Spanish": "Esfera Aural"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": {
+    "MIST_BALL": {
+      "id": "MIST_BALL",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Mist Ball",
+        "German": "Nebelball",
+        "French": "Ball’Brume",
+        "Italian": "Foschisfera",
+        "Japanese": "ミストボール",
+        "Korean": "미스트볼",
+        "Spanish": "Bola Neblina"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 120,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 50,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm380.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm380.s.icon.png"
+  },
+  "regionForms": {
+    "LATIAS_S": {
+      "id": "LATIAS",
+      "formId": "LATIAS_S",
+      "dexNr": 380,
+      "generation": 3,
+      "names": {
+        "English": "Latias",
+        "German": "Latias",
+        "French": "Latias",
+        "Italian": "Latias",
+        "Japanese": "ラティアス",
+        "Korean": "라티아스",
+        "Spanish": "Latias"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 228,
+        "defense": 246
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "DRAGON_BREATH_FAST": {
+          "id": "DRAGON_BREATH_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DRAGON",
+            "names": {
+              "English": "Dragon",
+              "German": "Drache",
+              "French": "Dragon",
+              "Italian": "Drago",
+              "Japanese": "ドラゴン",
+              "Korean": "드래곤",
+              "Spanish": "Dragón"
+            }
+          },
+          "names": {
+            "English": "Dragon Breath",
+            "German": "Feuerodem",
+            "French": "Draco-Souffle",
+            "Italian": "Dragospiro",
+            "Japanese": "りゅうのいぶき",
+            "Korean": "용의숨결",
+            "Spanish": "Dragoaliento"
+          },
+          "combat": {
+            "energy": 4,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ZEN_HEADBUTT_FAST": {
+          "id": "ZEN_HEADBUTT_FAST",
+          "power": 11,
+          "energy": 9,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Zen Headbutt",
+            "German": "Zen-Kopfstoß",
+            "French": "Psykoud’Boul",
+            "Italian": "Cozzata Zen",
+            "Japanese": "しねんのずつき",
+            "Korean": "사념의박치기",
+            "Spanish": "Cabezazo Zen"
+          },
+          "combat": {
+            "energy": 6,
+            "power": 8,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "CHARM_FAST": {
+          "id": "CHARM_FAST",
+          "power": 20,
+          "energy": 11,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Charm",
+            "German": "Charme",
+            "French": "Charme",
+            "Italian": "Fascino",
+            "Japanese": "あまえる",
+            "Korean": "애교부리기",
+            "Spanish": "Encanto"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 13,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "PSYCHIC": {
+          "id": "PSYCHIC",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Psychic",
+            "German": "Psychokinese",
+            "French": "Psyko",
+            "Italian": "Psichico",
+            "Japanese": "サイコキネシス",
+            "Korean": "사이코키네시스",
+            "Spanish": "Psíquico"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 75,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "OUTRAGE": {
+          "id": "OUTRAGE",
+          "power": 110,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_DRAGON",
+            "names": {
+              "English": "Dragon",
+              "German": "Drache",
+              "French": "Dragon",
+              "Italian": "Drago",
+              "Japanese": "ドラゴン",
+              "Korean": "드래곤",
+              "Spanish": "Dragón"
+            }
+          },
+          "names": {
+            "English": "Outrage",
+            "German": "Wutanfall",
+            "French": "Colère",
+            "Italian": "Oltraggio",
+            "Japanese": "げきりん",
+            "Korean": "역린",
+            "Spanish": "Enfado"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "THUNDER": {
+          "id": "THUNDER",
+          "power": 100,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunder",
+            "German": "Donner",
+            "French": "Fatal-Foudre",
+            "Italian": "Tuono",
+            "Japanese": "かみなり",
+            "Korean": "번개",
+            "Spanish": "Trueno"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AURA_SPHERE": {
+          "id": "AURA_SPHERE",
+          "power": 100,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FIGHTING",
+            "names": {
+              "English": "Fighting",
+              "German": "Kampf",
+              "French": "Combat",
+              "Italian": "Lotta",
+              "Japanese": "かくとう",
+              "Korean": "격투",
+              "Spanish": "Lucha"
+            }
+          },
+          "names": {
+            "English": "Aura Sphere",
+            "German": "Aurasphäre",
+            "French": "Aurasphère",
+            "Italian": "Forzasfera",
+            "Japanese": "はどうだん",
+            "Korean": "파동탄",
+            "Spanish": "Esfera Aural"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 80,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": {
+        "MIST_BALL": {
+          "id": "MIST_BALL",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Mist Ball",
+            "German": "Nebelball",
+            "French": "Ball’Brume",
+            "Italian": "Foschisfera",
+            "Japanese": "ミストボール",
+            "Korean": "미스트볼",
+            "Spanish": "Bola Neblina"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 120,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 50,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm380.fS.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm380.fS.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": true,
+      "megaEvolutions": {
+        "LATIAS_MEGA": {
+          "id": "LATIAS_MEGA",
+          "names": {
+            "English": "Mega Latias",
+            "German": "Mega-Latias",
+            "French": "Méga-Latias",
+            "Italian": "MegaLatias",
+            "Japanese": "メガラティアス",
+            "Korean": "메가라티아스",
+            "Spanish": "Mega-Latias"
+          },
+          "stats": {
+            "stamina": 190,
+            "attack": 289,
+            "defense": 297
+          },
+          "primaryType": {
+            "type": "POKEMON_TYPE_DRAGON",
+            "names": {
+              "English": "Dragon",
+              "German": "Drache",
+              "French": "Dragon",
+              "Italian": "Drago",
+              "Japanese": "ドラゴン",
+              "Korean": "드래곤",
+              "Spanish": "Dragón"
+            }
+          },
+          "secondaryType": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "energyCost": 300,
+          "assets": {
+            "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm380.fMEGA.icon.png",
+            "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm380.fMEGA.s.icon.png"
+          }
+        }
+      },
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": true,
+  "megaEvolutions": {
+    "LATIAS_MEGA": {
+      "id": "LATIAS_MEGA",
+      "names": {
+        "English": "Mega Latias",
+        "German": "Mega-Latias",
+        "French": "Méga-Latias",
+        "Italian": "MegaLatias",
+        "Japanese": "メガラティアス",
+        "Korean": "메가라티아스",
+        "Spanish": "Mega-Latias"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 289,
+        "defense": 297
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "energyCost": 300,
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm380.fMEGA.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm380.fMEGA.s.icon.png"
+      }
+    }
+  },
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "MEGA",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm380.fMEGA.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm380.fMEGA.s.icon.png"
+    },
+    {
+      "form": "S",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm380.fS.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm380.fS.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm380.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm380.s.icon.png"
+    }
+  ]
+}

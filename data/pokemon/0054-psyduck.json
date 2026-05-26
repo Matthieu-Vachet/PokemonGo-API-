@@ -1,0 +1,245 @@
+{
+  "id": "PSYDUCK",
+  "formId": "PSYDUCK",
+  "dexNr": 54,
+  "generation": 1,
+  "names": {
+    "English": "Psyduck",
+    "German": "Enton",
+    "French": "Psykokwak",
+    "Italian": "Psyduck",
+    "Japanese": "コダック",
+    "Korean": "고라파덕",
+    "Spanish": "Psyduck"
+  },
+  "stats": {
+    "stamina": 137,
+    "attack": 122,
+    "defense": 95
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_WATER",
+    "names": {
+      "English": "Water",
+      "German": "Wasser",
+      "French": "Eau",
+      "Italian": "Acqua",
+      "Japanese": "みず",
+      "Korean": "물",
+      "Spanish": "Agua"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "WATER_GUN_FAST": {
+      "id": "WATER_GUN_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Water Gun",
+        "German": "Aquaknarre",
+        "French": "Pistolet à O",
+        "Italian": "Pistolacqua",
+        "Japanese": "みずでっぽう",
+        "Korean": "물대포",
+        "Spanish": "Pistola Agua"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ZEN_HEADBUTT_FAST": {
+      "id": "ZEN_HEADBUTT_FAST",
+      "power": 11,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Zen Headbutt",
+        "German": "Zen-Kopfstoß",
+        "French": "Psykoud’Boul",
+        "Italian": "Cozzata Zen",
+        "Japanese": "しねんのずつき",
+        "Korean": "사념의박치기",
+        "Spanish": "Cabezazo Zen"
+      },
+      "combat": {
+        "energy": 6,
+        "power": 8,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "PSYBEAM": {
+      "id": "PSYBEAM",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psybeam",
+        "German": "Psystrahl",
+        "French": "Rafale Psy",
+        "Italian": "Psicoraggio",
+        "Japanese": "サイケこうせん",
+        "Korean": "환상빔",
+        "Spanish": "Psicorrayo"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "AQUA_TAIL": {
+      "id": "AQUA_TAIL",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Aqua Tail",
+        "German": "Nassschweif",
+        "French": "Hydro-Queue",
+        "Italian": "Idrondata",
+        "Japanese": "アクアテール",
+        "Korean": "아쿠아테일",
+        "Spanish": "Acua Cola"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "CROSS_CHOP": {
+      "id": "CROSS_CHOP",
+      "power": 50,
+      "energy": -50,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Cross Chop",
+        "German": "Kreuzhieb",
+        "French": "Coup Croix",
+        "Italian": "Incrocolpo",
+        "Japanese": "クロスチョップ",
+        "Korean": "크로스촙",
+        "Spanish": "Tajo Cruzado"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm54.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm54.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "GOLDUCK",
+      "formId": "GOLDUCK_NORMAL",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": "HOLIDAY_2023",
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm54.cHOLIDAY_2023.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm54.cHOLIDAY_2023.s.icon.png"
+    },
+    {
+      "form": "SWIM_2025",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm54.fSWIM_2025.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm54.fSWIM_2025.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm54.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm54.s.icon.png"
+    }
+  ]
+}

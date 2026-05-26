@@ -1,0 +1,237 @@
+{
+  "id": "TEPIG",
+  "formId": "TEPIG",
+  "dexNr": 498,
+  "generation": 5,
+  "names": {
+    "English": "Tepig",
+    "German": "Floink",
+    "French": "Gruikui",
+    "Italian": "Tepig",
+    "Japanese": "ポカブ",
+    "Korean": "뚜꾸리",
+    "Spanish": "Tepig"
+  },
+  "stats": {
+    "stamina": 163,
+    "attack": 115,
+    "defense": 85
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_FIRE",
+    "names": {
+      "English": "Fire",
+      "German": "Feuer",
+      "French": "Feu",
+      "Italian": "Fuoco",
+      "Japanese": "ほのお",
+      "Korean": "불꽃",
+      "Spanish": "Fuego"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "TACKLE_FAST": {
+      "id": "TACKLE_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Tackle",
+        "German": "Tackle",
+        "French": "Charge",
+        "Italian": "Azione",
+        "Japanese": "たいあたり",
+        "Korean": "몸통박치기",
+        "Spanish": "Placaje"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "EMBER_FAST": {
+      "id": "EMBER_FAST",
+      "power": 10,
+      "energy": 10,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Ember",
+        "German": "Glut",
+        "French": "Flammèche",
+        "Italian": "Braciere",
+        "Japanese": "ひのこ",
+        "Korean": "불꽃세례",
+        "Spanish": "Ascuas"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 4,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "FLAME_CHARGE": {
+      "id": "FLAME_CHARGE",
+      "power": 70,
+      "energy": -33,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Flame Charge",
+        "German": "Nitroladung",
+        "French": "Nitrocharge",
+        "Italian": "Nitrocarica",
+        "Japanese": "ニトロチャージ",
+        "Korean": "니트로차지",
+        "Spanish": "Nitrocarga"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 65,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": 1,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "FLAMETHROWER": {
+      "id": "FLAMETHROWER",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Flamethrower",
+        "German": "Flammenwurf",
+        "French": "Lance-Flammes",
+        "Italian": "Lanciafiamme",
+        "Japanese": "かえんほうしゃ",
+        "Korean": "화염방사",
+        "Spanish": "Lanzallamas"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "BODY_SLAM": {
+      "id": "BODY_SLAM",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Body Slam",
+        "German": "Bodyslam",
+        "French": "Plaquage",
+        "Italian": "Corposcontro",
+        "Japanese": "のしかかり",
+        "Korean": "누르기",
+        "Spanish": "Golpe Cuerpo"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm498.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm498.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "PIGNITE",
+      "formId": "PIGNITE",
+      "candies": 25,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm498.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm498.s.icon.png"
+    }
+  ]
+}

@@ -1,0 +1,279 @@
+{
+  "id": "VOLCARONA",
+  "formId": "VOLCARONA",
+  "dexNr": 637,
+  "generation": 5,
+  "names": {
+    "English": "Volcarona",
+    "German": "Ramoth",
+    "French": "Pyrax",
+    "Italian": "Volcarona",
+    "Japanese": "ウルガモス",
+    "Korean": "불카모스",
+    "Spanish": "Volcarona"
+  },
+  "stats": {
+    "stamina": 198,
+    "attack": 264,
+    "defense": 189
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_BUG",
+    "names": {
+      "English": "Bug",
+      "German": "Käfer",
+      "French": "Insecte",
+      "Italian": "Coleottero",
+      "Japanese": "むし",
+      "Korean": "벌레",
+      "Spanish": "Bicho"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FIRE",
+    "names": {
+      "English": "Fire",
+      "German": "Feuer",
+      "French": "Feu",
+      "Italian": "Fuoco",
+      "Japanese": "ほのお",
+      "Korean": "불꽃",
+      "Spanish": "Fuego"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "FIRE_SPIN_FAST": {
+      "id": "FIRE_SPIN_FAST",
+      "power": 13,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Fire Spin",
+        "German": "Feuerwirbel",
+        "French": "Danse Flammes",
+        "Italian": "Turbofuoco",
+        "Japanese": "ほのおのうず",
+        "Korean": "회오리불꽃",
+        "Spanish": "Giro Fuego"
+      },
+      "combat": {
+        "energy": 10,
+        "power": 11,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "BUG_BITE_FAST": {
+      "id": "BUG_BITE_FAST",
+      "power": 5,
+      "energy": 6,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Bug Bite",
+        "German": "Käferbiss",
+        "French": "Piqûre",
+        "Italian": "Coleomorso",
+        "Japanese": "むしくい",
+        "Korean": "벌레먹기",
+        "Spanish": "Picadura"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 4,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "OVERHEAT": {
+      "id": "OVERHEAT",
+      "power": 160,
+      "energy": -100,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Overheat",
+        "German": "Hitzekoller",
+        "French": "Surchauffe",
+        "Italian": "Vampata",
+        "Japanese": "オーバーヒート",
+        "Korean": "오버히트",
+        "Spanish": "Sofoco"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 130,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": -2,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "BUG_BUZZ": {
+      "id": "BUG_BUZZ",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Bug Buzz",
+        "German": "Käfergebrumm",
+        "French": "Bourdon",
+        "Italian": "Ronzio",
+        "Japanese": "むしのさざめき",
+        "Korean": "벌레의야단법석",
+        "Spanish": "Zumbido"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 100,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 30,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "SOLAR_BEAM": {
+      "id": "SOLAR_BEAM",
+      "power": 180,
+      "energy": -100,
+      "durationMs": 5000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Solar Beam",
+        "German": "Solarstrahl",
+        "French": "Lance-Soleil",
+        "Italian": "Solarraggio",
+        "Japanese": "ソーラービーム",
+        "Korean": "솔라빔",
+        "Spanish": "Rayo Solar"
+      },
+      "combat": {
+        "energy": -80,
+        "power": 150,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "HURRICANE": {
+      "id": "HURRICANE",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Hurricane",
+        "German": "Orkan",
+        "French": "Vent Violent",
+        "Italian": "Tifone",
+        "Japanese": "ぼうふう",
+        "Korean": "폭풍",
+        "Spanish": "Vendaval"
+      },
+      "combat": {
+        "energy": -65,
+        "power": 110,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm637.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm637.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm637.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm637.s.icon.png"
+    }
+  ]
+}

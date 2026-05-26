@@ -1,0 +1,237 @@
+{
+  "id": "SLUGMA",
+  "formId": "SLUGMA",
+  "dexNr": 218,
+  "generation": 2,
+  "names": {
+    "English": "Slugma",
+    "German": "Schneckmag",
+    "French": "Limagma",
+    "Italian": "Slugma",
+    "Japanese": "マグマッグ",
+    "Korean": "마그마그",
+    "Spanish": "Slugma"
+  },
+  "stats": {
+    "stamina": 120,
+    "attack": 118,
+    "defense": 71
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_FIRE",
+    "names": {
+      "English": "Fire",
+      "German": "Feuer",
+      "French": "Feu",
+      "Italian": "Fuoco",
+      "Japanese": "ほのお",
+      "Korean": "불꽃",
+      "Spanish": "Fuego"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "EMBER_FAST": {
+      "id": "EMBER_FAST",
+      "power": 10,
+      "energy": 10,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Ember",
+        "German": "Glut",
+        "French": "Flammèche",
+        "Italian": "Braciere",
+        "Japanese": "ひのこ",
+        "Korean": "불꽃세례",
+        "Spanish": "Ascuas"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 4,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "ROCK_THROW_FAST": {
+      "id": "ROCK_THROW_FAST",
+      "power": 13,
+      "energy": 8,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Rock Throw",
+        "German": "Steinwurf",
+        "French": "Jet-Pierres",
+        "Italian": "Sassata",
+        "Japanese": "いわおとし",
+        "Korean": "돌떨구기",
+        "Spanish": "Lanzarrocas"
+      },
+      "combat": {
+        "energy": 5,
+        "power": 8,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "FLAME_BURST": {
+      "id": "FLAME_BURST",
+      "power": 70,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Flame Burst",
+        "German": "Funkenflug",
+        "French": "Rebondifeu",
+        "Italian": "Pirolancio",
+        "Japanese": "はじけるほのお",
+        "Korean": "불꽃튀기기",
+        "Spanish": "Pirotecnia"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "FLAME_CHARGE": {
+      "id": "FLAME_CHARGE",
+      "power": 70,
+      "energy": -33,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Flame Charge",
+        "German": "Nitroladung",
+        "French": "Nitrocharge",
+        "Italian": "Nitrocarica",
+        "Japanese": "ニトロチャージ",
+        "Korean": "니트로차지",
+        "Spanish": "Nitrocarga"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 65,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": 1,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "ROCK_SLIDE": {
+      "id": "ROCK_SLIDE",
+      "power": 75,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Rock Slide",
+        "German": "Steinhagel",
+        "French": "Éboulement",
+        "Italian": "Frana",
+        "Japanese": "いわなだれ",
+        "Korean": "스톤샤워",
+        "Spanish": "Avalancha"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 75,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm218.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm218.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "MAGCARGO",
+      "formId": "MAGCARGO",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm218.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm218.s.icon.png"
+    }
+  ]
+}

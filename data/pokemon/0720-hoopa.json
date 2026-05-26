@@ -1,0 +1,710 @@
+{
+  "id": "HOOPA",
+  "formId": "HOOPA",
+  "dexNr": 720,
+  "generation": 6,
+  "names": {
+    "English": "Hoopa",
+    "German": "Hoopa",
+    "French": "Hoopa",
+    "Italian": "Hoopa",
+    "Japanese": "フーパ",
+    "Korean": "후파",
+    "Spanish": "Hoopa"
+  },
+  "stats": {
+    "stamina": 173,
+    "attack": 261,
+    "defense": 187
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_PSYCHIC",
+    "names": {
+      "English": "Psychic",
+      "German": "Psycho",
+      "French": "Psy",
+      "Italian": "Psico",
+      "Japanese": "エスパー",
+      "Korean": "에스퍼",
+      "Spanish": "Psíquico"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_GHOST",
+    "names": {
+      "English": "Ghost",
+      "German": "Geist",
+      "French": "Spectre",
+      "Italian": "Spettro",
+      "Japanese": "ゴースト",
+      "Korean": "고스트",
+      "Spanish": "Fantasma"
+    }
+  },
+  "pokemonClass": "POKEMON_CLASS_MYTHIC",
+  "quickMoves": {
+    "CONFUSION_FAST": {
+      "id": "CONFUSION_FAST",
+      "power": 19,
+      "energy": 14,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Confusion",
+        "German": "Konfusion",
+        "French": "Choc Mental",
+        "Italian": "Confusione",
+        "Japanese": "ねんりき",
+        "Korean": "염동력",
+        "Spanish": "Confusión"
+      },
+      "combat": {
+        "energy": 14,
+        "power": 16,
+        "turns": 4,
+        "buffs": null
+      }
+    },
+    "ASTONISH_FAST": {
+      "id": "ASTONISH_FAST",
+      "power": 7,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Astonish",
+        "German": "Erstauner",
+        "French": "Étonnement",
+        "Italian": "Sgomento",
+        "Japanese": "おどろかす",
+        "Korean": "놀래키기",
+        "Spanish": "Impresionar"
+      },
+      "combat": {
+        "energy": 10,
+        "power": 12,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "SHADOW_BALL": {
+      "id": "SHADOW_BALL",
+      "power": 100,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Shadow Ball",
+        "German": "Spukball",
+        "French": "Ball’Ombre",
+        "Italian": "Palla Ombra",
+        "Japanese": "シャドーボール",
+        "Korean": "섀도볼",
+        "Spanish": "Bola Sombra"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 100,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "PSYBEAM": {
+      "id": "PSYBEAM",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psybeam",
+        "German": "Psystrahl",
+        "French": "Rafale Psy",
+        "Italian": "Psicoraggio",
+        "Japanese": "サイケこうせん",
+        "Korean": "환상빔",
+        "Spanish": "Psicorrayo"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "PSYCHIC": {
+      "id": "PSYCHIC",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psychic",
+        "German": "Psychokinese",
+        "French": "Psyko",
+        "Italian": "Psichico",
+        "Japanese": "サイコキネシス",
+        "Korean": "사이코키네시스",
+        "Spanish": "Psíquico"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 75,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm720.fCONFINED.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm720.fCONFINED.s.icon.png"
+  },
+  "regionForms": {
+    "HOOPA_CONFINED": {
+      "id": "HOOPA",
+      "formId": "HOOPA_CONFINED",
+      "dexNr": 720,
+      "generation": 6,
+      "names": {
+        "English": "Hoopa (Hoopa Confined)",
+        "German": "Hoopa (Gebanntes Hoopa)",
+        "French": "Hoopa (Hoopa Enchaîné)",
+        "Italian": "Hoopa (Hoopa Vincolato)",
+        "Japanese": "フーパ (いましめられしフーパ)",
+        "Korean": "후파 (굴레에 빠진 후파)",
+        "Spanish": "Hoopa (Hoopa Contenido)"
+      },
+      "stats": {
+        "stamina": 173,
+        "attack": 261,
+        "defense": 187
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "pokemonClass": "POKEMON_CLASS_MYTHIC",
+      "quickMoves": {
+        "CONFUSION_FAST": {
+          "id": "CONFUSION_FAST",
+          "power": 19,
+          "energy": 14,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Confusion",
+            "German": "Konfusion",
+            "French": "Choc Mental",
+            "Italian": "Confusione",
+            "Japanese": "ねんりき",
+            "Korean": "염동력",
+            "Spanish": "Confusión"
+          },
+          "combat": {
+            "energy": 14,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "ASTONISH_FAST": {
+          "id": "ASTONISH_FAST",
+          "power": 7,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Astonish",
+            "German": "Erstauner",
+            "French": "Étonnement",
+            "Italian": "Sgomento",
+            "Japanese": "おどろかす",
+            "Korean": "놀래키기",
+            "Spanish": "Impresionar"
+          },
+          "combat": {
+            "energy": 10,
+            "power": 12,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "SHADOW_BALL": {
+          "id": "SHADOW_BALL",
+          "power": 100,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Shadow Ball",
+            "German": "Spukball",
+            "French": "Ball’Ombre",
+            "Italian": "Palla Ombra",
+            "Japanese": "シャドーボール",
+            "Korean": "섀도볼",
+            "Spanish": "Bola Sombra"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 100,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "PSYBEAM": {
+          "id": "PSYBEAM",
+          "power": 65,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Psybeam",
+            "German": "Psystrahl",
+            "French": "Rafale Psy",
+            "Italian": "Psicoraggio",
+            "Japanese": "サイケこうせん",
+            "Korean": "환상빔",
+            "Spanish": "Psicorrayo"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "PSYCHIC": {
+          "id": "PSYCHIC",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Psychic",
+            "German": "Psychokinese",
+            "French": "Psyko",
+            "Italian": "Psichico",
+            "Japanese": "サイコキネシス",
+            "Korean": "사이코키네시스",
+            "Spanish": "Psíquico"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 75,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm720.fCONFINED.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm720.fCONFINED.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "HOOPA_UNBOUND": {
+      "id": "HOOPA",
+      "formId": "HOOPA_UNBOUND",
+      "dexNr": 720,
+      "generation": 6,
+      "names": {
+        "English": "Hoopa (Hoopa Unbound)",
+        "German": "Hoopa (Entfesseltes Hoopa)",
+        "French": "Hoopa (Hoopa Déchaîné)",
+        "Italian": "Hoopa (Hoopa Libero)",
+        "Japanese": "フーパ (ときはなたれしフーパ)",
+        "Korean": "후파 (굴레를 벗어난 후파)",
+        "Spanish": "Hoopa (Hoopa Desatado)"
+      },
+      "stats": {
+        "stamina": 173,
+        "attack": 311,
+        "defense": 191
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "pokemonClass": "POKEMON_CLASS_MYTHIC",
+      "quickMoves": {
+        "CONFUSION_FAST": {
+          "id": "CONFUSION_FAST",
+          "power": 19,
+          "energy": 14,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Confusion",
+            "German": "Konfusion",
+            "French": "Choc Mental",
+            "Italian": "Confusione",
+            "Japanese": "ねんりき",
+            "Korean": "염동력",
+            "Spanish": "Confusión"
+          },
+          "combat": {
+            "energy": 14,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "ASTONISH_FAST": {
+          "id": "ASTONISH_FAST",
+          "power": 7,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Astonish",
+            "German": "Erstauner",
+            "French": "Étonnement",
+            "Italian": "Sgomento",
+            "Japanese": "おどろかす",
+            "Korean": "놀래키기",
+            "Spanish": "Impresionar"
+          },
+          "combat": {
+            "energy": 10,
+            "power": 12,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "SHADOW_BALL": {
+          "id": "SHADOW_BALL",
+          "power": 100,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Shadow Ball",
+            "German": "Spukball",
+            "French": "Ball’Ombre",
+            "Italian": "Palla Ombra",
+            "Japanese": "シャドーボール",
+            "Korean": "섀도볼",
+            "Spanish": "Bola Sombra"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 100,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "DARK_PULSE": {
+          "id": "DARK_PULSE",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Dark Pulse",
+            "German": "Finsteraura",
+            "French": "Vibrobscur",
+            "Italian": "Neropulsar",
+            "Japanese": "あくのはどう",
+            "Korean": "악의파동",
+            "Spanish": "Pulso Umbrío"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 80,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "PSYCHIC": {
+          "id": "PSYCHIC",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Psychic",
+            "German": "Psychokinese",
+            "French": "Psyko",
+            "Italian": "Psichico",
+            "Japanese": "サイコキネシス",
+            "Korean": "사이코키네시스",
+            "Spanish": "Psíquico"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 75,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm720.fUNBOUND.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm720.fUNBOUND.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "CONFINED",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm720.fCONFINED.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm720.fCONFINED.s.icon.png"
+    },
+    {
+      "form": "UNBOUND",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm720.fUNBOUND.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm720.fUNBOUND.s.icon.png"
+    }
+  ]
+}

@@ -1,0 +1,319 @@
+{
+  "id": "RESHIRAM",
+  "formId": "RESHIRAM",
+  "dexNr": 643,
+  "generation": 5,
+  "names": {
+    "English": "Reshiram",
+    "German": "Reshiram",
+    "French": "Reshiram",
+    "Italian": "Reshiram",
+    "Japanese": "レシラム",
+    "Korean": "레시라무",
+    "Spanish": "Reshiram"
+  },
+  "stats": {
+    "stamina": 205,
+    "attack": 275,
+    "defense": 211
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_DRAGON",
+    "names": {
+      "English": "Dragon",
+      "German": "Drache",
+      "French": "Dragon",
+      "Italian": "Drago",
+      "Japanese": "ドラゴン",
+      "Korean": "드래곤",
+      "Spanish": "Dragón"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FIRE",
+    "names": {
+      "English": "Fire",
+      "German": "Feuer",
+      "French": "Feu",
+      "Italian": "Fuoco",
+      "Japanese": "ほのお",
+      "Korean": "불꽃",
+      "Spanish": "Fuego"
+    }
+  },
+  "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+  "quickMoves": {
+    "DRAGON_BREATH_FAST": {
+      "id": "DRAGON_BREATH_FAST",
+      "power": 6,
+      "energy": 4,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "names": {
+        "English": "Dragon Breath",
+        "German": "Feuerodem",
+        "French": "Draco-Souffle",
+        "Italian": "Dragospiro",
+        "Japanese": "りゅうのいぶき",
+        "Korean": "용의숨결",
+        "Spanish": "Dragoaliento"
+      },
+      "combat": {
+        "energy": 4,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "FIRE_FANG_FAST": {
+      "id": "FIRE_FANG_FAST",
+      "power": 13,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Fire Fang",
+        "German": "Feuerzahn",
+        "French": "Crocs Feu",
+        "Italian": "Rogodenti",
+        "Japanese": "ほのおのキバ",
+        "Korean": "불꽃엄니",
+        "Spanish": "Colmillo Ígneo"
+      },
+      "combat": {
+        "energy": 6,
+        "power": 8,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "CRUNCH": {
+      "id": "CRUNCH",
+      "power": 65,
+      "energy": -33,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Crunch",
+        "German": "Knirscher",
+        "French": "Mâchouille",
+        "Italian": "Sgranocchio",
+        "Japanese": "かみくだく",
+        "Korean": "깨물어부수기",
+        "Spanish": "Triturar"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 70,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 20,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "OVERHEAT": {
+      "id": "OVERHEAT",
+      "power": 160,
+      "energy": -100,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Overheat",
+        "German": "Hitzekoller",
+        "French": "Surchauffe",
+        "Italian": "Vampata",
+        "Japanese": "オーバーヒート",
+        "Korean": "오버히트",
+        "Spanish": "Sofoco"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 130,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": -2,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "DRACO_METEOR": {
+      "id": "DRACO_METEOR",
+      "power": 150,
+      "energy": -100,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "names": {
+        "English": "Draco Meteor",
+        "German": "Draco Meteor",
+        "French": "Draco-Météore",
+        "Italian": "Dragobolide",
+        "Japanese": "りゅうせいぐん",
+        "Korean": "용성군",
+        "Spanish": "Cometa Draco"
+      },
+      "combat": {
+        "energy": -65,
+        "power": 150,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": -2,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "STONE_EDGE": {
+      "id": "STONE_EDGE",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Stone Edge",
+        "German": "Steinkante",
+        "French": "Lame de Roc",
+        "Italian": "Pietrataglio",
+        "Japanese": "ストーンエッジ",
+        "Korean": "스톤에지",
+        "Spanish": "Roca Afilada"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 100,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": {
+    "FUSION_FLARE": {
+      "id": "FUSION_FLARE",
+      "power": 140,
+      "energy": -100,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Fusion Flare",
+        "German": "Kreuzflamme",
+        "French": "Flamme Croix",
+        "Italian": "Incrofiamma",
+        "Japanese": "クロスフレイム",
+        "Korean": "크로스플레임",
+        "Spanish": "Llama Fusión"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm643.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm643.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm643.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm643.s.icon.png"
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "id": "PRINPLUP",
+  "formId": "PRINPLUP",
+  "dexNr": 394,
+  "generation": 4,
+  "names": {
+    "English": "Prinplup",
+    "German": "Pliprin",
+    "French": "Prinplouf",
+    "Italian": "Prinplup",
+    "Japanese": "ポッタイシ",
+    "Korean": "팽태자",
+    "Spanish": "Prinplup"
+  },
+  "stats": {
+    "stamina": 162,
+    "attack": 150,
+    "defense": 139
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_WATER",
+    "names": {
+      "English": "Water",
+      "German": "Wasser",
+      "French": "Eau",
+      "Italian": "Acqua",
+      "Japanese": "みず",
+      "Korean": "물",
+      "Spanish": "Agua"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "BUBBLE_FAST": {
+      "id": "BUBBLE_FAST",
+      "power": 10,
+      "energy": 12,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Bubble",
+        "German": "Blubber",
+        "French": "Écume",
+        "Italian": "Bolla",
+        "Japanese": "あわ",
+        "Korean": "거품",
+        "Spanish": "Burbuja"
+      },
+      "combat": {
+        "energy": 11,
+        "power": 8,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "METAL_CLAW_FAST": {
+      "id": "METAL_CLAW_FAST",
+      "power": 6,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Metal Claw",
+        "German": "Metallklaue",
+        "French": "Griffe Acier",
+        "Italian": "Ferrartigli",
+        "Japanese": "メタルクロー",
+        "Korean": "메탈클로",
+        "Spanish": "Garra Metal"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "BUBBLE_BEAM": {
+      "id": "BUBBLE_BEAM",
+      "power": 45,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Bubble Beam",
+        "German": "Blubbstrahl",
+        "French": "Bulles d’O",
+        "Italian": "Bollaraggio",
+        "Japanese": "バブルこうせん",
+        "Korean": "거품광선",
+        "Spanish": "Rayo Burbuja"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 25,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "HYDRO_PUMP": {
+      "id": "HYDRO_PUMP",
+      "power": 135,
+      "energy": -100,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Hydro Pump",
+        "German": "Hydropumpe",
+        "French": "Hydrocanon",
+        "Italian": "Idropompa",
+        "Japanese": "ハイドロポンプ",
+        "Korean": "하이드로펌프",
+        "Spanish": "Hidrobomba"
+      },
+      "combat": {
+        "energy": -75,
+        "power": 130,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ICY_WIND": {
+      "id": "ICY_WIND",
+      "power": 65,
+      "energy": -33,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Icy Wind",
+        "German": "Eissturm",
+        "French": "Vent Glace",
+        "Italian": "Ventogelato",
+        "Japanese": "こごえるかぜ",
+        "Korean": "얼어붙은바람",
+        "Spanish": "Viento Hielo"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 60,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm394.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm394.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "EMPOLEON",
+      "formId": "EMPOLEON",
+      "candies": 100,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm394.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm394.s.icon.png"
+    }
+  ]
+}

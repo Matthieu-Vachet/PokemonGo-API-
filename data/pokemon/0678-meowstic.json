@@ -1,0 +1,502 @@
+{
+  "id": "MEOWSTIC",
+  "formId": "MEOWSTIC",
+  "dexNr": 678,
+  "generation": 6,
+  "names": {
+    "English": "Meowstic",
+    "German": "Psiaugon",
+    "French": "Mistigrix",
+    "Italian": "Meowstic",
+    "Japanese": "ニャオニクス",
+    "Korean": "냐오닉스",
+    "Spanish": "Meowstic"
+  },
+  "stats": {
+    "stamina": 179,
+    "attack": 166,
+    "defense": 167
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_PSYCHIC",
+    "names": {
+      "English": "Psychic",
+      "German": "Psycho",
+      "French": "Psy",
+      "Italian": "Psico",
+      "Japanese": "エスパー",
+      "Korean": "에스퍼",
+      "Spanish": "Psíquico"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "CONFUSION_FAST": {
+      "id": "CONFUSION_FAST",
+      "power": 19,
+      "energy": 14,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Confusion",
+        "German": "Konfusion",
+        "French": "Choc Mental",
+        "Italian": "Confusione",
+        "Japanese": "ねんりき",
+        "Korean": "염동력",
+        "Spanish": "Confusión"
+      },
+      "combat": {
+        "energy": 14,
+        "power": 16,
+        "turns": 4,
+        "buffs": null
+      }
+    },
+    "SUCKER_PUNCH_FAST": {
+      "id": "SUCKER_PUNCH_FAST",
+      "power": 5,
+      "energy": 6,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Sucker Punch",
+        "German": "Tiefschlag",
+        "French": "Coup Bas",
+        "Italian": "Sbigoattacco",
+        "Japanese": "ふいうち",
+        "Korean": "기습",
+        "Spanish": "Golpe Bajo"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 8,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "PSYCHIC": {
+      "id": "PSYCHIC",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psychic",
+        "German": "Psychokinese",
+        "French": "Psyko",
+        "Italian": "Psichico",
+        "Japanese": "サイコキネシス",
+        "Korean": "사이코키네시스",
+        "Spanish": "Psíquico"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 75,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "ENERGY_BALL": {
+      "id": "ENERGY_BALL",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Energy Ball",
+        "German": "Energieball",
+        "French": "Éco-Sphère",
+        "Italian": "Energipalla",
+        "Japanese": "エナジーボール",
+        "Korean": "에너지볼",
+        "Spanish": "Energibola"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "THUNDERBOLT": {
+      "id": "THUNDERBOLT",
+      "power": 80,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Thunderbolt",
+        "German": "Donnerblitz",
+        "French": "Tonnerre",
+        "Italian": "Fulmine",
+        "Japanese": "１０まんボルト",
+        "Korean": "10만볼트",
+        "Spanish": "Rayo"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm678.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm678.s.icon.png"
+  },
+  "regionForms": {
+    "MEOWSTIC_FEMALE": {
+      "id": "MEOWSTIC",
+      "formId": "MEOWSTIC_FEMALE",
+      "dexNr": 678,
+      "generation": 6,
+      "names": {
+        "English": "Meowstic (Female)",
+        "German": "Psiaugon (Weiblich)",
+        "French": "Mistigrix (Femelle)",
+        "Italian": "Meowstic (Femmina)",
+        "Japanese": "ニャオニクス (メス)",
+        "Korean": "냐오닉스 (암컷의 모습)",
+        "Spanish": "Meowstic (Hembra)"
+      },
+      "stats": {
+        "stamina": 179,
+        "attack": 166,
+        "defense": 167
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "CONFUSION_FAST": {
+          "id": "CONFUSION_FAST",
+          "power": 19,
+          "energy": 14,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Confusion",
+            "German": "Konfusion",
+            "French": "Choc Mental",
+            "Italian": "Confusione",
+            "Japanese": "ねんりき",
+            "Korean": "염동력",
+            "Spanish": "Confusión"
+          },
+          "combat": {
+            "energy": 14,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        },
+        "CHARM_FAST": {
+          "id": "CHARM_FAST",
+          "power": 20,
+          "energy": 11,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Charm",
+            "German": "Charme",
+            "French": "Charme",
+            "Italian": "Fascino",
+            "Japanese": "あまえる",
+            "Korean": "애교부리기",
+            "Spanish": "Encanto"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 13,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "MAGICAL_LEAF_FAST": {
+          "id": "MAGICAL_LEAF_FAST",
+          "power": 17,
+          "energy": 17,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Magical Leaf",
+            "German": "Zauberblatt",
+            "French": "Feuille Magik",
+            "Italian": "Fogliamagica",
+            "Japanese": "マジカルリーフ",
+            "Korean": "매지컬리프",
+            "Spanish": "Hoja Mágica"
+          },
+          "combat": {
+            "energy": 10,
+            "power": 10,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "PSYCHIC": {
+          "id": "PSYCHIC",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Psychic",
+            "German": "Psychokinese",
+            "French": "Psyko",
+            "Italian": "Psichico",
+            "Japanese": "サイコキネシス",
+            "Korean": "사이코키네시스",
+            "Spanish": "Psíquico"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 75,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "SHADOW_BALL": {
+          "id": "SHADOW_BALL",
+          "power": 100,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Shadow Ball",
+            "German": "Spukball",
+            "French": "Ball’Ombre",
+            "Italian": "Palla Ombra",
+            "Japanese": "シャドーボール",
+            "Korean": "섀도볼",
+            "Spanish": "Bola Sombra"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 100,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm678.fFEMALE.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm678.fFEMALE.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "FEMALE",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm678.fFEMALE.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm678.fFEMALE.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm678.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm678.s.icon.png"
+    }
+  ]
+}

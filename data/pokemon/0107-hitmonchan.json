@@ -1,0 +1,375 @@
+{
+  "id": "HITMONCHAN",
+  "formId": "HITMONCHAN",
+  "dexNr": 107,
+  "generation": 1,
+  "names": {
+    "English": "Hitmonchan",
+    "German": "Nockchan",
+    "French": "Tygnon",
+    "Italian": "Hitmonchan",
+    "Japanese": "エビワラー",
+    "Korean": "홍수몬",
+    "Spanish": "Hitmonchan"
+  },
+  "stats": {
+    "stamina": 137,
+    "attack": 193,
+    "defense": 197
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_FIGHTING",
+    "names": {
+      "English": "Fighting",
+      "German": "Kampf",
+      "French": "Combat",
+      "Italian": "Lotta",
+      "Japanese": "かくとう",
+      "Korean": "격투",
+      "Spanish": "Lucha"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "BULLET_PUNCH_FAST": {
+      "id": "BULLET_PUNCH_FAST",
+      "power": 10,
+      "energy": 11,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Bullet Punch",
+        "German": "Patronenhieb",
+        "French": "Pisto-Poing",
+        "Italian": "Pugnoscarica",
+        "Japanese": "バレットパンチ",
+        "Korean": "불릿펀치",
+        "Spanish": "Puño Bala"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 7,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "COUNTER_FAST": {
+      "id": "COUNTER_FAST",
+      "power": 13,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Counter",
+        "German": "Konter",
+        "French": "Riposte",
+        "Italian": "Contrattacco",
+        "Japanese": "カウンター",
+        "Korean": "카운터",
+        "Spanish": "Contraataque"
+      },
+      "combat": {
+        "energy": 6,
+        "power": 8,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "FIRE_PUNCH": {
+      "id": "FIRE_PUNCH",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Fire Punch",
+        "German": "Feuerschlag",
+        "French": "Poing Feu",
+        "Italian": "Fuocopugno",
+        "Japanese": "ほのおのパンチ",
+        "Korean": "불꽃펀치",
+        "Spanish": "Puño Fuego"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ICE_PUNCH": {
+      "id": "ICE_PUNCH",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Ice Punch",
+        "German": "Eishieb",
+        "French": "Poing Glace",
+        "Italian": "Gelopugno",
+        "Japanese": "れいとうパンチ",
+        "Korean": "냉동펀치",
+        "Spanish": "Puño Hielo"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "THUNDER_PUNCH": {
+      "id": "THUNDER_PUNCH",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Thunder Punch",
+        "German": "Donnerschlag",
+        "French": "Poing Éclair",
+        "Italian": "Tuonopugno",
+        "Japanese": "かみなりパンチ",
+        "Korean": "번개펀치",
+        "Spanish": "Puño Trueno"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "CLOSE_COMBAT": {
+      "id": "CLOSE_COMBAT",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Close Combat",
+        "German": "Nahkampf",
+        "French": "Close Combat",
+        "Italian": "Zuffa",
+        "Japanese": "インファイト",
+        "Korean": "인파이트",
+        "Spanish": "A Bocajarro"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 100,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": -2,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "POWER_UP_PUNCH": {
+      "id": "POWER_UP_PUNCH",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Power-Up Punch",
+        "German": "Steigerungshieb",
+        "French": "Poing Boost",
+        "Italian": "Crescipugno",
+        "Japanese": "グロウパンチ",
+        "Korean": "그로우펀치",
+        "Spanish": "Puño Incremento"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 20,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": 1,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": {
+    "ROCK_SMASH_FAST": {
+      "id": "ROCK_SMASH_FAST",
+      "power": 17,
+      "energy": 12,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Rock Smash",
+        "German": "Zertrümmerer",
+        "French": "Éclate-Roc",
+        "Italian": "Spaccaroccia",
+        "Japanese": "いわくだき",
+        "Korean": "바위깨기",
+        "Spanish": "Golpe Roca"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 9,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "eliteCinematicMoves": {
+    "BRICK_BREAK": {
+      "id": "BRICK_BREAK",
+      "power": 40,
+      "energy": -33,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Brick Break",
+        "German": "Durchbruch",
+        "French": "Casse-Brique",
+        "Italian": "Breccia",
+        "Japanese": "かわらわり",
+        "Korean": "깨트리기",
+        "Spanish": "Demolición"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 50,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    }
+  },
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm107.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm107.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm107.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm107.s.icon.png"
+    }
+  ]
+}

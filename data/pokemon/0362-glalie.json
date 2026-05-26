@@ -1,0 +1,332 @@
+{
+  "id": "GLALIE",
+  "formId": "GLALIE",
+  "dexNr": 362,
+  "generation": 3,
+  "names": {
+    "English": "Glalie",
+    "German": "Firnontor",
+    "French": "Oniglali",
+    "Italian": "Glalie",
+    "Japanese": "オニゴーリ",
+    "Korean": "얼음귀신",
+    "Spanish": "Glalie"
+  },
+  "stats": {
+    "stamina": 190,
+    "attack": 162,
+    "defense": 162
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_ICE",
+    "names": {
+      "English": "Ice",
+      "German": "Eis",
+      "French": "Glace",
+      "Italian": "Ghiaccio",
+      "Japanese": "こおり",
+      "Korean": "얼음",
+      "Spanish": "Hielo"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "ICE_SHARD_FAST": {
+      "id": "ICE_SHARD_FAST",
+      "power": 10,
+      "energy": 10,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Ice Shard",
+        "German": "Eissplitter",
+        "French": "Éclats Glace",
+        "Italian": "Geloscheggia",
+        "Japanese": "こおりのつぶて",
+        "Korean": "얼음뭉치",
+        "Spanish": "Canto Helado"
+      },
+      "combat": {
+        "energy": 10,
+        "power": 9,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "FROST_BREATH_FAST": {
+      "id": "FROST_BREATH_FAST",
+      "power": 11,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Frost Breath",
+        "German": "Eisesodem",
+        "French": "Souffle Glacé",
+        "Italian": "Alitogelido",
+        "Japanese": "こおりのいぶき",
+        "Korean": "얼음숨결",
+        "Spanish": "Vaho Gélido"
+      },
+      "combat": {
+        "energy": 5,
+        "power": 7,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "ROLLOUT_FAST": {
+      "id": "ROLLOUT_FAST",
+      "power": 15,
+      "energy": 19,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Rollout",
+        "German": "Walzer",
+        "French": "Roulade",
+        "Italian": "Rotolamento",
+        "Japanese": "ころがる",
+        "Korean": "구르기",
+        "Spanish": "Desenrollar"
+      },
+      "combat": {
+        "energy": 13,
+        "power": 7,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "POWDER_SNOW_FAST": {
+      "id": "POWDER_SNOW_FAST",
+      "power": 6,
+      "energy": 15,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Powder Snow",
+        "German": "Pulverschnee",
+        "French": "Poudreuse",
+        "Italian": "Polneve",
+        "Japanese": "こなゆき",
+        "Korean": "눈싸라기",
+        "Spanish": "Nieve Polvo"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 6,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "AVALANCHE": {
+      "id": "AVALANCHE",
+      "power": 85,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Avalanche",
+        "German": "Lawine",
+        "French": "Avalanche",
+        "Italian": "Slavina",
+        "Japanese": "ゆきなだれ",
+        "Korean": "눈사태",
+        "Spanish": "Alud"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "GYRO_BALL": {
+      "id": "GYRO_BALL",
+      "power": 85,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Gyro Ball",
+        "German": "Gyroball",
+        "French": "Gyroballe",
+        "Italian": "Vortexpalla",
+        "Japanese": "ジャイロボール",
+        "Korean": "자이로볼",
+        "Spanish": "Giro Bola"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "SHADOW_BALL": {
+      "id": "SHADOW_BALL",
+      "power": 100,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Shadow Ball",
+        "German": "Spukball",
+        "French": "Ball’Ombre",
+        "Italian": "Palla Ombra",
+        "Japanese": "シャドーボール",
+        "Korean": "섀도볼",
+        "Spanish": "Bola Sombra"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 100,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm362.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm362.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": true,
+  "megaEvolutions": {
+    "GLALIE_MEGA": {
+      "id": "GLALIE_MEGA",
+      "names": {
+        "English": "Mega Glalie",
+        "German": "Mega-Firnontor",
+        "French": "Méga-Oniglali",
+        "Italian": "MegaGlalie",
+        "Japanese": "メガオニゴーリ",
+        "Korean": "메가얼음귀신",
+        "Spanish": "Mega-Glalie"
+      },
+      "stats": {
+        "stamina": 190,
+        "attack": 252,
+        "defense": 168
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "secondaryType": null,
+      "energyCost": 200,
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm362.fMEGA.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm362.fMEGA.s.icon.png"
+      }
+    }
+  },
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "MEGA",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm362.fMEGA.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm362.fMEGA.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm362.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm362.s.icon.png"
+    }
+  ]
+}

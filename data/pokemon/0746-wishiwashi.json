@@ -1,0 +1,734 @@
+{
+  "id": "WISHIWASHI",
+  "formId": "WISHIWASHI",
+  "dexNr": 746,
+  "generation": 7,
+  "names": {
+    "English": "Wishiwashi",
+    "German": "Lusardin",
+    "French": "Froussardine",
+    "Italian": "Wishiwashi",
+    "Japanese": "ヨワシ",
+    "Korean": "약어리",
+    "Spanish": "Wishiwashi"
+  },
+  "stats": {
+    "stamina": 128,
+    "attack": 46,
+    "defense": 43
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_WATER",
+    "names": {
+      "English": "Water",
+      "German": "Wasser",
+      "French": "Eau",
+      "Italian": "Acqua",
+      "Japanese": "みず",
+      "Korean": "물",
+      "Spanish": "Agua"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "WATER_GUN_FAST": {
+      "id": "WATER_GUN_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Water Gun",
+        "German": "Aquaknarre",
+        "French": "Pistolet à O",
+        "Italian": "Pistolacqua",
+        "Japanese": "みずでっぽう",
+        "Korean": "물대포",
+        "Spanish": "Pistola Agua"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "WATERFALL_FAST": {
+      "id": "WATERFALL_FAST",
+      "power": 13,
+      "energy": 7,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Waterfall",
+        "German": "Kaskade",
+        "French": "Cascade",
+        "Italian": "Cascata",
+        "Japanese": "たきのぼり",
+        "Korean": "폭포오르기",
+        "Spanish": "Cascada"
+      },
+      "combat": {
+        "energy": 10,
+        "power": 11,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "IRON_TAIL_FAST": {
+      "id": "IRON_TAIL_FAST",
+      "power": 14,
+      "energy": 6,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Iron Tail",
+        "German": "Eisenschweif",
+        "French": "Queue de Fer",
+        "Italian": "Codacciaio",
+        "Japanese": "アイアンテール",
+        "Korean": "아이언테일",
+        "Spanish": "Cola Férrea"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 10,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "BRINE": {
+      "id": "BRINE",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Brine",
+        "German": "Lake",
+        "French": "Saumure",
+        "Italian": "Acquadisale",
+        "Japanese": "しおみず",
+        "Korean": "소금물",
+        "Spanish": "Salmuera"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "SURF": {
+      "id": "SURF",
+      "power": 60,
+      "energy": -50,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Surf",
+        "German": "Surfer",
+        "French": "Surf",
+        "Italian": "Surf",
+        "Japanese": "なみのり",
+        "Korean": "파도타기",
+        "Spanish": "Surf"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 75,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "AQUA_TAIL": {
+      "id": "AQUA_TAIL",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Aqua Tail",
+        "German": "Nassschweif",
+        "French": "Hydro-Queue",
+        "Italian": "Idrondata",
+        "Japanese": "アクアテール",
+        "Korean": "아쿠아테일",
+        "Spanish": "Acua Cola"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": null,
+  "regionForms": {
+    "WISHIWASHI_SCHOOL": {
+      "id": "WISHIWASHI",
+      "formId": "WISHIWASHI_SCHOOL",
+      "dexNr": 746,
+      "generation": 7,
+      "names": {
+        "English": "Wishiwashi (School Form)",
+        "German": "Lusardin (Schwarmform)",
+        "French": "Froussardine (School Form)",
+        "Italian": "Wishiwashi (Forma Banco)",
+        "Japanese": "ヨワシ (むれたすがた)",
+        "Korean": "약어리 (군집의 모습)",
+        "Spanish": "Wishiwashi (Forma Banco)"
+      },
+      "stats": {
+        "stamina": 128,
+        "attack": 255,
+        "defense": 242
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "WATER_GUN_FAST": {
+          "id": "WATER_GUN_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Water Gun",
+            "German": "Aquaknarre",
+            "French": "Pistolet à O",
+            "Italian": "Pistolacqua",
+            "Japanese": "みずでっぽう",
+            "Korean": "물대포",
+            "Spanish": "Pistola Agua"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "WATERFALL_FAST": {
+          "id": "WATERFALL_FAST",
+          "power": 13,
+          "energy": 7,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Waterfall",
+            "German": "Kaskade",
+            "French": "Cascade",
+            "Italian": "Cascata",
+            "Japanese": "たきのぼり",
+            "Korean": "폭포오르기",
+            "Spanish": "Cascada"
+          },
+          "combat": {
+            "energy": 10,
+            "power": 11,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "IRON_TAIL_FAST": {
+          "id": "IRON_TAIL_FAST",
+          "power": 14,
+          "energy": 6,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Tail",
+            "German": "Eisenschweif",
+            "French": "Queue de Fer",
+            "Italian": "Codacciaio",
+            "Japanese": "アイアンテール",
+            "Korean": "아이언테일",
+            "Spanish": "Cola Férrea"
+          },
+          "combat": {
+            "energy": 7,
+            "power": 10,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BRINE": {
+          "id": "BRINE",
+          "power": 65,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Brine",
+            "German": "Lake",
+            "French": "Saumure",
+            "Italian": "Acquadisale",
+            "Japanese": "しおみず",
+            "Korean": "소금물",
+            "Spanish": "Salmuera"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "SURF": {
+          "id": "SURF",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Surf",
+            "German": "Surfer",
+            "French": "Surf",
+            "Italian": "Surf",
+            "Japanese": "なみのり",
+            "Korean": "파도타기",
+            "Spanish": "Surf"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 75,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AQUA_TAIL": {
+          "id": "AQUA_TAIL",
+          "power": 50,
+          "energy": -33,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Aqua Tail",
+            "German": "Nassschweif",
+            "French": "Hydro-Queue",
+            "Italian": "Idrondata",
+            "Japanese": "アクアテール",
+            "Korean": "아쿠아테일",
+            "Spanish": "Acua Cola"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 55,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "WISHIWASHI_SOLO": {
+      "id": "WISHIWASHI",
+      "formId": "WISHIWASHI_SOLO",
+      "dexNr": 746,
+      "generation": 7,
+      "names": {
+        "English": "Wishiwashi (Solo Form)",
+        "German": "Lusardin (Einzelform)",
+        "French": "Froussardine (Solo Form)",
+        "Italian": "Wishiwashi (Forma Individuale)",
+        "Japanese": "ヨワシ (たんどくのすがた)",
+        "Korean": "약어리 (Solo Form)",
+        "Spanish": "Wishiwashi (Forma Individual)"
+      },
+      "stats": {
+        "stamina": 128,
+        "attack": 46,
+        "defense": 43
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "WATER_GUN_FAST": {
+          "id": "WATER_GUN_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Water Gun",
+            "German": "Aquaknarre",
+            "French": "Pistolet à O",
+            "Italian": "Pistolacqua",
+            "Japanese": "みずでっぽう",
+            "Korean": "물대포",
+            "Spanish": "Pistola Agua"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "WATERFALL_FAST": {
+          "id": "WATERFALL_FAST",
+          "power": 13,
+          "energy": 7,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Waterfall",
+            "German": "Kaskade",
+            "French": "Cascade",
+            "Italian": "Cascata",
+            "Japanese": "たきのぼり",
+            "Korean": "폭포오르기",
+            "Spanish": "Cascada"
+          },
+          "combat": {
+            "energy": 10,
+            "power": 11,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "IRON_TAIL_FAST": {
+          "id": "IRON_TAIL_FAST",
+          "power": 14,
+          "energy": 6,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Tail",
+            "German": "Eisenschweif",
+            "French": "Queue de Fer",
+            "Italian": "Codacciaio",
+            "Japanese": "アイアンテール",
+            "Korean": "아이언테일",
+            "Spanish": "Cola Férrea"
+          },
+          "combat": {
+            "energy": 7,
+            "power": 10,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BRINE": {
+          "id": "BRINE",
+          "power": 65,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Brine",
+            "German": "Lake",
+            "French": "Saumure",
+            "Italian": "Acquadisale",
+            "Japanese": "しおみず",
+            "Korean": "소금물",
+            "Spanish": "Salmuera"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "SURF": {
+          "id": "SURF",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Surf",
+            "German": "Surfer",
+            "French": "Surf",
+            "Italian": "Surf",
+            "Japanese": "なみのり",
+            "Korean": "파도타기",
+            "Spanish": "Surf"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 75,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AQUA_TAIL": {
+          "id": "AQUA_TAIL",
+          "power": 50,
+          "energy": -33,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Aqua Tail",
+            "German": "Nassschweif",
+            "French": "Hydro-Queue",
+            "Italian": "Idrondata",
+            "Japanese": "アクアテール",
+            "Korean": "아쿠아테일",
+            "Spanish": "Acua Cola"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 55,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": []
+}

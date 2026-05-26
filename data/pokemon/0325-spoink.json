@@ -1,0 +1,231 @@
+{
+  "id": "SPOINK",
+  "formId": "SPOINK",
+  "dexNr": 325,
+  "generation": 3,
+  "names": {
+    "English": "Spoink",
+    "German": "Spoink",
+    "French": "Spoink",
+    "Italian": "Spoink",
+    "Japanese": "バネブー",
+    "Korean": "피그점프",
+    "Spanish": "Spoink"
+  },
+  "stats": {
+    "stamina": 155,
+    "attack": 125,
+    "defense": 122
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_PSYCHIC",
+    "names": {
+      "English": "Psychic",
+      "German": "Psycho",
+      "French": "Psy",
+      "Italian": "Psico",
+      "Japanese": "エスパー",
+      "Korean": "에스퍼",
+      "Spanish": "Psíquico"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "SPLASH_FAST": {
+      "id": "SPLASH_FAST",
+      "power": 0,
+      "energy": 17,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Splash",
+        "German": "Platscher",
+        "French": "Trempette",
+        "Italian": "Splash",
+        "Japanese": "はねる",
+        "Korean": "튀어오르기",
+        "Spanish": "Salpicadura"
+      },
+      "combat": {
+        "energy": 12,
+        "power": 0,
+        "turns": 4,
+        "buffs": null
+      }
+    },
+    "ZEN_HEADBUTT_FAST": {
+      "id": "ZEN_HEADBUTT_FAST",
+      "power": 11,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Zen Headbutt",
+        "German": "Zen-Kopfstoß",
+        "French": "Psykoud’Boul",
+        "Italian": "Cozzata Zen",
+        "Japanese": "しねんのずつき",
+        "Korean": "사념의박치기",
+        "Spanish": "Cabezazo Zen"
+      },
+      "combat": {
+        "energy": 6,
+        "power": 8,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "PSYBEAM": {
+      "id": "PSYBEAM",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psybeam",
+        "German": "Psystrahl",
+        "French": "Rafale Psy",
+        "Italian": "Psicoraggio",
+        "Japanese": "サイケこうせん",
+        "Korean": "환상빔",
+        "Spanish": "Psicorrayo"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "SHADOW_BALL": {
+      "id": "SHADOW_BALL",
+      "power": 100,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Shadow Ball",
+        "German": "Spukball",
+        "French": "Ball’Ombre",
+        "Italian": "Palla Ombra",
+        "Japanese": "シャドーボール",
+        "Korean": "섀도볼",
+        "Spanish": "Bola Sombra"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 100,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "MIRROR_COAT": {
+      "id": "MIRROR_COAT",
+      "power": 60,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Mirror Coat",
+        "German": "Spiegelcape",
+        "French": "Voile Miroir",
+        "Italian": "Specchiovelo",
+        "Japanese": "ミラーコート",
+        "Korean": "미러코트",
+        "Spanish": "Manto Espejo"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm325.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm325.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "GRUMPIG",
+      "formId": "GRUMPIG",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm325.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm325.s.icon.png"
+    }
+  ]
+}

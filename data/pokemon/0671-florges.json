@@ -1,0 +1,2462 @@
+{
+  "id": "FLORGES",
+  "formId": "FLORGES",
+  "dexNr": 671,
+  "generation": 6,
+  "names": {
+    "English": "Florges",
+    "German": "Florges",
+    "French": "Florges",
+    "Italian": "Florges",
+    "Japanese": "フラージェス",
+    "Korean": "플라제스",
+    "Spanish": "Florges"
+  },
+  "stats": {
+    "stamina": 186,
+    "attack": 212,
+    "defense": 244
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_FAIRY",
+    "names": {
+      "English": "Fairy",
+      "German": "Fee",
+      "French": "Fée",
+      "Italian": "Folletto",
+      "Japanese": "フェアリー",
+      "Korean": "페어리",
+      "Spanish": "Hada"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "VINE_WHIP_FAST": {
+      "id": "VINE_WHIP_FAST",
+      "power": 6,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Vine Whip",
+        "German": "Rankenhieb",
+        "French": "Fouet Lianes",
+        "Italian": "Frustata",
+        "Japanese": "つるのムチ",
+        "Korean": "덩굴채찍",
+        "Spanish": "Látigo Cepa"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "TACKLE_FAST": {
+      "id": "TACKLE_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Tackle",
+        "German": "Tackle",
+        "French": "Charge",
+        "Italian": "Azione",
+        "Japanese": "たいあたり",
+        "Korean": "몸통박치기",
+        "Spanish": "Placaje"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "RAZOR_LEAF_FAST": {
+      "id": "RAZOR_LEAF_FAST",
+      "power": 13,
+      "energy": 7,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Razor Leaf",
+        "German": "Rasierblatt",
+        "French": "Tranch’Herbe",
+        "Italian": "Foglielama",
+        "Japanese": "はっぱカッター",
+        "Korean": "잎날가르기",
+        "Spanish": "Hoja Afilada"
+      },
+      "combat": {
+        "energy": 4,
+        "power": 9,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "FAIRY_WIND_FAST": {
+      "id": "FAIRY_WIND_FAST",
+      "power": 9,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Fairy Wind",
+        "German": "Feenbrise",
+        "French": "Vent Féérique",
+        "Italian": "Vento di Fata",
+        "Japanese": "ようせいのかぜ",
+        "Korean": "요정의바람",
+        "Spanish": "Viento Feérico"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 4,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "MOONBLAST": {
+      "id": "MOONBLAST",
+      "power": 130,
+      "energy": -100,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Moonblast",
+        "German": "Mondgewalt",
+        "French": "Pouvoir Lunaire",
+        "Italian": "Forza Lunare",
+        "Japanese": "ムーンフォース",
+        "Korean": "문포스",
+        "Spanish": "Fuerza Lunar"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 110,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "PETAL_BLIZZARD": {
+      "id": "PETAL_BLIZZARD",
+      "power": 110,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Petal Blizzard",
+        "German": "Blütenwirbel",
+        "French": "Tempête Florale",
+        "Italian": "Fiortempesta",
+        "Japanese": "はなふぶき",
+        "Korean": "꽃보라",
+        "Spanish": "Tormenta Floral"
+      },
+      "combat": {
+        "energy": -65,
+        "power": 110,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "PSYCHIC": {
+      "id": "PSYCHIC",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psychic",
+        "German": "Psychokinese",
+        "French": "Psyko",
+        "Italian": "Psichico",
+        "Japanese": "サイコキネシス",
+        "Korean": "사이코키네시스",
+        "Spanish": "Psíquico"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 75,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "DISARMING_VOICE": {
+      "id": "DISARMING_VOICE",
+      "power": 70,
+      "energy": -33,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Disarming Voice",
+        "German": "Säuselstimme",
+        "French": "Voix Enjôleuse",
+        "Italian": "Incantavoce",
+        "Japanese": "チャームボイス",
+        "Korean": "차밍보이스",
+        "Spanish": "Voz Cautivadora"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "TRAILBLAZE": {
+      "id": "TRAILBLAZE",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Trailblaze",
+        "German": "Wegbereiter",
+        "French": "Désherbaffe",
+        "Italian": "Apripista",
+        "Japanese": "くさわけ",
+        "Korean": "개척하기",
+        "Spanish": "Abrecaminos"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 65,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": 1,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": {
+    "CHILLING_WATER": {
+      "id": "CHILLING_WATER",
+      "power": 65,
+      "energy": -33,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Chilling Water",
+        "German": "Kalte Dusche",
+        "French": "Douche Froide",
+        "Italian": "Doccia Fredda",
+        "Japanese": "ひやみず",
+        "Korean": "찬물끼얹기",
+        "Spanish": "Agua Fría"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 60,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fRED.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fRED.s.icon.png"
+  },
+  "regionForms": {
+    "FLORGES_BLUE": {
+      "id": "FLORGES",
+      "formId": "FLORGES_BLUE",
+      "dexNr": 671,
+      "generation": 6,
+      "names": {
+        "English": "Florges (Blue Flower)",
+        "German": "Florges (Blaublütler)",
+        "French": "Florges (Fleur Bleue)",
+        "Italian": "Florges (Fiore Blu)",
+        "Japanese": "フラージェス (あおいはな)",
+        "Korean": "플라제스 (파란 꽃)",
+        "Spanish": "Florges (Flor Azul)"
+      },
+      "stats": {
+        "stamina": 186,
+        "attack": 212,
+        "defense": 244
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "VINE_WHIP_FAST": {
+          "id": "VINE_WHIP_FAST",
+          "power": 6,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Vine Whip",
+            "German": "Rankenhieb",
+            "French": "Fouet Lianes",
+            "Italian": "Frustata",
+            "Japanese": "つるのムチ",
+            "Korean": "덩굴채찍",
+            "Spanish": "Látigo Cepa"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "RAZOR_LEAF_FAST": {
+          "id": "RAZOR_LEAF_FAST",
+          "power": 13,
+          "energy": 7,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Razor Leaf",
+            "German": "Rasierblatt",
+            "French": "Tranch’Herbe",
+            "Italian": "Foglielama",
+            "Japanese": "はっぱカッター",
+            "Korean": "잎날가르기",
+            "Spanish": "Hoja Afilada"
+          },
+          "combat": {
+            "energy": 4,
+            "power": 9,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "FAIRY_WIND_FAST": {
+          "id": "FAIRY_WIND_FAST",
+          "power": 9,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Fairy Wind",
+            "German": "Feenbrise",
+            "French": "Vent Féérique",
+            "Italian": "Vento di Fata",
+            "Japanese": "ようせいのかぜ",
+            "Korean": "요정의바람",
+            "Spanish": "Viento Feérico"
+          },
+          "combat": {
+            "energy": 9,
+            "power": 4,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "MOONBLAST": {
+          "id": "MOONBLAST",
+          "power": 130,
+          "energy": -100,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Moonblast",
+            "German": "Mondgewalt",
+            "French": "Pouvoir Lunaire",
+            "Italian": "Forza Lunare",
+            "Japanese": "ムーンフォース",
+            "Korean": "문포스",
+            "Spanish": "Fuerza Lunar"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 110,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "PETAL_BLIZZARD": {
+          "id": "PETAL_BLIZZARD",
+          "power": 110,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Petal Blizzard",
+            "German": "Blütenwirbel",
+            "French": "Tempête Florale",
+            "Italian": "Fiortempesta",
+            "Japanese": "はなふぶき",
+            "Korean": "꽃보라",
+            "Spanish": "Tormenta Floral"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "PSYCHIC": {
+          "id": "PSYCHIC",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Psychic",
+            "German": "Psychokinese",
+            "French": "Psyko",
+            "Italian": "Psichico",
+            "Japanese": "サイコキネシス",
+            "Korean": "사이코키네시스",
+            "Spanish": "Psíquico"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 75,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "DISARMING_VOICE": {
+          "id": "DISARMING_VOICE",
+          "power": 70,
+          "energy": -33,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Disarming Voice",
+            "German": "Säuselstimme",
+            "French": "Voix Enjôleuse",
+            "Italian": "Incantavoce",
+            "Japanese": "チャームボイス",
+            "Korean": "차밍보이스",
+            "Spanish": "Voz Cautivadora"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TRAILBLAZE": {
+          "id": "TRAILBLAZE",
+          "power": 65,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Trailblaze",
+            "German": "Wegbereiter",
+            "French": "Désherbaffe",
+            "Italian": "Apripista",
+            "Japanese": "くさわけ",
+            "Korean": "개척하기",
+            "Spanish": "Abrecaminos"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": {
+        "CHILLING_WATER": {
+          "id": "CHILLING_WATER",
+          "power": 65,
+          "energy": -33,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Chilling Water",
+            "German": "Kalte Dusche",
+            "French": "Douche Froide",
+            "Italian": "Doccia Fredda",
+            "Japanese": "ひやみず",
+            "Korean": "찬물끼얹기",
+            "Spanish": "Agua Fría"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fBLUE.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fBLUE.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "FLORGES_ORANGE": {
+      "id": "FLORGES",
+      "formId": "FLORGES_ORANGE",
+      "dexNr": 671,
+      "generation": 6,
+      "names": {
+        "English": "Florges (Orange Flower)",
+        "German": "Florges (Orangeblütler)",
+        "French": "Florges (Fleur Orange)",
+        "Italian": "Florges (Fiore Arancione)",
+        "Japanese": "フラージェス (オレンジいろのはな)",
+        "Korean": "플라제스 (오렌지색 꽃)",
+        "Spanish": "Florges (Flor Naranja)"
+      },
+      "stats": {
+        "stamina": 186,
+        "attack": 212,
+        "defense": 244
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "VINE_WHIP_FAST": {
+          "id": "VINE_WHIP_FAST",
+          "power": 6,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Vine Whip",
+            "German": "Rankenhieb",
+            "French": "Fouet Lianes",
+            "Italian": "Frustata",
+            "Japanese": "つるのムチ",
+            "Korean": "덩굴채찍",
+            "Spanish": "Látigo Cepa"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "RAZOR_LEAF_FAST": {
+          "id": "RAZOR_LEAF_FAST",
+          "power": 13,
+          "energy": 7,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Razor Leaf",
+            "German": "Rasierblatt",
+            "French": "Tranch’Herbe",
+            "Italian": "Foglielama",
+            "Japanese": "はっぱカッター",
+            "Korean": "잎날가르기",
+            "Spanish": "Hoja Afilada"
+          },
+          "combat": {
+            "energy": 4,
+            "power": 9,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "FAIRY_WIND_FAST": {
+          "id": "FAIRY_WIND_FAST",
+          "power": 9,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Fairy Wind",
+            "German": "Feenbrise",
+            "French": "Vent Féérique",
+            "Italian": "Vento di Fata",
+            "Japanese": "ようせいのかぜ",
+            "Korean": "요정의바람",
+            "Spanish": "Viento Feérico"
+          },
+          "combat": {
+            "energy": 9,
+            "power": 4,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "MOONBLAST": {
+          "id": "MOONBLAST",
+          "power": 130,
+          "energy": -100,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Moonblast",
+            "German": "Mondgewalt",
+            "French": "Pouvoir Lunaire",
+            "Italian": "Forza Lunare",
+            "Japanese": "ムーンフォース",
+            "Korean": "문포스",
+            "Spanish": "Fuerza Lunar"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 110,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "PETAL_BLIZZARD": {
+          "id": "PETAL_BLIZZARD",
+          "power": 110,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Petal Blizzard",
+            "German": "Blütenwirbel",
+            "French": "Tempête Florale",
+            "Italian": "Fiortempesta",
+            "Japanese": "はなふぶき",
+            "Korean": "꽃보라",
+            "Spanish": "Tormenta Floral"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "PSYCHIC": {
+          "id": "PSYCHIC",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Psychic",
+            "German": "Psychokinese",
+            "French": "Psyko",
+            "Italian": "Psichico",
+            "Japanese": "サイコキネシス",
+            "Korean": "사이코키네시스",
+            "Spanish": "Psíquico"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 75,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "DISARMING_VOICE": {
+          "id": "DISARMING_VOICE",
+          "power": 70,
+          "energy": -33,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Disarming Voice",
+            "German": "Säuselstimme",
+            "French": "Voix Enjôleuse",
+            "Italian": "Incantavoce",
+            "Japanese": "チャームボイス",
+            "Korean": "차밍보이스",
+            "Spanish": "Voz Cautivadora"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TRAILBLAZE": {
+          "id": "TRAILBLAZE",
+          "power": 65,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Trailblaze",
+            "German": "Wegbereiter",
+            "French": "Désherbaffe",
+            "Italian": "Apripista",
+            "Japanese": "くさわけ",
+            "Korean": "개척하기",
+            "Spanish": "Abrecaminos"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": {
+        "CHILLING_WATER": {
+          "id": "CHILLING_WATER",
+          "power": 65,
+          "energy": -33,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Chilling Water",
+            "German": "Kalte Dusche",
+            "French": "Douche Froide",
+            "Italian": "Doccia Fredda",
+            "Japanese": "ひやみず",
+            "Korean": "찬물끼얹기",
+            "Spanish": "Agua Fría"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fORANGE.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fORANGE.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "FLORGES_RED": {
+      "id": "FLORGES",
+      "formId": "FLORGES_RED",
+      "dexNr": 671,
+      "generation": 6,
+      "names": {
+        "English": "Florges (Red Flower)",
+        "German": "Florges (Rotblütler)",
+        "French": "Florges (Fleur Rouge)",
+        "Italian": "Florges (Fiore Rosso)",
+        "Japanese": "フラージェス (あかいはな)",
+        "Korean": "플라제스 (빨간 꽃)",
+        "Spanish": "Florges (Flor Roja)"
+      },
+      "stats": {
+        "stamina": 186,
+        "attack": 212,
+        "defense": 244
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "VINE_WHIP_FAST": {
+          "id": "VINE_WHIP_FAST",
+          "power": 6,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Vine Whip",
+            "German": "Rankenhieb",
+            "French": "Fouet Lianes",
+            "Italian": "Frustata",
+            "Japanese": "つるのムチ",
+            "Korean": "덩굴채찍",
+            "Spanish": "Látigo Cepa"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "RAZOR_LEAF_FAST": {
+          "id": "RAZOR_LEAF_FAST",
+          "power": 13,
+          "energy": 7,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Razor Leaf",
+            "German": "Rasierblatt",
+            "French": "Tranch’Herbe",
+            "Italian": "Foglielama",
+            "Japanese": "はっぱカッター",
+            "Korean": "잎날가르기",
+            "Spanish": "Hoja Afilada"
+          },
+          "combat": {
+            "energy": 4,
+            "power": 9,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "FAIRY_WIND_FAST": {
+          "id": "FAIRY_WIND_FAST",
+          "power": 9,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Fairy Wind",
+            "German": "Feenbrise",
+            "French": "Vent Féérique",
+            "Italian": "Vento di Fata",
+            "Japanese": "ようせいのかぜ",
+            "Korean": "요정의바람",
+            "Spanish": "Viento Feérico"
+          },
+          "combat": {
+            "energy": 9,
+            "power": 4,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "MOONBLAST": {
+          "id": "MOONBLAST",
+          "power": 130,
+          "energy": -100,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Moonblast",
+            "German": "Mondgewalt",
+            "French": "Pouvoir Lunaire",
+            "Italian": "Forza Lunare",
+            "Japanese": "ムーンフォース",
+            "Korean": "문포스",
+            "Spanish": "Fuerza Lunar"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 110,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "PETAL_BLIZZARD": {
+          "id": "PETAL_BLIZZARD",
+          "power": 110,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Petal Blizzard",
+            "German": "Blütenwirbel",
+            "French": "Tempête Florale",
+            "Italian": "Fiortempesta",
+            "Japanese": "はなふぶき",
+            "Korean": "꽃보라",
+            "Spanish": "Tormenta Floral"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "PSYCHIC": {
+          "id": "PSYCHIC",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Psychic",
+            "German": "Psychokinese",
+            "French": "Psyko",
+            "Italian": "Psichico",
+            "Japanese": "サイコキネシス",
+            "Korean": "사이코키네시스",
+            "Spanish": "Psíquico"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 75,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "DISARMING_VOICE": {
+          "id": "DISARMING_VOICE",
+          "power": 70,
+          "energy": -33,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Disarming Voice",
+            "German": "Säuselstimme",
+            "French": "Voix Enjôleuse",
+            "Italian": "Incantavoce",
+            "Japanese": "チャームボイス",
+            "Korean": "차밍보이스",
+            "Spanish": "Voz Cautivadora"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TRAILBLAZE": {
+          "id": "TRAILBLAZE",
+          "power": 65,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Trailblaze",
+            "German": "Wegbereiter",
+            "French": "Désherbaffe",
+            "Italian": "Apripista",
+            "Japanese": "くさわけ",
+            "Korean": "개척하기",
+            "Spanish": "Abrecaminos"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": {
+        "CHILLING_WATER": {
+          "id": "CHILLING_WATER",
+          "power": 65,
+          "energy": -33,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Chilling Water",
+            "German": "Kalte Dusche",
+            "French": "Douche Froide",
+            "Italian": "Doccia Fredda",
+            "Japanese": "ひやみず",
+            "Korean": "찬물끼얹기",
+            "Spanish": "Agua Fría"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fRED.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fRED.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "FLORGES_WHITE": {
+      "id": "FLORGES",
+      "formId": "FLORGES_WHITE",
+      "dexNr": 671,
+      "generation": 6,
+      "names": {
+        "English": "Florges (White Flower)",
+        "German": "Florges (Weißblütler)",
+        "French": "Florges (Fleur Blanche)",
+        "Italian": "Florges (Fiore Bianco)",
+        "Japanese": "フラージェス (しろいはな)",
+        "Korean": "플라제스 (하얀 꽃)",
+        "Spanish": "Florges (Flor Blanca)"
+      },
+      "stats": {
+        "stamina": 186,
+        "attack": 212,
+        "defense": 244
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "VINE_WHIP_FAST": {
+          "id": "VINE_WHIP_FAST",
+          "power": 6,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Vine Whip",
+            "German": "Rankenhieb",
+            "French": "Fouet Lianes",
+            "Italian": "Frustata",
+            "Japanese": "つるのムチ",
+            "Korean": "덩굴채찍",
+            "Spanish": "Látigo Cepa"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "RAZOR_LEAF_FAST": {
+          "id": "RAZOR_LEAF_FAST",
+          "power": 13,
+          "energy": 7,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Razor Leaf",
+            "German": "Rasierblatt",
+            "French": "Tranch’Herbe",
+            "Italian": "Foglielama",
+            "Japanese": "はっぱカッター",
+            "Korean": "잎날가르기",
+            "Spanish": "Hoja Afilada"
+          },
+          "combat": {
+            "energy": 4,
+            "power": 9,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "FAIRY_WIND_FAST": {
+          "id": "FAIRY_WIND_FAST",
+          "power": 9,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Fairy Wind",
+            "German": "Feenbrise",
+            "French": "Vent Féérique",
+            "Italian": "Vento di Fata",
+            "Japanese": "ようせいのかぜ",
+            "Korean": "요정의바람",
+            "Spanish": "Viento Feérico"
+          },
+          "combat": {
+            "energy": 9,
+            "power": 4,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "MOONBLAST": {
+          "id": "MOONBLAST",
+          "power": 130,
+          "energy": -100,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Moonblast",
+            "German": "Mondgewalt",
+            "French": "Pouvoir Lunaire",
+            "Italian": "Forza Lunare",
+            "Japanese": "ムーンフォース",
+            "Korean": "문포스",
+            "Spanish": "Fuerza Lunar"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 110,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "PETAL_BLIZZARD": {
+          "id": "PETAL_BLIZZARD",
+          "power": 110,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Petal Blizzard",
+            "German": "Blütenwirbel",
+            "French": "Tempête Florale",
+            "Italian": "Fiortempesta",
+            "Japanese": "はなふぶき",
+            "Korean": "꽃보라",
+            "Spanish": "Tormenta Floral"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "PSYCHIC": {
+          "id": "PSYCHIC",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Psychic",
+            "German": "Psychokinese",
+            "French": "Psyko",
+            "Italian": "Psichico",
+            "Japanese": "サイコキネシス",
+            "Korean": "사이코키네시스",
+            "Spanish": "Psíquico"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 75,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "DISARMING_VOICE": {
+          "id": "DISARMING_VOICE",
+          "power": 70,
+          "energy": -33,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Disarming Voice",
+            "German": "Säuselstimme",
+            "French": "Voix Enjôleuse",
+            "Italian": "Incantavoce",
+            "Japanese": "チャームボイス",
+            "Korean": "차밍보이스",
+            "Spanish": "Voz Cautivadora"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TRAILBLAZE": {
+          "id": "TRAILBLAZE",
+          "power": 65,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Trailblaze",
+            "German": "Wegbereiter",
+            "French": "Désherbaffe",
+            "Italian": "Apripista",
+            "Japanese": "くさわけ",
+            "Korean": "개척하기",
+            "Spanish": "Abrecaminos"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": {
+        "CHILLING_WATER": {
+          "id": "CHILLING_WATER",
+          "power": 65,
+          "energy": -33,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Chilling Water",
+            "German": "Kalte Dusche",
+            "French": "Douche Froide",
+            "Italian": "Doccia Fredda",
+            "Japanese": "ひやみず",
+            "Korean": "찬물끼얹기",
+            "Spanish": "Agua Fría"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fWHITE.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fWHITE.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "FLORGES_YELLOW": {
+      "id": "FLORGES",
+      "formId": "FLORGES_YELLOW",
+      "dexNr": 671,
+      "generation": 6,
+      "names": {
+        "English": "Florges (Yellow Flower)",
+        "German": "Florges (Gelbblütler)",
+        "French": "Florges (Fleur Jaune)",
+        "Italian": "Florges (Fiore Giallo)",
+        "Japanese": "フラージェス (きいろのはな)",
+        "Korean": "플라제스 (노란 꽃)",
+        "Spanish": "Florges (Flor Amarilla)"
+      },
+      "stats": {
+        "stamina": 186,
+        "attack": 212,
+        "defense": 244
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "VINE_WHIP_FAST": {
+          "id": "VINE_WHIP_FAST",
+          "power": 6,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Vine Whip",
+            "German": "Rankenhieb",
+            "French": "Fouet Lianes",
+            "Italian": "Frustata",
+            "Japanese": "つるのムチ",
+            "Korean": "덩굴채찍",
+            "Spanish": "Látigo Cepa"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "RAZOR_LEAF_FAST": {
+          "id": "RAZOR_LEAF_FAST",
+          "power": 13,
+          "energy": 7,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Razor Leaf",
+            "German": "Rasierblatt",
+            "French": "Tranch’Herbe",
+            "Italian": "Foglielama",
+            "Japanese": "はっぱカッター",
+            "Korean": "잎날가르기",
+            "Spanish": "Hoja Afilada"
+          },
+          "combat": {
+            "energy": 4,
+            "power": 9,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "FAIRY_WIND_FAST": {
+          "id": "FAIRY_WIND_FAST",
+          "power": 9,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Fairy Wind",
+            "German": "Feenbrise",
+            "French": "Vent Féérique",
+            "Italian": "Vento di Fata",
+            "Japanese": "ようせいのかぜ",
+            "Korean": "요정의바람",
+            "Spanish": "Viento Feérico"
+          },
+          "combat": {
+            "energy": 9,
+            "power": 4,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "MOONBLAST": {
+          "id": "MOONBLAST",
+          "power": 130,
+          "energy": -100,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Moonblast",
+            "German": "Mondgewalt",
+            "French": "Pouvoir Lunaire",
+            "Italian": "Forza Lunare",
+            "Japanese": "ムーンフォース",
+            "Korean": "문포스",
+            "Spanish": "Fuerza Lunar"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 110,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "PETAL_BLIZZARD": {
+          "id": "PETAL_BLIZZARD",
+          "power": 110,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Petal Blizzard",
+            "German": "Blütenwirbel",
+            "French": "Tempête Florale",
+            "Italian": "Fiortempesta",
+            "Japanese": "はなふぶき",
+            "Korean": "꽃보라",
+            "Spanish": "Tormenta Floral"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "PSYCHIC": {
+          "id": "PSYCHIC",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Psychic",
+            "German": "Psychokinese",
+            "French": "Psyko",
+            "Italian": "Psichico",
+            "Japanese": "サイコキネシス",
+            "Korean": "사이코키네시스",
+            "Spanish": "Psíquico"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 75,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "DISARMING_VOICE": {
+          "id": "DISARMING_VOICE",
+          "power": 70,
+          "energy": -33,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Disarming Voice",
+            "German": "Säuselstimme",
+            "French": "Voix Enjôleuse",
+            "Italian": "Incantavoce",
+            "Japanese": "チャームボイス",
+            "Korean": "차밍보이스",
+            "Spanish": "Voz Cautivadora"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TRAILBLAZE": {
+          "id": "TRAILBLAZE",
+          "power": 65,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Trailblaze",
+            "German": "Wegbereiter",
+            "French": "Désherbaffe",
+            "Italian": "Apripista",
+            "Japanese": "くさわけ",
+            "Korean": "개척하기",
+            "Spanish": "Abrecaminos"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": {
+        "CHILLING_WATER": {
+          "id": "CHILLING_WATER",
+          "power": 65,
+          "energy": -33,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Chilling Water",
+            "German": "Kalte Dusche",
+            "French": "Douche Froide",
+            "Italian": "Doccia Fredda",
+            "Japanese": "ひやみず",
+            "Korean": "찬물끼얹기",
+            "Spanish": "Agua Fría"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fYELLOW.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fYELLOW.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "BLUE",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fBLUE.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fBLUE.s.icon.png"
+    },
+    {
+      "form": "ORANGE",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fORANGE.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fORANGE.s.icon.png"
+    },
+    {
+      "form": "RED",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fRED.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fRED.s.icon.png"
+    },
+    {
+      "form": "WHITE",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fWHITE.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fWHITE.s.icon.png"
+    },
+    {
+      "form": "YELLOW",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fYELLOW.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm671.fYELLOW.s.icon.png"
+    }
+  ]
+}

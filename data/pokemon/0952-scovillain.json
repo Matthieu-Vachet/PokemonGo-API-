@@ -1,0 +1,268 @@
+{
+  "id": "SCOVILLAIN",
+  "formId": "SCOVILLAIN",
+  "dexNr": 952,
+  "generation": 9,
+  "names": {
+    "English": "Scovillain",
+    "German": "Halupenjo",
+    "French": "Scovilain",
+    "Italian": "Scovillain",
+    "Japanese": "スコヴィラン",
+    "Korean": "스코빌런",
+    "Spanish": "Scovillain"
+  },
+  "stats": {
+    "stamina": 163,
+    "attack": 216,
+    "defense": 130
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_GRASS",
+    "names": {
+      "English": "Grass",
+      "German": "Pflanze",
+      "French": "Plante",
+      "Italian": "Erba",
+      "Japanese": "くさ",
+      "Korean": "풀",
+      "Spanish": "Planta"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FIRE",
+    "names": {
+      "English": "Fire",
+      "German": "Feuer",
+      "French": "Feu",
+      "Italian": "Fuoco",
+      "Japanese": "ほのお",
+      "Korean": "불꽃",
+      "Spanish": "Fuego"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "LEAFAGE_FAST": {
+      "id": "LEAFAGE_FAST",
+      "power": 6,
+      "energy": 4,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Leafage",
+        "German": "Blattwerk",
+        "French": "Feuillage",
+        "Italian": "Fogliame",
+        "Japanese": "このは",
+        "Korean": "나뭇잎",
+        "Spanish": "Follaje"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 6,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "FIRE_FANG_FAST": {
+      "id": "FIRE_FANG_FAST",
+      "power": 13,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Fire Fang",
+        "German": "Feuerzahn",
+        "French": "Crocs Feu",
+        "Italian": "Rogodenti",
+        "Japanese": "ほのおのキバ",
+        "Korean": "불꽃엄니",
+        "Spanish": "Colmillo Ígneo"
+      },
+      "combat": {
+        "energy": 6,
+        "power": 8,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "LEAF_STORM": {
+      "id": "LEAF_STORM",
+      "power": 130,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Leaf Storm",
+        "German": "Blättersturm",
+        "French": "Tempête Verte",
+        "Italian": "Verdebufera",
+        "Japanese": "リーフストーム",
+        "Korean": "리프스톰",
+        "Spanish": "Lluevehojas"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 130,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": -2,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "GRASS_KNOT": {
+      "id": "GRASS_KNOT",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Grass Knot",
+        "German": "Strauchler",
+        "French": "Nœud Herbe",
+        "Italian": "Laccioerboso",
+        "Japanese": "くさむすび",
+        "Korean": "풀묶기",
+        "Spanish": "Hierba Lazo"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "OVERHEAT": {
+      "id": "OVERHEAT",
+      "power": 160,
+      "energy": -100,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Overheat",
+        "German": "Hitzekoller",
+        "French": "Surchauffe",
+        "Italian": "Vampata",
+        "Japanese": "オーバーヒート",
+        "Korean": "오버히트",
+        "Spanish": "Sofoco"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 130,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": -2,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "FLAMETHROWER": {
+      "id": "FLAMETHROWER",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Flamethrower",
+        "German": "Flammenwurf",
+        "French": "Lance-Flammes",
+        "Italian": "Lanciafiamme",
+        "Japanese": "かえんほうしゃ",
+        "Korean": "화염방사",
+        "Spanish": "Lanzallamas"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": null,
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": []
+}

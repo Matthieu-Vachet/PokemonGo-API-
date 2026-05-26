@@ -1,0 +1,273 @@
+{
+  "id": "SOLGALEO",
+  "formId": "SOLGALEO",
+  "dexNr": 791,
+  "generation": 7,
+  "names": {
+    "English": "Solgaleo",
+    "German": "Solgaleo",
+    "French": "Solgaleo",
+    "Italian": "Solgaleo",
+    "Japanese": "ソルガレオ",
+    "Korean": "솔가레오",
+    "Spanish": "Solgaleo"
+  },
+  "stats": {
+    "stamina": 264,
+    "attack": 255,
+    "defense": 191
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_PSYCHIC",
+    "names": {
+      "English": "Psychic",
+      "German": "Psycho",
+      "French": "Psy",
+      "Italian": "Psico",
+      "Japanese": "エスパー",
+      "Korean": "에스퍼",
+      "Spanish": "Psíquico"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_STEEL",
+    "names": {
+      "English": "Steel",
+      "German": "Stahl",
+      "French": "Acier",
+      "Italian": "Acciaio",
+      "Japanese": "はがね",
+      "Korean": "강철",
+      "Spanish": "Acero"
+    }
+  },
+  "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+  "quickMoves": {
+    "ZEN_HEADBUTT_FAST": {
+      "id": "ZEN_HEADBUTT_FAST",
+      "power": 11,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Zen Headbutt",
+        "German": "Zen-Kopfstoß",
+        "French": "Psykoud’Boul",
+        "Italian": "Cozzata Zen",
+        "Japanese": "しねんのずつき",
+        "Korean": "사념의박치기",
+        "Spanish": "Cabezazo Zen"
+      },
+      "combat": {
+        "energy": 6,
+        "power": 8,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "FIRE_SPIN_FAST": {
+      "id": "FIRE_SPIN_FAST",
+      "power": 13,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Fire Spin",
+        "German": "Feuerwirbel",
+        "French": "Danse Flammes",
+        "Italian": "Turbofuoco",
+        "Japanese": "ほのおのうず",
+        "Korean": "회오리불꽃",
+        "Spanish": "Giro Fuego"
+      },
+      "combat": {
+        "energy": 10,
+        "power": 11,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "IRON_HEAD": {
+      "id": "IRON_HEAD",
+      "power": 60,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Iron Head",
+        "German": "Eisenschädel",
+        "French": "Tête de Fer",
+        "Italian": "Metaltestata",
+        "Japanese": "アイアンヘッド",
+        "Korean": "아이언헤드",
+        "Spanish": "Cabeza de Hierro"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "PSYCHIC_FANGS": {
+      "id": "PSYCHIC_FANGS",
+      "power": 25,
+      "energy": -33,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psychic Fangs",
+        "German": "Psychobeißer",
+        "French": "Psycho-Croc",
+        "Italian": "Psicozanna",
+        "Japanese": "サイコファング",
+        "Korean": "사이코팽",
+        "Spanish": "Psicocolmillo"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 40,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "SOLAR_BEAM": {
+      "id": "SOLAR_BEAM",
+      "power": 180,
+      "energy": -100,
+      "durationMs": 5000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Solar Beam",
+        "German": "Solarstrahl",
+        "French": "Lance-Soleil",
+        "Italian": "Solarraggio",
+        "Japanese": "ソーラービーム",
+        "Korean": "솔라빔",
+        "Spanish": "Rayo Solar"
+      },
+      "combat": {
+        "energy": -80,
+        "power": 150,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "FLAMETHROWER": {
+      "id": "FLAMETHROWER",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Flamethrower",
+        "German": "Flammenwurf",
+        "French": "Lance-Flammes",
+        "Italian": "Lanciafiamme",
+        "Japanese": "かえんほうしゃ",
+        "Korean": "화염방사",
+        "Spanish": "Lanzallamas"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm791.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm791.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm791.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm791.s.icon.png"
+    }
+  ]
+}

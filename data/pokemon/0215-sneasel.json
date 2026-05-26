@@ -1,0 +1,581 @@
+{
+  "id": "SNEASEL",
+  "formId": "SNEASEL",
+  "dexNr": 215,
+  "generation": 2,
+  "names": {
+    "English": "Sneasel",
+    "German": "Sniebel",
+    "French": "Farfuret",
+    "Italian": "Sneasel",
+    "Japanese": "ニューラ",
+    "Korean": "포푸니",
+    "Spanish": "Sneasel"
+  },
+  "stats": {
+    "stamina": 146,
+    "attack": 189,
+    "defense": 146
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_DARK",
+    "names": {
+      "English": "Dark",
+      "German": "Unlicht",
+      "French": "Ténèbres",
+      "Italian": "Buio",
+      "Japanese": "あく",
+      "Korean": "악",
+      "Spanish": "Siniestro"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_ICE",
+    "names": {
+      "English": "Ice",
+      "German": "Eis",
+      "French": "Glace",
+      "Italian": "Ghiaccio",
+      "Japanese": "こおり",
+      "Korean": "얼음",
+      "Spanish": "Hielo"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "ICE_SHARD_FAST": {
+      "id": "ICE_SHARD_FAST",
+      "power": 10,
+      "energy": 10,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Ice Shard",
+        "German": "Eissplitter",
+        "French": "Éclats Glace",
+        "Italian": "Geloscheggia",
+        "Japanese": "こおりのつぶて",
+        "Korean": "얼음뭉치",
+        "Spanish": "Canto Helado"
+      },
+      "combat": {
+        "energy": 10,
+        "power": 9,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "FEINT_ATTACK_FAST": {
+      "id": "FEINT_ATTACK_FAST",
+      "power": 11,
+      "energy": 10,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Feint Attack",
+        "German": "Finte",
+        "French": "Feinte",
+        "Italian": "Finta",
+        "Japanese": "だましうち",
+        "Korean": "속여때리기",
+        "Spanish": "Finta"
+      },
+      "combat": {
+        "energy": 6,
+        "power": 6,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "AVALANCHE": {
+      "id": "AVALANCHE",
+      "power": 85,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Avalanche",
+        "German": "Lawine",
+        "French": "Avalanche",
+        "Italian": "Slavina",
+        "Japanese": "ゆきなだれ",
+        "Korean": "눈사태",
+        "Spanish": "Alud"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ICE_PUNCH": {
+      "id": "ICE_PUNCH",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Ice Punch",
+        "German": "Eishieb",
+        "French": "Poing Glace",
+        "Italian": "Gelopugno",
+        "Japanese": "れいとうパンチ",
+        "Korean": "냉동펀치",
+        "Spanish": "Puño Hielo"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "FOUL_PLAY": {
+      "id": "FOUL_PLAY",
+      "power": 70,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Foul Play",
+        "German": "Schmarotzer",
+        "French": "Tricherie",
+        "Italian": "Ripicca",
+        "Japanese": "イカサマ",
+        "Korean": "속임수",
+        "Spanish": "Juego Sucio"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 65,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "TRIPLE_AXEL": {
+      "id": "TRIPLE_AXEL",
+      "power": 60,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Triple Axel",
+        "German": "Dreifach-Axel",
+        "French": "Triple Axel",
+        "Italian": "Triplo Axel",
+        "Japanese": "トリプルアクセル",
+        "Korean": "트리플악셀",
+        "Spanish": "Triple Axel"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 60,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": 1,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm215.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm215.s.icon.png"
+  },
+  "regionForms": {
+    "SNEASEL_HISUIAN": {
+      "id": "SNEASEL",
+      "formId": "SNEASEL_HISUIAN",
+      "dexNr": 215,
+      "generation": 2,
+      "names": {
+        "English": "Hisuian Sneasel",
+        "German": "Hisuian-Sniebel",
+        "French": "Farfuret de Hisuian",
+        "Italian": "Sneasel di Hisuian",
+        "Japanese": "ニューラ",
+        "Korean": "포푸니",
+        "Spanish": "Sneasel de Galar"
+      },
+      "stats": {
+        "stamina": 146,
+        "attack": 189,
+        "defense": 146
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "ROCK_SMASH_FAST": {
+          "id": "ROCK_SMASH_FAST",
+          "power": 17,
+          "energy": 12,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_FIGHTING",
+            "names": {
+              "English": "Fighting",
+              "German": "Kampf",
+              "French": "Combat",
+              "Italian": "Lotta",
+              "Japanese": "かくとう",
+              "Korean": "격투",
+              "Spanish": "Lucha"
+            }
+          },
+          "names": {
+            "English": "Rock Smash",
+            "German": "Zertrümmerer",
+            "French": "Éclate-Roc",
+            "Italian": "Spaccaroccia",
+            "Japanese": "いわくだき",
+            "Korean": "바위깨기",
+            "Spanish": "Golpe Roca"
+          },
+          "combat": {
+            "energy": 7,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "POISON_JAB_FAST": {
+          "id": "POISON_JAB_FAST",
+          "power": 13,
+          "energy": 9,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_POISON",
+            "names": {
+              "English": "Poison",
+              "German": "Gift",
+              "French": "Poison",
+              "Italian": "Veleno",
+              "Japanese": "どく",
+              "Korean": "독",
+              "Spanish": "Veneno"
+            }
+          },
+          "names": {
+            "English": "Poison Jab",
+            "German": "Gifthieb",
+            "French": "Direct Toxik",
+            "Italian": "Velenpuntura",
+            "Japanese": "どくづき",
+            "Korean": "독찌르기",
+            "Spanish": "Puya Nociva"
+          },
+          "combat": {
+            "energy": 7,
+            "power": 7,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "CLOSE_COMBAT": {
+          "id": "CLOSE_COMBAT",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FIGHTING",
+            "names": {
+              "English": "Fighting",
+              "German": "Kampf",
+              "French": "Combat",
+              "Italian": "Lotta",
+              "Japanese": "かくとう",
+              "Korean": "격투",
+              "Spanish": "Lucha"
+            }
+          },
+          "names": {
+            "English": "Close Combat",
+            "German": "Nahkampf",
+            "French": "Close Combat",
+            "Italian": "Zuffa",
+            "Japanese": "インファイト",
+            "Korean": "인파이트",
+            "Spanish": "A Bocajarro"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": -2,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "X_SCISSOR": {
+          "id": "X_SCISSOR",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "X-Scissor",
+            "German": "Kreuzschere",
+            "French": "Plaie Croix",
+            "Italian": "Forbice X",
+            "Japanese": "シザークロス",
+            "Korean": "시저크로스",
+            "Spanish": "Tijera X"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 65,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm215.fHISUIAN.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm215.fHISUIAN.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [
+        {
+          "id": "SNEASLER",
+          "formId": "SNEASLER",
+          "candies": 100,
+          "item": null,
+          "quests": [
+            {
+              "id": "SNEASLER_EVOLUTION_QUEST",
+              "type": "QUEST_BUDDY_EVOLUTION_WALK",
+              "names": {
+                "English": "Walk 7 km with your buddy",
+                "German": "Laufe 7 km mit deinem Kumpel.",
+                "French": "Marche 7 km avec ton copain",
+                "Italian": "Percorri 7 km con il tuo compagno",
+                "Japanese": "相棒のポケモンと一緒に7km歩く",
+                "Korean": "파트너 포켓몬과 7 km 걷는다",
+                "Spanish": "Camina 7 km con tu Pokémon compañero"
+              }
+            }
+          ]
+        }
+      ],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [
+    {
+      "id": "WEAVILE",
+      "formId": "WEAVILE_NORMAL",
+      "candies": 100,
+      "item": {
+        "id": "ITEM_GEN4_EVOLUTION_STONE",
+        "names": {
+          "English": "Sinnoh Stone",
+          "German": "Sinnoh-Stein",
+          "French": "Pierre Sinnoh",
+          "Italian": "Pietra Sinnoh",
+          "Japanese": "シンオウのいし",
+          "Korean": "신오의 돌",
+          "Spanish": "Piedra Sinnoh"
+        }
+      },
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": "FASHION_2021_NOEVOLVE",
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm215.cFASHION_2021_NOEVOLVE.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm215.cFASHION_2021_NOEVOLVE.s.icon.png"
+    },
+    {
+      "form": "HISUIAN",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm215.fHISUIAN.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm215.fHISUIAN.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm215.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm215.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": "FASHION_2021_NOEVOLVE",
+      "isFemale": true,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm215.cFASHION_2021_NOEVOLVE.g2.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm215.cFASHION_2021_NOEVOLVE.g2.s.icon.png"
+    },
+    {
+      "form": "HISUIAN",
+      "costume": null,
+      "isFemale": true,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm215.fHISUIAN.g2.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm215.fHISUIAN.g2.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": true,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm215.g2.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm215.g2.s.icon.png"
+    }
+  ]
+}

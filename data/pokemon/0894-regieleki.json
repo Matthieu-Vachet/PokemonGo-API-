@@ -1,0 +1,302 @@
+{
+  "id": "REGIELEKI",
+  "formId": "REGIELEKI",
+  "dexNr": 894,
+  "generation": 8,
+  "names": {
+    "English": "Regieleki",
+    "German": "Regieleki",
+    "French": "Regieleki",
+    "Italian": "Regieleki",
+    "Japanese": "レジエレキ",
+    "Korean": "레지에레키",
+    "Spanish": "Regieleki"
+  },
+  "stats": {
+    "stamina": 190,
+    "attack": 250,
+    "defense": 125
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_ELECTRIC",
+    "names": {
+      "English": "Electric",
+      "German": "Elektro",
+      "French": "Électrik",
+      "Italian": "Elettro",
+      "Japanese": "でんき",
+      "Korean": "전기",
+      "Spanish": "Eléctrico"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+  "quickMoves": {
+    "THUNDER_SHOCK_FAST": {
+      "id": "THUNDER_SHOCK_FAST",
+      "power": 4,
+      "energy": 7,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Thunder Shock",
+        "German": "Donnerschock",
+        "French": "Éclair",
+        "Italian": "Tuonoshock",
+        "Japanese": "でんきショック",
+        "Korean": "전기쇼크",
+        "Spanish": "Impactrueno"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 4,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "LOCK_ON_FAST": {
+      "id": "LOCK_ON_FAST",
+      "power": 2,
+      "energy": 10,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Lock-On",
+        "German": "Zielschuss",
+        "French": "Verrouillage",
+        "Italian": "Localizza",
+        "Japanese": "ロックオン",
+        "Korean": "록온",
+        "Spanish": "Fijar Blanco"
+      },
+      "combat": {
+        "energy": 5,
+        "power": 1,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "VOLT_SWITCH_FAST": {
+      "id": "VOLT_SWITCH_FAST",
+      "power": 13,
+      "energy": 20,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Volt Switch",
+        "German": "Voltwechsel",
+        "French": "Change Éclair",
+        "Italian": "Invertivolt",
+        "Japanese": "ボルトチェンジ",
+        "Korean": "볼트체인지",
+        "Spanish": "Voltiocambio"
+      },
+      "combat": {
+        "energy": 16,
+        "power": 14,
+        "turns": 4,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "HYPER_BEAM": {
+      "id": "HYPER_BEAM",
+      "power": 150,
+      "energy": -100,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Hyper Beam",
+        "German": "Hyperstrahl",
+        "French": "Ultralaser",
+        "Italian": "Iper Raggio",
+        "Japanese": "はかいこうせん",
+        "Korean": "파괴광선",
+        "Spanish": "Hiperrayo"
+      },
+      "combat": {
+        "energy": -80,
+        "power": 150,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "THUNDER": {
+      "id": "THUNDER",
+      "power": 100,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Thunder",
+        "German": "Donner",
+        "French": "Fatal-Foudre",
+        "Italian": "Tuono",
+        "Japanese": "かみなり",
+        "Korean": "번개",
+        "Spanish": "Trueno"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 100,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ZAP_CANNON": {
+      "id": "ZAP_CANNON",
+      "power": 140,
+      "energy": -100,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Zap Cannon",
+        "German": "Blitzkanone",
+        "French": "Élecanon",
+        "Italian": "Falcecannone",
+        "Japanese": "でんじほう",
+        "Korean": "전자포",
+        "Spanish": "Electrocañón"
+      },
+      "combat": {
+        "energy": -80,
+        "power": 150,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 33,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": {
+    "THUNDER_CAGE": {
+      "id": "THUNDER_CAGE",
+      "power": 220,
+      "energy": -100,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Thunder Cage",
+        "German": "Blitzgefängnis",
+        "French": "Voltageôle",
+        "Italian": "Elettrogabbia",
+        "Japanese": "サンダープリズン",
+        "Korean": "썬더프리즌",
+        "Spanish": "Electrojaula"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 60,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    }
+  },
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm894.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm894.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm894.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm894.s.icon.png"
+    }
+  ]
+}

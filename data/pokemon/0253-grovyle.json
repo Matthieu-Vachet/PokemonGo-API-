@@ -1,0 +1,231 @@
+{
+  "id": "GROVYLE",
+  "formId": "GROVYLE",
+  "dexNr": 253,
+  "generation": 3,
+  "names": {
+    "English": "Grovyle",
+    "German": "Reptain",
+    "French": "Massko",
+    "Italian": "Grovyle",
+    "Japanese": "ジュプトル",
+    "Korean": "나무돌이",
+    "Spanish": "Grovyle"
+  },
+  "stats": {
+    "stamina": 137,
+    "attack": 172,
+    "defense": 120
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_GRASS",
+    "names": {
+      "English": "Grass",
+      "German": "Pflanze",
+      "French": "Plante",
+      "Italian": "Erba",
+      "Japanese": "くさ",
+      "Korean": "풀",
+      "Spanish": "Planta"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "QUICK_ATTACK_FAST": {
+      "id": "QUICK_ATTACK_FAST",
+      "power": 10,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Quick Attack",
+        "German": "Ruckzuckhieb",
+        "French": "Vive-Attaque",
+        "Italian": "Attacco Rapido",
+        "Japanese": "でんこうせっか",
+        "Korean": "전광석화",
+        "Spanish": "Ataque Rápido"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "BULLET_SEED_FAST": {
+      "id": "BULLET_SEED_FAST",
+      "power": 7,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Bullet Seed",
+        "German": "Kugelsaat",
+        "French": "Balle Graine",
+        "Italian": "Semitraglia",
+        "Japanese": "タネマシンガン",
+        "Korean": "씨기관총",
+        "Spanish": "Semilladora"
+      },
+      "combat": {
+        "energy": 13,
+        "power": 5,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "LEAF_BLADE": {
+      "id": "LEAF_BLADE",
+      "power": 70,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Leaf Blade",
+        "German": "Laubklinge",
+        "French": "Lame Feuille",
+        "Italian": "Fendifoglia",
+        "Japanese": "リーフブレード",
+        "Korean": "리프블레이드",
+        "Spanish": "Hoja Aguda"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "AERIAL_ACE": {
+      "id": "AERIAL_ACE",
+      "power": 55,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Aerial Ace",
+        "German": "Aero-Ass",
+        "French": "Aéropique",
+        "Italian": "Aeroassalto",
+        "Japanese": "つばめがえし",
+        "Korean": "제비반환",
+        "Spanish": "Golpe Aéreo"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "GRASS_KNOT": {
+      "id": "GRASS_KNOT",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Grass Knot",
+        "German": "Strauchler",
+        "French": "Nœud Herbe",
+        "Italian": "Laccioerboso",
+        "Japanese": "くさむすび",
+        "Korean": "풀묶기",
+        "Spanish": "Hierba Lazo"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm253.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm253.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "SCEPTILE",
+      "formId": "SCEPTILE",
+      "candies": 100,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm253.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm253.s.icon.png"
+    }
+  ]
+}

@@ -1,0 +1,860 @@
+{
+  "id": "CASTFORM",
+  "formId": "CASTFORM",
+  "dexNr": 351,
+  "generation": 3,
+  "names": {
+    "English": "Castform",
+    "German": "Formeo",
+    "French": "Morphéo",
+    "Italian": "Castform",
+    "Japanese": "ポワルン",
+    "Korean": "캐스퐁",
+    "Spanish": "Castform"
+  },
+  "stats": {
+    "stamina": 172,
+    "attack": 139,
+    "defense": 139
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_NORMAL",
+    "names": {
+      "English": "Normal",
+      "German": "Normal",
+      "French": "Normal",
+      "Italian": "Normale",
+      "Japanese": "ノーマル",
+      "Korean": "노말",
+      "Spanish": "Normal"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "TACKLE_FAST": {
+      "id": "TACKLE_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Tackle",
+        "German": "Tackle",
+        "French": "Charge",
+        "Italian": "Azione",
+        "Japanese": "たいあたり",
+        "Korean": "몸통박치기",
+        "Spanish": "Placaje"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "HEX_FAST": {
+      "id": "HEX_FAST",
+      "power": 8,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Hex",
+        "German": "Bürde",
+        "French": "Châtiment",
+        "Italian": "Sciagura",
+        "Japanese": "たたりめ",
+        "Korean": "병상첨병",
+        "Spanish": "Infortunio"
+      },
+      "combat": {
+        "energy": 13,
+        "power": 7,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "HURRICANE": {
+      "id": "HURRICANE",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Hurricane",
+        "German": "Orkan",
+        "French": "Vent Violent",
+        "Italian": "Tifone",
+        "Japanese": "ぼうふう",
+        "Korean": "폭풍",
+        "Spanish": "Vendaval"
+      },
+      "combat": {
+        "energy": -65,
+        "power": 110,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ENERGY_BALL": {
+      "id": "ENERGY_BALL",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Energy Ball",
+        "German": "Energieball",
+        "French": "Éco-Sphère",
+        "Italian": "Energipalla",
+        "Japanese": "エナジーボール",
+        "Korean": "에너지볼",
+        "Spanish": "Energibola"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm351.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm351.s.icon.png"
+  },
+  "regionForms": {
+    "CASTFORM_RAINY": {
+      "id": "CASTFORM",
+      "formId": "CASTFORM_RAINY",
+      "dexNr": 351,
+      "generation": 3,
+      "names": {
+        "English": "Castform (Rainy Form)",
+        "German": "Formeo (Regenform)",
+        "French": "Morphéo (Rainy Form)",
+        "Italian": "Castform (Forma Pioggia)",
+        "Japanese": "ポワルン (あまみずのすがた)",
+        "Korean": "캐스퐁 (Rainy Form)",
+        "Spanish": "Castform (Forma Lluvia)"
+      },
+      "stats": {
+        "stamina": 172,
+        "attack": 139,
+        "defense": 139
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "WATER_GUN_FAST": {
+          "id": "WATER_GUN_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Water Gun",
+            "German": "Aquaknarre",
+            "French": "Pistolet à O",
+            "Italian": "Pistolacqua",
+            "Japanese": "みずでっぽう",
+            "Korean": "물대포",
+            "Spanish": "Pistola Agua"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "HYDRO_PUMP": {
+          "id": "HYDRO_PUMP",
+          "power": 135,
+          "energy": -100,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Hydro Pump",
+            "German": "Hydropumpe",
+            "French": "Hydrocanon",
+            "Italian": "Idropompa",
+            "Japanese": "ハイドロポンプ",
+            "Korean": "하이드로펌프",
+            "Spanish": "Hidrobomba"
+          },
+          "combat": {
+            "energy": -75,
+            "power": 130,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "THUNDER": {
+          "id": "THUNDER",
+          "power": 100,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunder",
+            "German": "Donner",
+            "French": "Fatal-Foudre",
+            "Italian": "Tuono",
+            "Japanese": "かみなり",
+            "Korean": "번개",
+            "Spanish": "Trueno"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "WEATHER_BALL_WATER": {
+          "id": "WEATHER_BALL_WATER",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Weather Ball",
+            "German": "Meteorologe",
+            "French": "Ball’Météo",
+            "Italian": "Palla Clima",
+            "Japanese": "ウェザーボール",
+            "Korean": "웨더볼",
+            "Spanish": "Meteorobola"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm351.fRAINY.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm351.fRAINY.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "CASTFORM_SNOWY": {
+      "id": "CASTFORM",
+      "formId": "CASTFORM_SNOWY",
+      "dexNr": 351,
+      "generation": 3,
+      "names": {
+        "English": "Castform (Snowy Form)",
+        "German": "Formeo (Schneeform)",
+        "French": "Morphéo (Snowy Form)",
+        "Italian": "Castform (Forma Nuvola di Neve)",
+        "Japanese": "ポワルン (ゆきぐものすがた)",
+        "Korean": "캐스퐁 (Snowy Form)",
+        "Spanish": "Castform (Forma Nieve)"
+      },
+      "stats": {
+        "stamina": 172,
+        "attack": 139,
+        "defense": 139
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "POWDER_SNOW_FAST": {
+          "id": "POWDER_SNOW_FAST",
+          "power": 6,
+          "energy": 15,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_ICE",
+            "names": {
+              "English": "Ice",
+              "German": "Eis",
+              "French": "Glace",
+              "Italian": "Ghiaccio",
+              "Japanese": "こおり",
+              "Korean": "얼음",
+              "Spanish": "Hielo"
+            }
+          },
+          "names": {
+            "English": "Powder Snow",
+            "German": "Pulverschnee",
+            "French": "Poudreuse",
+            "Italian": "Polneve",
+            "Japanese": "こなゆき",
+            "Korean": "눈싸라기",
+            "Spanish": "Nieve Polvo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 6,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BLIZZARD": {
+          "id": "BLIZZARD",
+          "power": 130,
+          "energy": -100,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_ICE",
+            "names": {
+              "English": "Ice",
+              "German": "Eis",
+              "French": "Glace",
+              "Italian": "Ghiaccio",
+              "Japanese": "こおり",
+              "Korean": "얼음",
+              "Spanish": "Hielo"
+            }
+          },
+          "names": {
+            "English": "Blizzard",
+            "German": "Blizzard",
+            "French": "Blizzard",
+            "Italian": "Bora",
+            "Japanese": "ふぶき",
+            "Korean": "눈보라",
+            "Spanish": "Ventisca"
+          },
+          "combat": {
+            "energy": -75,
+            "power": 140,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ICE_BEAM": {
+          "id": "ICE_BEAM",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_ICE",
+            "names": {
+              "English": "Ice",
+              "German": "Eis",
+              "French": "Glace",
+              "Italian": "Ghiaccio",
+              "Japanese": "こおり",
+              "Korean": "얼음",
+              "Spanish": "Hielo"
+            }
+          },
+          "names": {
+            "English": "Ice Beam",
+            "German": "Eisstrahl",
+            "French": "Laser Glace",
+            "Italian": "Geloraggio",
+            "Japanese": "れいとうビーム",
+            "Korean": "냉동빔",
+            "Spanish": "Rayo Hielo"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "WEATHER_BALL_ICE": {
+          "id": "WEATHER_BALL_ICE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_ICE",
+            "names": {
+              "English": "Ice",
+              "German": "Eis",
+              "French": "Glace",
+              "Italian": "Ghiaccio",
+              "Japanese": "こおり",
+              "Korean": "얼음",
+              "Spanish": "Hielo"
+            }
+          },
+          "names": {
+            "English": "Weather Ball",
+            "German": "Meteorologe",
+            "French": "Ball’Météo",
+            "Italian": "Palla Clima",
+            "Japanese": "ウェザーボール",
+            "Korean": "웨더볼",
+            "Spanish": "Meteorobola"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm351.fSNOWY.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm351.fSNOWY.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "CASTFORM_SUNNY": {
+      "id": "CASTFORM",
+      "formId": "CASTFORM_SUNNY",
+      "dexNr": 351,
+      "generation": 3,
+      "names": {
+        "English": "Castform (Sunny Form)",
+        "German": "Formeo (Sonnenform)",
+        "French": "Morphéo (Sunny Form)",
+        "Italian": "Castform (Forma Sole)",
+        "Japanese": "ポワルン (たいようのすがた)",
+        "Korean": "캐스퐁 (Sunny Form)",
+        "Spanish": "Castform (Forma Sol)"
+      },
+      "stats": {
+        "stamina": 172,
+        "attack": 139,
+        "defense": 139
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "EMBER_FAST": {
+          "id": "EMBER_FAST",
+          "power": 10,
+          "energy": 10,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_FIRE",
+            "names": {
+              "English": "Fire",
+              "German": "Feuer",
+              "French": "Feu",
+              "Italian": "Fuoco",
+              "Japanese": "ほのお",
+              "Korean": "불꽃",
+              "Spanish": "Fuego"
+            }
+          },
+          "names": {
+            "English": "Ember",
+            "German": "Glut",
+            "French": "Flammèche",
+            "Italian": "Braciere",
+            "Japanese": "ひのこ",
+            "Korean": "불꽃세례",
+            "Spanish": "Ascuas"
+          },
+          "combat": {
+            "energy": 9,
+            "power": 4,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "FIRE_BLAST": {
+          "id": "FIRE_BLAST",
+          "power": 140,
+          "energy": -100,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_FIRE",
+            "names": {
+              "English": "Fire",
+              "German": "Feuer",
+              "French": "Feu",
+              "Italian": "Fuoco",
+              "Japanese": "ほのお",
+              "Korean": "불꽃",
+              "Spanish": "Fuego"
+            }
+          },
+          "names": {
+            "English": "Fire Blast",
+            "German": "Feuersturm",
+            "French": "Déflagration",
+            "Italian": "Fuocobomba",
+            "Japanese": "だいもんじ",
+            "Korean": "불대문자",
+            "Spanish": "Llamarada"
+          },
+          "combat": {
+            "energy": -80,
+            "power": 140,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "SOLAR_BEAM": {
+          "id": "SOLAR_BEAM",
+          "power": 180,
+          "energy": -100,
+          "durationMs": 5000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Solar Beam",
+            "German": "Solarstrahl",
+            "French": "Lance-Soleil",
+            "Italian": "Solarraggio",
+            "Japanese": "ソーラービーム",
+            "Korean": "솔라빔",
+            "Spanish": "Rayo Solar"
+          },
+          "combat": {
+            "energy": -80,
+            "power": 150,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "WEATHER_BALL_FIRE": {
+          "id": "WEATHER_BALL_FIRE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_FIRE",
+            "names": {
+              "English": "Fire",
+              "German": "Feuer",
+              "French": "Feu",
+              "Italian": "Fuoco",
+              "Japanese": "ほのお",
+              "Korean": "불꽃",
+              "Spanish": "Fuego"
+            }
+          },
+          "names": {
+            "English": "Weather Ball",
+            "German": "Meteorologe",
+            "French": "Ball’Météo",
+            "Italian": "Palla Clima",
+            "Japanese": "ウェザーボール",
+            "Korean": "웨더볼",
+            "Spanish": "Meteorobola"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm351.fSUNNY.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm351.fSUNNY.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "RAINY",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm351.fRAINY.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm351.fRAINY.s.icon.png"
+    },
+    {
+      "form": "SNOWY",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm351.fSNOWY.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm351.fSNOWY.s.icon.png"
+    },
+    {
+      "form": "SUNNY",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm351.fSUNNY.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm351.fSUNNY.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm351.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm351.s.icon.png"
+    }
+  ]
+}

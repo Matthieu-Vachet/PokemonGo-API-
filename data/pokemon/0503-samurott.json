@@ -1,0 +1,679 @@
+{
+  "id": "SAMUROTT",
+  "formId": "SAMUROTT",
+  "dexNr": 503,
+  "generation": 5,
+  "names": {
+    "English": "Samurott",
+    "German": "Admurai",
+    "French": "Clamiral",
+    "Italian": "Samurott",
+    "Japanese": "ダイケンキ",
+    "Korean": "대검귀",
+    "Spanish": "Samurott"
+  },
+  "stats": {
+    "stamina": 216,
+    "attack": 212,
+    "defense": 157
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_WATER",
+    "names": {
+      "English": "Water",
+      "German": "Wasser",
+      "French": "Eau",
+      "Italian": "Acqua",
+      "Japanese": "みず",
+      "Korean": "물",
+      "Spanish": "Agua"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "FURY_CUTTER_FAST": {
+      "id": "FURY_CUTTER_FAST",
+      "power": 4,
+      "energy": 8,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Fury Cutter",
+        "German": "Zornklinge",
+        "French": "Taillade",
+        "Italian": "Tagliofuria",
+        "Japanese": "れんぞくぎり",
+        "Korean": "연속자르기",
+        "Spanish": "Corte Furia"
+      },
+      "combat": {
+        "energy": 4,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "WATERFALL_FAST": {
+      "id": "WATERFALL_FAST",
+      "power": 13,
+      "energy": 7,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Waterfall",
+        "German": "Kaskade",
+        "French": "Cascade",
+        "Italian": "Cascata",
+        "Japanese": "たきのぼり",
+        "Korean": "폭포오르기",
+        "Spanish": "Cascada"
+      },
+      "combat": {
+        "energy": 10,
+        "power": 11,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "HYDRO_PUMP": {
+      "id": "HYDRO_PUMP",
+      "power": 135,
+      "energy": -100,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Hydro Pump",
+        "German": "Hydropumpe",
+        "French": "Hydrocanon",
+        "Italian": "Idropompa",
+        "Japanese": "ハイドロポンプ",
+        "Korean": "하이드로펌프",
+        "Spanish": "Hidrobomba"
+      },
+      "combat": {
+        "energy": -75,
+        "power": 130,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "BLIZZARD": {
+      "id": "BLIZZARD",
+      "power": 130,
+      "energy": -100,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Blizzard",
+        "German": "Blizzard",
+        "French": "Blizzard",
+        "Italian": "Bora",
+        "Japanese": "ふぶき",
+        "Korean": "눈보라",
+        "Spanish": "Ventisca"
+      },
+      "combat": {
+        "energy": -75,
+        "power": 140,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "MEGAHORN": {
+      "id": "MEGAHORN",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Megahorn",
+        "German": "Vielender",
+        "French": "Mégacorne",
+        "Italian": "Megacorno",
+        "Japanese": "メガホーン",
+        "Korean": "메가혼",
+        "Spanish": "Megacuerno"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 110,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "RAZOR_SHELL": {
+      "id": "RAZOR_SHELL",
+      "power": 55,
+      "energy": -33,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Razor Shell",
+        "German": "Kalkklinge",
+        "French": "Coqui-Lame",
+        "Italian": "Conchilama",
+        "Japanese": "シェルブレード",
+        "Korean": "셸블레이드",
+        "Spanish": "Concha Filo"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 35,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 50,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "LIQUIDATION": {
+      "id": "LIQUIDATION",
+      "power": 70,
+      "energy": -33,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Liquidation",
+        "German": "Aquadurchstoß",
+        "French": "Aqua-Brèche",
+        "Italian": "Idrobreccia",
+        "Japanese": "アクアブレイク",
+        "Korean": "아쿠아브레이크",
+        "Spanish": "Hidroariete"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 70,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 30,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": {
+    "HYDRO_CANNON": {
+      "id": "HYDRO_CANNON",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Hydro Cannon",
+        "German": "Aquahaubitze",
+        "French": "Hydroblast",
+        "Italian": "Idrocannone",
+        "Japanese": "ハイドロカノン",
+        "Korean": "하이드로캐논",
+        "Spanish": "Hidrocañón"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm503.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm503.s.icon.png"
+  },
+  "regionForms": {
+    "SAMUROTT_HISUIAN": {
+      "id": "SAMUROTT",
+      "formId": "SAMUROTT_HISUIAN",
+      "dexNr": 503,
+      "generation": 5,
+      "names": {
+        "English": "Hisuian Samurott",
+        "German": "Hisuian-Admurai",
+        "French": "Clamiral de Hisuian",
+        "Italian": "Samurott di Hisuian",
+        "Japanese": "ダイケンキ",
+        "Korean": "대검귀",
+        "Spanish": "Samurott de Galar"
+      },
+      "stats": {
+        "stamina": 207,
+        "attack": 218,
+        "defense": 152
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "WATERFALL_FAST": {
+          "id": "WATERFALL_FAST",
+          "power": 13,
+          "energy": 7,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Waterfall",
+            "German": "Kaskade",
+            "French": "Cascade",
+            "Italian": "Cascata",
+            "Japanese": "たきのぼり",
+            "Korean": "폭포오르기",
+            "Spanish": "Cascada"
+          },
+          "combat": {
+            "energy": 10,
+            "power": 11,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "FURY_CUTTER_FAST": {
+          "id": "FURY_CUTTER_FAST",
+          "power": 4,
+          "energy": 8,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Fury Cutter",
+            "German": "Zornklinge",
+            "French": "Taillade",
+            "Italian": "Tagliofuria",
+            "Japanese": "れんぞくぎり",
+            "Korean": "연속자르기",
+            "Spanish": "Corte Furia"
+          },
+          "combat": {
+            "energy": 4,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "SNARL_FAST": {
+          "id": "SNARL_FAST",
+          "power": 11,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Snarl",
+            "German": "Standpauke",
+            "French": "Aboiement",
+            "Italian": "Urlorabbia",
+            "Japanese": "バークアウト",
+            "Korean": "바크아웃",
+            "Spanish": "Alarido"
+          },
+          "combat": {
+            "energy": 13,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "RAZOR_SHELL": {
+          "id": "RAZOR_SHELL",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Razor Shell",
+            "German": "Kalkklinge",
+            "French": "Coqui-Lame",
+            "Italian": "Conchilama",
+            "Japanese": "シェルブレード",
+            "Korean": "셸블레이드",
+            "Spanish": "Concha Filo"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 35,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 50,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "ICY_WIND": {
+          "id": "ICY_WIND",
+          "power": 65,
+          "energy": -33,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_ICE",
+            "names": {
+              "English": "Ice",
+              "German": "Eis",
+              "French": "Glace",
+              "Italian": "Ghiaccio",
+              "Japanese": "こおり",
+              "Korean": "얼음",
+              "Spanish": "Hielo"
+            }
+          },
+          "names": {
+            "English": "Icy Wind",
+            "German": "Eissturm",
+            "French": "Vent Glace",
+            "Italian": "Ventogelato",
+            "Japanese": "こごえるかぜ",
+            "Korean": "얼어붙은바람",
+            "Spanish": "Viento Hielo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "X_SCISSOR": {
+          "id": "X_SCISSOR",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "X-Scissor",
+            "German": "Kreuzschere",
+            "French": "Plaie Croix",
+            "Italian": "Forbice X",
+            "Japanese": "シザークロス",
+            "Korean": "시저크로스",
+            "Spanish": "Tijera X"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 65,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "DARK_PULSE": {
+          "id": "DARK_PULSE",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Dark Pulse",
+            "German": "Finsteraura",
+            "French": "Vibrobscur",
+            "Italian": "Neropulsar",
+            "Japanese": "あくのはどう",
+            "Korean": "악의파동",
+            "Spanish": "Pulso Umbrío"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 80,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "SACRED_SWORD": {
+          "id": "SACRED_SWORD",
+          "power": 50,
+          "energy": -33,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_FIGHTING",
+            "names": {
+              "English": "Fighting",
+              "German": "Kampf",
+              "French": "Combat",
+              "Italian": "Lotta",
+              "Japanese": "かくとう",
+              "Korean": "격투",
+              "Spanish": "Lucha"
+            }
+          },
+          "names": {
+            "English": "Sacred Sword",
+            "German": "Sanctoklinge",
+            "French": "Lame Sainte",
+            "Italian": "Spadasolenne",
+            "Japanese": "せいなるつるぎ",
+            "Korean": "성스러운칼",
+            "Spanish": "Espada Santa"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm503.fHISUIAN.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm503.fHISUIAN.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "HISUIAN",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm503.fHISUIAN.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm503.fHISUIAN.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm503.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm503.s.icon.png"
+    }
+  ]
+}

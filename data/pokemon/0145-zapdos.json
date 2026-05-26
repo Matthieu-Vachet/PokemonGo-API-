@@ -1,0 +1,597 @@
+{
+  "id": "ZAPDOS",
+  "formId": "ZAPDOS",
+  "dexNr": 145,
+  "generation": 1,
+  "names": {
+    "English": "Zapdos",
+    "German": "Zapdos",
+    "French": "Électhor",
+    "Italian": "Zapdos",
+    "Japanese": "サンダー",
+    "Korean": "썬더",
+    "Spanish": "Zapdos"
+  },
+  "stats": {
+    "stamina": 207,
+    "attack": 253,
+    "defense": 185
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_ELECTRIC",
+    "names": {
+      "English": "Electric",
+      "German": "Elektro",
+      "French": "Électrik",
+      "Italian": "Elettro",
+      "Japanese": "でんき",
+      "Korean": "전기",
+      "Spanish": "Eléctrico"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FLYING",
+    "names": {
+      "English": "Flying",
+      "German": "Flug",
+      "French": "Vol",
+      "Italian": "Volante",
+      "Japanese": "ひこう",
+      "Korean": "비행",
+      "Spanish": "Volador"
+    }
+  },
+  "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+  "quickMoves": {
+    "CHARGE_BEAM_FAST": {
+      "id": "CHARGE_BEAM_FAST",
+      "power": 7,
+      "energy": 14,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Charge Beam",
+        "German": "Ladestrahl",
+        "French": "Rayon Chargé",
+        "Italian": "Raggioscossa",
+        "Japanese": "チャージビーム",
+        "Korean": "차지빔",
+        "Spanish": "Rayo Carga"
+      },
+      "combat": {
+        "energy": 11,
+        "power": 5,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "ZAP_CANNON": {
+      "id": "ZAP_CANNON",
+      "power": 140,
+      "energy": -100,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Zap Cannon",
+        "German": "Blitzkanone",
+        "French": "Élecanon",
+        "Italian": "Falcecannone",
+        "Japanese": "でんじほう",
+        "Korean": "전자포",
+        "Spanish": "Electrocañón"
+      },
+      "combat": {
+        "energy": -80,
+        "power": 150,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 33,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "THUNDERBOLT": {
+      "id": "THUNDERBOLT",
+      "power": 80,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Thunderbolt",
+        "German": "Donnerblitz",
+        "French": "Tonnerre",
+        "Italian": "Fulmine",
+        "Japanese": "１０まんボルト",
+        "Korean": "10만볼트",
+        "Spanish": "Rayo"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "THUNDER": {
+      "id": "THUNDER",
+      "power": 100,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Thunder",
+        "German": "Donner",
+        "French": "Fatal-Foudre",
+        "Italian": "Tuono",
+        "Japanese": "かみなり",
+        "Korean": "번개",
+        "Spanish": "Trueno"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 100,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ANCIENT_POWER": {
+      "id": "ANCIENT_POWER",
+      "power": 70,
+      "energy": -33,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Ancient Power",
+        "German": "Antik-Kraft",
+        "French": "Pouvoir Antique",
+        "Italian": "Forzantica",
+        "Japanese": "げんしのちから",
+        "Korean": "원시의힘",
+        "Spanish": "Poder Pasado"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 60,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": 1,
+          "attackerDefenseStatsChange": 1,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "DRILL_PECK": {
+      "id": "DRILL_PECK",
+      "power": 70,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Drill Peck",
+        "German": "Bohrschnabel",
+        "French": "Bec Vrille",
+        "Italian": "Perforbecco",
+        "Japanese": "ドリルくちばし",
+        "Korean": "회전부리",
+        "Spanish": "Pico Taladro"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "HEAT_WAVE": {
+      "id": "HEAT_WAVE",
+      "power": 95,
+      "energy": -100,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Heat Wave",
+        "German": "Hitzewelle",
+        "French": "Canicule",
+        "Italian": "Ondacalda",
+        "Japanese": "ねっぷう",
+        "Korean": "열풍",
+        "Spanish": "Onda Ígnea"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 75,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": {
+    "THUNDER_SHOCK_FAST": {
+      "id": "THUNDER_SHOCK_FAST",
+      "power": 4,
+      "energy": 7,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Thunder Shock",
+        "German": "Donnerschock",
+        "French": "Éclair",
+        "Italian": "Tuonoshock",
+        "Japanese": "でんきショック",
+        "Korean": "전기쇼크",
+        "Spanish": "Impactrueno"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 4,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm145.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm145.s.icon.png"
+  },
+  "regionForms": {
+    "ZAPDOS_GALARIAN": {
+      "id": "ZAPDOS",
+      "formId": "ZAPDOS_GALARIAN",
+      "dexNr": 145,
+      "generation": 1,
+      "names": {
+        "English": "Galarian Zapdos",
+        "German": "Galar-Zapdos",
+        "French": "Électhor de Galar",
+        "Italian": "Zapdos di Galar",
+        "Japanese": "ガラル サンダー",
+        "Korean": "가라르 썬더",
+        "Spanish": "Zapdos de Galar"
+      },
+      "stats": {
+        "stamina": 207,
+        "attack": 252,
+        "defense": 189
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "COUNTER_FAST": {
+          "id": "COUNTER_FAST",
+          "power": 13,
+          "energy": 9,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_FIGHTING",
+            "names": {
+              "English": "Fighting",
+              "German": "Kampf",
+              "French": "Combat",
+              "Italian": "Lotta",
+              "Japanese": "かくとう",
+              "Korean": "격투",
+              "Spanish": "Lucha"
+            }
+          },
+          "names": {
+            "English": "Counter",
+            "German": "Konter",
+            "French": "Riposte",
+            "Italian": "Contrattacco",
+            "Japanese": "カウンター",
+            "Korean": "카운터",
+            "Spanish": "Contraataque"
+          },
+          "combat": {
+            "energy": 6,
+            "power": 8,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "CLOSE_COMBAT": {
+          "id": "CLOSE_COMBAT",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FIGHTING",
+            "names": {
+              "English": "Fighting",
+              "German": "Kampf",
+              "French": "Combat",
+              "Italian": "Lotta",
+              "Japanese": "かくとう",
+              "Korean": "격투",
+              "Spanish": "Lucha"
+            }
+          },
+          "names": {
+            "English": "Close Combat",
+            "German": "Nahkampf",
+            "French": "Close Combat",
+            "Italian": "Zuffa",
+            "Japanese": "インファイト",
+            "Korean": "인파이트",
+            "Spanish": "A Bocajarro"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": -2,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "ANCIENT_POWER": {
+          "id": "ANCIENT_POWER",
+          "power": 70,
+          "energy": -33,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Ancient Power",
+            "German": "Antik-Kraft",
+            "French": "Pouvoir Antique",
+            "Italian": "Forzantica",
+            "Japanese": "げんしのちから",
+            "Korean": "원시의힘",
+            "Spanish": "Poder Pasado"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": 1,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "BRAVE_BIRD": {
+          "id": "BRAVE_BIRD",
+          "power": 130,
+          "energy": -100,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Brave Bird",
+            "German": "Sturzflug",
+            "French": "Rapace",
+            "Italian": "Baldeali",
+            "Japanese": "ブレイブバード",
+            "Korean": "브레이브버드",
+            "Spanish": "Pájaro Osado"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 130,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": -3,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "FLY": {
+          "id": "FLY",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Fly",
+            "German": "Fliegen",
+            "French": "Vol",
+            "Italian": "Volo",
+            "Japanese": "そらをとぶ",
+            "Korean": "공중날기",
+            "Spanish": "Vuelo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 80,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm145.fGALARIAN.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm145.fGALARIAN.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "GALARIAN",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm145.fGALARIAN.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm145.fGALARIAN.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm145.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm145.s.icon.png"
+    }
+  ]
+}

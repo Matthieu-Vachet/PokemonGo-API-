@@ -1,0 +1,783 @@
+{
+  "id": "POLTEAGEIST",
+  "formId": "POLTEAGEIST",
+  "dexNr": 855,
+  "generation": 8,
+  "names": {
+    "English": "Polteageist",
+    "German": "Mortipot",
+    "French": "Polthégeist",
+    "Italian": "Polteageist",
+    "Japanese": "ポットデス",
+    "Korean": "포트데스",
+    "Spanish": "Polteageist"
+  },
+  "stats": {
+    "stamina": 155,
+    "attack": 248,
+    "defense": 189
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_GHOST",
+    "names": {
+      "English": "Ghost",
+      "German": "Geist",
+      "French": "Spectre",
+      "Italian": "Spettro",
+      "Japanese": "ゴースト",
+      "Korean": "고스트",
+      "Spanish": "Fantasma"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "ASTONISH_FAST": {
+      "id": "ASTONISH_FAST",
+      "power": 7,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Astonish",
+        "German": "Erstauner",
+        "French": "Étonnement",
+        "Italian": "Sgomento",
+        "Japanese": "おどろかす",
+        "Korean": "놀래키기",
+        "Spanish": "Impresionar"
+      },
+      "combat": {
+        "energy": 10,
+        "power": 12,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "SUCKER_PUNCH_FAST": {
+      "id": "SUCKER_PUNCH_FAST",
+      "power": 5,
+      "energy": 6,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Sucker Punch",
+        "German": "Tiefschlag",
+        "French": "Coup Bas",
+        "Italian": "Sbigoattacco",
+        "Japanese": "ふいうち",
+        "Korean": "기습",
+        "Spanish": "Golpe Bajo"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 8,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "HEX_FAST": {
+      "id": "HEX_FAST",
+      "power": 8,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Hex",
+        "German": "Bürde",
+        "French": "Châtiment",
+        "Italian": "Sciagura",
+        "Japanese": "たたりめ",
+        "Korean": "병상첨병",
+        "Spanish": "Infortunio"
+      },
+      "combat": {
+        "energy": 13,
+        "power": 7,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "SHADOW_BALL": {
+      "id": "SHADOW_BALL",
+      "power": 100,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Shadow Ball",
+        "German": "Spukball",
+        "French": "Ball’Ombre",
+        "Italian": "Palla Ombra",
+        "Japanese": "シャドーボール",
+        "Korean": "섀도볼",
+        "Spanish": "Bola Sombra"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 100,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "DARK_PULSE": {
+      "id": "DARK_PULSE",
+      "power": 80,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Dark Pulse",
+        "German": "Finsteraura",
+        "French": "Vibrobscur",
+        "Italian": "Neropulsar",
+        "Japanese": "あくのはどう",
+        "Korean": "악의파동",
+        "Spanish": "Pulso Umbrío"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "PSYCHIC": {
+      "id": "PSYCHIC",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psychic",
+        "German": "Psychokinese",
+        "French": "Psyko",
+        "Italian": "Psichico",
+        "Japanese": "サイコキネシス",
+        "Korean": "사이코키네시스",
+        "Spanish": "Psíquico"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 75,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm855.fPHONY.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm855.fPHONY.s.icon.png"
+  },
+  "regionForms": {
+    "POLTEAGEIST_ANTIQUE": {
+      "id": "POLTEAGEIST",
+      "formId": "POLTEAGEIST_ANTIQUE",
+      "dexNr": 855,
+      "generation": 8,
+      "names": {
+        "English": "Polteageist (Antique Form)",
+        "German": "Mortipot (Originalform)",
+        "French": "Polthégeist (Forme Authentique)",
+        "Italian": "Polteageist (Forma Autentica)",
+        "Japanese": "ポットデス (しんさくフォルム)",
+        "Korean": "포트데스 (진작폼)",
+        "Spanish": "Polteageist (Forma Genuina)"
+      },
+      "stats": {
+        "stamina": 155,
+        "attack": 248,
+        "defense": 189
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "ASTONISH_FAST": {
+          "id": "ASTONISH_FAST",
+          "power": 7,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Astonish",
+            "German": "Erstauner",
+            "French": "Étonnement",
+            "Italian": "Sgomento",
+            "Japanese": "おどろかす",
+            "Korean": "놀래키기",
+            "Spanish": "Impresionar"
+          },
+          "combat": {
+            "energy": 10,
+            "power": 12,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "SUCKER_PUNCH_FAST": {
+          "id": "SUCKER_PUNCH_FAST",
+          "power": 5,
+          "energy": 6,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Sucker Punch",
+            "German": "Tiefschlag",
+            "French": "Coup Bas",
+            "Italian": "Sbigoattacco",
+            "Japanese": "ふいうち",
+            "Korean": "기습",
+            "Spanish": "Golpe Bajo"
+          },
+          "combat": {
+            "energy": 7,
+            "power": 8,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "HEX_FAST": {
+          "id": "HEX_FAST",
+          "power": 8,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Hex",
+            "German": "Bürde",
+            "French": "Châtiment",
+            "Italian": "Sciagura",
+            "Japanese": "たたりめ",
+            "Korean": "병상첨병",
+            "Spanish": "Infortunio"
+          },
+          "combat": {
+            "energy": 13,
+            "power": 7,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "SHADOW_BALL": {
+          "id": "SHADOW_BALL",
+          "power": 100,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Shadow Ball",
+            "German": "Spukball",
+            "French": "Ball’Ombre",
+            "Italian": "Palla Ombra",
+            "Japanese": "シャドーボール",
+            "Korean": "섀도볼",
+            "Spanish": "Bola Sombra"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 100,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "DARK_PULSE": {
+          "id": "DARK_PULSE",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Dark Pulse",
+            "German": "Finsteraura",
+            "French": "Vibrobscur",
+            "Italian": "Neropulsar",
+            "Japanese": "あくのはどう",
+            "Korean": "악의파동",
+            "Spanish": "Pulso Umbrío"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 80,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "PSYCHIC": {
+          "id": "PSYCHIC",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Psychic",
+            "German": "Psychokinese",
+            "French": "Psyko",
+            "Italian": "Psichico",
+            "Japanese": "サイコキネシス",
+            "Korean": "사이코키네시스",
+            "Spanish": "Psíquico"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 75,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm855.fANTIQUE.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm855.fANTIQUE.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "POLTEAGEIST_PHONY": {
+      "id": "POLTEAGEIST",
+      "formId": "POLTEAGEIST_PHONY",
+      "dexNr": 855,
+      "generation": 8,
+      "names": {
+        "English": "Polteageist (Phony Form)",
+        "German": "Mortipot (Fälschungsform)",
+        "French": "Polthégeist (Forme Contrefaçon)",
+        "Italian": "Polteageist (Forma Contraffatta)",
+        "Japanese": "ポットデス (がんさくフォルム)",
+        "Korean": "포트데스 (위작폼)",
+        "Spanish": "Polteageist (Forma Falsificada)"
+      },
+      "stats": {
+        "stamina": 155,
+        "attack": 248,
+        "defense": 189
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "ASTONISH_FAST": {
+          "id": "ASTONISH_FAST",
+          "power": 7,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Astonish",
+            "German": "Erstauner",
+            "French": "Étonnement",
+            "Italian": "Sgomento",
+            "Japanese": "おどろかす",
+            "Korean": "놀래키기",
+            "Spanish": "Impresionar"
+          },
+          "combat": {
+            "energy": 10,
+            "power": 12,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "SUCKER_PUNCH_FAST": {
+          "id": "SUCKER_PUNCH_FAST",
+          "power": 5,
+          "energy": 6,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Sucker Punch",
+            "German": "Tiefschlag",
+            "French": "Coup Bas",
+            "Italian": "Sbigoattacco",
+            "Japanese": "ふいうち",
+            "Korean": "기습",
+            "Spanish": "Golpe Bajo"
+          },
+          "combat": {
+            "energy": 7,
+            "power": 8,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "HEX_FAST": {
+          "id": "HEX_FAST",
+          "power": 8,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Hex",
+            "German": "Bürde",
+            "French": "Châtiment",
+            "Italian": "Sciagura",
+            "Japanese": "たたりめ",
+            "Korean": "병상첨병",
+            "Spanish": "Infortunio"
+          },
+          "combat": {
+            "energy": 13,
+            "power": 7,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "SHADOW_BALL": {
+          "id": "SHADOW_BALL",
+          "power": 100,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Shadow Ball",
+            "German": "Spukball",
+            "French": "Ball’Ombre",
+            "Italian": "Palla Ombra",
+            "Japanese": "シャドーボール",
+            "Korean": "섀도볼",
+            "Spanish": "Bola Sombra"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 100,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "DARK_PULSE": {
+          "id": "DARK_PULSE",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Dark Pulse",
+            "German": "Finsteraura",
+            "French": "Vibrobscur",
+            "Italian": "Neropulsar",
+            "Japanese": "あくのはどう",
+            "Korean": "악의파동",
+            "Spanish": "Pulso Umbrío"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 80,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "PSYCHIC": {
+          "id": "PSYCHIC",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Psychic",
+            "German": "Psychokinese",
+            "French": "Psyko",
+            "Italian": "Psichico",
+            "Japanese": "サイコキネシス",
+            "Korean": "사이코키네시스",
+            "Spanish": "Psíquico"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 75,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm855.fPHONY.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm855.fPHONY.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "ANTIQUE",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm855.fANTIQUE.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm855.fANTIQUE.s.icon.png"
+    },
+    {
+      "form": "PHONY",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm855.fPHONY.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm855.fPHONY.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm855.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm855.s.icon.png"
+    }
+  ]
+}

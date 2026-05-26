@@ -1,0 +1,570 @@
+{
+  "id": "ROCKRUFF",
+  "formId": "ROCKRUFF",
+  "dexNr": 744,
+  "generation": 7,
+  "names": {
+    "English": "Rockruff",
+    "German": "Wuffels",
+    "French": "Rocabot",
+    "Italian": "Rockruff",
+    "Japanese": "イワンコ",
+    "Korean": "암멍이",
+    "Spanish": "Rockruff"
+  },
+  "stats": {
+    "stamina": 128,
+    "attack": 117,
+    "defense": 78
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_ROCK",
+    "names": {
+      "English": "Rock",
+      "German": "Gestein",
+      "French": "Roche",
+      "Italian": "Roccia",
+      "Japanese": "いわ",
+      "Korean": "바위",
+      "Spanish": "Roca"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "TACKLE_FAST": {
+      "id": "TACKLE_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Tackle",
+        "German": "Tackle",
+        "French": "Charge",
+        "Italian": "Azione",
+        "Japanese": "たいあたり",
+        "Korean": "몸통박치기",
+        "Spanish": "Placaje"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ROCK_THROW_FAST": {
+      "id": "ROCK_THROW_FAST",
+      "power": 13,
+      "energy": 8,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Rock Throw",
+        "German": "Steinwurf",
+        "French": "Jet-Pierres",
+        "Italian": "Sassata",
+        "Japanese": "いわおとし",
+        "Korean": "돌떨구기",
+        "Spanish": "Lanzarrocas"
+      },
+      "combat": {
+        "energy": 5,
+        "power": 8,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "STONE_EDGE": {
+      "id": "STONE_EDGE",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Stone Edge",
+        "German": "Steinkante",
+        "French": "Lame de Roc",
+        "Italian": "Pietrataglio",
+        "Japanese": "ストーンエッジ",
+        "Korean": "스톤에지",
+        "Spanish": "Roca Afilada"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 100,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ROCK_TOMB": {
+      "id": "ROCK_TOMB",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Rock Tomb",
+        "German": "Felsgrab",
+        "French": "Tomberoche",
+        "Italian": "Rocciotomba",
+        "Japanese": "がんせきふうじ",
+        "Korean": "암석봉인",
+        "Spanish": "Tumba Rocas"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 75,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "CRUNCH": {
+      "id": "CRUNCH",
+      "power": 65,
+      "energy": -33,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Crunch",
+        "German": "Knirscher",
+        "French": "Mâchouille",
+        "Italian": "Sgranocchio",
+        "Japanese": "かみくだく",
+        "Korean": "깨물어부수기",
+        "Spanish": "Triturar"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 70,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 20,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "TRAILBLAZE": {
+      "id": "TRAILBLAZE",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Trailblaze",
+        "German": "Wegbereiter",
+        "French": "Désherbaffe",
+        "Italian": "Apripista",
+        "Japanese": "くさわけ",
+        "Korean": "개척하기",
+        "Spanish": "Abrecaminos"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 65,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": 1,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm744.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm744.s.icon.png"
+  },
+  "regionForms": {
+    "ROCKRUFF_DUSK": {
+      "id": "ROCKRUFF",
+      "formId": "ROCKRUFF_DUSK",
+      "dexNr": 744,
+      "generation": 7,
+      "names": {
+        "English": "Rockruff (Dusk Form)",
+        "German": "Wuffels (Zwielichtform)",
+        "French": "Rocabot (Forme Crépusculaire)",
+        "Italian": "Rockruff (Forma Crepuscolo)",
+        "Japanese": "イワンコ (たそがれのすがた)",
+        "Korean": "암멍이 (황혼의 모습)",
+        "Spanish": "Rockruff (Forma Crepuscular)"
+      },
+      "stats": {
+        "stamina": 128,
+        "attack": 117,
+        "defense": 78
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ROCK_THROW_FAST": {
+          "id": "ROCK_THROW_FAST",
+          "power": 13,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Rock Throw",
+            "German": "Steinwurf",
+            "French": "Jet-Pierres",
+            "Italian": "Sassata",
+            "Japanese": "いわおとし",
+            "Korean": "돌떨구기",
+            "Spanish": "Lanzarrocas"
+          },
+          "combat": {
+            "energy": 5,
+            "power": 8,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "STONE_EDGE": {
+          "id": "STONE_EDGE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Stone Edge",
+            "German": "Steinkante",
+            "French": "Lame de Roc",
+            "Italian": "Pietrataglio",
+            "Japanese": "ストーンエッジ",
+            "Korean": "스톤에지",
+            "Spanish": "Roca Afilada"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 100,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ROCK_TOMB": {
+          "id": "ROCK_TOMB",
+          "power": 65,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Rock Tomb",
+            "German": "Felsgrab",
+            "French": "Tomberoche",
+            "Italian": "Rocciotomba",
+            "Japanese": "がんせきふうじ",
+            "Korean": "암석봉인",
+            "Spanish": "Tumba Rocas"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 75,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "CRUNCH": {
+          "id": "CRUNCH",
+          "power": 65,
+          "energy": -33,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Crunch",
+            "German": "Knirscher",
+            "French": "Mâchouille",
+            "Italian": "Sgranocchio",
+            "Japanese": "かみくだく",
+            "Korean": "깨물어부수기",
+            "Spanish": "Triturar"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 70,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 20,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "TRAILBLAZE": {
+          "id": "TRAILBLAZE",
+          "power": 65,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Trailblaze",
+            "German": "Wegbereiter",
+            "French": "Désherbaffe",
+            "Italian": "Apripista",
+            "Japanese": "くさわけ",
+            "Korean": "개척하기",
+            "Spanish": "Abrecaminos"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm744.fDUSK.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm744.fDUSK.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [
+        {
+          "id": "LYCANROC",
+          "formId": "LYCANROC_DUSK",
+          "candies": 50,
+          "item": null,
+          "quests": []
+        }
+      ],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [
+    {
+      "id": "LYCANROC",
+      "formId": "LYCANROC_MIDDAY",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    },
+    {
+      "id": "LYCANROC",
+      "formId": "LYCANROC_MIDNIGHT",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "DUSK",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm744.fDUSK.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm744.fDUSK.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm744.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm744.s.icon.png"
+    }
+  ]
+}

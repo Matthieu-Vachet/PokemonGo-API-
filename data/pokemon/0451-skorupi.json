@@ -1,0 +1,248 @@
+{
+  "id": "SKORUPI",
+  "formId": "SKORUPI",
+  "dexNr": 451,
+  "generation": 4,
+  "names": {
+    "English": "Skorupi",
+    "German": "Pionskora",
+    "French": "Rapion",
+    "Italian": "Skorupi",
+    "Japanese": "スコルピ",
+    "Korean": "스콜피",
+    "Spanish": "Skorupi"
+  },
+  "stats": {
+    "stamina": 120,
+    "attack": 93,
+    "defense": 151
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_POISON",
+    "names": {
+      "English": "Poison",
+      "German": "Gift",
+      "French": "Poison",
+      "Italian": "Veleno",
+      "Japanese": "どく",
+      "Korean": "독",
+      "Spanish": "Veneno"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_BUG",
+    "names": {
+      "English": "Bug",
+      "German": "Käfer",
+      "French": "Insecte",
+      "Italian": "Coleottero",
+      "Japanese": "むし",
+      "Korean": "벌레",
+      "Spanish": "Bicho"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "POISON_STING_FAST": {
+      "id": "POISON_STING_FAST",
+      "power": 4,
+      "energy": 6,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Poison Sting",
+        "German": "Giftstachel",
+        "French": "Dard-Venin",
+        "Italian": "Velenospina",
+        "Japanese": "どくばり",
+        "Korean": "독침",
+        "Spanish": "Picotazo Veneno"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 4,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "INFESTATION_FAST": {
+      "id": "INFESTATION_FAST",
+      "power": 9,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Infestation",
+        "German": "Plage",
+        "French": "Harcèlement",
+        "Italian": "Assillo",
+        "Japanese": "まとわりつく",
+        "Korean": "엉겨붙기",
+        "Spanish": "Acoso"
+      },
+      "combat": {
+        "energy": 12,
+        "power": 6,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "CROSS_POISON": {
+      "id": "CROSS_POISON",
+      "power": 40,
+      "energy": -33,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Cross Poison",
+        "German": "Giftstreich",
+        "French": "Poison Croix",
+        "Italian": "Velenocroce",
+        "Japanese": "クロスポイズン",
+        "Korean": "크로스포이즌",
+        "Spanish": "Veneno X"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 50,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 12,
+          "attackerAttackStatsChange": 2,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "AQUA_TAIL": {
+      "id": "AQUA_TAIL",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Aqua Tail",
+        "German": "Nassschweif",
+        "French": "Hydro-Queue",
+        "Italian": "Idrondata",
+        "Japanese": "アクアテール",
+        "Korean": "아쿠아테일",
+        "Spanish": "Acua Cola"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "SLUDGE_BOMB": {
+      "id": "SLUDGE_BOMB",
+      "power": 85,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Sludge Bomb",
+        "German": "Matschbombe",
+        "French": "Bombe Beurk",
+        "Italian": "Fangobomba",
+        "Japanese": "ヘドロばくだん",
+        "Korean": "오물폭탄",
+        "Spanish": "Bomba Lodo"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm451.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm451.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "DRAPION",
+      "formId": "DRAPION_NORMAL",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm451.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm451.s.icon.png"
+    }
+  ]
+}

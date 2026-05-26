@@ -1,0 +1,933 @@
+{
+  "id": "MORPEKO",
+  "formId": "MORPEKO",
+  "dexNr": 877,
+  "generation": 8,
+  "names": {
+    "English": "Morpeko",
+    "German": "Morpeko",
+    "French": "Morpeko",
+    "Italian": "Morpeko",
+    "Japanese": "モルペコ",
+    "Korean": "모르페코",
+    "Spanish": "Morpeko"
+  },
+  "stats": {
+    "stamina": 151,
+    "attack": 192,
+    "defense": 121
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_ELECTRIC",
+    "names": {
+      "English": "Electric",
+      "German": "Elektro",
+      "French": "Électrik",
+      "Italian": "Elettro",
+      "Japanese": "でんき",
+      "Korean": "전기",
+      "Spanish": "Eléctrico"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_DARK",
+    "names": {
+      "English": "Dark",
+      "German": "Unlicht",
+      "French": "Ténèbres",
+      "Italian": "Buio",
+      "Japanese": "あく",
+      "Korean": "악",
+      "Spanish": "Siniestro"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "CHARGE_BEAM_FAST": {
+      "id": "CHARGE_BEAM_FAST",
+      "power": 7,
+      "energy": 14,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Charge Beam",
+        "German": "Ladestrahl",
+        "French": "Rayon Chargé",
+        "Italian": "Raggioscossa",
+        "Japanese": "チャージビーム",
+        "Korean": "차지빔",
+        "Spanish": "Rayo Carga"
+      },
+      "combat": {
+        "energy": 11,
+        "power": 5,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "BITE_FAST": {
+      "id": "BITE_FAST",
+      "power": 6,
+      "energy": 4,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Bite",
+        "German": "Biss",
+        "French": "Morsure",
+        "Italian": "Morso",
+        "Japanese": "かみつく",
+        "Korean": "물기",
+        "Spanish": "Mordisco"
+      },
+      "combat": {
+        "energy": 2,
+        "power": 4,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "THUNDER_SHOCK_FAST": {
+      "id": "THUNDER_SHOCK_FAST",
+      "power": 4,
+      "energy": 7,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Thunder Shock",
+        "German": "Donnerschock",
+        "French": "Éclair",
+        "Italian": "Tuonoshock",
+        "Japanese": "でんきショック",
+        "Korean": "전기쇼크",
+        "Spanish": "Impactrueno"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 4,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "SEED_BOMB": {
+      "id": "SEED_BOMB",
+      "power": 55,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Seed Bomb",
+        "German": "Samenbomben",
+        "French": "Canon Graine",
+        "Italian": "Semebomba",
+        "Japanese": "タネばくだん",
+        "Korean": "씨폭탄",
+        "Spanish": "Bomba Germen"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "OUTRAGE": {
+      "id": "OUTRAGE",
+      "power": 110,
+      "energy": -50,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "names": {
+        "English": "Outrage",
+        "German": "Wutanfall",
+        "French": "Colère",
+        "Italian": "Oltraggio",
+        "Japanese": "げきりん",
+        "Korean": "역린",
+        "Spanish": "Enfado"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 110,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "AURA_WHEEL_ELECTRIC": {
+      "id": "AURA_WHEEL_ELECTRIC",
+      "power": 100,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Aura Wheel",
+        "German": "Aura-Rad",
+        "French": "Roue Libre",
+        "Italian": "Ruota d’Aura",
+        "Japanese": "オーラぐるま",
+        "Korean": "오라휠",
+        "Spanish": "Rueda Aural"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 100,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": 1,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "PSYCHIC_FANGS": {
+      "id": "PSYCHIC_FANGS",
+      "power": 25,
+      "energy": -33,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psychic Fangs",
+        "German": "Psychobeißer",
+        "French": "Psycho-Croc",
+        "Italian": "Psicozanna",
+        "Japanese": "サイコファング",
+        "Korean": "사이코팽",
+        "Spanish": "Psicocolmillo"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 40,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm877.fFULL_BELLY.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm877.fFULL_BELLY.s.icon.png"
+  },
+  "regionForms": {
+    "MORPEKO_FULL_BELLY": {
+      "id": "MORPEKO",
+      "formId": "MORPEKO_FULL_BELLY",
+      "dexNr": 877,
+      "generation": 8,
+      "names": {
+        "English": "Morpeko (Full Belly Mode)",
+        "German": "Morpeko (Pappsattmuster)",
+        "French": "Morpeko (Mode Rassasié)",
+        "Italian": "Morpeko (Motivo Panciapiena)",
+        "Japanese": "モルペコ (まんぷくもよう)",
+        "Korean": "모르페코 (배부른 모양)",
+        "Spanish": "Morpeko (Forma Saciada)"
+      },
+      "stats": {
+        "stamina": 151,
+        "attack": 192,
+        "defense": 121
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "CHARGE_BEAM_FAST": {
+          "id": "CHARGE_BEAM_FAST",
+          "power": 7,
+          "energy": 14,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Charge Beam",
+            "German": "Ladestrahl",
+            "French": "Rayon Chargé",
+            "Italian": "Raggioscossa",
+            "Japanese": "チャージビーム",
+            "Korean": "차지빔",
+            "Spanish": "Rayo Carga"
+          },
+          "combat": {
+            "energy": 11,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "BITE_FAST": {
+          "id": "BITE_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Bite",
+            "German": "Biss",
+            "French": "Morsure",
+            "Italian": "Morso",
+            "Japanese": "かみつく",
+            "Korean": "물기",
+            "Spanish": "Mordisco"
+          },
+          "combat": {
+            "energy": 2,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "THUNDER_SHOCK_FAST": {
+          "id": "THUNDER_SHOCK_FAST",
+          "power": 4,
+          "energy": 7,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunder Shock",
+            "German": "Donnerschock",
+            "French": "Éclair",
+            "Italian": "Tuonoshock",
+            "Japanese": "でんきショック",
+            "Korean": "전기쇼크",
+            "Spanish": "Impactrueno"
+          },
+          "combat": {
+            "energy": 9,
+            "power": 4,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "SEED_BOMB": {
+          "id": "SEED_BOMB",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Seed Bomb",
+            "German": "Samenbomben",
+            "French": "Canon Graine",
+            "Italian": "Semebomba",
+            "Japanese": "タネばくだん",
+            "Korean": "씨폭탄",
+            "Spanish": "Bomba Germen"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 55,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "OUTRAGE": {
+          "id": "OUTRAGE",
+          "power": 110,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_DRAGON",
+            "names": {
+              "English": "Dragon",
+              "German": "Drache",
+              "French": "Dragon",
+              "Italian": "Drago",
+              "Japanese": "ドラゴン",
+              "Korean": "드래곤",
+              "Spanish": "Dragón"
+            }
+          },
+          "names": {
+            "English": "Outrage",
+            "German": "Wutanfall",
+            "French": "Colère",
+            "Italian": "Oltraggio",
+            "Japanese": "げきりん",
+            "Korean": "역린",
+            "Spanish": "Enfado"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AURA_WHEEL_ELECTRIC": {
+          "id": "AURA_WHEEL_ELECTRIC",
+          "power": 100,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Aura Wheel",
+            "German": "Aura-Rad",
+            "French": "Roue Libre",
+            "Italian": "Ruota d’Aura",
+            "Japanese": "オーラぐるま",
+            "Korean": "오라휠",
+            "Spanish": "Rueda Aural"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "PSYCHIC_FANGS": {
+          "id": "PSYCHIC_FANGS",
+          "power": 25,
+          "energy": -33,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Psychic Fangs",
+            "German": "Psychobeißer",
+            "French": "Psycho-Croc",
+            "Italian": "Psicozanna",
+            "Japanese": "サイコファング",
+            "Korean": "사이코팽",
+            "Spanish": "Psicocolmillo"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 40,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm877.fFULL_BELLY.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm877.fFULL_BELLY.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "MORPEKO_HANGRY": {
+      "id": "MORPEKO",
+      "formId": "MORPEKO_HANGRY",
+      "dexNr": 877,
+      "generation": 8,
+      "names": {
+        "English": "Morpeko (Hangry Mode)",
+        "German": "Morpeko (Kohldampfmuster)",
+        "French": "Morpeko (Mode Affamé)",
+        "Italian": "Morpeko (Motivo Panciavuota)",
+        "Japanese": "モルペコ (はらぺこもよう)",
+        "Korean": "모르페코 (배고픈 모양)",
+        "Spanish": "Morpeko (Forma Voraz)"
+      },
+      "stats": {
+        "stamina": 151,
+        "attack": 192,
+        "defense": 121
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "CHARGE_BEAM_FAST": {
+          "id": "CHARGE_BEAM_FAST",
+          "power": 7,
+          "energy": 14,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Charge Beam",
+            "German": "Ladestrahl",
+            "French": "Rayon Chargé",
+            "Italian": "Raggioscossa",
+            "Japanese": "チャージビーム",
+            "Korean": "차지빔",
+            "Spanish": "Rayo Carga"
+          },
+          "combat": {
+            "energy": 11,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "BITE_FAST": {
+          "id": "BITE_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Bite",
+            "German": "Biss",
+            "French": "Morsure",
+            "Italian": "Morso",
+            "Japanese": "かみつく",
+            "Korean": "물기",
+            "Spanish": "Mordisco"
+          },
+          "combat": {
+            "energy": 2,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "THUNDER_SHOCK_FAST": {
+          "id": "THUNDER_SHOCK_FAST",
+          "power": 4,
+          "energy": 7,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunder Shock",
+            "German": "Donnerschock",
+            "French": "Éclair",
+            "Italian": "Tuonoshock",
+            "Japanese": "でんきショック",
+            "Korean": "전기쇼크",
+            "Spanish": "Impactrueno"
+          },
+          "combat": {
+            "energy": 9,
+            "power": 4,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "SEED_BOMB": {
+          "id": "SEED_BOMB",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Seed Bomb",
+            "German": "Samenbomben",
+            "French": "Canon Graine",
+            "Italian": "Semebomba",
+            "Japanese": "タネばくだん",
+            "Korean": "씨폭탄",
+            "Spanish": "Bomba Germen"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 55,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "OUTRAGE": {
+          "id": "OUTRAGE",
+          "power": 110,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_DRAGON",
+            "names": {
+              "English": "Dragon",
+              "German": "Drache",
+              "French": "Dragon",
+              "Italian": "Drago",
+              "Japanese": "ドラゴン",
+              "Korean": "드래곤",
+              "Spanish": "Dragón"
+            }
+          },
+          "names": {
+            "English": "Outrage",
+            "German": "Wutanfall",
+            "French": "Colère",
+            "Italian": "Oltraggio",
+            "Japanese": "げきりん",
+            "Korean": "역린",
+            "Spanish": "Enfado"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AURA_WHEEL_DARK": {
+          "id": "AURA_WHEEL_DARK",
+          "power": 100,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Aura Wheel",
+            "German": "Aura-Rad",
+            "French": "Roue Libre",
+            "Italian": "Ruota d’Aura",
+            "Japanese": "オーラぐるま",
+            "Korean": "오라휠",
+            "Spanish": "Rueda Aural"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "PSYCHIC_FANGS": {
+          "id": "PSYCHIC_FANGS",
+          "power": 25,
+          "energy": -33,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Psychic Fangs",
+            "German": "Psychobeißer",
+            "French": "Psycho-Croc",
+            "Italian": "Psicozanna",
+            "Japanese": "サイコファング",
+            "Korean": "사이코팽",
+            "Spanish": "Psicocolmillo"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 40,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm877.fHANGRY.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm877.fHANGRY.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "FULL_BELLY",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm877.fFULL_BELLY.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm877.fFULL_BELLY.s.icon.png"
+    },
+    {
+      "form": "HANGRY",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm877.fHANGRY.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm877.fHANGRY.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm877.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm877.s.icon.png"
+    }
+  ]
+}

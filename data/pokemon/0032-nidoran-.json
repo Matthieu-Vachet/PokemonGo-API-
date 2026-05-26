@@ -1,0 +1,231 @@
+{
+  "id": "NIDORAN_MALE",
+  "formId": "NIDORAN",
+  "dexNr": 32,
+  "generation": 1,
+  "names": {
+    "English": "Nidoran♂",
+    "German": "Nidoran♂",
+    "French": "Nidoran♂",
+    "Italian": "Nidoran♂",
+    "Japanese": "ニドラン♂",
+    "Korean": "니드런♂",
+    "Spanish": "Nidoran♂"
+  },
+  "stats": {
+    "stamina": 130,
+    "attack": 105,
+    "defense": 76
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_POISON",
+    "names": {
+      "English": "Poison",
+      "German": "Gift",
+      "French": "Poison",
+      "Italian": "Veleno",
+      "Japanese": "どく",
+      "Korean": "독",
+      "Spanish": "Veneno"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "PECK_FAST": {
+      "id": "PECK_FAST",
+      "power": 10,
+      "energy": 10,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Peck",
+        "German": "Pikser",
+        "French": "Picpic",
+        "Italian": "Beccata",
+        "Japanese": "つつく",
+        "Korean": "쪼기",
+        "Spanish": "Picotazo"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 6,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "POISON_STING_FAST": {
+      "id": "POISON_STING_FAST",
+      "power": 4,
+      "energy": 6,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Poison Sting",
+        "German": "Giftstachel",
+        "French": "Dard-Venin",
+        "Italian": "Velenospina",
+        "Japanese": "どくばり",
+        "Korean": "독침",
+        "Spanish": "Picotazo Veneno"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 4,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "HORN_ATTACK": {
+      "id": "HORN_ATTACK",
+      "power": 45,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Horn Attack",
+        "German": "Hornattacke",
+        "French": "Koud’Korne",
+        "Italian": "Incornata",
+        "Japanese": "つのでつく",
+        "Korean": "뿔찌르기",
+        "Spanish": "Cornada"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 40,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "BODY_SLAM": {
+      "id": "BODY_SLAM",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Body Slam",
+        "German": "Bodyslam",
+        "French": "Plaquage",
+        "Italian": "Corposcontro",
+        "Japanese": "のしかかり",
+        "Korean": "누르기",
+        "Spanish": "Golpe Cuerpo"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "SLUDGE_BOMB": {
+      "id": "SLUDGE_BOMB",
+      "power": 85,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Sludge Bomb",
+        "German": "Matschbombe",
+        "French": "Bombe Beurk",
+        "Italian": "Fangobomba",
+        "Japanese": "ヘドロばくだん",
+        "Korean": "오물폭탄",
+        "Spanish": "Bomba Lodo"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm32.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm32.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "NIDORINO",
+      "formId": "NIDORINO_NORMAL",
+      "candies": 25,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm32.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm32.s.icon.png"
+    }
+  ]
+}

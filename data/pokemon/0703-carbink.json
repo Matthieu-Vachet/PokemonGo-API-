@@ -1,0 +1,240 @@
+{
+  "id": "CARBINK",
+  "formId": "CARBINK",
+  "dexNr": 703,
+  "generation": 6,
+  "names": {
+    "English": "Carbink",
+    "German": "Rocara",
+    "French": "Strassie",
+    "Italian": "Carbink",
+    "Japanese": "メレシー",
+    "Korean": "멜리시",
+    "Spanish": "Carbink"
+  },
+  "stats": {
+    "stamina": 137,
+    "attack": 95,
+    "defense": 285
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_ROCK",
+    "names": {
+      "English": "Rock",
+      "German": "Gestein",
+      "French": "Roche",
+      "Italian": "Roccia",
+      "Japanese": "いわ",
+      "Korean": "바위",
+      "Spanish": "Roca"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FAIRY",
+    "names": {
+      "English": "Fairy",
+      "German": "Fee",
+      "French": "Fée",
+      "Italian": "Folletto",
+      "Japanese": "フェアリー",
+      "Korean": "페어리",
+      "Spanish": "Hada"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "TACKLE_FAST": {
+      "id": "TACKLE_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Tackle",
+        "German": "Tackle",
+        "French": "Charge",
+        "Italian": "Azione",
+        "Japanese": "たいあたり",
+        "Korean": "몸통박치기",
+        "Spanish": "Placaje"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ROCK_THROW_FAST": {
+      "id": "ROCK_THROW_FAST",
+      "power": 13,
+      "energy": 8,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Rock Throw",
+        "German": "Steinwurf",
+        "French": "Jet-Pierres",
+        "Italian": "Sassata",
+        "Japanese": "いわおとし",
+        "Korean": "돌떨구기",
+        "Spanish": "Lanzarrocas"
+      },
+      "combat": {
+        "energy": 5,
+        "power": 8,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "ROCK_SLIDE": {
+      "id": "ROCK_SLIDE",
+      "power": 75,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Rock Slide",
+        "German": "Steinhagel",
+        "French": "Éboulement",
+        "Italian": "Frana",
+        "Japanese": "いわなだれ",
+        "Korean": "스톤샤워",
+        "Spanish": "Avalancha"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 75,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "MOONBLAST": {
+      "id": "MOONBLAST",
+      "power": 130,
+      "energy": -100,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Moonblast",
+        "German": "Mondgewalt",
+        "French": "Pouvoir Lunaire",
+        "Italian": "Forza Lunare",
+        "Japanese": "ムーンフォース",
+        "Korean": "문포스",
+        "Spanish": "Fuerza Lunar"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 110,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "POWER_GEM": {
+      "id": "POWER_GEM",
+      "power": 80,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Power Gem",
+        "German": "Juwelenkraft",
+        "French": "Rayon Gemme",
+        "Italian": "Gemmoforza",
+        "Japanese": "パワージェム",
+        "Korean": "파워젬",
+        "Spanish": "Joya de Luz"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 85,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm703.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm703.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm703.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm703.s.icon.png"
+    }
+  ]
+}

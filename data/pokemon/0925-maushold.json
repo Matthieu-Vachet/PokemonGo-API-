@@ -1,0 +1,776 @@
+{
+  "id": "MAUSHOLD",
+  "formId": "MAUSHOLD",
+  "dexNr": 925,
+  "generation": 9,
+  "names": {
+    "English": "Maushold",
+    "German": "Famieps",
+    "French": "Famignol",
+    "Italian": "Maushold",
+    "Japanese": "イッカネズミ",
+    "Korean": "파밀리쥐",
+    "Spanish": "Maushold"
+  },
+  "stats": {
+    "stamina": 179,
+    "attack": 159,
+    "defense": 157
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_NORMAL",
+    "names": {
+      "English": "Normal",
+      "German": "Normal",
+      "French": "Normal",
+      "Italian": "Normale",
+      "Japanese": "ノーマル",
+      "Korean": "노말",
+      "Spanish": "Normal"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "TAKE_DOWN_FAST": {
+      "id": "TAKE_DOWN_FAST",
+      "power": 7,
+      "energy": 8,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Take Down",
+        "German": "Bodycheck",
+        "French": "Bélier",
+        "Italian": "Riduttore",
+        "Japanese": "とっしん",
+        "Korean": "돌진",
+        "Spanish": "Derribo"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 5,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "MUD_SHOT_FAST": {
+      "id": "MUD_SHOT_FAST",
+      "power": 4,
+      "energy": 6,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_GROUND",
+        "names": {
+          "English": "Ground",
+          "German": "Boden",
+          "French": "Sol",
+          "Italian": "Terra",
+          "Japanese": "じめん",
+          "Korean": "땅",
+          "Spanish": "Tierra"
+        }
+      },
+      "names": {
+        "English": "Mud Shot",
+        "German": "Lehmschuss",
+        "French": "Tir de Boue",
+        "Italian": "Colpodifango",
+        "Japanese": "マッドショット",
+        "Korean": "머드샷",
+        "Spanish": "Disparo Lodo"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 3,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "BULLET_SEED_FAST": {
+      "id": "BULLET_SEED_FAST",
+      "power": 7,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Bullet Seed",
+        "German": "Kugelsaat",
+        "French": "Balle Graine",
+        "Italian": "Semitraglia",
+        "Japanese": "タネマシンガン",
+        "Korean": "씨기관총",
+        "Spanish": "Semilladora"
+      },
+      "combat": {
+        "energy": 13,
+        "power": 5,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "SWIFT": {
+      "id": "SWIFT",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Swift",
+        "German": "Sternschauer",
+        "French": "Météores",
+        "Italian": "Comete",
+        "Japanese": "スピードスター",
+        "Korean": "스피드스타",
+        "Spanish": "Rapidez"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "PLAY_ROUGH": {
+      "id": "PLAY_ROUGH",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Play Rough",
+        "German": "Knuddler",
+        "French": "Câlinerie",
+        "Italian": "Carineria",
+        "Japanese": "じゃれつく",
+        "Korean": "치근거리기",
+        "Spanish": "Carantoña"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "CRUNCH": {
+      "id": "CRUNCH",
+      "power": 65,
+      "energy": -33,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Crunch",
+        "German": "Knirscher",
+        "French": "Mâchouille",
+        "Italian": "Sgranocchio",
+        "Japanese": "かみくだく",
+        "Korean": "깨물어부수기",
+        "Spanish": "Triturar"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 70,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 20,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm925.fFAMILY_OF_FOUR.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm925.fFAMILY_OF_FOUR.s.icon.png"
+  },
+  "regionForms": {
+    "MAUSHOLD_FAMILY_OF_FOUR": {
+      "id": "MAUSHOLD",
+      "formId": "MAUSHOLD_FAMILY_OF_FOUR",
+      "dexNr": 925,
+      "generation": 9,
+      "names": {
+        "English": "Maushold (Family of Four)",
+        "German": "Famieps (Viererfamilie)",
+        "French": "Famignol (Famille de Quatre)",
+        "Italian": "Maushold (Quadrifamiglia)",
+        "Japanese": "イッカネズミ (４ひきかぞく)",
+        "Korean": "파밀리쥐 (네 식구)",
+        "Spanish": "Maushold (Familia de Cuatro)"
+      },
+      "stats": {
+        "stamina": 179,
+        "attack": 159,
+        "defense": 157
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "MUD_SHOT_FAST": {
+          "id": "MUD_SHOT_FAST",
+          "power": 4,
+          "energy": 6,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_GROUND",
+            "names": {
+              "English": "Ground",
+              "German": "Boden",
+              "French": "Sol",
+              "Italian": "Terra",
+              "Japanese": "じめん",
+              "Korean": "땅",
+              "Spanish": "Tierra"
+            }
+          },
+          "names": {
+            "English": "Mud Shot",
+            "German": "Lehmschuss",
+            "French": "Tir de Boue",
+            "Italian": "Colpodifango",
+            "Japanese": "マッドショット",
+            "Korean": "머드샷",
+            "Spanish": "Disparo Lodo"
+          },
+          "combat": {
+            "energy": 9,
+            "power": 3,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "BULLET_SEED_FAST": {
+          "id": "BULLET_SEED_FAST",
+          "power": 7,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Bullet Seed",
+            "German": "Kugelsaat",
+            "French": "Balle Graine",
+            "Italian": "Semitraglia",
+            "Japanese": "タネマシンガン",
+            "Korean": "씨기관총",
+            "Spanish": "Semilladora"
+          },
+          "combat": {
+            "energy": 13,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "SWIFT": {
+          "id": "SWIFT",
+          "power": 65,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Swift",
+            "German": "Sternschauer",
+            "French": "Météores",
+            "Italian": "Comete",
+            "Japanese": "スピードスター",
+            "Korean": "스피드스타",
+            "Spanish": "Rapidez"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 55,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "PLAY_ROUGH": {
+          "id": "PLAY_ROUGH",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Play Rough",
+            "German": "Knuddler",
+            "French": "Câlinerie",
+            "Italian": "Carineria",
+            "Japanese": "じゃれつく",
+            "Korean": "치근거리기",
+            "Spanish": "Carantoña"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 90,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "CRUNCH": {
+          "id": "CRUNCH",
+          "power": 65,
+          "energy": -33,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Crunch",
+            "German": "Knirscher",
+            "French": "Mâchouille",
+            "Italian": "Sgranocchio",
+            "Japanese": "かみくだく",
+            "Korean": "깨물어부수기",
+            "Spanish": "Triturar"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 70,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 20,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm925.fFAMILY_OF_FOUR.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm925.fFAMILY_OF_FOUR.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "MAUSHOLD_FAMILY_OF_THREE": {
+      "id": "MAUSHOLD",
+      "formId": "MAUSHOLD_FAMILY_OF_THREE",
+      "dexNr": 925,
+      "generation": 9,
+      "names": {
+        "English": "Maushold (Family of Three)",
+        "German": "Famieps (Dreierfamilie)",
+        "French": "Famignol (Famille de Trois)",
+        "Italian": "Maushold (Trifamiglia)",
+        "Japanese": "イッカネズミ (３びきかぞく)",
+        "Korean": "파밀리쥐 (세 식구)",
+        "Spanish": "Maushold (Familia de Tres)"
+      },
+      "stats": {
+        "stamina": 179,
+        "attack": 159,
+        "defense": 157
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "MUD_SHOT_FAST": {
+          "id": "MUD_SHOT_FAST",
+          "power": 4,
+          "energy": 6,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_GROUND",
+            "names": {
+              "English": "Ground",
+              "German": "Boden",
+              "French": "Sol",
+              "Italian": "Terra",
+              "Japanese": "じめん",
+              "Korean": "땅",
+              "Spanish": "Tierra"
+            }
+          },
+          "names": {
+            "English": "Mud Shot",
+            "German": "Lehmschuss",
+            "French": "Tir de Boue",
+            "Italian": "Colpodifango",
+            "Japanese": "マッドショット",
+            "Korean": "머드샷",
+            "Spanish": "Disparo Lodo"
+          },
+          "combat": {
+            "energy": 9,
+            "power": 3,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "BULLET_SEED_FAST": {
+          "id": "BULLET_SEED_FAST",
+          "power": 7,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Bullet Seed",
+            "German": "Kugelsaat",
+            "French": "Balle Graine",
+            "Italian": "Semitraglia",
+            "Japanese": "タネマシンガン",
+            "Korean": "씨기관총",
+            "Spanish": "Semilladora"
+          },
+          "combat": {
+            "energy": 13,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "SWIFT": {
+          "id": "SWIFT",
+          "power": 65,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Swift",
+            "German": "Sternschauer",
+            "French": "Météores",
+            "Italian": "Comete",
+            "Japanese": "スピードスター",
+            "Korean": "스피드스타",
+            "Spanish": "Rapidez"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 55,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "PLAY_ROUGH": {
+          "id": "PLAY_ROUGH",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Play Rough",
+            "German": "Knuddler",
+            "French": "Câlinerie",
+            "Italian": "Carineria",
+            "Japanese": "じゃれつく",
+            "Korean": "치근거리기",
+            "Spanish": "Carantoña"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 90,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "CRUNCH": {
+          "id": "CRUNCH",
+          "power": 65,
+          "energy": -33,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Crunch",
+            "German": "Knirscher",
+            "French": "Mâchouille",
+            "Italian": "Sgranocchio",
+            "Japanese": "かみくだく",
+            "Korean": "깨물어부수기",
+            "Spanish": "Triturar"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 70,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 20,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm925.fFAMILY_OF_THREE.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm925.fFAMILY_OF_THREE.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "FAMILY_OF_FOUR",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm925.fFAMILY_OF_FOUR.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm925.fFAMILY_OF_FOUR.s.icon.png"
+    },
+    {
+      "form": "FAMILY_OF_THREE",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm925.fFAMILY_OF_THREE.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm925.fFAMILY_OF_THREE.s.icon.png"
+    }
+  ]
+}

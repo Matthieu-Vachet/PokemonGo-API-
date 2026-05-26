@@ -1,0 +1,495 @@
+{
+  "id": "FRILLISH",
+  "formId": "FRILLISH",
+  "dexNr": 592,
+  "generation": 5,
+  "names": {
+    "English": "Frillish",
+    "German": "Quabbel",
+    "French": "Viskuse",
+    "Italian": "Frillish",
+    "Japanese": "プルリル",
+    "Korean": "탱그릴",
+    "Spanish": "Frillish"
+  },
+  "stats": {
+    "stamina": 146,
+    "attack": 115,
+    "defense": 134
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_WATER",
+    "names": {
+      "English": "Water",
+      "German": "Wasser",
+      "French": "Eau",
+      "Italian": "Acqua",
+      "Japanese": "みず",
+      "Korean": "물",
+      "Spanish": "Agua"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_GHOST",
+    "names": {
+      "English": "Ghost",
+      "German": "Geist",
+      "French": "Spectre",
+      "Italian": "Spettro",
+      "Japanese": "ゴースト",
+      "Korean": "고스트",
+      "Spanish": "Fantasma"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "BUBBLE_FAST": {
+      "id": "BUBBLE_FAST",
+      "power": 10,
+      "energy": 12,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Bubble",
+        "German": "Blubber",
+        "French": "Écume",
+        "Italian": "Bolla",
+        "Japanese": "あわ",
+        "Korean": "거품",
+        "Spanish": "Burbuja"
+      },
+      "combat": {
+        "energy": 11,
+        "power": 8,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "HEX_FAST": {
+      "id": "HEX_FAST",
+      "power": 8,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Hex",
+        "German": "Bürde",
+        "French": "Châtiment",
+        "Italian": "Sciagura",
+        "Japanese": "たたりめ",
+        "Korean": "병상첨병",
+        "Spanish": "Infortunio"
+      },
+      "combat": {
+        "energy": 13,
+        "power": 7,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "NIGHT_SHADE": {
+      "id": "NIGHT_SHADE",
+      "power": 60,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Night Shade",
+        "German": "Nachtnebel",
+        "French": "Ombre Nocturne",
+        "Italian": "Ombra Notturna",
+        "Japanese": "ナイトヘッド",
+        "Korean": "나이트헤드",
+        "Spanish": "Tinieblas"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ICE_BEAM": {
+      "id": "ICE_BEAM",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Ice Beam",
+        "German": "Eisstrahl",
+        "French": "Laser Glace",
+        "Italian": "Geloraggio",
+        "Japanese": "れいとうビーム",
+        "Korean": "냉동빔",
+        "Spanish": "Rayo Hielo"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "OMINOUS_WIND": {
+      "id": "OMINOUS_WIND",
+      "power": 55,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Ominous Wind",
+        "German": "Unheilböen",
+        "French": "Vent Mauvais",
+        "Italian": "Funestovento",
+        "Japanese": "あやしいかぜ",
+        "Korean": "괴상한바람",
+        "Spanish": "Viento Aciago"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 45,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": 1,
+          "attackerDefenseStatsChange": 1,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm592.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm592.s.icon.png"
+  },
+  "regionForms": {
+    "FRILLISH_FEMALE": {
+      "id": "FRILLISH",
+      "formId": "FRILLISH_FEMALE",
+      "dexNr": 592,
+      "generation": 5,
+      "names": {
+        "English": "Frillish (Female)",
+        "German": "Quabbel (Weiblich)",
+        "French": "Viskuse (Femelle)",
+        "Italian": "Frillish (Femmina)",
+        "Japanese": "プルリル (メス)",
+        "Korean": "탱그릴 (암컷의 모습)",
+        "Spanish": "Frillish (Hembra)"
+      },
+      "stats": {
+        "stamina": 146,
+        "attack": 115,
+        "defense": 134
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "BUBBLE_FAST": {
+          "id": "BUBBLE_FAST",
+          "power": 10,
+          "energy": 12,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Bubble",
+            "German": "Blubber",
+            "French": "Écume",
+            "Italian": "Bolla",
+            "Japanese": "あわ",
+            "Korean": "거품",
+            "Spanish": "Burbuja"
+          },
+          "combat": {
+            "energy": 11,
+            "power": 8,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "HEX_FAST": {
+          "id": "HEX_FAST",
+          "power": 8,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Hex",
+            "German": "Bürde",
+            "French": "Châtiment",
+            "Italian": "Sciagura",
+            "Japanese": "たたりめ",
+            "Korean": "병상첨병",
+            "Spanish": "Infortunio"
+          },
+          "combat": {
+            "energy": 13,
+            "power": 7,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "NIGHT_SHADE": {
+          "id": "NIGHT_SHADE",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Night Shade",
+            "German": "Nachtnebel",
+            "French": "Ombre Nocturne",
+            "Italian": "Ombra Notturna",
+            "Japanese": "ナイトヘッド",
+            "Korean": "나이트헤드",
+            "Spanish": "Tinieblas"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ICE_BEAM": {
+          "id": "ICE_BEAM",
+          "power": 95,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_ICE",
+            "names": {
+              "English": "Ice",
+              "German": "Eis",
+              "French": "Glace",
+              "Italian": "Ghiaccio",
+              "Japanese": "こおり",
+              "Korean": "얼음",
+              "Spanish": "Hielo"
+            }
+          },
+          "names": {
+            "English": "Ice Beam",
+            "German": "Eisstrahl",
+            "French": "Laser Glace",
+            "Italian": "Geloraggio",
+            "Japanese": "れいとうビーム",
+            "Korean": "냉동빔",
+            "Spanish": "Rayo Hielo"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "OMINOUS_WIND": {
+          "id": "OMINOUS_WIND",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Ominous Wind",
+            "German": "Unheilböen",
+            "French": "Vent Mauvais",
+            "Italian": "Funestovento",
+            "Japanese": "あやしいかぜ",
+            "Korean": "괴상한바람",
+            "Spanish": "Viento Aciago"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 45,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": 1,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm592.fFEMALE.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm592.fFEMALE.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [
+        {
+          "id": "JELLICENT",
+          "formId": "JELLICENT_FEMALE",
+          "candies": 50,
+          "item": null,
+          "quests": []
+        }
+      ],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [
+    {
+      "id": "JELLICENT",
+      "formId": "JELLICENT",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "FEMALE",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm592.fFEMALE.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm592.fFEMALE.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm592.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm592.s.icon.png"
+    }
+  ]
+}

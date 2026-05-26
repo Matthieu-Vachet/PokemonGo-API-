@@ -1,0 +1,436 @@
+{
+  "id": "MACHAMP",
+  "formId": "MACHAMP",
+  "dexNr": 68,
+  "generation": 1,
+  "names": {
+    "English": "Machamp",
+    "German": "Machomei",
+    "French": "Mackogneur",
+    "Italian": "Machamp",
+    "Japanese": "カイリキー",
+    "Korean": "괴력몬",
+    "Spanish": "Machamp"
+  },
+  "stats": {
+    "stamina": 207,
+    "attack": 234,
+    "defense": 159
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_FIGHTING",
+    "names": {
+      "English": "Fighting",
+      "German": "Kampf",
+      "French": "Combat",
+      "Italian": "Lotta",
+      "Japanese": "かくとう",
+      "Korean": "격투",
+      "Spanish": "Lucha"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "BULLET_PUNCH_FAST": {
+      "id": "BULLET_PUNCH_FAST",
+      "power": 10,
+      "energy": 11,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Bullet Punch",
+        "German": "Patronenhieb",
+        "French": "Pisto-Poing",
+        "Italian": "Pugnoscarica",
+        "Japanese": "バレットパンチ",
+        "Korean": "불릿펀치",
+        "Spanish": "Puño Bala"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 7,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "COUNTER_FAST": {
+      "id": "COUNTER_FAST",
+      "power": 13,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Counter",
+        "German": "Konter",
+        "French": "Riposte",
+        "Italian": "Contrattacco",
+        "Japanese": "カウンター",
+        "Korean": "카운터",
+        "Spanish": "Contraataque"
+      },
+      "combat": {
+        "energy": 6,
+        "power": 8,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "HEAVY_SLAM": {
+      "id": "HEAVY_SLAM",
+      "power": 70,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Heavy Slam",
+        "German": "Rammboss",
+        "French": "Tacle Lourd",
+        "Italian": "Pesobomba",
+        "Japanese": "ヘビーボンバー",
+        "Korean": "헤비봄버",
+        "Spanish": "Cuerpo Pesado"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "DYNAMIC_PUNCH": {
+      "id": "DYNAMIC_PUNCH",
+      "power": 85,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Dynamic Punch",
+        "German": "Wuchtschlag",
+        "French": "Dynamo-Poing",
+        "Italian": "Dinamipugno",
+        "Japanese": "ばくれつパンチ",
+        "Korean": "폭발펀치",
+        "Spanish": "Puño Dinámico"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "CLOSE_COMBAT": {
+      "id": "CLOSE_COMBAT",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Close Combat",
+        "German": "Nahkampf",
+        "French": "Close Combat",
+        "Italian": "Zuffa",
+        "Japanese": "インファイト",
+        "Korean": "인파이트",
+        "Spanish": "A Bocajarro"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 100,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": -2,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "ROCK_SLIDE": {
+      "id": "ROCK_SLIDE",
+      "power": 75,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Rock Slide",
+        "German": "Steinhagel",
+        "French": "Éboulement",
+        "Italian": "Frana",
+        "Japanese": "いわなだれ",
+        "Korean": "스톤샤워",
+        "Spanish": "Avalancha"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 75,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "CROSS_CHOP": {
+      "id": "CROSS_CHOP",
+      "power": 50,
+      "energy": -50,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Cross Chop",
+        "German": "Kreuzhieb",
+        "French": "Coup Croix",
+        "Italian": "Incrocolpo",
+        "Japanese": "クロスチョップ",
+        "Korean": "크로스촙",
+        "Spanish": "Tajo Cruzado"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": {
+    "KARATE_CHOP_FAST": {
+      "id": "KARATE_CHOP_FAST",
+      "power": 10,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Karate Chop",
+        "German": "Karateschlag",
+        "French": "Poing Karaté",
+        "Italian": "Colpokarate",
+        "Japanese": "からてチョップ",
+        "Korean": "태권당수",
+        "Spanish": "Golpe Kárate"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "eliteCinematicMoves": {
+    "STONE_EDGE": {
+      "id": "STONE_EDGE",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Stone Edge",
+        "German": "Steinkante",
+        "French": "Lame de Roc",
+        "Italian": "Pietrataglio",
+        "Japanese": "ストーンエッジ",
+        "Korean": "스톤에지",
+        "Spanish": "Roca Afilada"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 100,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "SUBMISSION": {
+      "id": "SUBMISSION",
+      "power": 55,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Submission",
+        "German": "Überroller",
+        "French": "Sacrifice",
+        "Italian": "Sottomissione",
+        "Japanese": "じごくぐるま",
+        "Korean": "지옥의바퀴",
+        "Spanish": "Sumisión"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "PAYBACK": {
+      "id": "PAYBACK",
+      "power": 95,
+      "energy": -100,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Payback",
+        "German": "Gegenstoß",
+        "French": "Représailles",
+        "Italian": "Rivincita",
+        "Japanese": "しっぺがえし",
+        "Korean": "보복",
+        "Spanish": "Vendetta"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 110,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm68.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm68.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": true,
+  "assetForms": [
+    {
+      "form": "GIGANTAMAX",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm68.fGIGANTAMAX.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm68.fGIGANTAMAX.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm68.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm68.s.icon.png"
+    }
+  ]
+}

@@ -1,0 +1,5096 @@
+{
+  "id": "SILVALLY",
+  "formId": "SILVALLY",
+  "dexNr": 773,
+  "generation": 7,
+  "names": {
+    "English": "Silvally",
+    "German": "Amigento",
+    "French": "Silvallié",
+    "Italian": "Silvally",
+    "Japanese": "シルヴァディ",
+    "Korean": "실버디",
+    "Spanish": "Silvally"
+  },
+  "stats": {
+    "stamina": 216,
+    "attack": 198,
+    "defense": 198
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_NORMAL",
+    "names": {
+      "English": "Normal",
+      "German": "Normal",
+      "French": "Normal",
+      "Italian": "Normale",
+      "Japanese": "ノーマル",
+      "Korean": "노말",
+      "Spanish": "Normal"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+  "quickMoves": {
+    "TACKLE_FAST": {
+      "id": "TACKLE_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Tackle",
+        "German": "Tackle",
+        "French": "Charge",
+        "Italian": "Azione",
+        "Japanese": "たいあたり",
+        "Korean": "몸통박치기",
+        "Spanish": "Placaje"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "TAKE_DOWN_FAST": {
+      "id": "TAKE_DOWN_FAST",
+      "power": 7,
+      "energy": 8,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Take Down",
+        "German": "Bodycheck",
+        "French": "Bélier",
+        "Italian": "Riduttore",
+        "Japanese": "とっしん",
+        "Korean": "돌진",
+        "Spanish": "Derribo"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 5,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "BITE_FAST": {
+      "id": "BITE_FAST",
+      "power": 6,
+      "energy": 4,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Bite",
+        "German": "Biss",
+        "French": "Morsure",
+        "Italian": "Morso",
+        "Japanese": "かみつく",
+        "Korean": "물기",
+        "Spanish": "Mordisco"
+      },
+      "combat": {
+        "energy": 2,
+        "power": 4,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "TRI_ATTACK": {
+      "id": "TRI_ATTACK",
+      "power": 75,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Tri Attack",
+        "German": "Triplette",
+        "French": "Triplattaque",
+        "Italian": "Tripletta",
+        "Japanese": "トライアタック",
+        "Korean": "트라이어택",
+        "Spanish": "Triataque"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 65,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 50,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "IRON_HEAD": {
+      "id": "IRON_HEAD",
+      "power": 60,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Iron Head",
+        "German": "Eisenschädel",
+        "French": "Tête de Fer",
+        "Italian": "Metaltestata",
+        "Japanese": "アイアンヘッド",
+        "Korean": "아이언헤드",
+        "Spanish": "Cabeza de Hierro"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "AERIAL_ACE": {
+      "id": "AERIAL_ACE",
+      "power": 55,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Aerial Ace",
+        "German": "Aero-Ass",
+        "French": "Aéropique",
+        "Italian": "Aeroassalto",
+        "Japanese": "つばめがえし",
+        "Korean": "제비반환",
+        "Spanish": "Golpe Aéreo"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "X_SCISSOR": {
+      "id": "X_SCISSOR",
+      "power": 45,
+      "energy": -33,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "X-Scissor",
+        "German": "Kreuzschere",
+        "French": "Plaie Croix",
+        "Italian": "Forbice X",
+        "Japanese": "シザークロス",
+        "Korean": "시저크로스",
+        "Spanish": "Tijera X"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 65,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": null,
+  "regionForms": {
+    "SILVALLY_BUG": {
+      "id": "SILVALLY",
+      "formId": "SILVALLY_BUG",
+      "dexNr": 773,
+      "generation": 7,
+      "names": {
+        "English": "Silvally (Type: Bug)",
+        "German": "Amigento (Typ: Käfer)",
+        "French": "Silvallié (Type: Bug)",
+        "Italian": "Silvally (Tipo Coleottero)",
+        "Japanese": "シルヴァディ (タイプ：むし)",
+        "Korean": "실버디 (Type: Bug)",
+        "Spanish": "Silvally (Tipo: Bicho)"
+      },
+      "stats": {
+        "stamina": 216,
+        "attack": 198,
+        "defense": 198
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "BITE_FAST": {
+          "id": "BITE_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Bite",
+            "German": "Biss",
+            "French": "Morsure",
+            "Italian": "Morso",
+            "Japanese": "かみつく",
+            "Korean": "물기",
+            "Spanish": "Mordisco"
+          },
+          "combat": {
+            "energy": 2,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "TRI_ATTACK": {
+          "id": "TRI_ATTACK",
+          "power": 75,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tri Attack",
+            "German": "Triplette",
+            "French": "Triplattaque",
+            "Italian": "Tripletta",
+            "Japanese": "トライアタック",
+            "Korean": "트라이어택",
+            "Spanish": "Triataque"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 50,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "IRON_HEAD": {
+          "id": "IRON_HEAD",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Head",
+            "German": "Eisenschädel",
+            "French": "Tête de Fer",
+            "Italian": "Metaltestata",
+            "Japanese": "アイアンヘッド",
+            "Korean": "아이언헤드",
+            "Spanish": "Cabeza de Hierro"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "X_SCISSOR": {
+          "id": "X_SCISSOR",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "X-Scissor",
+            "German": "Kreuzschere",
+            "French": "Plaie Croix",
+            "Italian": "Forbice X",
+            "Japanese": "シザークロス",
+            "Korean": "시저크로스",
+            "Spanish": "Tijera X"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 65,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "SILVALLY_DARK": {
+      "id": "SILVALLY",
+      "formId": "SILVALLY_DARK",
+      "dexNr": 773,
+      "generation": 7,
+      "names": {
+        "English": "Silvally (Type: Dark)",
+        "German": "Amigento (Typ: Unlicht)",
+        "French": "Silvallié (Type: Dark)",
+        "Italian": "Silvally (Tipo Buio)",
+        "Japanese": "シルヴァディ (タイプ：あく)",
+        "Korean": "실버디 (Type: Dark)",
+        "Spanish": "Silvally (Tipo: Siniestro)"
+      },
+      "stats": {
+        "stamina": 216,
+        "attack": 198,
+        "defense": 198
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "BITE_FAST": {
+          "id": "BITE_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Bite",
+            "German": "Biss",
+            "French": "Morsure",
+            "Italian": "Morso",
+            "Japanese": "かみつく",
+            "Korean": "물기",
+            "Spanish": "Mordisco"
+          },
+          "combat": {
+            "energy": 2,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "TRI_ATTACK": {
+          "id": "TRI_ATTACK",
+          "power": 75,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tri Attack",
+            "German": "Triplette",
+            "French": "Triplattaque",
+            "Italian": "Tripletta",
+            "Japanese": "トライアタック",
+            "Korean": "트라이어택",
+            "Spanish": "Triataque"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 50,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "IRON_HEAD": {
+          "id": "IRON_HEAD",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Head",
+            "German": "Eisenschädel",
+            "French": "Tête de Fer",
+            "Italian": "Metaltestata",
+            "Japanese": "アイアンヘッド",
+            "Korean": "아이언헤드",
+            "Spanish": "Cabeza de Hierro"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "X_SCISSOR": {
+          "id": "X_SCISSOR",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "X-Scissor",
+            "German": "Kreuzschere",
+            "French": "Plaie Croix",
+            "Italian": "Forbice X",
+            "Japanese": "シザークロス",
+            "Korean": "시저크로스",
+            "Spanish": "Tijera X"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 65,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "SILVALLY_DRAGON": {
+      "id": "SILVALLY",
+      "formId": "SILVALLY_DRAGON",
+      "dexNr": 773,
+      "generation": 7,
+      "names": {
+        "English": "Silvally (Type: Dragon)",
+        "German": "Amigento (Typ: Drache)",
+        "French": "Silvallié (Type: Dragon)",
+        "Italian": "Silvally (Tipo Drago)",
+        "Japanese": "シルヴァディ (タイプ：ドラゴン)",
+        "Korean": "실버디 (Type: Dragon)",
+        "Spanish": "Silvally (Tipo: Dragón)"
+      },
+      "stats": {
+        "stamina": 216,
+        "attack": 198,
+        "defense": 198
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "BITE_FAST": {
+          "id": "BITE_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Bite",
+            "German": "Biss",
+            "French": "Morsure",
+            "Italian": "Morso",
+            "Japanese": "かみつく",
+            "Korean": "물기",
+            "Spanish": "Mordisco"
+          },
+          "combat": {
+            "energy": 2,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "TRI_ATTACK": {
+          "id": "TRI_ATTACK",
+          "power": 75,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tri Attack",
+            "German": "Triplette",
+            "French": "Triplattaque",
+            "Italian": "Tripletta",
+            "Japanese": "トライアタック",
+            "Korean": "트라이어택",
+            "Spanish": "Triataque"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 50,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "IRON_HEAD": {
+          "id": "IRON_HEAD",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Head",
+            "German": "Eisenschädel",
+            "French": "Tête de Fer",
+            "Italian": "Metaltestata",
+            "Japanese": "アイアンヘッド",
+            "Korean": "아이언헤드",
+            "Spanish": "Cabeza de Hierro"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "X_SCISSOR": {
+          "id": "X_SCISSOR",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "X-Scissor",
+            "German": "Kreuzschere",
+            "French": "Plaie Croix",
+            "Italian": "Forbice X",
+            "Japanese": "シザークロス",
+            "Korean": "시저크로스",
+            "Spanish": "Tijera X"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 65,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "SILVALLY_ELECTRIC": {
+      "id": "SILVALLY",
+      "formId": "SILVALLY_ELECTRIC",
+      "dexNr": 773,
+      "generation": 7,
+      "names": {
+        "English": "Silvally (Type: Electric)",
+        "German": "Amigento (Typ: Elektro)",
+        "French": "Silvallié (Type: Electric)",
+        "Italian": "Silvally (Tipo Elettro)",
+        "Japanese": "シルヴァディ (タイプ：でんき)",
+        "Korean": "실버디 (Type: Electric)",
+        "Spanish": "Silvally (Tipo: Eléctrico)"
+      },
+      "stats": {
+        "stamina": 216,
+        "attack": 198,
+        "defense": 198
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "BITE_FAST": {
+          "id": "BITE_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Bite",
+            "German": "Biss",
+            "French": "Morsure",
+            "Italian": "Morso",
+            "Japanese": "かみつく",
+            "Korean": "물기",
+            "Spanish": "Mordisco"
+          },
+          "combat": {
+            "energy": 2,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "TRI_ATTACK": {
+          "id": "TRI_ATTACK",
+          "power": 75,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tri Attack",
+            "German": "Triplette",
+            "French": "Triplattaque",
+            "Italian": "Tripletta",
+            "Japanese": "トライアタック",
+            "Korean": "트라이어택",
+            "Spanish": "Triataque"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 50,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "IRON_HEAD": {
+          "id": "IRON_HEAD",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Head",
+            "German": "Eisenschädel",
+            "French": "Tête de Fer",
+            "Italian": "Metaltestata",
+            "Japanese": "アイアンヘッド",
+            "Korean": "아이언헤드",
+            "Spanish": "Cabeza de Hierro"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "X_SCISSOR": {
+          "id": "X_SCISSOR",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "X-Scissor",
+            "German": "Kreuzschere",
+            "French": "Plaie Croix",
+            "Italian": "Forbice X",
+            "Japanese": "シザークロス",
+            "Korean": "시저크로스",
+            "Spanish": "Tijera X"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 65,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "SILVALLY_FAIRY": {
+      "id": "SILVALLY",
+      "formId": "SILVALLY_FAIRY",
+      "dexNr": 773,
+      "generation": 7,
+      "names": {
+        "English": "Silvally (Type: Fairy)",
+        "German": "Amigento (Typ: Fee)",
+        "French": "Silvallié (Type: Fairy)",
+        "Italian": "Silvally (Tipo Folletto)",
+        "Japanese": "シルヴァディ (タイプ：フェアリー)",
+        "Korean": "실버디 (Type: Fairy)",
+        "Spanish": "Silvally (Tipo: Hada)"
+      },
+      "stats": {
+        "stamina": 216,
+        "attack": 198,
+        "defense": 198
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "BITE_FAST": {
+          "id": "BITE_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Bite",
+            "German": "Biss",
+            "French": "Morsure",
+            "Italian": "Morso",
+            "Japanese": "かみつく",
+            "Korean": "물기",
+            "Spanish": "Mordisco"
+          },
+          "combat": {
+            "energy": 2,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "TRI_ATTACK": {
+          "id": "TRI_ATTACK",
+          "power": 75,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tri Attack",
+            "German": "Triplette",
+            "French": "Triplattaque",
+            "Italian": "Tripletta",
+            "Japanese": "トライアタック",
+            "Korean": "트라이어택",
+            "Spanish": "Triataque"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 50,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "IRON_HEAD": {
+          "id": "IRON_HEAD",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Head",
+            "German": "Eisenschädel",
+            "French": "Tête de Fer",
+            "Italian": "Metaltestata",
+            "Japanese": "アイアンヘッド",
+            "Korean": "아이언헤드",
+            "Spanish": "Cabeza de Hierro"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "X_SCISSOR": {
+          "id": "X_SCISSOR",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "X-Scissor",
+            "German": "Kreuzschere",
+            "French": "Plaie Croix",
+            "Italian": "Forbice X",
+            "Japanese": "シザークロス",
+            "Korean": "시저크로스",
+            "Spanish": "Tijera X"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 65,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "SILVALLY_FIGHTING": {
+      "id": "SILVALLY",
+      "formId": "SILVALLY_FIGHTING",
+      "dexNr": 773,
+      "generation": 7,
+      "names": {
+        "English": "Silvally (Type: Fighting)",
+        "German": "Amigento (Typ: Kampf)",
+        "French": "Silvallié (Type: Fighting)",
+        "Italian": "Silvally (Tipo Lotta)",
+        "Japanese": "シルヴァディ (タイプ：かくとう)",
+        "Korean": "실버디 (Type: Fighting)",
+        "Spanish": "Silvally (Tipo: Lucha)"
+      },
+      "stats": {
+        "stamina": 216,
+        "attack": 198,
+        "defense": 198
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "BITE_FAST": {
+          "id": "BITE_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Bite",
+            "German": "Biss",
+            "French": "Morsure",
+            "Italian": "Morso",
+            "Japanese": "かみつく",
+            "Korean": "물기",
+            "Spanish": "Mordisco"
+          },
+          "combat": {
+            "energy": 2,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "TRI_ATTACK": {
+          "id": "TRI_ATTACK",
+          "power": 75,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tri Attack",
+            "German": "Triplette",
+            "French": "Triplattaque",
+            "Italian": "Tripletta",
+            "Japanese": "トライアタック",
+            "Korean": "트라이어택",
+            "Spanish": "Triataque"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 50,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "IRON_HEAD": {
+          "id": "IRON_HEAD",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Head",
+            "German": "Eisenschädel",
+            "French": "Tête de Fer",
+            "Italian": "Metaltestata",
+            "Japanese": "アイアンヘッド",
+            "Korean": "아이언헤드",
+            "Spanish": "Cabeza de Hierro"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "X_SCISSOR": {
+          "id": "X_SCISSOR",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "X-Scissor",
+            "German": "Kreuzschere",
+            "French": "Plaie Croix",
+            "Italian": "Forbice X",
+            "Japanese": "シザークロス",
+            "Korean": "시저크로스",
+            "Spanish": "Tijera X"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 65,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "SILVALLY_FIRE": {
+      "id": "SILVALLY",
+      "formId": "SILVALLY_FIRE",
+      "dexNr": 773,
+      "generation": 7,
+      "names": {
+        "English": "Silvally (Type: Fire)",
+        "German": "Amigento (Typ: Feuer)",
+        "French": "Silvallié (Type: Fire)",
+        "Italian": "Silvally (Tipo Fuoco)",
+        "Japanese": "シルヴァディ (タイプ：ほのお)",
+        "Korean": "실버디 (Type: Fire)",
+        "Spanish": "Silvally (Tipo: Fuego)"
+      },
+      "stats": {
+        "stamina": 216,
+        "attack": 198,
+        "defense": 198
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "BITE_FAST": {
+          "id": "BITE_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Bite",
+            "German": "Biss",
+            "French": "Morsure",
+            "Italian": "Morso",
+            "Japanese": "かみつく",
+            "Korean": "물기",
+            "Spanish": "Mordisco"
+          },
+          "combat": {
+            "energy": 2,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "TRI_ATTACK": {
+          "id": "TRI_ATTACK",
+          "power": 75,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tri Attack",
+            "German": "Triplette",
+            "French": "Triplattaque",
+            "Italian": "Tripletta",
+            "Japanese": "トライアタック",
+            "Korean": "트라이어택",
+            "Spanish": "Triataque"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 50,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "IRON_HEAD": {
+          "id": "IRON_HEAD",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Head",
+            "German": "Eisenschädel",
+            "French": "Tête de Fer",
+            "Italian": "Metaltestata",
+            "Japanese": "アイアンヘッド",
+            "Korean": "아이언헤드",
+            "Spanish": "Cabeza de Hierro"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "X_SCISSOR": {
+          "id": "X_SCISSOR",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "X-Scissor",
+            "German": "Kreuzschere",
+            "French": "Plaie Croix",
+            "Italian": "Forbice X",
+            "Japanese": "シザークロス",
+            "Korean": "시저크로스",
+            "Spanish": "Tijera X"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 65,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "SILVALLY_FLYING": {
+      "id": "SILVALLY",
+      "formId": "SILVALLY_FLYING",
+      "dexNr": 773,
+      "generation": 7,
+      "names": {
+        "English": "Silvally (Type: Flying)",
+        "German": "Amigento (Typ: Flug)",
+        "French": "Silvallié (Type: Flying)",
+        "Italian": "Silvally (Tipo Volante)",
+        "Japanese": "シルヴァディ (タイプ：ひこう)",
+        "Korean": "실버디 (Type: Flying)",
+        "Spanish": "Silvally (Tipo: Volador)"
+      },
+      "stats": {
+        "stamina": 216,
+        "attack": 198,
+        "defense": 198
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "BITE_FAST": {
+          "id": "BITE_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Bite",
+            "German": "Biss",
+            "French": "Morsure",
+            "Italian": "Morso",
+            "Japanese": "かみつく",
+            "Korean": "물기",
+            "Spanish": "Mordisco"
+          },
+          "combat": {
+            "energy": 2,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "TRI_ATTACK": {
+          "id": "TRI_ATTACK",
+          "power": 75,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tri Attack",
+            "German": "Triplette",
+            "French": "Triplattaque",
+            "Italian": "Tripletta",
+            "Japanese": "トライアタック",
+            "Korean": "트라이어택",
+            "Spanish": "Triataque"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 50,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "IRON_HEAD": {
+          "id": "IRON_HEAD",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Head",
+            "German": "Eisenschädel",
+            "French": "Tête de Fer",
+            "Italian": "Metaltestata",
+            "Japanese": "アイアンヘッド",
+            "Korean": "아이언헤드",
+            "Spanish": "Cabeza de Hierro"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "X_SCISSOR": {
+          "id": "X_SCISSOR",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "X-Scissor",
+            "German": "Kreuzschere",
+            "French": "Plaie Croix",
+            "Italian": "Forbice X",
+            "Japanese": "シザークロス",
+            "Korean": "시저크로스",
+            "Spanish": "Tijera X"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 65,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "SILVALLY_GHOST": {
+      "id": "SILVALLY",
+      "formId": "SILVALLY_GHOST",
+      "dexNr": 773,
+      "generation": 7,
+      "names": {
+        "English": "Silvally (Type: Ghost)",
+        "German": "Amigento (Typ: Geist)",
+        "French": "Silvallié (Type: Ghost)",
+        "Italian": "Silvally (di tipo Spettro)",
+        "Japanese": "シルヴァディ (タイプ：ゴースト)",
+        "Korean": "실버디 (Type: Ghost)",
+        "Spanish": "Silvally (Tipo: Fantasma)"
+      },
+      "stats": {
+        "stamina": 216,
+        "attack": 198,
+        "defense": 198
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "BITE_FAST": {
+          "id": "BITE_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Bite",
+            "German": "Biss",
+            "French": "Morsure",
+            "Italian": "Morso",
+            "Japanese": "かみつく",
+            "Korean": "물기",
+            "Spanish": "Mordisco"
+          },
+          "combat": {
+            "energy": 2,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "TRI_ATTACK": {
+          "id": "TRI_ATTACK",
+          "power": 75,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tri Attack",
+            "German": "Triplette",
+            "French": "Triplattaque",
+            "Italian": "Tripletta",
+            "Japanese": "トライアタック",
+            "Korean": "트라이어택",
+            "Spanish": "Triataque"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 50,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "IRON_HEAD": {
+          "id": "IRON_HEAD",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Head",
+            "German": "Eisenschädel",
+            "French": "Tête de Fer",
+            "Italian": "Metaltestata",
+            "Japanese": "アイアンヘッド",
+            "Korean": "아이언헤드",
+            "Spanish": "Cabeza de Hierro"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "X_SCISSOR": {
+          "id": "X_SCISSOR",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "X-Scissor",
+            "German": "Kreuzschere",
+            "French": "Plaie Croix",
+            "Italian": "Forbice X",
+            "Japanese": "シザークロス",
+            "Korean": "시저크로스",
+            "Spanish": "Tijera X"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 65,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "SILVALLY_GRASS": {
+      "id": "SILVALLY",
+      "formId": "SILVALLY_GRASS",
+      "dexNr": 773,
+      "generation": 7,
+      "names": {
+        "English": "Silvally (Type: Grass)",
+        "German": "Amigento (Typ: Pflanze)",
+        "French": "Silvallié (Type: Grass)",
+        "Italian": "Silvally (Tipo Erba)",
+        "Japanese": "シルヴァディ (タイプ：くさ)",
+        "Korean": "실버디 (Type: Grass)",
+        "Spanish": "Silvally (Tipo: Planta)"
+      },
+      "stats": {
+        "stamina": 216,
+        "attack": 198,
+        "defense": 198
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "BITE_FAST": {
+          "id": "BITE_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Bite",
+            "German": "Biss",
+            "French": "Morsure",
+            "Italian": "Morso",
+            "Japanese": "かみつく",
+            "Korean": "물기",
+            "Spanish": "Mordisco"
+          },
+          "combat": {
+            "energy": 2,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "TRI_ATTACK": {
+          "id": "TRI_ATTACK",
+          "power": 75,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tri Attack",
+            "German": "Triplette",
+            "French": "Triplattaque",
+            "Italian": "Tripletta",
+            "Japanese": "トライアタック",
+            "Korean": "트라이어택",
+            "Spanish": "Triataque"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 50,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "IRON_HEAD": {
+          "id": "IRON_HEAD",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Head",
+            "German": "Eisenschädel",
+            "French": "Tête de Fer",
+            "Italian": "Metaltestata",
+            "Japanese": "アイアンヘッド",
+            "Korean": "아이언헤드",
+            "Spanish": "Cabeza de Hierro"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "X_SCISSOR": {
+          "id": "X_SCISSOR",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "X-Scissor",
+            "German": "Kreuzschere",
+            "French": "Plaie Croix",
+            "Italian": "Forbice X",
+            "Japanese": "シザークロス",
+            "Korean": "시저크로스",
+            "Spanish": "Tijera X"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 65,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "SILVALLY_GROUND": {
+      "id": "SILVALLY",
+      "formId": "SILVALLY_GROUND",
+      "dexNr": 773,
+      "generation": 7,
+      "names": {
+        "English": "Silvally (Type: Ground)",
+        "German": "Amigento (Typ: Boden)",
+        "French": "Silvallié (Type: Ground)",
+        "Italian": "Silvally (Tipo Terra)",
+        "Japanese": "シルヴァディ (タイプ：じめん)",
+        "Korean": "실버디 (Type: Ground)",
+        "Spanish": "Silvally (Tipo: Tierra)"
+      },
+      "stats": {
+        "stamina": 216,
+        "attack": 198,
+        "defense": 198
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_GROUND",
+        "names": {
+          "English": "Ground",
+          "German": "Boden",
+          "French": "Sol",
+          "Italian": "Terra",
+          "Japanese": "じめん",
+          "Korean": "땅",
+          "Spanish": "Tierra"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "BITE_FAST": {
+          "id": "BITE_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Bite",
+            "German": "Biss",
+            "French": "Morsure",
+            "Italian": "Morso",
+            "Japanese": "かみつく",
+            "Korean": "물기",
+            "Spanish": "Mordisco"
+          },
+          "combat": {
+            "energy": 2,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "TRI_ATTACK": {
+          "id": "TRI_ATTACK",
+          "power": 75,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tri Attack",
+            "German": "Triplette",
+            "French": "Triplattaque",
+            "Italian": "Tripletta",
+            "Japanese": "トライアタック",
+            "Korean": "트라이어택",
+            "Spanish": "Triataque"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 50,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "IRON_HEAD": {
+          "id": "IRON_HEAD",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Head",
+            "German": "Eisenschädel",
+            "French": "Tête de Fer",
+            "Italian": "Metaltestata",
+            "Japanese": "アイアンヘッド",
+            "Korean": "아이언헤드",
+            "Spanish": "Cabeza de Hierro"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "X_SCISSOR": {
+          "id": "X_SCISSOR",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "X-Scissor",
+            "German": "Kreuzschere",
+            "French": "Plaie Croix",
+            "Italian": "Forbice X",
+            "Japanese": "シザークロス",
+            "Korean": "시저크로스",
+            "Spanish": "Tijera X"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 65,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "SILVALLY_ICE": {
+      "id": "SILVALLY",
+      "formId": "SILVALLY_ICE",
+      "dexNr": 773,
+      "generation": 7,
+      "names": {
+        "English": "Silvally (Type: Ice)",
+        "German": "Amigento (Typ: Eis)",
+        "French": "Silvallié (Type: Ice)",
+        "Italian": "Silvally (Tipo Ghiaccio)",
+        "Japanese": "シルヴァディ (タイプ：こおり)",
+        "Korean": "실버디 (Type: Ice)",
+        "Spanish": "Silvally (Tipo: Hielo)"
+      },
+      "stats": {
+        "stamina": 216,
+        "attack": 198,
+        "defense": 198
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "BITE_FAST": {
+          "id": "BITE_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Bite",
+            "German": "Biss",
+            "French": "Morsure",
+            "Italian": "Morso",
+            "Japanese": "かみつく",
+            "Korean": "물기",
+            "Spanish": "Mordisco"
+          },
+          "combat": {
+            "energy": 2,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "TRI_ATTACK": {
+          "id": "TRI_ATTACK",
+          "power": 75,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tri Attack",
+            "German": "Triplette",
+            "French": "Triplattaque",
+            "Italian": "Tripletta",
+            "Japanese": "トライアタック",
+            "Korean": "트라이어택",
+            "Spanish": "Triataque"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 50,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "IRON_HEAD": {
+          "id": "IRON_HEAD",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Head",
+            "German": "Eisenschädel",
+            "French": "Tête de Fer",
+            "Italian": "Metaltestata",
+            "Japanese": "アイアンヘッド",
+            "Korean": "아이언헤드",
+            "Spanish": "Cabeza de Hierro"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "X_SCISSOR": {
+          "id": "X_SCISSOR",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "X-Scissor",
+            "German": "Kreuzschere",
+            "French": "Plaie Croix",
+            "Italian": "Forbice X",
+            "Japanese": "シザークロス",
+            "Korean": "시저크로스",
+            "Spanish": "Tijera X"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 65,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "SILVALLY_POISON": {
+      "id": "SILVALLY",
+      "formId": "SILVALLY_POISON",
+      "dexNr": 773,
+      "generation": 7,
+      "names": {
+        "English": "Silvally (Type: Poison)",
+        "German": "Amigento (Typ: Gift)",
+        "French": "Silvallié (Type: Poison)",
+        "Italian": "Silvally (Tipo Veleno)",
+        "Japanese": "シルヴァディ (タイプ：どく)",
+        "Korean": "실버디 (Type: Poison)",
+        "Spanish": "Silvally (Tipo: Veneno)"
+      },
+      "stats": {
+        "stamina": 216,
+        "attack": 198,
+        "defense": 198
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "BITE_FAST": {
+          "id": "BITE_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Bite",
+            "German": "Biss",
+            "French": "Morsure",
+            "Italian": "Morso",
+            "Japanese": "かみつく",
+            "Korean": "물기",
+            "Spanish": "Mordisco"
+          },
+          "combat": {
+            "energy": 2,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "TRI_ATTACK": {
+          "id": "TRI_ATTACK",
+          "power": 75,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tri Attack",
+            "German": "Triplette",
+            "French": "Triplattaque",
+            "Italian": "Tripletta",
+            "Japanese": "トライアタック",
+            "Korean": "트라이어택",
+            "Spanish": "Triataque"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 50,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "IRON_HEAD": {
+          "id": "IRON_HEAD",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Head",
+            "German": "Eisenschädel",
+            "French": "Tête de Fer",
+            "Italian": "Metaltestata",
+            "Japanese": "アイアンヘッド",
+            "Korean": "아이언헤드",
+            "Spanish": "Cabeza de Hierro"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "X_SCISSOR": {
+          "id": "X_SCISSOR",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "X-Scissor",
+            "German": "Kreuzschere",
+            "French": "Plaie Croix",
+            "Italian": "Forbice X",
+            "Japanese": "シザークロス",
+            "Korean": "시저크로스",
+            "Spanish": "Tijera X"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 65,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "SILVALLY_PSYCHIC": {
+      "id": "SILVALLY",
+      "formId": "SILVALLY_PSYCHIC",
+      "dexNr": 773,
+      "generation": 7,
+      "names": {
+        "English": "Silvally (Type: Psychic)",
+        "German": "Amigento (Typ: Psycho)",
+        "French": "Silvallié (Type: Psychic)",
+        "Italian": "Silvally (Tipo Psico)",
+        "Japanese": "シルヴァディ (タイプ：エスパー)",
+        "Korean": "실버디 (Type: Psychic)",
+        "Spanish": "Silvally (Tipo: Psíquico)"
+      },
+      "stats": {
+        "stamina": 216,
+        "attack": 198,
+        "defense": 198
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "BITE_FAST": {
+          "id": "BITE_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Bite",
+            "German": "Biss",
+            "French": "Morsure",
+            "Italian": "Morso",
+            "Japanese": "かみつく",
+            "Korean": "물기",
+            "Spanish": "Mordisco"
+          },
+          "combat": {
+            "energy": 2,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "TRI_ATTACK": {
+          "id": "TRI_ATTACK",
+          "power": 75,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tri Attack",
+            "German": "Triplette",
+            "French": "Triplattaque",
+            "Italian": "Tripletta",
+            "Japanese": "トライアタック",
+            "Korean": "트라이어택",
+            "Spanish": "Triataque"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 50,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "IRON_HEAD": {
+          "id": "IRON_HEAD",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Head",
+            "German": "Eisenschädel",
+            "French": "Tête de Fer",
+            "Italian": "Metaltestata",
+            "Japanese": "アイアンヘッド",
+            "Korean": "아이언헤드",
+            "Spanish": "Cabeza de Hierro"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "X_SCISSOR": {
+          "id": "X_SCISSOR",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "X-Scissor",
+            "German": "Kreuzschere",
+            "French": "Plaie Croix",
+            "Italian": "Forbice X",
+            "Japanese": "シザークロス",
+            "Korean": "시저크로스",
+            "Spanish": "Tijera X"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 65,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "SILVALLY_ROCK": {
+      "id": "SILVALLY",
+      "formId": "SILVALLY_ROCK",
+      "dexNr": 773,
+      "generation": 7,
+      "names": {
+        "English": "Silvally (Type: Rock)",
+        "German": "Amigento (Typ: Gestein)",
+        "French": "Silvallié (Type: Rock)",
+        "Italian": "Silvally (Tipo Roccia)",
+        "Japanese": "シルヴァディ (タイプ：いわ)",
+        "Korean": "실버디 (타입:록)",
+        "Spanish": "Silvally (Tipo: Roca)"
+      },
+      "stats": {
+        "stamina": 216,
+        "attack": 198,
+        "defense": 198
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "BITE_FAST": {
+          "id": "BITE_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Bite",
+            "German": "Biss",
+            "French": "Morsure",
+            "Italian": "Morso",
+            "Japanese": "かみつく",
+            "Korean": "물기",
+            "Spanish": "Mordisco"
+          },
+          "combat": {
+            "energy": 2,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "TRI_ATTACK": {
+          "id": "TRI_ATTACK",
+          "power": 75,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tri Attack",
+            "German": "Triplette",
+            "French": "Triplattaque",
+            "Italian": "Tripletta",
+            "Japanese": "トライアタック",
+            "Korean": "트라이어택",
+            "Spanish": "Triataque"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 50,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "IRON_HEAD": {
+          "id": "IRON_HEAD",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Head",
+            "German": "Eisenschädel",
+            "French": "Tête de Fer",
+            "Italian": "Metaltestata",
+            "Japanese": "アイアンヘッド",
+            "Korean": "아이언헤드",
+            "Spanish": "Cabeza de Hierro"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "X_SCISSOR": {
+          "id": "X_SCISSOR",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "X-Scissor",
+            "German": "Kreuzschere",
+            "French": "Plaie Croix",
+            "Italian": "Forbice X",
+            "Japanese": "シザークロス",
+            "Korean": "시저크로스",
+            "Spanish": "Tijera X"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 65,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "SILVALLY_STEEL": {
+      "id": "SILVALLY",
+      "formId": "SILVALLY_STEEL",
+      "dexNr": 773,
+      "generation": 7,
+      "names": {
+        "English": "Silvally (Type: Steel)",
+        "German": "Amigento (Typ: Stahl)",
+        "French": "Silvallié (Type: Steel)",
+        "Italian": "Silvally (Tipo Acciaio)",
+        "Japanese": "シルヴァディ (タイプ：はがね)",
+        "Korean": "실버디 (Type: Steel)",
+        "Spanish": "Silvally (Tipo: Acero)"
+      },
+      "stats": {
+        "stamina": 216,
+        "attack": 198,
+        "defense": 198
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "BITE_FAST": {
+          "id": "BITE_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Bite",
+            "German": "Biss",
+            "French": "Morsure",
+            "Italian": "Morso",
+            "Japanese": "かみつく",
+            "Korean": "물기",
+            "Spanish": "Mordisco"
+          },
+          "combat": {
+            "energy": 2,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "TRI_ATTACK": {
+          "id": "TRI_ATTACK",
+          "power": 75,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tri Attack",
+            "German": "Triplette",
+            "French": "Triplattaque",
+            "Italian": "Tripletta",
+            "Japanese": "トライアタック",
+            "Korean": "트라이어택",
+            "Spanish": "Triataque"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 50,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "IRON_HEAD": {
+          "id": "IRON_HEAD",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Head",
+            "German": "Eisenschädel",
+            "French": "Tête de Fer",
+            "Italian": "Metaltestata",
+            "Japanese": "アイアンヘッド",
+            "Korean": "아이언헤드",
+            "Spanish": "Cabeza de Hierro"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "X_SCISSOR": {
+          "id": "X_SCISSOR",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "X-Scissor",
+            "German": "Kreuzschere",
+            "French": "Plaie Croix",
+            "Italian": "Forbice X",
+            "Japanese": "シザークロス",
+            "Korean": "시저크로스",
+            "Spanish": "Tijera X"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 65,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "SILVALLY_WATER": {
+      "id": "SILVALLY",
+      "formId": "SILVALLY_WATER",
+      "dexNr": 773,
+      "generation": 7,
+      "names": {
+        "English": "Silvally (Type: Water)",
+        "German": "Amigento (Typ: Wasser)",
+        "French": "Silvallié (Type: Water)",
+        "Italian": "Silvally (Tipo Acqua)",
+        "Japanese": "シルヴァディ (タイプ：みず)",
+        "Korean": "실버디 (Type: Water)",
+        "Spanish": "Silvally (Tipo: Agua)"
+      },
+      "stats": {
+        "stamina": 216,
+        "attack": 198,
+        "defense": 198
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "BITE_FAST": {
+          "id": "BITE_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Bite",
+            "German": "Biss",
+            "French": "Morsure",
+            "Italian": "Morso",
+            "Japanese": "かみつく",
+            "Korean": "물기",
+            "Spanish": "Mordisco"
+          },
+          "combat": {
+            "energy": 2,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "TRI_ATTACK": {
+          "id": "TRI_ATTACK",
+          "power": 75,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tri Attack",
+            "German": "Triplette",
+            "French": "Triplattaque",
+            "Italian": "Tripletta",
+            "Japanese": "トライアタック",
+            "Korean": "트라이어택",
+            "Spanish": "Triataque"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 50,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "IRON_HEAD": {
+          "id": "IRON_HEAD",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Head",
+            "German": "Eisenschädel",
+            "French": "Tête de Fer",
+            "Italian": "Metaltestata",
+            "Japanese": "アイアンヘッド",
+            "Korean": "아이언헤드",
+            "Spanish": "Cabeza de Hierro"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AERIAL_ACE": {
+          "id": "AERIAL_ACE",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aerial Ace",
+            "German": "Aero-Ass",
+            "French": "Aéropique",
+            "Italian": "Aeroassalto",
+            "Japanese": "つばめがえし",
+            "Korean": "제비반환",
+            "Spanish": "Golpe Aéreo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "X_SCISSOR": {
+          "id": "X_SCISSOR",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "X-Scissor",
+            "German": "Kreuzschere",
+            "French": "Plaie Croix",
+            "Italian": "Forbice X",
+            "Japanese": "シザークロス",
+            "Korean": "시저크로스",
+            "Spanish": "Tijera X"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 65,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": []
+}

@@ -1,0 +1,237 @@
+{
+  "id": "DRILBUR",
+  "formId": "DRILBUR",
+  "dexNr": 529,
+  "generation": 5,
+  "names": {
+    "English": "Drilbur",
+    "German": "Rotomurf",
+    "French": "Rototaupe",
+    "Italian": "Drilbur",
+    "Japanese": "モグリュー",
+    "Korean": "두더류",
+    "Spanish": "Drilbur"
+  },
+  "stats": {
+    "stamina": 155,
+    "attack": 154,
+    "defense": 85
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_GROUND",
+    "names": {
+      "English": "Ground",
+      "German": "Boden",
+      "French": "Sol",
+      "Italian": "Terra",
+      "Japanese": "じめん",
+      "Korean": "땅",
+      "Spanish": "Tierra"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "SCRATCH_FAST": {
+      "id": "SCRATCH_FAST",
+      "power": 6,
+      "energy": 4,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Scratch",
+        "German": "Kratzer",
+        "French": "Griffe",
+        "Italian": "Graffio",
+        "Japanese": "ひっかく",
+        "Korean": "할퀴기",
+        "Spanish": "Arañazo"
+      },
+      "combat": {
+        "energy": 2,
+        "power": 4,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "MUD_SLAP_FAST": {
+      "id": "MUD_SLAP_FAST",
+      "power": 19,
+      "energy": 13,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_GROUND",
+        "names": {
+          "English": "Ground",
+          "German": "Boden",
+          "French": "Sol",
+          "Italian": "Terra",
+          "Japanese": "じめん",
+          "Korean": "땅",
+          "Spanish": "Tierra"
+        }
+      },
+      "names": {
+        "English": "Mud-Slap",
+        "German": "Lehmschelle",
+        "French": "Coud’Boue",
+        "Italian": "Fangosberla",
+        "Japanese": "どろかけ",
+        "Korean": "진흙뿌리기",
+        "Spanish": "Bofetón Lodo"
+      },
+      "combat": {
+        "energy": 10,
+        "power": 11,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "ROCK_TOMB": {
+      "id": "ROCK_TOMB",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Rock Tomb",
+        "German": "Felsgrab",
+        "French": "Tomberoche",
+        "Italian": "Rocciotomba",
+        "Japanese": "がんせきふうじ",
+        "Korean": "암석봉인",
+        "Spanish": "Tumba Rocas"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 75,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "DIG": {
+      "id": "DIG",
+      "power": 100,
+      "energy": -50,
+      "durationMs": 4500,
+      "type": {
+        "type": "POKEMON_TYPE_GROUND",
+        "names": {
+          "English": "Ground",
+          "German": "Boden",
+          "French": "Sol",
+          "Italian": "Terra",
+          "Japanese": "じめん",
+          "Korean": "땅",
+          "Spanish": "Tierra"
+        }
+      },
+      "names": {
+        "English": "Dig",
+        "German": "Schaufler",
+        "French": "Tunnel",
+        "Italian": "Fossa",
+        "Japanese": "あなをほる",
+        "Korean": "구멍파기",
+        "Spanish": "Excavar"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "DRILL_RUN": {
+      "id": "DRILL_RUN",
+      "power": 85,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_GROUND",
+        "names": {
+          "English": "Ground",
+          "German": "Boden",
+          "French": "Sol",
+          "Italian": "Terra",
+          "Japanese": "じめん",
+          "Korean": "땅",
+          "Spanish": "Tierra"
+        }
+      },
+      "names": {
+        "English": "Drill Run",
+        "German": "Schlagbohrer",
+        "French": "Tunnelier",
+        "Italian": "Giravvita",
+        "Japanese": "ドリルライナー",
+        "Korean": "드릴라이너",
+        "Spanish": "Taladradora"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm529.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm529.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "EXCADRILL",
+      "formId": "EXCADRILL_NORMAL",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm529.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm529.s.icon.png"
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "id": "BELDUM",
+  "formId": "BELDUM",
+  "dexNr": 374,
+  "generation": 3,
+  "names": {
+    "English": "Beldum",
+    "German": "Tanhel",
+    "French": "Terhal",
+    "Italian": "Beldum",
+    "Japanese": "ダンバル",
+    "Korean": "메탕",
+    "Spanish": "Beldum"
+  },
+  "stats": {
+    "stamina": 120,
+    "attack": 96,
+    "defense": 132
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_STEEL",
+    "names": {
+      "English": "Steel",
+      "German": "Stahl",
+      "French": "Acier",
+      "Italian": "Acciaio",
+      "Japanese": "はがね",
+      "Korean": "강철",
+      "Spanish": "Acero"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_PSYCHIC",
+    "names": {
+      "English": "Psychic",
+      "German": "Psycho",
+      "French": "Psy",
+      "Italian": "Psico",
+      "Japanese": "エスパー",
+      "Korean": "에스퍼",
+      "Spanish": "Psíquico"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "TAKE_DOWN_FAST": {
+      "id": "TAKE_DOWN_FAST",
+      "power": 7,
+      "energy": 8,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Take Down",
+        "German": "Bodycheck",
+        "French": "Bélier",
+        "Italian": "Riduttore",
+        "Japanese": "とっしん",
+        "Korean": "돌진",
+        "Spanish": "Derribo"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 5,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "IRON_HEAD": {
+      "id": "IRON_HEAD",
+      "power": 60,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Iron Head",
+        "German": "Eisenschädel",
+        "French": "Tête de Fer",
+        "Italian": "Metaltestata",
+        "Japanese": "アイアンヘッド",
+        "Korean": "아이언헤드",
+        "Spanish": "Cabeza de Hierro"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm374.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm374.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "METANG",
+      "formId": "METANG_NORMAL",
+      "candies": 25,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm374.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm374.s.icon.png"
+    }
+  ]
+}

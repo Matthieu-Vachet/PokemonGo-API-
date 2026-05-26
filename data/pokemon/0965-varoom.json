@@ -1,0 +1,281 @@
+{
+  "id": "VAROOM",
+  "formId": "VAROOM",
+  "dexNr": 965,
+  "generation": 9,
+  "names": {
+    "English": "Varoom",
+    "German": "Knattox",
+    "French": "Vrombi",
+    "Italian": "Varoom",
+    "Japanese": "ブロロン",
+    "Korean": "부르롱",
+    "Spanish": "Varoom"
+  },
+  "stats": {
+    "stamina": 128,
+    "attack": 123,
+    "defense": 107
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_STEEL",
+    "names": {
+      "English": "Steel",
+      "German": "Stahl",
+      "French": "Acier",
+      "Italian": "Acciaio",
+      "Japanese": "はがね",
+      "Korean": "강철",
+      "Spanish": "Acero"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_POISON",
+    "names": {
+      "English": "Poison",
+      "German": "Gift",
+      "French": "Poison",
+      "Italian": "Veleno",
+      "Japanese": "どく",
+      "Korean": "독",
+      "Spanish": "Veneno"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "LICK_FAST": {
+      "id": "LICK_FAST",
+      "power": 5,
+      "energy": 6,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Lick",
+        "German": "Schlecker",
+        "French": "Léchouille",
+        "Italian": "Leccata",
+        "Japanese": "したでなめる",
+        "Korean": "핥기",
+        "Spanish": "Lengüetazo"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "POISON_JAB_FAST": {
+      "id": "POISON_JAB_FAST",
+      "power": 13,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Poison Jab",
+        "German": "Gifthieb",
+        "French": "Direct Toxik",
+        "Italian": "Velenpuntura",
+        "Japanese": "どくづき",
+        "Korean": "독찌르기",
+        "Spanish": "Puya Nociva"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 7,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "METAL_SOUND_FAST": {
+      "id": "METAL_SOUND_FAST",
+      "power": 4,
+      "energy": 6,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Metal Sound",
+        "German": "Metallsound",
+        "French": "Strido-Son",
+        "Italian": "Ferrostrido",
+        "Japanese": "きんぞくおん",
+        "Korean": "금속음",
+        "Spanish": "Eco Metálico"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "ACID_SPRAY": {
+      "id": "ACID_SPRAY",
+      "power": 20,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Acid Spray",
+        "German": "Säurespeier",
+        "French": "Bombe Acide",
+        "Italian": "Acidobomba",
+        "Japanese": "アシッドボム",
+        "Korean": "애시드봄",
+        "Spanish": "Bomba Ácida"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 20,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -2
+        }
+      }
+    },
+    "GUNK_SHOT": {
+      "id": "GUNK_SHOT",
+      "power": 130,
+      "energy": -100,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Gunk Shot",
+        "German": "Mülltreffer",
+        "French": "Détricanon",
+        "Italian": "Sporcolancio",
+        "Japanese": "ダストシュート",
+        "Korean": "더스트슈트",
+        "Spanish": "Lanzamugre"
+      },
+      "combat": {
+        "energy": -75,
+        "power": 130,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "GYRO_BALL": {
+      "id": "GYRO_BALL",
+      "power": 85,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Gyro Ball",
+        "German": "Gyroball",
+        "French": "Gyroballe",
+        "Italian": "Vortexpalla",
+        "Japanese": "ジャイロボール",
+        "Korean": "자이로볼",
+        "Spanish": "Giro Bola"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm965.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm965.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "REVAVROOM",
+      "formId": "REVAVROOM",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm965.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm965.s.icon.png"
+    }
+  ]
+}

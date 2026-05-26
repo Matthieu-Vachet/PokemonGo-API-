@@ -1,0 +1,421 @@
+{
+  "id": "AGGRON",
+  "formId": "AGGRON",
+  "dexNr": 306,
+  "generation": 3,
+  "names": {
+    "English": "Aggron",
+    "German": "Stolloss",
+    "French": "Galeking",
+    "Italian": "Aggron",
+    "Japanese": "ボスゴドラ",
+    "Korean": "보스로라",
+    "Spanish": "Aggron"
+  },
+  "stats": {
+    "stamina": 172,
+    "attack": 198,
+    "defense": 257
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_STEEL",
+    "names": {
+      "English": "Steel",
+      "German": "Stahl",
+      "French": "Acier",
+      "Italian": "Acciaio",
+      "Japanese": "はがね",
+      "Korean": "강철",
+      "Spanish": "Acero"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_ROCK",
+    "names": {
+      "English": "Rock",
+      "German": "Gestein",
+      "French": "Roche",
+      "Italian": "Roccia",
+      "Japanese": "いわ",
+      "Korean": "바위",
+      "Spanish": "Roca"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "DRAGON_TAIL_FAST": {
+      "id": "DRAGON_TAIL_FAST",
+      "power": 14,
+      "energy": 8,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "names": {
+        "English": "Dragon Tail",
+        "German": "Drachenrute",
+        "French": "Draco-Queue",
+        "Italian": "Codadrago",
+        "Japanese": "ドラゴンテール",
+        "Korean": "드래곤테일",
+        "Spanish": "Cola Dragón"
+      },
+      "combat": {
+        "energy": 12,
+        "power": 9,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "IRON_TAIL_FAST": {
+      "id": "IRON_TAIL_FAST",
+      "power": 14,
+      "energy": 6,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Iron Tail",
+        "German": "Eisenschweif",
+        "French": "Queue de Fer",
+        "Italian": "Codacciaio",
+        "Japanese": "アイアンテール",
+        "Korean": "아이언테일",
+        "Spanish": "Cola Férrea"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 10,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "SMACK_DOWN_FAST": {
+      "id": "SMACK_DOWN_FAST",
+      "power": 13,
+      "energy": 7,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Smack Down",
+        "German": "Katapult",
+        "French": "Anti-Air",
+        "Italian": "Abbattimento",
+        "Japanese": "うちおとす",
+        "Korean": "떨어뜨리기",
+        "Spanish": "Antiaéreo"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 11,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "METAL_SOUND_FAST": {
+      "id": "METAL_SOUND_FAST",
+      "power": 4,
+      "energy": 6,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Metal Sound",
+        "German": "Metallsound",
+        "French": "Strido-Son",
+        "Italian": "Ferrostrido",
+        "Japanese": "きんぞくおん",
+        "Korean": "금속음",
+        "Spanish": "Eco Metálico"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "THUNDER": {
+      "id": "THUNDER",
+      "power": 100,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Thunder",
+        "German": "Donner",
+        "French": "Fatal-Foudre",
+        "Italian": "Tuono",
+        "Japanese": "かみなり",
+        "Korean": "번개",
+        "Spanish": "Trueno"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 100,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "STONE_EDGE": {
+      "id": "STONE_EDGE",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Stone Edge",
+        "German": "Steinkante",
+        "French": "Lame de Roc",
+        "Italian": "Pietrataglio",
+        "Japanese": "ストーンエッジ",
+        "Korean": "스톤에지",
+        "Spanish": "Roca Afilada"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 100,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "HEAVY_SLAM": {
+      "id": "HEAVY_SLAM",
+      "power": 70,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Heavy Slam",
+        "German": "Rammboss",
+        "French": "Tacle Lourd",
+        "Italian": "Pesobomba",
+        "Japanese": "ヘビーボンバー",
+        "Korean": "헤비봄버",
+        "Spanish": "Cuerpo Pesado"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ROCK_TOMB": {
+      "id": "ROCK_TOMB",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Rock Tomb",
+        "German": "Felsgrab",
+        "French": "Tomberoche",
+        "Italian": "Rocciotomba",
+        "Japanese": "がんせきふうじ",
+        "Korean": "암석봉인",
+        "Spanish": "Tumba Rocas"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 75,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "METEOR_BEAM": {
+      "id": "METEOR_BEAM",
+      "power": 140,
+      "energy": -100,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Meteor Beam",
+        "German": "Meteorstrahl",
+        "French": "Laser Météore",
+        "Italian": "Raggiometeora",
+        "Japanese": "メテオビーム",
+        "Korean": "메테오빔",
+        "Spanish": "Rayo Meteórico"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 120,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": 1,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm306.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm306.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": true,
+  "megaEvolutions": {
+    "AGGRON_MEGA": {
+      "id": "AGGRON_MEGA",
+      "names": {
+        "English": "Mega Aggron",
+        "German": "Mega-Stolloss",
+        "French": "Méga-Galeking",
+        "Italian": "MegaAggron",
+        "Japanese": "メガボスゴドラ",
+        "Korean": "메가보스로라",
+        "Spanish": "Mega-Aggron"
+      },
+      "stats": {
+        "stamina": 172,
+        "attack": 247,
+        "defense": 331
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "secondaryType": null,
+      "energyCost": 200,
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm306.fMEGA.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm306.fMEGA.s.icon.png"
+      }
+    }
+  },
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "MEGA",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm306.fMEGA.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm306.fMEGA.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm306.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm306.s.icon.png"
+    }
+  ]
+}

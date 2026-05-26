@@ -1,0 +1,1458 @@
+{
+  "id": "ROTOM",
+  "formId": "ROTOM",
+  "dexNr": 479,
+  "generation": 4,
+  "names": {
+    "English": "Rotom",
+    "German": "Rotom",
+    "French": "Motisma",
+    "Italian": "Rotom",
+    "Japanese": "ロトム",
+    "Korean": "로토무",
+    "Spanish": "Rotom"
+  },
+  "stats": {
+    "stamina": 137,
+    "attack": 185,
+    "defense": 159
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_ELECTRIC",
+    "names": {
+      "English": "Electric",
+      "German": "Elektro",
+      "French": "Électrik",
+      "Italian": "Elettro",
+      "Japanese": "でんき",
+      "Korean": "전기",
+      "Spanish": "Eléctrico"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_GHOST",
+    "names": {
+      "English": "Ghost",
+      "German": "Geist",
+      "French": "Spectre",
+      "Italian": "Spettro",
+      "Japanese": "ゴースト",
+      "Korean": "고스트",
+      "Spanish": "Fantasma"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "ASTONISH_FAST": {
+      "id": "ASTONISH_FAST",
+      "power": 7,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Astonish",
+        "German": "Erstauner",
+        "French": "Étonnement",
+        "Italian": "Sgomento",
+        "Japanese": "おどろかす",
+        "Korean": "놀래키기",
+        "Spanish": "Impresionar"
+      },
+      "combat": {
+        "energy": 10,
+        "power": 12,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "THUNDER_SHOCK_FAST": {
+      "id": "THUNDER_SHOCK_FAST",
+      "power": 4,
+      "energy": 7,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Thunder Shock",
+        "German": "Donnerschock",
+        "French": "Éclair",
+        "Italian": "Tuonoshock",
+        "Japanese": "でんきショック",
+        "Korean": "전기쇼크",
+        "Spanish": "Impactrueno"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 4,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "OMINOUS_WIND": {
+      "id": "OMINOUS_WIND",
+      "power": 55,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Ominous Wind",
+        "German": "Unheilböen",
+        "French": "Vent Mauvais",
+        "Italian": "Funestovento",
+        "Japanese": "あやしいかぜ",
+        "Korean": "괴상한바람",
+        "Spanish": "Viento Aciago"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 45,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": 1,
+          "attackerDefenseStatsChange": 1,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "THUNDERBOLT": {
+      "id": "THUNDERBOLT",
+      "power": 80,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Thunderbolt",
+        "German": "Donnerblitz",
+        "French": "Tonnerre",
+        "Italian": "Fulmine",
+        "Japanese": "１０まんボルト",
+        "Korean": "10만볼트",
+        "Spanish": "Rayo"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "THUNDER": {
+      "id": "THUNDER",
+      "power": 100,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Thunder",
+        "German": "Donner",
+        "French": "Fatal-Foudre",
+        "Italian": "Tuono",
+        "Japanese": "かみなり",
+        "Korean": "번개",
+        "Spanish": "Trueno"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 100,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.s.icon.png"
+  },
+  "regionForms": {
+    "ROTOM_FAN": {
+      "id": "ROTOM",
+      "formId": "ROTOM_FAN",
+      "dexNr": 479,
+      "generation": 4,
+      "names": {
+        "English": "Rotom (Fan Rotom)",
+        "German": "Rotom (Wirbel-Rotom)",
+        "French": "Motisma (Motisma Hélice)",
+        "Italian": "Rotom (Rotom Vortice)",
+        "Japanese": "ロトム (スピンロトム)",
+        "Korean": "로토무 (스핀로토무)",
+        "Spanish": "Rotom (Rotom Ventilador)"
+      },
+      "stats": {
+        "stamina": 137,
+        "attack": 204,
+        "defense": 219
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "ASTONISH_FAST": {
+          "id": "ASTONISH_FAST",
+          "power": 7,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Astonish",
+            "German": "Erstauner",
+            "French": "Étonnement",
+            "Italian": "Sgomento",
+            "Japanese": "おどろかす",
+            "Korean": "놀래키기",
+            "Spanish": "Impresionar"
+          },
+          "combat": {
+            "energy": 10,
+            "power": 12,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "AIR_SLASH_FAST": {
+          "id": "AIR_SLASH_FAST",
+          "power": 12,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Air Slash",
+            "German": "Luftschnitt",
+            "French": "Lame d’Air",
+            "Italian": "Eterelama",
+            "Japanese": "エアスラッシュ",
+            "Korean": "에어슬래시",
+            "Spanish": "Tajo Aéreo"
+          },
+          "combat": {
+            "energy": 9,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "OMINOUS_WIND": {
+          "id": "OMINOUS_WIND",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Ominous Wind",
+            "German": "Unheilböen",
+            "French": "Vent Mauvais",
+            "Italian": "Funestovento",
+            "Japanese": "あやしいかぜ",
+            "Korean": "괴상한바람",
+            "Spanish": "Viento Aciago"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 45,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": 1,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "THUNDERBOLT": {
+          "id": "THUNDERBOLT",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunderbolt",
+            "German": "Donnerblitz",
+            "French": "Tonnerre",
+            "Italian": "Fulmine",
+            "Japanese": "１０まんボルト",
+            "Korean": "10만볼트",
+            "Spanish": "Rayo"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "THUNDER": {
+          "id": "THUNDER",
+          "power": 100,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunder",
+            "German": "Donner",
+            "French": "Fatal-Foudre",
+            "Italian": "Tuono",
+            "Japanese": "かみなり",
+            "Korean": "번개",
+            "Spanish": "Trueno"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.fFAN.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.fFAN.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "ROTOM_FROST": {
+      "id": "ROTOM",
+      "formId": "ROTOM_FROST",
+      "dexNr": 479,
+      "generation": 4,
+      "names": {
+        "English": "Rotom (Frost Rotom)",
+        "German": "Rotom (Frost-Rotom)",
+        "French": "Motisma (Motisma Froid)",
+        "Italian": "Rotom (Rotom Gelo)",
+        "Japanese": "ロトム (フロストロトム)",
+        "Korean": "로토무 (프로스트로토무)",
+        "Spanish": "Rotom (Rotom Frío)"
+      },
+      "stats": {
+        "stamina": 137,
+        "attack": 204,
+        "defense": 219
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "ASTONISH_FAST": {
+          "id": "ASTONISH_FAST",
+          "power": 7,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Astonish",
+            "German": "Erstauner",
+            "French": "Étonnement",
+            "Italian": "Sgomento",
+            "Japanese": "おどろかす",
+            "Korean": "놀래키기",
+            "Spanish": "Impresionar"
+          },
+          "combat": {
+            "energy": 10,
+            "power": 12,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "THUNDER_SHOCK_FAST": {
+          "id": "THUNDER_SHOCK_FAST",
+          "power": 4,
+          "energy": 7,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunder Shock",
+            "German": "Donnerschock",
+            "French": "Éclair",
+            "Italian": "Tuonoshock",
+            "Japanese": "でんきショック",
+            "Korean": "전기쇼크",
+            "Spanish": "Impactrueno"
+          },
+          "combat": {
+            "energy": 9,
+            "power": 4,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "BLIZZARD": {
+          "id": "BLIZZARD",
+          "power": 130,
+          "energy": -100,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_ICE",
+            "names": {
+              "English": "Ice",
+              "German": "Eis",
+              "French": "Glace",
+              "Italian": "Ghiaccio",
+              "Japanese": "こおり",
+              "Korean": "얼음",
+              "Spanish": "Hielo"
+            }
+          },
+          "names": {
+            "English": "Blizzard",
+            "German": "Blizzard",
+            "French": "Blizzard",
+            "Italian": "Bora",
+            "Japanese": "ふぶき",
+            "Korean": "눈보라",
+            "Spanish": "Ventisca"
+          },
+          "combat": {
+            "energy": -75,
+            "power": 140,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "THUNDERBOLT": {
+          "id": "THUNDERBOLT",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunderbolt",
+            "German": "Donnerblitz",
+            "French": "Tonnerre",
+            "Italian": "Fulmine",
+            "Japanese": "１０まんボルト",
+            "Korean": "10만볼트",
+            "Spanish": "Rayo"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "THUNDER": {
+          "id": "THUNDER",
+          "power": 100,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunder",
+            "German": "Donner",
+            "French": "Fatal-Foudre",
+            "Italian": "Tuono",
+            "Japanese": "かみなり",
+            "Korean": "번개",
+            "Spanish": "Trueno"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.fFROST.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.fFROST.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "ROTOM_HEAT": {
+      "id": "ROTOM",
+      "formId": "ROTOM_HEAT",
+      "dexNr": 479,
+      "generation": 4,
+      "names": {
+        "English": "Rotom (Heat Rotom)",
+        "German": "Rotom (Hitze-Rotom)",
+        "French": "Motisma (Motisma Chaleur)",
+        "Italian": "Rotom (Rotom Calore)",
+        "Japanese": "ロトム (ヒートロトム)",
+        "Korean": "로토무 (히트로토무)",
+        "Spanish": "Rotom (Rotom Calor)"
+      },
+      "stats": {
+        "stamina": 137,
+        "attack": 204,
+        "defense": 219
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "ASTONISH_FAST": {
+          "id": "ASTONISH_FAST",
+          "power": 7,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Astonish",
+            "German": "Erstauner",
+            "French": "Étonnement",
+            "Italian": "Sgomento",
+            "Japanese": "おどろかす",
+            "Korean": "놀래키기",
+            "Spanish": "Impresionar"
+          },
+          "combat": {
+            "energy": 10,
+            "power": 12,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "THUNDER_SHOCK_FAST": {
+          "id": "THUNDER_SHOCK_FAST",
+          "power": 4,
+          "energy": 7,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunder Shock",
+            "German": "Donnerschock",
+            "French": "Éclair",
+            "Italian": "Tuonoshock",
+            "Japanese": "でんきショック",
+            "Korean": "전기쇼크",
+            "Spanish": "Impactrueno"
+          },
+          "combat": {
+            "energy": 9,
+            "power": 4,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "OVERHEAT": {
+          "id": "OVERHEAT",
+          "power": 160,
+          "energy": -100,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_FIRE",
+            "names": {
+              "English": "Fire",
+              "German": "Feuer",
+              "French": "Feu",
+              "Italian": "Fuoco",
+              "Japanese": "ほのお",
+              "Korean": "불꽃",
+              "Spanish": "Fuego"
+            }
+          },
+          "names": {
+            "English": "Overheat",
+            "German": "Hitzekoller",
+            "French": "Surchauffe",
+            "Italian": "Vampata",
+            "Japanese": "オーバーヒート",
+            "Korean": "오버히트",
+            "Spanish": "Sofoco"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 130,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": -2,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "THUNDERBOLT": {
+          "id": "THUNDERBOLT",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunderbolt",
+            "German": "Donnerblitz",
+            "French": "Tonnerre",
+            "Italian": "Fulmine",
+            "Japanese": "１０まんボルト",
+            "Korean": "10만볼트",
+            "Spanish": "Rayo"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "THUNDER": {
+          "id": "THUNDER",
+          "power": 100,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunder",
+            "German": "Donner",
+            "French": "Fatal-Foudre",
+            "Italian": "Tuono",
+            "Japanese": "かみなり",
+            "Korean": "번개",
+            "Spanish": "Trueno"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.fHEAT.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.fHEAT.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "ROTOM_MOW": {
+      "id": "ROTOM",
+      "formId": "ROTOM_MOW",
+      "dexNr": 479,
+      "generation": 4,
+      "names": {
+        "English": "Rotom (Mow Rotom)",
+        "German": "Rotom (Schneid-Rotom)",
+        "French": "Motisma (Motisma Tonte)",
+        "Italian": "Rotom (Rotom Taglio)",
+        "Japanese": "ロトム (カットロトム)",
+        "Korean": "로토무 (커트로토무)",
+        "Spanish": "Rotom (Rotom Corte)"
+      },
+      "stats": {
+        "stamina": 137,
+        "attack": 204,
+        "defense": 219
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "ASTONISH_FAST": {
+          "id": "ASTONISH_FAST",
+          "power": 7,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Astonish",
+            "German": "Erstauner",
+            "French": "Étonnement",
+            "Italian": "Sgomento",
+            "Japanese": "おどろかす",
+            "Korean": "놀래키기",
+            "Spanish": "Impresionar"
+          },
+          "combat": {
+            "energy": 10,
+            "power": 12,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "THUNDER_SHOCK_FAST": {
+          "id": "THUNDER_SHOCK_FAST",
+          "power": 4,
+          "energy": 7,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunder Shock",
+            "German": "Donnerschock",
+            "French": "Éclair",
+            "Italian": "Tuonoshock",
+            "Japanese": "でんきショック",
+            "Korean": "전기쇼크",
+            "Spanish": "Impactrueno"
+          },
+          "combat": {
+            "energy": 9,
+            "power": 4,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "OMINOUS_WIND": {
+          "id": "OMINOUS_WIND",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Ominous Wind",
+            "German": "Unheilböen",
+            "French": "Vent Mauvais",
+            "Italian": "Funestovento",
+            "Japanese": "あやしいかぜ",
+            "Korean": "괴상한바람",
+            "Spanish": "Viento Aciago"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 45,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": 1,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "THUNDERBOLT": {
+          "id": "THUNDERBOLT",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunderbolt",
+            "German": "Donnerblitz",
+            "French": "Tonnerre",
+            "Italian": "Fulmine",
+            "Japanese": "１０まんボルト",
+            "Korean": "10만볼트",
+            "Spanish": "Rayo"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "THUNDER": {
+          "id": "THUNDER",
+          "power": 100,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunder",
+            "German": "Donner",
+            "French": "Fatal-Foudre",
+            "Italian": "Tuono",
+            "Japanese": "かみなり",
+            "Korean": "번개",
+            "Spanish": "Trueno"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "LEAF_STORM": {
+          "id": "LEAF_STORM",
+          "power": 130,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Leaf Storm",
+            "German": "Blättersturm",
+            "French": "Tempête Verte",
+            "Italian": "Verdebufera",
+            "Japanese": "リーフストーム",
+            "Korean": "리프스톰",
+            "Spanish": "Lluevehojas"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 130,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": -2,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.fMOW.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.fMOW.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "ROTOM_WASH": {
+      "id": "ROTOM",
+      "formId": "ROTOM_WASH",
+      "dexNr": 479,
+      "generation": 4,
+      "names": {
+        "English": "Rotom (Wash Rotom)",
+        "German": "Rotom (Wasch-Rotom)",
+        "French": "Motisma (Motisma Lavage)",
+        "Italian": "Rotom (Rotom Lavaggio)",
+        "Japanese": "ロトム (ウォッシュロトム)",
+        "Korean": "로토무 (워시로토무)",
+        "Spanish": "Rotom (Rotom Lavado)"
+      },
+      "stats": {
+        "stamina": 137,
+        "attack": 204,
+        "defense": 219
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "ASTONISH_FAST": {
+          "id": "ASTONISH_FAST",
+          "power": 7,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Astonish",
+            "German": "Erstauner",
+            "French": "Étonnement",
+            "Italian": "Sgomento",
+            "Japanese": "おどろかす",
+            "Korean": "놀래키기",
+            "Spanish": "Impresionar"
+          },
+          "combat": {
+            "energy": 10,
+            "power": 12,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "THUNDER_SHOCK_FAST": {
+          "id": "THUNDER_SHOCK_FAST",
+          "power": 4,
+          "energy": 7,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunder Shock",
+            "German": "Donnerschock",
+            "French": "Éclair",
+            "Italian": "Tuonoshock",
+            "Japanese": "でんきショック",
+            "Korean": "전기쇼크",
+            "Spanish": "Impactrueno"
+          },
+          "combat": {
+            "energy": 9,
+            "power": 4,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "HYDRO_PUMP": {
+          "id": "HYDRO_PUMP",
+          "power": 135,
+          "energy": -100,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Hydro Pump",
+            "German": "Hydropumpe",
+            "French": "Hydrocanon",
+            "Italian": "Idropompa",
+            "Japanese": "ハイドロポンプ",
+            "Korean": "하이드로펌프",
+            "Spanish": "Hidrobomba"
+          },
+          "combat": {
+            "energy": -75,
+            "power": 130,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "THUNDERBOLT": {
+          "id": "THUNDERBOLT",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunderbolt",
+            "German": "Donnerblitz",
+            "French": "Tonnerre",
+            "Italian": "Fulmine",
+            "Japanese": "１０まんボルト",
+            "Korean": "10만볼트",
+            "Spanish": "Rayo"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "THUNDER": {
+          "id": "THUNDER",
+          "power": 100,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunder",
+            "German": "Donner",
+            "French": "Fatal-Foudre",
+            "Italian": "Tuono",
+            "Japanese": "かみなり",
+            "Korean": "번개",
+            "Spanish": "Trueno"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 100,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.fWASH.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.fWASH.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "FAN",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.fFAN.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.fFAN.s.icon.png"
+    },
+    {
+      "form": "FROST",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.fFROST.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.fFROST.s.icon.png"
+    },
+    {
+      "form": "HEAT",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.fHEAT.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.fHEAT.s.icon.png"
+    },
+    {
+      "form": "MOW",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.fMOW.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.fMOW.s.icon.png"
+    },
+    {
+      "form": "WASH",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.fWASH.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.fWASH.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm479.s.icon.png"
+    }
+  ]
+}

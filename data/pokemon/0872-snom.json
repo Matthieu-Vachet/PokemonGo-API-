@@ -1,0 +1,235 @@
+{
+  "id": "SNOM",
+  "formId": "SNOM",
+  "dexNr": 872,
+  "generation": 8,
+  "names": {
+    "English": "Snom",
+    "German": "Snomnom",
+    "French": "Frissonille",
+    "Italian": "Snom",
+    "Japanese": "ユキハミ",
+    "Korean": "누니머기",
+    "Spanish": "Snom"
+  },
+  "stats": {
+    "stamina": 102,
+    "attack": 76,
+    "defense": 59
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_ICE",
+    "names": {
+      "English": "Ice",
+      "German": "Eis",
+      "French": "Glace",
+      "Italian": "Ghiaccio",
+      "Japanese": "こおり",
+      "Korean": "얼음",
+      "Spanish": "Hielo"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_BUG",
+    "names": {
+      "English": "Bug",
+      "German": "Käfer",
+      "French": "Insecte",
+      "Italian": "Coleottero",
+      "Japanese": "むし",
+      "Korean": "벌레",
+      "Spanish": "Bicho"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "POWDER_SNOW_FAST": {
+      "id": "POWDER_SNOW_FAST",
+      "power": 6,
+      "energy": 15,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Powder Snow",
+        "German": "Pulverschnee",
+        "French": "Poudreuse",
+        "Italian": "Polneve",
+        "Japanese": "こなゆき",
+        "Korean": "눈싸라기",
+        "Spanish": "Nieve Polvo"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 6,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "STRUGGLE_BUG_FAST": {
+      "id": "STRUGGLE_BUG_FAST",
+      "power": 15,
+      "energy": 15,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Struggle Bug",
+        "German": "Käfertrutz",
+        "French": "Survinsecte",
+        "Italian": "Entomoblocco",
+        "Japanese": "むしのていこう",
+        "Korean": "벌레의저항",
+        "Spanish": "Estoicismo"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 9,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "ICY_WIND": {
+      "id": "ICY_WIND",
+      "power": 65,
+      "energy": -33,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Icy Wind",
+        "German": "Eissturm",
+        "French": "Vent Glace",
+        "Italian": "Ventogelato",
+        "Japanese": "こごえるかぜ",
+        "Korean": "얼어붙은바람",
+        "Spanish": "Viento Hielo"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 60,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "BUG_BUZZ": {
+      "id": "BUG_BUZZ",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Bug Buzz",
+        "German": "Käfergebrumm",
+        "French": "Bourdon",
+        "Italian": "Ronzio",
+        "Japanese": "むしのさざめき",
+        "Korean": "벌레의야단법석",
+        "Spanish": "Zumbido"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 100,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 30,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm872.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm872.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "FROSMOTH",
+      "formId": "FROSMOTH",
+      "candies": 400,
+      "item": null,
+      "quests": [
+        {
+          "id": "SNOM_FROSMOTH_EVOLUTION_QUEST",
+          "type": "QUEST_BUDDY_EARN_AFFECTION_POINTS",
+          "names": {
+            "English": "Earn 10 hearts with your buddy",
+            "German": "Verdiene 10 Herzen mit deinem Kumpel.",
+            "French": "Gagne 10 cœurs avec ton copain",
+            "Italian": "Guadagna 10 cuori con il tuo compagno",
+            "Japanese": "相棒のハートポイントを10個獲得する",
+            "Korean": "하트를 10개 획득",
+            "Spanish": "Consigue 10 corazones con tu compañero"
+          }
+        }
+      ]
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm872.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm872.s.icon.png"
+    }
+  ]
+}

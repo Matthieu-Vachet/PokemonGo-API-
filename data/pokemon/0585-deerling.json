@@ -1,0 +1,1443 @@
+{
+  "id": "DEERLING",
+  "formId": "DEERLING",
+  "dexNr": 585,
+  "generation": 5,
+  "names": {
+    "English": "Deerling",
+    "German": "Sesokitz",
+    "French": "Vivaldaim",
+    "Italian": "Deerling",
+    "Japanese": "シキジカ",
+    "Korean": "사철록",
+    "Spanish": "Deerling"
+  },
+  "stats": {
+    "stamina": 155,
+    "attack": 115,
+    "defense": 100
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_NORMAL",
+    "names": {
+      "English": "Normal",
+      "German": "Normal",
+      "French": "Normal",
+      "Italian": "Normale",
+      "Japanese": "ノーマル",
+      "Korean": "노말",
+      "Spanish": "Normal"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_GRASS",
+    "names": {
+      "English": "Grass",
+      "German": "Pflanze",
+      "French": "Plante",
+      "Italian": "Erba",
+      "Japanese": "くさ",
+      "Korean": "풀",
+      "Spanish": "Planta"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "TACKLE_FAST": {
+      "id": "TACKLE_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Tackle",
+        "German": "Tackle",
+        "French": "Charge",
+        "Italian": "Azione",
+        "Japanese": "たいあたり",
+        "Korean": "몸통박치기",
+        "Spanish": "Placaje"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "TAKE_DOWN_FAST": {
+      "id": "TAKE_DOWN_FAST",
+      "power": 7,
+      "energy": 8,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Take Down",
+        "German": "Bodycheck",
+        "French": "Bélier",
+        "Italian": "Riduttore",
+        "Japanese": "とっしん",
+        "Korean": "돌진",
+        "Spanish": "Derribo"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 5,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "ENERGY_BALL": {
+      "id": "ENERGY_BALL",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Energy Ball",
+        "German": "Energieball",
+        "French": "Éco-Sphère",
+        "Italian": "Energipalla",
+        "Japanese": "エナジーボール",
+        "Korean": "에너지볼",
+        "Spanish": "Energibola"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "SEED_BOMB": {
+      "id": "SEED_BOMB",
+      "power": 55,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Seed Bomb",
+        "German": "Samenbomben",
+        "French": "Canon Graine",
+        "Italian": "Semebomba",
+        "Japanese": "タネばくだん",
+        "Korean": "씨폭탄",
+        "Spanish": "Bomba Germen"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "WILD_CHARGE": {
+      "id": "WILD_CHARGE",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Wild Charge",
+        "German": "Stromstoß",
+        "French": "Éclair Fou",
+        "Italian": "Sprizzalampo",
+        "Japanese": "ワイルドボルト",
+        "Korean": "와일드볼트",
+        "Spanish": "Voltio Cruel"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 100,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": -2,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "TRAILBLAZE": {
+      "id": "TRAILBLAZE",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Trailblaze",
+        "German": "Wegbereiter",
+        "French": "Désherbaffe",
+        "Italian": "Apripista",
+        "Japanese": "くさわけ",
+        "Korean": "개척하기",
+        "Spanish": "Abrecaminos"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 65,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": 1,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm585.fSPRING.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm585.fSPRING.s.icon.png"
+  },
+  "regionForms": {
+    "DEERLING_AUTUMN": {
+      "id": "DEERLING",
+      "formId": "DEERLING_AUTUMN",
+      "dexNr": 585,
+      "generation": 5,
+      "names": {
+        "English": "Deerling (Autumn Form)",
+        "German": "Sesokitz (Herbstform)",
+        "French": "Vivaldaim (Forme Automne)",
+        "Italian": "Deerling (Forma Autunno)",
+        "Japanese": "シキジカ (あきのすがた)",
+        "Korean": "사철록 (가을의 모습)",
+        "Spanish": "Deerling (Forma Otoño)"
+      },
+      "stats": {
+        "stamina": 155,
+        "attack": 115,
+        "defense": 100
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "SEED_BOMB": {
+          "id": "SEED_BOMB",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Seed Bomb",
+            "German": "Samenbomben",
+            "French": "Canon Graine",
+            "Italian": "Semebomba",
+            "Japanese": "タネばくだん",
+            "Korean": "씨폭탄",
+            "Spanish": "Bomba Germen"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 55,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "WILD_CHARGE": {
+          "id": "WILD_CHARGE",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Wild Charge",
+            "German": "Stromstoß",
+            "French": "Éclair Fou",
+            "Italian": "Sprizzalampo",
+            "Japanese": "ワイルドボルト",
+            "Korean": "와일드볼트",
+            "Spanish": "Voltio Cruel"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": -2,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "TRAILBLAZE": {
+          "id": "TRAILBLAZE",
+          "power": 65,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Trailblaze",
+            "German": "Wegbereiter",
+            "French": "Désherbaffe",
+            "Italian": "Apripista",
+            "Japanese": "くさわけ",
+            "Korean": "개척하기",
+            "Spanish": "Abrecaminos"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm585.fAUTUMN.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm585.fAUTUMN.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [
+        {
+          "id": "SAWSBUCK",
+          "formId": "SAWSBUCK_AUTUMN",
+          "candies": 50,
+          "item": null,
+          "quests": []
+        }
+      ],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "DEERLING_SPRING": {
+      "id": "DEERLING",
+      "formId": "DEERLING_SPRING",
+      "dexNr": 585,
+      "generation": 5,
+      "names": {
+        "English": "Deerling (Spring Form)",
+        "German": "Sesokitz (Frühlingsform)",
+        "French": "Vivaldaim (Forme Printemps)",
+        "Italian": "Deerling (Forma Primavera)",
+        "Japanese": "シキジカ (はるのすがた)",
+        "Korean": "사철록 (봄의 모습)",
+        "Spanish": "Deerling (Forma Primavera)"
+      },
+      "stats": {
+        "stamina": 155,
+        "attack": 115,
+        "defense": 100
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "SEED_BOMB": {
+          "id": "SEED_BOMB",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Seed Bomb",
+            "German": "Samenbomben",
+            "French": "Canon Graine",
+            "Italian": "Semebomba",
+            "Japanese": "タネばくだん",
+            "Korean": "씨폭탄",
+            "Spanish": "Bomba Germen"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 55,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "WILD_CHARGE": {
+          "id": "WILD_CHARGE",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Wild Charge",
+            "German": "Stromstoß",
+            "French": "Éclair Fou",
+            "Italian": "Sprizzalampo",
+            "Japanese": "ワイルドボルト",
+            "Korean": "와일드볼트",
+            "Spanish": "Voltio Cruel"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": -2,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "TRAILBLAZE": {
+          "id": "TRAILBLAZE",
+          "power": 65,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Trailblaze",
+            "German": "Wegbereiter",
+            "French": "Désherbaffe",
+            "Italian": "Apripista",
+            "Japanese": "くさわけ",
+            "Korean": "개척하기",
+            "Spanish": "Abrecaminos"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm585.fSPRING.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm585.fSPRING.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [
+        {
+          "id": "SAWSBUCK",
+          "formId": "SAWSBUCK_SPRING",
+          "candies": 50,
+          "item": null,
+          "quests": []
+        }
+      ],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "DEERLING_SUMMER": {
+      "id": "DEERLING",
+      "formId": "DEERLING_SUMMER",
+      "dexNr": 585,
+      "generation": 5,
+      "names": {
+        "English": "Deerling (Summer Form)",
+        "German": "Sesokitz (Sommerform)",
+        "French": "Vivaldaim (Forme Été)",
+        "Italian": "Deerling (Forma Estate)",
+        "Japanese": "シキジカ (なつのすがた)",
+        "Korean": "사철록 (여름의 모습)",
+        "Spanish": "Deerling (Forma Verano)"
+      },
+      "stats": {
+        "stamina": 155,
+        "attack": 115,
+        "defense": 100
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "SEED_BOMB": {
+          "id": "SEED_BOMB",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Seed Bomb",
+            "German": "Samenbomben",
+            "French": "Canon Graine",
+            "Italian": "Semebomba",
+            "Japanese": "タネばくだん",
+            "Korean": "씨폭탄",
+            "Spanish": "Bomba Germen"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 55,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "WILD_CHARGE": {
+          "id": "WILD_CHARGE",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Wild Charge",
+            "German": "Stromstoß",
+            "French": "Éclair Fou",
+            "Italian": "Sprizzalampo",
+            "Japanese": "ワイルドボルト",
+            "Korean": "와일드볼트",
+            "Spanish": "Voltio Cruel"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": -2,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "TRAILBLAZE": {
+          "id": "TRAILBLAZE",
+          "power": 65,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Trailblaze",
+            "German": "Wegbereiter",
+            "French": "Désherbaffe",
+            "Italian": "Apripista",
+            "Japanese": "くさわけ",
+            "Korean": "개척하기",
+            "Spanish": "Abrecaminos"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm585.fSUMMER.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm585.fSUMMER.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [
+        {
+          "id": "SAWSBUCK",
+          "formId": "SAWSBUCK_SUMMER",
+          "candies": 50,
+          "item": null,
+          "quests": []
+        }
+      ],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "DEERLING_WINTER": {
+      "id": "DEERLING",
+      "formId": "DEERLING_WINTER",
+      "dexNr": 585,
+      "generation": 5,
+      "names": {
+        "English": "Deerling (Winter Form)",
+        "German": "Sesokitz (Winterform)",
+        "French": "Vivaldaim (Forme Hiver)",
+        "Italian": "Deerling (Forma Inverno)",
+        "Japanese": "シキジカ (ふゆのすがた)",
+        "Korean": "사철록 (겨울의 모습)",
+        "Spanish": "Deerling (Forma Invierno)"
+      },
+      "stats": {
+        "stamina": 155,
+        "attack": 115,
+        "defense": 100
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "pokemonClass": null,
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "TAKE_DOWN_FAST": {
+          "id": "TAKE_DOWN_FAST",
+          "power": 7,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Take Down",
+            "German": "Bodycheck",
+            "French": "Bélier",
+            "Italian": "Riduttore",
+            "Japanese": "とっしん",
+            "Korean": "돌진",
+            "Spanish": "Derribo"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "ENERGY_BALL": {
+          "id": "ENERGY_BALL",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Energy Ball",
+            "German": "Energieball",
+            "French": "Éco-Sphère",
+            "Italian": "Energipalla",
+            "Japanese": "エナジーボール",
+            "Korean": "에너지볼",
+            "Spanish": "Energibola"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": -1
+            }
+          }
+        },
+        "SEED_BOMB": {
+          "id": "SEED_BOMB",
+          "power": 55,
+          "energy": -33,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Seed Bomb",
+            "German": "Samenbomben",
+            "French": "Canon Graine",
+            "Italian": "Semebomba",
+            "Japanese": "タネばくだん",
+            "Korean": "씨폭탄",
+            "Spanish": "Bomba Germen"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 55,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "WILD_CHARGE": {
+          "id": "WILD_CHARGE",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Wild Charge",
+            "German": "Stromstoß",
+            "French": "Éclair Fou",
+            "Italian": "Sprizzalampo",
+            "Japanese": "ワイルドボルト",
+            "Korean": "와일드볼트",
+            "Spanish": "Voltio Cruel"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": -2,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "TRAILBLAZE": {
+          "id": "TRAILBLAZE",
+          "power": 65,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_GRASS",
+            "names": {
+              "English": "Grass",
+              "German": "Pflanze",
+              "French": "Plante",
+              "Italian": "Erba",
+              "Japanese": "くさ",
+              "Korean": "풀",
+              "Spanish": "Planta"
+            }
+          },
+          "names": {
+            "English": "Trailblaze",
+            "German": "Wegbereiter",
+            "French": "Désherbaffe",
+            "Italian": "Apripista",
+            "Japanese": "くさわけ",
+            "Korean": "개척하기",
+            "Spanish": "Abrecaminos"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 65,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm585.fWINTER.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm585.fWINTER.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [
+        {
+          "id": "SAWSBUCK",
+          "formId": "SAWSBUCK_WINTER",
+          "candies": 50,
+          "item": null,
+          "quests": []
+        }
+      ],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "AUTUMN",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm585.fAUTUMN.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm585.fAUTUMN.s.icon.png"
+    },
+    {
+      "form": "SPRING",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm585.fSPRING.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm585.fSPRING.s.icon.png"
+    },
+    {
+      "form": "SUMMER",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm585.fSUMMER.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm585.fSUMMER.s.icon.png"
+    },
+    {
+      "form": "WINTER",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm585.fWINTER.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm585.fWINTER.s.icon.png"
+    }
+  ]
+}

@@ -1,0 +1,916 @@
+{
+  "id": "ZACIAN",
+  "formId": "ZACIAN",
+  "dexNr": 888,
+  "generation": 8,
+  "names": {
+    "English": "Zacian",
+    "German": "Zacian",
+    "French": "Zacian",
+    "Italian": "Zacian",
+    "Japanese": "ザシアン",
+    "Korean": "자시안",
+    "Spanish": "Zacian"
+  },
+  "stats": {
+    "stamina": 192,
+    "attack": 254,
+    "defense": 236
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_FAIRY",
+    "names": {
+      "English": "Fairy",
+      "German": "Fee",
+      "French": "Fée",
+      "Italian": "Folletto",
+      "Japanese": "フェアリー",
+      "Korean": "페어리",
+      "Spanish": "Hada"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_STEEL",
+    "names": {
+      "English": "Steel",
+      "German": "Stahl",
+      "French": "Acier",
+      "Italian": "Acciaio",
+      "Japanese": "はがね",
+      "Korean": "강철",
+      "Spanish": "Acero"
+    }
+  },
+  "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+  "quickMoves": {
+    "METAL_CLAW_FAST": {
+      "id": "METAL_CLAW_FAST",
+      "power": 6,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Metal Claw",
+        "German": "Metallklaue",
+        "French": "Griffe Acier",
+        "Italian": "Ferrartigli",
+        "Japanese": "メタルクロー",
+        "Korean": "메탈클로",
+        "Spanish": "Garra Metal"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "SNARL_FAST": {
+      "id": "SNARL_FAST",
+      "power": 11,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Snarl",
+        "German": "Standpauke",
+        "French": "Aboiement",
+        "Italian": "Urlorabbia",
+        "Japanese": "バークアウト",
+        "Korean": "바크아웃",
+        "Spanish": "Alarido"
+      },
+      "combat": {
+        "energy": 13,
+        "power": 5,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "QUICK_ATTACK_FAST": {
+      "id": "QUICK_ATTACK_FAST",
+      "power": 10,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Quick Attack",
+        "German": "Ruckzuckhieb",
+        "French": "Vive-Attaque",
+        "Italian": "Attacco Rapido",
+        "Japanese": "でんこうせっか",
+        "Korean": "전광석화",
+        "Spanish": "Ataque Rápido"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "FIRE_FANG_FAST": {
+      "id": "FIRE_FANG_FAST",
+      "power": 13,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Fire Fang",
+        "German": "Feuerzahn",
+        "French": "Crocs Feu",
+        "Italian": "Rogodenti",
+        "Japanese": "ほのおのキバ",
+        "Korean": "불꽃엄니",
+        "Spanish": "Colmillo Ígneo"
+      },
+      "combat": {
+        "energy": 6,
+        "power": 8,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "PLAY_ROUGH": {
+      "id": "PLAY_ROUGH",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Play Rough",
+        "German": "Knuddler",
+        "French": "Câlinerie",
+        "Italian": "Carineria",
+        "Japanese": "じゃれつく",
+        "Korean": "치근거리기",
+        "Spanish": "Carantoña"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "IRON_HEAD": {
+      "id": "IRON_HEAD",
+      "power": 60,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Iron Head",
+        "German": "Eisenschädel",
+        "French": "Tête de Fer",
+        "Italian": "Metaltestata",
+        "Japanese": "アイアンヘッド",
+        "Korean": "아이언헤드",
+        "Spanish": "Cabeza de Hierro"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "WILD_CHARGE": {
+      "id": "WILD_CHARGE",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Wild Charge",
+        "German": "Stromstoß",
+        "French": "Éclair Fou",
+        "Italian": "Sprizzalampo",
+        "Japanese": "ワイルドボルト",
+        "Korean": "와일드볼트",
+        "Spanish": "Voltio Cruel"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 100,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": -2,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "CLOSE_COMBAT": {
+      "id": "CLOSE_COMBAT",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Close Combat",
+        "German": "Nahkampf",
+        "French": "Close Combat",
+        "Italian": "Zuffa",
+        "Japanese": "インファイト",
+        "Korean": "인파이트",
+        "Spanish": "A Bocajarro"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 100,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": -2,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm888.fHERO.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm888.fHERO.s.icon.png"
+  },
+  "regionForms": {
+    "ZACIAN_CROWNED_SWORD": {
+      "id": "ZACIAN",
+      "formId": "ZACIAN_CROWNED_SWORD",
+      "dexNr": 888,
+      "generation": 8,
+      "names": {
+        "English": "Zacian (Crowned Sword)",
+        "German": "Zacian (König des Schwertes)",
+        "French": "Zacian (Épée Suprême)",
+        "Italian": "Zacian (Re delle Spade)",
+        "Japanese": "ザシアン (けんのおう)",
+        "Korean": "자시안 (검왕)",
+        "Spanish": "Zacian (Espada Suprema)"
+      },
+      "stats": {
+        "stamina": 192,
+        "attack": 332,
+        "defense": 240
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "METAL_CLAW_FAST": {
+          "id": "METAL_CLAW_FAST",
+          "power": 6,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Metal Claw",
+            "German": "Metallklaue",
+            "French": "Griffe Acier",
+            "Italian": "Ferrartigli",
+            "Japanese": "メタルクロー",
+            "Korean": "메탈클로",
+            "Spanish": "Garra Metal"
+          },
+          "combat": {
+            "energy": 7,
+            "power": 5,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "AIR_SLASH_FAST": {
+          "id": "AIR_SLASH_FAST",
+          "power": 12,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Air Slash",
+            "German": "Luftschnitt",
+            "French": "Lame d’Air",
+            "Italian": "Eterelama",
+            "Japanese": "エアスラッシュ",
+            "Korean": "에어슬래시",
+            "Spanish": "Tajo Aéreo"
+          },
+          "combat": {
+            "energy": 9,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "PLAY_ROUGH": {
+          "id": "PLAY_ROUGH",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Play Rough",
+            "German": "Knuddler",
+            "French": "Câlinerie",
+            "Italian": "Carineria",
+            "Japanese": "じゃれつく",
+            "Korean": "치근거리기",
+            "Spanish": "Carantoña"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 90,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "CLOSE_COMBAT": {
+          "id": "CLOSE_COMBAT",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FIGHTING",
+            "names": {
+              "English": "Fighting",
+              "German": "Kampf",
+              "French": "Combat",
+              "Italian": "Lotta",
+              "Japanese": "かくとう",
+              "Korean": "격투",
+              "Spanish": "Lucha"
+            }
+          },
+          "names": {
+            "English": "Close Combat",
+            "German": "Nahkampf",
+            "French": "Close Combat",
+            "Italian": "Zuffa",
+            "Japanese": "インファイト",
+            "Korean": "인파이트",
+            "Spanish": "A Bocajarro"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": -2,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "GIGA_IMPACT": {
+          "id": "GIGA_IMPACT",
+          "power": 200,
+          "energy": -100,
+          "durationMs": 4500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Giga Impact",
+            "German": "Gigastoß",
+            "French": "Giga Impact",
+            "Italian": "Gigaimpatto",
+            "Japanese": "ギガインパクト",
+            "Korean": "기가임팩트",
+            "Spanish": "Gigaimpacto"
+          },
+          "combat": {
+            "energy": -80,
+            "power": 150,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm888.fCROWNED_SWORD.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm888.fCROWNED_SWORD.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "ZACIAN_HERO": {
+      "id": "ZACIAN",
+      "formId": "ZACIAN_HERO",
+      "dexNr": 888,
+      "generation": 8,
+      "names": {
+        "English": "Zacian (Hero of Many Battles)",
+        "German": "Zacian (Heldenhafter Krieger)",
+        "French": "Zacian (Héros Aguerri)",
+        "Italian": "Zacian (Eroe di Mille Lotte)",
+        "Japanese": "ザシアン (れきせんのゆうしゃ)",
+        "Korean": "자시안 (역전의 용사)",
+        "Spanish": "Zacian (Guerrero Avezado)"
+      },
+      "stats": {
+        "stamina": 192,
+        "attack": 254,
+        "defense": 236
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "METAL_CLAW_FAST": {
+          "id": "METAL_CLAW_FAST",
+          "power": 6,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Metal Claw",
+            "German": "Metallklaue",
+            "French": "Griffe Acier",
+            "Italian": "Ferrartigli",
+            "Japanese": "メタルクロー",
+            "Korean": "메탈클로",
+            "Spanish": "Garra Metal"
+          },
+          "combat": {
+            "energy": 7,
+            "power": 5,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "SNARL_FAST": {
+          "id": "SNARL_FAST",
+          "power": 11,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Snarl",
+            "German": "Standpauke",
+            "French": "Aboiement",
+            "Italian": "Urlorabbia",
+            "Japanese": "バークアウト",
+            "Korean": "바크아웃",
+            "Spanish": "Alarido"
+          },
+          "combat": {
+            "energy": 13,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "QUICK_ATTACK_FAST": {
+          "id": "QUICK_ATTACK_FAST",
+          "power": 10,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Quick Attack",
+            "German": "Ruckzuckhieb",
+            "French": "Vive-Attaque",
+            "Italian": "Attacco Rapido",
+            "Japanese": "でんこうせっか",
+            "Korean": "전광석화",
+            "Spanish": "Ataque Rápido"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "FIRE_FANG_FAST": {
+          "id": "FIRE_FANG_FAST",
+          "power": 13,
+          "energy": 9,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_FIRE",
+            "names": {
+              "English": "Fire",
+              "German": "Feuer",
+              "French": "Feu",
+              "Italian": "Fuoco",
+              "Japanese": "ほのお",
+              "Korean": "불꽃",
+              "Spanish": "Fuego"
+            }
+          },
+          "names": {
+            "English": "Fire Fang",
+            "German": "Feuerzahn",
+            "French": "Crocs Feu",
+            "Italian": "Rogodenti",
+            "Japanese": "ほのおのキバ",
+            "Korean": "불꽃엄니",
+            "Spanish": "Colmillo Ígneo"
+          },
+          "combat": {
+            "energy": 6,
+            "power": 8,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "PLAY_ROUGH": {
+          "id": "PLAY_ROUGH",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Play Rough",
+            "German": "Knuddler",
+            "French": "Câlinerie",
+            "Italian": "Carineria",
+            "Japanese": "じゃれつく",
+            "Korean": "치근거리기",
+            "Spanish": "Carantoña"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 90,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "IRON_HEAD": {
+          "id": "IRON_HEAD",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Head",
+            "German": "Eisenschädel",
+            "French": "Tête de Fer",
+            "Italian": "Metaltestata",
+            "Japanese": "アイアンヘッド",
+            "Korean": "아이언헤드",
+            "Spanish": "Cabeza de Hierro"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "WILD_CHARGE": {
+          "id": "WILD_CHARGE",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Wild Charge",
+            "German": "Stromstoß",
+            "French": "Éclair Fou",
+            "Italian": "Sprizzalampo",
+            "Japanese": "ワイルドボルト",
+            "Korean": "와일드볼트",
+            "Spanish": "Voltio Cruel"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": -2,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "CLOSE_COMBAT": {
+          "id": "CLOSE_COMBAT",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FIGHTING",
+            "names": {
+              "English": "Fighting",
+              "German": "Kampf",
+              "French": "Combat",
+              "Italian": "Lotta",
+              "Japanese": "かくとう",
+              "Korean": "격투",
+              "Spanish": "Lucha"
+            }
+          },
+          "names": {
+            "English": "Close Combat",
+            "German": "Nahkampf",
+            "French": "Close Combat",
+            "Italian": "Zuffa",
+            "Japanese": "インファイト",
+            "Korean": "인파이트",
+            "Spanish": "A Bocajarro"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": -2,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm888.fHERO.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm888.fHERO.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "CROWNED_SWORD",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm888.fCROWNED_SWORD.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm888.fCROWNED_SWORD.s.icon.png"
+    },
+    {
+      "form": "HERO",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm888.fHERO.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm888.fHERO.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm888.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm888.s.icon.png"
+    }
+  ]
+}

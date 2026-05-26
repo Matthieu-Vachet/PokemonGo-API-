@@ -1,0 +1,271 @@
+{
+  "id": "SILICOBRA",
+  "formId": "SILICOBRA",
+  "dexNr": 843,
+  "generation": 8,
+  "names": {
+    "English": "Silicobra",
+    "German": "Salanga",
+    "French": "Dunaja",
+    "Italian": "Silicobra",
+    "Japanese": "スナヘビ",
+    "Korean": "모래뱀",
+    "Spanish": "Silicobra"
+  },
+  "stats": {
+    "stamina": 141,
+    "attack": 103,
+    "defense": 123
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_GROUND",
+    "names": {
+      "English": "Ground",
+      "German": "Boden",
+      "French": "Sol",
+      "Italian": "Terra",
+      "Japanese": "じめん",
+      "Korean": "땅",
+      "Spanish": "Tierra"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "MUD_SLAP_FAST": {
+      "id": "MUD_SLAP_FAST",
+      "power": 19,
+      "energy": 13,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_GROUND",
+        "names": {
+          "English": "Ground",
+          "German": "Boden",
+          "French": "Sol",
+          "Italian": "Terra",
+          "Japanese": "じめん",
+          "Korean": "땅",
+          "Spanish": "Tierra"
+        }
+      },
+      "names": {
+        "English": "Mud-Slap",
+        "German": "Lehmschelle",
+        "French": "Coud’Boue",
+        "Italian": "Fangosberla",
+        "Japanese": "どろかけ",
+        "Korean": "진흙뿌리기",
+        "Spanish": "Bofetón Lodo"
+      },
+      "combat": {
+        "energy": 10,
+        "power": 11,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "MUD_SHOT_FAST": {
+      "id": "MUD_SHOT_FAST",
+      "power": 4,
+      "energy": 6,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_GROUND",
+        "names": {
+          "English": "Ground",
+          "German": "Boden",
+          "French": "Sol",
+          "Italian": "Terra",
+          "Japanese": "じめん",
+          "Korean": "땅",
+          "Spanish": "Tierra"
+        }
+      },
+      "names": {
+        "English": "Mud Shot",
+        "German": "Lehmschuss",
+        "French": "Tir de Boue",
+        "Italian": "Colpodifango",
+        "Japanese": "マッドショット",
+        "Korean": "머드샷",
+        "Spanish": "Disparo Lodo"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 3,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "DIG": {
+      "id": "DIG",
+      "power": 100,
+      "energy": -50,
+      "durationMs": 4500,
+      "type": {
+        "type": "POKEMON_TYPE_GROUND",
+        "names": {
+          "English": "Ground",
+          "German": "Boden",
+          "French": "Sol",
+          "Italian": "Terra",
+          "Japanese": "じめん",
+          "Korean": "땅",
+          "Spanish": "Tierra"
+        }
+      },
+      "names": {
+        "English": "Dig",
+        "German": "Schaufler",
+        "French": "Tunnel",
+        "Italian": "Fossa",
+        "Japanese": "あなをほる",
+        "Korean": "구멍파기",
+        "Spanish": "Excavar"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "BULLDOZE": {
+      "id": "BULLDOZE",
+      "power": 80,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_GROUND",
+        "names": {
+          "English": "Ground",
+          "German": "Boden",
+          "French": "Sol",
+          "Italian": "Terra",
+          "Japanese": "じめん",
+          "Korean": "땅",
+          "Spanish": "Tierra"
+        }
+      },
+      "names": {
+        "English": "Bulldoze",
+        "German": "Dampfwalze",
+        "French": "Piétisol",
+        "Italian": "Battiterra",
+        "Japanese": "じならし",
+        "Korean": "땅고르기",
+        "Spanish": "Terratemblor"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 45,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 50,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "EARTH_POWER": {
+      "id": "EARTH_POWER",
+      "power": 100,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_GROUND",
+        "names": {
+          "English": "Ground",
+          "German": "Boden",
+          "French": "Sol",
+          "Italian": "Terra",
+          "Japanese": "じめん",
+          "Korean": "땅",
+          "Spanish": "Tierra"
+        }
+      },
+      "names": {
+        "English": "Earth Power",
+        "German": "Erdkräfte",
+        "French": "Telluriforce",
+        "Italian": "Geoforza",
+        "Japanese": "だいちのちから",
+        "Korean": "대지의힘",
+        "Spanish": "Tierra Viva"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "WRAP": {
+      "id": "WRAP",
+      "power": 60,
+      "energy": -33,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Wrap",
+        "German": "Wickel",
+        "French": "Ligotage",
+        "Italian": "Avvolgibotta",
+        "Japanese": "まきつく",
+        "Korean": "김밥말이",
+        "Spanish": "Constricción"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 60,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": null,
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "SANDACONDA",
+      "formId": "SANDACONDA",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": []
+}

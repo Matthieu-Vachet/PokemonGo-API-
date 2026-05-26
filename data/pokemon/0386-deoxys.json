@@ -1,0 +1,923 @@
+{
+  "id": "DEOXYS",
+  "formId": "DEOXYS",
+  "dexNr": 386,
+  "generation": 3,
+  "names": {
+    "English": "Deoxys",
+    "German": "Deoxys",
+    "French": "Deoxys",
+    "Italian": "Deoxys",
+    "Japanese": "デオキシス",
+    "Korean": "테오키스",
+    "Spanish": "Deoxys"
+  },
+  "stats": {
+    "stamina": 137,
+    "attack": 345,
+    "defense": 115
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_PSYCHIC",
+    "names": {
+      "English": "Psychic",
+      "German": "Psycho",
+      "French": "Psy",
+      "Italian": "Psico",
+      "Japanese": "エスパー",
+      "Korean": "에스퍼",
+      "Spanish": "Psíquico"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": "POKEMON_CLASS_MYTHIC",
+  "quickMoves": {
+    "ZEN_HEADBUTT_FAST": {
+      "id": "ZEN_HEADBUTT_FAST",
+      "power": 11,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Zen Headbutt",
+        "German": "Zen-Kopfstoß",
+        "French": "Psykoud’Boul",
+        "Italian": "Cozzata Zen",
+        "Japanese": "しねんのずつき",
+        "Korean": "사념의박치기",
+        "Spanish": "Cabezazo Zen"
+      },
+      "combat": {
+        "energy": 6,
+        "power": 8,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "CHARGE_BEAM_FAST": {
+      "id": "CHARGE_BEAM_FAST",
+      "power": 7,
+      "energy": 14,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Charge Beam",
+        "German": "Ladestrahl",
+        "French": "Rayon Chargé",
+        "Italian": "Raggioscossa",
+        "Japanese": "チャージビーム",
+        "Korean": "차지빔",
+        "Spanish": "Rayo Carga"
+      },
+      "combat": {
+        "energy": 11,
+        "power": 5,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "PSYCHO_BOOST": {
+      "id": "PSYCHO_BOOST",
+      "power": 70,
+      "energy": -50,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psycho Boost",
+        "German": "Psyschub",
+        "French": "Psycho-Boost",
+        "Italian": "Psicoslancio",
+        "Japanese": "サイコブースト",
+        "Korean": "사이코부스트",
+        "Spanish": "Psicoataque"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 70,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": -2,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "ZAP_CANNON": {
+      "id": "ZAP_CANNON",
+      "power": 140,
+      "energy": -100,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Zap Cannon",
+        "German": "Blitzkanone",
+        "French": "Élecanon",
+        "Italian": "Falcecannone",
+        "Japanese": "でんじほう",
+        "Korean": "전자포",
+        "Spanish": "Electrocañón"
+      },
+      "combat": {
+        "energy": -80,
+        "power": 150,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 33,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "HYPER_BEAM": {
+      "id": "HYPER_BEAM",
+      "power": 150,
+      "energy": -100,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Hyper Beam",
+        "German": "Hyperstrahl",
+        "French": "Ultralaser",
+        "Italian": "Iper Raggio",
+        "Japanese": "はかいこうせん",
+        "Korean": "파괴광선",
+        "Spanish": "Hiperrayo"
+      },
+      "combat": {
+        "energy": -80,
+        "power": 150,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm386.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm386.s.icon.png"
+  },
+  "regionForms": {
+    "DEOXYS_ATTACK": {
+      "id": "DEOXYS",
+      "formId": "DEOXYS_ATTACK",
+      "dexNr": 386,
+      "generation": 3,
+      "names": {
+        "English": "Deoxys (Attack Forme)",
+        "German": "Deoxys (Angriffsform)",
+        "French": "Deoxys (Attack Forme)",
+        "Italian": "Deoxys (Forma Attacco)",
+        "Japanese": "デオキシス (アタックフォルム)",
+        "Korean": "테오키스 (Attack Forme)",
+        "Spanish": "Deoxys (Forma Ataque)"
+      },
+      "stats": {
+        "stamina": 137,
+        "attack": 414,
+        "defense": 46
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_MYTHIC",
+      "quickMoves": {
+        "ZEN_HEADBUTT_FAST": {
+          "id": "ZEN_HEADBUTT_FAST",
+          "power": 11,
+          "energy": 9,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Zen Headbutt",
+            "German": "Zen-Kopfstoß",
+            "French": "Psykoud’Boul",
+            "Italian": "Cozzata Zen",
+            "Japanese": "しねんのずつき",
+            "Korean": "사념의박치기",
+            "Spanish": "Cabezazo Zen"
+          },
+          "combat": {
+            "energy": 6,
+            "power": 8,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "POISON_JAB_FAST": {
+          "id": "POISON_JAB_FAST",
+          "power": 13,
+          "energy": 9,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_POISON",
+            "names": {
+              "English": "Poison",
+              "German": "Gift",
+              "French": "Poison",
+              "Italian": "Veleno",
+              "Japanese": "どく",
+              "Korean": "독",
+              "Spanish": "Veneno"
+            }
+          },
+          "names": {
+            "English": "Poison Jab",
+            "German": "Gifthieb",
+            "French": "Direct Toxik",
+            "Italian": "Velenpuntura",
+            "Japanese": "どくづき",
+            "Korean": "독찌르기",
+            "Spanish": "Puya Nociva"
+          },
+          "combat": {
+            "energy": 7,
+            "power": 7,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "PSYCHO_BOOST": {
+          "id": "PSYCHO_BOOST",
+          "power": 70,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Psycho Boost",
+            "German": "Psyschub",
+            "French": "Psycho-Boost",
+            "Italian": "Psicoslancio",
+            "Japanese": "サイコブースト",
+            "Korean": "사이코부스트",
+            "Spanish": "Psicoataque"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 70,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": -2,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "ZAP_CANNON": {
+          "id": "ZAP_CANNON",
+          "power": 140,
+          "energy": -100,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Zap Cannon",
+            "German": "Blitzkanone",
+            "French": "Élecanon",
+            "Italian": "Falcecannone",
+            "Japanese": "でんじほう",
+            "Korean": "전자포",
+            "Spanish": "Electrocañón"
+          },
+          "combat": {
+            "energy": -80,
+            "power": 150,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 33,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "DARK_PULSE": {
+          "id": "DARK_PULSE",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_DARK",
+            "names": {
+              "English": "Dark",
+              "German": "Unlicht",
+              "French": "Ténèbres",
+              "Italian": "Buio",
+              "Japanese": "あく",
+              "Korean": "악",
+              "Spanish": "Siniestro"
+            }
+          },
+          "names": {
+            "English": "Dark Pulse",
+            "German": "Finsteraura",
+            "French": "Vibrobscur",
+            "Italian": "Neropulsar",
+            "Japanese": "あくのはどう",
+            "Korean": "악의파동",
+            "Spanish": "Pulso Umbrío"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 80,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm386.fATTACK.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm386.fATTACK.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "DEOXYS_DEFENSE": {
+      "id": "DEOXYS",
+      "formId": "DEOXYS_DEFENSE",
+      "dexNr": 386,
+      "generation": 3,
+      "names": {
+        "English": "Deoxys (Defense Forme)",
+        "German": "Deoxys (Verteidigungsform)",
+        "French": "Deoxys (Defense Forme)",
+        "Italian": "Deoxys (Forma Difesa)",
+        "Japanese": "デオキシス (ディフェンスフォルム)",
+        "Korean": "테오키스 (Defense Forme)",
+        "Spanish": "Deoxys (Forma Defensa)"
+      },
+      "stats": {
+        "stamina": 137,
+        "attack": 144,
+        "defense": 330
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_MYTHIC",
+      "quickMoves": {
+        "ZEN_HEADBUTT_FAST": {
+          "id": "ZEN_HEADBUTT_FAST",
+          "power": 11,
+          "energy": 9,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Zen Headbutt",
+            "German": "Zen-Kopfstoß",
+            "French": "Psykoud’Boul",
+            "Italian": "Cozzata Zen",
+            "Japanese": "しねんのずつき",
+            "Korean": "사념의박치기",
+            "Spanish": "Cabezazo Zen"
+          },
+          "combat": {
+            "energy": 6,
+            "power": 8,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "COUNTER_FAST": {
+          "id": "COUNTER_FAST",
+          "power": 13,
+          "energy": 9,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_FIGHTING",
+            "names": {
+              "English": "Fighting",
+              "German": "Kampf",
+              "French": "Combat",
+              "Italian": "Lotta",
+              "Japanese": "かくとう",
+              "Korean": "격투",
+              "Spanish": "Lucha"
+            }
+          },
+          "names": {
+            "English": "Counter",
+            "German": "Konter",
+            "French": "Riposte",
+            "Italian": "Contrattacco",
+            "Japanese": "カウンター",
+            "Korean": "카운터",
+            "Spanish": "Contraataque"
+          },
+          "combat": {
+            "energy": 6,
+            "power": 8,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "PSYCHO_BOOST": {
+          "id": "PSYCHO_BOOST",
+          "power": 70,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Psycho Boost",
+            "German": "Psyschub",
+            "French": "Psycho-Boost",
+            "Italian": "Psicoslancio",
+            "Japanese": "サイコブースト",
+            "Korean": "사이코부스트",
+            "Spanish": "Psicoataque"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 70,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": -2,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "THUNDERBOLT": {
+          "id": "THUNDERBOLT",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunderbolt",
+            "German": "Donnerblitz",
+            "French": "Tonnerre",
+            "Italian": "Fulmine",
+            "Japanese": "１０まんボルト",
+            "Korean": "10만볼트",
+            "Spanish": "Rayo"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ROCK_SLIDE": {
+          "id": "ROCK_SLIDE",
+          "power": 75,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Rock Slide",
+            "German": "Steinhagel",
+            "French": "Éboulement",
+            "Italian": "Frana",
+            "Japanese": "いわなだれ",
+            "Korean": "스톤샤워",
+            "Spanish": "Avalancha"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 75,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm386.fDEFENSE.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm386.fDEFENSE.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "DEOXYS_SPEED": {
+      "id": "DEOXYS",
+      "formId": "DEOXYS_SPEED",
+      "dexNr": 386,
+      "generation": 3,
+      "names": {
+        "English": "Deoxys (Speed Forme)",
+        "German": "Deoxys (Initiativeform)",
+        "French": "Deoxys (Speed Forme)",
+        "Italian": "Deoxys (Forma Velocità)",
+        "Japanese": "デオキシス (スピードフォルム)",
+        "Korean": "테오키스 (Speed Forme)",
+        "Spanish": "Deoxys (Forma Velocidad)"
+      },
+      "stats": {
+        "stamina": 137,
+        "attack": 230,
+        "defense": 218
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": "POKEMON_CLASS_MYTHIC",
+      "quickMoves": {
+        "ZEN_HEADBUTT_FAST": {
+          "id": "ZEN_HEADBUTT_FAST",
+          "power": 11,
+          "energy": 9,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Zen Headbutt",
+            "German": "Zen-Kopfstoß",
+            "French": "Psykoud’Boul",
+            "Italian": "Cozzata Zen",
+            "Japanese": "しねんのずつき",
+            "Korean": "사념의박치기",
+            "Spanish": "Cabezazo Zen"
+          },
+          "combat": {
+            "energy": 6,
+            "power": 8,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "CHARGE_BEAM_FAST": {
+          "id": "CHARGE_BEAM_FAST",
+          "power": 7,
+          "energy": 14,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Charge Beam",
+            "German": "Ladestrahl",
+            "French": "Rayon Chargé",
+            "Italian": "Raggioscossa",
+            "Japanese": "チャージビーム",
+            "Korean": "차지빔",
+            "Spanish": "Rayo Carga"
+          },
+          "combat": {
+            "energy": 11,
+            "power": 5,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "PSYCHO_BOOST": {
+          "id": "PSYCHO_BOOST",
+          "power": 70,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Psycho Boost",
+            "German": "Psyschub",
+            "French": "Psycho-Boost",
+            "Italian": "Psicoslancio",
+            "Japanese": "サイコブースト",
+            "Korean": "사이코부스트",
+            "Spanish": "Psicoataque"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 70,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": -2,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "THUNDERBOLT": {
+          "id": "THUNDERBOLT",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunderbolt",
+            "German": "Donnerblitz",
+            "French": "Tonnerre",
+            "Italian": "Fulmine",
+            "Japanese": "１０まんボルト",
+            "Korean": "10만볼트",
+            "Spanish": "Rayo"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "SWIFT": {
+          "id": "SWIFT",
+          "power": 65,
+          "energy": -50,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Swift",
+            "German": "Sternschauer",
+            "French": "Météores",
+            "Italian": "Comete",
+            "Japanese": "スピードスター",
+            "Korean": "스피드스타",
+            "Spanish": "Rapidez"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 55,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm386.fSPEED.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm386.fSPEED.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "ATTACK",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm386.fATTACK.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm386.fATTACK.s.icon.png"
+    },
+    {
+      "form": "DEFENSE",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm386.fDEFENSE.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm386.fDEFENSE.s.icon.png"
+    },
+    {
+      "form": "SPEED",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm386.fSPEED.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm386.fSPEED.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm386.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm386.s.icon.png"
+    }
+  ]
+}

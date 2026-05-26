@@ -1,0 +1,620 @@
+{
+  "id": "LUGIA",
+  "formId": "LUGIA",
+  "dexNr": 249,
+  "generation": 2,
+  "names": {
+    "English": "Lugia",
+    "German": "Lugia",
+    "French": "Lugia",
+    "Italian": "Lugia",
+    "Japanese": "ルギア",
+    "Korean": "루기아",
+    "Spanish": "Lugia"
+  },
+  "stats": {
+    "stamina": 235,
+    "attack": 193,
+    "defense": 310
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_PSYCHIC",
+    "names": {
+      "English": "Psychic",
+      "German": "Psycho",
+      "French": "Psy",
+      "Italian": "Psico",
+      "Japanese": "エスパー",
+      "Korean": "에스퍼",
+      "Spanish": "Psíquico"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FLYING",
+    "names": {
+      "English": "Flying",
+      "German": "Flug",
+      "French": "Vol",
+      "Italian": "Volante",
+      "Japanese": "ひこう",
+      "Korean": "비행",
+      "Spanish": "Volador"
+    }
+  },
+  "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+  "quickMoves": {
+    "EXTRASENSORY_FAST": {
+      "id": "EXTRASENSORY_FAST",
+      "power": 11,
+      "energy": 11,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Extrasensory",
+        "German": "Sondersensor",
+        "French": "Extrasenseur",
+        "Italian": "Extrasenso",
+        "Japanese": "じんつうりき",
+        "Korean": "신통력",
+        "Spanish": "Paranormal"
+      },
+      "combat": {
+        "energy": 10,
+        "power": 8,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "DRAGON_TAIL_FAST": {
+      "id": "DRAGON_TAIL_FAST",
+      "power": 14,
+      "energy": 8,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "names": {
+        "English": "Dragon Tail",
+        "German": "Drachenrute",
+        "French": "Draco-Queue",
+        "Italian": "Codadrago",
+        "Japanese": "ドラゴンテール",
+        "Korean": "드래곤테일",
+        "Spanish": "Cola Dragón"
+      },
+      "combat": {
+        "energy": 12,
+        "power": 9,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "SKY_ATTACK": {
+      "id": "SKY_ATTACK",
+      "power": 80,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Sky Attack",
+        "German": "Himmelsfeger",
+        "French": "Piqué",
+        "Italian": "Aeroattacco",
+        "Japanese": "ゴッドバード",
+        "Korean": "불새",
+        "Spanish": "Ataque Aéreo"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 75,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "HYDRO_PUMP": {
+      "id": "HYDRO_PUMP",
+      "power": 135,
+      "energy": -100,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Hydro Pump",
+        "German": "Hydropumpe",
+        "French": "Hydrocanon",
+        "Italian": "Idropompa",
+        "Japanese": "ハイドロポンプ",
+        "Korean": "하이드로펌프",
+        "Spanish": "Hidrobomba"
+      },
+      "combat": {
+        "energy": -75,
+        "power": 130,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "FUTURESIGHT": {
+      "id": "FUTURESIGHT",
+      "power": 115,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Future Sight",
+        "German": "Seher",
+        "French": "Prescience",
+        "Italian": "Divinazione",
+        "Japanese": "みらいよち",
+        "Korean": "미래예지",
+        "Spanish": "Premonición"
+      },
+      "combat": {
+        "energy": -65,
+        "power": 110,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "FLY": {
+      "id": "FLY",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Fly",
+        "German": "Fliegen",
+        "French": "Vol",
+        "Italian": "Volo",
+        "Japanese": "そらをとぶ",
+        "Korean": "공중날기",
+        "Spanish": "Vuelo"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": {
+    "AEROBLAST": {
+      "id": "AEROBLAST",
+      "power": 180,
+      "energy": -100,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Aeroblast",
+        "German": "Luftstoß",
+        "French": "Aéroblast",
+        "Italian": "Aerocolpo",
+        "Japanese": "エアロブラスト",
+        "Korean": "에어로블라스트",
+        "Spanish": "Aerochorro"
+      },
+      "combat": {
+        "energy": -75,
+        "power": 170,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 12,
+          "attackerAttackStatsChange": 2,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm249.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm249.s.icon.png"
+  },
+  "regionForms": {
+    "LUGIA_S": {
+      "id": "LUGIA",
+      "formId": "LUGIA_S",
+      "dexNr": 249,
+      "generation": 2,
+      "names": {
+        "English": "Lugia",
+        "German": "Lugia",
+        "French": "Lugia",
+        "Italian": "Lugia",
+        "Japanese": "ルギア",
+        "Korean": "루기아",
+        "Spanish": "Lugia"
+      },
+      "stats": {
+        "stamina": 235,
+        "attack": 193,
+        "defense": 310
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "EXTRASENSORY_FAST": {
+          "id": "EXTRASENSORY_FAST",
+          "power": 11,
+          "energy": 11,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Extrasensory",
+            "German": "Sondersensor",
+            "French": "Extrasenseur",
+            "Italian": "Extrasenso",
+            "Japanese": "じんつうりき",
+            "Korean": "신통력",
+            "Spanish": "Paranormal"
+          },
+          "combat": {
+            "energy": 10,
+            "power": 8,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "DRAGON_TAIL_FAST": {
+          "id": "DRAGON_TAIL_FAST",
+          "power": 14,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_DRAGON",
+            "names": {
+              "English": "Dragon",
+              "German": "Drache",
+              "French": "Dragon",
+              "Italian": "Drago",
+              "Japanese": "ドラゴン",
+              "Korean": "드래곤",
+              "Spanish": "Dragón"
+            }
+          },
+          "names": {
+            "English": "Dragon Tail",
+            "German": "Drachenrute",
+            "French": "Draco-Queue",
+            "Italian": "Codadrago",
+            "Japanese": "ドラゴンテール",
+            "Korean": "드래곤테일",
+            "Spanish": "Cola Dragón"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "SKY_ATTACK": {
+          "id": "SKY_ATTACK",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Sky Attack",
+            "German": "Himmelsfeger",
+            "French": "Piqué",
+            "Italian": "Aeroattacco",
+            "Japanese": "ゴッドバード",
+            "Korean": "불새",
+            "Spanish": "Ataque Aéreo"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 75,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "HYDRO_PUMP": {
+          "id": "HYDRO_PUMP",
+          "power": 135,
+          "energy": -100,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Hydro Pump",
+            "German": "Hydropumpe",
+            "French": "Hydrocanon",
+            "Italian": "Idropompa",
+            "Japanese": "ハイドロポンプ",
+            "Korean": "하이드로펌프",
+            "Spanish": "Hidrobomba"
+          },
+          "combat": {
+            "energy": -75,
+            "power": 130,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "FUTURESIGHT": {
+          "id": "FUTURESIGHT",
+          "power": 115,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Future Sight",
+            "German": "Seher",
+            "French": "Prescience",
+            "Italian": "Divinazione",
+            "Japanese": "みらいよち",
+            "Korean": "미래예지",
+            "Spanish": "Premonición"
+          },
+          "combat": {
+            "energy": -65,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "FLY": {
+          "id": "FLY",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Fly",
+            "German": "Fliegen",
+            "French": "Vol",
+            "Italian": "Volo",
+            "Japanese": "そらをとぶ",
+            "Korean": "공중날기",
+            "Spanish": "Vuelo"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 80,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": {
+        "AEROBLAST": {
+          "id": "AEROBLAST",
+          "power": 180,
+          "energy": -100,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_FLYING",
+            "names": {
+              "English": "Flying",
+              "German": "Flug",
+              "French": "Vol",
+              "Italian": "Volante",
+              "Japanese": "ひこう",
+              "Korean": "비행",
+              "Spanish": "Volador"
+            }
+          },
+          "names": {
+            "English": "Aeroblast",
+            "German": "Luftstoß",
+            "French": "Aéroblast",
+            "Italian": "Aerocolpo",
+            "Japanese": "エアロブラスト",
+            "Korean": "에어로블라스트",
+            "Spanish": "Aerochorro"
+          },
+          "combat": {
+            "energy": -75,
+            "power": 170,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 12,
+              "attackerAttackStatsChange": 2,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm249.fS.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm249.fS.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": "ONE_YEAR_ANNIVERSARY",
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm249.cONE_YEAR_ANNIVERSARY.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm249.cONE_YEAR_ANNIVERSARY.s.icon.png"
+    },
+    {
+      "form": "S",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm249.fS.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm249.fS.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm249.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm249.s.icon.png"
+    }
+  ]
+}

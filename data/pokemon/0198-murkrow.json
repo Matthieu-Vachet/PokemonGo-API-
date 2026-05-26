@@ -1,0 +1,260 @@
+{
+  "id": "MURKROW",
+  "formId": "MURKROW",
+  "dexNr": 198,
+  "generation": 2,
+  "names": {
+    "English": "Murkrow",
+    "German": "Kramurx",
+    "French": "Cornèbre",
+    "Italian": "Murkrow",
+    "Japanese": "ヤミカラス",
+    "Korean": "니로우",
+    "Spanish": "Murkrow"
+  },
+  "stats": {
+    "stamina": 155,
+    "attack": 175,
+    "defense": 87
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_DARK",
+    "names": {
+      "English": "Dark",
+      "German": "Unlicht",
+      "French": "Ténèbres",
+      "Italian": "Buio",
+      "Japanese": "あく",
+      "Korean": "악",
+      "Spanish": "Siniestro"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FLYING",
+    "names": {
+      "English": "Flying",
+      "German": "Flug",
+      "French": "Vol",
+      "Italian": "Volante",
+      "Japanese": "ひこう",
+      "Korean": "비행",
+      "Spanish": "Volador"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "PECK_FAST": {
+      "id": "PECK_FAST",
+      "power": 10,
+      "energy": 10,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Peck",
+        "German": "Pikser",
+        "French": "Picpic",
+        "Italian": "Beccata",
+        "Japanese": "つつく",
+        "Korean": "쪼기",
+        "Spanish": "Picotazo"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 6,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "FEINT_ATTACK_FAST": {
+      "id": "FEINT_ATTACK_FAST",
+      "power": 11,
+      "energy": 10,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Feint Attack",
+        "German": "Finte",
+        "French": "Feinte",
+        "Italian": "Finta",
+        "Japanese": "だましうち",
+        "Korean": "속여때리기",
+        "Spanish": "Finta"
+      },
+      "combat": {
+        "energy": 6,
+        "power": 6,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "DRILL_PECK": {
+      "id": "DRILL_PECK",
+      "power": 70,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Drill Peck",
+        "German": "Bohrschnabel",
+        "French": "Bec Vrille",
+        "Italian": "Perforbecco",
+        "Japanese": "ドリルくちばし",
+        "Korean": "회전부리",
+        "Spanish": "Pico Taladro"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "FOUL_PLAY": {
+      "id": "FOUL_PLAY",
+      "power": 70,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Foul Play",
+        "German": "Schmarotzer",
+        "French": "Tricherie",
+        "Italian": "Ripicca",
+        "Japanese": "イカサマ",
+        "Korean": "속임수",
+        "Spanish": "Juego Sucio"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 65,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "DARK_PULSE": {
+      "id": "DARK_PULSE",
+      "power": 80,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Dark Pulse",
+        "German": "Finsteraura",
+        "French": "Vibrobscur",
+        "Italian": "Neropulsar",
+        "Japanese": "あくのはどう",
+        "Korean": "악의파동",
+        "Spanish": "Pulso Umbrío"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm198.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm198.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "HONCHKROW",
+      "formId": "HONCHKROW_NORMAL",
+      "candies": 100,
+      "item": {
+        "id": "ITEM_GEN4_EVOLUTION_STONE",
+        "names": {
+          "English": "Sinnoh Stone",
+          "German": "Sinnoh-Stein",
+          "French": "Pierre Sinnoh",
+          "Italian": "Pietra Sinnoh",
+          "Japanese": "シンオウのいし",
+          "Korean": "신오의 돌",
+          "Spanish": "Piedra Sinnoh"
+        }
+      },
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm198.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm198.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": true,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm198.g2.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm198.g2.s.icon.png"
+    }
+  ]
+}

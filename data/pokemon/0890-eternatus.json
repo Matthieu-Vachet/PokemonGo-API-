@@ -1,0 +1,535 @@
+{
+  "id": "ETERNATUS",
+  "formId": "ETERNATUS",
+  "dexNr": 890,
+  "generation": 8,
+  "names": {
+    "English": "Eternatus",
+    "German": "Endynalos",
+    "French": "Éthernatos",
+    "Italian": "Eternatus",
+    "Japanese": "ムゲンダイナ",
+    "Korean": "무한다이노",
+    "Spanish": "Eternatus"
+  },
+  "stats": {
+    "stamina": 268,
+    "attack": 278,
+    "defense": 192
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_POISON",
+    "names": {
+      "English": "Poison",
+      "German": "Gift",
+      "French": "Poison",
+      "Italian": "Veleno",
+      "Japanese": "どく",
+      "Korean": "독",
+      "Spanish": "Veneno"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_DRAGON",
+    "names": {
+      "English": "Dragon",
+      "German": "Drache",
+      "French": "Dragon",
+      "Italian": "Drago",
+      "Japanese": "ドラゴン",
+      "Korean": "드래곤",
+      "Spanish": "Dragón"
+    }
+  },
+  "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+  "quickMoves": {
+    "DRAGON_TAIL_FAST": {
+      "id": "DRAGON_TAIL_FAST",
+      "power": 14,
+      "energy": 8,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "names": {
+        "English": "Dragon Tail",
+        "German": "Drachenrute",
+        "French": "Draco-Queue",
+        "Italian": "Codadrago",
+        "Japanese": "ドラゴンテール",
+        "Korean": "드래곤테일",
+        "Spanish": "Cola Dragón"
+      },
+      "combat": {
+        "energy": 12,
+        "power": 9,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "POISON_JAB_FAST": {
+      "id": "POISON_JAB_FAST",
+      "power": 13,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Poison Jab",
+        "German": "Gifthieb",
+        "French": "Direct Toxik",
+        "Italian": "Velenpuntura",
+        "Japanese": "どくづき",
+        "Korean": "독찌르기",
+        "Spanish": "Puya Nociva"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 7,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "SLUDGE_BOMB": {
+      "id": "SLUDGE_BOMB",
+      "power": 85,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Sludge Bomb",
+        "German": "Matschbombe",
+        "French": "Bombe Beurk",
+        "Italian": "Fangobomba",
+        "Japanese": "ヘドロばくだん",
+        "Korean": "오물폭탄",
+        "Spanish": "Bomba Lodo"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "DRAGON_PULSE": {
+      "id": "DRAGON_PULSE",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "names": {
+        "English": "Dragon Pulse",
+        "German": "Drachenpuls",
+        "French": "Draco-Choc",
+        "Italian": "Dragopulsar",
+        "Japanese": "りゅうのはどう",
+        "Korean": "용의파동",
+        "Spanish": "Pulso Dragón"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "FLAMETHROWER": {
+      "id": "FLAMETHROWER",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Flamethrower",
+        "German": "Flammenwurf",
+        "French": "Lance-Flammes",
+        "Italian": "Lanciafiamme",
+        "Japanese": "かえんほうしゃ",
+        "Korean": "화염방사",
+        "Spanish": "Lanzallamas"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": {
+    "DYNAMAX_CANNON": {
+      "id": "DYNAMAX_CANNON",
+      "power": 215,
+      "energy": -100,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "names": {
+        "English": "Dynamax Cannon",
+        "German": "Dynamax-Kanone",
+        "French": "Canon Dynamax",
+        "Italian": "Cannone Dynamax",
+        "Japanese": "ダイマックスほう",
+        "Korean": "다이맥스포",
+        "Spanish": "Cañón Dinamax"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm890.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm890.s.icon.png"
+  },
+  "regionForms": {
+    "ETERNATUS_ETERNAMAX": {
+      "id": "ETERNATUS",
+      "formId": "ETERNATUS_ETERNAMAX",
+      "dexNr": 890,
+      "generation": 8,
+      "names": {
+        "English": "Eternatus (Eternamax)",
+        "German": "Endynalos (Unendynamax)",
+        "French": "Éthernatos (Infinimax)",
+        "Italian": "Eternatus (Dynamax Infinito)",
+        "Japanese": "ムゲンダイナ (ムゲンダイマックス)",
+        "Korean": "무한다이노 (무한다이맥스)",
+        "Spanish": "Eternatus (Dinamax Infinito)"
+      },
+      "stats": {
+        "stamina": 452,
+        "attack": 251,
+        "defense": 505
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "DRAGON_TAIL_FAST": {
+          "id": "DRAGON_TAIL_FAST",
+          "power": 14,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_DRAGON",
+            "names": {
+              "English": "Dragon",
+              "German": "Drache",
+              "French": "Dragon",
+              "Italian": "Drago",
+              "Japanese": "ドラゴン",
+              "Korean": "드래곤",
+              "Spanish": "Dragón"
+            }
+          },
+          "names": {
+            "English": "Dragon Tail",
+            "German": "Drachenrute",
+            "French": "Draco-Queue",
+            "Italian": "Codadrago",
+            "Japanese": "ドラゴンテール",
+            "Korean": "드래곤테일",
+            "Spanish": "Cola Dragón"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "POISON_JAB_FAST": {
+          "id": "POISON_JAB_FAST",
+          "power": 13,
+          "energy": 9,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_POISON",
+            "names": {
+              "English": "Poison",
+              "German": "Gift",
+              "French": "Poison",
+              "Italian": "Veleno",
+              "Japanese": "どく",
+              "Korean": "독",
+              "Spanish": "Veneno"
+            }
+          },
+          "names": {
+            "English": "Poison Jab",
+            "German": "Gifthieb",
+            "French": "Direct Toxik",
+            "Italian": "Velenpuntura",
+            "Japanese": "どくづき",
+            "Korean": "독찌르기",
+            "Spanish": "Puya Nociva"
+          },
+          "combat": {
+            "energy": 7,
+            "power": 7,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "SLUDGE_BOMB": {
+          "id": "SLUDGE_BOMB",
+          "power": 85,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_POISON",
+            "names": {
+              "English": "Poison",
+              "German": "Gift",
+              "French": "Poison",
+              "Italian": "Veleno",
+              "Japanese": "どく",
+              "Korean": "독",
+              "Spanish": "Veneno"
+            }
+          },
+          "names": {
+            "English": "Sludge Bomb",
+            "German": "Matschbombe",
+            "French": "Bombe Beurk",
+            "Italian": "Fangobomba",
+            "Japanese": "ヘドロばくだん",
+            "Korean": "오물폭탄",
+            "Spanish": "Bomba Lodo"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 80,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "HYPER_BEAM": {
+          "id": "HYPER_BEAM",
+          "power": 150,
+          "energy": -100,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Hyper Beam",
+            "German": "Hyperstrahl",
+            "French": "Ultralaser",
+            "Italian": "Iper Raggio",
+            "Japanese": "はかいこうせん",
+            "Korean": "파괴광선",
+            "Spanish": "Hiperrayo"
+          },
+          "combat": {
+            "energy": -80,
+            "power": 150,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "FLAMETHROWER": {
+          "id": "FLAMETHROWER",
+          "power": 65,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FIRE",
+            "names": {
+              "English": "Fire",
+              "German": "Feuer",
+              "French": "Feu",
+              "Italian": "Fuoco",
+              "Japanese": "ほのお",
+              "Korean": "불꽃",
+              "Spanish": "Fuego"
+            }
+          },
+          "names": {
+            "English": "Flamethrower",
+            "German": "Flammenwurf",
+            "French": "Lance-Flammes",
+            "Italian": "Lanciafiamme",
+            "Japanese": "かえんほうしゃ",
+            "Korean": "화염방사",
+            "Spanish": "Lanzallamas"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": {
+        "DYNAMAX_CANNON": {
+          "id": "DYNAMAX_CANNON",
+          "power": 215,
+          "energy": -100,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_DRAGON",
+            "names": {
+              "English": "Dragon",
+              "German": "Drache",
+              "French": "Dragon",
+              "Italian": "Drago",
+              "Japanese": "ドラゴン",
+              "Korean": "드래곤",
+              "Spanish": "Dragón"
+            }
+          },
+          "names": {
+            "English": "Dynamax Cannon",
+            "German": "Dynamax-Kanone",
+            "French": "Canon Dynamax",
+            "Italian": "Cannone Dynamax",
+            "Japanese": "ダイマックスほう",
+            "Korean": "다이맥스포",
+            "Spanish": "Cañón Dinamax"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 80,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm890.fETERNAMAX.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm890.fETERNAMAX.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "ETERNAMAX",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm890.fETERNAMAX.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm890.fETERNAMAX.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm890.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm890.s.icon.png"
+    }
+  ]
+}

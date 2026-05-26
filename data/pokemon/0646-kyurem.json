@@ -1,0 +1,916 @@
+{
+  "id": "KYUREM",
+  "formId": "KYUREM",
+  "dexNr": 646,
+  "generation": 5,
+  "names": {
+    "English": "Kyurem",
+    "German": "Kyurem",
+    "French": "Kyurem",
+    "Italian": "Kyurem",
+    "Japanese": "キュレム",
+    "Korean": "큐레무",
+    "Spanish": "Kyurem"
+  },
+  "stats": {
+    "stamina": 245,
+    "attack": 246,
+    "defense": 170
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_DRAGON",
+    "names": {
+      "English": "Dragon",
+      "German": "Drache",
+      "French": "Dragon",
+      "Italian": "Drago",
+      "Japanese": "ドラゴン",
+      "Korean": "드래곤",
+      "Spanish": "Dragón"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_ICE",
+    "names": {
+      "English": "Ice",
+      "German": "Eis",
+      "French": "Glace",
+      "Italian": "Ghiaccio",
+      "Japanese": "こおり",
+      "Korean": "얼음",
+      "Spanish": "Hielo"
+    }
+  },
+  "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+  "quickMoves": {
+    "DRAGON_BREATH_FAST": {
+      "id": "DRAGON_BREATH_FAST",
+      "power": 6,
+      "energy": 4,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "names": {
+        "English": "Dragon Breath",
+        "German": "Feuerodem",
+        "French": "Draco-Souffle",
+        "Italian": "Dragospiro",
+        "Japanese": "りゅうのいぶき",
+        "Korean": "용의숨결",
+        "Spanish": "Dragoaliento"
+      },
+      "combat": {
+        "energy": 4,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "STEEL_WING_FAST": {
+      "id": "STEEL_WING_FAST",
+      "power": 14,
+      "energy": 8,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Steel Wing",
+        "German": "Stahlflügel",
+        "French": "Ailes d’Acier",
+        "Italian": "Alacciaio",
+        "Japanese": "はがねのつばさ",
+        "Korean": "강철날개",
+        "Spanish": "Ala de Acero"
+      },
+      "combat": {
+        "energy": 5,
+        "power": 7,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "DRAGON_CLAW": {
+      "id": "DRAGON_CLAW",
+      "power": 45,
+      "energy": -33,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "names": {
+        "English": "Dragon Claw",
+        "German": "Drachenklaue",
+        "French": "Draco-Griffe",
+        "Italian": "Dragartigli",
+        "Japanese": "ドラゴンクロー",
+        "Korean": "드래곤클로",
+        "Spanish": "Garra Dragón"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "BLIZZARD": {
+      "id": "BLIZZARD",
+      "power": 130,
+      "energy": -100,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Blizzard",
+        "German": "Blizzard",
+        "French": "Blizzard",
+        "Italian": "Bora",
+        "Japanese": "ふぶき",
+        "Korean": "눈보라",
+        "Spanish": "Ventisca"
+      },
+      "combat": {
+        "energy": -75,
+        "power": 140,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "DRACO_METEOR": {
+      "id": "DRACO_METEOR",
+      "power": 150,
+      "energy": -100,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "names": {
+        "English": "Draco Meteor",
+        "German": "Draco Meteor",
+        "French": "Draco-Météore",
+        "Italian": "Dragobolide",
+        "Japanese": "りゅうせいぐん",
+        "Korean": "용성군",
+        "Spanish": "Cometa Draco"
+      },
+      "combat": {
+        "energy": -65,
+        "power": 150,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": -2,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": {
+    "GLACIATE": {
+      "id": "GLACIATE",
+      "power": 160,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Glaciate",
+        "German": "Eiszeit",
+        "French": "Ère Glaciaire",
+        "Italian": "Gelamondo",
+        "Japanese": "こごえるせかい",
+        "Korean": "얼어붙은세계",
+        "Spanish": "Mundo Gélido"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 60,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm646.fNORMAL.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm646.fNORMAL.s.icon.png"
+  },
+  "regionForms": {
+    "KYUREM_BLACK": {
+      "id": "KYUREM",
+      "formId": "KYUREM_BLACK",
+      "dexNr": 646,
+      "generation": 5,
+      "names": {
+        "English": "Kyurem (Black Kyurem)",
+        "German": "Kyurem (Schwarzes Kyurem)",
+        "French": "Kyurem (Kyurem Noir)",
+        "Italian": "Kyurem (Kyurem Nero)",
+        "Japanese": "キュレム (ブラックキュレム)",
+        "Korean": "큐레무 (블랙큐레무)",
+        "Spanish": "Kyurem (Kyurem Negro)"
+      },
+      "stats": {
+        "stamina": 245,
+        "attack": 310,
+        "defense": 183
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "DRAGON_TAIL_FAST": {
+          "id": "DRAGON_TAIL_FAST",
+          "power": 14,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_DRAGON",
+            "names": {
+              "English": "Dragon",
+              "German": "Drache",
+              "French": "Dragon",
+              "Italian": "Drago",
+              "Japanese": "ドラゴン",
+              "Korean": "드래곤",
+              "Spanish": "Dragón"
+            }
+          },
+          "names": {
+            "English": "Dragon Tail",
+            "German": "Drachenrute",
+            "French": "Draco-Queue",
+            "Italian": "Codadrago",
+            "Japanese": "ドラゴンテール",
+            "Korean": "드래곤테일",
+            "Spanish": "Cola Dragón"
+          },
+          "combat": {
+            "energy": 12,
+            "power": 9,
+            "turns": 3,
+            "buffs": null
+          }
+        },
+        "SHADOW_CLAW_FAST": {
+          "id": "SHADOW_CLAW_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_GHOST",
+            "names": {
+              "English": "Ghost",
+              "German": "Geist",
+              "French": "Spectre",
+              "Italian": "Spettro",
+              "Japanese": "ゴースト",
+              "Korean": "고스트",
+              "Spanish": "Fantasma"
+            }
+          },
+          "names": {
+            "English": "Shadow Claw",
+            "German": "Dunkelklaue",
+            "French": "Griffe Ombre",
+            "Italian": "Ombrartigli",
+            "Japanese": "シャドークロー",
+            "Korean": "섀도클로",
+            "Spanish": "Garra Umbría"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 6,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "IRON_HEAD": {
+          "id": "IRON_HEAD",
+          "power": 60,
+          "energy": -50,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Iron Head",
+            "German": "Eisenschädel",
+            "French": "Tête de Fer",
+            "Italian": "Metaltestata",
+            "Japanese": "アイアンヘッド",
+            "Korean": "아이언헤드",
+            "Spanish": "Cabeza de Hierro"
+          },
+          "combat": {
+            "energy": -50,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "BLIZZARD": {
+          "id": "BLIZZARD",
+          "power": 130,
+          "energy": -100,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_ICE",
+            "names": {
+              "English": "Ice",
+              "German": "Eis",
+              "French": "Glace",
+              "Italian": "Ghiaccio",
+              "Japanese": "こおり",
+              "Korean": "얼음",
+              "Spanish": "Hielo"
+            }
+          },
+          "names": {
+            "English": "Blizzard",
+            "German": "Blizzard",
+            "French": "Blizzard",
+            "Italian": "Bora",
+            "Japanese": "ふぶき",
+            "Korean": "눈보라",
+            "Spanish": "Ventisca"
+          },
+          "combat": {
+            "energy": -75,
+            "power": 140,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "STONE_EDGE": {
+          "id": "STONE_EDGE",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Stone Edge",
+            "German": "Steinkante",
+            "French": "Lame de Roc",
+            "Italian": "Pietrataglio",
+            "Japanese": "ストーンエッジ",
+            "Korean": "스톤에지",
+            "Spanish": "Roca Afilada"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 100,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "OUTRAGE": {
+          "id": "OUTRAGE",
+          "power": 110,
+          "energy": -50,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_DRAGON",
+            "names": {
+              "English": "Dragon",
+              "German": "Drache",
+              "French": "Dragon",
+              "Italian": "Drago",
+              "Japanese": "ドラゴン",
+              "Korean": "드래곤",
+              "Spanish": "Dragón"
+            }
+          },
+          "names": {
+            "English": "Outrage",
+            "German": "Wutanfall",
+            "French": "Colère",
+            "Italian": "Oltraggio",
+            "Japanese": "げきりん",
+            "Korean": "역린",
+            "Spanish": "Enfado"
+          },
+          "combat": {
+            "energy": -60,
+            "power": 110,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "FUSION_BOLT": {
+          "id": "FUSION_BOLT",
+          "power": 140,
+          "energy": -100,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Fusion Bolt",
+            "German": "Kreuzdonner",
+            "French": "Éclair Croix",
+            "Italian": "Incrotuono",
+            "Japanese": "クロスサンダー",
+            "Korean": "크로스썬더",
+            "Spanish": "Rayo Fusión"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 90,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm646.fBLACK.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm646.fBLACK.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "KYUREM_WHITE": {
+      "id": "KYUREM",
+      "formId": "KYUREM_WHITE",
+      "dexNr": 646,
+      "generation": 5,
+      "names": {
+        "English": "Kyurem (White Kyurem)",
+        "German": "Kyurem (Weißes Kyurem)",
+        "French": "Kyurem (Kyurem Blanc)",
+        "Italian": "Kyurem (Kyurem Bianco)",
+        "Japanese": "キュレム (ホワイトキュレム)",
+        "Korean": "큐레무 (화이트큐레무)",
+        "Spanish": "Kyurem (Kyurem Blanco)"
+      },
+      "stats": {
+        "stamina": 245,
+        "attack": 310,
+        "defense": 183
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+      "quickMoves": {
+        "DRAGON_BREATH_FAST": {
+          "id": "DRAGON_BREATH_FAST",
+          "power": 6,
+          "energy": 4,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_DRAGON",
+            "names": {
+              "English": "Dragon",
+              "German": "Drache",
+              "French": "Dragon",
+              "Italian": "Drago",
+              "Japanese": "ドラゴン",
+              "Korean": "드래곤",
+              "Spanish": "Dragón"
+            }
+          },
+          "names": {
+            "English": "Dragon Breath",
+            "German": "Feuerodem",
+            "French": "Draco-Souffle",
+            "Italian": "Dragospiro",
+            "Japanese": "りゅうのいぶき",
+            "Korean": "용의숨결",
+            "Spanish": "Dragoaliento"
+          },
+          "combat": {
+            "energy": 4,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "STEEL_WING_FAST": {
+          "id": "STEEL_WING_FAST",
+          "power": 14,
+          "energy": 8,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_STEEL",
+            "names": {
+              "English": "Steel",
+              "German": "Stahl",
+              "French": "Acier",
+              "Italian": "Acciaio",
+              "Japanese": "はがね",
+              "Korean": "강철",
+              "Spanish": "Acero"
+            }
+          },
+          "names": {
+            "English": "Steel Wing",
+            "German": "Stahlflügel",
+            "French": "Ailes d’Acier",
+            "Italian": "Alacciaio",
+            "Japanese": "はがねのつばさ",
+            "Korean": "강철날개",
+            "Spanish": "Ala de Acero"
+          },
+          "combat": {
+            "energy": 5,
+            "power": 7,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "ICE_FANG_FAST": {
+          "id": "ICE_FANG_FAST",
+          "power": 12,
+          "energy": 20,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_ICE",
+            "names": {
+              "English": "Ice",
+              "German": "Eis",
+              "French": "Glace",
+              "Italian": "Ghiaccio",
+              "Japanese": "こおり",
+              "Korean": "얼음",
+              "Spanish": "Hielo"
+            }
+          },
+          "names": {
+            "English": "Ice Fang",
+            "German": "Eiszahn",
+            "French": "Crocs Givre",
+            "Italian": "Gelodenti",
+            "Japanese": "こおりのキバ",
+            "Korean": "얼음엄니",
+            "Spanish": "Colmillo Hielo"
+          },
+          "combat": {
+            "energy": 6,
+            "power": 8,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "DRAGON_PULSE": {
+          "id": "DRAGON_PULSE",
+          "power": 90,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_DRAGON",
+            "names": {
+              "English": "Dragon",
+              "German": "Drache",
+              "French": "Dragon",
+              "Italian": "Drago",
+              "Japanese": "ドラゴン",
+              "Korean": "드래곤",
+              "Spanish": "Dragón"
+            }
+          },
+          "names": {
+            "English": "Dragon Pulse",
+            "German": "Drachenpuls",
+            "French": "Draco-Choc",
+            "Italian": "Dragopulsar",
+            "Japanese": "りゅうのはどう",
+            "Korean": "용의파동",
+            "Spanish": "Pulso Dragón"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "BLIZZARD": {
+          "id": "BLIZZARD",
+          "power": 130,
+          "energy": -100,
+          "durationMs": 3000,
+          "type": {
+            "type": "POKEMON_TYPE_ICE",
+            "names": {
+              "English": "Ice",
+              "German": "Eis",
+              "French": "Glace",
+              "Italian": "Ghiaccio",
+              "Japanese": "こおり",
+              "Korean": "얼음",
+              "Spanish": "Hielo"
+            }
+          },
+          "names": {
+            "English": "Blizzard",
+            "German": "Blizzard",
+            "French": "Blizzard",
+            "Italian": "Bora",
+            "Japanese": "ふぶき",
+            "Korean": "눈보라",
+            "Spanish": "Ventisca"
+          },
+          "combat": {
+            "energy": -75,
+            "power": 140,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ANCIENT_POWER": {
+          "id": "ANCIENT_POWER",
+          "power": 70,
+          "energy": -33,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_ROCK",
+            "names": {
+              "English": "Rock",
+              "German": "Gestein",
+              "French": "Roche",
+              "Italian": "Roccia",
+              "Japanese": "いわ",
+              "Korean": "바위",
+              "Spanish": "Roca"
+            }
+          },
+          "names": {
+            "English": "Ancient Power",
+            "German": "Antik-Kraft",
+            "French": "Pouvoir Antique",
+            "Italian": "Forzantica",
+            "Japanese": "げんしのちから",
+            "Korean": "원시의힘",
+            "Spanish": "Poder Pasado"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 60,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 10,
+              "attackerAttackStatsChange": 1,
+              "attackerDefenseStatsChange": 1,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "FOCUS_BLAST": {
+          "id": "FOCUS_BLAST",
+          "power": 140,
+          "energy": -100,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_FIGHTING",
+            "names": {
+              "English": "Fighting",
+              "German": "Kampf",
+              "French": "Combat",
+              "Italian": "Lotta",
+              "Japanese": "かくとう",
+              "Korean": "격투",
+              "Spanish": "Lucha"
+            }
+          },
+          "names": {
+            "English": "Focus Blast",
+            "German": "Fokusstoß",
+            "French": "Exploforce",
+            "Italian": "Focalcolpo",
+            "Japanese": "きあいだま",
+            "Korean": "기합구슬",
+            "Spanish": "Onda Certera"
+          },
+          "combat": {
+            "energy": -75,
+            "power": 150,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "FUSION_FLARE": {
+          "id": "FUSION_FLARE",
+          "power": 140,
+          "energy": -100,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FIRE",
+            "names": {
+              "English": "Fire",
+              "German": "Feuer",
+              "French": "Feu",
+              "Italian": "Fuoco",
+              "Japanese": "ほのお",
+              "Korean": "불꽃",
+              "Spanish": "Fuego"
+            }
+          },
+          "names": {
+            "English": "Fusion Flare",
+            "German": "Kreuzflamme",
+            "French": "Flamme Croix",
+            "Italian": "Incrofiamma",
+            "Japanese": "クロスフレイム",
+            "Korean": "크로스플레임",
+            "Spanish": "Llama Fusión"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 90,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm646.fWHITE.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm646.fWHITE.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "BLACK",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm646.fBLACK.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm646.fBLACK.s.icon.png"
+    },
+    {
+      "form": "NORMAL",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm646.fNORMAL.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm646.fNORMAL.s.icon.png"
+    },
+    {
+      "form": "WHITE",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm646.fWHITE.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm646.fWHITE.s.icon.png"
+    }
+  ]
+}

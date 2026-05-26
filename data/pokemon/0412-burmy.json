@@ -1,0 +1,664 @@
+{
+  "id": "BURMY",
+  "formId": "BURMY",
+  "dexNr": 412,
+  "generation": 4,
+  "names": {
+    "English": "Burmy",
+    "German": "Burmy",
+    "French": "Cheniti",
+    "Italian": "Burmy",
+    "Japanese": "ミノムッチ",
+    "Korean": "도롱충이",
+    "Spanish": "Burmy"
+  },
+  "stats": {
+    "stamina": 120,
+    "attack": 53,
+    "defense": 83
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_BUG",
+    "names": {
+      "English": "Bug",
+      "German": "Käfer",
+      "French": "Insecte",
+      "Italian": "Coleottero",
+      "Japanese": "むし",
+      "Korean": "벌레",
+      "Spanish": "Bicho"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "TACKLE_FAST": {
+      "id": "TACKLE_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Tackle",
+        "German": "Tackle",
+        "French": "Charge",
+        "Italian": "Azione",
+        "Japanese": "たいあたり",
+        "Korean": "몸통박치기",
+        "Spanish": "Placaje"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "BUG_BITE_FAST": {
+      "id": "BUG_BITE_FAST",
+      "power": 5,
+      "energy": 6,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Bug Bite",
+        "German": "Käferbiss",
+        "French": "Piqûre",
+        "Italian": "Coleomorso",
+        "Japanese": "むしくい",
+        "Korean": "벌레먹기",
+        "Spanish": "Picadura"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 4,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "STRUGGLE": {
+      "id": "STRUGGLE",
+      "power": 35,
+      "energy": 0,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Struggle",
+        "German": "Verzweifler",
+        "French": "Lutte",
+        "Italian": "Scontro",
+        "Japanese": "わるあがき",
+        "Korean": "발버둥",
+        "Spanish": "Combate"
+      },
+      "combat": {
+        "energy": -100,
+        "power": 35,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": null,
+  "regionForms": {
+    "BURMY_PLANT": {
+      "id": "BURMY",
+      "formId": "BURMY_PLANT",
+      "dexNr": 412,
+      "generation": 4,
+      "names": {
+        "English": "Burmy (Plant Cloak)",
+        "German": "Burmy (Pflanzenumhang)",
+        "French": "Cheniti (Cape Plante)",
+        "Italian": "Burmy (Manto Pianta)",
+        "Japanese": "ミノムッチ (くさきのミノ)",
+        "Korean": "도롱충이 (초목도롱)",
+        "Spanish": "Burmy (Tronco Planta)"
+      },
+      "stats": {
+        "stamina": 120,
+        "attack": 53,
+        "defense": 83
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "BUG_BITE_FAST": {
+          "id": "BUG_BITE_FAST",
+          "power": 5,
+          "energy": 6,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Bite",
+            "German": "Käferbiss",
+            "French": "Piqûre",
+            "Italian": "Coleomorso",
+            "Japanese": "むしくい",
+            "Korean": "벌레먹기",
+            "Spanish": "Picadura"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "STRUGGLE": {
+          "id": "STRUGGLE",
+          "power": 35,
+          "energy": 0,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Struggle",
+            "German": "Verzweifler",
+            "French": "Lutte",
+            "Italian": "Scontro",
+            "Japanese": "わるあがき",
+            "Korean": "발버둥",
+            "Spanish": "Combate"
+          },
+          "combat": {
+            "energy": -100,
+            "power": 35,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [
+        {
+          "id": "WORMADAM",
+          "formId": "WORMADAM_PLANT",
+          "candies": 50,
+          "item": null,
+          "quests": []
+        },
+        {
+          "id": "MOTHIM",
+          "formId": "MOTHIM",
+          "candies": 50,
+          "item": null,
+          "quests": []
+        }
+      ],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "BURMY_SANDY": {
+      "id": "BURMY",
+      "formId": "BURMY_SANDY",
+      "dexNr": 412,
+      "generation": 4,
+      "names": {
+        "English": "Burmy (Sandy Cloak)",
+        "German": "Burmy (Sandumhang)",
+        "French": "Cheniti (Cape Sable)",
+        "Italian": "Burmy (Manto Sabbia)",
+        "Japanese": "ミノムッチ (すなちのミノ)",
+        "Korean": "도롱충이 (모래땅도롱)",
+        "Spanish": "Burmy (Tronco Arena)"
+      },
+      "stats": {
+        "stamina": 120,
+        "attack": 53,
+        "defense": 83
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "BUG_BITE_FAST": {
+          "id": "BUG_BITE_FAST",
+          "power": 5,
+          "energy": 6,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Bite",
+            "German": "Käferbiss",
+            "French": "Piqûre",
+            "Italian": "Coleomorso",
+            "Japanese": "むしくい",
+            "Korean": "벌레먹기",
+            "Spanish": "Picadura"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "STRUGGLE": {
+          "id": "STRUGGLE",
+          "power": 35,
+          "energy": 0,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Struggle",
+            "German": "Verzweifler",
+            "French": "Lutte",
+            "Italian": "Scontro",
+            "Japanese": "わるあがき",
+            "Korean": "발버둥",
+            "Spanish": "Combate"
+          },
+          "combat": {
+            "energy": -100,
+            "power": 35,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [
+        {
+          "id": "WORMADAM",
+          "formId": "WORMADAM_SANDY",
+          "candies": 50,
+          "item": null,
+          "quests": []
+        },
+        {
+          "id": "MOTHIM",
+          "formId": "MOTHIM",
+          "candies": 50,
+          "item": null,
+          "quests": []
+        }
+      ],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "BURMY_TRASH": {
+      "id": "BURMY",
+      "formId": "BURMY_TRASH",
+      "dexNr": 412,
+      "generation": 4,
+      "names": {
+        "English": "Burmy (Trash Cloak)",
+        "German": "Burmy (Lumpenumhang)",
+        "French": "Cheniti (Cape Déchet)",
+        "Italian": "Burmy (Manto Scarti)",
+        "Japanese": "ミノムッチ (ゴミのミノ)",
+        "Korean": "도롱충이 (슈레도롱)",
+        "Spanish": "Burmy (Tronco Basura)"
+      },
+      "stats": {
+        "stamina": 120,
+        "attack": 53,
+        "defense": 83
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "BUG_BITE_FAST": {
+          "id": "BUG_BITE_FAST",
+          "power": 5,
+          "energy": 6,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_BUG",
+            "names": {
+              "English": "Bug",
+              "German": "Käfer",
+              "French": "Insecte",
+              "Italian": "Coleottero",
+              "Japanese": "むし",
+              "Korean": "벌레",
+              "Spanish": "Bicho"
+            }
+          },
+          "names": {
+            "English": "Bug Bite",
+            "German": "Käferbiss",
+            "French": "Piqûre",
+            "Italian": "Coleomorso",
+            "Japanese": "むしくい",
+            "Korean": "벌레먹기",
+            "Spanish": "Picadura"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 4,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "STRUGGLE": {
+          "id": "STRUGGLE",
+          "power": 35,
+          "energy": 0,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Struggle",
+            "German": "Verzweifler",
+            "French": "Lutte",
+            "Italian": "Scontro",
+            "Japanese": "わるあがき",
+            "Korean": "발버둥",
+            "Spanish": "Combate"
+          },
+          "combat": {
+            "energy": -100,
+            "power": 35,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": null,
+      "regionForms": [],
+      "evolutions": [
+        {
+          "id": "WORMADAM",
+          "formId": "WORMADAM_TRASH",
+          "candies": 50,
+          "item": null,
+          "quests": []
+        },
+        {
+          "id": "MOTHIM",
+          "formId": "MOTHIM",
+          "candies": 50,
+          "item": null,
+          "quests": []
+        }
+      ],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [
+    {
+      "id": "WORMADAM",
+      "formId": "WORMADAM_PLANT",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    },
+    {
+      "id": "MOTHIM",
+      "formId": "MOTHIM",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "BURMY_PLANT",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm412.fBURMY_PLANT.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm412.fBURMY_PLANT.s.icon.png"
+    },
+    {
+      "form": "BURMY_SANDY",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm412.fBURMY_SANDY.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm412.fBURMY_SANDY.s.icon.png"
+    },
+    {
+      "form": "BURMY_TRASH",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm412.fBURMY_TRASH.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm412.fBURMY_TRASH.s.icon.png"
+    }
+  ]
+}

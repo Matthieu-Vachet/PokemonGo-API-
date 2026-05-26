@@ -1,0 +1,810 @@
+{
+  "id": "MELOETTA",
+  "formId": "MELOETTA",
+  "dexNr": 648,
+  "generation": 5,
+  "names": {
+    "English": "Meloetta",
+    "German": "Meloetta",
+    "French": "Meloetta",
+    "Italian": "Meloetta",
+    "Japanese": "メロエッタ",
+    "Korean": "메로엣타",
+    "Spanish": "Meloetta"
+  },
+  "stats": {
+    "stamina": 225,
+    "attack": 250,
+    "defense": 225
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_NORMAL",
+    "names": {
+      "English": "Normal",
+      "German": "Normal",
+      "French": "Normal",
+      "Italian": "Normale",
+      "Japanese": "ノーマル",
+      "Korean": "노말",
+      "Spanish": "Normal"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_PSYCHIC",
+    "names": {
+      "English": "Psychic",
+      "German": "Psycho",
+      "French": "Psy",
+      "Italian": "Psico",
+      "Japanese": "エスパー",
+      "Korean": "에스퍼",
+      "Spanish": "Psíquico"
+    }
+  },
+  "pokemonClass": "POKEMON_CLASS_MYTHIC",
+  "quickMoves": {
+    "QUICK_ATTACK_FAST": {
+      "id": "QUICK_ATTACK_FAST",
+      "power": 10,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Quick Attack",
+        "German": "Ruckzuckhieb",
+        "French": "Vive-Attaque",
+        "Italian": "Attacco Rapido",
+        "Japanese": "でんこうせっか",
+        "Korean": "전광석화",
+        "Spanish": "Ataque Rápido"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "LOW_KICK_FAST": {
+      "id": "LOW_KICK_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Low Kick",
+        "German": "Fußkick",
+        "French": "Balayage",
+        "Italian": "Colpo Basso",
+        "Japanese": "けたぐり",
+        "Korean": "안다리걸기",
+        "Spanish": "Patada Baja"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "CLOSE_COMBAT": {
+      "id": "CLOSE_COMBAT",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Close Combat",
+        "German": "Nahkampf",
+        "French": "Close Combat",
+        "Italian": "Zuffa",
+        "Japanese": "インファイト",
+        "Korean": "인파이트",
+        "Spanish": "A Bocajarro"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 100,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": -2,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "FIRE_PUNCH": {
+      "id": "FIRE_PUNCH",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Fire Punch",
+        "German": "Feuerschlag",
+        "French": "Poing Feu",
+        "Italian": "Fuocopugno",
+        "Japanese": "ほのおのパンチ",
+        "Korean": "불꽃펀치",
+        "Spanish": "Puño Fuego"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ICE_PUNCH": {
+      "id": "ICE_PUNCH",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Ice Punch",
+        "German": "Eishieb",
+        "French": "Poing Glace",
+        "Italian": "Gelopugno",
+        "Japanese": "れいとうパンチ",
+        "Korean": "냉동펀치",
+        "Spanish": "Puño Hielo"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "HYPER_BEAM": {
+      "id": "HYPER_BEAM",
+      "power": 150,
+      "energy": -100,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Hyper Beam",
+        "German": "Hyperstrahl",
+        "French": "Ultralaser",
+        "Italian": "Iper Raggio",
+        "Japanese": "はかいこうせん",
+        "Korean": "파괴광선",
+        "Spanish": "Hiperrayo"
+      },
+      "combat": {
+        "energy": -80,
+        "power": 150,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm648.fARIA.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm648.fARIA.s.icon.png"
+  },
+  "regionForms": {
+    "MELOETTA_ARIA": {
+      "id": "MELOETTA",
+      "formId": "MELOETTA_ARIA",
+      "dexNr": 648,
+      "generation": 5,
+      "names": {
+        "English": "Meloetta (Aria Forme)",
+        "German": "Meloetta (Gesangsform)",
+        "French": "Meloetta (Forme Chant)",
+        "Italian": "Meloetta (Forma Canto)",
+        "Japanese": "メロエッタ (ボイスフォルム)",
+        "Korean": "메로엣타 (보이스폼)",
+        "Spanish": "Meloetta (Forma Lírica)"
+      },
+      "stats": {
+        "stamina": 225,
+        "attack": 250,
+        "defense": 225
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "pokemonClass": "POKEMON_CLASS_MYTHIC",
+      "quickMoves": {
+        "QUICK_ATTACK_FAST": {
+          "id": "QUICK_ATTACK_FAST",
+          "power": 10,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Quick Attack",
+            "German": "Ruckzuckhieb",
+            "French": "Vive-Attaque",
+            "Italian": "Attacco Rapido",
+            "Japanese": "でんこうせっか",
+            "Korean": "전광석화",
+            "Spanish": "Ataque Rápido"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "CONFUSION_FAST": {
+          "id": "CONFUSION_FAST",
+          "power": 19,
+          "energy": 14,
+          "durationMs": 1500,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Confusion",
+            "German": "Konfusion",
+            "French": "Choc Mental",
+            "Italian": "Confusione",
+            "Japanese": "ねんりき",
+            "Korean": "염동력",
+            "Spanish": "Confusión"
+          },
+          "combat": {
+            "energy": 14,
+            "power": 16,
+            "turns": 4,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "PSYSHOCK": {
+          "id": "PSYSHOCK",
+          "power": 60,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_PSYCHIC",
+            "names": {
+              "English": "Psychic",
+              "German": "Psycho",
+              "French": "Psy",
+              "Italian": "Psico",
+              "Japanese": "エスパー",
+              "Korean": "에스퍼",
+              "Spanish": "Psíquico"
+            }
+          },
+          "names": {
+            "English": "Psyshock",
+            "German": "Psychoschock",
+            "French": "Choc Psy",
+            "Italian": "Psicoshock",
+            "Japanese": "サイコショック",
+            "Korean": "사이코쇼크",
+            "Spanish": "Psicocarga"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "THUNDERBOLT": {
+          "id": "THUNDERBOLT",
+          "power": 80,
+          "energy": -50,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_ELECTRIC",
+            "names": {
+              "English": "Electric",
+              "German": "Elektro",
+              "French": "Électrik",
+              "Italian": "Elettro",
+              "Japanese": "でんき",
+              "Korean": "전기",
+              "Spanish": "Eléctrico"
+            }
+          },
+          "names": {
+            "English": "Thunderbolt",
+            "German": "Donnerblitz",
+            "French": "Tonnerre",
+            "Italian": "Fulmine",
+            "Japanese": "１０まんボルト",
+            "Korean": "10만볼트",
+            "Spanish": "Rayo"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "DAZZLING_GLEAM": {
+          "id": "DAZZLING_GLEAM",
+          "power": 100,
+          "energy": -50,
+          "durationMs": 3500,
+          "type": {
+            "type": "POKEMON_TYPE_FAIRY",
+            "names": {
+              "English": "Fairy",
+              "German": "Fee",
+              "French": "Fée",
+              "Italian": "Folletto",
+              "Japanese": "フェアリー",
+              "Korean": "페어리",
+              "Spanish": "Hada"
+            }
+          },
+          "names": {
+            "English": "Dazzling Gleam",
+            "German": "Zauberschein",
+            "French": "Éclat Magique",
+            "Italian": "Magibrillio",
+            "Japanese": "マジカルシャイン",
+            "Korean": "매지컬샤인",
+            "Spanish": "Brillo Mágico"
+          },
+          "combat": {
+            "energy": -55,
+            "power": 90,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "HYPER_BEAM": {
+          "id": "HYPER_BEAM",
+          "power": 150,
+          "energy": -100,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Hyper Beam",
+            "German": "Hyperstrahl",
+            "French": "Ultralaser",
+            "Italian": "Iper Raggio",
+            "Japanese": "はかいこうせん",
+            "Korean": "파괴광선",
+            "Spanish": "Hiperrayo"
+          },
+          "combat": {
+            "energy": -80,
+            "power": 150,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm648.fARIA.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm648.fARIA.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "MELOETTA_PIROUETTE": {
+      "id": "MELOETTA",
+      "formId": "MELOETTA_PIROUETTE",
+      "dexNr": 648,
+      "generation": 5,
+      "names": {
+        "English": "Meloetta (Pirouette Forme)",
+        "German": "Meloetta (Tanzform)",
+        "French": "Meloetta (Forme Danse)",
+        "Italian": "Meloetta (Forma Danza)",
+        "Japanese": "メロエッタ (ステップフォルム)",
+        "Korean": "메로엣타 (스텝폼)",
+        "Spanish": "Meloetta (Forma Danza)"
+      },
+      "stats": {
+        "stamina": 225,
+        "attack": 269,
+        "defense": 188
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "secondaryType": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "pokemonClass": "POKEMON_CLASS_MYTHIC",
+      "quickMoves": {
+        "QUICK_ATTACK_FAST": {
+          "id": "QUICK_ATTACK_FAST",
+          "power": 10,
+          "energy": 13,
+          "durationMs": 1000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Quick Attack",
+            "German": "Ruckzuckhieb",
+            "French": "Vive-Attaque",
+            "Italian": "Attacco Rapido",
+            "Japanese": "でんこうせっか",
+            "Korean": "전광석화",
+            "Spanish": "Ataque Rápido"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 2,
+            "buffs": null
+          }
+        },
+        "LOW_KICK_FAST": {
+          "id": "LOW_KICK_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_FIGHTING",
+            "names": {
+              "English": "Fighting",
+              "German": "Kampf",
+              "French": "Combat",
+              "Italian": "Lotta",
+              "Japanese": "かくとう",
+              "Korean": "격투",
+              "Spanish": "Lucha"
+            }
+          },
+          "names": {
+            "English": "Low Kick",
+            "German": "Fußkick",
+            "French": "Balayage",
+            "Italian": "Colpo Basso",
+            "Japanese": "けたぐり",
+            "Korean": "안다리걸기",
+            "Spanish": "Patada Baja"
+          },
+          "combat": {
+            "energy": 8,
+            "power": 5,
+            "turns": 2,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "CLOSE_COMBAT": {
+          "id": "CLOSE_COMBAT",
+          "power": 105,
+          "energy": -100,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_FIGHTING",
+            "names": {
+              "English": "Fighting",
+              "German": "Kampf",
+              "French": "Combat",
+              "Italian": "Lotta",
+              "Japanese": "かくとう",
+              "Korean": "격투",
+              "Spanish": "Lucha"
+            }
+          },
+          "names": {
+            "English": "Close Combat",
+            "German": "Nahkampf",
+            "French": "Close Combat",
+            "Italian": "Zuffa",
+            "Japanese": "インファイト",
+            "Korean": "인파이트",
+            "Spanish": "A Bocajarro"
+          },
+          "combat": {
+            "energy": -45,
+            "power": 100,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 100,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": -2,
+              "targetAttackStatsChange": null,
+              "targetDefenseStatsChange": null
+            }
+          }
+        },
+        "FIRE_PUNCH": {
+          "id": "FIRE_PUNCH",
+          "power": 50,
+          "energy": -33,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_FIRE",
+            "names": {
+              "English": "Fire",
+              "German": "Feuer",
+              "French": "Feu",
+              "Italian": "Fuoco",
+              "Japanese": "ほのお",
+              "Korean": "불꽃",
+              "Spanish": "Fuego"
+            }
+          },
+          "names": {
+            "English": "Fire Punch",
+            "German": "Feuerschlag",
+            "French": "Poing Feu",
+            "Italian": "Fuocopugno",
+            "Japanese": "ほのおのパンチ",
+            "Korean": "불꽃펀치",
+            "Spanish": "Puño Fuego"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "ICE_PUNCH": {
+          "id": "ICE_PUNCH",
+          "power": 50,
+          "energy": -33,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_ICE",
+            "names": {
+              "English": "Ice",
+              "German": "Eis",
+              "French": "Glace",
+              "Italian": "Ghiaccio",
+              "Japanese": "こおり",
+              "Korean": "얼음",
+              "Spanish": "Hielo"
+            }
+          },
+          "names": {
+            "English": "Ice Punch",
+            "German": "Eishieb",
+            "French": "Poing Glace",
+            "Italian": "Gelopugno",
+            "Japanese": "れいとうパンチ",
+            "Korean": "냉동펀치",
+            "Spanish": "Puño Hielo"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 60,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "HYPER_BEAM": {
+          "id": "HYPER_BEAM",
+          "power": 150,
+          "energy": -100,
+          "durationMs": 4000,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Hyper Beam",
+            "German": "Hyperstrahl",
+            "French": "Ultralaser",
+            "Italian": "Iper Raggio",
+            "Japanese": "はかいこうせん",
+            "Korean": "파괴광선",
+            "Spanish": "Hiperrayo"
+          },
+          "combat": {
+            "energy": -80,
+            "power": 150,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm648.fPIROUETTE.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm648.fPIROUETTE.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "ARIA",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm648.fARIA.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm648.fARIA.s.icon.png"
+    },
+    {
+      "form": "PIROUETTE",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm648.fPIROUETTE.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm648.fPIROUETTE.s.icon.png"
+    },
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm648.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm648.s.icon.png"
+    }
+  ]
+}

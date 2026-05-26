@@ -1,0 +1,278 @@
+{
+  "id": "KUBFU",
+  "formId": "KUBFU",
+  "dexNr": 891,
+  "generation": 8,
+  "names": {
+    "English": "Kubfu",
+    "German": "Dakuma",
+    "French": "Wushours",
+    "Italian": "Kubfu",
+    "Japanese": "ダクマ",
+    "Korean": "치고마",
+    "Spanish": "Kubfu"
+  },
+  "stats": {
+    "stamina": 155,
+    "attack": 170,
+    "defense": 112
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_FIGHTING",
+    "names": {
+      "English": "Fighting",
+      "German": "Kampf",
+      "French": "Combat",
+      "Italian": "Lotta",
+      "Japanese": "かくとう",
+      "Korean": "격투",
+      "Spanish": "Lucha"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": "POKEMON_CLASS_LEGENDARY",
+  "quickMoves": {
+    "ROCK_SMASH_FAST": {
+      "id": "ROCK_SMASH_FAST",
+      "power": 17,
+      "energy": 12,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Rock Smash",
+        "German": "Zertrümmerer",
+        "French": "Éclate-Roc",
+        "Italian": "Spaccaroccia",
+        "Japanese": "いわくだき",
+        "Korean": "바위깨기",
+        "Spanish": "Golpe Roca"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 9,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "COUNTER_FAST": {
+      "id": "COUNTER_FAST",
+      "power": 13,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Counter",
+        "German": "Konter",
+        "French": "Riposte",
+        "Italian": "Contrattacco",
+        "Japanese": "カウンター",
+        "Korean": "카운터",
+        "Spanish": "Contraataque"
+      },
+      "combat": {
+        "energy": 6,
+        "power": 8,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "BRICK_BREAK": {
+      "id": "BRICK_BREAK",
+      "power": 40,
+      "energy": -33,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Brick Break",
+        "German": "Durchbruch",
+        "French": "Casse-Brique",
+        "Italian": "Breccia",
+        "Japanese": "かわらわり",
+        "Korean": "깨트리기",
+        "Spanish": "Demolición"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 50,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "DYNAMIC_PUNCH": {
+      "id": "DYNAMIC_PUNCH",
+      "power": 85,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Dynamic Punch",
+        "German": "Wuchtschlag",
+        "French": "Dynamo-Poing",
+        "Italian": "Dinamipugno",
+        "Japanese": "ばくれつパンチ",
+        "Korean": "폭발펀치",
+        "Spanish": "Puño Dinámico"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "CLOSE_COMBAT": {
+      "id": "CLOSE_COMBAT",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Close Combat",
+        "German": "Nahkampf",
+        "French": "Close Combat",
+        "Italian": "Zuffa",
+        "Japanese": "インファイト",
+        "Korean": "인파이트",
+        "Spanish": "A Bocajarro"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 100,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": -2,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm891.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm891.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "URSHIFU",
+      "formId": "URSHIFU_SINGLE_STRIKE",
+      "candies": 200,
+      "item": null,
+      "quests": [
+        {
+          "id": "KUBFU_SINGLE_STRIKE_EVOLUTION_QUEST",
+          "type": "QUEST_COMPLETE_BATTLE",
+          "names": {
+            "English": "Defeat 30 Dark-type Pokémon in raids or Max Battles",
+            "German": "Besiege 30 Pokémon vom Typ Unlicht in Raids oder Dyna-Kämpfen.",
+            "French": "Remporte un combat contre 30 Pokémon de type Ténèbres dans des Raids ou des Combats Dynamax",
+            "Italian": "Sconfiggi 30 Pokémon di tipo Buio nei raid o nelle Lotte Dynamax",
+            "Japanese": "レイドかマックスバトルであくタイプのポケモン30匹に勝つ",
+            "Korean": "레이드배틀 또는 맥스배틀에서 악타입 포켓몬 30마리에게 이긴다",
+            "Spanish": "Derrota a 30 Pokémon de tipo Siniestro en incursiones o Combates Max"
+          }
+        }
+      ]
+    },
+    {
+      "id": "URSHIFU",
+      "formId": "URSHIFU_RAPID_STRIKE",
+      "candies": 200,
+      "item": null,
+      "quests": [
+        {
+          "id": "KUBFU_RAPID_STRIKE_EVOLUTION_QUEST",
+          "type": "QUEST_COMPLETE_BATTLE",
+          "names": {
+            "English": "Defeat 30 Water-type Pokémon in raids or Max Battles",
+            "German": "Besiege 30 Pokémon vom Typ Wasser in Raids oder Dyna-Kämpfen.",
+            "French": "Remporte un combat contre 30 Pokémon de type Eau dans des Raids ou des Combats Dynamax",
+            "Italian": "Sconfiggi 30 Pokémon di tipo Acqua nei raid o nelle Lotte Dynamax",
+            "Japanese": "レイドかマックスバトルでみずタイプのポケモン30匹に勝つ",
+            "Korean": "레이드배틀 또는 맥스배틀에서 물타입 포켓몬 30마리에게 이긴다",
+            "Spanish": "Derrota a 30 Pokémon de tipo Agua en incursiones o Combates Max"
+          }
+        }
+      ]
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm891.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm891.s.icon.png"
+    }
+  ]
+}

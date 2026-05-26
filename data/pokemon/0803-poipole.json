@@ -1,0 +1,251 @@
+{
+  "id": "POIPOLE",
+  "formId": "POIPOLE",
+  "dexNr": 803,
+  "generation": 7,
+  "names": {
+    "English": "Poipole",
+    "German": "Venicro",
+    "French": "Vémini",
+    "Italian": "Poipole",
+    "Japanese": "ベベノム",
+    "Korean": "베베놈",
+    "Spanish": "Poipole"
+  },
+  "stats": {
+    "stamina": 167,
+    "attack": 145,
+    "defense": 133
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_POISON",
+    "names": {
+      "English": "Poison",
+      "German": "Gift",
+      "French": "Poison",
+      "Italian": "Veleno",
+      "Japanese": "どく",
+      "Korean": "독",
+      "Spanish": "Veneno"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": "POKEMON_CLASS_ULTRA_BEAST",
+  "quickMoves": {
+    "POISON_JAB_FAST": {
+      "id": "POISON_JAB_FAST",
+      "power": 13,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Poison Jab",
+        "German": "Gifthieb",
+        "French": "Direct Toxik",
+        "Italian": "Velenpuntura",
+        "Japanese": "どくづき",
+        "Korean": "독찌르기",
+        "Spanish": "Puya Nociva"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 7,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "PECK_FAST": {
+      "id": "PECK_FAST",
+      "power": 10,
+      "energy": 10,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Peck",
+        "German": "Pikser",
+        "French": "Picpic",
+        "Italian": "Beccata",
+        "Japanese": "つつく",
+        "Korean": "쪼기",
+        "Spanish": "Picotazo"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 6,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "SLUDGE_BOMB": {
+      "id": "SLUDGE_BOMB",
+      "power": 85,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Sludge Bomb",
+        "German": "Matschbombe",
+        "French": "Bombe Beurk",
+        "Italian": "Fangobomba",
+        "Japanese": "ヘドロばくだん",
+        "Korean": "오물폭탄",
+        "Spanish": "Bomba Lodo"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "SLUDGE_WAVE": {
+      "id": "SLUDGE_WAVE",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Sludge Wave",
+        "German": "Schlammwoge",
+        "French": "Cradovague",
+        "Italian": "Fangonda",
+        "Japanese": "ヘドロウェーブ",
+        "Korean": "오물웨이브",
+        "Spanish": "Onda Tóxica"
+      },
+      "combat": {
+        "energy": -65,
+        "power": 110,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "FELL_STINGER": {
+      "id": "FELL_STINGER",
+      "power": 45,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Fell Stinger",
+        "German": "Stachelfinale",
+        "French": "Dard Mortel",
+        "Italian": "Pungiglione",
+        "Japanese": "とどめばり",
+        "Korean": "마지막일침",
+        "Spanish": "Aguijón Letal"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 20,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": 1,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm803.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm803.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "NAGANADEL",
+      "formId": "NAGANADEL",
+      "candies": 200,
+      "item": null,
+      "quests": [
+        {
+          "id": "NAGANADEL_EVOLUTION_QUEST",
+          "type": "QUEST_CATCH_POKEMON",
+          "names": {
+            "English": "Catch 20 Dragon-type Pokémon",
+            "German": "Fange 20 Pokémon vom Typ Drache.",
+            "French": "Attrape 20 Pokémon de type Dragon",
+            "Italian": "Cattura 20 Pokémon di tipo Drago",
+            "Japanese": "ドラゴンタイプのポケモンを20匹捕まえる",
+            "Korean": "드래곤타입 포켓몬을 20마리 잡는다",
+            "Spanish": "Captura 20 Pokémon de tipo Dragón"
+          }
+        }
+      ]
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": null,
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm803.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm803.s.icon.png"
+    }
+  ]
+}

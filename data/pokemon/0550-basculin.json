@@ -1,0 +1,904 @@
+{
+  "id": "BASCULIN",
+  "formId": "BASCULIN",
+  "dexNr": 550,
+  "generation": 5,
+  "names": {
+    "English": "Basculin",
+    "German": "Barschuft",
+    "French": "Bargantua",
+    "Italian": "Basculin",
+    "Japanese": "バスラオ",
+    "Korean": "배쓰나이",
+    "Spanish": "Basculin"
+  },
+  "stats": {
+    "stamina": 172,
+    "attack": 189,
+    "defense": 129
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_WATER",
+    "names": {
+      "English": "Water",
+      "German": "Wasser",
+      "French": "Eau",
+      "Italian": "Acqua",
+      "Japanese": "みず",
+      "Korean": "물",
+      "Spanish": "Agua"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "TACKLE_FAST": {
+      "id": "TACKLE_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Tackle",
+        "German": "Tackle",
+        "French": "Charge",
+        "Italian": "Azione",
+        "Japanese": "たいあたり",
+        "Korean": "몸통박치기",
+        "Spanish": "Placaje"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "WATER_GUN_FAST": {
+      "id": "WATER_GUN_FAST",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Water Gun",
+        "German": "Aquaknarre",
+        "French": "Pistolet à O",
+        "Italian": "Pistolacqua",
+        "Japanese": "みずでっぽう",
+        "Korean": "물대포",
+        "Spanish": "Pistola Agua"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "AQUA_JET": {
+      "id": "AQUA_JET",
+      "power": 45,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Aqua Jet",
+        "German": "Wasserdüse",
+        "French": "Aqua-Jet",
+        "Italian": "Acquagetto",
+        "Japanese": "アクアジェット",
+        "Korean": "아쿠아제트",
+        "Spanish": "Acua Jet"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "AQUA_TAIL": {
+      "id": "AQUA_TAIL",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Aqua Tail",
+        "German": "Nassschweif",
+        "French": "Hydro-Queue",
+        "Italian": "Idrondata",
+        "Japanese": "アクアテール",
+        "Korean": "아쿠아테일",
+        "Spanish": "Acua Cola"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "MUDDY_WATER": {
+      "id": "MUDDY_WATER",
+      "power": 45,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Muddy Water",
+        "German": "Lehmbrühe",
+        "French": "Ocroupi",
+        "Italian": "Fanghiglia",
+        "Japanese": "だくりゅう",
+        "Korean": "탁류",
+        "Spanish": "Agua Lodosa"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 35,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 30,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm550.fRED_STRIPED.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm550.fRED_STRIPED.s.icon.png"
+  },
+  "regionForms": {
+    "BASCULIN_BLUE_STRIPED": {
+      "id": "BASCULIN",
+      "formId": "BASCULIN_BLUE_STRIPED",
+      "dexNr": 550,
+      "generation": 5,
+      "names": {
+        "English": "Basculin (Blue-Striped)",
+        "German": "Barschuft (Blaulinig)",
+        "French": "Bargantua (Motif Bleu)",
+        "Italian": "Basculin (Forma Lineablu)",
+        "Japanese": "バスラオ (あおすじのすがた)",
+        "Korean": "배쓰나이 (청색근의 모습)",
+        "Spanish": "Basculin (Forma Raya Azul)"
+      },
+      "stats": {
+        "stamina": 172,
+        "attack": 189,
+        "defense": 129
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "WATER_GUN_FAST": {
+          "id": "WATER_GUN_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Water Gun",
+            "German": "Aquaknarre",
+            "French": "Pistolet à O",
+            "Italian": "Pistolacqua",
+            "Japanese": "みずでっぽう",
+            "Korean": "물대포",
+            "Spanish": "Pistola Agua"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "AQUA_JET": {
+          "id": "AQUA_JET",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Aqua Jet",
+            "German": "Wasserdüse",
+            "French": "Aqua-Jet",
+            "Italian": "Acquagetto",
+            "Japanese": "アクアジェット",
+            "Korean": "아쿠아제트",
+            "Spanish": "Acua Jet"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AQUA_TAIL": {
+          "id": "AQUA_TAIL",
+          "power": 50,
+          "energy": -33,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Aqua Tail",
+            "German": "Nassschweif",
+            "French": "Hydro-Queue",
+            "Italian": "Idrondata",
+            "Japanese": "アクアテール",
+            "Korean": "아쿠아테일",
+            "Spanish": "Acua Cola"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 55,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "MUDDY_WATER": {
+          "id": "MUDDY_WATER",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Muddy Water",
+            "German": "Lehmbrühe",
+            "French": "Ocroupi",
+            "Italian": "Fanghiglia",
+            "Japanese": "だくりゅう",
+            "Korean": "탁류",
+            "Spanish": "Agua Lodosa"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 35,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm550.fBLUE_STRIPED.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm550.fBLUE_STRIPED.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "BASCULIN_RED_STRIPED": {
+      "id": "BASCULIN",
+      "formId": "BASCULIN_RED_STRIPED",
+      "dexNr": 550,
+      "generation": 5,
+      "names": {
+        "English": "Basculin (Red-Striped)",
+        "German": "Barschuft (Rotlinig)",
+        "French": "Bargantua (Motif Rouge)",
+        "Italian": "Basculin (Forma Linearossa)",
+        "Japanese": "バスラオ (あかすじのすがた)",
+        "Korean": "배쓰나이 (적색근의 모습)",
+        "Spanish": "Basculin (Forma Raya Roja)"
+      },
+      "stats": {
+        "stamina": 172,
+        "attack": 189,
+        "defense": 129
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "WATER_GUN_FAST": {
+          "id": "WATER_GUN_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Water Gun",
+            "German": "Aquaknarre",
+            "French": "Pistolet à O",
+            "Italian": "Pistolacqua",
+            "Japanese": "みずでっぽう",
+            "Korean": "물대포",
+            "Spanish": "Pistola Agua"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "AQUA_JET": {
+          "id": "AQUA_JET",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Aqua Jet",
+            "German": "Wasserdüse",
+            "French": "Aqua-Jet",
+            "Italian": "Acquagetto",
+            "Japanese": "アクアジェット",
+            "Korean": "아쿠아제트",
+            "Spanish": "Acua Jet"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AQUA_TAIL": {
+          "id": "AQUA_TAIL",
+          "power": 50,
+          "energy": -33,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Aqua Tail",
+            "German": "Nassschweif",
+            "French": "Hydro-Queue",
+            "Italian": "Idrondata",
+            "Japanese": "アクアテール",
+            "Korean": "아쿠아테일",
+            "Spanish": "Acua Cola"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 55,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "MUDDY_WATER": {
+          "id": "MUDDY_WATER",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Muddy Water",
+            "German": "Lehmbrühe",
+            "French": "Ocroupi",
+            "Italian": "Fanghiglia",
+            "Japanese": "だくりゅう",
+            "Korean": "탁류",
+            "Spanish": "Agua Lodosa"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 35,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm550.fRED_STRIPED.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm550.fRED_STRIPED.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    },
+    "BASCULIN_WHITE_STRIPED": {
+      "id": "BASCULIN",
+      "formId": "BASCULIN_WHITE_STRIPED",
+      "dexNr": 550,
+      "generation": 5,
+      "names": {
+        "English": "Basculin (White-Striped)",
+        "German": "Barschuft (Weißlinig)",
+        "French": "Bargantua (Motif Blanc)",
+        "Italian": "Basculin (Forma Lineabianca)",
+        "Japanese": "バスラオ (しろすじのすがた)",
+        "Korean": "배쓰나이 (백색근의 모습)",
+        "Spanish": "Basculin (Raya Blanca)"
+      },
+      "stats": {
+        "stamina": 172,
+        "attack": 189,
+        "defense": 129
+      },
+      "primaryType": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "secondaryType": null,
+      "pokemonClass": null,
+      "quickMoves": {
+        "TACKLE_FAST": {
+          "id": "TACKLE_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_NORMAL",
+            "names": {
+              "English": "Normal",
+              "German": "Normal",
+              "French": "Normal",
+              "Italian": "Normale",
+              "Japanese": "ノーマル",
+              "Korean": "노말",
+              "Spanish": "Normal"
+            }
+          },
+          "names": {
+            "English": "Tackle",
+            "German": "Tackle",
+            "French": "Charge",
+            "Italian": "Azione",
+            "Japanese": "たいあたり",
+            "Korean": "몸통박치기",
+            "Spanish": "Placaje"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "WATER_GUN_FAST": {
+          "id": "WATER_GUN_FAST",
+          "power": 5,
+          "energy": 5,
+          "durationMs": 500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Water Gun",
+            "German": "Aquaknarre",
+            "French": "Pistolet à O",
+            "Italian": "Pistolacqua",
+            "Japanese": "みずでっぽう",
+            "Korean": "물대포",
+            "Spanish": "Pistola Agua"
+          },
+          "combat": {
+            "energy": 3,
+            "power": 3,
+            "turns": 1,
+            "buffs": null
+          }
+        }
+      },
+      "cinematicMoves": {
+        "AQUA_JET": {
+          "id": "AQUA_JET",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 2500,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Aqua Jet",
+            "German": "Wasserdüse",
+            "French": "Aqua-Jet",
+            "Italian": "Acquagetto",
+            "Japanese": "アクアジェット",
+            "Korean": "아쿠아제트",
+            "Spanish": "Acua Jet"
+          },
+          "combat": {
+            "energy": -40,
+            "power": 70,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "AQUA_TAIL": {
+          "id": "AQUA_TAIL",
+          "power": 50,
+          "energy": -33,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Aqua Tail",
+            "German": "Nassschweif",
+            "French": "Hydro-Queue",
+            "Italian": "Idrondata",
+            "Japanese": "アクアテール",
+            "Korean": "아쿠아테일",
+            "Spanish": "Acua Cola"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 55,
+            "turns": 1,
+            "buffs": null
+          }
+        },
+        "MUDDY_WATER": {
+          "id": "MUDDY_WATER",
+          "power": 45,
+          "energy": -33,
+          "durationMs": 2000,
+          "type": {
+            "type": "POKEMON_TYPE_WATER",
+            "names": {
+              "English": "Water",
+              "German": "Wasser",
+              "French": "Eau",
+              "Italian": "Acqua",
+              "Japanese": "みず",
+              "Korean": "물",
+              "Spanish": "Agua"
+            }
+          },
+          "names": {
+            "English": "Muddy Water",
+            "German": "Lehmbrühe",
+            "French": "Ocroupi",
+            "Italian": "Fanghiglia",
+            "Japanese": "だくりゅう",
+            "Korean": "탁류",
+            "Spanish": "Agua Lodosa"
+          },
+          "combat": {
+            "energy": -35,
+            "power": 35,
+            "turns": 1,
+            "buffs": {
+              "activationChance": 30,
+              "attackerAttackStatsChange": null,
+              "attackerDefenseStatsChange": null,
+              "targetAttackStatsChange": -1,
+              "targetDefenseStatsChange": null
+            }
+          }
+        }
+      },
+      "eliteQuickMoves": [],
+      "eliteCinematicMoves": [],
+      "assets": {
+        "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm550.fWHITE_STRIPED.icon.png",
+        "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm550.fWHITE_STRIPED.s.icon.png"
+      },
+      "regionForms": [],
+      "evolutions": [],
+      "hasMegaEvolution": false,
+      "megaEvolutions": [],
+      "hasGigantamaxEvolution": false
+    }
+  },
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false,
+  "assetForms": [
+    {
+      "form": "BLUE_STRIPED",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm550.fBLUE_STRIPED.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm550.fBLUE_STRIPED.s.icon.png"
+    },
+    {
+      "form": "RED_STRIPED",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm550.fRED_STRIPED.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm550.fRED_STRIPED.s.icon.png"
+    },
+    {
+      "form": "WHITE_STRIPED",
+      "costume": null,
+      "isFemale": false,
+      "image": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm550.fWHITE_STRIPED.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/pokemon-go-api/assets/main/Pokemon/pm550.fWHITE_STRIPED.s.icon.png"
+    }
+  ]
+}

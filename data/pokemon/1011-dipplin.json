@@ -1,7 +1,9 @@
 {
   "id": "DIPPLIN",
   "formId": "DIPPLIN",
+  "slug": "dipplin",
   "dexNr": 1011,
+  "dexId": "1011",
   "generation": 9,
   "names": {
     "English": "Dipplin",
@@ -45,6 +47,7 @@
   "quickMoves": {
     "BULLET_SEED_FAST": {
       "id": "BULLET_SEED_FAST",
+      "slug": "bullet_seed_fast",
       "power": 7,
       "energy": 13,
       "durationMs": 1000,
@@ -78,6 +81,7 @@
     },
     "DRAGON_TAIL_FAST": {
       "id": "DRAGON_TAIL_FAST",
+      "slug": "dragon_tail_fast",
       "power": 14,
       "energy": 8,
       "durationMs": 1000,
@@ -111,6 +115,7 @@
     },
     "ROLLOUT_FAST": {
       "id": "ROLLOUT_FAST",
+      "slug": "rollout_fast",
       "power": 15,
       "energy": 19,
       "durationMs": 1500,
@@ -146,6 +151,7 @@
   "cinematicMoves": {
     "DRAGON_PULSE": {
       "id": "DRAGON_PULSE",
+      "slug": "dragon_pulse",
       "power": 90,
       "energy": -50,
       "durationMs": 3500,
@@ -179,6 +185,7 @@
     },
     "OUTRAGE": {
       "id": "OUTRAGE",
+      "slug": "outrage",
       "power": 110,
       "energy": -50,
       "durationMs": 4000,
@@ -212,6 +219,7 @@
     },
     "SEED_BOMB": {
       "id": "SEED_BOMB",
+      "slug": "seed_bomb",
       "power": 55,
       "energy": -33,
       "durationMs": 2000,
@@ -254,12 +262,14 @@
   "evolutions": [
     {
       "id": "HYDRAPPLE",
+      "slug": "hydrapple",
       "formId": "HYDRAPPLE_NORMAL",
       "candies": 400,
       "item": null,
       "quests": [
         {
           "id": "DIPPLIN_EVOLUTION_QUEST",
+          "slug": "dipplin_evolution_quest",
           "type": "QUEST_CATCH_POKEMON",
           "names": {
             "English": "Catch 7 Dragon-type Pokémon",

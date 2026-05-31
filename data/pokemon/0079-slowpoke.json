@@ -1,7 +1,9 @@
 {
   "id": "SLOWPOKE",
   "formId": "SLOWPOKE",
+  "slug": "slowpoke",
   "dexNr": 79,
+  "dexId": "0079",
   "generation": 1,
   "names": {
     "English": "Slowpoke",
@@ -45,6 +47,7 @@
   "quickMoves": {
     "WATER_GUN_FAST": {
       "id": "WATER_GUN_FAST",
+      "slug": "water_gun_fast",
       "power": 5,
       "energy": 5,
       "durationMs": 500,
@@ -78,6 +81,7 @@
     },
     "CONFUSION_FAST": {
       "id": "CONFUSION_FAST",
+      "slug": "confusion_fast",
       "power": 19,
       "energy": 14,
       "durationMs": 1500,
@@ -113,6 +117,7 @@
   "cinematicMoves": {
     "WATER_PULSE": {
       "id": "WATER_PULSE",
+      "slug": "water_pulse",
       "power": 65,
       "energy": -50,
       "durationMs": 3000,
@@ -146,6 +151,7 @@
     },
     "PSYSHOCK": {
       "id": "PSYSHOCK",
+      "slug": "psyshock",
       "power": 60,
       "energy": -33,
       "durationMs": 2500,
@@ -179,6 +185,7 @@
     },
     "PSYCHIC": {
       "id": "PSYCHIC",
+      "slug": "psychic",
       "power": 95,
       "energy": -50,
       "durationMs": 3000,
@@ -226,6 +233,7 @@
   "regionForms": {
     "SLOWPOKE_GALARIAN": {
       "id": "SLOWPOKE",
+      "slug": "slowpoke",
       "formId": "SLOWPOKE_GALARIAN",
       "dexNr": 79,
       "generation": 1,
@@ -260,6 +268,7 @@
       "quickMoves": {
         "CONFUSION_FAST": {
           "id": "CONFUSION_FAST",
+          "slug": "confusion_fast",
           "power": 19,
           "energy": 14,
           "durationMs": 1500,
@@ -293,6 +302,7 @@
         },
         "IRON_TAIL_FAST": {
           "id": "IRON_TAIL_FAST",
+          "slug": "iron_tail_fast",
           "power": 14,
           "energy": 6,
           "durationMs": 1000,
@@ -328,6 +338,7 @@
       "cinematicMoves": {
         "SURF": {
           "id": "SURF",
+          "slug": "surf",
           "power": 60,
           "energy": -50,
           "durationMs": 1500,
@@ -361,6 +372,7 @@
         },
         "PSYSHOCK": {
           "id": "PSYSHOCK",
+          "slug": "psyshock",
           "power": 60,
           "energy": -33,
           "durationMs": 2500,
@@ -394,6 +406,7 @@
         },
         "PSYCHIC": {
           "id": "PSYCHIC",
+          "slug": "psychic",
           "power": 95,
           "energy": -50,
           "durationMs": 3000,
@@ -442,12 +455,14 @@
       "evolutions": [
         {
           "id": "SLOWBRO",
+          "slug": "slowbro",
           "formId": "SLOWBRO_GALARIAN",
           "candies": 50,
           "item": null,
           "quests": [
             {
               "id": "SLOWBRO_G_EVOLUTION_QUEST",
+              "slug": "slowbro_g_evolution_quest",
               "type": "QUEST_CATCH_POKEMON",
               "names": {
                 "English": "Catch 30 Poison-type Pokémon",
@@ -463,12 +478,14 @@
         },
         {
           "id": "SLOWKING",
+          "slug": "slowking",
           "formId": "SLOWKING_GALARIAN",
           "candies": 50,
           "item": null,
           "quests": [
             {
               "id": "SLOWKING_G_EVOLUTION_QUEST",
+              "slug": "slowking_g_evolution_quest",
               "type": "QUEST_CATCH_POKEMON",
               "names": {
                 "English": "Catch 30 Psychic-type Pokémon",
@@ -491,6 +508,7 @@
   "evolutions": [
     {
       "id": "SLOWBRO",
+      "slug": "slowbro",
       "formId": "SLOWBRO_NORMAL",
       "candies": 50,
       "item": null,
@@ -498,10 +516,12 @@
     },
     {
       "id": "SLOWKING",
+      "slug": "slowking",
       "formId": "SLOWKING_NORMAL",
       "candies": 50,
       "item": {
         "id": "ITEM_KINGS_ROCK",
+        "slug": "item_kings_rock",
         "names": {
           "English": "King's Rock",
           "German": "King-Stein",

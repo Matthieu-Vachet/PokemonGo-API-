@@ -1,7 +1,9 @@
 {
   "id": "EEVEE",
   "formId": "EEVEE",
+  "slug": "eevee",
   "dexNr": 133,
+  "dexId": "0133",
   "generation": 1,
   "names": {
     "English": "Eevee",
@@ -34,6 +36,7 @@
   "quickMoves": {
     "QUICK_ATTACK_FAST": {
       "id": "QUICK_ATTACK_FAST",
+      "slug": "quick_attack_fast",
       "power": 10,
       "energy": 13,
       "durationMs": 1000,
@@ -67,6 +70,7 @@
     },
     "TACKLE_FAST": {
       "id": "TACKLE_FAST",
+      "slug": "tackle_fast",
       "power": 5,
       "energy": 5,
       "durationMs": 500,
@@ -102,6 +106,7 @@
   "cinematicMoves": {
     "DIG": {
       "id": "DIG",
+      "slug": "dig",
       "power": 100,
       "energy": -50,
       "durationMs": 4500,
@@ -135,6 +140,7 @@
     },
     "SWIFT": {
       "id": "SWIFT",
+      "slug": "swift",
       "power": 65,
       "energy": -50,
       "durationMs": 3000,
@@ -171,6 +177,7 @@
   "eliteCinematicMoves": {
     "LAST_RESORT": {
       "id": "LAST_RESORT",
+      "slug": "last_resort",
       "power": 90,
       "energy": -50,
       "durationMs": 3000,
@@ -204,6 +211,7 @@
     },
     "BODY_SLAM": {
       "id": "BODY_SLAM",
+      "slug": "body_slam",
       "power": 50,
       "energy": -33,
       "durationMs": 2000,
@@ -244,6 +252,7 @@
   "evolutions": [
     {
       "id": "VAPOREON",
+      "slug": "vaporeon",
       "formId": "VAPOREON_NORMAL",
       "candies": 25,
       "item": null,
@@ -251,6 +260,7 @@
     },
     {
       "id": "JOLTEON",
+      "slug": "jolteon",
       "formId": "JOLTEON_NORMAL",
       "candies": 25,
       "item": null,
@@ -258,6 +268,7 @@
     },
     {
       "id": "FLAREON",
+      "slug": "flareon",
       "formId": "FLAREON_NORMAL",
       "candies": 25,
       "item": null,
@@ -265,12 +276,14 @@
     },
     {
       "id": "ESPEON",
+      "slug": "espeon",
       "formId": "ESPEON_NORMAL",
       "candies": 25,
       "item": null,
       "quests": [
         {
           "id": "ESPEON_EVOLUTION_QUEST",
+          "slug": "espeon_evolution_quest",
           "type": "QUEST_BUDDY_EVOLUTION_WALK",
           "names": {
             "English": "Walk 10 km with your buddy",
@@ -286,12 +299,14 @@
     },
     {
       "id": "UMBREON",
+      "slug": "umbreon",
       "formId": "UMBREON_NORMAL",
       "candies": 25,
       "item": null,
       "quests": [
         {
           "id": "UMBREON_EVOLUTION_QUEST",
+          "slug": "umbreon_evolution_quest",
           "type": "QUEST_BUDDY_EVOLUTION_WALK",
           "names": {
             "English": "Walk 10 km with your buddy",
@@ -307,6 +322,7 @@
     },
     {
       "id": "LEAFEON",
+      "slug": "leafeon",
       "formId": "LEAFEON_NORMAL",
       "candies": 25,
       "item": null,
@@ -314,6 +330,7 @@
     },
     {
       "id": "GLACEON",
+      "slug": "glaceon",
       "formId": "GLACEON_NORMAL",
       "candies": 25,
       "item": null,
@@ -321,12 +338,14 @@
     },
     {
       "id": "SYLVEON",
+      "slug": "sylveon",
       "formId": "SYLVEON_NORMAL",
       "candies": 25,
       "item": null,
       "quests": [
         {
           "id": "SYLVEON_EVOLUTION_QUEST",
+          "slug": "sylveon_evolution_quest",
           "type": "QUEST_BUDDY_EARN_AFFECTION_POINTS",
           "names": {
             "English": "Earn a heart with your buddy",

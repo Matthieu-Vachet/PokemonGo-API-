@@ -1,7 +1,9 @@
 {
   "id": "CHARCADET",
   "formId": "CHARCADET",
+  "slug": "charcadet",
   "dexNr": 935,
+  "dexId": "0935",
   "generation": 9,
   "names": {
     "English": "Charcadet",
@@ -34,6 +36,7 @@
   "quickMoves": {
     "EMBER_FAST": {
       "id": "EMBER_FAST",
+      "slug": "ember_fast",
       "power": 10,
       "energy": 10,
       "durationMs": 1000,
@@ -67,6 +70,7 @@
     },
     "INCINERATE_FAST": {
       "id": "INCINERATE_FAST",
+      "slug": "incinerate_fast",
       "power": 32,
       "energy": 22,
       "durationMs": 2500,
@@ -102,6 +106,7 @@
   "cinematicMoves": {
     "FLAME_CHARGE": {
       "id": "FLAME_CHARGE",
+      "slug": "flame_charge",
       "power": 70,
       "energy": -33,
       "durationMs": 4000,
@@ -141,6 +146,7 @@
     },
     "HEAT_WAVE": {
       "id": "HEAT_WAVE",
+      "slug": "heat_wave",
       "power": 95,
       "energy": -100,
       "durationMs": 3000,
@@ -174,6 +180,7 @@
     },
     "FLAMETHROWER": {
       "id": "FLAMETHROWER",
+      "slug": "flamethrower",
       "power": 65,
       "energy": -50,
       "durationMs": 2000,
@@ -216,12 +223,14 @@
   "evolutions": [
     {
       "id": "ARMAROUGE",
+      "slug": "armarouge",
       "formId": "ARMAROUGE",
       "candies": 50,
       "item": null,
       "quests": [
         {
           "id": "CHARCADET_ARMAROUGE_EVOLUTION_QUEST",
+          "slug": "charcadet_armarouge_evolution_quest",
           "type": "QUEST_FIGHT_POKEMON",
           "names": {
             "English": "Defeat 30 Psychic-type Pokémon",
@@ -237,12 +246,14 @@
     },
     {
       "id": "CERULEDGE",
+      "slug": "ceruledge",
       "formId": "CERULEDGE",
       "candies": 50,
       "item": null,
       "quests": [
         {
           "id": "CHARCADET_CERULEDGE_EVOLUTION_QUEST",
+          "slug": "charcadet_ceruledge_evolution_quest",
           "type": "QUEST_FIGHT_POKEMON",
           "names": {
             "English": "Defeat 30 Ghost-type Pokémon",

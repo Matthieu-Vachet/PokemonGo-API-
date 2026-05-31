@@ -1,7 +1,9 @@
 {
   "id": "FEEBAS",
   "formId": "FEEBAS",
+  "slug": "feebas",
   "dexNr": 349,
+  "dexId": "0349",
   "generation": 3,
   "names": {
     "English": "Feebas",
@@ -34,6 +36,7 @@
   "quickMoves": {
     "SPLASH_FAST": {
       "id": "SPLASH_FAST",
+      "slug": "splash_fast",
       "power": 0,
       "energy": 17,
       "durationMs": 1500,
@@ -67,6 +70,7 @@
     },
     "TACKLE_FAST": {
       "id": "TACKLE_FAST",
+      "slug": "tackle_fast",
       "power": 5,
       "energy": 5,
       "durationMs": 500,
@@ -102,6 +106,7 @@
   "cinematicMoves": {
     "MIRROR_COAT": {
       "id": "MIRROR_COAT",
+      "slug": "mirror_coat",
       "power": 60,
       "energy": -50,
       "durationMs": 2500,
@@ -144,12 +149,14 @@
   "evolutions": [
     {
       "id": "MILOTIC",
+      "slug": "milotic",
       "formId": "MILOTIC",
       "candies": 100,
       "item": null,
       "quests": [
         {
           "id": "MILOTIC_EVOLUTION_QUEST",
+          "slug": "milotic_evolution_quest",
           "type": "QUEST_BUDDY_EVOLUTION_WALK",
           "names": {
             "English": "Walk 20 km with your buddy",

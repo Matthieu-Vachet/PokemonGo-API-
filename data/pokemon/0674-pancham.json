@@ -1,7 +1,9 @@
 {
   "id": "PANCHAM",
   "formId": "PANCHAM",
+  "slug": "pancham",
   "dexNr": 674,
+  "dexId": "0674",
   "generation": 6,
   "names": {
     "English": "Pancham",
@@ -34,6 +36,7 @@
   "quickMoves": {
     "LOW_KICK_FAST": {
       "id": "LOW_KICK_FAST",
+      "slug": "low_kick_fast",
       "power": 5,
       "energy": 5,
       "durationMs": 500,
@@ -67,6 +70,7 @@
     },
     "TACKLE_FAST": {
       "id": "TACKLE_FAST",
+      "slug": "tackle_fast",
       "power": 5,
       "energy": 5,
       "durationMs": 500,
@@ -102,6 +106,7 @@
   "cinematicMoves": {
     "LOW_SWEEP": {
       "id": "LOW_SWEEP",
+      "slug": "low_sweep",
       "power": 40,
       "energy": -33,
       "durationMs": 2000,
@@ -135,6 +140,7 @@
     },
     "CRUNCH": {
       "id": "CRUNCH",
+      "slug": "crunch",
       "power": 65,
       "energy": -33,
       "durationMs": 3000,
@@ -174,6 +180,7 @@
     },
     "BODY_SLAM": {
       "id": "BODY_SLAM",
+      "slug": "body_slam",
       "power": 50,
       "energy": -33,
       "durationMs": 2000,
@@ -216,12 +223,14 @@
   "evolutions": [
     {
       "id": "PANGORO",
+      "slug": "pangoro",
       "formId": "PANGORO",
       "candies": 50,
       "item": null,
       "quests": [
         {
           "id": "PANCHAM_EVOLUTION_QUEST",
+          "slug": "pancham_evolution_quest",
           "type": "QUEST_CATCH_POKEMON",
           "names": {
             "English": "Catch 32 Dark-type Pokémon",

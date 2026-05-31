@@ -1,7 +1,9 @@
 {
   "id": "SPRITZEE",
   "formId": "SPRITZEE",
+  "slug": "spritzee",
   "dexNr": 682,
+  "dexId": "0682",
   "generation": 6,
   "names": {
     "English": "Spritzee",
@@ -34,6 +36,7 @@
   "quickMoves": {
     "CHARM_FAST": {
       "id": "CHARM_FAST",
+      "slug": "charm_fast",
       "power": 20,
       "energy": 11,
       "durationMs": 1500,
@@ -67,6 +70,7 @@
     },
     "CHARGE_BEAM_FAST": {
       "id": "CHARGE_BEAM_FAST",
+      "slug": "charge_beam_fast",
       "power": 7,
       "energy": 14,
       "durationMs": 1000,
@@ -102,6 +106,7 @@
   "cinematicMoves": {
     "DRAINING_KISS": {
       "id": "DRAINING_KISS",
+      "slug": "draining_kiss",
       "power": 60,
       "energy": -50,
       "durationMs": 2500,
@@ -135,6 +140,7 @@
     },
     "THUNDERBOLT": {
       "id": "THUNDERBOLT",
+      "slug": "thunderbolt",
       "power": 80,
       "energy": -50,
       "durationMs": 2500,
@@ -177,12 +183,14 @@
   "evolutions": [
     {
       "id": "AROMATISSE",
+      "slug": "aromatisse",
       "formId": "AROMATISSE",
       "candies": 50,
       "item": null,
       "quests": [
         {
           "id": "SPRITZEE_EVOLUTION_QUEST",
+          "slug": "spritzee_evolution_quest",
           "type": "QUEST_USE_INCENSE",
           "names": {
             "English": "Use an Incense",

@@ -20,7 +20,10 @@
     "height": 2,
     "weight": 100
   },
-  "weatherBoost": ["sunny", "cloudy"],
+  "weatherBoost": [
+    "sunny",
+    "cloudy"
+  ],
   "buddyDistance": 3,
   "catchRate": 20,
   "fleeRate": 0,
@@ -41,7 +44,7 @@
     "shadow": true,
     "dynamax": true,
     "gigantamax": true,
-      "mega": true,
+    "mega": true,
     "apex": false
   },
   "maxCp": {
@@ -58,14 +61,17 @@
         "ivs": {
           "attack": 0,
           "defense": 13,
-          "stamina": 12 
+          "stamina": 12
         },
         "level": 21,
         "cp": 1498
       },
       "bestMovesets": {
         "fast": "VINE_WHIP_FAST",
-        "charged": ["FENZY_PLANT", "SLUDGE"]
+        "charged": [
+          "FENZY_PLANT",
+          "SLUDGE"
+        ]
       }
     },
     "ultraLeague": {
@@ -81,7 +87,10 @@
       },
       "bestMovesets": {
         "fast": "VINE_WHIP_FAST",
-        "charged": ["FENZY_PLANT", "SLUDGE"]
+        "charged": [
+          "FENZY_PLANT",
+          "SLUDGE"
+        ]
       }
     },
     "masterLeague": {
@@ -97,7 +106,10 @@
       },
       "bestMovesets": {
         "fast": "VINE_WHIP_FAST",
-        "charged": ["FENZY_PLANT", "SLUDGE"]
+        "charged": [
+          "FENZY_PLANT",
+          "SLUDGE"
+        ]
       }
     }
   },
@@ -134,6 +146,7 @@
   "quickMoves": {
     "RAZOR_LEAF_FAST": {
       "id": "RAZOR_LEAF_FAST",
+      "slug": "razor_leaf_fast",
       "power": 13,
       "energy": 7,
       "durationMs": 1000,
@@ -167,6 +180,7 @@
     },
     "VINE_WHIP_FAST": {
       "id": "VINE_WHIP_FAST",
+      "slug": "vine_whip_fast",
       "power": 6,
       "energy": 5,
       "durationMs": 500,
@@ -202,6 +216,7 @@
   "cinematicMoves": {
     "SLUDGE_BOMB": {
       "id": "SLUDGE_BOMB",
+      "slug": "sludge_bomb",
       "power": 85,
       "energy": -50,
       "durationMs": 2500,
@@ -235,6 +250,7 @@
     },
     "PETAL_BLIZZARD": {
       "id": "PETAL_BLIZZARD",
+      "slug": "petal_blizzard",
       "power": 110,
       "energy": -100,
       "durationMs": 2500,
@@ -268,6 +284,7 @@
     },
     "SOLAR_BEAM": {
       "id": "SOLAR_BEAM",
+      "slug": "solar_beam",
       "power": 180,
       "energy": -100,
       "durationMs": 5000,
@@ -301,6 +318,7 @@
     },
     "SLUDGE": {
       "id": "SLUDGE",
+      "slug": "sludge",
       "power": 50,
       "energy": -33,
       "durationMs": 2000,
@@ -337,6 +355,7 @@
   "eliteCinematicMoves": {
     "FRENZY_PLANT": {
       "id": "FRENZY_PLANT",
+      "slug": "frenzy_plant",
       "power": 100,
       "energy": -50,
       "durationMs": 2500,
@@ -379,7 +398,7 @@
   "megaEvolutions": {
     "VENUSAUR_MEGA": {
       "id": "VENUSAUR_MEGA",
-      "slug": "venusaur-mega",
+      "slug": "venusaur_mega",
       "formId": "VENUSAUR_MEGA",
       "names": {
         "English": "Mega Venusaur",

@@ -1,7 +1,9 @@
 {
   "id": "SWIRLIX",
   "formId": "SWIRLIX",
+  "slug": "swirlix",
   "dexNr": 684,
+  "dexId": "0684",
   "generation": 6,
   "names": {
     "English": "Swirlix",
@@ -34,6 +36,7 @@
   "quickMoves": {
     "TACKLE_FAST": {
       "id": "TACKLE_FAST",
+      "slug": "tackle_fast",
       "power": 5,
       "energy": 5,
       "durationMs": 500,
@@ -69,6 +72,7 @@
   "cinematicMoves": {
     "DRAINING_KISS": {
       "id": "DRAINING_KISS",
+      "slug": "draining_kiss",
       "power": 60,
       "energy": -50,
       "durationMs": 2500,
@@ -102,6 +106,7 @@
     },
     "ENERGY_BALL": {
       "id": "ENERGY_BALL",
+      "slug": "energy_ball",
       "power": 90,
       "energy": -50,
       "durationMs": 4000,
@@ -150,12 +155,14 @@
   "evolutions": [
     {
       "id": "SLURPUFF",
+      "slug": "slurpuff",
       "formId": "SLURPUFF",
       "candies": 50,
       "item": null,
       "quests": [
         {
           "id": "SWIRLIX_EVOLUTION_QUEST",
+          "slug": "swirlix_evolution_quest",
           "type": "QUEST_BUDDY_FEED",
           "names": {
             "English": "Give your buddy 25 treats",

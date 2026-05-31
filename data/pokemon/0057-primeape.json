@@ -1,7 +1,9 @@
 {
   "id": "PRIMEAPE",
   "formId": "PRIMEAPE",
+  "slug": "primeape",
   "dexNr": 57,
+  "dexId": "0057",
   "generation": 1,
   "names": {
     "English": "Primeape",
@@ -34,6 +36,7 @@
   "quickMoves": {
     "LOW_KICK_FAST": {
       "id": "LOW_KICK_FAST",
+      "slug": "low_kick_fast",
       "power": 5,
       "energy": 5,
       "durationMs": 500,
@@ -67,6 +70,7 @@
     },
     "COUNTER_FAST": {
       "id": "COUNTER_FAST",
+      "slug": "counter_fast",
       "power": 13,
       "energy": 9,
       "durationMs": 1000,
@@ -102,6 +106,7 @@
   "cinematicMoves": {
     "CLOSE_COMBAT": {
       "id": "CLOSE_COMBAT",
+      "slug": "close_combat",
       "power": 105,
       "energy": -100,
       "durationMs": 2500,
@@ -141,6 +146,7 @@
     },
     "LOW_SWEEP": {
       "id": "LOW_SWEEP",
+      "slug": "low_sweep",
       "power": 40,
       "energy": -33,
       "durationMs": 2000,
@@ -174,6 +180,7 @@
     },
     "NIGHT_SLASH": {
       "id": "NIGHT_SLASH",
+      "slug": "night_slash",
       "power": 45,
       "energy": -33,
       "durationMs": 2000,
@@ -213,6 +220,7 @@
     },
     "ICE_PUNCH": {
       "id": "ICE_PUNCH",
+      "slug": "ice_punch",
       "power": 50,
       "energy": -33,
       "durationMs": 2000,
@@ -248,6 +256,7 @@
   "eliteQuickMoves": {
     "KARATE_CHOP_FAST": {
       "id": "KARATE_CHOP_FAST",
+      "slug": "karate_chop_fast",
       "power": 10,
       "energy": 13,
       "durationMs": 1000,
@@ -283,6 +292,7 @@
   "eliteCinematicMoves": {
     "CROSS_CHOP": {
       "id": "CROSS_CHOP",
+      "slug": "cross_chop",
       "power": 50,
       "energy": -50,
       "durationMs": 1500,
@@ -316,6 +326,7 @@
     },
     "RAGE_FIST": {
       "id": "RAGE_FIST",
+      "slug": "rage_fist",
       "power": 100,
       "energy": -50,
       "durationMs": 3000,
@@ -362,12 +373,14 @@
   "evolutions": [
     {
       "id": "ANNIHILAPE",
+      "slug": "annihilape",
       "formId": "ANNIHILAPE",
       "candies": 100,
       "item": null,
       "quests": [
         {
           "id": "ANNIHILAPE_EVOLUTION_QUEST",
+          "slug": "annihilape_evolution_quest",
           "type": "QUEST_FIGHT_POKEMON",
           "names": {
             "English": "Defeat 30 Psychic- or Ghost-type Pokémon",

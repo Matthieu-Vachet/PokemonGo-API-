@@ -1,7 +1,9 @@
 {
   "id": "QWILFISH",
   "formId": "QWILFISH",
+  "slug": "qwilfish",
   "dexNr": 211,
+  "dexId": "0211",
   "generation": 2,
   "names": {
     "English": "Qwilfish",
@@ -45,6 +47,7 @@
   "quickMoves": {
     "POISON_STING_FAST": {
       "id": "POISON_STING_FAST",
+      "slug": "poison_sting_fast",
       "power": 4,
       "energy": 6,
       "durationMs": 500,
@@ -78,6 +81,7 @@
     },
     "WATER_GUN_FAST": {
       "id": "WATER_GUN_FAST",
+      "slug": "water_gun_fast",
       "power": 5,
       "energy": 5,
       "durationMs": 500,
@@ -113,6 +117,7 @@
   "cinematicMoves": {
     "AQUA_TAIL": {
       "id": "AQUA_TAIL",
+      "slug": "aqua_tail",
       "power": 50,
       "energy": -33,
       "durationMs": 2000,
@@ -146,6 +151,7 @@
     },
     "ICE_BEAM": {
       "id": "ICE_BEAM",
+      "slug": "ice_beam",
       "power": 95,
       "energy": -50,
       "durationMs": 3500,
@@ -179,6 +185,7 @@
     },
     "SLUDGE_WAVE": {
       "id": "SLUDGE_WAVE",
+      "slug": "sludge_wave",
       "power": 105,
       "energy": -100,
       "durationMs": 3000,
@@ -212,6 +219,7 @@
     },
     "ACID_SPRAY": {
       "id": "ACID_SPRAY",
+      "slug": "acid_spray",
       "power": 20,
       "energy": -50,
       "durationMs": 3000,
@@ -251,6 +259,7 @@
     },
     "FELL_STINGER": {
       "id": "FELL_STINGER",
+      "slug": "fell_stinger",
       "power": 45,
       "energy": -33,
       "durationMs": 2000,
@@ -290,6 +299,7 @@
     },
     "SCALD": {
       "id": "SCALD",
+      "slug": "scald",
       "power": 75,
       "energy": -50,
       "durationMs": 3500,
@@ -337,6 +347,7 @@
   "regionForms": {
     "QWILFISH_HISUIAN": {
       "id": "QWILFISH",
+      "slug": "qwilfish",
       "formId": "QWILFISH_HISUIAN",
       "dexNr": 211,
       "generation": 2,
@@ -382,6 +393,7 @@
       "quickMoves": {
         "POISON_STING_FAST": {
           "id": "POISON_STING_FAST",
+          "slug": "poison_sting_fast",
           "power": 4,
           "energy": 6,
           "durationMs": 500,
@@ -415,6 +427,7 @@
         },
         "POISON_JAB_FAST": {
           "id": "POISON_JAB_FAST",
+          "slug": "poison_jab_fast",
           "power": 13,
           "energy": 9,
           "durationMs": 1000,
@@ -450,6 +463,7 @@
       "cinematicMoves": {
         "AQUA_TAIL": {
           "id": "AQUA_TAIL",
+          "slug": "aqua_tail",
           "power": 50,
           "energy": -33,
           "durationMs": 2000,
@@ -483,6 +497,7 @@
         },
         "ICE_BEAM": {
           "id": "ICE_BEAM",
+          "slug": "ice_beam",
           "power": 95,
           "energy": -50,
           "durationMs": 3500,
@@ -516,6 +531,7 @@
         },
         "SLUDGE_BOMB": {
           "id": "SLUDGE_BOMB",
+          "slug": "sludge_bomb",
           "power": 85,
           "energy": -50,
           "durationMs": 2500,
@@ -549,6 +565,7 @@
         },
         "DARK_PULSE": {
           "id": "DARK_PULSE",
+          "slug": "dark_pulse",
           "power": 80,
           "energy": -50,
           "durationMs": 3000,
@@ -582,6 +599,7 @@
         },
         "SHADOW_BALL": {
           "id": "SHADOW_BALL",
+          "slug": "shadow_ball",
           "power": 100,
           "energy": -50,
           "durationMs": 3000,
@@ -624,12 +642,14 @@
       "evolutions": [
         {
           "id": "OVERQWIL",
+          "slug": "overqwil",
           "formId": "OVERQWIL",
           "candies": 50,
           "item": null,
           "quests": [
             {
               "id": "OVERQWIL_EVOLUTION_QUEST",
+              "slug": "overqwil_evolution_quest",
               "type": "QUEST_COMPLETE_RAID_BATTLE",
               "names": {
                 "English": "Win 10 raids",

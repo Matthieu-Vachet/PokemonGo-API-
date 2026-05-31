@@ -1,7 +1,9 @@
 {
   "id": "SNOM",
   "formId": "SNOM",
+  "slug": "snom",
   "dexNr": 872,
+  "dexId": "0872",
   "generation": 8,
   "names": {
     "English": "Snom",
@@ -45,6 +47,7 @@
   "quickMoves": {
     "POWDER_SNOW_FAST": {
       "id": "POWDER_SNOW_FAST",
+      "slug": "powder_snow_fast",
       "power": 6,
       "energy": 15,
       "durationMs": 1000,
@@ -78,6 +81,7 @@
     },
     "STRUGGLE_BUG_FAST": {
       "id": "STRUGGLE_BUG_FAST",
+      "slug": "struggle_bug_fast",
       "power": 15,
       "energy": 15,
       "durationMs": 1500,
@@ -113,6 +117,7 @@
   "cinematicMoves": {
     "ICY_WIND": {
       "id": "ICY_WIND",
+      "slug": "icy_wind",
       "power": 65,
       "energy": -33,
       "durationMs": 3500,
@@ -152,6 +157,7 @@
     },
     "BUG_BUZZ": {
       "id": "BUG_BUZZ",
+      "slug": "bug_buzz",
       "power": 95,
       "energy": -50,
       "durationMs": 3500,
@@ -200,12 +206,14 @@
   "evolutions": [
     {
       "id": "FROSMOTH",
+      "slug": "frosmoth",
       "formId": "FROSMOTH",
       "candies": 400,
       "item": null,
       "quests": [
         {
           "id": "SNOM_FROSMOTH_EVOLUTION_QUEST",
+          "slug": "snom_frosmoth_evolution_quest",
           "type": "QUEST_BUDDY_EARN_AFFECTION_POINTS",
           "names": {
             "English": "Earn 10 hearts with your buddy",

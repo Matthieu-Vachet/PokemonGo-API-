@@ -20,7 +20,10 @@
     "height": 1,
     "weight": 13
   },
-  "weatherBoost": ["sunny", "cloudy"],
+  "weatherBoost": [
+    "sunny",
+    "cloudy"
+  ],
   "buddyDistance": 3,
   "catchRate": 20,
   "fleeRate": 0,
@@ -63,10 +66,13 @@
         "level": 37.5,
         "cp": 1500
       },
-        "bestMovesets": {
-          "fast": "VINE_WHIP_FAST",
-          "charged": ["POWER_WHIP", "SLUDGE_BOMB"]
-        }
+      "bestMovesets": {
+        "fast": "VINE_WHIP_FAST",
+        "charged": [
+          "POWER_WHIP",
+          "SLUDGE_BOMB"
+        ]
+      }
     }
   },
   "stats": {
@@ -102,6 +108,7 @@
   "quickMoves": {
     "RAZOR_LEAF_FAST": {
       "id": "RAZOR_LEAF_FAST",
+      "slug": "razor_leaf_fast",
       "power": 13,
       "energy": 7,
       "durationMs": 1000,
@@ -135,6 +142,7 @@
     },
     "VINE_WHIP_FAST": {
       "id": "VINE_WHIP_FAST",
+      "slug": "vine_whip_fast",
       "power": 6,
       "energy": 5,
       "durationMs": 500,
@@ -170,6 +178,7 @@
   "cinematicMoves": {
     "SLUDGE_BOMB": {
       "id": "SLUDGE_BOMB",
+      "slug": "sludge_bomb",
       "power": 85,
       "energy": -50,
       "durationMs": 2500,
@@ -203,6 +212,7 @@
     },
     "SOLAR_BEAM": {
       "id": "SOLAR_BEAM",
+      "slug": "solar_beam",
       "power": 180,
       "energy": -100,
       "durationMs": 5000,
@@ -236,6 +246,7 @@
     },
     "POWER_WHIP": {
       "id": "POWER_WHIP",
+      "slug": "power_whip",
       "power": 90,
       "energy": -50,
       "durationMs": 2500,

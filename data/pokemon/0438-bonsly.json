@@ -1,7 +1,9 @@
 {
   "id": "BONSLY",
   "formId": "BONSLY",
+  "slug": "bonsly",
   "dexNr": 438,
+  "dexId": "0438",
   "generation": 4,
   "names": {
     "English": "Bonsly",
@@ -34,6 +36,7 @@
   "quickMoves": {
     "ROCK_THROW_FAST": {
       "id": "ROCK_THROW_FAST",
+      "slug": "rock_throw_fast",
       "power": 13,
       "energy": 8,
       "durationMs": 1000,
@@ -67,6 +70,7 @@
     },
     "COUNTER_FAST": {
       "id": "COUNTER_FAST",
+      "slug": "counter_fast",
       "power": 13,
       "energy": 9,
       "durationMs": 1000,
@@ -102,6 +106,7 @@
   "cinematicMoves": {
     "ROCK_TOMB": {
       "id": "ROCK_TOMB",
+      "slug": "rock_tomb",
       "power": 65,
       "energy": -50,
       "durationMs": 3000,
@@ -141,6 +146,7 @@
     },
     "EARTHQUAKE": {
       "id": "EARTHQUAKE",
+      "slug": "earthquake",
       "power": 140,
       "energy": -100,
       "durationMs": 3500,
@@ -174,6 +180,7 @@
     },
     "ROCK_SLIDE": {
       "id": "ROCK_SLIDE",
+      "slug": "rock_slide",
       "power": 75,
       "energy": -50,
       "durationMs": 2500,
@@ -216,12 +223,14 @@
   "evolutions": [
     {
       "id": "SUDOWOODO",
+      "slug": "sudowoodo",
       "formId": "SUDOWOODO",
       "candies": 50,
       "item": null,
       "quests": [
         {
           "id": "SUDOWOODO_EVOLUTION_QUEST",
+          "slug": "sudowoodo_evolution_quest",
           "type": "QUEST_BUDDY_EVOLUTION_WALK",
           "names": {
             "English": "Walk 15 km with your buddy",

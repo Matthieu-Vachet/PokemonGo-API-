@@ -1,7 +1,9 @@
 {
   "id": "PANPOUR",
   "formId": "PANPOUR",
+  "slug": "panpour",
   "dexNr": 515,
+  "dexId": "0515",
   "generation": 5,
   "names": {
     "English": "Panpour",
@@ -34,6 +36,7 @@
   "quickMoves": {
     "SCRATCH_FAST": {
       "id": "SCRATCH_FAST",
+      "slug": "scratch_fast",
       "power": 6,
       "energy": 4,
       "durationMs": 500,
@@ -67,6 +70,7 @@
     },
     "WATER_GUN_FAST": {
       "id": "WATER_GUN_FAST",
+      "slug": "water_gun_fast",
       "power": 5,
       "energy": 5,
       "durationMs": 500,
@@ -102,6 +106,7 @@
   "cinematicMoves": {
     "SURF": {
       "id": "SURF",
+      "slug": "surf",
       "power": 60,
       "energy": -50,
       "durationMs": 1500,
@@ -135,6 +140,7 @@
     },
     "WATER_PULSE": {
       "id": "WATER_PULSE",
+      "slug": "water_pulse",
       "power": 65,
       "energy": -50,
       "durationMs": 3000,
@@ -168,6 +174,7 @@
     },
     "CRUNCH": {
       "id": "CRUNCH",
+      "slug": "crunch",
       "power": 65,
       "energy": -33,
       "durationMs": 3000,
@@ -216,10 +223,12 @@
   "evolutions": [
     {
       "id": "SIMIPOUR",
+      "slug": "simipour",
       "formId": "SIMIPOUR",
       "candies": 50,
       "item": {
         "id": "ITEM_GEN5_EVOLUTION_STONE",
+        "slug": "item_gen5_evolution_stone",
         "names": {
           "English": "Unova Stone",
           "German": "Einall-Stein",

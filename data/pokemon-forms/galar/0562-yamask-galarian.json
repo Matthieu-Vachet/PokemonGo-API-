@@ -1,0 +1,210 @@
+{
+  "dexId": "0562",
+  "id": "YAMASK",
+  "slug": "yamask",
+  "formId": "YAMASK_GALARIAN",
+  "form": "galar",
+  "dexNr": 562,
+  "generation": 8,
+  "region": {
+    "id": "GALAR",
+    "slug": "galar",
+    "generation": 8,
+    "names": {
+      "English": "Galar",
+      "German": "Galar",
+      "French": "Galar",
+      "Italian": "Galar",
+      "Japanese": "ガラル",
+      "Korean": "가라르",
+      "Spanish": "Galar"
+    }
+  },
+  "names": {
+    "English": "Galarian Yamask",
+    "German": "Galar-Makabaja",
+    "French": "Tutafeh de Galar",
+    "Italian": "Yamask di Galar",
+    "Japanese": "ガラル デスマス",
+    "Korean": "가라르 데스마스",
+    "Spanish": "Yamask de Galar"
+  },
+  "stats": {
+    "stamina": 116,
+    "attack": 95,
+    "defense": 141
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_GROUND",
+    "names": {
+      "English": "Ground",
+      "German": "Boden",
+      "French": "Sol",
+      "Italian": "Terra",
+      "Japanese": "じめん",
+      "Korean": "땅",
+      "Spanish": "Tierra"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_GHOST",
+    "names": {
+      "English": "Ghost",
+      "German": "Geist",
+      "French": "Spectre",
+      "Italian": "Spettro",
+      "Japanese": "ゴースト",
+      "Korean": "고스트",
+      "Spanish": "Fantasma"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "ASTONISH_FAST": {
+      "id": "ASTONISH_FAST",
+      "slug": "astonish_fast",
+      "power": 7,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Astonish",
+        "German": "Erstauner",
+        "French": "Étonnement",
+        "Italian": "Sgomento",
+        "Japanese": "おどろかす",
+        "Korean": "놀래키기",
+        "Spanish": "Impresionar"
+      },
+      "combat": {
+        "energy": 10,
+        "power": 12,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "NIGHT_SHADE": {
+      "id": "NIGHT_SHADE",
+      "slug": "night_shade",
+      "power": 60,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Night Shade",
+        "German": "Nachtnebel",
+        "French": "Ombre Nocturne",
+        "Italian": "Ombra Notturna",
+        "Japanese": "ナイトヘッド",
+        "Korean": "나이트헤드",
+        "Spanish": "Tinieblas"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ROCK_TOMB": {
+      "id": "ROCK_TOMB",
+      "slug": "rock_tomb",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Rock Tomb",
+        "German": "Felsgrab",
+        "French": "Tomberoche",
+        "Italian": "Rocciotomba",
+        "Japanese": "がんせきふうじ",
+        "Korean": "암석봉인",
+        "Spanish": "Tumba Rocas"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 75,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm562.fGALARIAN.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm562.fGALARIAN.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "RUNERIGUS",
+      "slug": "runerigus",
+      "formId": "RUNERIGUS_NORMAL",
+      "form": "normal",
+      "candies": 50,
+      "item": null,
+      "quests": [
+        {
+          "id": "RUNERIGUS_EVOLUTION_QUEST",
+          "slug": "runerigus_evolution_quest",
+          "type": "QUEST_COMPLETE_RAID_BATTLE",
+          "names": {
+            "English": "Win 10 raids",
+            "German": "Gewinne 10 Raids.",
+            "French": "Gagne 10 Raids",
+            "Italian": "Vinci 10 raid",
+            "Japanese": "レイドバトルで10回勝つ",
+            "Korean": "레이드배틀에서 10번 이긴다",
+            "Spanish": "Gana en 10 incursiones"
+          }
+        }
+      ]
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
+}

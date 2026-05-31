@@ -1,0 +1,390 @@
+{
+  "dexId": "0028",
+  "id": "SANDSLASH",
+  "slug": "sandslash",
+  "formId": "SANDSLASH_ALOLA",
+  "form": "alola",
+  "dexNr": 28,
+  "generation": 7,
+  "region": {
+    "id": "ALOLA",
+    "slug": "alola",
+    "generation": 7,
+    "names": {
+      "English": "Alola",
+      "German": "Alola",
+      "French": "Alola",
+      "Italian": "Alola",
+      "Japanese": "アローラ",
+      "Korean": "알로라",
+      "Spanish": "Alola"
+    }
+  },
+  "names": {
+    "English": "Alolan Sandslash",
+    "German": "Alola-Sandamer",
+    "French": "Sablaireau d'Alola",
+    "Italian": "Sandslash di Alola",
+    "Japanese": "アローラ サンドパン",
+    "Korean": "알로라 고지",
+    "Spanish": "Sandslash de Alola"
+  },
+  "stats": {
+    "stamina": 181,
+    "attack": 177,
+    "defense": 195
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_ICE",
+    "names": {
+      "English": "Ice",
+      "German": "Eis",
+      "French": "Glace",
+      "Italian": "Ghiaccio",
+      "Japanese": "こおり",
+      "Korean": "얼음",
+      "Spanish": "Hielo"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_STEEL",
+    "names": {
+      "English": "Steel",
+      "German": "Stahl",
+      "French": "Acier",
+      "Italian": "Acciaio",
+      "Japanese": "はがね",
+      "Korean": "강철",
+      "Spanish": "Acero"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "METAL_CLAW_FAST": {
+      "id": "METAL_CLAW_FAST",
+      "slug": "metal_claw_fast",
+      "power": 6,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Metal Claw",
+        "German": "Metallklaue",
+        "French": "Griffe Acier",
+        "Italian": "Ferrartigli",
+        "Japanese": "メタルクロー",
+        "Korean": "메탈클로",
+        "Spanish": "Garra Metal"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "POWDER_SNOW_FAST": {
+      "id": "POWDER_SNOW_FAST",
+      "slug": "powder_snow_fast",
+      "power": 6,
+      "energy": 15,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Powder Snow",
+        "German": "Pulverschnee",
+        "French": "Poudreuse",
+        "Italian": "Polneve",
+        "Japanese": "こなゆき",
+        "Korean": "눈싸라기",
+        "Spanish": "Nieve Polvo"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 6,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "BLIZZARD": {
+      "id": "BLIZZARD",
+      "slug": "blizzard",
+      "power": 130,
+      "energy": -100,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Blizzard",
+        "German": "Blizzard",
+        "French": "Blizzard",
+        "Italian": "Bora",
+        "Japanese": "ふぶき",
+        "Korean": "눈보라",
+        "Spanish": "Ventisca"
+      },
+      "combat": {
+        "energy": -75,
+        "power": 140,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "GYRO_BALL": {
+      "id": "GYRO_BALL",
+      "slug": "gyro_ball",
+      "power": 85,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_STEEL",
+        "names": {
+          "English": "Steel",
+          "German": "Stahl",
+          "French": "Acier",
+          "Italian": "Acciaio",
+          "Japanese": "はがね",
+          "Korean": "강철",
+          "Spanish": "Acero"
+        }
+      },
+      "names": {
+        "English": "Gyro Ball",
+        "German": "Gyroball",
+        "French": "Gyroballe",
+        "Italian": "Vortexpalla",
+        "Japanese": "ジャイロボール",
+        "Korean": "자이로볼",
+        "Spanish": "Giro Bola"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "BULLDOZE": {
+      "id": "BULLDOZE",
+      "slug": "bulldoze",
+      "power": 80,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_GROUND",
+        "names": {
+          "English": "Ground",
+          "German": "Boden",
+          "French": "Sol",
+          "Italian": "Terra",
+          "Japanese": "じめん",
+          "Korean": "땅",
+          "Spanish": "Tierra"
+        }
+      },
+      "names": {
+        "English": "Bulldoze",
+        "German": "Dampfwalze",
+        "French": "Piétisol",
+        "Italian": "Battiterra",
+        "Japanese": "じならし",
+        "Korean": "땅고르기",
+        "Spanish": "Terratemblor"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 45,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 50,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "ICE_PUNCH": {
+      "id": "ICE_PUNCH",
+      "slug": "ice_punch",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Ice Punch",
+        "German": "Eishieb",
+        "French": "Poing Glace",
+        "Italian": "Gelopugno",
+        "Japanese": "れいとうパンチ",
+        "Korean": "냉동펀치",
+        "Spanish": "Puño Hielo"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "DRILL_RUN": {
+      "id": "DRILL_RUN",
+      "slug": "drill_run",
+      "power": 85,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_GROUND",
+        "names": {
+          "English": "Ground",
+          "German": "Boden",
+          "French": "Sol",
+          "Italian": "Terra",
+          "Japanese": "じめん",
+          "Korean": "땅",
+          "Spanish": "Tierra"
+        }
+      },
+      "names": {
+        "English": "Drill Run",
+        "German": "Schlagbohrer",
+        "French": "Tunnelier",
+        "Italian": "Giravvita",
+        "Japanese": "ドリルライナー",
+        "Korean": "드릴라이너",
+        "Spanish": "Taladradora"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "AERIAL_ACE": {
+      "id": "AERIAL_ACE",
+      "slug": "aerial_ace",
+      "power": 55,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Aerial Ace",
+        "German": "Aero-Ass",
+        "French": "Aéropique",
+        "Italian": "Aeroassalto",
+        "Japanese": "つばめがえし",
+        "Korean": "제비반환",
+        "Spanish": "Golpe Aéreo"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": {
+    "SHADOW_CLAW_FAST": {
+      "id": "SHADOW_CLAW_FAST",
+      "slug": "shadow_claw_fast",
+      "power": 6,
+      "energy": 4,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Shadow Claw",
+        "German": "Dunkelklaue",
+        "French": "Griffe Ombre",
+        "Italian": "Ombrartigli",
+        "Japanese": "シャドークロー",
+        "Korean": "섀도클로",
+        "Spanish": "Garra Umbría"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 6,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm28.fALOLA.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm28.fALOLA.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
+}

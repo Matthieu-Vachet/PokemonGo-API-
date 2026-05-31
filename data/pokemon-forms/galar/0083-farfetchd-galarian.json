@@ -1,0 +1,273 @@
+{
+  "dexId": "0083",
+  "id": "FARFETCHD",
+  "slug": "farfetchd",
+  "formId": "FARFETCHD_GALARIAN",
+  "form": "galar",
+  "dexNr": 83,
+  "generation": 8,
+  "region": {
+    "id": "GALAR",
+    "slug": "galar",
+    "generation": 8,
+    "names": {
+      "English": "Galar",
+      "German": "Galar",
+      "French": "Galar",
+      "Italian": "Galar",
+      "Japanese": "ガラル",
+      "Korean": "가라르",
+      "Spanish": "Galar"
+    }
+  },
+  "names": {
+    "English": "Galarian Farfetch'd",
+    "German": "Galar-Porenta",
+    "French": "Canarticho de Galar",
+    "Italian": "Farfetch’d di Galar",
+    "Japanese": "ガラル カモネギ",
+    "Korean": "가라르 파오리",
+    "Spanish": "Farfetch'd de Galar"
+  },
+  "stats": {
+    "stamina": 141,
+    "attack": 174,
+    "defense": 114
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_FIGHTING",
+    "names": {
+      "English": "Fighting",
+      "German": "Kampf",
+      "French": "Combat",
+      "Italian": "Lotta",
+      "Japanese": "かくとう",
+      "Korean": "격투",
+      "Spanish": "Lucha"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "ROCK_SMASH_FAST": {
+      "id": "ROCK_SMASH_FAST",
+      "slug": "rock_smash_fast",
+      "power": 17,
+      "energy": 12,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Rock Smash",
+        "German": "Zertrümmerer",
+        "French": "Éclate-Roc",
+        "Italian": "Spaccaroccia",
+        "Japanese": "いわくだき",
+        "Korean": "바위깨기",
+        "Spanish": "Golpe Roca"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 9,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "FURY_CUTTER_FAST": {
+      "id": "FURY_CUTTER_FAST",
+      "slug": "fury_cutter_fast",
+      "power": 4,
+      "energy": 8,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Fury Cutter",
+        "German": "Zornklinge",
+        "French": "Taillade",
+        "Italian": "Tagliofuria",
+        "Japanese": "れんぞくぎり",
+        "Korean": "연속자르기",
+        "Spanish": "Corte Furia"
+      },
+      "combat": {
+        "energy": 4,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "BRICK_BREAK": {
+      "id": "BRICK_BREAK",
+      "slug": "brick_break",
+      "power": 40,
+      "energy": -33,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Brick Break",
+        "German": "Durchbruch",
+        "French": "Casse-Brique",
+        "Italian": "Breccia",
+        "Japanese": "かわらわり",
+        "Korean": "깨트리기",
+        "Spanish": "Demolición"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 50,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "BRAVE_BIRD": {
+      "id": "BRAVE_BIRD",
+      "slug": "brave_bird",
+      "power": 130,
+      "energy": -100,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_FLYING",
+        "names": {
+          "English": "Flying",
+          "German": "Flug",
+          "French": "Vol",
+          "Italian": "Volante",
+          "Japanese": "ひこう",
+          "Korean": "비행",
+          "Spanish": "Volador"
+        }
+      },
+      "names": {
+        "English": "Brave Bird",
+        "German": "Sturzflug",
+        "French": "Rapace",
+        "Italian": "Baldeali",
+        "Japanese": "ブレイブバード",
+        "Korean": "브레이브버드",
+        "Spanish": "Pájaro Osado"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 130,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": -3,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "LEAF_BLADE": {
+      "id": "LEAF_BLADE",
+      "slug": "leaf_blade",
+      "power": 70,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Leaf Blade",
+        "German": "Laubklinge",
+        "French": "Lame Feuille",
+        "Italian": "Fendifoglia",
+        "Japanese": "リーフブレード",
+        "Korean": "리프블레이드",
+        "Spanish": "Hoja Aguda"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm83.fGALARIAN.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm83.fGALARIAN.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "SIRFETCHD",
+      "slug": "sirfetchd",
+      "formId": "SIRFETCHD_NORMAL",
+      "form": "normal",
+      "candies": 50,
+      "item": null,
+      "quests": [
+        {
+          "id": "SIRFETCHD_EVOLUTION_QUEST",
+          "slug": "sirfetchd_evolution_quest",
+          "type": "QUEST_LAND_THROW",
+          "names": {
+            "English": "Make 10 Excellent Throws",
+            "German": "Lande 10 fabelhafte Würfe.",
+            "French": "Fais 10 Excellents lancers",
+            "Italian": "Effettua 10 tiri eccellenti",
+            "Japanese": "エクセレントスローを10回投げる",
+            "Korean": "Excellent가 나오게 10회 던진다",
+            "Spanish": "Haz 10 lanzamientos excelentes"
+          }
+        }
+      ]
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
+}

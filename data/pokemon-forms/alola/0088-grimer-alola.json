@@ -1,0 +1,263 @@
+{
+  "dexId": "0088",
+  "id": "GRIMER",
+  "slug": "grimer",
+  "formId": "GRIMER_ALOLA",
+  "form": "alola",
+  "dexNr": 88,
+  "generation": 7,
+  "region": {
+    "id": "ALOLA",
+    "slug": "alola",
+    "generation": 7,
+    "names": {
+      "English": "Alola",
+      "German": "Alola",
+      "French": "Alola",
+      "Italian": "Alola",
+      "Japanese": "アローラ",
+      "Korean": "알로라",
+      "Spanish": "Alola"
+    }
+  },
+  "names": {
+    "English": "Alolan Grimer",
+    "German": "Alola-Sleima",
+    "French": "Tadmorv d'Alola",
+    "Italian": "Grimer di Alola",
+    "Japanese": "アローラ ベトベター",
+    "Korean": "알로라 질퍽이",
+    "Spanish": "Grimer de Alola"
+  },
+  "stats": {
+    "stamina": 190,
+    "attack": 135,
+    "defense": 90
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_POISON",
+    "names": {
+      "English": "Poison",
+      "German": "Gift",
+      "French": "Poison",
+      "Italian": "Veleno",
+      "Japanese": "どく",
+      "Korean": "독",
+      "Spanish": "Veneno"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_DARK",
+    "names": {
+      "English": "Dark",
+      "German": "Unlicht",
+      "French": "Ténèbres",
+      "Italian": "Buio",
+      "Japanese": "あく",
+      "Korean": "악",
+      "Spanish": "Siniestro"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "POISON_JAB_FAST": {
+      "id": "POISON_JAB_FAST",
+      "slug": "poison_jab_fast",
+      "power": 13,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Poison Jab",
+        "German": "Gifthieb",
+        "French": "Direct Toxik",
+        "Italian": "Velenpuntura",
+        "Japanese": "どくづき",
+        "Korean": "독찌르기",
+        "Spanish": "Puya Nociva"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 7,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "BITE_FAST": {
+      "id": "BITE_FAST",
+      "slug": "bite_fast",
+      "power": 6,
+      "energy": 4,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Bite",
+        "German": "Biss",
+        "French": "Morsure",
+        "Italian": "Morso",
+        "Japanese": "かみつく",
+        "Korean": "물기",
+        "Spanish": "Mordisco"
+      },
+      "combat": {
+        "energy": 2,
+        "power": 4,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "CRUNCH": {
+      "id": "CRUNCH",
+      "slug": "crunch",
+      "power": 65,
+      "energy": -33,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Crunch",
+        "German": "Knirscher",
+        "French": "Mâchouille",
+        "Italian": "Sgranocchio",
+        "Japanese": "かみくだく",
+        "Korean": "깨물어부수기",
+        "Spanish": "Triturar"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 70,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 20,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "GUNK_SHOT": {
+      "id": "GUNK_SHOT",
+      "slug": "gunk_shot",
+      "power": 130,
+      "energy": -100,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Gunk Shot",
+        "German": "Mülltreffer",
+        "French": "Détricanon",
+        "Italian": "Sporcolancio",
+        "Japanese": "ダストシュート",
+        "Korean": "더스트슈트",
+        "Spanish": "Lanzamugre"
+      },
+      "combat": {
+        "energy": -75,
+        "power": 130,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "SLUDGE_BOMB": {
+      "id": "SLUDGE_BOMB",
+      "slug": "sludge_bomb",
+      "power": 85,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Sludge Bomb",
+        "German": "Matschbombe",
+        "French": "Bombe Beurk",
+        "Italian": "Fangobomba",
+        "Japanese": "ヘドロばくだん",
+        "Korean": "오물폭탄",
+        "Spanish": "Bomba Lodo"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm88.fALOLA.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm88.fALOLA.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "MUK",
+      "slug": "muk",
+      "formId": "MUK_ALOLA",
+      "form": "alola",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
+}

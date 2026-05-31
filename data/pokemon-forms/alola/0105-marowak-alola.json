@@ -1,0 +1,356 @@
+{
+  "dexId": "0105",
+  "id": "MAROWAK",
+  "slug": "marowak",
+  "formId": "MAROWAK_ALOLA",
+  "form": "alola",
+  "dexNr": 105,
+  "generation": 7,
+  "region": {
+    "id": "ALOLA",
+    "slug": "alola",
+    "generation": 7,
+    "names": {
+      "English": "Alola",
+      "German": "Alola",
+      "French": "Alola",
+      "Italian": "Alola",
+      "Japanese": "アローラ",
+      "Korean": "알로라",
+      "Spanish": "Alola"
+    }
+  },
+  "names": {
+    "English": "Alolan Marowak",
+    "German": "Alola-Knogga",
+    "French": "Ossatueur d'Alola",
+    "Italian": "Marowak di Alola",
+    "Japanese": "アローラ ガラガラ",
+    "Korean": "알로라 텅구리",
+    "Spanish": "Marowak de Alola"
+  },
+  "stats": {
+    "stamina": 155,
+    "attack": 144,
+    "defense": 186
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_FIRE",
+    "names": {
+      "English": "Fire",
+      "German": "Feuer",
+      "French": "Feu",
+      "Italian": "Fuoco",
+      "Japanese": "ほのお",
+      "Korean": "불꽃",
+      "Spanish": "Fuego"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_GHOST",
+    "names": {
+      "English": "Ghost",
+      "German": "Geist",
+      "French": "Spectre",
+      "Italian": "Spettro",
+      "Japanese": "ゴースト",
+      "Korean": "고스트",
+      "Spanish": "Fantasma"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "HEX_FAST": {
+      "id": "HEX_FAST",
+      "slug": "hex_fast",
+      "power": 8,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Hex",
+        "German": "Bürde",
+        "French": "Châtiment",
+        "Italian": "Sciagura",
+        "Japanese": "たたりめ",
+        "Korean": "병상첨병",
+        "Spanish": "Infortunio"
+      },
+      "combat": {
+        "energy": 13,
+        "power": 7,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "ROCK_SMASH_FAST": {
+      "id": "ROCK_SMASH_FAST",
+      "slug": "rock_smash_fast",
+      "power": 17,
+      "energy": 12,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Rock Smash",
+        "German": "Zertrümmerer",
+        "French": "Éclate-Roc",
+        "Italian": "Spaccaroccia",
+        "Japanese": "いわくだき",
+        "Korean": "바위깨기",
+        "Spanish": "Golpe Roca"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 9,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "FIRE_SPIN_FAST": {
+      "id": "FIRE_SPIN_FAST",
+      "slug": "fire_spin_fast",
+      "power": 13,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Fire Spin",
+        "German": "Feuerwirbel",
+        "French": "Danse Flammes",
+        "Italian": "Turbofuoco",
+        "Japanese": "ほのおのうず",
+        "Korean": "회오리불꽃",
+        "Spanish": "Giro Fuego"
+      },
+      "combat": {
+        "energy": 10,
+        "power": 11,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "BONE_CLUB": {
+      "id": "BONE_CLUB",
+      "slug": "bone_club",
+      "power": 40,
+      "energy": -33,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_GROUND",
+        "names": {
+          "English": "Ground",
+          "German": "Boden",
+          "French": "Sol",
+          "Italian": "Terra",
+          "Japanese": "じめん",
+          "Korean": "땅",
+          "Spanish": "Tierra"
+        }
+      },
+      "names": {
+        "English": "Bone Club",
+        "German": "Knochenkeule",
+        "French": "Massd’Os",
+        "Italian": "Ossoclava",
+        "Japanese": "ホネこんぼう",
+        "Korean": "뼈다귀치기",
+        "Spanish": "Hueso Palo"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "SHADOW_BALL": {
+      "id": "SHADOW_BALL",
+      "slug": "shadow_ball",
+      "power": 100,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Shadow Ball",
+        "German": "Spukball",
+        "French": "Ball’Ombre",
+        "Italian": "Palla Ombra",
+        "Japanese": "シャドーボール",
+        "Korean": "섀도볼",
+        "Spanish": "Bola Sombra"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 100,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "FIRE_BLAST": {
+      "id": "FIRE_BLAST",
+      "slug": "fire_blast",
+      "power": 140,
+      "energy": -100,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Fire Blast",
+        "German": "Feuersturm",
+        "French": "Déflagration",
+        "Italian": "Fuocobomba",
+        "Japanese": "だいもんじ",
+        "Korean": "불대문자",
+        "Spanish": "Llamarada"
+      },
+      "combat": {
+        "energy": -80,
+        "power": 140,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "FLAME_WHEEL": {
+      "id": "FLAME_WHEEL",
+      "slug": "flame_wheel",
+      "power": 55,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Flame Wheel",
+        "German": "Flammenrad",
+        "French": "Roue de Feu",
+        "Italian": "Ruotafuoco",
+        "Japanese": "かえんぐるま",
+        "Korean": "화염바퀴",
+        "Spanish": "Rueda Fuego"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": {
+    "SHADOW_BONE": {
+      "id": "SHADOW_BONE",
+      "slug": "shadow_bone",
+      "power": 85,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Shadow Bone",
+        "German": "Schattenknochen",
+        "French": "Os Ombre",
+        "Italian": "Ossotetro",
+        "Japanese": "シャドーボーン",
+        "Korean": "섀도본",
+        "Spanish": "Hueso Sombrío"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 80,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 20,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    }
+  },
+  "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm105.fALOLA.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm105.fALOLA.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
+}

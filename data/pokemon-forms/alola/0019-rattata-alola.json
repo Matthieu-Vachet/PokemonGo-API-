@@ -1,0 +1,263 @@
+{
+  "dexId": "0019",
+  "id": "RATTATA",
+  "slug": "rattata",
+  "formId": "RATTATA_ALOLA",
+  "form": "alola",
+  "dexNr": 19,
+  "generation": 7,
+  "region": {
+    "id": "ALOLA",
+    "slug": "alola",
+    "generation": 7,
+    "names": {
+      "English": "Alola",
+      "German": "Alola",
+      "French": "Alola",
+      "Italian": "Alola",
+      "Japanese": "アローラ",
+      "Korean": "알로라",
+      "Spanish": "Alola"
+    }
+  },
+  "names": {
+    "English": "Alolan Rattata",
+    "German": "Alola-Rattfratz",
+    "French": "Rattata d'Alola",
+    "Italian": "Rattata di Alola",
+    "Japanese": "アローラ コラッタ",
+    "Korean": "알로라 꼬렛",
+    "Spanish": "Rattata de Alola"
+  },
+  "stats": {
+    "stamina": 102,
+    "attack": 103,
+    "defense": 70
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_DARK",
+    "names": {
+      "English": "Dark",
+      "German": "Unlicht",
+      "French": "Ténèbres",
+      "Italian": "Buio",
+      "Japanese": "あく",
+      "Korean": "악",
+      "Spanish": "Siniestro"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_NORMAL",
+    "names": {
+      "English": "Normal",
+      "German": "Normal",
+      "French": "Normal",
+      "Italian": "Normale",
+      "Japanese": "ノーマル",
+      "Korean": "노말",
+      "Spanish": "Normal"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "TACKLE_FAST": {
+      "id": "TACKLE_FAST",
+      "slug": "tackle_fast",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Tackle",
+        "German": "Tackle",
+        "French": "Charge",
+        "Italian": "Azione",
+        "Japanese": "たいあたり",
+        "Korean": "몸통박치기",
+        "Spanish": "Placaje"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "QUICK_ATTACK_FAST": {
+      "id": "QUICK_ATTACK_FAST",
+      "slug": "quick_attack_fast",
+      "power": 10,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Quick Attack",
+        "German": "Ruckzuckhieb",
+        "French": "Vive-Attaque",
+        "Italian": "Attacco Rapido",
+        "Japanese": "でんこうせっか",
+        "Korean": "전광석화",
+        "Spanish": "Ataque Rápido"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "CRUNCH": {
+      "id": "CRUNCH",
+      "slug": "crunch",
+      "power": 65,
+      "energy": -33,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Crunch",
+        "German": "Knirscher",
+        "French": "Mâchouille",
+        "Italian": "Sgranocchio",
+        "Japanese": "かみくだく",
+        "Korean": "깨물어부수기",
+        "Spanish": "Triturar"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 70,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 20,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "HYPER_FANG": {
+      "id": "HYPER_FANG",
+      "slug": "hyper_fang",
+      "power": 80,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Hyper Fang",
+        "German": "Hyperzahn",
+        "French": "Croc de Mort",
+        "Italian": "Iperzanna",
+        "Japanese": "ひっさつまえば",
+        "Korean": "필살앞니",
+        "Spanish": "Hipercolmillo"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "SHADOW_BALL": {
+      "id": "SHADOW_BALL",
+      "slug": "shadow_ball",
+      "power": 100,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Shadow Ball",
+        "German": "Spukball",
+        "French": "Ball’Ombre",
+        "Italian": "Palla Ombra",
+        "Japanese": "シャドーボール",
+        "Korean": "섀도볼",
+        "Spanish": "Bola Sombra"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 100,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm19.fALOLA.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm19.fALOLA.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "RATICATE",
+      "slug": "raticate",
+      "formId": "RATICATE_ALOLA",
+      "form": "alola",
+      "candies": 25,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
+}

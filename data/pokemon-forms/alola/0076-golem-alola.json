@@ -1,0 +1,288 @@
+{
+  "dexId": "0076",
+  "id": "GOLEM",
+  "slug": "golem",
+  "formId": "GOLEM_ALOLA",
+  "form": "alola",
+  "dexNr": 76,
+  "generation": 7,
+  "region": {
+    "id": "ALOLA",
+    "slug": "alola",
+    "generation": 7,
+    "names": {
+      "English": "Alola",
+      "German": "Alola",
+      "French": "Alola",
+      "Italian": "Alola",
+      "Japanese": "アローラ",
+      "Korean": "알로라",
+      "Spanish": "Alola"
+    }
+  },
+  "names": {
+    "English": "Alolan Golem",
+    "German": "Alola-Geowaz",
+    "French": "Grolem d'Alola",
+    "Italian": "Golem di Alola",
+    "Japanese": "アローラ ゴローニャ",
+    "Korean": "알로라 딱구리",
+    "Spanish": "Golem de Alola"
+  },
+  "stats": {
+    "stamina": 190,
+    "attack": 211,
+    "defense": 198
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_ROCK",
+    "names": {
+      "English": "Rock",
+      "German": "Gestein",
+      "French": "Roche",
+      "Italian": "Roccia",
+      "Japanese": "いわ",
+      "Korean": "바위",
+      "Spanish": "Roca"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_ELECTRIC",
+    "names": {
+      "English": "Electric",
+      "German": "Elektro",
+      "French": "Électrik",
+      "Italian": "Elettro",
+      "Japanese": "でんき",
+      "Korean": "전기",
+      "Spanish": "Eléctrico"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "ROCK_THROW_FAST": {
+      "id": "ROCK_THROW_FAST",
+      "slug": "rock_throw_fast",
+      "power": 13,
+      "energy": 8,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Rock Throw",
+        "German": "Steinwurf",
+        "French": "Jet-Pierres",
+        "Italian": "Sassata",
+        "Japanese": "いわおとし",
+        "Korean": "돌떨구기",
+        "Spanish": "Lanzarrocas"
+      },
+      "combat": {
+        "energy": 5,
+        "power": 8,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "VOLT_SWITCH_FAST": {
+      "id": "VOLT_SWITCH_FAST",
+      "slug": "volt_switch_fast",
+      "power": 13,
+      "energy": 20,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Volt Switch",
+        "German": "Voltwechsel",
+        "French": "Change Éclair",
+        "Italian": "Invertivolt",
+        "Japanese": "ボルトチェンジ",
+        "Korean": "볼트체인지",
+        "Spanish": "Voltiocambio"
+      },
+      "combat": {
+        "energy": 16,
+        "power": 14,
+        "turns": 4,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "STONE_EDGE": {
+      "id": "STONE_EDGE",
+      "slug": "stone_edge",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Stone Edge",
+        "German": "Steinkante",
+        "French": "Lame de Roc",
+        "Italian": "Pietrataglio",
+        "Japanese": "ストーンエッジ",
+        "Korean": "스톤에지",
+        "Spanish": "Roca Afilada"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 100,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ROCK_BLAST": {
+      "id": "ROCK_BLAST",
+      "slug": "rock_blast",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Rock Blast",
+        "German": "Felswurf",
+        "French": "Boule Roc",
+        "Italian": "Cadutamassi",
+        "Japanese": "ロックブラスト",
+        "Korean": "록블라스트",
+        "Spanish": "Pedrada"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 50,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "WILD_CHARGE": {
+      "id": "WILD_CHARGE",
+      "slug": "wild_charge",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Wild Charge",
+        "German": "Stromstoß",
+        "French": "Éclair Fou",
+        "Italian": "Sprizzalampo",
+        "Japanese": "ワイルドボルト",
+        "Korean": "와일드볼트",
+        "Spanish": "Voltio Cruel"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 100,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": -2,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": {
+    "ROLLOUT_FAST": {
+      "id": "ROLLOUT_FAST",
+      "slug": "rollout_fast",
+      "power": 15,
+      "energy": 19,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_ROCK",
+        "names": {
+          "English": "Rock",
+          "German": "Gestein",
+          "French": "Roche",
+          "Italian": "Roccia",
+          "Japanese": "いわ",
+          "Korean": "바위",
+          "Spanish": "Roca"
+        }
+      },
+      "names": {
+        "English": "Rollout",
+        "German": "Walzer",
+        "French": "Roulade",
+        "Italian": "Rotolamento",
+        "Japanese": "ころがる",
+        "Korean": "구르기",
+        "Spanish": "Desenrollar"
+      },
+      "combat": {
+        "energy": 13,
+        "power": 7,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm76.fALOLA.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm76.fALOLA.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
+}

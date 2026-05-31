@@ -1,0 +1,292 @@
+{
+  "dexId": "0052",
+  "id": "MEOWTH",
+  "slug": "meowth",
+  "formId": "MEOWTH_ALOLA",
+  "form": "alola",
+  "dexNr": 52,
+  "generation": 7,
+  "region": {
+    "id": "ALOLA",
+    "slug": "alola",
+    "generation": 7,
+    "names": {
+      "English": "Alola",
+      "German": "Alola",
+      "French": "Alola",
+      "Italian": "Alola",
+      "Japanese": "アローラ",
+      "Korean": "알로라",
+      "Spanish": "Alola"
+    }
+  },
+  "names": {
+    "English": "Alolan Meowth",
+    "German": "Alola-Mauzi",
+    "French": "Miaouss d'Alola",
+    "Italian": "Meowth di Alola",
+    "Japanese": "アローラ ニャース",
+    "Korean": "알로라 나옹",
+    "Spanish": "Meowth de Alola"
+  },
+  "stats": {
+    "stamina": 120,
+    "attack": 99,
+    "defense": 78
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_DARK",
+    "names": {
+      "English": "Dark",
+      "German": "Unlicht",
+      "French": "Ténèbres",
+      "Italian": "Buio",
+      "Japanese": "あく",
+      "Korean": "악",
+      "Spanish": "Siniestro"
+    }
+  },
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": {
+    "SCRATCH_FAST": {
+      "id": "SCRATCH_FAST",
+      "slug": "scratch_fast",
+      "power": 6,
+      "energy": 4,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Scratch",
+        "German": "Kratzer",
+        "French": "Griffe",
+        "Italian": "Graffio",
+        "Japanese": "ひっかく",
+        "Korean": "할퀴기",
+        "Spanish": "Arañazo"
+      },
+      "combat": {
+        "energy": 2,
+        "power": 4,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "BITE_FAST": {
+      "id": "BITE_FAST",
+      "slug": "bite_fast",
+      "power": 6,
+      "energy": 4,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Bite",
+        "German": "Biss",
+        "French": "Morsure",
+        "Italian": "Morso",
+        "Japanese": "かみつく",
+        "Korean": "물기",
+        "Spanish": "Mordisco"
+      },
+      "combat": {
+        "energy": 2,
+        "power": 4,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "NIGHT_SLASH": {
+      "id": "NIGHT_SLASH",
+      "slug": "night_slash",
+      "power": 45,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Night Slash",
+        "German": "Nachthieb",
+        "French": "Tranche-Nuit",
+        "Italian": "Nottesferza",
+        "Japanese": "つじぎり",
+        "Korean": "깜짝베기",
+        "Spanish": "Tajo Umbrío"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 50,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 12,
+          "attackerAttackStatsChange": 1,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "DARK_PULSE": {
+      "id": "DARK_PULSE",
+      "slug": "dark_pulse",
+      "power": 80,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Dark Pulse",
+        "German": "Finsteraura",
+        "French": "Vibrobscur",
+        "Italian": "Neropulsar",
+        "Japanese": "あくのはどう",
+        "Korean": "악의파동",
+        "Spanish": "Pulso Umbrío"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "FOUL_PLAY": {
+      "id": "FOUL_PLAY",
+      "slug": "foul_play",
+      "power": 70,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Foul Play",
+        "German": "Schmarotzer",
+        "French": "Tricherie",
+        "Italian": "Ripicca",
+        "Japanese": "イカサマ",
+        "Korean": "속임수",
+        "Spanish": "Juego Sucio"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 65,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "TRAILBLAZE": {
+      "id": "TRAILBLAZE",
+      "slug": "trailblaze",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Trailblaze",
+        "German": "Wegbereiter",
+        "French": "Désherbaffe",
+        "Italian": "Apripista",
+        "Japanese": "くさわけ",
+        "Korean": "개척하기",
+        "Spanish": "Abrecaminos"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 65,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": 1,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm52.fALOLA.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm52.fALOLA.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "PERSIAN",
+      "slug": "persian",
+      "formId": "PERSIAN_ALOLA",
+      "form": "alola",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
+}

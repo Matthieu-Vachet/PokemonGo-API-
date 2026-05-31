@@ -1,0 +1,327 @@
+{
+  "dexId": "0157",
+  "id": "TYPHLOSION",
+  "slug": "typhlosion",
+  "formId": "TYPHLOSION_HISUIAN",
+  "form": "hisui",
+  "dexNr": 157,
+  "generation": 4,
+  "region": {
+    "id": "HISUI",
+    "slug": "hisui",
+    "generation": 4,
+    "names": {
+      "English": "Hisui",
+      "German": "Hisui",
+      "French": "Hisui",
+      "Italian": "Hisui",
+      "Japanese": "ヒスイ",
+      "Korean": "히스이",
+      "Spanish": "Hisui"
+    }
+  },
+  "names": {
+    "English": "Hisuian Typhlosion",
+    "German": "Hisuian-Tornupto",
+    "French": "Typhlosion de Hisuian",
+    "Italian": "Typhlosion di Hisuian",
+    "Japanese": "バクフーン",
+    "Korean": "블레이범",
+    "Spanish": "Typhlosion de Galar"
+  },
+  "stats": {
+    "stamina": 177,
+    "attack": 238,
+    "defense": 172
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_FIRE",
+    "names": {
+      "English": "Fire",
+      "German": "Feuer",
+      "French": "Feu",
+      "Italian": "Fuoco",
+      "Japanese": "ほのお",
+      "Korean": "불꽃",
+      "Spanish": "Fuego"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_GHOST",
+    "names": {
+      "English": "Ghost",
+      "German": "Geist",
+      "French": "Spectre",
+      "Italian": "Spettro",
+      "Japanese": "ゴースト",
+      "Korean": "고스트",
+      "Spanish": "Fantasma"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "HEX_FAST": {
+      "id": "HEX_FAST",
+      "slug": "hex_fast",
+      "power": 8,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Hex",
+        "German": "Bürde",
+        "French": "Châtiment",
+        "Italian": "Sciagura",
+        "Japanese": "たたりめ",
+        "Korean": "병상첨병",
+        "Spanish": "Infortunio"
+      },
+      "combat": {
+        "energy": 13,
+        "power": 7,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "EMBER_FAST": {
+      "id": "EMBER_FAST",
+      "slug": "ember_fast",
+      "power": 10,
+      "energy": 10,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Ember",
+        "German": "Glut",
+        "French": "Flammèche",
+        "Italian": "Braciere",
+        "Japanese": "ひのこ",
+        "Korean": "불꽃세례",
+        "Spanish": "Ascuas"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 4,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "FIRE_PUNCH": {
+      "id": "FIRE_PUNCH",
+      "slug": "fire_punch",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Fire Punch",
+        "German": "Feuerschlag",
+        "French": "Poing Feu",
+        "Italian": "Fuocopugno",
+        "Japanese": "ほのおのパンチ",
+        "Korean": "불꽃펀치",
+        "Spanish": "Puño Fuego"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "WILD_CHARGE": {
+      "id": "WILD_CHARGE",
+      "slug": "wild_charge",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Wild Charge",
+        "German": "Stromstoß",
+        "French": "Éclair Fou",
+        "Italian": "Sprizzalampo",
+        "Japanese": "ワイルドボルト",
+        "Korean": "와일드볼트",
+        "Spanish": "Voltio Cruel"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 100,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": -2,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "SHADOW_BALL": {
+      "id": "SHADOW_BALL",
+      "slug": "shadow_ball",
+      "power": 100,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Shadow Ball",
+        "German": "Spukball",
+        "French": "Ball’Ombre",
+        "Italian": "Palla Ombra",
+        "Japanese": "シャドーボール",
+        "Korean": "섀도볼",
+        "Spanish": "Bola Sombra"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 100,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "OVERHEAT": {
+      "id": "OVERHEAT",
+      "slug": "overheat",
+      "power": 160,
+      "energy": -100,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Overheat",
+        "German": "Hitzekoller",
+        "French": "Surchauffe",
+        "Italian": "Vampata",
+        "Japanese": "オーバーヒート",
+        "Korean": "오버히트",
+        "Spanish": "Sofoco"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 130,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": -2,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "NIGHT_SHADE": {
+      "id": "NIGHT_SHADE",
+      "slug": "night_shade",
+      "power": 60,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_GHOST",
+        "names": {
+          "English": "Ghost",
+          "German": "Geist",
+          "French": "Spectre",
+          "Italian": "Spettro",
+          "Japanese": "ゴースト",
+          "Korean": "고스트",
+          "Spanish": "Fantasma"
+        }
+      },
+      "names": {
+        "English": "Night Shade",
+        "German": "Nachtnebel",
+        "French": "Ombre Nocturne",
+        "Italian": "Ombra Notturna",
+        "Japanese": "ナイトヘッド",
+        "Korean": "나이트헤드",
+        "Spanish": "Tinieblas"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm157.fHISUIAN.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm157.fHISUIAN.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
+}

@@ -1,0 +1,253 @@
+{
+  "dexId": "0020",
+  "id": "RATICATE",
+  "slug": "raticate",
+  "formId": "RATICATE_ALOLA",
+  "form": "alola",
+  "dexNr": 20,
+  "generation": 7,
+  "region": {
+    "id": "ALOLA",
+    "slug": "alola",
+    "generation": 7,
+    "names": {
+      "English": "Alola",
+      "German": "Alola",
+      "French": "Alola",
+      "Italian": "Alola",
+      "Japanese": "アローラ",
+      "Korean": "알로라",
+      "Spanish": "Alola"
+    }
+  },
+  "names": {
+    "English": "Alolan Raticate",
+    "German": "Alola-Rattikarl",
+    "French": "Rattatac d'Alola",
+    "Italian": "Raticate di Alola",
+    "Japanese": "アローラ ラッタ",
+    "Korean": "알로라 레트라",
+    "Spanish": "Raticate de Alola"
+  },
+  "stats": {
+    "stamina": 181,
+    "attack": 135,
+    "defense": 154
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_DARK",
+    "names": {
+      "English": "Dark",
+      "German": "Unlicht",
+      "French": "Ténèbres",
+      "Italian": "Buio",
+      "Japanese": "あく",
+      "Korean": "악",
+      "Spanish": "Siniestro"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_NORMAL",
+    "names": {
+      "English": "Normal",
+      "German": "Normal",
+      "French": "Normal",
+      "Italian": "Normale",
+      "Japanese": "ノーマル",
+      "Korean": "노말",
+      "Spanish": "Normal"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "BITE_FAST": {
+      "id": "BITE_FAST",
+      "slug": "bite_fast",
+      "power": 6,
+      "energy": 4,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Bite",
+        "German": "Biss",
+        "French": "Morsure",
+        "Italian": "Morso",
+        "Japanese": "かみつく",
+        "Korean": "물기",
+        "Spanish": "Mordisco"
+      },
+      "combat": {
+        "energy": 2,
+        "power": 4,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "QUICK_ATTACK_FAST": {
+      "id": "QUICK_ATTACK_FAST",
+      "slug": "quick_attack_fast",
+      "power": 10,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Quick Attack",
+        "German": "Ruckzuckhieb",
+        "French": "Vive-Attaque",
+        "Italian": "Attacco Rapido",
+        "Japanese": "でんこうせっか",
+        "Korean": "전광석화",
+        "Spanish": "Ataque Rápido"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "CRUNCH": {
+      "id": "CRUNCH",
+      "slug": "crunch",
+      "power": 65,
+      "energy": -33,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Crunch",
+        "German": "Knirscher",
+        "French": "Mâchouille",
+        "Italian": "Sgranocchio",
+        "Japanese": "かみくだく",
+        "Korean": "깨물어부수기",
+        "Spanish": "Triturar"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 70,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 20,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "HYPER_FANG": {
+      "id": "HYPER_FANG",
+      "slug": "hyper_fang",
+      "power": 80,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Hyper Fang",
+        "German": "Hyperzahn",
+        "French": "Croc de Mort",
+        "Italian": "Iperzanna",
+        "Japanese": "ひっさつまえば",
+        "Korean": "필살앞니",
+        "Spanish": "Hipercolmillo"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "HYPER_BEAM": {
+      "id": "HYPER_BEAM",
+      "slug": "hyper_beam",
+      "power": 150,
+      "energy": -100,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Hyper Beam",
+        "German": "Hyperstrahl",
+        "French": "Ultralaser",
+        "Italian": "Iper Raggio",
+        "Japanese": "はかいこうせん",
+        "Korean": "파괴광선",
+        "Spanish": "Hiperrayo"
+      },
+      "combat": {
+        "energy": -80,
+        "power": 150,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm20.fALOLA.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm20.fALOLA.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
+}

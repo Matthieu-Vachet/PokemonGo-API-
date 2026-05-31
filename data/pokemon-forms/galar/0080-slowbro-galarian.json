@@ -1,0 +1,402 @@
+{
+  "dexId": "0080",
+  "id": "SLOWBRO",
+  "slug": "slowbro",
+  "formId": "SLOWBRO_GALARIAN",
+  "form": "galar",
+  "dexNr": 80,
+  "generation": 8,
+  "region": {
+    "id": "GALAR",
+    "slug": "galar",
+    "generation": 8,
+    "names": {
+      "English": "Galar",
+      "German": "Galar",
+      "French": "Galar",
+      "Italian": "Galar",
+      "Japanese": "ガラル",
+      "Korean": "가라르",
+      "Spanish": "Galar"
+    }
+  },
+  "names": {
+    "English": "Galarian Slowbro",
+    "German": "Galar-Lahmus",
+    "French": "Flagadoss de Galar",
+    "Italian": "Slowbro di Galar",
+    "Japanese": "ガラル ヤドラン",
+    "Korean": "가라르 야도란",
+    "Spanish": "Slowbro de Galar"
+  },
+  "stats": {
+    "stamina": 216,
+    "attack": 182,
+    "defense": 156
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_POISON",
+    "names": {
+      "English": "Poison",
+      "German": "Gift",
+      "French": "Poison",
+      "Italian": "Veleno",
+      "Japanese": "どく",
+      "Korean": "독",
+      "Spanish": "Veneno"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_PSYCHIC",
+    "names": {
+      "English": "Psychic",
+      "German": "Psycho",
+      "French": "Psy",
+      "Italian": "Psico",
+      "Japanese": "エスパー",
+      "Korean": "에스퍼",
+      "Spanish": "Psíquico"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "CONFUSION_FAST": {
+      "id": "CONFUSION_FAST",
+      "slug": "confusion_fast",
+      "power": 19,
+      "energy": 14,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Confusion",
+        "German": "Konfusion",
+        "French": "Choc Mental",
+        "Italian": "Confusione",
+        "Japanese": "ねんりき",
+        "Korean": "염동력",
+        "Spanish": "Confusión"
+      },
+      "combat": {
+        "energy": 14,
+        "power": 16,
+        "turns": 4,
+        "buffs": null
+      }
+    },
+    "POISON_JAB_FAST": {
+      "id": "POISON_JAB_FAST",
+      "slug": "poison_jab_fast",
+      "power": 13,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Poison Jab",
+        "German": "Gifthieb",
+        "French": "Direct Toxik",
+        "Italian": "Velenpuntura",
+        "Japanese": "どくづき",
+        "Korean": "독찌르기",
+        "Spanish": "Puya Nociva"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 7,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "FOCUS_BLAST": {
+      "id": "FOCUS_BLAST",
+      "slug": "focus_blast",
+      "power": 140,
+      "energy": -100,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Focus Blast",
+        "German": "Fokusstoß",
+        "French": "Exploforce",
+        "Italian": "Focalcolpo",
+        "Japanese": "きあいだま",
+        "Korean": "기합구슬",
+        "Spanish": "Onda Certera"
+      },
+      "combat": {
+        "energy": -75,
+        "power": 150,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "PSYCHIC": {
+      "id": "PSYCHIC",
+      "slug": "psychic",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psychic",
+        "German": "Psychokinese",
+        "French": "Psyko",
+        "Italian": "Psichico",
+        "Japanese": "サイコキネシス",
+        "Korean": "사이코키네시스",
+        "Spanish": "Psíquico"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 75,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "SLUDGE_BOMB": {
+      "id": "SLUDGE_BOMB",
+      "slug": "sludge_bomb",
+      "power": 85,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Sludge Bomb",
+        "German": "Matschbombe",
+        "French": "Bombe Beurk",
+        "Italian": "Fangobomba",
+        "Japanese": "ヘドロばくだん",
+        "Korean": "오물폭탄",
+        "Spanish": "Bomba Lodo"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "SCALD": {
+      "id": "SCALD",
+      "slug": "scald",
+      "power": 75,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Scald",
+        "German": "Siedewasser",
+        "French": "Ébullition",
+        "Italian": "Idrovampata",
+        "Japanese": "ねっとう",
+        "Korean": "열탕",
+        "Spanish": "Escaldar"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 85,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 30,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "BRUTAL_SWING": {
+      "id": "BRUTAL_SWING",
+      "slug": "brutal_swing",
+      "power": 65,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Brutal Swing",
+        "German": "Wirbler",
+        "French": "Centrifugifle",
+        "Italian": "Vorticolpo",
+        "Japanese": "ぶんまわす",
+        "Korean": "세차게휘두르기",
+        "Spanish": "Giro Vil"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "DRAIN_PUNCH": {
+      "id": "DRAIN_PUNCH",
+      "slug": "drain_punch",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Drain Punch",
+        "German": "Ableithieb",
+        "French": "Vampi-Poing",
+        "Italian": "Assorbipugno",
+        "Japanese": "ドレインパンチ",
+        "Korean": "드레인펀치",
+        "Spanish": "Puño Drenaje"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 40,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": 1,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": {
+    "SURF": {
+      "id": "SURF",
+      "slug": "surf",
+      "power": 60,
+      "energy": -50,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Surf",
+        "German": "Surfer",
+        "French": "Surf",
+        "Italian": "Surf",
+        "Japanese": "なみのり",
+        "Korean": "파도타기",
+        "Spanish": "Surf"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 75,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm80.fGALARIAN.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm80.fGALARIAN.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
+}

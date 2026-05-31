@@ -1,0 +1,263 @@
+{
+  "dexId": "0100",
+  "id": "VOLTORB",
+  "slug": "voltorb",
+  "formId": "VOLTORB_HISUIAN",
+  "form": "hisui",
+  "dexNr": 100,
+  "generation": 4,
+  "region": {
+    "id": "HISUI",
+    "slug": "hisui",
+    "generation": 4,
+    "names": {
+      "English": "Hisui",
+      "German": "Hisui",
+      "French": "Hisui",
+      "Italian": "Hisui",
+      "Japanese": "ヒスイ",
+      "Korean": "히스이",
+      "Spanish": "Hisui"
+    }
+  },
+  "names": {
+    "English": "Hisuian Voltorb",
+    "German": "Hisuian-Voltobal",
+    "French": "Voltorbe de Hisuian",
+    "Italian": "Voltorb di Hisuian",
+    "Japanese": "ビリリダマ",
+    "Korean": "찌리리공",
+    "Spanish": "Voltorb de Galar"
+  },
+  "stats": {
+    "stamina": 120,
+    "attack": 109,
+    "defense": 111
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_ELECTRIC",
+    "names": {
+      "English": "Electric",
+      "German": "Elektro",
+      "French": "Électrik",
+      "Italian": "Elettro",
+      "Japanese": "でんき",
+      "Korean": "전기",
+      "Spanish": "Eléctrico"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_GRASS",
+    "names": {
+      "English": "Grass",
+      "German": "Pflanze",
+      "French": "Plante",
+      "Italian": "Erba",
+      "Japanese": "くさ",
+      "Korean": "풀",
+      "Spanish": "Planta"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "CHARGE_BEAM_FAST": {
+      "id": "CHARGE_BEAM_FAST",
+      "slug": "charge_beam_fast",
+      "power": 7,
+      "energy": 14,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Charge Beam",
+        "German": "Ladestrahl",
+        "French": "Rayon Chargé",
+        "Italian": "Raggioscossa",
+        "Japanese": "チャージビーム",
+        "Korean": "차지빔",
+        "Spanish": "Rayo Carga"
+      },
+      "combat": {
+        "energy": 11,
+        "power": 5,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "TACKLE_FAST": {
+      "id": "TACKLE_FAST",
+      "slug": "tackle_fast",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Tackle",
+        "German": "Tackle",
+        "French": "Charge",
+        "Italian": "Azione",
+        "Japanese": "たいあたり",
+        "Korean": "몸통박치기",
+        "Spanish": "Placaje"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "SWIFT": {
+      "id": "SWIFT",
+      "slug": "swift",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Swift",
+        "German": "Sternschauer",
+        "French": "Météores",
+        "Italian": "Comete",
+        "Japanese": "スピードスター",
+        "Korean": "스피드스타",
+        "Spanish": "Rapidez"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "THUNDERBOLT": {
+      "id": "THUNDERBOLT",
+      "slug": "thunderbolt",
+      "power": 80,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Thunderbolt",
+        "German": "Donnerblitz",
+        "French": "Tonnerre",
+        "Italian": "Fulmine",
+        "Japanese": "１０まんボルト",
+        "Korean": "10만볼트",
+        "Spanish": "Rayo"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ENERGY_BALL": {
+      "id": "ENERGY_BALL",
+      "slug": "energy_ball",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Energy Ball",
+        "German": "Energieball",
+        "French": "Éco-Sphère",
+        "Italian": "Energipalla",
+        "Japanese": "エナジーボール",
+        "Korean": "에너지볼",
+        "Spanish": "Energibola"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm100.fHISUIAN.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm100.fHISUIAN.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "id": "ELECTRODE",
+      "slug": "electrode",
+      "formId": "ELECTRODE_HISUIAN",
+      "form": "hisui",
+      "candies": 50,
+      "item": null,
+      "quests": []
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
+}

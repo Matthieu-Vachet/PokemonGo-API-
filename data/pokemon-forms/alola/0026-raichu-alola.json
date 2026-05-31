@@ -1,0 +1,435 @@
+{
+  "dexId": "0026",
+  "id": "RAICHU",
+  "slug": "raichu",
+  "formId": "RAICHU_ALOLA",
+  "form": "alola",
+  "dexNr": 26,
+  "generation": 7,
+  "region": {
+    "id": "ALOLA",
+    "slug": "alola",
+    "generation": 7,
+    "names": {
+      "English": "Alola",
+      "German": "Alola",
+      "French": "Alola",
+      "Italian": "Alola",
+      "Japanese": "アローラ",
+      "Korean": "알로라",
+      "Spanish": "Alola"
+    }
+  },
+  "names": {
+    "English": "Alolan Raichu",
+    "German": "Alola-Raichu",
+    "French": "Raichu d'Alola",
+    "Italian": "Raichu di Alola",
+    "Japanese": "アローラ ライチュウ",
+    "Korean": "알로라 라이츄",
+    "Spanish": "Raichu de Alola"
+  },
+  "stats": {
+    "stamina": 155,
+    "attack": 201,
+    "defense": 154
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_ELECTRIC",
+    "names": {
+      "English": "Electric",
+      "German": "Elektro",
+      "French": "Électrik",
+      "Italian": "Elettro",
+      "Japanese": "でんき",
+      "Korean": "전기",
+      "Spanish": "Eléctrico"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_PSYCHIC",
+    "names": {
+      "English": "Psychic",
+      "German": "Psycho",
+      "French": "Psy",
+      "Italian": "Psico",
+      "Japanese": "エスパー",
+      "Korean": "에스퍼",
+      "Spanish": "Psíquico"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "VOLT_SWITCH_FAST": {
+      "id": "VOLT_SWITCH_FAST",
+      "slug": "volt_switch_fast",
+      "power": 13,
+      "energy": 20,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Volt Switch",
+        "German": "Voltwechsel",
+        "French": "Change Éclair",
+        "Italian": "Invertivolt",
+        "Japanese": "ボルトチェンジ",
+        "Korean": "볼트체인지",
+        "Spanish": "Voltiocambio"
+      },
+      "combat": {
+        "energy": 16,
+        "power": 14,
+        "turns": 4,
+        "buffs": null
+      }
+    },
+    "SPARK_FAST": {
+      "id": "SPARK_FAST",
+      "slug": "spark_fast",
+      "power": 4,
+      "energy": 6,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Spark",
+        "German": "Funkensprung",
+        "French": "Étincelle",
+        "Italian": "Scintilla",
+        "Japanese": "スパーク",
+        "Korean": "스파크",
+        "Spanish": "Chispa"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "THUNDER_SHOCK_FAST": {
+      "id": "THUNDER_SHOCK_FAST",
+      "slug": "thunder_shock_fast",
+      "power": 4,
+      "energy": 7,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Thunder Shock",
+        "German": "Donnerschock",
+        "French": "Éclair",
+        "Italian": "Tuonoshock",
+        "Japanese": "でんきショック",
+        "Korean": "전기쇼크",
+        "Spanish": "Impactrueno"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 4,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "PSYCHIC": {
+      "id": "PSYCHIC",
+      "slug": "psychic",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psychic",
+        "German": "Psychokinese",
+        "French": "Psyko",
+        "Italian": "Psichico",
+        "Japanese": "サイコキネシス",
+        "Korean": "사이코키네시스",
+        "Spanish": "Psíquico"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 75,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "THUNDER_PUNCH": {
+      "id": "THUNDER_PUNCH",
+      "slug": "thunder_punch",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Thunder Punch",
+        "German": "Donnerschlag",
+        "French": "Poing Éclair",
+        "Italian": "Tuonopugno",
+        "Japanese": "かみなりパンチ",
+        "Korean": "번개펀치",
+        "Spanish": "Puño Trueno"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "WILD_CHARGE": {
+      "id": "WILD_CHARGE",
+      "slug": "wild_charge",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Wild Charge",
+        "German": "Stromstoß",
+        "French": "Éclair Fou",
+        "Italian": "Sprizzalampo",
+        "Japanese": "ワイルドボルト",
+        "Korean": "와일드볼트",
+        "Spanish": "Voltio Cruel"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 100,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": -2,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "GRASS_KNOT": {
+      "id": "GRASS_KNOT",
+      "slug": "grass_knot",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Grass Knot",
+        "German": "Strauchler",
+        "French": "Nœud Herbe",
+        "Italian": "Laccioerboso",
+        "Japanese": "くさむすび",
+        "Korean": "풀묶기",
+        "Spanish": "Hierba Lazo"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "TRAILBLAZE": {
+      "id": "TRAILBLAZE",
+      "slug": "trailblaze",
+      "power": 65,
+      "energy": -50,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Trailblaze",
+        "German": "Wegbereiter",
+        "French": "Désherbaffe",
+        "Italian": "Apripista",
+        "Japanese": "くさわけ",
+        "Korean": "개척하기",
+        "Spanish": "Abrecaminos"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 65,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": 1,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "SURF": {
+      "id": "SURF",
+      "slug": "surf",
+      "power": 60,
+      "energy": -50,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Surf",
+        "German": "Surfer",
+        "French": "Surf",
+        "Italian": "Surf",
+        "Japanese": "なみのり",
+        "Korean": "파도타기",
+        "Spanish": "Surf"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 75,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "PSYSHOCK": {
+      "id": "PSYSHOCK",
+      "slug": "psyshock",
+      "power": 60,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psyshock",
+        "German": "Psychoschock",
+        "French": "Choc Psy",
+        "Italian": "Psicoshock",
+        "Japanese": "サイコショック",
+        "Korean": "사이코쇼크",
+        "Spanish": "Psicocarga"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm26.fALOLA.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm26.fALOLA.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
+}

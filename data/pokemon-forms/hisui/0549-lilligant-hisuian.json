@@ -1,0 +1,293 @@
+{
+  "dexId": "0549",
+  "id": "LILLIGANT",
+  "slug": "lilligant",
+  "formId": "LILLIGANT_HISUIAN",
+  "form": "hisui",
+  "dexNr": 549,
+  "generation": 4,
+  "region": {
+    "id": "HISUI",
+    "slug": "hisui",
+    "generation": 4,
+    "names": {
+      "English": "Hisui",
+      "German": "Hisui",
+      "French": "Hisui",
+      "Italian": "Hisui",
+      "Japanese": "ヒスイ",
+      "Korean": "히스이",
+      "Spanish": "Hisui"
+    }
+  },
+  "names": {
+    "English": "Hisuian Lilligant",
+    "German": "Hisuian-Dressella",
+    "French": "Fragilady de Hisuian",
+    "Italian": "Lilligant di Hisuian",
+    "Japanese": "ドレディア",
+    "Korean": "드레디어",
+    "Spanish": "Lilligant de Galar"
+  },
+  "stats": {
+    "stamina": 172,
+    "attack": 208,
+    "defense": 159
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_GRASS",
+    "names": {
+      "English": "Grass",
+      "German": "Pflanze",
+      "French": "Plante",
+      "Italian": "Erba",
+      "Japanese": "くさ",
+      "Korean": "풀",
+      "Spanish": "Planta"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FIGHTING",
+    "names": {
+      "English": "Fighting",
+      "German": "Kampf",
+      "French": "Combat",
+      "Italian": "Lotta",
+      "Japanese": "かくとう",
+      "Korean": "격투",
+      "Spanish": "Lucha"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "MAGICAL_LEAF_FAST": {
+      "id": "MAGICAL_LEAF_FAST",
+      "slug": "magical_leaf_fast",
+      "power": 17,
+      "energy": 17,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Magical Leaf",
+        "German": "Zauberblatt",
+        "French": "Feuille Magik",
+        "Italian": "Fogliamagica",
+        "Japanese": "マジカルリーフ",
+        "Korean": "매지컬리프",
+        "Spanish": "Hoja Mágica"
+      },
+      "combat": {
+        "energy": 10,
+        "power": 10,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "BULLET_SEED_FAST": {
+      "id": "BULLET_SEED_FAST",
+      "slug": "bullet_seed_fast",
+      "power": 7,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Bullet Seed",
+        "German": "Kugelsaat",
+        "French": "Balle Graine",
+        "Italian": "Semitraglia",
+        "Japanese": "タネマシンガン",
+        "Korean": "씨기관총",
+        "Spanish": "Semilladora"
+      },
+      "combat": {
+        "energy": 13,
+        "power": 5,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "PETAL_BLIZZARD": {
+      "id": "PETAL_BLIZZARD",
+      "slug": "petal_blizzard",
+      "power": 110,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Petal Blizzard",
+        "German": "Blütenwirbel",
+        "French": "Tempête Florale",
+        "Italian": "Fiortempesta",
+        "Japanese": "はなふぶき",
+        "Korean": "꽃보라",
+        "Spanish": "Tormenta Floral"
+      },
+      "combat": {
+        "energy": -65,
+        "power": 110,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "CLOSE_COMBAT": {
+      "id": "CLOSE_COMBAT",
+      "slug": "close_combat",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Close Combat",
+        "German": "Nahkampf",
+        "French": "Close Combat",
+        "Italian": "Zuffa",
+        "Japanese": "インファイト",
+        "Korean": "인파이트",
+        "Spanish": "A Bocajarro"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 100,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": -2,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "SOLAR_BEAM": {
+      "id": "SOLAR_BEAM",
+      "slug": "solar_beam",
+      "power": 180,
+      "energy": -100,
+      "durationMs": 5000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Solar Beam",
+        "German": "Solarstrahl",
+        "French": "Lance-Soleil",
+        "Italian": "Solarraggio",
+        "Japanese": "ソーラービーム",
+        "Korean": "솔라빔",
+        "Spanish": "Rayo Solar"
+      },
+      "combat": {
+        "energy": -80,
+        "power": 150,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "UPPER_HAND": {
+      "id": "UPPER_HAND",
+      "slug": "upper_hand",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Upper Hand",
+        "German": "Schnellkonter",
+        "French": "Prio-Parade",
+        "Italian": "Colpo di Mano",
+        "Japanese": "はやてがえし",
+        "Korean": "기선제압",
+        "Spanish": "Palma Rauda"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 70,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 30,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm549.fHISUIAN.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm549.fHISUIAN.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
+}

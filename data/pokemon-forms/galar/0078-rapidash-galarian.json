@@ -1,0 +1,396 @@
+{
+  "dexId": "0078",
+  "id": "RAPIDASH",
+  "slug": "rapidash",
+  "formId": "RAPIDASH_GALARIAN",
+  "form": "galar",
+  "dexNr": 78,
+  "generation": 8,
+  "region": {
+    "id": "GALAR",
+    "slug": "galar",
+    "generation": 8,
+    "names": {
+      "English": "Galar",
+      "German": "Galar",
+      "French": "Galar",
+      "Italian": "Galar",
+      "Japanese": "ガラル",
+      "Korean": "가라르",
+      "Spanish": "Galar"
+    }
+  },
+  "names": {
+    "English": "Galarian Rapidash",
+    "German": "Galar-Gallopa",
+    "French": "Galopa de Galar",
+    "Italian": "Rapidash di Galar",
+    "Japanese": "ガラル ギャロップ",
+    "Korean": "가라르 날쌩마",
+    "Spanish": "Rapidash de Galar"
+  },
+  "stats": {
+    "stamina": 163,
+    "attack": 207,
+    "defense": 162
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_PSYCHIC",
+    "names": {
+      "English": "Psychic",
+      "German": "Psycho",
+      "French": "Psy",
+      "Italian": "Psico",
+      "Japanese": "エスパー",
+      "Korean": "에스퍼",
+      "Spanish": "Psíquico"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FAIRY",
+    "names": {
+      "English": "Fairy",
+      "German": "Fee",
+      "French": "Fée",
+      "Italian": "Folletto",
+      "Japanese": "フェアリー",
+      "Korean": "페어리",
+      "Spanish": "Hada"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "LOW_KICK_FAST": {
+      "id": "LOW_KICK_FAST",
+      "slug": "low_kick_fast",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_FIGHTING",
+        "names": {
+          "English": "Fighting",
+          "German": "Kampf",
+          "French": "Combat",
+          "Italian": "Lotta",
+          "Japanese": "かくとう",
+          "Korean": "격투",
+          "Spanish": "Lucha"
+        }
+      },
+      "names": {
+        "English": "Low Kick",
+        "German": "Fußkick",
+        "French": "Balayage",
+        "Italian": "Colpo Basso",
+        "Japanese": "けたぐり",
+        "Korean": "안다리걸기",
+        "Spanish": "Patada Baja"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 5,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "PSYCHO_CUT_FAST": {
+      "id": "PSYCHO_CUT_FAST",
+      "slug": "psycho_cut_fast",
+      "power": 4,
+      "energy": 7,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psycho Cut",
+        "German": "Psychoklinge",
+        "French": "Coupe Psycho",
+        "Italian": "Psicotaglio",
+        "Japanese": "サイコカッター",
+        "Korean": "사이코커터",
+        "Spanish": "Psicocorte"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 4,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "FAIRY_WIND_FAST": {
+      "id": "FAIRY_WIND_FAST",
+      "slug": "fairy_wind_fast",
+      "power": 9,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Fairy Wind",
+        "German": "Feenbrise",
+        "French": "Vent Féérique",
+        "Italian": "Vento di Fata",
+        "Japanese": "ようせいのかぜ",
+        "Korean": "요정의바람",
+        "Spanish": "Viento Feérico"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 4,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "PLAY_ROUGH": {
+      "id": "PLAY_ROUGH",
+      "slug": "play_rough",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Play Rough",
+        "German": "Knuddler",
+        "French": "Câlinerie",
+        "Italian": "Carineria",
+        "Japanese": "じゃれつく",
+        "Korean": "치근거리기",
+        "Spanish": "Carantoña"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "PSYCHIC": {
+      "id": "PSYCHIC",
+      "slug": "psychic",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psychic",
+        "German": "Psychokinese",
+        "French": "Psyko",
+        "Italian": "Psichico",
+        "Japanese": "サイコキネシス",
+        "Korean": "사이코키네시스",
+        "Spanish": "Psíquico"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 75,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 10,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -1
+        }
+      }
+    },
+    "BODY_SLAM": {
+      "id": "BODY_SLAM",
+      "slug": "body_slam",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Body Slam",
+        "German": "Bodyslam",
+        "French": "Plaquage",
+        "Italian": "Corposcontro",
+        "Japanese": "のしかかり",
+        "Korean": "누르기",
+        "Spanish": "Golpe Cuerpo"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "MEGAHORN": {
+      "id": "MEGAHORN",
+      "slug": "megahorn",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_BUG",
+        "names": {
+          "English": "Bug",
+          "German": "Käfer",
+          "French": "Insecte",
+          "Italian": "Coleottero",
+          "Japanese": "むし",
+          "Korean": "벌레",
+          "Spanish": "Bicho"
+        }
+      },
+      "names": {
+        "English": "Megahorn",
+        "German": "Vielender",
+        "French": "Mégacorne",
+        "Italian": "Megacorno",
+        "Japanese": "メガホーン",
+        "Korean": "메가혼",
+        "Spanish": "Megacuerno"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 110,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "HIGH_HORSEPOWER": {
+      "id": "HIGH_HORSEPOWER",
+      "slug": "high_horsepower",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_GROUND",
+        "names": {
+          "English": "Ground",
+          "German": "Boden",
+          "French": "Sol",
+          "Italian": "Terra",
+          "Japanese": "じめん",
+          "Korean": "땅",
+          "Spanish": "Tierra"
+        }
+      },
+      "names": {
+        "English": "High Horsepower",
+        "German": "Pferdestärke",
+        "French": "Cavalerie Lourde",
+        "Italian": "Forza Equina",
+        "Japanese": "１０まんばりき",
+        "Korean": "10만마력",
+        "Spanish": "Fuerza Equina"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 100,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": {
+    "WILD_CHARGE": {
+      "id": "WILD_CHARGE",
+      "slug": "wild_charge",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_ELECTRIC",
+        "names": {
+          "English": "Electric",
+          "German": "Elektro",
+          "French": "Électrik",
+          "Italian": "Elettro",
+          "Japanese": "でんき",
+          "Korean": "전기",
+          "Spanish": "Eléctrico"
+        }
+      },
+      "names": {
+        "English": "Wild Charge",
+        "German": "Stromstoß",
+        "French": "Éclair Fou",
+        "Italian": "Sprizzalampo",
+        "Japanese": "ワイルドボルト",
+        "Korean": "와일드볼트",
+        "Spanish": "Voltio Cruel"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 100,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": -2,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm78.fGALARIAN.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm78.fGALARIAN.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
+}

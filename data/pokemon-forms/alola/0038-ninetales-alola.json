@@ -1,0 +1,390 @@
+{
+  "dexId": "0038",
+  "id": "NINETALES",
+  "slug": "ninetales",
+  "formId": "NINETALES_ALOLA",
+  "form": "alola",
+  "dexNr": 38,
+  "generation": 7,
+  "region": {
+    "id": "ALOLA",
+    "slug": "alola",
+    "generation": 7,
+    "names": {
+      "English": "Alola",
+      "German": "Alola",
+      "French": "Alola",
+      "Italian": "Alola",
+      "Japanese": "アローラ",
+      "Korean": "알로라",
+      "Spanish": "Alola"
+    }
+  },
+  "names": {
+    "English": "Alolan Ninetales",
+    "German": "Alola-Vulnona",
+    "French": "Feunard d'Alola",
+    "Italian": "Ninetales di Alola",
+    "Japanese": "アローラ キュウコン",
+    "Korean": "알로라 나인테일",
+    "Spanish": "Ninetales de Alola"
+  },
+  "stats": {
+    "stamina": 177,
+    "attack": 170,
+    "defense": 193
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_ICE",
+    "names": {
+      "English": "Ice",
+      "German": "Eis",
+      "French": "Glace",
+      "Italian": "Ghiaccio",
+      "Japanese": "こおり",
+      "Korean": "얼음",
+      "Spanish": "Hielo"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FAIRY",
+    "names": {
+      "English": "Fairy",
+      "German": "Fee",
+      "French": "Fée",
+      "Italian": "Folletto",
+      "Japanese": "フェアリー",
+      "Korean": "페어리",
+      "Spanish": "Hada"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "FEINT_ATTACK_FAST": {
+      "id": "FEINT_ATTACK_FAST",
+      "slug": "feint_attack_fast",
+      "power": 11,
+      "energy": 10,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Feint Attack",
+        "German": "Finte",
+        "French": "Feinte",
+        "Italian": "Finta",
+        "Japanese": "だましうち",
+        "Korean": "속여때리기",
+        "Spanish": "Finta"
+      },
+      "combat": {
+        "energy": 6,
+        "power": 6,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "POWDER_SNOW_FAST": {
+      "id": "POWDER_SNOW_FAST",
+      "slug": "powder_snow_fast",
+      "power": 6,
+      "energy": 15,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Powder Snow",
+        "German": "Pulverschnee",
+        "French": "Poudreuse",
+        "Italian": "Polneve",
+        "Japanese": "こなゆき",
+        "Korean": "눈싸라기",
+        "Spanish": "Nieve Polvo"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 6,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "CHARM_FAST": {
+      "id": "CHARM_FAST",
+      "slug": "charm_fast",
+      "power": 20,
+      "energy": 11,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Charm",
+        "German": "Charme",
+        "French": "Charme",
+        "Italian": "Fascino",
+        "Japanese": "あまえる",
+        "Korean": "애교부리기",
+        "Spanish": "Encanto"
+      },
+      "combat": {
+        "energy": 8,
+        "power": 13,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "DAZZLING_GLEAM": {
+      "id": "DAZZLING_GLEAM",
+      "slug": "dazzling_gleam",
+      "power": 100,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Dazzling Gleam",
+        "German": "Zauberschein",
+        "French": "Éclat Magique",
+        "Italian": "Magibrillio",
+        "Japanese": "マジカルシャイン",
+        "Korean": "매지컬샤인",
+        "Spanish": "Brillo Mágico"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ICE_BEAM": {
+      "id": "ICE_BEAM",
+      "slug": "ice_beam",
+      "power": 95,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Ice Beam",
+        "German": "Eisstrahl",
+        "French": "Laser Glace",
+        "Italian": "Geloraggio",
+        "Japanese": "れいとうビーム",
+        "Korean": "냉동빔",
+        "Spanish": "Rayo Hielo"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "BLIZZARD": {
+      "id": "BLIZZARD",
+      "slug": "blizzard",
+      "power": 130,
+      "energy": -100,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Blizzard",
+        "German": "Blizzard",
+        "French": "Blizzard",
+        "Italian": "Bora",
+        "Japanese": "ふぶき",
+        "Korean": "눈보라",
+        "Spanish": "Ventisca"
+      },
+      "combat": {
+        "energy": -75,
+        "power": 140,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "PSYSHOCK": {
+      "id": "PSYSHOCK",
+      "slug": "psyshock",
+      "power": 60,
+      "energy": -33,
+      "durationMs": 2500,
+      "type": {
+        "type": "POKEMON_TYPE_PSYCHIC",
+        "names": {
+          "English": "Psychic",
+          "German": "Psycho",
+          "French": "Psy",
+          "Italian": "Psico",
+          "Japanese": "エスパー",
+          "Korean": "에스퍼",
+          "Spanish": "Psíquico"
+        }
+      },
+      "names": {
+        "English": "Psyshock",
+        "German": "Psychoschock",
+        "French": "Choc Psy",
+        "Italian": "Psicoshock",
+        "Japanese": "サイコショック",
+        "Korean": "사이코쇼크",
+        "Spanish": "Psicocarga"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "WEATHER_BALL_ICE": {
+      "id": "WEATHER_BALL_ICE",
+      "slug": "weather_ball_ice",
+      "power": 55,
+      "energy": -33,
+      "durationMs": 1500,
+      "type": {
+        "type": "POKEMON_TYPE_ICE",
+        "names": {
+          "English": "Ice",
+          "German": "Eis",
+          "French": "Glace",
+          "Italian": "Ghiaccio",
+          "Japanese": "こおり",
+          "Korean": "얼음",
+          "Spanish": "Hielo"
+        }
+      },
+      "names": {
+        "English": "Weather Ball",
+        "German": "Meteorologe",
+        "French": "Ball’Météo",
+        "Italian": "Palla Clima",
+        "Japanese": "ウェザーボール",
+        "Korean": "웨더볼",
+        "Spanish": "Meteorobola"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 60,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": {
+    "CHILLING_WATER": {
+      "id": "CHILLING_WATER",
+      "slug": "chilling_water",
+      "power": 65,
+      "energy": -33,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_WATER",
+        "names": {
+          "English": "Water",
+          "German": "Wasser",
+          "French": "Eau",
+          "Italian": "Acqua",
+          "Japanese": "みず",
+          "Korean": "물",
+          "Spanish": "Agua"
+        }
+      },
+      "names": {
+        "English": "Chilling Water",
+        "German": "Kalte Dusche",
+        "French": "Douche Froide",
+        "Italian": "Doccia Fredda",
+        "Japanese": "ひやみず",
+        "Korean": "찬물끼얹기",
+        "Spanish": "Agua Fría"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 60,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": -1,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm38.fALOLA.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm38.fALOLA.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
+}

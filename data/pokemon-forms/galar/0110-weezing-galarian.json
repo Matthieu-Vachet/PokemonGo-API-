@@ -1,0 +1,321 @@
+{
+  "dexId": "0110",
+  "id": "WEEZING",
+  "slug": "weezing",
+  "formId": "WEEZING_GALARIAN",
+  "form": "galar",
+  "dexNr": 110,
+  "generation": 8,
+  "region": {
+    "id": "GALAR",
+    "slug": "galar",
+    "generation": 8,
+    "names": {
+      "English": "Galar",
+      "German": "Galar",
+      "French": "Galar",
+      "Italian": "Galar",
+      "Japanese": "ガラル",
+      "Korean": "가라르",
+      "Spanish": "Galar"
+    }
+  },
+  "names": {
+    "English": "Galarian Weezing",
+    "German": "Galar-Smogmog",
+    "French": "Smogogo de Galar",
+    "Italian": "Weezing di Galar",
+    "Japanese": "ガラル マタドガス",
+    "Korean": "가라르 또도가스",
+    "Spanish": "Weezing de Galar"
+  },
+  "stats": {
+    "stamina": 163,
+    "attack": 174,
+    "defense": 197
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_POISON",
+    "names": {
+      "English": "Poison",
+      "German": "Gift",
+      "French": "Poison",
+      "Italian": "Veleno",
+      "Japanese": "どく",
+      "Korean": "독",
+      "Spanish": "Veneno"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_FAIRY",
+    "names": {
+      "English": "Fairy",
+      "German": "Fee",
+      "French": "Fée",
+      "Italian": "Folletto",
+      "Japanese": "フェアリー",
+      "Korean": "페어리",
+      "Spanish": "Hada"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "TACKLE_FAST": {
+      "id": "TACKLE_FAST",
+      "slug": "tackle_fast",
+      "power": 5,
+      "energy": 5,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Tackle",
+        "German": "Tackle",
+        "French": "Charge",
+        "Italian": "Azione",
+        "Japanese": "たいあたり",
+        "Korean": "몸통박치기",
+        "Spanish": "Placaje"
+      },
+      "combat": {
+        "energy": 3,
+        "power": 3,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "FAIRY_WIND_FAST": {
+      "id": "FAIRY_WIND_FAST",
+      "slug": "fairy_wind_fast",
+      "power": 9,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Fairy Wind",
+        "German": "Feenbrise",
+        "French": "Vent Féérique",
+        "Italian": "Vento di Fata",
+        "Japanese": "ようせいのかぜ",
+        "Korean": "요정의바람",
+        "Spanish": "Viento Feérico"
+      },
+      "combat": {
+        "energy": 9,
+        "power": 4,
+        "turns": 2,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "SLUDGE": {
+      "id": "SLUDGE",
+      "slug": "sludge",
+      "power": 50,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Sludge",
+        "German": "Schlammbad",
+        "French": "Détritus",
+        "Italian": "Fango",
+        "Japanese": "ヘドロこうげき",
+        "Korean": "오물공격",
+        "Spanish": "Residuos"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 70,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "HYPER_BEAM": {
+      "id": "HYPER_BEAM",
+      "slug": "hyper_beam",
+      "power": 150,
+      "energy": -100,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_NORMAL",
+        "names": {
+          "English": "Normal",
+          "German": "Normal",
+          "French": "Normal",
+          "Italian": "Normale",
+          "Japanese": "ノーマル",
+          "Korean": "노말",
+          "Spanish": "Normal"
+        }
+      },
+      "names": {
+        "English": "Hyper Beam",
+        "German": "Hyperstrahl",
+        "French": "Ultralaser",
+        "Italian": "Iper Raggio",
+        "Japanese": "はかいこうせん",
+        "Korean": "파괴광선",
+        "Spanish": "Hiperrayo"
+      },
+      "combat": {
+        "energy": -80,
+        "power": 150,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "PLAY_ROUGH": {
+      "id": "PLAY_ROUGH",
+      "slug": "play_rough",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_FAIRY",
+        "names": {
+          "English": "Fairy",
+          "German": "Fee",
+          "French": "Fée",
+          "Italian": "Folletto",
+          "Japanese": "フェアリー",
+          "Korean": "페어리",
+          "Spanish": "Hada"
+        }
+      },
+      "names": {
+        "English": "Play Rough",
+        "German": "Knuddler",
+        "French": "Câlinerie",
+        "Italian": "Carineria",
+        "Japanese": "じゃれつく",
+        "Korean": "치근거리기",
+        "Spanish": "Carantoña"
+      },
+      "combat": {
+        "energy": -60,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "OVERHEAT": {
+      "id": "OVERHEAT",
+      "slug": "overheat",
+      "power": 160,
+      "energy": -100,
+      "durationMs": 4000,
+      "type": {
+        "type": "POKEMON_TYPE_FIRE",
+        "names": {
+          "English": "Fire",
+          "German": "Feuer",
+          "French": "Feu",
+          "Italian": "Fuoco",
+          "Japanese": "ほのお",
+          "Korean": "불꽃",
+          "Spanish": "Fuego"
+        }
+      },
+      "names": {
+        "English": "Overheat",
+        "German": "Hitzekoller",
+        "French": "Surchauffe",
+        "Italian": "Vampata",
+        "Japanese": "オーバーヒート",
+        "Korean": "오버히트",
+        "Spanish": "Sofoco"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 130,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": -2,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    },
+    "BRUTAL_SWING": {
+      "id": "BRUTAL_SWING",
+      "slug": "brutal_swing",
+      "power": 65,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Brutal Swing",
+        "German": "Wirbler",
+        "French": "Centrifugifle",
+        "Italian": "Vorticolpo",
+        "Japanese": "ぶんまわす",
+        "Korean": "세차게휘두르기",
+        "Spanish": "Giro Vil"
+      },
+      "combat": {
+        "energy": -35,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm110.fGALARIAN.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm110.fGALARIAN.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
+}

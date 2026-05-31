@@ -1,0 +1,321 @@
+{
+  "dexId": "0089",
+  "id": "MUK",
+  "slug": "muk",
+  "formId": "MUK_ALOLA",
+  "form": "alola",
+  "dexNr": 89,
+  "generation": 7,
+  "region": {
+    "id": "ALOLA",
+    "slug": "alola",
+    "generation": 7,
+    "names": {
+      "English": "Alola",
+      "German": "Alola",
+      "French": "Alola",
+      "Italian": "Alola",
+      "Japanese": "アローラ",
+      "Korean": "알로라",
+      "Spanish": "Alola"
+    }
+  },
+  "names": {
+    "English": "Alolan Muk",
+    "German": "Alola-Sleimok",
+    "French": "Grotadmorv d'Alola",
+    "Italian": "Muk di Alola",
+    "Japanese": "アローラ ベトベトン",
+    "Korean": "알로라 질뻐기",
+    "Spanish": "Muk de Alola"
+  },
+  "stats": {
+    "stamina": 233,
+    "attack": 190,
+    "defense": 172
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_POISON",
+    "names": {
+      "English": "Poison",
+      "German": "Gift",
+      "French": "Poison",
+      "Italian": "Veleno",
+      "Japanese": "どく",
+      "Korean": "독",
+      "Spanish": "Veneno"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_DARK",
+    "names": {
+      "English": "Dark",
+      "German": "Unlicht",
+      "French": "Ténèbres",
+      "Italian": "Buio",
+      "Japanese": "あく",
+      "Korean": "악",
+      "Spanish": "Siniestro"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "BITE_FAST": {
+      "id": "BITE_FAST",
+      "slug": "bite_fast",
+      "power": 6,
+      "energy": 4,
+      "durationMs": 500,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Bite",
+        "German": "Biss",
+        "French": "Morsure",
+        "Italian": "Morso",
+        "Japanese": "かみつく",
+        "Korean": "물기",
+        "Spanish": "Mordisco"
+      },
+      "combat": {
+        "energy": 2,
+        "power": 4,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "POISON_JAB_FAST": {
+      "id": "POISON_JAB_FAST",
+      "slug": "poison_jab_fast",
+      "power": 13,
+      "energy": 9,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Poison Jab",
+        "German": "Gifthieb",
+        "French": "Direct Toxik",
+        "Italian": "Velenpuntura",
+        "Japanese": "どくづき",
+        "Korean": "독찌르기",
+        "Spanish": "Puya Nociva"
+      },
+      "combat": {
+        "energy": 7,
+        "power": 7,
+        "turns": 2,
+        "buffs": null
+      }
+    },
+    "SNARL_FAST": {
+      "id": "SNARL_FAST",
+      "slug": "snarl_fast",
+      "power": 11,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Snarl",
+        "German": "Standpauke",
+        "French": "Aboiement",
+        "Italian": "Urlorabbia",
+        "Japanese": "バークアウト",
+        "Korean": "바크아웃",
+        "Spanish": "Alarido"
+      },
+      "combat": {
+        "energy": 13,
+        "power": 5,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "DARK_PULSE": {
+      "id": "DARK_PULSE",
+      "slug": "dark_pulse",
+      "power": 80,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_DARK",
+        "names": {
+          "English": "Dark",
+          "German": "Unlicht",
+          "French": "Ténèbres",
+          "Italian": "Buio",
+          "Japanese": "あく",
+          "Korean": "악",
+          "Spanish": "Siniestro"
+        }
+      },
+      "names": {
+        "English": "Dark Pulse",
+        "German": "Finsteraura",
+        "French": "Vibrobscur",
+        "Italian": "Neropulsar",
+        "Japanese": "あくのはどう",
+        "Korean": "악의파동",
+        "Spanish": "Pulso Umbrío"
+      },
+      "combat": {
+        "energy": -50,
+        "power": 80,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "GUNK_SHOT": {
+      "id": "GUNK_SHOT",
+      "slug": "gunk_shot",
+      "power": 130,
+      "energy": -100,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Gunk Shot",
+        "German": "Mülltreffer",
+        "French": "Détricanon",
+        "Italian": "Sporcolancio",
+        "Japanese": "ダストシュート",
+        "Korean": "더스트슈트",
+        "Spanish": "Lanzamugre"
+      },
+      "combat": {
+        "energy": -75,
+        "power": 130,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "SLUDGE_WAVE": {
+      "id": "SLUDGE_WAVE",
+      "slug": "sludge_wave",
+      "power": 105,
+      "energy": -100,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Sludge Wave",
+        "German": "Schlammwoge",
+        "French": "Cradovague",
+        "Italian": "Fangonda",
+        "Japanese": "ヘドロウェーブ",
+        "Korean": "오물웨이브",
+        "Spanish": "Onda Tóxica"
+      },
+      "combat": {
+        "energy": -65,
+        "power": 110,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "ACID_SPRAY": {
+      "id": "ACID_SPRAY",
+      "slug": "acid_spray",
+      "power": 20,
+      "energy": -50,
+      "durationMs": 3000,
+      "type": {
+        "type": "POKEMON_TYPE_POISON",
+        "names": {
+          "English": "Poison",
+          "German": "Gift",
+          "French": "Poison",
+          "Italian": "Veleno",
+          "Japanese": "どく",
+          "Korean": "독",
+          "Spanish": "Veneno"
+        }
+      },
+      "names": {
+        "English": "Acid Spray",
+        "German": "Säurespeier",
+        "French": "Bombe Acide",
+        "Italian": "Acidobomba",
+        "Japanese": "アシッドボム",
+        "Korean": "애시드봄",
+        "Spanish": "Bomba Ácida"
+      },
+      "combat": {
+        "energy": -45,
+        "power": 20,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": null,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": -2
+        }
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm89.fALOLA.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm89.fALOLA.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
+}

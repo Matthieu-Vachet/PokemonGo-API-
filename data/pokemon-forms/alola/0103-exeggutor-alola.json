@@ -1,0 +1,288 @@
+{
+  "dexId": "0103",
+  "id": "EXEGGUTOR",
+  "slug": "exeggutor",
+  "formId": "EXEGGUTOR_ALOLA",
+  "form": "alola",
+  "dexNr": 103,
+  "generation": 7,
+  "region": {
+    "id": "ALOLA",
+    "slug": "alola",
+    "generation": 7,
+    "names": {
+      "English": "Alola",
+      "German": "Alola",
+      "French": "Alola",
+      "Italian": "Alola",
+      "Japanese": "アローラ",
+      "Korean": "알로라",
+      "Spanish": "Alola"
+    }
+  },
+  "names": {
+    "English": "Alolan Exeggutor",
+    "German": "Alola-Kokowei",
+    "French": "Noadkoko d'Alola",
+    "Italian": "Exeggutor di Alola",
+    "Japanese": "アローラ ナッシー",
+    "Korean": "알로라 나시",
+    "Spanish": "Exeggutor de Alola"
+  },
+  "stats": {
+    "stamina": 216,
+    "attack": 230,
+    "defense": 153
+  },
+  "primaryType": {
+    "type": "POKEMON_TYPE_GRASS",
+    "names": {
+      "English": "Grass",
+      "German": "Pflanze",
+      "French": "Plante",
+      "Italian": "Erba",
+      "Japanese": "くさ",
+      "Korean": "풀",
+      "Spanish": "Planta"
+    }
+  },
+  "secondaryType": {
+    "type": "POKEMON_TYPE_DRAGON",
+    "names": {
+      "English": "Dragon",
+      "German": "Drache",
+      "French": "Dragon",
+      "Italian": "Drago",
+      "Japanese": "ドラゴン",
+      "Korean": "드래곤",
+      "Spanish": "Dragón"
+    }
+  },
+  "pokemonClass": null,
+  "quickMoves": {
+    "BULLET_SEED_FAST": {
+      "id": "BULLET_SEED_FAST",
+      "slug": "bullet_seed_fast",
+      "power": 7,
+      "energy": 13,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Bullet Seed",
+        "German": "Kugelsaat",
+        "French": "Balle Graine",
+        "Italian": "Semitraglia",
+        "Japanese": "タネマシンガン",
+        "Korean": "씨기관총",
+        "Spanish": "Semilladora"
+      },
+      "combat": {
+        "energy": 13,
+        "power": 5,
+        "turns": 3,
+        "buffs": null
+      }
+    },
+    "DRAGON_TAIL_FAST": {
+      "id": "DRAGON_TAIL_FAST",
+      "slug": "dragon_tail_fast",
+      "power": 14,
+      "energy": 8,
+      "durationMs": 1000,
+      "type": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "names": {
+        "English": "Dragon Tail",
+        "German": "Drachenrute",
+        "French": "Draco-Queue",
+        "Italian": "Codadrago",
+        "Japanese": "ドラゴンテール",
+        "Korean": "드래곤테일",
+        "Spanish": "Cola Dragón"
+      },
+      "combat": {
+        "energy": 12,
+        "power": 9,
+        "turns": 3,
+        "buffs": null
+      }
+    }
+  },
+  "cinematicMoves": {
+    "SEED_BOMB": {
+      "id": "SEED_BOMB",
+      "slug": "seed_bomb",
+      "power": 55,
+      "energy": -33,
+      "durationMs": 2000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Seed Bomb",
+        "German": "Samenbomben",
+        "French": "Canon Graine",
+        "Italian": "Semebomba",
+        "Japanese": "タネばくだん",
+        "Korean": "씨폭탄",
+        "Spanish": "Bomba Germen"
+      },
+      "combat": {
+        "energy": -40,
+        "power": 55,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "DRAGON_PULSE": {
+      "id": "DRAGON_PULSE",
+      "slug": "dragon_pulse",
+      "power": 90,
+      "energy": -50,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "names": {
+        "English": "Dragon Pulse",
+        "German": "Drachenpuls",
+        "French": "Draco-Choc",
+        "Italian": "Dragopulsar",
+        "Japanese": "りゅうのはどう",
+        "Korean": "용의파동",
+        "Spanish": "Pulso Dragón"
+      },
+      "combat": {
+        "energy": -55,
+        "power": 90,
+        "turns": 1,
+        "buffs": null
+      }
+    },
+    "SOLAR_BEAM": {
+      "id": "SOLAR_BEAM",
+      "slug": "solar_beam",
+      "power": 180,
+      "energy": -100,
+      "durationMs": 5000,
+      "type": {
+        "type": "POKEMON_TYPE_GRASS",
+        "names": {
+          "English": "Grass",
+          "German": "Pflanze",
+          "French": "Plante",
+          "Italian": "Erba",
+          "Japanese": "くさ",
+          "Korean": "풀",
+          "Spanish": "Planta"
+        }
+      },
+      "names": {
+        "English": "Solar Beam",
+        "German": "Solarstrahl",
+        "French": "Lance-Soleil",
+        "Italian": "Solarraggio",
+        "Japanese": "ソーラービーム",
+        "Korean": "솔라빔",
+        "Spanish": "Rayo Solar"
+      },
+      "combat": {
+        "energy": -80,
+        "power": 150,
+        "turns": 1,
+        "buffs": null
+      }
+    }
+  },
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": {
+    "DRACO_METEOR": {
+      "id": "DRACO_METEOR",
+      "slug": "draco_meteor",
+      "power": 150,
+      "energy": -100,
+      "durationMs": 3500,
+      "type": {
+        "type": "POKEMON_TYPE_DRAGON",
+        "names": {
+          "English": "Dragon",
+          "German": "Drache",
+          "French": "Dragon",
+          "Italian": "Drago",
+          "Japanese": "ドラゴン",
+          "Korean": "드래곤",
+          "Spanish": "Dragón"
+        }
+      },
+      "names": {
+        "English": "Draco Meteor",
+        "German": "Draco Meteor",
+        "French": "Draco-Météore",
+        "Italian": "Dragobolide",
+        "Japanese": "りゅうせいぐん",
+        "Korean": "용성군",
+        "Spanish": "Cometa Draco"
+      },
+      "combat": {
+        "energy": -65,
+        "power": 150,
+        "turns": 1,
+        "buffs": {
+          "activationChance": 100,
+          "attackerAttackStatsChange": -2,
+          "attackerDefenseStatsChange": null,
+          "targetAttackStatsChange": null,
+          "targetDefenseStatsChange": null
+        }
+      }
+    }
+  },
+  "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm103.fALOLA.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm103.fALOLA.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
+}

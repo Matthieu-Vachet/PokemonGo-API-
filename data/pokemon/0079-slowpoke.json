@@ -1,10 +1,25 @@
 {
   "id": "SLOWPOKE",
   "formId": "SLOWPOKE",
+  "form": "normal",
   "slug": "slowpoke",
   "dexNr": 79,
   "dexId": "0079",
   "generation": 1,
+  "region": {
+    "id": "KANTO",
+    "slug": "kanto",
+    "generation": 1,
+    "names": {
+      "English": "Kanto",
+      "German": "Kanto",
+      "French": "Kanto",
+      "Italian": "Kanto",
+      "Japanese": "カントー",
+      "Korean": "관동",
+      "Spanish": "Kanto"
+    }
+  },
   "names": {
     "English": "Slowpoke",
     "German": "Flegmon",
@@ -235,8 +250,23 @@
       "id": "SLOWPOKE",
       "slug": "slowpoke",
       "formId": "SLOWPOKE_GALARIAN",
+      "form": "galar",
       "dexNr": 79,
-      "generation": 1,
+      "generation": 8,
+      "region": {
+        "id": "GALAR",
+        "slug": "galar",
+        "generation": 8,
+        "names": {
+          "English": "Galar",
+          "German": "Galar",
+          "French": "Galar",
+          "Italian": "Galar",
+          "Japanese": "ガラル",
+          "Korean": "가라르",
+          "Spanish": "Galar"
+        }
+      },
       "names": {
         "English": "Galarian Slowpoke",
         "German": "Galar-Flegmon",
@@ -457,6 +487,7 @@
           "id": "SLOWBRO",
           "slug": "slowbro",
           "formId": "SLOWBRO_GALARIAN",
+          "form": "galar",
           "candies": 50,
           "item": null,
           "quests": [
@@ -480,6 +511,7 @@
           "id": "SLOWKING",
           "slug": "slowking",
           "formId": "SLOWKING_GALARIAN",
+          "form": "galar",
           "candies": 50,
           "item": null,
           "quests": [
@@ -510,6 +542,7 @@
       "id": "SLOWBRO",
       "slug": "slowbro",
       "formId": "SLOWBRO_NORMAL",
+      "form": "normal",
       "candies": 50,
       "item": null,
       "quests": []
@@ -518,6 +551,7 @@
       "id": "SLOWKING",
       "slug": "slowking",
       "formId": "SLOWKING_NORMAL",
+      "form": "normal",
       "candies": 50,
       "item": {
         "id": "ITEM_KINGS_ROCK",
@@ -554,11 +588,11 @@
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm79.f2020.s.icon.png"
     },
     {
-      "form": "GALARIAN",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm79.fGALARIAN.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm79.fGALARIAN.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm79.fGALARIAN.s.icon.png",
+      "form": "galar"
     },
     {
       "form": null,

@@ -1,10 +1,25 @@
 {
   "id": "FARFETCHD",
   "formId": "FARFETCHD",
+  "form": "normal",
   "slug": "farfetchd",
   "dexNr": 83,
   "dexId": "0083",
   "generation": 1,
+  "region": {
+    "id": "KANTO",
+    "slug": "kanto",
+    "generation": 1,
+    "names": {
+      "English": "Kanto",
+      "German": "Kanto",
+      "French": "Kanto",
+      "Italian": "Kanto",
+      "Japanese": "カントー",
+      "Korean": "관동",
+      "Spanish": "Kanto"
+    }
+  },
   "names": {
     "English": "Farfetch'd",
     "German": "Porenta",
@@ -270,8 +285,23 @@
       "id": "FARFETCHD",
       "slug": "farfetchd",
       "formId": "FARFETCHD_GALARIAN",
+      "form": "galar",
       "dexNr": 83,
-      "generation": 1,
+      "generation": 8,
+      "region": {
+        "id": "GALAR",
+        "slug": "galar",
+        "generation": 8,
+        "names": {
+          "English": "Galar",
+          "German": "Galar",
+          "French": "Galar",
+          "Italian": "Galar",
+          "Japanese": "ガラル",
+          "Korean": "가라르",
+          "Spanish": "Galar"
+        }
+      },
       "names": {
         "English": "Galarian Farfetch'd",
         "German": "Galar-Porenta",
@@ -498,6 +528,7 @@
           "id": "SIRFETCHD",
           "slug": "sirfetchd",
           "formId": "SIRFETCHD_NORMAL",
+          "form": "normal",
           "candies": 50,
           "item": null,
           "quests": [
@@ -529,11 +560,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "GALARIAN",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm83.fGALARIAN.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm83.fGALARIAN.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm83.fGALARIAN.s.icon.png",
+      "form": "galar"
     },
     {
       "form": null,

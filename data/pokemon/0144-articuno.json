@@ -1,10 +1,25 @@
 {
   "id": "ARTICUNO",
   "formId": "ARTICUNO",
+  "form": "normal",
   "slug": "articuno",
   "dexNr": 144,
   "dexId": "0144",
   "generation": 1,
+  "region": {
+    "id": "KANTO",
+    "slug": "kanto",
+    "generation": 1,
+    "names": {
+      "English": "Kanto",
+      "German": "Kanto",
+      "French": "Kanto",
+      "Italian": "Kanto",
+      "Japanese": "カントー",
+      "Korean": "관동",
+      "Spanish": "Kanto"
+    }
+  },
   "names": {
     "English": "Articuno",
     "German": "Arktos",
@@ -384,8 +399,23 @@
       "id": "ARTICUNO",
       "slug": "articuno",
       "formId": "ARTICUNO_GALARIAN",
+      "form": "galar",
       "dexNr": 144,
-      "generation": 1,
+      "generation": 8,
+      "region": {
+        "id": "GALAR",
+        "slug": "galar",
+        "generation": 8,
+        "names": {
+          "English": "Galar",
+          "German": "Galar",
+          "French": "Galar",
+          "Italian": "Galar",
+          "Japanese": "ガラル",
+          "Korean": "가라르",
+          "Spanish": "Galar"
+        }
+      },
       "names": {
         "English": "Galarian Articuno",
         "German": "Galar-Arktos",
@@ -664,11 +694,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "GALARIAN",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm144.fGALARIAN.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm144.fGALARIAN.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm144.fGALARIAN.s.icon.png",
+      "form": "galar"
     },
     {
       "form": null,

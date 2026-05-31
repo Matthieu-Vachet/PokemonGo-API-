@@ -1,10 +1,25 @@
 {
   "id": "SCEPTILE",
   "formId": "SCEPTILE",
+  "form": "normal",
   "slug": "sceptile",
   "dexNr": 254,
   "dexId": "0254",
   "generation": 3,
+  "region": {
+    "id": "HOENN",
+    "slug": "hoenn",
+    "generation": 3,
+    "names": {
+      "English": "Hoenn",
+      "German": "Hoenn",
+      "French": "Hoenn",
+      "Italian": "Hoenn",
+      "Japanese": "ホウエン",
+      "Korean": "호연",
+      "Spanish": "Hoenn"
+    }
+  },
   "names": {
     "English": "Sceptile",
     "German": "Gewaldro",
@@ -329,6 +344,7 @@
     "SCEPTILE_MEGA": {
       "id": "SCEPTILE_MEGA",
       "slug": "sceptile_mega",
+      "form": "mega",
       "names": {
         "English": "Mega Sceptile",
         "German": "Mega-Gewaldro",
@@ -377,11 +393,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "MEGA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm254.fMEGA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm254.fMEGA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm254.fMEGA.s.icon.png",
+      "form": "mega"
     },
     {
       "form": null,

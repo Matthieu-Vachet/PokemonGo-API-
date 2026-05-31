@@ -1,10 +1,25 @@
 {
   "id": "METAGROSS",
   "formId": "METAGROSS",
+  "form": "normal",
   "slug": "metagross",
   "dexNr": 376,
   "dexId": "0376",
   "generation": 3,
+  "region": {
+    "id": "HOENN",
+    "slug": "hoenn",
+    "generation": 3,
+    "names": {
+      "English": "Hoenn",
+      "German": "Hoenn",
+      "French": "Hoenn",
+      "Italian": "Hoenn",
+      "Japanese": "ホウエン",
+      "Korean": "호연",
+      "Spanish": "Hoenn"
+    }
+  },
   "names": {
     "English": "Metagross",
     "German": "Metagross",
@@ -341,6 +356,7 @@
     "METAGROSS_MEGA": {
       "id": "METAGROSS_MEGA",
       "slug": "metagross_mega",
+      "form": "mega",
       "names": {
         "English": "Mega Metagross",
         "German": "Mega-Metagross",
@@ -389,11 +405,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "MEGA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm376.fMEGA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm376.fMEGA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm376.fMEGA.s.icon.png",
+      "form": "mega"
     },
     {
       "form": null,

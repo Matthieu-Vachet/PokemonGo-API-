@@ -1,10 +1,25 @@
 {
   "id": "WOOPER",
   "formId": "WOOPER",
+  "form": "normal",
   "slug": "wooper",
   "dexNr": 194,
   "dexId": "0194",
   "generation": 2,
+  "region": {
+    "id": "JOHTO",
+    "slug": "johto",
+    "generation": 2,
+    "names": {
+      "English": "Johto",
+      "German": "Johto",
+      "French": "Johto",
+      "Italian": "Johto",
+      "Japanese": "ジョウト",
+      "Korean": "성도",
+      "Spanish": "Johto"
+    }
+  },
   "names": {
     "English": "Wooper",
     "German": "Felino",
@@ -229,8 +244,23 @@
       "id": "WOOPER",
       "slug": "wooper",
       "formId": "WOOPER_PALDEA",
+      "form": "paldea",
       "dexNr": 194,
-      "generation": 2,
+      "generation": 9,
+      "region": {
+        "id": "PALDEA",
+        "slug": "paldea",
+        "generation": 9,
+        "names": {
+          "English": "Paldea",
+          "German": "Paldea",
+          "French": "Paldea",
+          "Italian": "Paldea",
+          "Japanese": "パルデア",
+          "Korean": "팔데아",
+          "Spanish": "Paldea"
+        }
+      },
       "names": {
         "English": "Wooper",
         "German": "Felino",
@@ -456,6 +486,7 @@
           "id": "CLODSIRE",
           "slug": "clodsire",
           "formId": "CLODSIRE",
+          "form": "normal",
           "candies": 50,
           "item": null,
           "quests": []
@@ -471,6 +502,7 @@
       "id": "QUAGSIRE",
       "slug": "quagsire",
       "formId": "QUAGSIRE_NORMAL",
+      "form": "normal",
       "candies": 50,
       "item": null,
       "quests": []
@@ -488,11 +520,11 @@
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm194.cFALL_2023.s.icon.png"
     },
     {
-      "form": "PALDEA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm194.fPALDEA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm194.fPALDEA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm194.fPALDEA.s.icon.png",
+      "form": "paldea"
     },
     {
       "form": null,

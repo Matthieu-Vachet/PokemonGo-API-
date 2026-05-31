@@ -1,10 +1,25 @@
 {
   "id": "GYARADOS",
   "formId": "GYARADOS",
+  "form": "normal",
   "slug": "gyarados",
   "dexNr": 130,
   "dexId": "0130",
   "generation": 1,
+  "region": {
+    "id": "KANTO",
+    "slug": "kanto",
+    "generation": 1,
+    "names": {
+      "English": "Kanto",
+      "German": "Kanto",
+      "French": "Kanto",
+      "Italian": "Kanto",
+      "Japanese": "カントー",
+      "Korean": "관동",
+      "Spanish": "Kanto"
+    }
+  },
   "names": {
     "English": "Gyarados",
     "German": "Garados",
@@ -409,6 +424,7 @@
     "GYARADOS_MEGA": {
       "id": "GYARADOS_MEGA",
       "slug": "gyarados_mega",
+      "form": "mega",
       "names": {
         "English": "Mega Gyarados",
         "German": "Mega-Garados",
@@ -457,11 +473,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "MEGA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm130.fMEGA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm130.fMEGA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm130.fMEGA.s.icon.png",
+      "form": "mega"
     },
     {
       "form": null,

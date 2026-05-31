@@ -1,10 +1,25 @@
 {
   "id": "MR_MIME",
   "formId": "MR_MIME",
+  "form": "normal",
   "slug": "mr_mime",
   "dexNr": 122,
   "dexId": "0122",
   "generation": 1,
+  "region": {
+    "id": "KANTO",
+    "slug": "kanto",
+    "generation": 1,
+    "names": {
+      "English": "Kanto",
+      "German": "Kanto",
+      "French": "Kanto",
+      "Italian": "Kanto",
+      "Japanese": "カントー",
+      "Korean": "관동",
+      "Spanish": "Kanto"
+    }
+  },
   "names": {
     "English": "Mr. Mime",
     "German": "Pantimos",
@@ -303,8 +318,23 @@
       "id": "MR_MIME",
       "slug": "mr_mime",
       "formId": "MR_MIME_GALARIAN",
+      "form": "galar",
       "dexNr": 122,
-      "generation": 1,
+      "generation": 8,
+      "region": {
+        "id": "GALAR",
+        "slug": "galar",
+        "generation": 8,
+        "names": {
+          "English": "Galar",
+          "German": "Galar",
+          "French": "Galar",
+          "Italian": "Galar",
+          "Japanese": "ガラル",
+          "Korean": "가라르",
+          "Spanish": "Galar"
+        }
+      },
       "names": {
         "English": "Galarian Mr. Mime",
         "German": "Galar-Pantimos",
@@ -576,6 +606,7 @@
           "id": "MR_RIME",
           "slug": "mr_rime",
           "formId": "MR_RIME_NORMAL",
+          "form": "normal",
           "candies": 50,
           "item": null,
           "quests": []
@@ -592,11 +623,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "GALARIAN",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm122.fGALARIAN.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm122.fGALARIAN.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm122.fGALARIAN.s.icon.png",
+      "form": "galar"
     },
     {
       "form": null,

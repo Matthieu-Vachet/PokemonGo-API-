@@ -1,10 +1,25 @@
 {
   "id": "LATIAS",
   "formId": "LATIAS",
+  "form": "normal",
   "slug": "latias",
   "dexNr": 380,
   "dexId": "0380",
   "generation": 3,
+  "region": {
+    "id": "HOENN",
+    "slug": "hoenn",
+    "generation": 3,
+    "names": {
+      "English": "Hoenn",
+      "German": "Hoenn",
+      "French": "Hoenn",
+      "Italian": "Hoenn",
+      "Japanese": "ホウエン",
+      "Korean": "호연",
+      "Spanish": "Hoenn"
+    }
+  },
   "names": {
     "English": "Latias",
     "German": "Latias",
@@ -344,8 +359,23 @@
       "id": "LATIAS",
       "slug": "latias",
       "formId": "LATIAS_S",
+      "form": "normal",
       "dexNr": 380,
       "generation": 3,
+      "region": {
+        "id": "HOENN",
+        "slug": "hoenn",
+        "generation": 3,
+        "names": {
+          "English": "Hoenn",
+          "German": "Hoenn",
+          "French": "Hoenn",
+          "Italian": "Hoenn",
+          "Japanese": "ホウエン",
+          "Korean": "호연",
+          "Spanish": "Hoenn"
+        }
+      },
       "names": {
         "English": "Latias",
         "German": "Latias",
@@ -729,7 +759,8 @@
           "assets": {
             "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.fMEGA.icon.png",
             "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.fMEGA.s.icon.png"
-          }
+          },
+          "form": "mega"
         }
       },
       "hasGigantamaxEvolution": false
@@ -741,6 +772,7 @@
     "LATIAS_MEGA": {
       "id": "LATIAS_MEGA",
       "slug": "latias_mega",
+      "form": "mega",
       "names": {
         "English": "Mega Latias",
         "German": "Mega-Latias",
@@ -789,11 +821,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "MEGA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.fMEGA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.fMEGA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.fMEGA.s.icon.png",
+      "form": "mega"
     },
     {
       "form": "S",

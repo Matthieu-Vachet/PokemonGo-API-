@@ -1,10 +1,25 @@
 {
   "id": "SWAMPERT",
   "formId": "SWAMPERT",
+  "form": "normal",
   "slug": "swampert",
   "dexNr": 260,
   "dexId": "0260",
   "generation": 3,
+  "region": {
+    "id": "HOENN",
+    "slug": "hoenn",
+    "generation": 3,
+    "names": {
+      "English": "Hoenn",
+      "German": "Hoenn",
+      "French": "Hoenn",
+      "Italian": "Hoenn",
+      "Japanese": "ホウエン",
+      "Korean": "호연",
+      "Spanish": "Hoenn"
+    }
+  },
   "names": {
     "English": "Swampert",
     "German": "Sumpex",
@@ -340,6 +355,7 @@
     "SWAMPERT_MEGA": {
       "id": "SWAMPERT_MEGA",
       "slug": "swampert_mega",
+      "form": "mega",
       "names": {
         "English": "Mega Swampert",
         "German": "Mega-Sumpex",
@@ -388,11 +404,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "MEGA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm260.fMEGA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm260.fMEGA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm260.fMEGA.s.icon.png",
+      "form": "mega"
     },
     {
       "form": null,

@@ -1,10 +1,25 @@
 {
   "id": "BRAVIARY",
   "formId": "BRAVIARY",
+  "form": "normal",
   "slug": "braviary",
   "dexNr": 628,
   "dexId": "0628",
   "generation": 5,
+  "region": {
+    "id": "UNOVA",
+    "slug": "unova",
+    "generation": 5,
+    "names": {
+      "English": "Unova",
+      "German": "Einall",
+      "French": "Unys",
+      "Italian": "Unima",
+      "Japanese": "イッシュ",
+      "Korean": "하나",
+      "Spanish": "Teselia"
+    }
+  },
   "names": {
     "English": "Braviary",
     "German": "Washakwil",
@@ -309,8 +324,23 @@
       "id": "BRAVIARY",
       "slug": "braviary",
       "formId": "BRAVIARY_HISUIAN",
+      "form": "hisui",
       "dexNr": 628,
-      "generation": 5,
+      "generation": 4,
+      "region": {
+        "id": "HISUI",
+        "slug": "hisui",
+        "generation": 4,
+        "names": {
+          "English": "Hisui",
+          "German": "Hisui",
+          "French": "Hisui",
+          "Italian": "Hisui",
+          "Japanese": "ヒスイ",
+          "Korean": "히스이",
+          "Spanish": "Hisui"
+        }
+      },
       "names": {
         "English": "Hisuian Braviary",
         "German": "Hisuian-Washakwil",
@@ -629,11 +659,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "HISUIAN",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm628.fHISUIAN.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm628.fHISUIAN.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm628.fHISUIAN.s.icon.png",
+      "form": "hisui"
     },
     {
       "form": null,

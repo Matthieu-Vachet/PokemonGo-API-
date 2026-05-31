@@ -1,10 +1,25 @@
 {
   "id": "AGGRON",
   "formId": "AGGRON",
+  "form": "normal",
   "slug": "aggron",
   "dexNr": 306,
   "dexId": "0306",
   "generation": 3,
+  "region": {
+    "id": "HOENN",
+    "slug": "hoenn",
+    "generation": 3,
+    "names": {
+      "English": "Hoenn",
+      "German": "Hoenn",
+      "French": "Hoenn",
+      "Italian": "Hoenn",
+      "Japanese": "ホウエン",
+      "Korean": "호연",
+      "Spanish": "Hoenn"
+    }
+  },
   "names": {
     "English": "Aggron",
     "German": "Stolloss",
@@ -379,6 +394,7 @@
     "AGGRON_MEGA": {
       "id": "AGGRON_MEGA",
       "slug": "aggron_mega",
+      "form": "mega",
       "names": {
         "English": "Mega Aggron",
         "German": "Mega-Stolloss",
@@ -416,11 +432,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "MEGA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm306.fMEGA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm306.fMEGA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm306.fMEGA.s.icon.png",
+      "form": "mega"
     },
     {
       "form": null,

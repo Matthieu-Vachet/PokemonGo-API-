@@ -1,10 +1,25 @@
 {
   "id": "RAYQUAZA",
   "formId": "RAYQUAZA",
+  "form": "normal",
   "slug": "rayquaza",
   "dexNr": 384,
   "dexId": "0384",
   "generation": 3,
+  "region": {
+    "id": "HOENN",
+    "slug": "hoenn",
+    "generation": 3,
+    "names": {
+      "English": "Hoenn",
+      "German": "Hoenn",
+      "French": "Hoenn",
+      "Italian": "Hoenn",
+      "Japanese": "ホウエン",
+      "Korean": "호연",
+      "Spanish": "Hoenn"
+    }
+  },
   "names": {
     "English": "Rayquaza",
     "German": "Rayquaza",
@@ -312,6 +327,7 @@
     "RAYQUAZA_MEGA": {
       "id": "RAYQUAZA_MEGA",
       "slug": "rayquaza_mega",
+      "form": "mega",
       "names": {
         "English": "Mega Rayquaza",
         "German": "Mega-Rayquaza",
@@ -360,11 +376,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "MEGA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm384.fMEGA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm384.fMEGA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm384.fMEGA.s.icon.png",
+      "form": "mega"
     },
     {
       "form": null,

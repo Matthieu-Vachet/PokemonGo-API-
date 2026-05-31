@@ -1,10 +1,25 @@
 {
   "id": "ARCANINE",
   "formId": "ARCANINE",
+  "form": "normal",
   "slug": "arcanine",
   "dexNr": 59,
   "dexId": "0059",
   "generation": 1,
+  "region": {
+    "id": "KANTO",
+    "slug": "kanto",
+    "generation": 1,
+    "names": {
+      "English": "Kanto",
+      "German": "Kanto",
+      "French": "Kanto",
+      "Italian": "Kanto",
+      "Japanese": "カントー",
+      "Korean": "관동",
+      "Spanish": "Kanto"
+    }
+  },
   "names": {
     "English": "Arcanine",
     "German": "Arkani",
@@ -454,8 +469,23 @@
       "id": "ARCANINE",
       "slug": "arcanine",
       "formId": "ARCANINE_HISUIAN",
+      "form": "hisui",
       "dexNr": 59,
-      "generation": 1,
+      "generation": 4,
+      "region": {
+        "id": "HISUI",
+        "slug": "hisui",
+        "generation": 4,
+        "names": {
+          "English": "Hisui",
+          "German": "Hisui",
+          "French": "Hisui",
+          "Italian": "Hisui",
+          "Japanese": "ヒスイ",
+          "Korean": "히스이",
+          "Spanish": "Hisui"
+        }
+      },
       "names": {
         "English": "Hisuian Arcanine",
         "German": "Hisuian-Arkani",
@@ -768,11 +798,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "HISUIAN",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm59.fHISUIAN.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm59.fHISUIAN.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm59.fHISUIAN.s.icon.png",
+      "form": "hisui"
     },
     {
       "form": null,

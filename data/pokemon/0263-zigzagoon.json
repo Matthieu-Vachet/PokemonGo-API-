@@ -1,10 +1,25 @@
 {
   "id": "ZIGZAGOON",
   "formId": "ZIGZAGOON",
+  "form": "normal",
   "slug": "zigzagoon",
   "dexNr": 263,
   "dexId": "0263",
   "generation": 3,
+  "region": {
+    "id": "HOENN",
+    "slug": "hoenn",
+    "generation": 3,
+    "names": {
+      "English": "Hoenn",
+      "German": "Hoenn",
+      "French": "Hoenn",
+      "Italian": "Hoenn",
+      "Japanese": "ホウエン",
+      "Korean": "호연",
+      "Spanish": "Hoenn"
+    }
+  },
   "names": {
     "English": "Zigzagoon",
     "German": "Zigzachs",
@@ -252,8 +267,23 @@
       "id": "ZIGZAGOON",
       "slug": "zigzagoon",
       "formId": "ZIGZAGOON_GALARIAN",
+      "form": "galar",
       "dexNr": 263,
-      "generation": 3,
+      "generation": 8,
+      "region": {
+        "id": "GALAR",
+        "slug": "galar",
+        "generation": 8,
+        "names": {
+          "English": "Galar",
+          "German": "Galar",
+          "French": "Galar",
+          "Italian": "Galar",
+          "Japanese": "ガラル",
+          "Korean": "가라르",
+          "Spanish": "Galar"
+        }
+      },
       "names": {
         "English": "Galarian Zigzagoon",
         "German": "Galar-Zigzachs",
@@ -479,6 +509,7 @@
           "id": "LINOONE",
           "slug": "linoone",
           "formId": "LINOONE_GALARIAN",
+          "form": "galar",
           "candies": 25,
           "item": null,
           "quests": []
@@ -494,6 +525,7 @@
       "id": "LINOONE",
       "slug": "linoone",
       "formId": "LINOONE_NORMAL",
+      "form": "normal",
       "candies": 50,
       "item": null,
       "quests": []
@@ -504,18 +536,18 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "GALARIAN",
       "costume": "GOFEST_2021_NOEVOLVE",
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm263.fGALARIAN.cGOFEST_2021_NOEVOLVE.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm263.fGALARIAN.cGOFEST_2021_NOEVOLVE.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm263.fGALARIAN.cGOFEST_2021_NOEVOLVE.s.icon.png",
+      "form": "galar"
     },
     {
-      "form": "GALARIAN",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm263.fGALARIAN.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm263.fGALARIAN.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm263.fGALARIAN.s.icon.png",
+      "form": "galar"
     },
     {
       "form": null,

@@ -1,10 +1,25 @@
 {
   "id": "GEODUDE",
   "formId": "GEODUDE",
+  "form": "normal",
   "slug": "geodude",
   "dexNr": 74,
   "dexId": "0074",
   "generation": 1,
+  "region": {
+    "id": "KANTO",
+    "slug": "kanto",
+    "generation": 1,
+    "names": {
+      "English": "Kanto",
+      "German": "Kanto",
+      "French": "Kanto",
+      "Italian": "Kanto",
+      "Japanese": "カントー",
+      "Korean": "관동",
+      "Spanish": "Kanto"
+    }
+  },
   "names": {
     "English": "Geodude",
     "German": "Kleinstein",
@@ -235,8 +250,23 @@
       "id": "GEODUDE",
       "slug": "geodude",
       "formId": "GEODUDE_ALOLA",
+      "form": "alola",
       "dexNr": 74,
-      "generation": 1,
+      "generation": 7,
+      "region": {
+        "id": "ALOLA",
+        "slug": "alola",
+        "generation": 7,
+        "names": {
+          "English": "Alola",
+          "German": "Alola",
+          "French": "Alola",
+          "Italian": "Alola",
+          "Japanese": "アローラ",
+          "Korean": "알로라",
+          "Spanish": "Alola"
+        }
+      },
       "names": {
         "English": "Alolan Geodude",
         "German": "Alola-Kleinstein",
@@ -468,6 +498,7 @@
           "id": "GRAVELER",
           "slug": "graveler",
           "formId": "GRAVELER_ALOLA",
+          "form": "alola",
           "candies": 25,
           "item": null,
           "quests": []
@@ -483,6 +514,7 @@
       "id": "GRAVELER",
       "slug": "graveler",
       "formId": "GRAVELER_NORMAL",
+      "form": "normal",
       "candies": 25,
       "item": null,
       "quests": []
@@ -493,11 +525,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "ALOLA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm74.fALOLA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm74.fALOLA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm74.fALOLA.s.icon.png",
+      "form": "alola"
     },
     {
       "form": null,

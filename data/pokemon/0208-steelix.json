@@ -1,10 +1,25 @@
 {
   "id": "STEELIX",
   "formId": "STEELIX",
+  "form": "normal",
   "slug": "steelix",
   "dexNr": 208,
   "dexId": "0208",
   "generation": 2,
+  "region": {
+    "id": "JOHTO",
+    "slug": "johto",
+    "generation": 2,
+    "names": {
+      "English": "Johto",
+      "German": "Johto",
+      "French": "Johto",
+      "Italian": "Johto",
+      "Japanese": "ジョウト",
+      "Korean": "성도",
+      "Spanish": "Johto"
+    }
+  },
   "names": {
     "English": "Steelix",
     "German": "Stahlos",
@@ -351,6 +366,7 @@
     "STEELIX_MEGA": {
       "id": "STEELIX_MEGA",
       "slug": "steelix_mega",
+      "form": "mega",
       "names": {
         "English": "Mega Steelix",
         "German": "Mega-Stahlos",
@@ -399,11 +415,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "MEGA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm208.fMEGA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm208.fMEGA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm208.fMEGA.s.icon.png",
+      "form": "mega"
     },
     {
       "form": null,

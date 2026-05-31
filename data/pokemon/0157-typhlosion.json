@@ -1,10 +1,25 @@
 {
   "id": "TYPHLOSION",
   "formId": "TYPHLOSION",
+  "form": "normal",
   "slug": "typhlosion",
   "dexNr": 157,
   "dexId": "0157",
   "generation": 2,
+  "region": {
+    "id": "JOHTO",
+    "slug": "johto",
+    "generation": 2,
+    "names": {
+      "English": "Johto",
+      "German": "Johto",
+      "French": "Johto",
+      "Italian": "Johto",
+      "Japanese": "ジョウト",
+      "Korean": "성도",
+      "Spanish": "Johto"
+    }
+  },
   "names": {
     "English": "Typhlosion",
     "German": "Tornupto",
@@ -327,8 +342,23 @@
       "id": "TYPHLOSION",
       "slug": "typhlosion",
       "formId": "TYPHLOSION_HISUIAN",
+      "form": "hisui",
       "dexNr": 157,
-      "generation": 2,
+      "generation": 4,
+      "region": {
+        "id": "HISUI",
+        "slug": "hisui",
+        "generation": 4,
+        "names": {
+          "English": "Hisui",
+          "German": "Hisui",
+          "French": "Hisui",
+          "Italian": "Hisui",
+          "Japanese": "ヒスイ",
+          "Korean": "히스이",
+          "Spanish": "Hisui"
+        }
+      },
       "names": {
         "English": "Hisuian Typhlosion",
         "German": "Hisuian-Tornupto",
@@ -641,11 +671,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "HISUIAN",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm157.fHISUIAN.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm157.fHISUIAN.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm157.fHISUIAN.s.icon.png",
+      "form": "hisui"
     },
     {
       "form": null,

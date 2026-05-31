@@ -1,10 +1,25 @@
 {
   "id": "BANETTE",
   "formId": "BANETTE",
+  "form": "normal",
   "slug": "banette",
   "dexNr": 354,
   "dexId": "0354",
   "generation": 3,
+  "region": {
+    "id": "HOENN",
+    "slug": "hoenn",
+    "generation": 3,
+    "names": {
+      "English": "Hoenn",
+      "German": "Hoenn",
+      "French": "Hoenn",
+      "Italian": "Hoenn",
+      "Japanese": "ホウエン",
+      "Korean": "호연",
+      "Spanish": "Hoenn"
+    }
+  },
   "names": {
     "English": "Banette",
     "German": "Banette",
@@ -220,6 +235,7 @@
     "BANETTE_MEGA": {
       "id": "BANETTE_MEGA",
       "slug": "banette_mega",
+      "form": "mega",
       "names": {
         "English": "Mega Banette",
         "German": "Mega-Banette",
@@ -257,11 +273,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "MEGA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm354.fMEGA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm354.fMEGA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm354.fMEGA.s.icon.png",
+      "form": "mega"
     },
     {
       "form": null,

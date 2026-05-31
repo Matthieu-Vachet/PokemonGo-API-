@@ -1,7 +1,9 @@
 {
   "id": "IVYSAUR",
   "formId": "IVYSAUR",
+  "slug": "ivysaur",
   "dexNr": 2,
+  "dexId": "0002",
   "generation": 1,
   "names": {
     "English": "Ivysaur",
@@ -11,6 +13,61 @@
     "Japanese": "フシギソウ",
     "Korean": "이상해풀",
     "Spanish": "Ivysaur"
+  },
+  "form": "NORMAL",
+  "region": null,
+  "size": {
+    "height": 1,
+    "weight": 13
+  },
+  "weatherBoost": ["sunny", "cloudy"],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "captureRewards": {
+    "candy": 5,
+    "stardust": 300
+  },
+  "megaEnergyReward": 15,
+  "secondChargeMoveCost": {
+    "candy": 25,
+    "stardust": 10000
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": true,
+    "gigantamax": false,
+    "mega": false,
+    "apex": false
+  },
+  "maxCp": {
+    "maxLevel50": 1921,
+    "maxLevel40": 1699,
+    "weatherBoostLevel25": 1213,
+    "raidLevel20": 970,
+    "researchLevel15": 728
+  },
+  "pvp": {
+    "greatLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 1,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 37.5,
+        "cp": 1500
+      },
+        "bestMovesets": {
+          "fast": "VINE_WHIP_FAST",
+          "charged": ["POWER_WHIP", "SLUDGE_BOMB"]
+        }
+    }
   },
   "stats": {
     "stamina": 155,
@@ -221,6 +278,7 @@
   "evolutions": [
     {
       "id": "VENUSAUR",
+      "slug": "venusaur",
       "formId": "VENUSAUR_NORMAL",
       "candies": 100,
       "item": null,

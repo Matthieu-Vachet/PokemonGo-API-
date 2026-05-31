@@ -1,10 +1,25 @@
 {
   "id": "AUDINO",
   "formId": "AUDINO",
+  "form": "normal",
   "slug": "audino",
   "dexNr": 531,
   "dexId": "0531",
   "generation": 5,
+  "region": {
+    "id": "UNOVA",
+    "slug": "unova",
+    "generation": 5,
+    "names": {
+      "English": "Unova",
+      "German": "Einall",
+      "French": "Unys",
+      "Italian": "Unima",
+      "Japanese": "イッシュ",
+      "Korean": "하나",
+      "Spanish": "Teselia"
+    }
+  },
   "names": {
     "English": "Audino",
     "German": "Ohrdoch",
@@ -254,6 +269,7 @@
     "AUDINO_MEGA": {
       "id": "AUDINO_MEGA",
       "slug": "audino_mega",
+      "form": "mega",
       "names": {
         "English": "Mega Audino",
         "German": "Mega-Ohrdoch",
@@ -302,11 +318,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "MEGA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm531.fMEGA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm531.fMEGA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm531.fMEGA.s.icon.png",
+      "form": "mega"
     },
     {
       "form": null,

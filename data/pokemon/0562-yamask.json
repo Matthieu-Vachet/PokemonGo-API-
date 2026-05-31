@@ -1,10 +1,25 @@
 {
   "id": "YAMASK",
   "formId": "YAMASK",
+  "form": "normal",
   "slug": "yamask",
   "dexNr": 562,
   "dexId": "0562",
   "generation": 5,
+  "region": {
+    "id": "UNOVA",
+    "slug": "unova",
+    "generation": 5,
+    "names": {
+      "English": "Unova",
+      "German": "Einall",
+      "French": "Unys",
+      "Italian": "Unima",
+      "Japanese": "イッシュ",
+      "Korean": "하나",
+      "Spanish": "Teselia"
+    }
+  },
   "names": {
     "English": "Yamask",
     "German": "Makabaja",
@@ -224,8 +239,23 @@
       "id": "YAMASK",
       "slug": "yamask",
       "formId": "YAMASK_GALARIAN",
+      "form": "galar",
       "dexNr": 562,
-      "generation": 5,
+      "generation": 8,
+      "region": {
+        "id": "GALAR",
+        "slug": "galar",
+        "generation": 8,
+        "names": {
+          "English": "Galar",
+          "German": "Galar",
+          "French": "Galar",
+          "Italian": "Galar",
+          "Japanese": "ガラル",
+          "Korean": "가라르",
+          "Spanish": "Galar"
+        }
+      },
       "names": {
         "English": "Galarian Yamask",
         "German": "Galar-Makabaja",
@@ -389,6 +419,7 @@
           "id": "RUNERIGUS",
           "slug": "runerigus",
           "formId": "RUNERIGUS_NORMAL",
+          "form": "normal",
           "candies": 50,
           "item": null,
           "quests": [
@@ -419,6 +450,7 @@
       "id": "COFAGRIGUS",
       "slug": "cofagrigus",
       "formId": "COFAGRIGUS_NORMAL",
+      "form": "normal",
       "candies": 50,
       "item": null,
       "quests": []
@@ -429,11 +461,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "GALARIAN",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm562.fGALARIAN.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm562.fGALARIAN.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm562.fGALARIAN.s.icon.png",
+      "form": "galar"
     },
     {
       "form": null,

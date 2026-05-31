@@ -1,10 +1,25 @@
 {
   "id": "SLOWBRO",
   "formId": "SLOWBRO",
+  "form": "normal",
   "slug": "slowbro",
   "dexNr": 80,
   "dexId": "0080",
   "generation": 1,
+  "region": {
+    "id": "KANTO",
+    "slug": "kanto",
+    "generation": 1,
+    "names": {
+      "English": "Kanto",
+      "German": "Kanto",
+      "French": "Kanto",
+      "Italian": "Kanto",
+      "Japanese": "カントー",
+      "Korean": "관동",
+      "Spanish": "Kanto"
+    }
+  },
   "names": {
     "English": "Slowbro",
     "German": "Lahmus",
@@ -350,8 +365,23 @@
       "id": "SLOWBRO",
       "slug": "slowbro",
       "formId": "SLOWBRO_GALARIAN",
+      "form": "galar",
       "dexNr": 80,
-      "generation": 1,
+      "generation": 8,
+      "region": {
+        "id": "GALAR",
+        "slug": "galar",
+        "generation": 8,
+        "names": {
+          "English": "Galar",
+          "German": "Galar",
+          "French": "Galar",
+          "Italian": "Galar",
+          "Japanese": "ガラル",
+          "Korean": "가라르",
+          "Spanish": "Galar"
+        }
+      },
       "names": {
         "English": "Galarian Slowbro",
         "German": "Galar-Lahmus",
@@ -739,6 +769,7 @@
     "SLOWBRO_MEGA": {
       "id": "SLOWBRO_MEGA",
       "slug": "slowbro_mega",
+      "form": "mega",
       "names": {
         "English": "Mega Slowbro",
         "German": "Mega-Lahmus",
@@ -794,18 +825,18 @@
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm80.f2021.s.icon.png"
     },
     {
-      "form": "GALARIAN",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm80.fGALARIAN.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm80.fGALARIAN.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm80.fGALARIAN.s.icon.png",
+      "form": "galar"
     },
     {
-      "form": "MEGA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm80.fMEGA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm80.fMEGA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm80.fMEGA.s.icon.png",
+      "form": "mega"
     },
     {
       "form": null,

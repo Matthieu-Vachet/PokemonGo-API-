@@ -1,10 +1,25 @@
 {
   "id": "STUNFISK",
   "formId": "STUNFISK",
+  "form": "normal",
   "slug": "stunfisk",
   "dexNr": 618,
   "dexId": "0618",
   "generation": 5,
+  "region": {
+    "id": "UNOVA",
+    "slug": "unova",
+    "generation": 5,
+    "names": {
+      "English": "Unova",
+      "German": "Einall",
+      "French": "Unys",
+      "Italian": "Unima",
+      "Japanese": "イッシュ",
+      "Korean": "하나",
+      "Spanish": "Teselia"
+    }
+  },
   "names": {
     "English": "Stunfisk",
     "German": "Flunschlik",
@@ -235,8 +250,23 @@
       "id": "STUNFISK",
       "slug": "stunfisk",
       "formId": "STUNFISK_GALARIAN",
+      "form": "galar",
       "dexNr": 618,
-      "generation": 5,
+      "generation": 8,
+      "region": {
+        "id": "GALAR",
+        "slug": "galar",
+        "generation": 8,
+        "names": {
+          "English": "Galar",
+          "German": "Galar",
+          "French": "Galar",
+          "Italian": "Galar",
+          "Japanese": "ガラル",
+          "Korean": "가라르",
+          "Spanish": "Galar"
+        }
+      },
       "names": {
         "English": "Galarian Stunfisk",
         "German": "Galar-Flunschlik",
@@ -509,11 +539,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "GALARIAN",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm618.fGALARIAN.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm618.fGALARIAN.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm618.fGALARIAN.s.icon.png",
+      "form": "galar"
     },
     {
       "form": null,

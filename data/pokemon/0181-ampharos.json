@@ -1,10 +1,25 @@
 {
   "id": "AMPHAROS",
   "formId": "AMPHAROS",
+  "form": "normal",
   "slug": "ampharos",
   "dexNr": 181,
   "dexId": "0181",
   "generation": 2,
+  "region": {
+    "id": "JOHTO",
+    "slug": "johto",
+    "generation": 2,
+    "names": {
+      "English": "Johto",
+      "German": "Johto",
+      "French": "Johto",
+      "Italian": "Johto",
+      "Japanese": "ジョウト",
+      "Korean": "성도",
+      "Spanish": "Johto"
+    }
+  },
   "names": {
     "English": "Ampharos",
     "German": "Ampharos",
@@ -403,6 +418,7 @@
     "AMPHAROS_MEGA": {
       "id": "AMPHAROS_MEGA",
       "slug": "ampharos_mega",
+      "form": "mega",
       "names": {
         "English": "Mega Ampharos",
         "German": "Mega-Ampharos",
@@ -451,11 +467,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "MEGA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm181.fMEGA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm181.fMEGA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm181.fMEGA.s.icon.png",
+      "form": "mega"
     },
     {
       "form": null,

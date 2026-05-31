@@ -1,10 +1,25 @@
 {
   "id": "LUCARIO",
   "formId": "LUCARIO",
+  "form": "normal",
   "slug": "lucario",
   "dexNr": 448,
   "dexId": "0448",
   "generation": 4,
+  "region": {
+    "id": "SINNOH",
+    "slug": "sinnoh",
+    "generation": 4,
+    "names": {
+      "English": "Sinnoh",
+      "German": "Sinnoh",
+      "French": "Sinnoh",
+      "Italian": "Sinnoh",
+      "Japanese": "シンオウ",
+      "Korean": "신오",
+      "Spanish": "Sinnoh"
+    }
+  },
   "names": {
     "English": "Lucario",
     "German": "Lucario",
@@ -448,6 +463,7 @@
     "LUCARIO_MEGA": {
       "id": "LUCARIO_MEGA",
       "slug": "lucario_mega",
+      "form": "mega",
       "names": {
         "English": "Mega Lucario",
         "German": "Mega-Lucario",
@@ -496,11 +512,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "MEGA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm448.fMEGA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm448.fMEGA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm448.fMEGA.s.icon.png",
+      "form": "mega"
     },
     {
       "form": null,

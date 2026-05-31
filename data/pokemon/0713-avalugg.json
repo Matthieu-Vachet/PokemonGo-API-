@@ -1,10 +1,25 @@
 {
   "id": "AVALUGG",
   "formId": "AVALUGG",
+  "form": "normal",
   "slug": "avalugg",
   "dexNr": 713,
   "dexId": "0713",
   "generation": 6,
+  "region": {
+    "id": "KALOS",
+    "slug": "kalos",
+    "generation": 6,
+    "names": {
+      "English": "Kalos",
+      "German": "Kalos",
+      "French": "Kalos",
+      "Italian": "Kalos",
+      "Japanese": "カロス",
+      "Korean": "칼로스",
+      "Spanish": "Kalos"
+    }
+  },
   "names": {
     "English": "Avalugg",
     "German": "Arktilas",
@@ -332,8 +347,23 @@
       "id": "AVALUGG",
       "slug": "avalugg",
       "formId": "AVALUGG_HISUIAN",
+      "form": "hisui",
       "dexNr": 713,
-      "generation": 6,
+      "generation": 4,
+      "region": {
+        "id": "HISUI",
+        "slug": "hisui",
+        "generation": 4,
+        "names": {
+          "English": "Hisui",
+          "German": "Hisui",
+          "French": "Hisui",
+          "Italian": "Hisui",
+          "Japanese": "ヒスイ",
+          "Korean": "히스이",
+          "Spanish": "Hisui"
+        }
+      },
       "names": {
         "English": "Hisuian Avalugg",
         "German": "Hisuian-Arktilas",
@@ -646,11 +676,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "HISUIAN",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm713.fHISUIAN.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm713.fHISUIAN.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm713.fHISUIAN.s.icon.png",
+      "form": "hisui"
     },
     {
       "form": null,

@@ -1,10 +1,25 @@
 {
   "id": "ZORUA",
   "formId": "ZORUA",
+  "form": "normal",
   "slug": "zorua",
   "dexNr": 570,
   "dexId": "0570",
   "generation": 5,
+  "region": {
+    "id": "UNOVA",
+    "slug": "unova",
+    "generation": 5,
+    "names": {
+      "English": "Unova",
+      "German": "Einall",
+      "French": "Unys",
+      "Italian": "Unima",
+      "Japanese": "イッシュ",
+      "Korean": "하나",
+      "Spanish": "Teselia"
+    }
+  },
   "names": {
     "English": "Zorua",
     "German": "Zorua",
@@ -252,8 +267,23 @@
       "id": "ZORUA",
       "slug": "zorua",
       "formId": "ZORUA_HISUIAN",
+      "form": "hisui",
       "dexNr": 570,
-      "generation": 5,
+      "generation": 4,
+      "region": {
+        "id": "HISUI",
+        "slug": "hisui",
+        "generation": 4,
+        "names": {
+          "English": "Hisui",
+          "German": "Hisui",
+          "French": "Hisui",
+          "Italian": "Hisui",
+          "Japanese": "ヒスイ",
+          "Korean": "히스이",
+          "Spanish": "Hisui"
+        }
+      },
       "names": {
         "English": "Hisuian Zorua",
         "German": "Hisuian-Zorua",
@@ -513,6 +543,7 @@
           "id": "ZOROARK",
           "slug": "zoroark",
           "formId": "ZOROARK_HISUIAN",
+          "form": "hisui",
           "candies": 50,
           "item": null,
           "quests": []
@@ -528,6 +559,7 @@
       "id": "ZOROARK",
       "slug": "zoroark",
       "formId": "ZOROARK_NORMAL",
+      "form": "normal",
       "candies": 50,
       "item": null,
       "quests": []
@@ -538,11 +570,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "HISUIAN",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm570.fHISUIAN.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm570.fHISUIAN.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm570.fHISUIAN.s.icon.png",
+      "form": "hisui"
     },
     {
       "form": null,

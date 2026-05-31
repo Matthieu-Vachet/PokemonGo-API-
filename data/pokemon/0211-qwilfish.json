@@ -1,10 +1,25 @@
 {
   "id": "QWILFISH",
   "formId": "QWILFISH",
+  "form": "normal",
   "slug": "qwilfish",
   "dexNr": 211,
   "dexId": "0211",
   "generation": 2,
+  "region": {
+    "id": "JOHTO",
+    "slug": "johto",
+    "generation": 2,
+    "names": {
+      "English": "Johto",
+      "German": "Johto",
+      "French": "Johto",
+      "Italian": "Johto",
+      "Japanese": "ジョウト",
+      "Korean": "성도",
+      "Spanish": "Johto"
+    }
+  },
   "names": {
     "English": "Qwilfish",
     "German": "Baldorfish",
@@ -349,8 +364,23 @@
       "id": "QWILFISH",
       "slug": "qwilfish",
       "formId": "QWILFISH_HISUIAN",
+      "form": "hisui",
       "dexNr": 211,
-      "generation": 2,
+      "generation": 4,
+      "region": {
+        "id": "HISUI",
+        "slug": "hisui",
+        "generation": 4,
+        "names": {
+          "English": "Hisui",
+          "German": "Hisui",
+          "French": "Hisui",
+          "Italian": "Hisui",
+          "Japanese": "ヒスイ",
+          "Korean": "히스이",
+          "Spanish": "Hisui"
+        }
+      },
       "names": {
         "English": "Hisuian Qwilfish",
         "German": "Hisuian-Baldorfish",
@@ -644,6 +674,7 @@
           "id": "OVERQWIL",
           "slug": "overqwil",
           "formId": "OVERQWIL",
+          "form": "normal",
           "candies": 50,
           "item": null,
           "quests": [
@@ -675,11 +706,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "HISUIAN",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm211.fHISUIAN.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm211.fHISUIAN.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm211.fHISUIAN.s.icon.png",
+      "form": "hisui"
     },
     {
       "form": null,

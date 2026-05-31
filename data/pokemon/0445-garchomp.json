@@ -1,10 +1,25 @@
 {
   "id": "GARCHOMP",
   "formId": "GARCHOMP",
+  "form": "normal",
   "slug": "garchomp",
   "dexNr": 445,
   "dexId": "0445",
   "generation": 4,
+  "region": {
+    "id": "SINNOH",
+    "slug": "sinnoh",
+    "generation": 4,
+    "names": {
+      "English": "Sinnoh",
+      "German": "Sinnoh",
+      "French": "Sinnoh",
+      "Italian": "Sinnoh",
+      "Japanese": "シンオウ",
+      "Korean": "신오",
+      "Spanish": "Sinnoh"
+    }
+  },
   "names": {
     "English": "Garchomp",
     "German": "Knakrack",
@@ -386,6 +401,7 @@
     "GARCHOMP_MEGA": {
       "id": "GARCHOMP_MEGA",
       "slug": "garchomp_mega",
+      "form": "mega",
       "names": {
         "English": "Mega Garchomp",
         "German": "Mega-Knakrack",
@@ -434,11 +450,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "MEGA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm445.fMEGA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm445.fMEGA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm445.fMEGA.s.icon.png",
+      "form": "mega"
     },
     {
       "form": null,

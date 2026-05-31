@@ -1,10 +1,25 @@
 {
   "id": "MANECTRIC",
   "formId": "MANECTRIC",
+  "form": "normal",
   "slug": "manectric",
   "dexNr": 310,
   "dexId": "0310",
   "generation": 3,
+  "region": {
+    "id": "HOENN",
+    "slug": "hoenn",
+    "generation": 3,
+    "names": {
+      "English": "Hoenn",
+      "German": "Hoenn",
+      "French": "Hoenn",
+      "Italian": "Hoenn",
+      "Japanese": "ホウエン",
+      "Korean": "호연",
+      "Spanish": "Hoenn"
+    }
+  },
   "names": {
     "English": "Manectric",
     "German": "Voltenso",
@@ -340,6 +355,7 @@
     "MANECTRIC_MEGA": {
       "id": "MANECTRIC_MEGA",
       "slug": "manectric_mega",
+      "form": "mega",
       "names": {
         "English": "Mega Manectric",
         "German": "Mega-Voltenso",
@@ -377,11 +393,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "MEGA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm310.fMEGA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm310.fMEGA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm310.fMEGA.s.icon.png",
+      "form": "mega"
     },
     {
       "form": null,

@@ -1,10 +1,25 @@
 {
   "id": "ALAKAZAM",
   "formId": "ALAKAZAM",
+  "form": "normal",
   "slug": "alakazam",
   "dexNr": 65,
   "dexId": "0065",
   "generation": 1,
+  "region": {
+    "id": "KANTO",
+    "slug": "kanto",
+    "generation": 1,
+    "names": {
+      "English": "Kanto",
+      "German": "Kanto",
+      "French": "Kanto",
+      "Italian": "Kanto",
+      "Japanese": "カントー",
+      "Korean": "관동",
+      "Spanish": "Kanto"
+    }
+  },
   "names": {
     "English": "Alakazam",
     "German": "Simsala",
@@ -364,6 +379,7 @@
     "ALAKAZAM_MEGA": {
       "id": "ALAKAZAM_MEGA",
       "slug": "alakazam_mega",
+      "form": "mega",
       "names": {
         "English": "Mega Alakazam",
         "German": "Mega-Simsala",
@@ -401,11 +417,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "MEGA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm65.fMEGA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm65.fMEGA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm65.fMEGA.s.icon.png",
+      "form": "mega"
     },
     {
       "form": null,

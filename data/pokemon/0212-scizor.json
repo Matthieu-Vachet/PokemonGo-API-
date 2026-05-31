@@ -1,10 +1,25 @@
 {
   "id": "SCIZOR",
   "formId": "SCIZOR",
+  "form": "normal",
   "slug": "scizor",
   "dexNr": 212,
   "dexId": "0212",
   "generation": 2,
+  "region": {
+    "id": "JOHTO",
+    "slug": "johto",
+    "generation": 2,
+    "names": {
+      "English": "Johto",
+      "German": "Johto",
+      "French": "Johto",
+      "Italian": "Johto",
+      "Japanese": "ジョウト",
+      "Korean": "성도",
+      "Spanish": "Johto"
+    }
+  },
   "names": {
     "English": "Scizor",
     "German": "Scherox",
@@ -277,6 +292,7 @@
     "SCIZOR_MEGA": {
       "id": "SCIZOR_MEGA",
       "slug": "scizor_mega",
+      "form": "mega",
       "names": {
         "English": "Mega Scizor",
         "German": "Mega-Scherox",
@@ -325,11 +341,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "MEGA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm212.fMEGA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm212.fMEGA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm212.fMEGA.s.icon.png",
+      "form": "mega"
     },
     {
       "form": null,

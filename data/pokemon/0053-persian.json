@@ -1,10 +1,25 @@
 {
   "id": "PERSIAN",
   "formId": "PERSIAN",
+  "form": "normal",
   "slug": "persian",
   "dexNr": 53,
   "dexId": "0053",
   "generation": 1,
+  "region": {
+    "id": "KANTO",
+    "slug": "kanto",
+    "generation": 1,
+    "names": {
+      "English": "Kanto",
+      "German": "Kanto",
+      "French": "Kanto",
+      "Italian": "Kanto",
+      "Japanese": "カントー",
+      "Korean": "관동",
+      "Spanish": "Kanto"
+    }
+  },
   "names": {
     "English": "Persian",
     "German": "Snobilikat",
@@ -293,8 +308,23 @@
       "id": "PERSIAN",
       "slug": "persian",
       "formId": "PERSIAN_ALOLA",
+      "form": "alola",
       "dexNr": 53,
-      "generation": 1,
+      "generation": 7,
+      "region": {
+        "id": "ALOLA",
+        "slug": "alola",
+        "generation": 7,
+        "names": {
+          "English": "Alola",
+          "German": "Alola",
+          "French": "Alola",
+          "Italian": "Alola",
+          "Japanese": "アローラ",
+          "Korean": "알로라",
+          "Spanish": "Alola"
+        }
+      },
       "names": {
         "English": "Alolan Persian",
         "German": "Alola-Snobilikat",
@@ -590,11 +620,11 @@
   "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "form": "ALOLA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm53.fALOLA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm53.fALOLA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm53.fALOLA.s.icon.png",
+      "form": "alola"
     },
     {
       "form": null,

@@ -1,10 +1,25 @@
 {
   "id": "GRIMER",
   "formId": "GRIMER",
+  "form": "normal",
   "slug": "grimer",
   "dexNr": 88,
   "dexId": "0088",
   "generation": 1,
+  "region": {
+    "id": "KANTO",
+    "slug": "kanto",
+    "generation": 1,
+    "names": {
+      "English": "Kanto",
+      "German": "Kanto",
+      "French": "Kanto",
+      "Italian": "Kanto",
+      "Japanese": "カントー",
+      "Korean": "관동",
+      "Spanish": "Kanto"
+    }
+  },
   "names": {
     "English": "Grimer",
     "German": "Sleima",
@@ -218,8 +233,23 @@
       "id": "GRIMER",
       "slug": "grimer",
       "formId": "GRIMER_ALOLA",
+      "form": "alola",
       "dexNr": 88,
-      "generation": 1,
+      "generation": 7,
+      "region": {
+        "id": "ALOLA",
+        "slug": "alola",
+        "generation": 7,
+        "names": {
+          "English": "Alola",
+          "German": "Alola",
+          "French": "Alola",
+          "Italian": "Alola",
+          "Japanese": "アローラ",
+          "Korean": "알로라",
+          "Spanish": "Alola"
+        }
+      },
       "names": {
         "English": "Alolan Grimer",
         "German": "Alola-Sleima",
@@ -451,6 +481,7 @@
           "id": "MUK",
           "slug": "muk",
           "formId": "MUK_ALOLA",
+          "form": "alola",
           "candies": 50,
           "item": null,
           "quests": []
@@ -466,6 +497,7 @@
       "id": "MUK",
       "slug": "muk",
       "formId": "MUK_NORMAL",
+      "form": "normal",
       "candies": 50,
       "item": null,
       "quests": []
@@ -483,11 +515,11 @@
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm88.cANNIVERSARY_2024.s.icon.png"
     },
     {
-      "form": "ALOLA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm88.fALOLA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm88.fALOLA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm88.fALOLA.s.icon.png",
+      "form": "alola"
     },
     {
       "form": null,

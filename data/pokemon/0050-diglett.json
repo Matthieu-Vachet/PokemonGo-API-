@@ -1,10 +1,25 @@
 {
   "id": "DIGLETT",
   "formId": "DIGLETT",
+  "form": "normal",
   "slug": "diglett",
   "dexNr": 50,
   "dexId": "0050",
   "generation": 1,
+  "region": {
+    "id": "KANTO",
+    "slug": "kanto",
+    "generation": 1,
+    "names": {
+      "English": "Kanto",
+      "German": "Kanto",
+      "French": "Kanto",
+      "Italian": "Kanto",
+      "Japanese": "カントー",
+      "Korean": "관동",
+      "Spanish": "Kanto"
+    }
+  },
   "names": {
     "English": "Diglett",
     "German": "Digda",
@@ -258,8 +273,23 @@
       "id": "DIGLETT",
       "slug": "diglett",
       "formId": "DIGLETT_ALOLA",
+      "form": "alola",
       "dexNr": 50,
-      "generation": 1,
+      "generation": 7,
+      "region": {
+        "id": "ALOLA",
+        "slug": "alola",
+        "generation": 7,
+        "names": {
+          "English": "Alola",
+          "German": "Alola",
+          "French": "Alola",
+          "Italian": "Alola",
+          "Japanese": "アローラ",
+          "Korean": "알로라",
+          "Spanish": "Alola"
+        }
+      },
       "names": {
         "English": "Alolan Diglett",
         "German": "Alola-Digda",
@@ -525,6 +555,7 @@
           "id": "DUGTRIO",
           "slug": "dugtrio",
           "formId": "DUGTRIO_ALOLA",
+          "form": "alola",
           "candies": 50,
           "item": null,
           "quests": []
@@ -540,6 +571,7 @@
       "id": "DUGTRIO",
       "slug": "dugtrio",
       "formId": "DUGTRIO_NORMAL",
+      "form": "normal",
       "candies": 50,
       "item": null,
       "quests": []
@@ -557,11 +589,11 @@
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm50.cFALL_2022.s.icon.png"
     },
     {
-      "form": "ALOLA",
       "costume": null,
       "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm50.fALOLA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm50.fALOLA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm50.fALOLA.s.icon.png",
+      "form": "alola"
     },
     {
       "form": null,

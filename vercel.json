@@ -1,0 +1,33 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "functions": {
+    "api/*.js": {
+      "includeFiles": "data/**",
+      "maxDuration": 60
+    }
+  },
+  "routes": [
+    { "src": "^/data(?:/.*)?$", "dest": "/api/blocked" },
+    { "handle": "filesystem" },
+    { "src": "^/$", "dest": "/checklist-v3/index.html" },
+    { "src": "^/manifest\\.json$", "dest": "/checklist-v3/manifest.json" },
+    { "src": "^/icon\\.svg$", "dest": "/checklist-v3/icon.svg" },
+    { "src": "^/sw\\.js$", "dest": "/checklist-v3/sw.js" }
+  ],
+  "headers": [
+    {
+      "source": "/sw.js",
+      "headers": [
+        { "key": "Service-Worker-Allowed", "value": "/" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/checklist-v3/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
+  ]
+}

@@ -10,6 +10,8 @@ Le projet contient les donnees Pokemon, les types, les traductions et les assets
 - Schema enrichi inspire du Game Master Pokemon GO.
 - Noms multilingues inclus directement dans les objets.
 - Stats, CP max, couts, disponibilite, PvP, movesets et evolutions.
+- Profils d'evolution distincts: base, intermediaire, final et sans evolution.
+- Formes Alola, Galar, Hisui, Paldea, Gigantamax, Mega et Primo.
 - Assets principaux, shiny, costumes et formes visuelles.
 - Serveur Express minimal deja branche pour construire les routes API.
 
@@ -21,7 +23,17 @@ PokemonGo-API-/
 ├── data/
 │   ├── pokemon/
 │   │   ├── 0001-bulbasaur.json
-│   │   └── 0002-ivysaur.json
+│   │   ├── 0002-ivysaur.json
+│   │   └── 0003-venusaur.json
+│   ├── pokemon-forms/
+│   │   ├── alola/
+│   │   ├── galar/
+│   │   ├── hisui/
+│   │   ├── paldea/
+│   │   ├── gigantamax/
+│   │   ├── mega/
+│   │   ├── mega-x/
+│   │   └── mega-y/
 │   └── types/
 ├── locales/
 │   ├── en/
@@ -73,7 +85,7 @@ Les fichiers Pokemon vivent dans `data/pokemon/`.
     "English": "Bulbasaur",
     "French": "Bulbizarre"
   },
-  "form": "NORMAL",
+  "form": "normal",
   "weatherBoost": ["sunny", "cloudy"],
   "stats": {
     "stamina": 128,
@@ -118,14 +130,21 @@ Les grandes sections du JSON sont:
 
 | Section | Contenu |
 | --- | --- |
-| Identite | `id`, `formId`, `slug`, `dexNr`, `dexId`, `generation`, `form`, `region` |
+| Identite | `id`, `formId`, `slug`, `dexNr`, `dexId`, `generation`, `form`, `region`, `pokemonClass` |
 | Noms | `names` avec les langues principales |
-| Gameplay | `weatherBoost`, `buddyDistance`, `catchRate`, `fleeRate`, `captureRewards` |
-| Disponibilite | shiny, shadow, trade, Pokemon HOME, Dynamax, Gigamax, Apex |
+| Gameplay | `size`, `weatherBoost`, `buddyDistance`, `catchRate`, `fleeRate`, `captureRewards`, `megaEnergyReward`, `secondChargeMoveCost` |
+| Disponibilite | `availability`: shiny, shadow, trade, Pokemon HOME, Dynamax, Gigamax, Apex |
 | Combat | `stats`, `maxCp`, `quickMoves`, `cinematicMoves`, moves Elite |
 | PvP | ranks par ligue, IVs rang 1, movesets recommandes |
-| Evolutions | couts, objets, quetes, Mega-Evolutions, Gigamax |
+| Evolutions | `evolutions`, `hasMegaEvolution`, `megaEvolutions`, `hasGigantamaxEvolution` |
 | Assets | images principales, shiny, costumes, formes alternatives |
+| Formes | variantes regionales, Gigantamax, Mega et Primo |
+
+Les references principales du schema sont:
+
+- `0001-bulbasaur.json`: profil de base.
+- `0002-ivysaur.json`: profil intermediaire.
+- `0003-venusaur.json`: profil final avec Mega-Evolution et Gigantamax.
 
 ## Scripts
 
@@ -140,6 +159,58 @@ npm run dev
 ```
 
 Lance le serveur avec Nodemon.
+
+```bash
+npm run checklist
+```
+
+Lance la checklist interactive sur `http://localhost:3001`. Elle detecte automatiquement
+les champs renseignes dans chaque fiche Pokemon, forme regionale ou speciale et
+Mega-Evolution, affiche les champs restants et sauvegarde les coches manuelles dans
+`.pokemon-checklist-progress.json`.
+
+```bash
+npm run checklist:v2
+```
+
+Lance la checklist complete V2 sur `http://localhost:3002`. Cette version separee valide
+recursivement tous les blocs JSON, les types de valeurs, les traductions, les attaques,
+les evolutions et toutes les formes. Elle adapte aussi les attentes au stade d'evolution.
+
+```bash
+npm run checklist:v3
+```
+
+Lance la checklist Pokedex V3 sur `http://localhost:3003`. Elle conserve la validation
+complete et la progression manuelle, ajoute une vue detaillee des donnees, un design
+responsive pour ordinateur, tablette et mobile, ainsi qu'un acces depuis les appareils
+connectes au meme reseau local. L'adresse mobile exacte est affichee au demarrage.
+
+La V3 ecoute par defaut sur le reseau local. Pour limiter temporairement l'acces au Mac:
+
+```bash
+CHECKLIST_V3_HOST=127.0.0.1 npm run checklist:v3
+```
+
+## Deploiement Vercel
+
+La checklist V3 est prete pour un deploiement Vercel sans serveur local permanent.
+
+1. Importer le depot GitHub dans Vercel.
+2. Conserver les reglages de build automatiques.
+3. Deployer le projet.
+
+Vercel sert la V3 a la racine du domaine et expose les fonctions serverless:
+
+- `/api/checklist-v3`
+- `/api/detail-v3`
+
+Les API exigent la variable d'environnement Vercel `CHECKLIST_PASSWORD`. Le navigateur
+demande ce mot de passe et le conserve localement. Les acces directs a `/data` sont
+bloques afin de ne pas exposer les fichiers JSON.
+
+La progression manuelle est stockee dans `localStorage`. Elle reste disponible sur le
+meme navigateur, mais n'est pas synchronisee automatiquement entre plusieurs appareils.
 
 Les scripts `scrape*` sont declares dans `package.json` pour les imports de donnees, mais ils dependent du script d'import correspondant.
 
@@ -160,6 +231,10 @@ Les scripts `scrape*` sont declares dans `package.json` pour les imports de donn
 - Slugs publics en anglais et en minuscules.
 - Images Pokemon via `assets.image`, `assets.shinyImage` et `assetForms`.
 - Traductions principales dans les objets `names`.
+- `regionForms` et `megaEvolutions` valent `[]` lorsqu'ils sont vides, sinon ce sont des objets indexes.
+- `eliteQuickMoves` et `eliteCinematicMoves` valent `[]` lorsqu'ils sont vides, sinon ce sont des objets indexes.
+- Le contenu de `pvp` depend des ligues reellement documentees pour la fiche.
+- `hasGigantamaxEvolution: true` implique un asset avec `form: "gigantamax"` dans `assetForms`.
 
 ## Roadmap Possible
 

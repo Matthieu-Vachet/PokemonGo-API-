@@ -1,7 +1,11 @@
 # Templates Pokemon GO API
 
 Ce fichier regroupe les templates a copier pour ajouter ou normaliser les donnees.
-Le template Pokemon suit le nouveau format observe dans `data/pokemon/0001-bulbasaur.json`.
+Le format de reference est construit a partir de:
+
+- `data/pokemon/0001-bulbasaur.json`: Pokemon de base avec evolution.
+- `data/pokemon/0002-ivysaur.json`: Pokemon intermediaire avec evolution.
+- `data/pokemon/0003-venusaur.json`: Pokemon final avec Mega-Evolution et Gigantamax.
 
 ## Pokemon
 
@@ -36,8 +40,21 @@ Template complet:
     "Korean": "",
     "Spanish": ""
   },
-  "form": "NORMAL",
-  "region": null,
+  "form": "normal",
+  "region": {
+    "id": "",
+    "slug": "",
+    "generation": null,
+    "names": {
+      "English": "",
+      "German": "",
+      "French": "",
+      "Italian": "",
+      "Japanese": "",
+      "Korean": "",
+      "Spanish": ""
+    }
+  },
   "size": {
     "height": null,
     "weight": null
@@ -72,12 +89,7 @@ Template complet:
     "raidLevel20": null,
     "researchLevel15": null
   },
-  "pvp": {
-    "littleCup": null,
-    "greatLeague": null,
-    "ultraLeague": null,
-    "masterLeague": null
-  },
+  "pvp": {},
   "stats": {
     "stamina": null,
     "attack": null,
@@ -149,6 +161,7 @@ A placer dans `quickMoves` avec l'identifiant de l'attaque comme cle.
 {
   "VINE_WHIP_FAST": {
     "id": "VINE_WHIP_FAST",
+    "slug": "vine_whip_fast",
     "power": null,
     "energy": null,
     "durationMs": null,
@@ -191,6 +204,7 @@ A placer dans `cinematicMoves` avec l'identifiant de l'attaque comme cle.
 {
   "SLUDGE_BOMB": {
     "id": "SLUDGE_BOMB",
+    "slug": "sludge_bomb",
     "power": null,
     "energy": null,
     "durationMs": null,
@@ -248,7 +262,45 @@ A placer dans `pvp.littleCup`, `pvp.greatLeague`, `pvp.ultraLeague` ou `pvp.mast
 }
 ```
 
-Si aucune donnee n'est disponible pour une ligue, utiliser `null`.
+Ajouter uniquement les ligues pour lesquelles la fiche contient des donnees. Un Pokemon
+peut donc avoir uniquement `greatLeague`, tandis qu'un autre peut avoir `littleCup`,
+`greatLeague`, `ultraLeague` et `masterLeague`.
+
+## Attaques Elite
+
+Lorsqu'aucune attaque Elite n'existe, utiliser un tableau vide:
+
+```json
+{
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": []
+}
+```
+
+Lorsqu'elles existent, utiliser un objet indexe par identifiant d'attaque. Chaque valeur
+utilise le meme bloc qu'une attaque rapide ou chargee:
+
+```json
+{
+  "eliteCinematicMoves": {
+    "FRENZY_PLANT": {
+      "id": "FRENZY_PLANT",
+      "slug": "frenzy_plant",
+      "power": null,
+      "energy": null,
+      "durationMs": null,
+      "type": {},
+      "names": {},
+      "combat": {
+        "energy": null,
+        "power": null,
+        "turns": null,
+        "buffs": null
+      }
+    }
+  }
+}
+```
 
 ## Bloc Evolution
 
@@ -257,12 +309,93 @@ A ajouter dans `evolutions`.
 ```json
 {
   "id": "",
+  "slug": "",
   "formId": "",
+  "form": "normal",
   "candies": null,
   "item": null,
   "quests": []
 }
 ```
+
+Regles selon le stade:
+
+- Pokemon de base: `evolutions` contient au moins une evolution.
+- Pokemon intermediaire: `evolutions` contient au moins une evolution.
+- Pokemon final: `evolutions` vaut `[]`.
+- Pokemon sans evolution: `evolutions` vaut `[]`.
+
+## Bloc Mega / Primo
+
+A ajouter dans `megaEvolutions` avec l'identifiant de la forme comme cle.
+
+```json
+{
+  "VENUSAUR_MEGA": {
+    "id": "VENUSAUR_MEGA",
+    "slug": "venusaur_mega",
+    "formId": "VENUSAUR_MEGA",
+    "form": "mega",
+    "names": {
+      "English": "",
+      "German": "",
+      "French": "",
+      "Italian": "",
+      "Japanese": "",
+      "Korean": "",
+      "Spanish": ""
+    },
+    "size": {
+      "height": null,
+      "weight": null
+    },
+    "catchRate": null,
+    "fleeRate": null,
+    "availability": {
+      "released": false,
+      "shinyReleased": false,
+      "tradable": true,
+      "pokemonHomeTransfer": true
+    },
+    "maxCp": {
+      "maxLevel50": null,
+      "maxLevel40": null,
+      "weatherBoostLevel25": null,
+      "raidLevel20": null,
+      "researchLevel15": null
+    },
+    "stats": {
+      "stamina": null,
+      "attack": null,
+      "defense": null
+    },
+    "primaryType": {},
+    "secondaryType": null,
+    "energyCost": null,
+    "assets": {
+      "image": "",
+      "shinyImage": ""
+    }
+  }
+}
+```
+
+`megaEvolutions` vaut `[]` lorsqu'aucune Mega-Evolution ou forme Primo n'existe.
+Lorsqu'une forme existe, `megaEvolutions` est un objet indexe par identifiant.
+
+## Bloc Forme Regionale
+
+`regionForms` suit la meme logique que `megaEvolutions`: tableau vide lorsqu'aucune forme
+n'existe, sinon objet indexe par `formId`. Une forme regionale reprend le template Pokemon
+complet et utilise une valeur `form` comme `alola`, `galar`, `hisui` ou `paldea`.
+
+## Gigantamax
+
+Lorsqu'une forme Gigantamax existe:
+
+- `hasGigantamaxEvolution` vaut `true`.
+- `availability.gigantamax` indique si elle est disponible.
+- `assetForms` contient une entree avec `"form": "gigantamax"`.
 
 ## Bloc Asset Form
 
@@ -301,3 +434,7 @@ Template pour `data/types/*.json`.
 - Les langues de `names` sont toutes presentes.
 - Les tableaux vides sont `[]`, les valeurs inconnues sont `null`.
 - Les assets principaux et chromatiques sont renseignes quand ils existent.
+- Les attaques contiennent `id`, `slug`, donnees PvE, type, traductions et donnees PvP.
+- Les evolutions contiennent `id`, `slug`, `formId`, `form`, `candies`, `item` et `quests`.
+- Les profils base et intermediaire possedent au moins une evolution.
+- Les formes regionales, Mega, Primo et Gigantamax suivent leur template dedie.

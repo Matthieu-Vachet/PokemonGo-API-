@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
+    "checklist": "node scripts/checklist-server.js",
+    "checklist:v2": "node scripts/checklist-v2-server.js",
+    "checklist:v3": "node scripts/checklist-v3-server.js",
     "scrape": "node scraper-advanced.js",
     "scrape:gen1": "node scraper-advanced.js 1 151",
     "scrape:gen2": "node scraper-advanced.js 152 251",

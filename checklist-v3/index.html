@@ -1,0 +1,1201 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#d62828" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Pokédex V3" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
+    <title>Pokédex Checklist V3</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --red: #d62828;
+        --red-dark: #8d111b;
+        --yellow: #ffcb05;
+        --blue: #2a75bb;
+        --ink: #152238;
+        --muted: #68758b;
+        --paper: #f4f7fb;
+        --card: #fff;
+        --line: #dce3ee;
+        --green: #21a366;
+        --orange: #ed8b24;
+        --shadow: 0 12px 30px #16233a20;
+        --safe-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, ui-rounded, system-ui, sans-serif;
+        color: var(--ink);
+        background: #eaf0f7;
+      }
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+      button {
+        cursor: pointer;
+      }
+      .top-shell {
+        position: relative;
+        padding: 24px max(16px, calc((100% - 1400px) / 2));
+        color: #fff;
+        background: linear-gradient(140deg, var(--red), #a40d21);
+        box-shadow: 0 5px 0 var(--red-dark);
+        overflow: hidden;
+      }
+      .top-shell::after {
+        content: "";
+        position: absolute;
+        width: 280px;
+        height: 280px;
+        right: -80px;
+        top: -130px;
+        border: 32px solid #ffffff18;
+        border-radius: 50%;
+      }
+      .brand {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+      }
+      .lens {
+        width: 58px;
+        height: 58px;
+        flex: none;
+        border: 6px solid #fff;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 35% 30%,
+          #fff 0 8%,
+          #70d8ff 10% 35%,
+          #1687c8 38% 70%,
+          #08527e 72%
+        );
+        box-shadow: 0 0 0 5px #7c101a;
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(1.45rem, 4vw, 2.3rem);
+        letter-spacing: -0.04em;
+      }
+      .subtitle {
+        margin: 3px 0 0;
+        color: #ffe8e8;
+        font-size: 0.9rem;
+      }
+      .dashboard {
+        width: min(1400px, calc(100% - 28px));
+        margin: 22px auto 14px;
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+      .stat {
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        background: var(--card);
+        box-shadow: var(--shadow);
+      }
+      .stat strong {
+        display: block;
+        font-size: clamp(1.35rem, 3vw, 2rem);
+      }
+      .stat span {
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+      .xp {
+        height: 13px;
+        margin-top: 12px;
+        padding: 2px;
+        border: 1px solid #bac6d7;
+        border-radius: 999px;
+        background: #fff;
+      }
+      .xp div {
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--yellow), #ff9f1c);
+        transition: 0.25s;
+      }
+      .toolbar-wrap {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        padding: 8px 0;
+        background: #eaf0f7e8;
+        backdrop-filter: blur(12px);
+      }
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        width: min(1400px, calc(100% - 28px));
+        margin: auto;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: #ffffffef;
+        box-shadow: var(--shadow);
+      }
+      input,
+      select,
+      .tool-btn {
+        min-height: 44px;
+        border: 1px solid #c8d2e1;
+        border-radius: 11px;
+        padding: 9px 11px;
+        color: var(--ink);
+        background: #fff;
+      }
+      input[type="search"] {
+        flex: 1;
+        min-width: 230px;
+      }
+      .tool-btn {
+        font-weight: 750;
+      }
+      .tool-btn.active {
+        color: #fff;
+        border-color: var(--blue);
+        background: var(--blue);
+      }
+      .results {
+        width: min(1400px, calc(100% - 28px));
+        margin: 14px auto 100px;
+      }
+      .result-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 2px;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+        gap: 12px;
+      }
+      .poke-card {
+        position: relative;
+        min-width: 0;
+        border: 1px solid var(--line);
+        border-radius: 19px;
+        background: var(--card);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        transition:
+          transform 0.15s,
+          border-color 0.15s;
+      }
+      .poke-card:hover {
+        transform: translateY(-2px);
+        border-color: var(--type, #8ba2c2);
+      }
+      .poke-card.done {
+        opacity: 0.72;
+        border-color: #72bd94;
+      }
+      .type-strip {
+        height: 7px;
+        background: var(--type, #8ba2c2);
+      }
+      .card-main {
+        display: grid;
+        grid-template-columns: 76px minmax(0, 1fr);
+        gap: 11px;
+        padding: 12px;
+      }
+      .portrait {
+        position: relative;
+        width: 76px;
+        height: 76px;
+        border: 1px solid #ccd7e6;
+        border-radius: 50%;
+        background: linear-gradient(#fff 48%, #263248 49% 53%, #f14f50 54%);
+        overflow: hidden;
+      }
+      .portrait::after {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        left: 50%;
+        top: 50%;
+        translate: -50% -50%;
+        border: 4px solid #263248;
+        border-radius: 50%;
+        background: #fff;
+      }
+      .portrait img {
+        position: absolute;
+        z-index: 1;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        padding: 3px;
+        object-fit: contain;
+        filter: drop-shadow(0 4px 4px #0004);
+      }
+      body.shiny .portrait img.normal,
+      .portrait img.shiny {
+        opacity: 0;
+      }
+      body.shiny .portrait img.shiny {
+        opacity: 1;
+      }
+      .dex {
+        color: var(--muted);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+      .name {
+        margin: 1px 0 4px;
+        font-size: 1rem;
+        font-weight: 850;
+        overflow-wrap: anywhere;
+      }
+      .meta {
+        color: var(--muted);
+        font-size: 0.74rem;
+        line-height: 1.35;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-top: 7px;
+      }
+      .chip {
+        padding: 3px 6px;
+        border-radius: 999px;
+        color: #58667d;
+        background: #edf2f8;
+        font-size: 0.65rem;
+        font-weight: 750;
+      }
+      .chip.problem {
+        color: #9b5313;
+        background: #fff0db;
+      }
+      .chip.good {
+        color: #167648;
+        background: #dff5e9;
+      }
+      .card-actions {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 7px;
+        padding: 0 12px 12px;
+      }
+      .check-label,
+      .detail-btn {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        border: 1px solid #cbd5e3;
+        border-radius: 11px;
+        background: #f7f9fc;
+        font-size: 0.76rem;
+        font-weight: 800;
+      }
+      .check-label {
+        padding: 0 11px;
+      }
+      .check-label input {
+        width: 20px;
+        height: 20px;
+        accent-color: var(--green);
+      }
+      .detail-btn {
+        color: #fff;
+        border-color: var(--blue);
+        background: var(--blue);
+      }
+      .more {
+        width: 100%;
+        min-height: 48px;
+        margin-top: 14px;
+        border: 1px solid #c8d2e1;
+        border-radius: 13px;
+        color: var(--ink);
+        background: #fff;
+        font-weight: 800;
+      }
+      .empty {
+        padding: 50px 15px;
+        color: var(--muted);
+        text-align: center;
+      }
+      dialog {
+        width: min(880px, 100%);
+        max-height: min(900px, 100dvh);
+        margin: auto 0 0 auto;
+        padding: 0;
+        border: 0;
+        border-radius: 24px 0 0 0;
+        color: var(--ink);
+        background: #f4f7fb;
+        box-shadow: -15px 0 40px #10192c50;
+      }
+      dialog::backdrop {
+        background: #10192c99;
+        backdrop-filter: blur(3px);
+      }
+      .detail-head {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 100px minmax(0, 1fr) auto;
+        gap: 13px;
+        align-items: center;
+        padding: 15px;
+        color: #fff;
+        background: linear-gradient(140deg, var(--type, var(--red)), #202b43);
+      }
+      .detail-head .portrait {
+        width: 96px;
+        height: 96px;
+      }
+      .detail-head .dex,
+      .detail-head .meta {
+        color: #ffffffcc;
+      }
+      .close {
+        width: 44px;
+        height: 44px;
+        border: 1px solid #ffffff66;
+        border-radius: 50%;
+        color: #fff;
+        background: #ffffff24;
+        font-size: 1.5rem;
+      }
+      .detail-body {
+        padding: 14px 14px calc(20px + var(--safe-bottom));
+      }
+      .detail-tabs {
+        display: flex;
+        gap: 7px;
+        overflow: auto;
+        padding-bottom: 10px;
+        scrollbar-width: none;
+      }
+      .tab {
+        min-height: 42px;
+        padding: 8px 12px;
+        border: 1px solid #cad5e4;
+        border-radius: 999px;
+        white-space: nowrap;
+        background: #fff;
+        font-weight: 800;
+      }
+      .tab.active {
+        color: #fff;
+        border-color: var(--blue);
+        background: var(--blue);
+      }
+      .panel {
+        display: none;
+      }
+      .panel.active {
+        display: block;
+      }
+      .section-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 9px;
+      }
+      .info {
+        padding: 11px;
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        background: #fff;
+      }
+      .info h3 {
+        margin: 0 0 8px;
+        font-size: 0.82rem;
+      }
+      .kv {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 5px 0;
+        border-bottom: 1px solid #edf1f6;
+        color: var(--muted);
+        font-size: 0.75rem;
+      }
+      .kv:last-child {
+        border: 0;
+      }
+      .kv strong {
+        color: var(--ink);
+        text-align: right;
+        overflow-wrap: anywhere;
+      }
+      .asset-section {
+        margin-top: 12px;
+      }
+      .asset-section h2 {
+        margin: 0 0 10px;
+        font-size: 1rem;
+      }
+      .asset-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 10px;
+      }
+      .asset-card {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: #fff;
+      }
+      .asset-card-head {
+        padding: 9px 10px;
+        border-bottom: 1px solid var(--line);
+      }
+      .asset-card-head strong {
+        display: block;
+        font-size: 0.78rem;
+        overflow-wrap: anywhere;
+      }
+      .asset-card-head span {
+        color: var(--muted);
+        font-size: 0.68rem;
+      }
+      .asset-pictures {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1px;
+        background: var(--line);
+      }
+      .asset-picture {
+        display: grid;
+        justify-items: center;
+        gap: 5px;
+        min-width: 0;
+        padding: 9px;
+        color: var(--ink);
+        background: #f7f9fc;
+        text-decoration: none;
+      }
+      .asset-picture img {
+        width: 100%;
+        max-width: 128px;
+        aspect-ratio: 1;
+        object-fit: contain;
+      }
+      .asset-picture span {
+        color: var(--muted);
+        font-size: 0.68rem;
+        font-weight: 800;
+      }
+      .asset-links {
+        display: grid;
+        gap: 5px;
+        padding: 8px 10px;
+      }
+      .asset-links a {
+        color: var(--blue);
+        font-size: 0.68rem;
+        font-weight: 700;
+        overflow-wrap: anywhere;
+      }
+      .issue {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px;
+        padding: 9px;
+        margin-bottom: 6px;
+        border: 1px solid #f1c590;
+        border-radius: 10px;
+        background: #fff7e9;
+      }
+      .issue-path {
+        font:
+          700 0.72rem ui-monospace,
+          monospace;
+        overflow-wrap: anywhere;
+      }
+      .issue-desc {
+        margin-top: 3px;
+        color: #8a6339;
+        font-size: 0.7rem;
+      }
+      .copy {
+        min-height: 38px;
+        border: 1px solid #d7b27e;
+        border-radius: 8px;
+        background: #fff;
+        font-size: 0.7rem;
+        font-weight: 800;
+      }
+      pre {
+        max-height: 55dvh;
+        margin: 0;
+        padding: 12px;
+        border-radius: 12px;
+        color: #d9e4ff;
+        background: #111a2b;
+        overflow: auto;
+        font:
+          0.72rem/1.55 ui-monospace,
+          monospace;
+      }
+      .mobile-nav {
+        display: none;
+      }
+      @media (max-width: 760px) {
+        .top-shell {
+          padding-top: 18px;
+          padding-bottom: 18px;
+        }
+        .lens {
+          width: 48px;
+          height: 48px;
+        }
+        .dashboard {
+          margin-top: 14px;
+        }
+        .stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .toolbar-wrap {
+          position: static;
+        }
+        .toolbar {
+          display: none;
+        }
+        .toolbar.open {
+          display: flex;
+        }
+        .toolbar > * {
+          flex: 1 1 100%;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .result-head {
+          margin-top: 7px;
+        }
+        .results {
+          margin-bottom: calc(90px + var(--safe-bottom));
+        }
+        .mobile-nav {
+          position: fixed;
+          z-index: 20;
+          left: 10px;
+          right: 10px;
+          bottom: calc(8px + var(--safe-bottom));
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 5px;
+          padding: 6px;
+          border: 1px solid #c7d2e1;
+          border-radius: 17px;
+          background: #fffffff2;
+          box-shadow: 0 10px 35px #17233b40;
+          backdrop-filter: blur(12px);
+        }
+        .mobile-nav button {
+          min-height: 48px;
+          border: 0;
+          border-radius: 12px;
+          color: var(--ink);
+          background: transparent;
+          font-size: 0.68rem;
+          font-weight: 800;
+        }
+        .mobile-nav button.active {
+          color: #fff;
+          background: var(--red);
+        }
+        dialog {
+          width: 100%;
+          max-height: 94dvh;
+          border-radius: 23px 23px 0 0;
+        }
+        .detail-head {
+          grid-template-columns: 76px minmax(0, 1fr) auto;
+          padding: 11px;
+        }
+        .detail-head .portrait {
+          width: 72px;
+          height: 72px;
+        }
+        .detail-body {
+          padding: 10px 10px calc(14px + var(--safe-bottom));
+        }
+        .section-grid {
+          grid-template-columns: 1fr;
+        }
+        .asset-gallery {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top-shell" id="top">
+      <div class="brand">
+        <div class="lens"></div>
+        <div>
+          <h1>Pokédex Checklist V3</h1>
+          <p class="subtitle">
+            Inspecter les données, corriger les fiches, cocher l’avancement.
+          </p>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="dashboard">
+        <div class="stats">
+          <div class="stat">
+            <strong id="done">-</strong><span>terminées</span>
+          </div>
+          <div class="stat">
+            <strong id="todo">-</strong><span>à compléter</span>
+          </div>
+          <div class="stat">
+            <strong id="issues">-</strong><span>problèmes</span>
+          </div>
+          <div class="stat">
+            <strong id="total">-</strong><span>fiches analysées</span>
+          </div>
+        </div>
+        <div class="xp"><div id="xp"></div></div>
+      </section>
+      <div class="toolbar-wrap">
+        <section class="toolbar" id="toolbar">
+          <input
+            id="search"
+            type="search"
+            placeholder="Nom, numéro, forme ou fichier…"
+          />
+          <select id="kind">
+            <option value="all">Tous les types</option>
+            <option value="pokemon">Pokémon</option>
+            <option value="form">Formes</option>
+            <option value="mega">Méga / Primo</option>
+          </select>
+          <select id="profile">
+            <option value="all">Tous les profils</option>
+            <option value="base">Base</option>
+            <option value="intermediate">Intermédiaire</option>
+            <option value="final">Final</option>
+            <option value="single">Sans évolution</option>
+            <option value="mega">Méga / Primo</option>
+          </select>
+          <select id="form">
+            <option value="all">Toutes les formes</option>
+          </select>
+          <select id="status">
+            <option value="todo">À compléter</option>
+            <option value="all">Tous les statuts</option>
+            <option value="done">Terminées</option>
+          </select>
+          <select id="sort">
+            <option value="dex">N° Pokédex</option>
+            <option value="issues-desc">Plus de problèmes</option>
+            <option value="issues-asc">Moins de problèmes</option>
+            <option value="name">Nom</option>
+          </select>
+          <button class="tool-btn" id="shiny">Mode shiny</button
+          ><button class="tool-btn" id="refresh">Actualiser</button>
+        </section>
+      </div>
+      <section class="results">
+        <div class="result-head">
+          <span id="resultCount">-</span
+          ><span>Toucher une fiche pour afficher ses données</span>
+        </div>
+        <div class="grid" id="entries"></div>
+        <button class="more" id="more" hidden>Afficher plus</button>
+      </section>
+    </main>
+    <nav class="mobile-nav">
+      <button id="mobileFilters">Filtres</button
+      ><button id="mobileShiny">Shiny</button
+      ><button id="mobileRefresh">Actualiser</button
+      ><button id="mobileTop">Haut</button>
+    </nav>
+    <dialog id="detail">
+      <header class="detail-head" id="detailHead"></header>
+      <div class="detail-body">
+        <nav class="detail-tabs" id="tabs"></nav>
+        <section id="panels"></section>
+      </div>
+    </dialog>
+    <script>
+      const state = {
+        entries: [],
+        progress: {},
+        limit: 60,
+        detailData: null,
+        activeEntry: null,
+      };
+      const ids = [
+        "done",
+        "todo",
+        "issues",
+        "total",
+        "xp",
+        "toolbar",
+        "search",
+        "kind",
+        "profile",
+        "form",
+        "status",
+        "sort",
+        "shiny",
+        "refresh",
+        "entries",
+        "resultCount",
+        "more",
+        "mobileFilters",
+        "mobileShiny",
+        "mobileRefresh",
+        "mobileTop",
+        "detail",
+        "detailHead",
+        "tabs",
+        "panels",
+      ];
+      const el = Object.fromEntries(
+        ids.map((id) => [id, document.getElementById(id)]),
+      );
+      const profileLabels = {
+        base: "Base",
+        intermediate: "Intermédiaire",
+        final: "Final",
+        single: "Sans évolution",
+        mega: "Méga / Primo",
+      };
+      const typeColors = {
+        NORMAL: "#9ca3af",
+        FIRE: "#ef6c35",
+        WATER: "#3987d7",
+        GRASS: "#52a447",
+        ELECTRIC: "#e7b928",
+        ICE: "#65bfd0",
+        FIGHTING: "#bd493d",
+        POISON: "#9a55a8",
+        GROUND: "#c99a48",
+        FLYING: "#7b9bd1",
+        PSYCHIC: "#e15b85",
+        BUG: "#91a93b",
+        ROCK: "#a58d53",
+        GHOST: "#695b9b",
+        DRAGON: "#6156b6",
+        DARK: "#63574f",
+        STEEL: "#8293a5",
+        FAIRY: "#d97cab",
+      };
+      const esc = (v) =>
+        String(v ?? "").replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#039;",
+            })[c],
+        );
+      const typeName = (t) => String(t || "").replace("POKEMON_TYPE_", "");
+      const color = (e) => typeColors[typeName(e.primaryType)] || "#8293a5";
+      const isDone = (e) => e.complete || Boolean(state.progress[e.key]);
+      const accessKey = "pokedex-v3-access";
+      function requestPassword(force = false) {
+        let password = force ? "" : localStorage.getItem(accessKey) || "";
+        if (!password)
+          password =
+            prompt("Mot de passe de la checklist Pokémon GO :") || "";
+        if (password) localStorage.setItem(accessKey, password);
+        return password;
+      }
+      async function apiFetch(url) {
+        let password = requestPassword();
+        let response = await fetch(url, {
+          headers: { "x-checklist-password": password },
+        });
+        if (response.status === 401) {
+          localStorage.removeItem(accessKey);
+          password = requestPassword(true);
+          if (!password) throw new Error("Accès annulé.");
+          response = await fetch(url, {
+            headers: { "x-checklist-password": password },
+          });
+        }
+        const payload = await response.json();
+        if (!response.ok)
+          throw new Error(payload.error || `Erreur HTTP ${response.status}`);
+        return payload;
+      }
+      function loadProgress() {
+        try {
+          state.progress = JSON.parse(
+            localStorage.getItem("pokedex-v3-progress") || "{}",
+          );
+        } catch {
+          state.progress = {};
+        }
+      }
+      function saveProgress() {
+        localStorage.setItem(
+          "pokedex-v3-progress",
+          JSON.stringify(state.progress),
+        );
+      }
+      const saveFilters = () =>
+        localStorage.setItem(
+          "pokedex-v3-filters",
+          JSON.stringify({
+            search: el.search.value,
+            kind: el.kind.value,
+            profile: el.profile.value,
+            form: el.form.value,
+            status: el.status.value,
+            sort: el.sort.value,
+            shiny: document.body.classList.contains("shiny"),
+          }),
+        );
+      function restoreFilters() {
+        try {
+          const f = JSON.parse(localStorage.getItem("pokedex-v3-filters"));
+          for (const k of ["search", "kind", "profile", "status", "sort"])
+            if (f?.[k] !== undefined) el[k].value = f[k];
+          if (f?.shiny) document.body.classList.add("shiny");
+        } catch {}
+      }
+      function filtered() {
+        const q = el.search.value.trim().toLocaleLowerCase("fr");
+        const list = state.entries.filter((e) => {
+          const done = isDone(e);
+          return (
+            (!q ||
+              [e.name, e.dexId, e.file, e.form].some((v) =>
+                String(v || "")
+                  .toLocaleLowerCase("fr")
+                  .includes(q),
+              )) &&
+            (el.kind.value === "all" || e.kind === el.kind.value) &&
+            (el.profile.value === "all" || e.profile === el.profile.value) &&
+            (el.form.value === "all" || e.form === el.form.value) &&
+            (el.status.value === "all" ||
+              (el.status.value === "done" ? done : !done))
+          );
+        });
+        return list.sort((a, b) =>
+          el.sort.value === "issues-desc"
+            ? b.issues.length - a.issues.length
+            : el.sort.value === "issues-asc"
+              ? a.issues.length - b.issues.length
+              : el.sort.value === "name"
+                ? a.name.localeCompare(b.name, "fr")
+                : a.dexId.localeCompare(b.dexId) ||
+                  a.name.localeCompare(b.name, "fr"),
+        );
+      }
+      function card(e) {
+        const done = isDone(e),
+          manual = Boolean(state.progress[e.key]),
+          img = e.image
+            ? `<div class="portrait"><img class="normal" src="${esc(e.image)}" alt="${esc(e.name)}" loading="lazy">${e.shinyImage ? `<img class="shiny" src="${esc(e.shinyImage)}" alt="${esc(e.name)} shiny" loading="lazy">` : ""}</div>`
+            : '<div class="portrait"></div>';
+        return `<article class="poke-card ${done ? "done" : ""}" style="--type:${color(e)}"><div class="type-strip"></div><div class="card-main">${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)} · Gén. ${esc(e.generation || "?")}</div><div class="chips"><span class="chip">${esc(typeName(e.primaryType) || "Type ?")}</span><span class="chip">${e.quickMoveCount} rapide(s)</span><span class="chip">${e.chargedMoveCount} chargée(s)</span>${e.complete ? '<span class="chip good">JSON complet</span>' : `<span class="chip problem">${e.issues.length} problème(s)</span>`}${manual ? '<span class="chip good">coché</span>' : ""}</div></div></div><div class="card-actions"><label class="check-label"><input type="checkbox" data-check="${esc(e.key)}" ${done ? "checked" : ""} ${e.complete ? "disabled" : ""}> Fait</label><button class="detail-btn" data-detail="${esc(e.key)}">Voir la fiche</button></div></article>`;
+      }
+      function updateStats() {
+        const done = state.entries.filter(isDone).length,
+          total = state.entries.length;
+        el.done.textContent = done;
+        el.todo.textContent = total - done;
+        el.issues.textContent = state.entries
+          .reduce((n, e) => n + e.issues.length, 0)
+          .toLocaleString("fr");
+        el.total.textContent = total;
+        el.xp.style.width = `${total ? (done / total) * 100 : 0}%`;
+      }
+      function render() {
+        const list = filtered(),
+          shown = list.slice(0, state.limit);
+        el.entries.innerHTML = shown.length
+          ? shown.map(card).join("")
+          : '<div class="empty">Aucune fiche ne correspond aux filtres.</div>';
+        el.resultCount.textContent = `${list.length} résultat${list.length > 1 ? "s" : ""}`;
+        el.more.hidden = shown.length >= list.length;
+        el.entries
+          .querySelectorAll("[data-check]")
+          .forEach((box) =>
+            box.addEventListener("change", () =>
+              setProgress(box.dataset.check, box.checked),
+            ),
+          );
+        el.entries
+          .querySelectorAll("[data-detail]")
+          .forEach((btn) =>
+            btn.addEventListener("click", () => openDetail(btn.dataset.detail)),
+          );
+        updateStats();
+        saveFilters();
+      }
+      function setProgress(key, checked) {
+        if (checked) state.progress[key] = true;
+        else delete state.progress[key];
+        saveProgress();
+        render();
+      }
+      const value = (v, fallback = "—") =>
+        v === undefined || v === null
+          ? fallback
+          : Array.isArray(v)
+            ? v.join(", ") || "[]"
+            : typeof v === "object"
+              ? Object.keys(v).length + " entrée(s)"
+              : String(v);
+      const kv = (label, v) =>
+        `<div class="kv"><span>${esc(label)}</span><strong>${esc(value(v))}</strong></div>`;
+      const info = (title, rows) =>
+        `<article class="info"><h3>${esc(title)}</h3>${rows}</article>`;
+      function overview(d) {
+        return `<div class="section-grid">${info("Identité", kv("ID", d.id) + kv("Form ID", d.formId) + kv("Slug", d.slug) + kv("Forme", d.form) + kv("Génération", d.generation) + kv("Région", d.region?.names?.French || d.region?.id))}${info("Statistiques", kv("Attaque", d.stats?.attack) + kv("Défense", d.stats?.defense) + kv("Endurance", d.stats?.stamina) + kv("Taille", d.size?.height ? d.size.height + " m" : null) + kv("Poids", d.size?.weight ? d.size.weight + " kg" : null))}${info("PC maximum", kv("Niveau 50", d.maxCp?.maxLevel50) + kv("Niveau 40", d.maxCp?.maxLevel40) + kv("Raid N.20", d.maxCp?.raidLevel20) + kv("Étude N.15", d.maxCp?.researchLevel15))}${info(
+          "Disponibilité",
+          Object.entries(d.availability || {})
+            .map(([k, v]) => kv(k, v ? "Oui" : "Non"))
+            .join(""),
+        )}${info("Capture", kv("Boost météo", d.weatherBoost) + kv("Distance copain", d.buddyDistance) + kv("Taux capture", d.catchRate) + kv("Taux fuite", d.fleeRate) + kv("Bonbons", d.captureRewards?.candy) + kv("Poussières", d.captureRewards?.stardust))}</div>`;
+      }
+      function objectCards(title, obj) {
+        const entries = Object.entries(obj || {});
+        return entries.length
+          ? `<div class="section-grid">${entries.map(([id, v]) => info(v.names?.French || v.names?.English || id, kv("ID", id) + kv("Type", typeName(v.type?.type)) + kv("Puissance", v.power) + kv("Énergie", v.energy) + kv("PvP puissance", v.combat?.power) + kv("PvP énergie", v.combat?.energy))).join("")}</div>`
+          : `<div class="empty">Aucune donnée ${esc(title)}.</div>`;
+      }
+      function assetPicture(label, url) {
+        return url
+          ? `<a class="asset-picture" href="${esc(url)}" target="_blank" rel="noopener"><img src="${esc(url)}" alt="${esc(label)}" loading="lazy"><span>${esc(label)}</span></a>`
+          : `<div class="asset-picture"><span>${esc(label)} indisponible</span></div>`;
+      }
+      function assetLinks(image, shinyImage) {
+        return `<div class="asset-links">${image ? `<a href="${esc(image)}" target="_blank" rel="noopener">Lien image normale</a>` : ""}${shinyImage ? `<a href="${esc(shinyImage)}" target="_blank" rel="noopener">Lien image shiny</a>` : ""}</div>`;
+      }
+      function assetCard(title, subtitle, image, shinyImage) {
+        return `<article class="asset-card"><div class="asset-card-head"><strong>${esc(title)}</strong><span>${esc(subtitle)}</span></div><div class="asset-pictures">${assetPicture("Normal", image)}${assetPicture("Shiny", shinyImage)}</div>${assetLinks(image, shinyImage)}</article>`;
+      }
+      function assetsPanel(d) {
+        const variants = Array.isArray(d.assetForms) ? d.assetForms : [];
+        const main = assetCard(
+          "Images principales",
+          d.form || "normal",
+          d.assets?.image,
+          d.assets?.shinyImage,
+        );
+        const gallery = variants.length
+          ? variants
+              .map((asset, index) => {
+                const title =
+                  asset.costume ||
+                  asset.form ||
+                  `Variante ${index + 1}`;
+                const details = [
+                  asset.form && `Forme : ${asset.form}`,
+                  asset.costume && `Costume : ${asset.costume}`,
+                  asset.isFemale ? "Femelle" : null,
+                ]
+                  .filter(Boolean)
+                  .join(" · ");
+                return assetCard(
+                  title,
+                  details || "Variante visuelle",
+                  asset.image,
+                  asset.shinyImage,
+                );
+              })
+              .join("")
+          : '<div class="empty">Aucune variante visuelle.</div>';
+        return `<div class="section-grid">${info("Capacités de formes", kv("Méga disponible", d.hasMegaEvolution) + kv("Gigantamax disponible", d.hasGigantamaxEvolution) + kv("Formes régionales", Array.isArray(d.regionForms) ? d.regionForms.length : Object.keys(d.regionForms || {}).length) + kv("Méga / Primo", Array.isArray(d.megaEvolutions) ? d.megaEvolutions.length : Object.keys(d.megaEvolutions || {}).length))}</div><section class="asset-section"><h2>Aperçu principal</h2><div class="asset-gallery">${main}</div></section><section class="asset-section"><h2>Variantes visuelles (${variants.length})</h2><div class="asset-gallery">${gallery}</div></section>`;
+      }
+      function issuesPanel(e) {
+        return e.issues.length
+          ? e.issues
+              .map(
+                (i) =>
+                  `<div class="issue"><div><div class="issue-path">${esc(i.path)}</div><div class="issue-desc">${esc(i.issue)} · attendu ${esc(i.expected)} · actuel ${esc(i.actual)}</div></div><button class="copy" data-copy="${esc(i.path)}">Copier</button></div>`,
+              )
+              .join("")
+          : '<div class="empty">Aucun problème détecté.</div>';
+      }
+      function renderDetail(e, d) {
+        const tabs = [
+          ["overview", "Aperçu"],
+          ["issues", `Checklist (${e.issues.length})`],
+          ["moves", "Attaques"],
+          ["pvp", "PvP"],
+          ["evolutions", "Évolutions"],
+          ["forms", "Formes & assets"],
+          ["json", "JSON"],
+        ];
+        const img = e.image
+          ? `<div class="portrait"><img class="normal" src="${esc(e.image)}">${e.shinyImage ? `<img class="shiny" src="${esc(e.shinyImage)}">` : ""}</div>`
+          : "<div></div>";
+        el.detailHead.style.setProperty("--type", color(e));
+        el.detailHead.innerHTML = `${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)}</div></div><button class="close" id="closeDetail">×</button>`;
+        el.tabs.innerHTML = tabs
+          .map(
+            ([id, label], i) =>
+              `<button class="tab ${i === 0 ? "active" : ""}" data-tab="${id}">${label}</button>`,
+          )
+          .join("");
+        el.panels.innerHTML = `<div class="panel active" data-panel="overview">${overview(d)}</div><div class="panel" data-panel="issues">${issuesPanel(e)}</div><div class="panel" data-panel="moves"><h2>Attaques rapides</h2>${objectCards("rapide", d.quickMoves)}<h2>Attaques chargées</h2>${objectCards("chargée", d.cinematicMoves)}</div><div class="panel" data-panel="pvp">${
+          d.pvp
+            ? `<div class="section-grid">${Object.entries(d.pvp)
+                .map(([league, v]) =>
+                  info(
+                    league,
+                    kv("Tier", v.tierRank) +
+                      kv("Niveau rang 1", v.rank1?.level) +
+                      kv("PC rang 1", v.rank1?.cp) +
+                      kv("Rapide", v.bestMovesets?.fast) +
+                      kv("Chargées", v.bestMovesets?.charged),
+                  ),
+                )
+                .join("")}</div>`
+            : '<div class="empty">Aucune donnée PvP.</div>'
+        }</div><div class="panel" data-panel="evolutions">${d.evolutions?.length ? `<div class="section-grid">${d.evolutions.map((v) => info(v.id, kv("Forme", v.form) + kv("Bonbons", v.candies) + kv("Objet", v.item))).join("")}</div>` : '<div class="empty">Aucune évolution suivante.</div>'}</div><div class="panel" data-panel="forms">${assetsPanel(d)}</div><div class="panel" data-panel="json"><pre>${esc(JSON.stringify(d, null, 2))}</pre></div>`;
+        document.getElementById("closeDetail").onclick = () =>
+          el.detail.close();
+        el.tabs.querySelectorAll("[data-tab]").forEach(
+          (btn) =>
+            (btn.onclick = () => {
+              el.tabs
+                .querySelectorAll(".tab")
+                .forEach((x) => x.classList.toggle("active", x === btn));
+              el.panels
+                .querySelectorAll(".panel")
+                .forEach((x) =>
+                  x.classList.toggle(
+                    "active",
+                    x.dataset.panel === btn.dataset.tab,
+                  ),
+                );
+            }),
+        );
+        el.panels.querySelectorAll("[data-copy]").forEach(
+          (btn) =>
+            (btn.onclick = async () => {
+              await navigator.clipboard.writeText(btn.dataset.copy);
+              btn.textContent = "Copié";
+            }),
+        );
+      }
+      async function openDetail(key) {
+        const e = state.entries.find((x) => x.key === key);
+        if (!e) return;
+        el.detail.showModal();
+        el.detailHead.innerHTML =
+          '<div></div><div class="name">Chargement…</div>';
+        el.panels.innerHTML = "";
+        try {
+          const x = await apiFetch(
+            `/api/detail-v3?key=${encodeURIComponent(key)}`,
+          );
+          renderDetail(e, x.data || {});
+        } catch (error) {
+          el.panels.innerHTML = `<div class="empty">${esc(error.message)}</div>`;
+        }
+      }
+      async function load() {
+        el.refresh.disabled = true;
+        try {
+          const x = await apiFetch("/api/checklist-v3");
+          Object.assign(state, x);
+          let selected = el.form.value;
+          try {
+            selected =
+              JSON.parse(localStorage.getItem("pokedex-v3-filters"))?.form ||
+              selected;
+          } catch {}
+          const forms = [
+            ...new Set(state.entries.map((e) => e.form).filter(Boolean)),
+          ].sort();
+          el.form.innerHTML =
+            '<option value="all">Toutes les formes</option>' +
+            forms
+              .map((f) => `<option value="${esc(f)}">${esc(f)}</option>`)
+              .join("");
+          el.form.value = forms.includes(selected) ? selected : "all";
+          render();
+        } catch (error) {
+          el.entries.innerHTML = `<div class="empty">${esc(error.message)}</div>`;
+          el.resultCount.textContent = "Accès protégé";
+        } finally {
+          el.refresh.disabled = false;
+        }
+      }
+      loadProgress();
+      restoreFilters();
+      ["search", "kind", "profile", "form", "status", "sort"].forEach((id) =>
+        el[id].addEventListener("input", () => {
+          state.limit = 60;
+          render();
+        }),
+      );
+      el.more.onclick = () => {
+        state.limit += 60;
+        render();
+      };
+      el.shiny.onclick = () => {
+        document.body.classList.toggle("shiny");
+        el.shiny.classList.toggle(
+          "active",
+          document.body.classList.contains("shiny"),
+        );
+        saveFilters();
+      };
+      el.refresh.onclick = load;
+      el.mobileFilters.onclick = () => {
+        el.toolbar.classList.toggle("open");
+        el.mobileFilters.classList.toggle(
+          "active",
+          el.toolbar.classList.contains("open"),
+        );
+      };
+      el.mobileShiny.onclick = () => el.shiny.click();
+      el.mobileRefresh.onclick = load;
+      el.mobileTop.onclick = () => scrollTo({ top: 0, behavior: "smooth" });
+      el.detail.addEventListener("click", (e) => {
+        if (e.target === el.detail) el.detail.close();
+      });
+      if ("serviceWorker" in navigator)
+        navigator.serviceWorker.register("/sw.js");
+      load();
+    </script>
+  </body>
+</html>

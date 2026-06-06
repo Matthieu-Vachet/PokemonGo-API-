@@ -1,7 +1,9 @@
 # Pokemon GO API - Schema
 
 Ce document decrit le format de reference des fichiers JSON Pokemon.
-Le modele actuel est base sur `data/pokemon/0001-bulbasaur.json`, qui contient maintenant les donnees techniques, les traductions, les attaques, le PvP, les couts, les assets et les evolutions dans un seul fichier.
+Le modele actuel est base sur `0001-bulbasaur.json`, `0002-ivysaur.json` et
+`0003-venusaur.json`. Ces trois fiches couvrent les profils de base, intermediaire et final,
+ainsi que les Mega-Evolutions, Gigantamax, attaques Elite et formes visuelles.
 
 ## Organisation
 
@@ -10,7 +12,18 @@ PokemonGo-API-/
 ├── app.js
 ├── data/
 │   ├── pokemon/
-│   │   └── 0001-bulbasaur.json
+│   │   ├── 0001-bulbasaur.json
+│   │   ├── 0002-ivysaur.json
+│   │   └── 0003-venusaur.json
+│   ├── pokemon-forms/
+│   │   ├── alola/
+│   │   ├── galar/
+│   │   ├── hisui/
+│   │   ├── paldea/
+│   │   ├── gigantamax/
+│   │   ├── mega/
+│   │   ├── mega-x/
+│   │   └── mega-y/
 │   └── types/
 ├── locales/
 │   ├── en/
@@ -36,7 +49,7 @@ Les identifiants techniques issus du Game Master restent en majuscules:
 {
   "id": "BULBASAUR",
   "formId": "BULBASAUR",
-  "form": "NORMAL"
+  "form": "normal"
 }
 ```
 
@@ -74,8 +87,8 @@ Les valeurs inconnues ou non applicables utilisent `null`. Les listes vides util
 | `dexId` | string | Numero Pokedex formate sur 4 chiffres. |
 | `generation` | number | Generation principale du Pokemon. |
 | `names` | object | Noms localises par langue. |
-| `form` | string | Forme technique, ex. `NORMAL`. |
-| `region` | string/null | Region ou variante regionale, sinon `null`. |
+| `form` | string | Forme technique en minuscules, ex. `normal`, `alola`, `mega`. |
+| `region` | object | Region avec `id`, `slug`, `generation` et noms localises. |
 | `pokemonClass` | string/null | Classe speciale si disponible, sinon `null`. |
 
 ### Langues Supportees
@@ -195,6 +208,7 @@ Chaque entree est indexee par son identifiant technique.
   "quickMoves": {
     "VINE_WHIP_FAST": {
       "id": "VINE_WHIP_FAST",
+      "slug": "vine_whip_fast",
       "power": 6,
       "energy": 5,
       "durationMs": 500,
@@ -217,6 +231,7 @@ Chaque entree est indexee par son identifiant technique.
 | Champ | Type | Description |
 | --- | --- | --- |
 | `id` | string | Identifiant technique de l'attaque. |
+| `slug` | string | Slug anglais de l'attaque. |
 | `power` | number | Puissance en raid/arene. |
 | `energy` | number | Energie gagnee ou consommee en raid/arene. |
 | `durationMs` | number | Duree de l'attaque en millisecondes. |
@@ -227,18 +242,27 @@ Chaque entree est indexee par son identifiant technique.
 | `combat.turns` | number | Nombre de tours PvP. |
 | `combat.buffs` | object/null | Buffs/debuffs PvP si disponibles. |
 
-Les attaques Elite sont listees separement:
+Les attaques Elite sont listees separement. Un tableau vide indique qu'aucune attaque
+Elite n'existe. Lorsqu'elles existent, le champ devient un objet indexe par identifiant et
+chaque entree suit le meme schema qu'une attaque normale:
 
 ```json
 {
   "eliteQuickMoves": [],
-  "eliteCinematicMoves": []
+  "eliteCinematicMoves": {
+    "FRENZY_PLANT": {
+      "id": "FRENZY_PLANT",
+      "slug": "frenzy_plant"
+    }
+  }
 }
 ```
 
 ## PvP
 
-`pvp` est un objet par ligue. Une ligue peut contenir un rang de tier, les IVs du rang 1 et un moveset recommande.
+`pvp` est un objet dynamique par ligue. Seules les ligues possedant des donnees doivent
+etre ajoutees. Il ne faut pas creer automatiquement `littleCup` pour un Pokemon qui ne
+possede que `greatLeague`.
 
 ```json
 {
@@ -277,7 +301,9 @@ Ligues recommandees:
   "evolutions": [
     {
       "id": "IVYSAUR",
+      "slug": "ivysaur",
       "formId": "IVYSAUR_NORMAL",
+      "form": "normal",
       "candies": 25,
       "item": null,
       "quests": []
@@ -292,13 +318,41 @@ Ligues recommandees:
 | Champ | Type | Description |
 | --- | --- | --- |
 | `evolutions[].id` | string | Identifiant technique du Pokemon obtenu. |
+| `evolutions[].slug` | string | Slug du Pokemon obtenu. |
 | `evolutions[].formId` | string | Identifiant de forme de l'evolution. |
+| `evolutions[].form` | string | Forme du Pokemon obtenu. |
 | `evolutions[].candies` | number/null | Cout en bonbons. |
-| `evolutions[].item` | string/null | Objet requis si applicable. |
+| `evolutions[].item` | object/null | Objet requis et ses informations, si applicable. |
 | `evolutions[].quests` | array | Conditions speciales d'evolution. |
 | `hasMegaEvolution` | boolean | Indique si le Pokemon possede une Mega-Evolution. |
-| `megaEvolutions` | array | Liste des Mega-Evolutions disponibles. |
+| `megaEvolutions` | array/object | `[]` sans Mega, sinon objet indexe par identifiant. |
 | `hasGigantamaxEvolution` | boolean | Indique si le Pokemon possede une forme Gigamax. |
+
+Lorsque `hasGigantamaxEvolution` vaut `true`, `assetForms` contient normalement une
+entree avec `form: "gigantamax"`. Le champ `availability.gigantamax` indique separement
+si cette forme est disponible dans Pokemon GO.
+
+### Profils D'Evolution
+
+| Profil | Regle |
+| --- | --- |
+| Base | Aucun predecesseur et au moins une entree dans `evolutions`. |
+| Intermediaire | Possede un predecesseur et au moins une entree dans `evolutions`. |
+| Final | Possede un predecesseur et `evolutions` vaut `[]`. |
+| Sans evolution | Aucun predecesseur et `evolutions` vaut `[]`. |
+
+### Schema Mega / Primo
+
+Une entree de `megaEvolutions` contient:
+
+- Identite: `id`, `slug`, `formId`, `form`, `names`.
+- Gameplay: `size`, `catchRate`, `fleeRate`, `availability`.
+- Combat: `maxCp`, `stats`, `primaryType`, `secondaryType`.
+- Mega: `energyCost`.
+- Images: `assets.image`, `assets.shinyImage`.
+
+`availability` d'une Mega contient `released`, `shinyReleased`, `tradable` et
+`pokemonHomeTransfer`.
 
 ## Assets
 
@@ -329,9 +383,18 @@ Ligues recommandees:
 | `assetForms[].isFemale` | boolean | Variante visuelle femelle. |
 | `assetForms[].image` | string | Image de la variante. |
 | `assetForms[].shinyImage` | string | Image chromatique de la variante. |
-| `regionForms` | array | Formes regionales rattachees au Pokemon. |
+| `regionForms` | array/object | `[]` sans forme, sinon objet indexe par `formId`. |
 
-## Exemple Minimal Valide
+## Formes Separees
+
+Les fiches de `data/pokemon-forms/` couvrent les formes Alola, Galar, Hisui, Paldea,
+Gigantamax, Mega et Mega X/Y.
+
+- Une forme regionale ou Gigantamax utilise le schema Pokemon complet.
+- Une Mega ou forme Primo utilise le schema Mega / Primo.
+- Les formes conservent leur propre `formId`, leurs types, attaques, evolutions et assets.
+
+## Squelette Structurel
 
 ```json
 {
@@ -350,8 +413,13 @@ Ligues recommandees:
     "Korean": "이상해씨",
     "Spanish": "Bulbasaur"
   },
-  "form": "NORMAL",
-  "region": null,
+  "form": "normal",
+  "region": {
+    "id": "KANTO",
+    "slug": "kanto",
+    "generation": 1,
+    "names": {}
+  },
   "size": {
     "height": 0.7,
     "weight": 6.9

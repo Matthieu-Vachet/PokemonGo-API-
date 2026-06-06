@@ -196,6 +196,9 @@ CHECKLIST_V3_HOST=127.0.0.1 npm run checklist:v3
 
 La checklist V3 est prete pour un deploiement Vercel sans serveur local permanent.
 
+Les commandes pour gerer `main`, `develop`, les branches `feature` et les rebases sans
+GitKraken sont documentees dans [GIT-WORKFLOW.md](GIT-WORKFLOW.md).
+
 1. Importer le depot GitHub dans Vercel.
 2. Conserver les reglages de build automatiques.
 3. Deployer le projet.

@@ -145,7 +145,10 @@ function createOpenApi() {
         "Référence complète de l'API Pokémon GO francophone. Chaque route contient des exemples fonctionnels. Pour exécuter les requêtes depuis le navigateur, utilisez [Swagger UI](/swagger).",
       license: { name: "ISC" },
     },
-    servers: [{ url: env.publicUrl, description: env.isProduction ? "Production" : "Local" }],
+    servers: [
+      { url: "/", description: "Serveur actuel" },
+      { url: env.publicUrl, description: env.isProduction ? "Production" : "Local" },
+    ],
     tags: [
       ["System", "État et découverte de l'API."],
       ["Pokémon", "Pokédex, formes, filtres et PC."],

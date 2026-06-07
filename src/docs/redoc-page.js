@@ -198,6 +198,7 @@ function redocPage() {
       native-scrollbars
       path-in-middle-panel
       required-props-first
+      scroll-y-offset=".topbar"
       sort-props-alphabetically
       theme='{
         "colors": {
@@ -220,46 +221,6 @@ function redocPage() {
     ></redoc>
     <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
     <script>
-      function redocSectionFromHash(hash) {
-        if (!hash) return null;
-        const decoded = decodeURIComponent(hash.replace(/^#/, ""));
-        const candidates = [
-          decoded,
-          decoded.split("/").slice(-2).join("/"),
-          decoded.split("/").pop()
-        ].filter(Boolean);
-        for (const value of candidates) {
-          const section = document.querySelector('[data-section-id="' + CSS.escape(value) + '"]');
-          if (section) return section;
-        }
-        return document.getElementById(decoded) || document.getElementById(candidates.at(-1));
-      }
-
-      function navigateToRedocHash(hash, attempts = 0) {
-        const section = redocSectionFromHash(hash);
-        if (!section && attempts < 30) {
-          window.setTimeout(() => navigateToRedocHash(hash, attempts + 1), 150);
-          return;
-        }
-        if (!section) return;
-        const topbar = document.querySelector(".topbar");
-        const offset = (topbar ? topbar.offsetHeight : 0) + 18;
-        const top = section.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: attempts ? "auto" : "smooth" });
-      }
-
-      document.addEventListener("click", event => {
-        const link = event.target.closest('a[href^="#"]');
-        if (!link || !link.hash) return;
-        event.preventDefault();
-        history.pushState(null, "", link.hash);
-        navigateToRedocHash(link.hash);
-      });
-      window.addEventListener("hashchange", () => navigateToRedocHash(location.hash));
-      window.addEventListener("load", () => {
-        if (location.hash) navigateToRedocHash(location.hash);
-      });
-
       Promise.all([
         fetch("/api/v1/stats/global").then(response => response.json()),
         fetch("/api-docs.json").then(response => response.json()),

@@ -32,12 +32,13 @@ test("GET /api-docs fournit la documentation Redoc", async () => {
   assert.match(response.headers["content-type"], /text\/html/);
   assert.match(response.text, /<redoc/);
   assert.match(response.text, /cdn\.redoc\.ly/);
-  assert.match(response.text, /navigateToRedocHash/);
+  assert.match(response.text, /scroll-y-offset="\.topbar"/);
 });
 
 test("GET /swagger fournit Swagger UI", async () => {
   const response = await request(app).get("/swagger/").expect(200);
-  assert.match(response.text, /Swagger UI/);
+  assert.match(response.text, /SwaggerUIBundle/);
+  assert.match(response.text, /unpkg\.com\/swagger-ui-dist/);
 });
 
 test("GET /health indique un état dégradé sans MongoDB", async () => {

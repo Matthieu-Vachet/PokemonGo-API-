@@ -5,11 +5,11 @@ const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const swaggerJsdoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
 const { env } = require("./config/env");
 const { databaseStatus } = require("./config/database");
 const { createOpenApi } = require("./docs/openapi");
 const { redocPage } = require("./docs/redoc-page");
+const { swaggerPage } = require("./docs/swagger-page");
 const { cacheMiddleware } = require("./lib/cache");
 const { errorHandler, notFound } = require("./middleware/errors");
 const { requestId } = require("./middleware/request-id");
@@ -27,7 +27,12 @@ function createApp() {
         directives: {
           defaultSrc: ["'self'"],
           imgSrc: ["'self'", "data:", "https:"],
-          scriptSrc: ["'self'", "'unsafe-inline'", "https://cdn.redoc.ly"],
+          scriptSrc: [
+            "'self'",
+            "'unsafe-inline'",
+            "https://cdn.redoc.ly",
+            "https://unpkg.com",
+          ],
           styleSrc: ["'self'", "'unsafe-inline'", "https:"],
         },
       },
@@ -64,7 +69,9 @@ function createApp() {
   const specification = swaggerJsdoc({ definition: createOpenApi(), apis: [] });
   app.get("/api-docs.json", (_request, response) => response.json(specification));
   app.get("/api-docs", (_request, response) => response.type("html").send(redocPage()));
-  app.use("/swagger", swaggerUi.serve, swaggerUi.setup(specification));
+  app.get(["/swagger", "/swagger/"], (_request, response) =>
+    response.type("html").send(swaggerPage()),
+  );
   app.get("/health", (_request, response) => {
     const database = databaseStatus();
     response.status(database === "connected" ? 200 : 503).json({

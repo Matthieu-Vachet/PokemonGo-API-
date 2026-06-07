@@ -1,0 +1,19 @@
+{
+  "name": "move-search",
+  "definition": {
+    "mappings": {
+      "dynamic": false,
+      "fields": {
+        "id": { "type": "string" },
+        "slug": [
+          { "type": "string" },
+          { "type": "autocomplete", "tokenization": "edgeGram", "minGrams": 2, "maxGrams": 20 }
+        ],
+        "searchTerms": [
+          { "type": "string" },
+          { "type": "autocomplete", "tokenization": "edgeGram", "minGrams": 2, "maxGrams": 30 }
+        ]
+      }
+    }
+  }
+}

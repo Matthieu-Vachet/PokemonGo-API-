@@ -2,14 +2,22 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
   "functions": {
-    "api/*.js": {
+    "api/checklist-v3.js": {
       "includeFiles": "data/**",
+      "maxDuration": 60
+    },
+    "api/detail-v3.js": {
+      "includeFiles": "data/**",
+      "maxDuration": 60
+    },
+    "api/rest.js": {
       "maxDuration": 60
     }
   },
   "routes": [
     { "src": "^/data(?:/.*)?$", "dest": "/api/blocked" },
     { "handle": "filesystem" },
+    { "src": "^/(api/v1(?:/.*)?|api-docs(?:/.*)?|api-docs\\.json|swagger(?:/.*)?|health)$", "dest": "/api/rest" },
     { "src": "^/$", "dest": "/checklist-v3/index.html" },
     { "src": "^/manifest\\.json$", "dest": "/checklist-v3/manifest.json" },
     { "src": "^/icon\\.svg$", "dest": "/checklist-v3/icon.svg" },

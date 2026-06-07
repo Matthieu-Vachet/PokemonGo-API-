@@ -1,0 +1,36 @@
+name: Synchroniser MongoDB Atlas
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "data/**/*.json"
+      - "attaque/**/*.json"
+      - "src/sync/**"
+      - "src/models/**"
+      - "scripts/sync.js"
+
+concurrency:
+  group: mongodb-sync-production
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run sync
+        env:
+          NODE_ENV: production
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}

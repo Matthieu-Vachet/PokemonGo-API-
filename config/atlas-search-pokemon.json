@@ -1,0 +1,21 @@
+{
+  "name": "pokemon-search",
+  "definition": {
+    "mappings": {
+      "dynamic": false,
+      "fields": {
+        "id": { "type": "string" },
+        "formId": { "type": "string" },
+        "slug": [
+          { "type": "string" },
+          { "type": "autocomplete", "tokenization": "edgeGram", "minGrams": 2, "maxGrams": 20 }
+        ],
+        "searchTerms": [
+          { "type": "string" },
+          { "type": "autocomplete", "tokenization": "edgeGram", "minGrams": 2, "maxGrams": 30 }
+        ],
+        "names": { "type": "document", "dynamic": true }
+      }
+    }
+  }
+}

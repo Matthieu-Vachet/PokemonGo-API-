@@ -1,8 +1,14 @@
 # Pokemon GO API
 
-Une base de donnees JSON structuree pour Pokemon GO, pensee pour alimenter une API, un site, un bot Discord, un outil PvP ou une application de collection.
+API REST publique, multilingue et versionnee pour Pokemon GO, alimentee par une base de
+donnees JSON structuree. Elle est pensee pour servir durablement un Pokedex, un bot
+Discord, un site, une application mobile, des outils PvP, Raid et collection.
 
-Le projet contient les donnees Pokemon, les types, les traductions et les assets dans une structure simple a lire, facile a versionner et prete a exposer via Express.
+Le backend de production vit dans `src/`. Les checklists restent des outils independants
+pour enrichir les fiches, tandis que MongoDB Atlas fournit les recherches, filtres et
+classements rapides de l'API. La synchronisation ne modifie jamais les JSON sources.
+
+Documentation detaillee de l'API : [API.md](API.md)
 
 ## Points Forts
 
@@ -13,13 +19,27 @@ Le projet contient les donnees Pokemon, les types, les traductions et les assets
 - Profils d'evolution distincts: base, intermediaire, final et sans evolution.
 - Formes Alola, Galar, Hisui, Paldea, Gigantamax, Mega et Primo.
 - Assets principaux, shiny, costumes et formes visuelles.
-- Serveur Express minimal deja branche pour construire les routes API.
+- API Express securisee, compressee, mise en cache et documentee avec OpenAPI.
+- Synchronisation incrementale JSON vers MongoDB avec detection des changements.
+- Recherche multilingue, pagination, tris et filtres combinables.
+- Routes Pokemon, formes, attaques, PvP, evolutions, Raid, assets et statistiques.
+- Schemas MongoDB flexibles pour accepter les futurs champs JSON.
 
 ## Structure
 
 ```text
 PokemonGo-API-/
 ├── app.js
+├── src/
+│   ├── config/
+│   ├── docs/
+│   ├── models/
+│   ├── routes/
+│   ├── services/
+│   └── sync/
+├── scripts/
+│   ├── sync.js
+│   └── sync-watch.js
 ├── data/
 │   ├── pokemon/
 │   │   ├── 0001-bulbasaur.json
@@ -42,6 +62,7 @@ PokemonGo-API-/
 │   └── images/
 ├── SCHEMA.md
 ├── TEMPLATES.md
+├── API.md
 └── package.json
 ```
 
@@ -49,6 +70,13 @@ PokemonGo-API-/
 
 ```bash
 npm install
+cp .env.example .env
+```
+
+Renseigner ensuite `MONGODB_URI` dans `.env`, puis synchroniser les donnees :
+
+```bash
+npm run sync
 ```
 
 ## Demarrage
@@ -67,6 +95,8 @@ Par defaut, le serveur demarre sur le port `3000`.
 
 ```text
 http://localhost:3000
+http://localhost:3000/api-docs
+http://localhost:3000/swagger
 ```
 
 ## Exemple De Donnee
@@ -211,6 +241,13 @@ Vercel sert la V3 a la racine du domaine et expose les fonctions serverless:
 
 - `/api/checklist-v3`
 - `/api/detail-v3`
+- `/api/v1` pour l'API REST MongoDB
+- `/api-docs` pour la documentation moderne
+- `/swagger` pour la console interactive
+
+Configurer `MONGODB_URI`, `NODE_ENV=production` et `API_PUBLIC_URL` dans les variables
+d'environnement Vercel. Les pushes GitHub redeploient automatiquement le projet lorsque
+l'integration GitHub est active.
 
 Les API exigent la variable d'environnement Vercel `CHECKLIST_PASSWORD`. Le navigateur
 demande ce mot de passe et le conserve localement. Les acces directs a `/data` sont

@@ -1274,7 +1274,12 @@
       };
       el.refresh.onclick = load;
       el.changeAccess.onclick = () => {
+        const password = (
+          prompt("Nouveau mot de passe de la checklist Pokémon GO :") || ""
+        ).trim();
+        if (!password) return;
         localStorage.removeItem(accessKey);
+        localStorage.setItem(accessKey, password);
         load();
       };
       el.mobileFilters.onclick = () => {

@@ -780,7 +780,8 @@
             <option value="name">Nom</option>
           </select>
           <button class="tool-btn" id="shiny">Mode shiny</button
-          ><button class="tool-btn" id="refresh">Actualiser</button>
+          ><button class="tool-btn" id="refresh">Actualiser</button
+          ><button class="tool-btn" id="changeAccess">Changer accès</button>
         </section>
       </div>
       <section class="results">
@@ -828,6 +829,7 @@
         "sort",
         "shiny",
         "refresh",
+        "changeAccess",
         "entries",
         "resultCount",
         "more",
@@ -891,6 +893,7 @@
         if (!password)
           password =
             prompt("Mot de passe de la checklist Pokémon GO :") || "";
+        password = password.trim();
         if (password) localStorage.setItem(accessKey, password);
         return password;
       }
@@ -909,7 +912,11 @@
         }
         const payload = await response.json();
         if (!response.ok)
-          throw new Error(payload.error || `Erreur HTTP ${response.status}`);
+          throw new Error(
+            response.status === 401
+              ? "Mot de passe incorrect. Utilise le bouton Changer accès."
+              : payload.error || `Erreur HTTP ${response.status}`,
+          );
         return payload;
       }
       function loadProgress() {
@@ -1266,6 +1273,10 @@
         saveFilters();
       };
       el.refresh.onclick = load;
+      el.changeAccess.onclick = () => {
+        localStorage.removeItem(accessKey);
+        load();
+      };
       el.mobileFilters.onclick = () => {
         el.toolbar.classList.toggle("open");
         el.mobileFilters.classList.toggle(

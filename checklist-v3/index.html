@@ -527,6 +527,59 @@
         font-weight: 700;
         overflow-wrap: anywhere;
       }
+      .cp-summary {
+        margin-bottom: 10px;
+      }
+      .cp-table-wrap {
+        overflow: auto;
+        max-height: 62dvh;
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        background: #fff;
+      }
+      .cp-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.76rem;
+      }
+      .cp-table th,
+      .cp-table td {
+        padding: 8px 10px;
+        border-bottom: 1px solid var(--line);
+        text-align: right;
+        white-space: nowrap;
+      }
+      .cp-table th:first-child,
+      .cp-table td:first-child {
+        text-align: left;
+      }
+      .cp-table thead {
+        position: sticky;
+        z-index: 2;
+        top: 0;
+        color: #fff;
+        background: var(--blue);
+      }
+      .cp-table tr.cp-landmark {
+        background: #fff5d9;
+        font-weight: 800;
+      }
+      .cp-label {
+        display: inline-block;
+        margin-left: 6px;
+        padding: 2px 5px;
+        border-radius: 999px;
+        color: #fff;
+        background: var(--red);
+        font-size: 0.58rem;
+        vertical-align: middle;
+      }
+      .cp-match {
+        color: #278443;
+      }
+      .cp-mismatch {
+        color: var(--red);
+      }
       .issue {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto;
@@ -1042,6 +1095,38 @@
           : '<div class="empty">Aucune variante visuelle.</div>';
         return `<div class="section-grid">${info("Capacités de formes", kv("Méga disponible", d.hasMegaEvolution) + kv("Gigantamax disponible", d.hasGigantamaxEvolution) + kv("Formes régionales", Array.isArray(d.regionForms) ? d.regionForms.length : Object.keys(d.regionForms || {}).length) + kv("Méga / Primo", Array.isArray(d.megaEvolutions) ? d.megaEvolutions.length : Object.keys(d.megaEvolutions || {}).length))}</div><section class="asset-section"><h2>Aperçu principal</h2><div class="asset-gallery">${main}</div></section><section class="asset-section"><h2>Variantes visuelles (${variants.length})</h2><div class="asset-gallery">${gallery}</div></section>`;
       }
+      function cpPanel(d) {
+        const rows = Array.isArray(d.cpByLevel) ? d.cpByLevel : [];
+        if (!rows.length)
+          return '<div class="empty">Statistiques insuffisantes pour calculer les PC.</div>';
+        const landmarks = {
+          15: ["Étude", d.maxCp?.researchLevel15],
+          20: ["Raid", d.maxCp?.raidLevel20],
+          25: ["Météo", d.maxCp?.weatherBoostLevel25],
+          40: ["Niveau 40", d.maxCp?.maxLevel40],
+          50: ["Niveau 50", d.maxCp?.maxLevel50],
+        };
+        const checks = Object.entries(landmarks)
+          .map(([level, [label, expected]]) => {
+            const calculated = rows.find((row) => row.level === Number(level))
+              ?.maxCp;
+            const matches = expected === calculated;
+            return kv(
+              label,
+              expected === undefined
+                ? `${calculated} · absent du JSON`
+                : `${calculated} / JSON ${expected} ${matches ? "OK" : "différent"}`,
+            );
+          })
+          .join("");
+        const table = rows
+          .map((row) => {
+            const landmark = landmarks[row.level];
+            return `<tr class="${landmark ? "cp-landmark" : ""}"><td>Niveau ${row.level}${landmark ? `<span class="cp-label">${esc(landmark[0])}</span>` : ""}</td><td>${row.minCp.toLocaleString("fr")}</td><td>${row.maxCp.toLocaleString("fr")}</td></tr>`;
+          })
+          .join("");
+        return `<div class="section-grid cp-summary">${info("Formule PC", kv("Stats", `${d.stats.attack} ATQ · ${d.stats.defense} DEF · ${d.stats.stamina} END`) + kv("Minimum", "IV 0 / 0 / 0") + kv("Maximum", "IV 15 / 15 / 15"))}${info("Contrôle avec le JSON", checks)}</div><div class="cp-table-wrap"><table class="cp-table"><thead><tr><th>Niveau</th><th>PC min 0/0/0</th><th>PC max 15/15/15</th></tr></thead><tbody>${table}</tbody></table></div>`;
+      }
       function issuesPanel(e) {
         return e.issues.length
           ? e.issues
@@ -1055,6 +1140,7 @@
       function renderDetail(e, d) {
         const tabs = [
           ["overview", "Aperçu"],
+          ["cp", "PC par niveau"],
           ["issues", `Checklist (${e.issues.length})`],
           ["moves", "Attaques"],
           ["pvp", "PvP"],
@@ -1073,7 +1159,7 @@
               `<button class="tab ${i === 0 ? "active" : ""}" data-tab="${id}">${label}</button>`,
           )
           .join("");
-        el.panels.innerHTML = `<div class="panel active" data-panel="overview">${overview(d)}</div><div class="panel" data-panel="issues">${issuesPanel(e)}</div><div class="panel" data-panel="moves"><h2>Attaques rapides</h2>${objectCards("rapide", d.quickMoves)}<h2>Attaques chargées</h2>${objectCards("chargée", d.cinematicMoves)}</div><div class="panel" data-panel="pvp">${
+        el.panels.innerHTML = `<div class="panel active" data-panel="overview">${overview(d)}</div><div class="panel" data-panel="cp">${cpPanel(d)}</div><div class="panel" data-panel="issues">${issuesPanel(e)}</div><div class="panel" data-panel="moves"><h2>Attaques rapides</h2>${objectCards("rapide", d.quickMoves)}<h2>Attaques chargées</h2>${objectCards("chargée", d.cinematicMoves)}</div><div class="panel" data-panel="pvp">${
           d.pvp
             ? `<div class="section-grid">${Object.entries(d.pvp)
                 .map(([league, v]) =>

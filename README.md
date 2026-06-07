@@ -186,6 +186,10 @@ complete et la progression manuelle, ajoute une vue detaillee des donnees, un de
 responsive pour ordinateur, tablette et mobile, ainsi qu'un acces depuis les appareils
 connectes au meme reseau local. L'adresse mobile exacte est affichee au demarrage.
 
+La fiche detaillee contient aussi un tableau des PC minimum (`0/0/0`) et maximum
+(`15/15/15`) pour chaque demi-niveau de 1 a 50. Le calcul utilise les statistiques de
+base, les IV et les multiplicateurs de niveau dans `lib/pokemon-cp.js`.
+
 La V3 ecoute par defaut sur le reseau local. Pour limiter temporairement l'acces au Mac:
 
 ```bash

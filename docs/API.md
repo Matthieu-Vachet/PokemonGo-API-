@@ -98,7 +98,7 @@ Documentation :
 | --- | --- |
 | Pokemon | `/api/v1/pokemon`, `/api/v1/pokemon/:identifier` |
 | Identifiants | `/pokemon/slug/:slug`, `/pokemon/id/:id`, `/pokemon/dex/:dex`, `/pokemon/form-id/:formId` |
-| Formes | `/pokemon/:identifier/forms`, `/mega`, `/gigantamax`, `/regional` |
+| Formes | `/pokemon/:identifier/forms`, `/mega`, `/dynamax`, `/gigantamax`, `/regional` |
 | Evolutions | `/pokemon/:identifier/evolutions`, `/pokemon/:identifier/evolution-chain`, `/evolutions/special` |
 | Recherche | `/api/v1/search?q=dracaufeu` |
 | Attaques | `/moves`, `/moves/:identifier`, `/moves/:identifier/pokemon` |
@@ -143,6 +143,8 @@ curl "http://localhost:3000/api/v1/pokemon/charizard/cp?level=50&attackIv=15&def
 curl "http://localhost:3000/api/v1/pvp/great/rankings?limit=20"
 curl "http://localhost:3000/api/v1/moves/BLAST_BURN/pokemon"
 curl "http://localhost:3000/api/v1/pokemon/venusaur/moves"
+curl "http://localhost:3000/api/v1/dynamax"
+curl "http://localhost:3000/api/v1/gigantamax"
 ```
 
 ## Atlas Search

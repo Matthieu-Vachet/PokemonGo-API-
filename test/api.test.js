@@ -6,6 +6,10 @@ const { normalizeLeague } = require("../src/lib/pvp");
 const { buildPokemonFilter } = require("../src/services/pokemon-service");
 const { presentPokemon } = require("../src/services/pokemon-presenter");
 const { collectAllDocuments } = require("../src/sync/source-reader");
+const {
+  buildChecklist,
+  detailForKey,
+} = require("../apps/checklist/server/engine");
 
 const app = createApp();
 
@@ -62,6 +66,41 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   assert.equal(data.types.length, 18);
   assert.equal(new Set(data.pokemon.map((pokemon) => pokemon.key)).size, data.pokemon.length);
   assert.ok(data.pokemon.every((pokemon) => Array.isArray(pokemon.data.quickMoves)));
+});
+
+test("les types, PvP null et formes Max sont normalisés", () => {
+  const data = collectAllDocuments();
+  const caterpie = data.pokemon.find((pokemon) => pokemon.key === "CATERPIE");
+  const dynamax = data.pokemon.find((pokemon) => pokemon.key === "BULBASAUR_DYNAMAX");
+  const gmax = data.pokemon.find((pokemon) => pokemon.key === "VENUSAUR_GIGANTAMAX");
+  assert.equal(caterpie.data.primaryType, "BUG");
+  assert.equal(caterpie.data.secondaryType, null);
+  assert.deepEqual(caterpie.pvpLeagues, []);
+  assert.equal(dynamax.kind, "dynamax");
+  assert.deepEqual(dynamax.maxMoveIds, ["MAX_OVERGROWTH", "MAX_STRIKE"]);
+  assert.equal(gmax.kind, "gigantamax");
+  assert.deepEqual(gmax.maxMoveIds, ["GMAX_VINE_LASH"]);
+  assert.ok(data.moves.some((move) => move.kind === "max"));
+  assert.ok(data.moves.some((move) => move.kind === "gmax"));
+});
+
+test("la checklist affiche les formes Max héritées sans dupliquer leur source", () => {
+  const checklist = buildChecklist();
+  const dynamax = checklist.find((entry) => entry.kind === "dynamax");
+  assert.equal(dynamax.name, "Bulbizarre");
+  assert.equal(dynamax.primaryType, "GRASS");
+  assert.ok(dynamax.image);
+  assert.equal(dynamax.maxMoveCount, 2);
+  assert.equal(dynamax.complete, true);
+
+  const detail = detailForKey(dynamax.key);
+  assert.equal(detail.names.French, "Bulbizarre");
+  assert.equal(detail.sourceData.inherits, "BULBASAUR");
+  assert.equal(detail.sourceData.slug, undefined);
+  assert.deepEqual(
+    Object.values(detail.moveDetails.maxMoves).map((move) => move.id),
+    ["MAX_OVERGROWTH", "MAX_STRIKE"],
+  );
 });
 
 test("les anciennes attaques embarquées sont présentées comme références", () => {

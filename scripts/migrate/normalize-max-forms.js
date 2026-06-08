@@ -1,0 +1,87 @@
+const fs = require("fs");
+const path = require("path");
+
+const rootDir = path.resolve(__dirname, "../..");
+const write = process.argv.includes("--write");
+const pokemonDir = path.join(rootDir, "data", "pokemon");
+const forms = ["dynamax", "gigantamax"];
+
+function read(file) {
+  return JSON.parse(fs.readFileSync(file, "utf8"));
+}
+
+function same(left, right) {
+  return JSON.stringify(left) === JSON.stringify(right);
+}
+
+function diffObject(parent = {}, form = {}) {
+  return Object.fromEntries(
+    Object.entries(form).filter(([key, value]) => !same(parent[key], value)),
+  );
+}
+
+function parentFor(form) {
+  const files = fs.readdirSync(pokemonDir).filter((name) => name.endsWith(".json"));
+  const byDex = form.dexId
+    ? files.find((name) => name.startsWith(`${form.dexId}-`))
+    : null;
+  const file =
+    byDex ||
+    files.find((name) => {
+      const candidate = read(path.join(pokemonDir, name));
+      return candidate.id === form.id || candidate.formId === form.inherits;
+    });
+  if (!file) throw new Error(`Parent introuvable pour ${form.formId}`);
+  return read(path.join(pokemonDir, file));
+}
+
+function maxMoves(form) {
+  return (form.cinematicMoves || []).filter(
+    (id) => typeof id === "string" && /^(G?MAX)_/.test(id),
+  );
+}
+
+function normalize(form, parent) {
+  const level20 =
+    form.maxBattle?.encounterCp?.level20 ??
+    form.maxCp?.maxBattlesLevel20 ??
+    form.maxCp?.dynamaxLevel20 ??
+    null;
+  const result = {
+    id: form.id,
+    formId: form.formId,
+    form: form.form,
+    inherits: form.inherits || parent.formId,
+    availability: diffObject(parent.availability, form.availability),
+    maxBattle: {
+      encounterCp: { level20 },
+      moves: form.maxBattle?.moves || maxMoves(form),
+    },
+    assets: form.assets,
+  };
+  if (!Object.keys(result.availability).length) delete result.availability;
+  if (!result.assets || same(result.assets, parent.assets)) delete result.assets;
+  if (form.evolutions && !same(form.evolutions, parent.evolutions))
+    result.evolutions = form.evolutions;
+  return result;
+}
+
+const report = { mode: write ? "write" : "dry-run", files: [], errors: [] };
+
+for (const folder of forms) {
+  const directory = path.join(rootDir, "data", "pokemon-forms", folder);
+  if (!fs.existsSync(directory)) continue;
+  for (const name of fs.readdirSync(directory).filter((file) => file.endsWith(".json"))) {
+    const file = path.join(directory, name);
+    try {
+      const data = normalize(read(file), parentFor(read(file)));
+      report.files.push(path.relative(rootDir, file));
+      if (write) fs.writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`);
+    } catch (error) {
+      report.errors.push(`${path.relative(rootDir, file)}: ${error.message}`);
+    }
+  }
+}
+
+console.log(JSON.stringify(report, null, 2));
+if (report.errors.length) process.exitCode = 1;

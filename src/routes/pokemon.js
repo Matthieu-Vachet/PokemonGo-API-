@@ -128,6 +128,7 @@ router.get(
       cinematicMoves: moveIds(pokemon.data?.cinematicMoves),
       eliteQuickMoves: moveIds(pokemon.data?.eliteQuickMoves),
       eliteCinematicMoves: moveIds(pokemon.data?.eliteCinematicMoves),
+      maxMoves: moveIds(pokemon.data?.maxBattle?.moves),
     };
     const ids = [...new Set(Object.values(categories).flat())];
     const moves = await Move.find({ id: { $in: ids } }).lean();

@@ -33,7 +33,8 @@ function namesToTerms(names) {
 }
 
 function normalizeType(value) {
-  return String(value || "")
+  const reference = value && typeof value === "object" ? value.type : value;
+  return String(reference || "")
     .replace(/^POKEMON_TYPE_/, "")
     .toUpperCase();
 }
@@ -56,15 +57,24 @@ function moveIds(value) {
 function normalizePokemonMoveFields(data) {
   return {
     ...data,
+    primaryType: normalizeType(data.primaryType) || undefined,
+    secondaryType:
+      data.secondaryType === null
+        ? null
+        : normalizeType(data.secondaryType) || undefined,
     quickMoves: moveIds(data.quickMoves),
     cinematicMoves: moveIds(data.cinematicMoves),
     eliteQuickMoves: moveIds(data.eliteQuickMoves),
     eliteCinematicMoves: moveIds(data.eliteCinematicMoves),
+    maxBattle: data.maxBattle
+      ? { ...data.maxBattle, moves: moveIds(data.maxBattle.moves) }
+      : data.maxBattle,
   };
 }
 
 function pokemonKind(data, hint) {
   if (hint) return hint;
+  if (data.form === "dynamax") return "dynamax";
   if (data.form === "gigantamax") return "gigantamax";
   if (String(data.form || "").startsWith("mega") || data.form === "primal")
     return "mega";
@@ -93,10 +103,14 @@ function mergePokemon(parent, form) {
     eliteQuickMoves: form.eliteQuickMoves || parent.eliteQuickMoves,
     eliteCinematicMoves:
       form.eliteCinematicMoves || parent.eliteCinematicMoves,
-    availability: form.availability || parent.availability,
-    maxCp: form.maxCp || parent.maxCp,
-    pvp: form.pvp || parent.pvp,
+    availability: {
+      ...(parent.availability || {}),
+      ...(form.availability || {}),
+    },
+    maxCp: form.maxCp === undefined ? parent.maxCp : form.maxCp,
+    pvp: form.pvp === undefined ? parent.pvp : form.pvp,
     assets: form.assets || parent.assets,
+    maxBattle: form.maxBattle || parent.maxBattle,
   };
 }
 
@@ -104,12 +118,13 @@ function toPokemonDocument(data, sourceFiles, hint, parentKey = null) {
   const normalizedData = normalizePokemonMoveFields(data);
   const availability = data.availability || {};
   const kind = pokemonKind(data, hint);
-  const primaryType = normalizeType(data.primaryType?.type);
-  const secondaryType = normalizeType(data.secondaryType?.type);
+  const primaryType = normalizeType(data.primaryType);
+  const secondaryType = normalizeType(data.secondaryType);
   const quickMoves = moveIds(data.quickMoves);
   const chargedMoves = moveIds(data.cinematicMoves);
   const eliteQuickMoves = moveIds(data.eliteQuickMoves);
   const eliteChargedMoves = moveIds(data.eliteCinematicMoves);
+  const maxMoves = moveIds(data.maxBattle?.moves);
   const key = pokemonKey(data);
   const searchTerms = [
     data.id,
@@ -121,6 +136,7 @@ function toPokemonDocument(data, sourceFiles, hint, parentKey = null) {
     ...namesToTerms(data.names),
     ...quickMoves,
     ...chargedMoves,
+    ...maxMoves,
   ]
     .filter(Boolean)
     .map(String);
@@ -145,8 +161,13 @@ function toPokemonDocument(data, sourceFiles, hint, parentKey = null) {
     weatherBoost: (data.weatherBoost || []).map(String),
     moveIds: [...new Set([...quickMoves, ...chargedMoves])],
     eliteMoveIds: [...new Set([...eliteQuickMoves, ...eliteChargedMoves])],
+    maxMoveIds: [...new Set(maxMoves)],
     pvpLeagues:
-      data.pvp && typeof data.pvp === "object" ? Object.keys(data.pvp) : [],
+      data.pvp && typeof data.pvp === "object"
+        ? Object.entries(data.pvp)
+            .filter(([, league]) => league !== null)
+            .map(([league]) => league)
+        : [],
     stats: data.stats || {},
     maxCp: data.maxCp || {},
     flags: {
@@ -225,6 +246,8 @@ function collectMoveDocuments() {
     ["data/moves/charged", "charged", false],
     ["data/moves/fast_elite", "fast", true],
     ["data/moves/charged_elite", "charged", true],
+    ["data/moves/max", "max", false],
+    ["data/moves/gmax", "gmax", false],
   ];
   const documents = new Map();
 
@@ -243,12 +266,12 @@ function collectMoveDocuments() {
         kind,
         categories: [...new Set(categories)],
         elite: elite || existing?.elite || false,
-        type: normalizeType(data.type?.type),
+        type: normalizeType(data.type),
         names: data.names || {},
         searchTerms: [
           data.id,
           data.slug,
-          normalizeType(data.type?.type),
+          normalizeType(data.type),
           ...namesToTerms(data.names),
         ].filter(Boolean),
         power: data.power,
@@ -257,7 +280,7 @@ function collectMoveDocuments() {
         combat: data.combat,
         sourceFiles: [...new Set(sourceFiles)],
         sourceHash: hash(data),
-        data,
+        data: { ...data, type: normalizeType(data.type) },
       });
     }
   }

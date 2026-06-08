@@ -17,12 +17,19 @@ function moveIds(value) {
 
 function normalizedPokemonData(data) {
   if (!data || typeof data !== "object") return data;
-  return Object.fromEntries(
+  const normalized = Object.fromEntries(
     Object.entries(data).map(([key, value]) => [
       key,
       MOVE_FIELDS.includes(key) ? moveIds(value) : value,
     ]),
   );
+  if (normalized.maxBattle) {
+    normalized.maxBattle = {
+      ...normalized.maxBattle,
+      moves: moveIds(normalized.maxBattle.moves),
+    };
+  }
+  return normalized;
 }
 
 function presentPokemon(document) {

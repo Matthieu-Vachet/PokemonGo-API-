@@ -20,10 +20,18 @@ PokemonGo-API-/
 │   │   ├── galar/
 │   │   ├── hisui/
 │   │   ├── paldea/
+│   │   ├── dynamax/
 │   │   ├── gigantamax/
 │   │   ├── mega/
 │   │   ├── mega-x/
 │   │   └── mega-y/
+│   ├── moves/
+│   │   ├── fast/
+│   │   ├── charged/
+│   │   ├── fast_elite/
+│   │   ├── charged_elite/
+│   │   ├── max/
+│   │   └── gmax/
 │   └── types/
 ├── locales/
 │   ├── en/
@@ -61,14 +69,16 @@ Les slugs restent en anglais, en minuscules, sans accents et avec des tirets:
 }
 ```
 
-Les noms affichables sont regroupes dans `names` ou dans les objets `type.names`:
+Les noms affichables sont regroupes dans `names`. Les types referencent leur catalogue
+central par identifiant court:
 
 ```json
 {
   "names": {
     "English": "Bulbasaur",
     "French": "Bulbizarre"
-  }
+  },
+  "primaryType": "GRASS"
 }
 ```
 
@@ -117,23 +127,12 @@ Les objets de noms utilisent ces cles:
 ### Types
 
 `primaryType` est obligatoire. `secondaryType` vaut `null` pour un Pokemon mono-type.
+Ces champs referencent les identifiants courts de `data/types/`.
 
 ```json
 {
-  "primaryType": {
-    "type": "POKEMON_TYPE_GRASS",
-    "names": {
-      "English": "Grass",
-      "French": "Plante"
-    }
-  },
-  "secondaryType": {
-    "type": "POKEMON_TYPE_POISON",
-    "names": {
-      "English": "Poison",
-      "French": "Poison"
-    }
-  }
+  "primaryType": "GRASS",
+  "secondaryType": "POISON"
 }
 ```
 
@@ -221,7 +220,7 @@ Chaque fichier du catalogue central contient :
 | `power` | number | Puissance en raid/arene. |
 | `energy` | number | Energie gagnee ou consommee en raid/arene. |
 | `durationMs` | number | Duree de l'attaque en millisecondes. |
-| `type` | object | Type de l'attaque avec traductions. |
+| `type` | string | Identifiant court du type, ex. `GRASS`. |
 | `names` | object | Noms localises de l'attaque. |
 | `combat.energy` | number | Energie gagnee ou consommee en PvP. |
 | `combat.power` | number | Puissance en PvP. |
@@ -235,32 +234,36 @@ attaque dans la categorie correspondante. Les references doivent exister dans :
 - `data/moves/charged/`
 - `data/moves/fast_elite/`
 - `data/moves/charged_elite/`
+- `data/moves/max/`
+- `data/moves/gmax/`
 
 ## PvP
 
-`pvp` est un objet dynamique par ligue. Seules les ligues possedant des donnees doivent
-etre ajoutees. Il ne faut pas creer automatiquement `littleCup` pour un Pokemon qui ne
-possede que `greatLeague`.
+`pvp` peut valoir `null` si aucune information PvP n'est applicable. Sinon, les quatre
+ligues sont explicites et chaque ligue peut valoir `null`.
 
 ```json
 {
   "pvp": {
-    "littleCup": {
-      "tierRank": "B",
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "F",
       "rank1": {
         "ivs": {
-          "attack": 0,
-          "defense": 12,
-          "stamina": 14
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
         },
-        "level": 18,
-        "cp": 500
+        "level": 50,
+        "cp": 1260
       },
       "bestMovesets": {
         "fast": "VINE_WHIP_FAST",
         "charged": ["POWER_WHIP", "SLUDGE_BOMB"]
       }
-    }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
   }
 }
 ```
@@ -332,6 +335,39 @@ Une entree de `megaEvolutions` contient:
 `availability` d'une Mega contient `released`, `shinyReleased`, `tradable` et
 `pokemonHomeTransfer`.
 
+### Schema Dynamax / Gigantamax
+
+Une forme Dynamax ou Gigantamax herite des donnees de sa fiche Pokemon normale. Elle ne
+duplique que les informations propres au combat Max.
+
+```json
+{
+  "id": "VENUSAUR",
+  "formId": "VENUSAUR_GIGANTAMAX",
+  "form": "gigantamax",
+  "inherits": "VENUSAUR",
+  "maxBattle": {
+    "encounterCp": {
+      "level20": 1554
+    },
+    "moves": ["GMAX_VINE_LASH"]
+  },
+  "assets": {
+    "image": "",
+    "shinyImage": ""
+  }
+}
+```
+
+| Champ | Type | Description |
+| --- | --- | --- |
+| `inherits` | string | Identifiant du Pokemon parent dont la forme herite. |
+| `maxBattle.encounterCp.level20` | number/null | PC de rencontre du combat Max. |
+| `maxBattle.moves` | string[] | References vers `data/moves/max/` ou `data/moves/gmax/`. |
+
+Les champs qui changent reellement, comme `availability`, `maxCp`, `evolutions` ou
+`assets`, peuvent etre ajoutes a la forme. Les autres sont herites automatiquement.
+
 ## Assets
 
 ```json
@@ -366,11 +402,12 @@ Une entree de `megaEvolutions` contient:
 ## Formes Separees
 
 Les fiches de `data/pokemon-forms/` couvrent les formes Alola, Galar, Hisui, Paldea,
-Gigantamax, Mega et Mega X/Y.
+Dynamax, Gigantamax, Mega et Mega X/Y.
 
-- Une forme regionale ou Gigantamax utilise le schema Pokemon complet.
+- Une forme regionale utilise le schema Pokemon complet.
+- Une forme Dynamax ou Gigantamax utilise le schema minimal `inherits` + `maxBattle`.
 - Une Mega ou forme Primo utilise le schema Mega / Primo.
-- Les formes conservent leur propre `formId`, leurs types, attaques, evolutions et assets.
+- Les formes conservent leur propre `formId` et uniquement les champs qui different.
 
 ## Squelette Structurel
 
@@ -432,20 +469,19 @@ Gigantamax, Mega et Mega X/Y.
     "raidLevel20": 637,
     "researchLevel15": 477
   },
-  "pvp": {},
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": null,
+    "ultraLeague": null,
+    "masterLeague": null
+  },
   "stats": {
     "stamina": 128,
     "attack": 118,
     "defense": 111
   },
-  "primaryType": {
-    "type": "POKEMON_TYPE_GRASS",
-    "names": {}
-  },
-  "secondaryType": {
-    "type": "POKEMON_TYPE_POISON",
-    "names": {}
-  },
+  "primaryType": "GRASS",
+  "secondaryType": "POISON",
   "pokemonClass": null,
   "quickMoves": [],
   "cinematicMoves": [],

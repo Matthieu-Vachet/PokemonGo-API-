@@ -109,17 +109,13 @@ function createValidator() {
 
   function typeBlock(value, pathName, nullable = false) {
     if (value === null && nullable) return;
-    if (actualType(value) !== "object") {
-      add(
-        pathName,
-        value === undefined ? "missing" : "type",
-        nullable ? "objet ou null" : "objet",
-        actualType(value),
-      );
-      return;
-    }
-    field(value, "type", `${pathName}.type`, "string", { nonEmpty: true });
-    names(value.names, `${pathName}.names`);
+    if (typeof value === "string" && value.trim()) return;
+    add(
+      pathName,
+      value === undefined ? "missing" : "type",
+      nullable ? "identifiant ou null" : "identifiant de type",
+      actualType(value),
+    );
   }
 
   function region(value, pathName) {
@@ -149,7 +145,9 @@ function createValidator() {
       field(value, key, `${pathName}.${key}`, "number");
     typeBlock(value.type, `${pathName}.type`);
     names(value.names, `${pathName}.names`);
-    const combat = field(value, "combat", `${pathName}.combat`, "object");
+    const combat = field(value, "combat", `${pathName}.combat`, "object", {
+      nullable: true,
+    });
     if (actualType(combat) === "object") {
       for (const key of ["energy", "power", "turns"])
         field(combat, key, `${pathName}.combat.${key}`, "number");
@@ -194,6 +192,7 @@ function createValidator() {
   }
 
   function pvp(value, pathName) {
+    if (value === null) return;
     if (actualType(value) !== "object") {
       add(
         pathName,
@@ -205,10 +204,21 @@ function createValidator() {
     }
     if (Object.keys(value).length === 0)
       add(pathName, "empty", "objet non vide", "vide");
-    for (const [league, leagueData] of Object.entries(value)) {
+    for (const league of [
+      "littleCup",
+      "greatLeague",
+      "ultraLeague",
+      "masterLeague",
+    ]) {
+      const leagueData = value[league];
       const leaguePath = `${pathName}.${league}`;
+      if (leagueData === undefined) {
+        add(leaguePath, "missing", "objet ligue ou null", "absent");
+        continue;
+      }
+      if (leagueData === null) continue;
       if (actualType(leagueData) !== "object") {
-        add(leaguePath, "type", "objet ligue", actualType(leagueData));
+        add(leaguePath, "type", "objet ligue ou null", actualType(leagueData));
         continue;
       }
       field(leagueData, "tierRank", `${leaguePath}.tierRank`, "string", {
@@ -318,6 +328,63 @@ function createValidator() {
     assets(value.assets, `${pathName}.assets`);
   }
 
+  function maxForm(value, pathName = "") {
+    const prefix = pathName ? `${pathName}.` : "";
+    for (const key of ["id", "formId", "form", "inherits"])
+      field(value, key, `${prefix}${key}`, "string", { nonEmpty: true });
+    if (!["dynamax", "gigantamax"].includes(value.form))
+      add(`${prefix}form`, "value", "dynamax ou gigantamax", value.form);
+
+    const maxBattle = field(value, "maxBattle", `${prefix}maxBattle`, "object");
+    if (actualType(maxBattle) === "object") {
+      const encounterCp = field(
+        maxBattle,
+        "encounterCp",
+        `${prefix}maxBattle.encounterCp`,
+        "object",
+      );
+      if (actualType(encounterCp) === "object")
+        field(
+          encounterCp,
+          "level20",
+          `${prefix}maxBattle.encounterCp.level20`,
+          "number",
+          { nullable: true },
+        );
+      moveDictionary(maxBattle.moves, `${prefix}maxBattle.moves`);
+    }
+    if (value.availability !== undefined) {
+      const availability = field(
+        value,
+        "availability",
+        `${prefix}availability`,
+        "object",
+      );
+      if (actualType(availability) === "object")
+        for (const [key, flag] of Object.entries(availability))
+          if (typeof flag !== "boolean")
+            add(
+              `${prefix}availability.${key}`,
+              "type",
+              "boolean",
+              actualType(flag),
+            );
+    }
+    if (value.assets !== undefined) assets(value.assets, `${prefix}assets`);
+    if (value.evolutions !== undefined) {
+      const evolutions = field(
+        value,
+        "evolutions",
+        `${prefix}evolutions`,
+        "array",
+      );
+      if (Array.isArray(evolutions))
+        evolutions.forEach((item, index) =>
+          evolution(item, `${prefix}evolutions[${index}]`),
+        );
+    }
+  }
+
   function pokemon(value, profile, pathName = "") {
     const prefix = pathName ? `${pathName}.` : "";
     for (const key of ["id", "formId", "slug", "dexId", "form"])
@@ -333,13 +400,11 @@ function createValidator() {
     field(value, "weatherBoost", `${prefix}weatherBoost`, "array", {
       nonEmpty: true,
     });
-    for (const key of [
-      "buddyDistance",
-      "catchRate",
-      "fleeRate",
-      "megaEnergyReward",
-    ])
+    for (const key of ["buddyDistance", "catchRate", "fleeRate"])
       field(value, key, `${prefix}${key}`, "number");
+    field(value, "megaEnergyReward", `${prefix}megaEnergyReward`, "number", {
+      nullable: true,
+    });
     for (const [blockName, keys] of [
       ["captureRewards", ["candy", "stardust"]],
       ["secondChargeMoveCost", ["candy", "stardust"]],
@@ -481,7 +546,7 @@ function createValidator() {
     }
   }
 
-  return { issues, pokemon, mega };
+  return { issues, pokemon, mega, maxForm };
 }
 
 function evolutionProfile(data, incomingIds) {
@@ -492,6 +557,24 @@ function evolutionProfile(data, incomingIds) {
   if (hasIncoming && hasOutgoing) return "intermediate";
   if (hasIncoming && !hasOutgoing) return "final";
   return "single";
+}
+
+function mergeInheritedForm(parent, form) {
+  return {
+    ...parent,
+    ...form,
+    availability: {
+      ...(parent.availability || {}),
+      ...(form.availability || {}),
+    },
+    stats: form.stats || parent.stats,
+    maxCp: form.maxCp === undefined ? parent.maxCp : form.maxCp,
+    primaryType: form.primaryType || parent.primaryType,
+    secondaryType:
+      form.secondaryType === undefined ? parent.secondaryType : form.secondaryType,
+    pvp: form.pvp === undefined ? parent.pvp : form.pvp,
+    assets: form.assets || parent.assets,
+  };
 }
 
 function buildChecklist() {
@@ -505,9 +588,14 @@ function buildChecklist() {
   }
   for (const file of listJsonFiles(formsDir).sort()) {
     const data = readJson(file);
+    const form = String(data.form || "");
     sources.push({
       file,
-      kind: String(data.form || "").startsWith("mega") ? "mega" : "form",
+      kind: form.startsWith("mega")
+        ? "mega"
+        : ["dynamax", "gigantamax"].includes(form)
+          ? form
+          : "form",
       data,
     });
   }
@@ -553,19 +641,36 @@ function buildChecklist() {
       incomingIds.add(evolutionData.id);
     }
   }
+  const parents = new Map();
+  for (const source of sources.filter((source) => source.kind === "pokemon")) {
+    parents.set(source.data.id, source.data);
+    parents.set(source.data.formId, source.data);
+    parents.set(source.data.dexId, source.data);
+  }
 
   return sources.map(({ file, kind, data }) => {
     const validator = createValidator();
     const profile =
-      kind === "mega" ? "mega" : evolutionProfile(data, incomingIds);
+      ["mega", "dynamax", "gigantamax"].includes(kind)
+        ? kind
+        : evolutionProfile(data, incomingIds);
     if (kind === "mega") validator.mega(data, "");
+    else if (kind === "dynamax" || kind === "gigantamax")
+      validator.maxForm(data, "");
     else validator.pokemon(data, profile);
     for (const issue of validator.issues)
       issue.path = issue.path.replace(/^\./, "");
+    const displayData =
+      kind === "dynamax" || kind === "gigantamax"
+        ? mergeInheritedForm(
+            parents.get(data.inherits) || parents.get(data.id) || {},
+            data,
+          )
+        : data;
     const name =
-      data.names?.French ||
-      data.names?.English ||
-      data.slug ||
+      displayData.names?.French ||
+      displayData.names?.English ||
+      displayData.slug ||
       data.id ||
       path.basename(file);
     return {
@@ -574,18 +679,28 @@ function buildChecklist() {
       profile,
       name,
       dexId: data.dexId || path.basename(file).slice(0, 4),
-      generation: data.generation || null,
+      generation: displayData.generation || null,
       form: data.form || "normal",
       file: path.relative(rootDir, file),
-      image: data.assets?.image || null,
-      shinyImage: data.assets?.shinyImage || null,
-      primaryType: data.primaryType?.type || null,
-      secondaryType: data.secondaryType?.type || null,
-      stats: data.stats || null,
-      maxCp: data.maxCp || null,
-      availability: data.availability || null,
+      image: displayData.assets?.image || null,
+      shinyImage: displayData.assets?.shinyImage || null,
+      primaryType:
+        typeof displayData.primaryType === "string"
+          ? displayData.primaryType
+          : displayData.primaryType?.type || null,
+      secondaryType:
+        typeof displayData.secondaryType === "string"
+          ? displayData.secondaryType
+          : displayData.secondaryType?.type || null,
+      stats: displayData.stats || null,
+      maxCp: displayData.maxCp || null,
+      availability: displayData.availability || null,
       pvpLeagues:
-        data.pvp && typeof data.pvp === "object" ? Object.keys(data.pvp) : [],
+        displayData.pvp && typeof displayData.pvp === "object"
+          ? Object.entries(displayData.pvp)
+              .filter(([, league]) => league !== null)
+              .map(([league]) => league)
+          : [],
       quickMoveCount:
         data.quickMoves && typeof data.quickMoves === "object"
           ? Object.keys(data.quickMoves).length
@@ -594,6 +709,9 @@ function buildChecklist() {
         data.cinematicMoves && typeof data.cinematicMoves === "object"
           ? Object.keys(data.cinematicMoves).length
           : 0,
+      maxMoveCount: Array.isArray(data.maxBattle?.moves)
+        ? data.maxBattle.moves.length
+        : 0,
       evolutionCount: Array.isArray(data.evolutions)
         ? data.evolutions.length
         : 0,
@@ -609,21 +727,22 @@ function detailForKey(key) {
   const relativeFile = key.slice(separator + 1);
   const file = path.resolve(rootDir, relativeFile);
   if (!file.startsWith(rootDir) || !fs.existsSync(file)) return null;
-  let data = readJson(file);
+  const sourceData = readJson(file);
+  let data = sourceData;
 
   if (relativeFile.startsWith("data/pokemon-forms/")) {
-    const parentFile = path.join(pokemonDir, `${data.dexId}-${data.slug}.json`);
-    if (fs.existsSync(parentFile)) {
-      const parent = readJson(parentFile);
-      data = {
-        ...parent,
-        ...data,
-        stats: data.stats || parent.stats,
-        maxCp: data.maxCp || parent.maxCp,
-        primaryType: data.primaryType || parent.primaryType,
-        secondaryType: data.secondaryType || parent.secondaryType,
-      };
-    }
+    const parent = fs
+      .readdirSync(pokemonDir)
+      .filter((name) => name.endsWith(".json"))
+      .map((name) => readJson(path.join(pokemonDir, name)))
+      .find(
+        (candidate) =>
+          candidate.id === data.inherits ||
+          candidate.formId === data.inherits ||
+          candidate.id === data.id ||
+          (candidate.dexId === data.dexId && candidate.slug === data.slug),
+      );
+    if (parent) data = mergeInheritedForm(parent, data);
   }
 
   if (kind === "mega" && relativeFile.startsWith("data/pokemon/")) {
@@ -635,11 +754,13 @@ function detailForKey(key) {
   const moveCatalog = buildMoveCatalog();
   return {
     ...data,
+    sourceData,
     moveDetails: {
       quickMoves: resolveMoves(data.quickMoves, moveCatalog),
       cinematicMoves: resolveMoves(data.cinematicMoves, moveCatalog),
       eliteQuickMoves: resolveMoves(data.eliteQuickMoves, moveCatalog),
       eliteCinematicMoves: resolveMoves(data.eliteCinematicMoves, moveCatalog),
+      maxMoves: resolveMoves(data.maxBattle?.moves, moveCatalog),
     },
     cpByLevel: buildCpByLevel(data.stats),
   };

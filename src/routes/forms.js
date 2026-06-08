@@ -33,6 +33,7 @@ function kindRouter(kind) {
 }
 
 module.exports = {
+  dynamax: kindRouter("dynamax"),
   gigantamax: kindRouter("gigantamax"),
   mega: kindRouter("mega"),
   regional: kindRouter("regional"),

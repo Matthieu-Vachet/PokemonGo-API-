@@ -155,6 +155,7 @@ function createOpenApi() {
       ["Recherche", "Recherche globale multilingue."],
       ["Évolutions", "Évolutions directes, chaînes et conditions."],
       ["Méga", "Méga-Évolutions et Primo-Résurgences."],
+      ["Dynamax", "Formes Dynamax et capacités Max."],
       ["Gigantamax", "Formes Gigantamax."],
       ["PvP", "Classements, IV et movesets par ligue."],
       ["Attaques", "Attaques rapides, chargées et élite."],
@@ -263,6 +264,8 @@ function createOpenApi() {
       [`${api}/moves/{identifier}/pokemon`]: detail("Attaques", "Lister les Pokémon apprenant une attaque", "BLAST_BURN", { description: "ID technique de l'attaque.", response: listResponse() }),
       [`${api}/mega`]: list("Méga", "Lister les Méga et Primo"),
       [`${api}/mega/{identifier}`]: detail("Méga", "Afficher une Méga ou Primo", "charizard", { parameters: [parameter("form", "query", "mega-x", "Forme Méga souhaitée.")] }),
+      [`${api}/dynamax`]: list("Dynamax", "Lister les Dynamax"),
+      [`${api}/dynamax/{identifier}`]: detail("Dynamax", "Afficher un Dynamax", "bulbasaur"),
       [`${api}/gigantamax`]: list("Gigantamax", "Lister les Gigantamax"),
       [`${api}/gigantamax/{identifier}`]: detail("Gigantamax", "Afficher un Gigantamax", "charizard"),
       [`${api}/regional`]: list("Pokémon", "Lister les formes régionales"),
@@ -417,7 +420,7 @@ function createOpenApi() {
 
   specification["x-tagGroups"] = [
     { name: "Commencer", tags: ["System", "Recherche"] },
-    { name: "Pokédex", tags: ["Pokémon", "Évolutions", "Méga", "Gigantamax", "Assets"] },
+    { name: "Pokédex", tags: ["Pokémon", "Évolutions", "Méga", "Dynamax", "Gigantamax", "Assets"] },
     { name: "Combat", tags: ["PvP", "Raid", "Attaques", "Types", "Statistiques", "Comparaison"] },
     { name: "Univers", tags: ["Régions", "Générations", "Collection"] },
     { name: "Administration", tags: ["Métadonnées"] },

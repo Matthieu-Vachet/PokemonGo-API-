@@ -54,7 +54,9 @@ PokemonGo-API-/
 │   │   ├── fast/
 │   │   ├── charged/
 │   │   ├── fast_elite/
-│   │   └── charged_elite/
+│   │   ├── charged_elite/
+│   │   ├── max/
+│   │   └── gmax/
 │   ├── pokemon/
 │   │   ├── 0001-bulbasaur.json
 │   │   ├── 0002-ivysaur.json
@@ -64,6 +66,7 @@ PokemonGo-API-/
 │   │   ├── galar/
 │   │   ├── hisui/
 │   │   ├── paldea/
+│   │   ├── dynamax/
 │   │   ├── gigantamax/
 │   │   ├── mega/
 │   │   ├── mega-x/
@@ -146,20 +149,8 @@ Les fichiers Pokemon vivent dans `data/pokemon/`.
     "attack": 118,
     "defense": 111
   },
-  "primaryType": {
-    "type": "POKEMON_TYPE_GRASS",
-    "names": {
-      "English": "Grass",
-      "French": "Plante"
-    }
-  },
-  "secondaryType": {
-    "type": "POKEMON_TYPE_POISON",
-    "names": {
-      "English": "Poison",
-      "French": "Poison"
-    }
-  }
+  "primaryType": "GRASS",
+  "secondaryType": "POISON"
 }
 ```
 
@@ -192,13 +183,14 @@ Les grandes sections du JSON sont:
 | PvP | ranks par ligue, IVs rang 1, movesets recommandes |
 | Evolutions | `evolutions`, `hasMegaEvolution`, `megaEvolutions`, `hasGigantamaxEvolution` |
 | Assets | images principales, shiny, costumes, formes alternatives |
-| Formes | variantes regionales, Gigantamax, Mega et Primo |
+| Formes | variantes regionales, Dynamax, Gigantamax, Mega et Primo |
 
 Les references principales du schema sont:
 
 - `0001-bulbasaur.json`: profil de base.
 - `0002-ivysaur.json`: profil intermediaire.
 - `0003-venusaur.json`: profil final avec Mega-Evolution et Gigantamax.
+- `data/pokemon-forms/dynamax/0001-bulbasaur-dynamax.json`: forme Max qui herite de Bulbasaur.
 
 ## Scripts
 
@@ -234,6 +226,17 @@ au Mac:
 ```bash
 CHECKLIST_HOST=127.0.0.1 npm run checklist
 ```
+
+Les migrations de normalisation fonctionnent en simulation par defaut:
+
+```bash
+npm run migrate:types
+npm run migrate:max-forms
+npm run audit:moves
+npm run sync:dry
+```
+
+Les variantes `:write` appliquent les changements apres validation.
 
 ## Deploiement Vercel
 
@@ -286,8 +289,11 @@ Les outils d'import et d'extraction manuels vivent dans `scripts/import/`.
 - Traductions principales dans les objets `names`.
 - `regionForms` et `megaEvolutions` valent `[]` lorsqu'ils sont vides, sinon ce sont des objets indexes.
 - Les quatre champs d'attaques des Pokemon sont des tableaux d'identifiants.
-- Les details des attaques vivent uniquement dans `data/moves/`.
-- Le contenu de `pvp` depend des ligues reellement documentees pour la fiche.
+- Les details des attaques vivent uniquement dans `data/moves/`, y compris `max/` et `gmax/`.
+- `primaryType`, `secondaryType` et `type` d'attaque utilisent les identifiants courts de `data/types/`, par exemple `"GRASS"`.
+- `pvp` peut valoir `null`; sinon les ligues `littleCup`, `greatLeague`, `ultraLeague` et `masterLeague` peuvent chacune valoir `null`.
+- `megaEnergyReward` peut valoir `null` lorsqu'il n'y a pas d'energie Mega a gagner.
+- Les formes Dynamax et Gigantamax utilisent `inherits` + `maxBattle` au lieu de dupliquer toute la fiche Pokemon.
 - `hasGigantamaxEvolution: true` implique un asset avec `form: "gigantamax"` dans `assetForms`.
 
 ## Roadmap Possible

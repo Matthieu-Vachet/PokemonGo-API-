@@ -1,33 +1,13 @@
 {
   "id": "CHARIZARD",
-  "slug": "charizard",
   "formId": "CHARIZARD_GIGANTAMAX",
   "form": "gigantamax",
-  "dexNr": 6,
-  "dexId": "0006",
-  "generation": 1,
-  "region": {
-    "id": "KANTO",
-    "slug": "kanto",
-    "generation": 1,
-    "names": {
-      "English": "Kanto",
-      "German": "Kanto",
-      "French": "Kanto",
-      "Italian": "Kanto",
-      "Japanese": "カントー",
-      "Korean": "관동",
-      "Spanish": "Kanto"
-    }
-  },
-  "names": {
-    "English": "Charizard",
-    "German": "Glurak",
-    "French": "Dracaufeu",
-    "Italian": "Charizard",
-    "Japanese": "リザードン",
-    "Korean": "리자몽",
-    "Spanish": "Charizard"
+  "inherits": "CHARIZARD",
+  "maxBattle": {
+    "encounterCp": {
+      "level20": null
+    },
+    "moves": []
   },
   "assets": {
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm6.fGIGANTAMAX.icon.png",

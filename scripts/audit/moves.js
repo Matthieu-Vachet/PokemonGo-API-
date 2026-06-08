@@ -28,7 +28,7 @@ function jsonFiles(directory) {
 
 function catalogByCategory() {
   return Object.fromEntries(
-    [...new Set(Object.values(moveFields))].map((category) => [
+    [...new Set([...Object.values(moveFields), "max", "gmax"])].map((category) => [
       category,
       new Map(
         jsonFiles(`data/moves/${category}`).map((file) => {
@@ -80,11 +80,30 @@ function inspectMoves(value, field, location) {
   }
 }
 
+function inspectMaxMoves(value, location) {
+  const moves = new Map([...catalog.max, ...catalog.gmax]);
+  if (!Array.isArray(value)) {
+    invalid.push(location);
+    return;
+  }
+  for (const [index, id] of value.entries()) {
+    referenceOccurrences += 1;
+    if (typeof id !== "string") {
+      invalid.push(`${location}[${index}]`);
+      continue;
+    }
+    references.add(id);
+    if (!moves.has(id)) missing.push(`${location}[${index}]: ${id}`);
+  }
+}
+
 function inspect(value, location) {
   if (!value || typeof value !== "object") return;
   for (const [key, child] of Object.entries(value)) {
     const childLocation = location ? `${location}.${key}` : key;
     if (moveFields[key]) inspectMoves(child, key, childLocation);
+    if (key === "maxBattle" && child && typeof child === "object")
+      inspectMaxMoves(child.moves, `${childLocation}.moves`);
     inspect(child, childLocation);
   }
 }

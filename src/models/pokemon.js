@@ -6,7 +6,7 @@ const pokemonSchema = new mongoose.Schema(
     kind: {
       type: String,
       required: true,
-      enum: ["pokemon", "regional", "mega", "gigantamax", "form"],
+      enum: ["pokemon", "regional", "mega", "dynamax", "gigantamax", "form"],
       index: true,
     },
     parentKey: { type: String, default: null, index: true },
@@ -26,6 +26,7 @@ const pokemonSchema = new mongoose.Schema(
     weatherBoost: { type: [String], default: [], index: true },
     moveIds: { type: [String], default: [], index: true },
     eliteMoveIds: { type: [String], default: [], index: true },
+    maxMoveIds: { type: [String], default: [], index: true },
     pvpLeagues: { type: [String], default: [], index: true },
     stats: {
       attack: { type: Number, index: true },

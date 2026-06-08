@@ -89,24 +89,18 @@ Template complet:
     "raidLevel20": null,
     "researchLevel15": null
   },
-  "pvp": {},
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": null,
+    "ultraLeague": null,
+    "masterLeague": null
+  },
   "stats": {
     "stamina": null,
     "attack": null,
     "defense": null
   },
-  "primaryType": {
-    "type": "",
-    "names": {
-      "English": "",
-      "German": "",
-      "French": "",
-      "Italian": "",
-      "Japanese": "",
-      "Korean": "",
-      "Spanish": ""
-    }
-  },
+  "primaryType": "",
   "secondaryType": null,
   "pokemonClass": null,
   "quickMoves": [],
@@ -128,20 +122,14 @@ Template complet:
 
 ## Bloc Type
 
-A utiliser pour `primaryType`, `secondaryType` et le type d'une attaque.
+A utiliser pour `primaryType`, `secondaryType` et le type d'une attaque. La valeur
+reference un fichier de `data/types/`.
 
 ```json
 {
-  "type": "POKEMON_TYPE_GRASS",
-  "names": {
-    "English": "Grass",
-    "German": "Pflanze",
-    "French": "Plante",
-    "Italian": "Erba",
-    "Japanese": "くさ",
-    "Korean": "풀",
-    "Spanish": "Planta"
-  }
+  "primaryType": "GRASS",
+  "secondaryType": "POISON",
+  "type": "GRASS"
 }
 ```
 
@@ -190,9 +178,8 @@ A placer dans `pvp.littleCup`, `pvp.greatLeague`, `pvp.ultraLeague` ou `pvp.mast
 }
 ```
 
-Ajouter uniquement les ligues pour lesquelles la fiche contient des donnees. Un Pokemon
-peut donc avoir uniquement `greatLeague`, tandis qu'un autre peut avoir `littleCup`,
-`greatLeague`, `ultraLeague` et `masterLeague`.
+`pvp` peut valoir `null`. Sinon, conserver les quatre cles de ligue et utiliser `null`
+pour chaque ligue non applicable.
 
 ## Attaques Elite
 
@@ -274,7 +261,7 @@ A ajouter dans `megaEvolutions` avec l'identifiant de la forme comme cle.
       "attack": null,
       "defense": null
     },
-    "primaryType": {},
+    "primaryType": "",
     "secondaryType": null,
     "energyCost": null,
     "assets": {
@@ -294,13 +281,34 @@ Lorsqu'une forme existe, `megaEvolutions` est un objet indexe par identifiant.
 n'existe, sinon objet indexe par `formId`. Une forme regionale reprend le template Pokemon
 complet et utilise une valeur `form` comme `alola`, `galar`, `hisui` ou `paldea`.
 
-## Gigantamax
+## Dynamax Et Gigantamax
 
-Lorsqu'une forme Gigantamax existe:
+Ces formes vivent dans `data/pokemon-forms/dynamax/` ou
+`data/pokemon-forms/gigantamax/`. Elles heritent du Pokemon normal et ne repetent que les
+champs differents.
 
-- `hasGigantamaxEvolution` vaut `true`.
-- `availability.gigantamax` indique si elle est disponible.
-- `assetForms` contient une entree avec `"form": "gigantamax"`.
+```json
+{
+  "id": "VENUSAUR",
+  "formId": "VENUSAUR_GIGANTAMAX",
+  "form": "gigantamax",
+  "inherits": "VENUSAUR",
+  "maxBattle": {
+    "encounterCp": {
+      "level20": null
+    },
+    "moves": ["GMAX_VINE_LASH"]
+  },
+  "assets": {
+    "image": "",
+    "shinyImage": ""
+  }
+}
+```
+
+Pour une forme Dynamax, utiliser `"form": "dynamax"` et des references vers
+`data/moves/max/`. Pour une forme Gigantamax, utiliser `"form": "gigantamax"` et des
+references vers `data/moves/gmax/`.
 
 ## Bloc Asset Form
 
@@ -339,7 +347,7 @@ Template pour `data/types/*.json`.
 - Les langues de `names` sont toutes presentes.
 - Les tableaux vides sont `[]`, les valeurs inconnues sont `null`.
 - Les assets principaux et chromatiques sont renseignes quand ils existent.
-- Les attaques contiennent `id`, `slug`, donnees PvE, type, traductions et donnees PvP.
+- Les attaques contiennent `id`, `slug`, donnees PvE, identifiant de type, traductions et donnees PvP.
 - Les evolutions contiennent `id`, `slug`, `formId`, `form`, `candies`, `item` et `quests`.
 - Les profils base et intermediaire possedent au moins une evolution.
-- Les formes regionales, Mega, Primo et Gigantamax suivent leur template dedie.
+- Les formes regionales, Mega, Primo, Dynamax et Gigantamax suivent leur template dedie.

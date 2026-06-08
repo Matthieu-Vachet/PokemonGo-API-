@@ -1,110 +1,21 @@
 {
   "id": "VENUSAUR",
-  "slug": "venusaur",
   "formId": "VENUSAUR_GIGANTAMAX",
   "form": "gigantamax",
-  "dexNr": 3,
-  "dexId": "0003",
-  "generation": 1,
-  "region": {
-    "id": "KANTO",
-    "slug": "kanto",
-    "generation": 1,
-    "names": {
-      "English": "Kanto",
-      "German": "Kanto",
-      "French": "Kanto",
-      "Italian": "Kanto",
-      "Japanese": "カントー",
-      "Korean": "관동",
-      "Spanish": "Kanto"
-    }
-  },
-  "names": {
-    "English": "Venusaur",
-    "German": "Bisaflor",
-    "French": "Florizarre",
-    "Italian": "Venusaur",
-    "Japanese": "フシギバナ",
-    "Korean": "이상해꽃",
-    "Spanish": "Venusaur"
-  },
-  "size": {
-    "height": 2,
-    "weight": 100
-  },
-  "weatherBoost": [
-    "sunny",
-    "cloudy"
-  ],
-  "buddyDistance": 3,
-  "catchRate": 20,
-  "fleeRate": 0,
-  "captureRewards": {
-    "candy": 10,
-    "stardust": 500
-  },
-  "megaEnergyReward": 15,
-  "secondChargeMoveCost": {
-    "candy": 25,
-    "stardust": 10000
-  },
+  "inherits": "VENUSAUR",
   "availability": {
-    "released": true,
-    "shinyReleased": true,
-    "tradable": true,
-    "pokemonHomeTransfer": true,
     "shadow": false,
     "dynamax": false,
-    "gigantamax": true,
-    "mega": false,
-    "apex": false
+    "mega": false
   },
-  "maxCp": {
-    "maxLevel50": 3075,
-    "maxLevel40": 2720,
-    "maxBattlesLevel20": 1554
+  "maxBattle": {
+    "encounterCp": {
+      "level20": 1554
+    },
+    "moves": [
+      "GMAX_VINE_LASH"
+    ]
   },
-  "stats": {
-    "stamina": 190,
-    "attack": 198,
-    "defense": 189
-  },
-  "primaryType": {
-    "type": "POKEMON_TYPE_GRASS",
-    "names": {
-      "English": "Grass",
-      "German": "Pflanze",
-      "French": "Plante",
-      "Italian": "Erba",
-      "Japanese": "くさ",
-      "Korean": "풀",
-      "Spanish": "Planta"
-    }
-  },
-  "secondaryType": {
-    "type": "POKEMON_TYPE_POISON",
-    "names": {
-      "English": "Poison",
-      "German": "Gift",
-      "French": "Poison",
-      "Italian": "Veleno",
-      "Japanese": "どく",
-      "Korean": "독",
-      "Spanish": "Veneno"
-    }
-  },
-  "pokemonClass": null,
-  "quickMoves": [
-    "RAZOR_LEAF_FAST",
-    "VINE_WHIP_FAST"
-  ],
-  "cinematicMoves": [
-    "GMAX_VINE_LASH"
-  ],
-  "eliteQuickMoves": [],
-  "eliteCinematicMoves": [
-  ],
   "assets": {
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm3.fGIGANTAMAX.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm3.fGIGANTAMAX.s.icon.png"

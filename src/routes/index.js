@@ -25,6 +25,7 @@ router.get("/", (_request, response) => {
         moves: "/api/v1/moves",
         pvp: "/api/v1/pvp/great/rankings",
         mega: "/api/v1/mega",
+        dynamax: "/api/v1/dynamax",
         gigantamax: "/api/v1/gigantamax",
         types: "/api/v1/types",
         regions: "/api/v1/regions",
@@ -45,6 +46,7 @@ router.use("/stats", stats);
 router.use("/meta", meta);
 router.use("/", smart);
 router.use("/mega", forms.mega);
+router.use("/dynamax", forms.dynamax);
 router.use("/gigantamax", forms.gigantamax);
 router.use("/regional", forms.regional);
 router.use("/types", catalogs.types);

@@ -756,6 +756,8 @@
             <option value="pokemon">Pokémon</option>
             <option value="form">Formes</option>
             <option value="mega">Méga / Primo</option>
+            <option value="dynamax">Dynamax</option>
+            <option value="gigantamax">Gigantamax</option>
           </select>
           <select id="profile">
             <option value="all">Tous les profils</option>
@@ -764,6 +766,8 @@
             <option value="final">Final</option>
             <option value="single">Sans évolution</option>
             <option value="mega">Méga / Primo</option>
+            <option value="dynamax">Dynamax</option>
+            <option value="gigantamax">Gigantamax</option>
           </select>
           <select id="form">
             <option value="all">Toutes les formes</option>
@@ -851,6 +855,8 @@
         final: "Final",
         single: "Sans évolution",
         mega: "Méga / Primo",
+        dynamax: "Dynamax",
+        gigantamax: "Gigantamax",
       };
       const typeColors = {
         NORMAL: "#9ca3af",
@@ -990,7 +996,7 @@
           img = e.image
             ? `<div class="portrait"><img class="normal" src="${esc(e.image)}" alt="${esc(e.name)}" loading="lazy">${e.shinyImage ? `<img class="shiny" src="${esc(e.shinyImage)}" alt="${esc(e.name)} shiny" loading="lazy">` : ""}</div>`
             : '<div class="portrait"></div>';
-        return `<article class="poke-card ${done ? "done" : ""}" style="--type:${color(e)}"><div class="type-strip"></div><div class="card-main">${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)} · Gén. ${esc(e.generation || "?")}</div><div class="chips"><span class="chip">${esc(typeName(e.primaryType) || "Type ?")}</span><span class="chip">${e.quickMoveCount} rapide(s)</span><span class="chip">${e.chargedMoveCount} chargée(s)</span>${e.complete ? '<span class="chip good">JSON complet</span>' : `<span class="chip problem">${e.issues.length} problème(s)</span>`}${manual ? '<span class="chip good">coché</span>' : ""}</div></div></div><div class="card-actions"><label class="check-label"><input type="checkbox" data-check="${esc(e.key)}" ${done ? "checked" : ""} ${e.complete ? "disabled" : ""}> Fait</label><button class="detail-btn" data-detail="${esc(e.key)}">Voir la fiche</button></div></article>`;
+        return `<article class="poke-card ${done ? "done" : ""}" style="--type:${color(e)}"><div class="type-strip"></div><div class="card-main">${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)} · Gén. ${esc(e.generation || "?")}</div><div class="chips"><span class="chip">${esc(typeName(e.primaryType) || "Type ?")}</span><span class="chip">${e.quickMoveCount} rapide(s)</span><span class="chip">${e.chargedMoveCount} chargée(s)</span>${e.maxMoveCount ? `<span class="chip">${e.maxMoveCount} Max / G-Max</span>` : ""}${e.complete ? '<span class="chip good">JSON complet</span>' : `<span class="chip problem">${e.issues.length} problème(s)</span>`}${manual ? '<span class="chip good">coché</span>' : ""}</div></div></div><div class="card-actions"><label class="check-label"><input type="checkbox" data-check="${esc(e.key)}" ${done ? "checked" : ""} ${e.complete ? "disabled" : ""}> Fait</label><button class="detail-btn" data-detail="${esc(e.key)}">Voir la fiche</button></div></article>`;
       }
       function updateStats() {
         const done = state.entries.filter(isDone).length,
@@ -1055,7 +1061,7 @@
       function objectCards(title, obj) {
         const entries = Object.entries(obj || {});
         return entries.length
-          ? `<div class="section-grid">${entries.map(([id, v]) => info(v.names?.French || v.names?.English || id, kv("ID", id) + kv("Type", typeName(v.type?.type)) + kv("Puissance", v.power) + kv("Énergie", v.energy) + kv("PvP puissance", v.combat?.power) + kv("PvP énergie", v.combat?.energy))).join("")}</div>`
+          ? `<div class="section-grid">${entries.map(([id, v]) => info(v.names?.French || v.names?.English || id, kv("ID", id) + kv("Type", typeName(typeof v.type === "string" ? v.type : v.type?.type)) + kv("Puissance", v.power) + kv("Énergie", v.energy) + kv("PvP puissance", v.combat?.power) + kv("PvP énergie", v.combat?.energy))).join("")}</div>`
           : `<div class="empty">Aucune donnée ${esc(title)}.</div>`;
       }
       function assetPicture(label, url) {
@@ -1145,9 +1151,10 @@
           : '<div class="empty">Aucun problème détecté.</div>';
       }
       function renderDetail(e, d) {
-        const sourceJson = { ...d };
+        const sourceJson = { ...(d.sourceData || d) };
         delete sourceJson.moveDetails;
         delete sourceJson.cpByLevel;
+        delete sourceJson.sourceData;
         const tabs = [
           ["overview", "Aperçu"],
           ["cp", "PC par niveau"],
@@ -1169,18 +1176,20 @@
               `<button class="tab ${i === 0 ? "active" : ""}" data-tab="${id}">${label}</button>`,
           )
           .join("");
-        el.panels.innerHTML = `<div class="panel active" data-panel="overview">${overview(d)}</div><div class="panel" data-panel="cp">${cpPanel(d)}</div><div class="panel" data-panel="issues">${issuesPanel(e)}</div><div class="panel" data-panel="moves"><h2>Attaques rapides</h2>${objectCards("rapide", d.moveDetails?.quickMoves)}<h2>Attaques chargées</h2>${objectCards("chargée", d.moveDetails?.cinematicMoves)}<h2>Attaques rapides élite</h2>${objectCards("rapide élite", d.moveDetails?.eliteQuickMoves)}<h2>Attaques chargées élite</h2>${objectCards("chargée élite", d.moveDetails?.eliteCinematicMoves)}</div><div class="panel" data-panel="pvp">${
+        el.panels.innerHTML = `<div class="panel active" data-panel="overview">${overview(d)}</div><div class="panel" data-panel="cp">${cpPanel(d)}</div><div class="panel" data-panel="issues">${issuesPanel(e)}</div><div class="panel" data-panel="moves"><h2>Attaques rapides</h2>${objectCards("rapide", d.moveDetails?.quickMoves)}<h2>Attaques chargées</h2>${objectCards("chargée", d.moveDetails?.cinematicMoves)}<h2>Attaques rapides élite</h2>${objectCards("rapide élite", d.moveDetails?.eliteQuickMoves)}<h2>Attaques chargées élite</h2>${objectCards("chargée élite", d.moveDetails?.eliteCinematicMoves)}<h2>Attaques Max / G-Max</h2>${objectCards("Max / G-Max", d.moveDetails?.maxMoves)}</div><div class="panel" data-panel="pvp">${
           d.pvp
             ? `<div class="section-grid">${Object.entries(d.pvp)
                 .map(([league, v]) =>
-                  info(
-                    league,
-                    kv("Tier", v.tierRank) +
-                      kv("Niveau rang 1", v.rank1?.level) +
-                      kv("PC rang 1", v.rank1?.cp) +
-                      kv("Rapide", v.bestMovesets?.fast) +
-                      kv("Chargées", v.bestMovesets?.charged),
-                  ),
+                  v === null
+                    ? info(league, kv("Statut", "Aucune donnée PvP"))
+                    : info(
+                        league,
+                        kv("Tier", v.tierRank) +
+                          kv("Niveau rang 1", v.rank1?.level) +
+                          kv("PC rang 1", v.rank1?.cp) +
+                          kv("Rapide", v.bestMovesets?.fast) +
+                          kv("Chargées", v.bestMovesets?.charged),
+                      ),
                 )
                 .join("")}</div>`
             : '<div class="empty">Aucune donnée PvP.</div>'

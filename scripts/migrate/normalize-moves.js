@@ -28,7 +28,7 @@ function jsonFiles(directory) {
 }
 
 const catalog = Object.fromEntries(
-  [...new Set(Object.values(moveFields))].map((category) => [
+  [...new Set([...Object.values(moveFields), "max", "gmax"])].map((category) => [
     category,
     new Map(
       jsonFiles(`data/moves/${category}`).map((file) => {
@@ -74,6 +74,17 @@ function normalize(value, location, report) {
     const childLocation = location ? `${location}.${key}` : key;
     if (moveFields[key])
       value[key] = normalizeMoves(child, key, childLocation, report);
+    else if (key === "maxBattle" && child && typeof child === "object") {
+      const moves = new Map([...catalog.max, ...catalog.gmax]);
+      if (!Array.isArray(child.moves))
+        report.errors.push(`${childLocation}.moves: tableau attendu`);
+      else
+        for (const [index, id] of child.moves.entries())
+          if (typeof id !== "string" || !moves.has(id))
+            report.errors.push(
+              `${childLocation}.moves[${index}]: référence invalide ${String(id)}`,
+            );
+    }
     else normalize(child, childLocation, report);
   }
 }

@@ -24,7 +24,9 @@ leurs responsabilites.
 
 Les dossiers `data/` et `config/` contiennent des fichiers JSON. Les outils lisent ces
 sources, mais la synchronisation vers MongoDB ne les modifie jamais. Le catalogue
-d'attaques central est dans `data/moves/`.
+d'attaques central est dans `data/moves/`, avec les categories classiques, Elite, Max et
+G-Max. Les formes Dynamax et Gigantamax minimales vivent dans
+`data/pokemon-forms/dynamax/` et `data/pokemon-forms/gigantamax/`.
 
 ## API
 

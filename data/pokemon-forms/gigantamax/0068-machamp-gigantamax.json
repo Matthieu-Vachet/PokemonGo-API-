@@ -1,33 +1,13 @@
 {
   "id": "MACHAMP",
-  "slug": "machamp",
   "formId": "MACHAMP_GIGANTAMAX",
   "form": "gigantamax",
-  "dexNr": 68,
-  "dexId": "0068",
-  "generation": 1,
-  "region": {
-    "id": "KANTO",
-    "slug": "kanto",
-    "generation": 1,
-    "names": {
-      "English": "Kanto",
-      "German": "Kanto",
-      "French": "Kanto",
-      "Italian": "Kanto",
-      "Japanese": "カントー",
-      "Korean": "관동",
-      "Spanish": "Kanto"
-    }
-  },
-  "names": {
-    "English": "Machamp",
-    "German": "Machomei",
-    "French": "Mackogneur",
-    "Italian": "Machamp",
-    "Japanese": "カイリキー",
-    "Korean": "괴력몬",
-    "Spanish": "Machamp"
+  "inherits": "MACHAMP",
+  "maxBattle": {
+    "encounterCp": {
+      "level20": null
+    },
+    "moves": []
   },
   "assets": {
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm68.fGIGANTAMAX.icon.png",

@@ -4,7 +4,12 @@ const moveSchema = new mongoose.Schema(
   {
     id: { type: String, required: true, unique: true },
     slug: { type: String, required: true, index: true },
-    kind: { type: String, required: true, enum: ["fast", "charged"], index: true },
+    kind: {
+      type: String,
+      required: true,
+      enum: ["fast", "charged", "max", "gmax"],
+      index: true,
+    },
     categories: { type: [String], default: [], index: true },
     elite: { type: Boolean, default: false, index: true },
     type: { type: String, index: true },

@@ -237,6 +237,14 @@ function createOpenApi() {
         response: dataResponse({ pokemon: "CHARIZARD", level: 50, ivs: { attack: 15, defense: 15, stamina: 15 }, cp: 3266 }),
       }),
       [`${api}/pokemon/{identifier}/assets`]: detail("Assets", "Afficher tous les assets d'une fiche", "pikachu"),
+      [`${api}/pokemon/{identifier}/moves`]: detail("Attaques", "Afficher les attaques détaillées d'un Pokémon", "bulbasaur", {
+        response: dataResponse({
+          quickMoves: [examples.move],
+          cinematicMoves: [],
+          eliteQuickMoves: [],
+          eliteCinematicMoves: [],
+        }),
+      }),
       [`${api}/search`]: operation("Recherche", "Rechercher Pokémon et attaques en français ou autre langue", {
         parameters: [
           requiredParameter("q", "query", "dracaufeu", "Recherche d'au moins deux caractères.", { minLength: 2 }),

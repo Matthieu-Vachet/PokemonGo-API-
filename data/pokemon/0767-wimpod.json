@@ -59,84 +59,12 @@
     }
   },
   "pokemonClass": null,
-  "quickMoves": {
-    "STRUGGLE_BUG_FAST": {
-      "id": "STRUGGLE_BUG_FAST",
-      "slug": "struggle_bug_fast",
-      "power": 15,
-      "energy": 15,
-      "durationMs": 1500,
-      "type": {
-        "type": "POKEMON_TYPE_BUG",
-        "names": {
-          "English": "Bug",
-          "German": "Käfer",
-          "French": "Insecte",
-          "Italian": "Coleottero",
-          "Japanese": "むし",
-          "Korean": "벌레",
-          "Spanish": "Bicho"
-        }
-      },
-      "names": {
-        "English": "Struggle Bug",
-        "German": "Käfertrutz",
-        "French": "Survinsecte",
-        "Italian": "Entomoblocco",
-        "Japanese": "むしのていこう",
-        "Korean": "벌레의저항",
-        "Spanish": "Estoicismo"
-      },
-      "combat": {
-        "energy": 8,
-        "power": 9,
-        "turns": 3,
-        "buffs": null
-      }
-    }
-  },
-  "cinematicMoves": {
-    "BUG_BUZZ": {
-      "id": "BUG_BUZZ",
-      "slug": "bug_buzz",
-      "power": 95,
-      "energy": -50,
-      "durationMs": 3500,
-      "type": {
-        "type": "POKEMON_TYPE_BUG",
-        "names": {
-          "English": "Bug",
-          "German": "Käfer",
-          "French": "Insecte",
-          "Italian": "Coleottero",
-          "Japanese": "むし",
-          "Korean": "벌레",
-          "Spanish": "Bicho"
-        }
-      },
-      "names": {
-        "English": "Bug Buzz",
-        "German": "Käfergebrumm",
-        "French": "Bourdon",
-        "Italian": "Ronzio",
-        "Japanese": "むしのさざめき",
-        "Korean": "벌레의야단법석",
-        "Spanish": "Zumbido"
-      },
-      "combat": {
-        "energy": -60,
-        "power": 100,
-        "turns": 1,
-        "buffs": {
-          "activationChance": 30,
-          "attackerAttackStatsChange": null,
-          "attackerDefenseStatsChange": null,
-          "targetAttackStatsChange": null,
-          "targetDefenseStatsChange": -1
-        }
-      }
-    }
-  },
+  "quickMoves": [
+    "STRUGGLE_BUG_FAST"
+  ],
+  "cinematicMoves": [
+    "BUG_BUZZ"
+  ],
   "eliteQuickMoves": [],
   "eliteCinematicMoves": [],
   "assets": {

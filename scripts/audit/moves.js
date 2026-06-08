@@ -2,76 +2,113 @@ const fs = require("fs");
 const path = require("path");
 
 const rootDir = path.resolve(__dirname, "../..");
-const pokemonDir = path.join(rootDir, "data", "pokemon");
-const moveDirectories = [
-  "data/moves/fast",
-  "data/moves/charged",
-  "data/moves/fast_elite",
-  "data/moves/charged_elite",
-];
-const moveFields = [
-  "quickMoves",
-  "cinematicMoves",
-  "eliteQuickMoves",
-  "eliteCinematicMoves",
-];
+const sourceDirectories = ["data/pokemon", "data/pokemon-forms"];
+const moveFields = {
+  quickMoves: "fast",
+  cinematicMoves: "charged",
+  eliteQuickMoves: "fast_elite",
+  eliteCinematicMoves: "charged_elite",
+};
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
 }
 
 function jsonFiles(directory) {
-  return fs
-    .readdirSync(directory)
-    .filter((name) => name.endsWith(".json"))
-    .map((name) => path.join(directory, name));
+  const absolute = path.join(rootDir, directory);
+  return fs.readdirSync(absolute, { withFileTypes: true }).flatMap((entry) => {
+    const relative = path.join(directory, entry.name);
+    return entry.isDirectory()
+      ? jsonFiles(relative)
+      : entry.name.endsWith(".json")
+        ? [path.join(rootDir, relative)]
+        : [];
+  });
 }
 
-function entries(value) {
-  if (!value || Array.isArray(value) || typeof value !== "object") return [];
-  return Object.entries(value);
+function catalogByCategory() {
+  return Object.fromEntries(
+    [...new Set(Object.values(moveFields))].map((category) => [
+      category,
+      new Map(
+        jsonFiles(`data/moves/${category}`).map((file) => {
+          const move = readJson(file);
+          return [move.id, move];
+        }),
+      ),
+    ]),
+  );
 }
 
-const catalog = new Map();
-let catalogFiles = 0;
-for (const directory of moveDirectories) {
-  for (const file of jsonFiles(path.join(rootDir, directory))) {
-    const move = readJson(file);
-    catalog.set(move.id, move);
-    catalogFiles += 1;
-  }
-}
-
-const embedded = new Map();
+const catalog = catalogByCategory();
+const references = new Set();
+const embedded = new Set();
+const missing = [];
+const different = [];
+const invalid = [];
+let referenceOccurrences = 0;
 let embeddedOccurrences = 0;
-for (const file of jsonFiles(pokemonDir)) {
-  const pokemon = readJson(file);
-  for (const field of moveFields) {
-    for (const [id, move] of entries(pokemon[field])) {
-      embedded.set(id, move);
-      embeddedOccurrences += 1;
+
+function inspectMoves(value, field, location) {
+  const category = moveFields[field];
+  const moves = catalog[category];
+
+  if (Array.isArray(value)) {
+    for (const [index, id] of value.entries()) {
+      referenceOccurrences += 1;
+      if (typeof id !== "string") {
+        invalid.push(`${location}[${index}]`);
+        continue;
+      }
+      references.add(id);
+      if (!moves.has(id)) missing.push(`${location}[${index}]: ${id}`);
     }
+    return;
+  }
+
+  if (!value || typeof value !== "object") {
+    invalid.push(location);
+    return;
+  }
+
+  for (const [id, move] of Object.entries(value)) {
+    embeddedOccurrences += 1;
+    embedded.add(id);
+    if (!moves.has(id)) missing.push(`${location}.${id}`);
+    else if (JSON.stringify(move) !== JSON.stringify(moves.get(id)))
+      different.push(`${location}.${id}`);
   }
 }
 
-const catalogOnly = [...catalog.keys()].filter((id) => !embedded.has(id));
-const embeddedOnly = [...embedded.keys()].filter((id) => !catalog.has(id));
-const different = [...embedded.entries()]
-  .filter(([id, move]) => catalog.has(id) && JSON.stringify(move) !== JSON.stringify(catalog.get(id)))
-  .map(([id]) => id);
+function inspect(value, location) {
+  if (!value || typeof value !== "object") return;
+  for (const [key, child] of Object.entries(value)) {
+    const childLocation = location ? `${location}.${key}` : key;
+    if (moveFields[key]) inspectMoves(child, key, childLocation);
+    inspect(child, childLocation);
+  }
+}
+
+const sourceFiles = sourceDirectories.flatMap(jsonFiles);
+for (const file of sourceFiles)
+  inspect(readJson(file), path.relative(rootDir, file));
 
 const result = {
-  catalogFiles,
-  catalogUnique: catalog.size,
-  embeddedUnique: embedded.size,
+  sourceFiles: sourceFiles.length,
+  catalogFiles: Object.values(catalog).reduce((total, moves) => total + moves.size, 0),
+  catalogUnique: new Set(
+    Object.values(catalog).flatMap((moves) => [...moves.keys()]),
+  ).size,
+  referenceOccurrences,
+  referenceUnique: references.size,
   embeddedOccurrences,
-  duplicateEmbeddedOccurrences: embeddedOccurrences - embedded.size,
-  catalogOnly,
-  embeddedOnly,
+  embeddedUnique: embedded.size,
+  missing,
   different,
-  readyForReferenceMigration:
-    catalogOnly.length === 0 && embeddedOnly.length === 0 && different.length === 0,
+  invalid,
+  normalized: embeddedOccurrences === 0,
+  valid: missing.length === 0 && different.length === 0 && invalid.length === 0,
 };
 
 console.log(JSON.stringify(result, null, 2));
-if (!result.readyForReferenceMigration) process.exitCode = 1;
+if (!result.valid) process.exitCode = 1;

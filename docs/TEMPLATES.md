@@ -109,8 +109,8 @@ Template complet:
   },
   "secondaryType": null,
   "pokemonClass": null,
-  "quickMoves": {},
-  "cinematicMoves": {},
+  "quickMoves": [],
+  "cinematicMoves": [],
   "eliteQuickMoves": [],
   "eliteCinematicMoves": [],
   "assets": {
@@ -153,89 +153,17 @@ Pour un Pokemon mono-type:
 }
 ```
 
-## Bloc Attaque Rapide
+## References D'Attaques
 
-A placer dans `quickMoves` avec l'identifiant de l'attaque comme cle.
-
-```json
-{
-  "VINE_WHIP_FAST": {
-    "id": "VINE_WHIP_FAST",
-    "slug": "vine_whip_fast",
-    "power": null,
-    "energy": null,
-    "durationMs": null,
-    "type": {
-      "type": "",
-      "names": {
-        "English": "",
-        "German": "",
-        "French": "",
-        "Italian": "",
-        "Japanese": "",
-        "Korean": "",
-        "Spanish": ""
-      }
-    },
-    "names": {
-      "English": "",
-      "German": "",
-      "French": "",
-      "Italian": "",
-      "Japanese": "",
-      "Korean": "",
-      "Spanish": ""
-    },
-    "combat": {
-      "energy": null,
-      "power": null,
-      "turns": null,
-      "buffs": null
-    }
-  }
-}
-```
-
-## Bloc Attaque Chargee
-
-A placer dans `cinematicMoves` avec l'identifiant de l'attaque comme cle.
+Les fiches Pokemon stockent uniquement les identifiants. Les details complets sont dans
+`data/moves/`.
 
 ```json
 {
-  "SLUDGE_BOMB": {
-    "id": "SLUDGE_BOMB",
-    "slug": "sludge_bomb",
-    "power": null,
-    "energy": null,
-    "durationMs": null,
-    "type": {
-      "type": "",
-      "names": {
-        "English": "",
-        "German": "",
-        "French": "",
-        "Italian": "",
-        "Japanese": "",
-        "Korean": "",
-        "Spanish": ""
-      }
-    },
-    "names": {
-      "English": "",
-      "German": "",
-      "French": "",
-      "Italian": "",
-      "Japanese": "",
-      "Korean": "",
-      "Spanish": ""
-    },
-    "combat": {
-      "energy": null,
-      "power": null,
-      "turns": null,
-      "buffs": null
-    }
-  }
+  "quickMoves": ["VINE_WHIP_FAST", "TACKLE_FAST"],
+  "cinematicMoves": ["SLUDGE_BOMB", "SEED_BOMB"],
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": ["FRENZY_PLANT"]
 }
 ```
 
@@ -277,30 +205,7 @@ Lorsqu'aucune attaque Elite n'existe, utiliser un tableau vide:
 }
 ```
 
-Lorsqu'elles existent, utiliser un objet indexe par identifiant d'attaque. Chaque valeur
-utilise le meme bloc qu'une attaque rapide ou chargee:
-
-```json
-{
-  "eliteCinematicMoves": {
-    "FRENZY_PLANT": {
-      "id": "FRENZY_PLANT",
-      "slug": "frenzy_plant",
-      "power": null,
-      "energy": null,
-      "durationMs": null,
-      "type": {},
-      "names": {},
-      "combat": {
-        "energy": null,
-        "power": null,
-        "turns": null,
-        "buffs": null
-      }
-    }
-  }
-}
-```
+Lorsqu'elles existent, ajouter simplement leurs identifiants dans le tableau approprie.
 
 ## Bloc Evolution
 

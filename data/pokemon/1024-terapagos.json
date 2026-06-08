@@ -48,78 +48,12 @@
   },
   "secondaryType": null,
   "pokemonClass": "POKEMON_CLASS_LEGENDARY",
-  "quickMoves": {
-    "TAKE_DOWN_FAST": {
-      "id": "TAKE_DOWN_FAST",
-      "slug": "take_down_fast",
-      "power": 7,
-      "energy": 8,
-      "durationMs": 1000,
-      "type": {
-        "type": "POKEMON_TYPE_NORMAL",
-        "names": {
-          "English": "Normal",
-          "German": "Normal",
-          "French": "Normal",
-          "Italian": "Normale",
-          "Japanese": "ノーマル",
-          "Korean": "노말",
-          "Spanish": "Normal"
-        }
-      },
-      "names": {
-        "English": "Take Down",
-        "German": "Bodycheck",
-        "French": "Bélier",
-        "Italian": "Riduttore",
-        "Japanese": "とっしん",
-        "Korean": "돌진",
-        "Spanish": "Derribo"
-      },
-      "combat": {
-        "energy": 8,
-        "power": 5,
-        "turns": 3,
-        "buffs": null
-      }
-    }
-  },
-  "cinematicMoves": {
-    "STRUGGLE": {
-      "id": "STRUGGLE",
-      "slug": "struggle",
-      "power": 35,
-      "energy": 0,
-      "durationMs": 2000,
-      "type": {
-        "type": "POKEMON_TYPE_NORMAL",
-        "names": {
-          "English": "Normal",
-          "German": "Normal",
-          "French": "Normal",
-          "Italian": "Normale",
-          "Japanese": "ノーマル",
-          "Korean": "노말",
-          "Spanish": "Normal"
-        }
-      },
-      "names": {
-        "English": "Struggle",
-        "German": "Verzweifler",
-        "French": "Lutte",
-        "Italian": "Scontro",
-        "Japanese": "わるあがき",
-        "Korean": "발버둥",
-        "Spanish": "Combate"
-      },
-      "combat": {
-        "energy": -100,
-        "power": 35,
-        "turns": 1,
-        "buffs": null
-      }
-    }
-  },
+  "quickMoves": [
+    "TAKE_DOWN_FAST"
+  ],
+  "cinematicMoves": [
+    "STRUGGLE"
+  ],
   "eliteQuickMoves": [],
   "eliteCinematicMoves": [],
   "assets": null,

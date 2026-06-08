@@ -48,78 +48,12 @@
   },
   "secondaryType": null,
   "pokemonClass": null,
-  "quickMoves": {
-    "TRANSFORM_FAST": {
-      "id": "TRANSFORM_FAST",
-      "slug": "transform_fast",
-      "power": 0,
-      "energy": 0,
-      "durationMs": 2000,
-      "type": {
-        "type": "POKEMON_TYPE_NORMAL",
-        "names": {
-          "English": "Normal",
-          "German": "Normal",
-          "French": "Normal",
-          "Italian": "Normale",
-          "Japanese": "ノーマル",
-          "Korean": "노말",
-          "Spanish": "Normal"
-        }
-      },
-      "names": {
-        "English": "Transform",
-        "German": "Wandler",
-        "French": "Morphing",
-        "Italian": "Trasformazione",
-        "Japanese": "へんしん",
-        "Korean": "변신",
-        "Spanish": "Transformación"
-      },
-      "combat": {
-        "energy": 0,
-        "power": 0,
-        "turns": 3,
-        "buffs": null
-      }
-    }
-  },
-  "cinematicMoves": {
-    "STRUGGLE": {
-      "id": "STRUGGLE",
-      "slug": "struggle",
-      "power": 35,
-      "energy": 0,
-      "durationMs": 2000,
-      "type": {
-        "type": "POKEMON_TYPE_NORMAL",
-        "names": {
-          "English": "Normal",
-          "German": "Normal",
-          "French": "Normal",
-          "Italian": "Normale",
-          "Japanese": "ノーマル",
-          "Korean": "노말",
-          "Spanish": "Normal"
-        }
-      },
-      "names": {
-        "English": "Struggle",
-        "German": "Verzweifler",
-        "French": "Lutte",
-        "Italian": "Scontro",
-        "Japanese": "わるあがき",
-        "Korean": "발버둥",
-        "Spanish": "Combate"
-      },
-      "combat": {
-        "energy": -100,
-        "power": 35,
-        "turns": 1,
-        "buffs": null
-      }
-    }
-  },
+  "quickMoves": [
+    "TRANSFORM_FAST"
+  ],
+  "cinematicMoves": [
+    "STRUGGLE"
+  ],
   "eliteQuickMoves": [],
   "eliteCinematicMoves": [],
   "assets": {

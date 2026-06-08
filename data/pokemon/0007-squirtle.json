@@ -30,57 +30,62 @@
     "Spanish": "Squirtle"
   },
   "size": {
-        "height": 0.5,
-        "weight": 9.0
+    "height": 0.5,
+    "weight": 9
+  },
+  "weatherBoost": [
+    "rain"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "megaEnergyReward": 15,
+  "secondChargeMoveCost": {
+    "candy": 25,
+    "stardust": 10000
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": true,
+    "gigantamax": false,
+    "apex": false
+  },
+  "maxCp": {
+    "maxLevel50": 1069,
+    "maxLevel40": 946,
+    "weatherBoostLevel25": 675,
+    "raidLevel20": 540,
+    "researchLevel15": 405
+  },
+  "pvp": {
+    "littleCup": {
+      "tierRank": "D",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 14
+        },
+        "level": 21.5,
+        "cp": 499
       },
-      "weatherBoost": ["rain"],
-      "buddyDistance": 3,
-      "catchRate": 20,
-      "fleeRate": 0,
-      "captureRewards": {
-        "candy": 3,
-        "stardust": 100 
-      },
-      "megaEnergyReward": 15,
-      "secondChargeMoveCost": {
-        "candy": 25,
-        "stardust": 10000
-      },
-      "availability": {
-        "released": true,
-        "shinyReleased": true,
-        "tradable": true,
-        "pokemonHomeTransfer": true,
-        "shadow": true,
-        "dynamax": true,
-        "gigantamax": false,
-        "apex": false 
-      },
-      "maxCp": {
-        "maxLevel50": 1069,
-        "maxLevel40": 946,
-        "weatherBoostLevel25": 675,
-        "raidLevel20": 540,
-        "researchLevel15": 405
-      },
-      "pvp": {
-        "littleCup": {
-          "tierRank": "D",
-          "rank1": {
-            "ivs": {
-              "attack": 0,
-              "defense": 15,
-              "stamina": 14 
-            },
-            "level": 21.5,
-            "cp": 499 
-          },
-          "bestMovesets": {
-            "fast": "BUBBLE_FAST",
-            "charged": ["AQUA_JET", "AQUA_TAIL"]
-          }
-        }
-      },
+      "bestMovesets": {
+        "fast": "BUBBLE_FAST",
+        "charged": [
+          "AQUA_JET",
+          "AQUA_TAIL"
+        ]
+      }
+    }
+  },
   "stats": {
     "stamina": 127,
     "attack": 94,
@@ -100,180 +105,15 @@
   },
   "secondaryType": null,
   "pokemonClass": null,
-  "quickMoves": {
-    "BUBBLE_FAST": {
-      "id": "BUBBLE_FAST",
-      "slug": "bubble_fast",
-      "power": 10,
-      "energy": 12,
-      "durationMs": 1000,
-      "type": {
-        "type": "POKEMON_TYPE_WATER",
-        "names": {
-          "English": "Water",
-          "German": "Wasser",
-          "French": "Eau",
-          "Italian": "Acqua",
-          "Japanese": "みず",
-          "Korean": "물",
-          "Spanish": "Agua"
-        }
-      },
-      "names": {
-        "English": "Bubble",
-        "German": "Blubber",
-        "French": "Écume",
-        "Italian": "Bolla",
-        "Japanese": "あわ",
-        "Korean": "거품",
-        "Spanish": "Burbuja"
-      },
-      "combat": {
-        "energy": 11,
-        "power": 8,
-        "turns": 3,
-        "buffs": null
-      }
-    },
-    "TACKLE_FAST": {
-      "id": "TACKLE_FAST",
-      "slug": "tackle_fast",
-      "power": 5,
-      "energy": 5,
-      "durationMs": 500,
-      "type": {
-        "type": "POKEMON_TYPE_NORMAL",
-        "names": {
-          "English": "Normal",
-          "German": "Normal",
-          "French": "Normal",
-          "Italian": "Normale",
-          "Japanese": "ノーマル",
-          "Korean": "노말",
-          "Spanish": "Normal"
-        }
-      },
-      "names": {
-        "English": "Tackle",
-        "German": "Tackle",
-        "French": "Charge",
-        "Italian": "Azione",
-        "Japanese": "たいあたり",
-        "Korean": "몸통박치기",
-        "Spanish": "Placaje"
-      },
-      "combat": {
-        "energy": 3,
-        "power": 3,
-        "turns": 1,
-        "buffs": null
-      }
-    }
-  },
-  "cinematicMoves": {
-    "AQUA_JET": {
-      "id": "AQUA_JET",
-      "slug": "aqua_jet",
-      "power": 45,
-      "energy": -33,
-      "durationMs": 2500,
-      "type": {
-        "type": "POKEMON_TYPE_WATER",
-        "names": {
-          "English": "Water",
-          "German": "Wasser",
-          "French": "Eau",
-          "Italian": "Acqua",
-          "Japanese": "みず",
-          "Korean": "물",
-          "Spanish": "Agua"
-        }
-      },
-      "names": {
-        "English": "Aqua Jet",
-        "German": "Wasserdüse",
-        "French": "Aqua-Jet",
-        "Italian": "Acquagetto",
-        "Japanese": "アクアジェット",
-        "Korean": "아쿠아제트",
-        "Spanish": "Acua Jet"
-      },
-      "combat": {
-        "energy": -40,
-        "power": 70,
-        "turns": 1,
-        "buffs": null
-      }
-    },
-    "AQUA_TAIL": {
-      "id": "AQUA_TAIL",
-      "slug": "aqua_tail",
-      "power": 50,
-      "energy": -33,
-      "durationMs": 2000,
-      "type": {
-        "type": "POKEMON_TYPE_WATER",
-        "names": {
-          "English": "Water",
-          "German": "Wasser",
-          "French": "Eau",
-          "Italian": "Acqua",
-          "Japanese": "みず",
-          "Korean": "물",
-          "Spanish": "Agua"
-        }
-      },
-      "names": {
-        "English": "Aqua Tail",
-        "German": "Nassschweif",
-        "French": "Hydro-Queue",
-        "Italian": "Idrondata",
-        "Japanese": "アクアテール",
-        "Korean": "아쿠아테일",
-        "Spanish": "Acua Cola"
-      },
-      "combat": {
-        "energy": -35,
-        "power": 55,
-        "turns": 1,
-        "buffs": null
-      }
-    },
-    "WATER_PULSE": {
-      "id": "WATER_PULSE",
-      "slug": "water_pulse",
-      "power": 65,
-      "energy": -50,
-      "durationMs": 3000,
-      "type": {
-        "type": "POKEMON_TYPE_WATER",
-        "names": {
-          "English": "Water",
-          "German": "Wasser",
-          "French": "Eau",
-          "Italian": "Acqua",
-          "Japanese": "みず",
-          "Korean": "물",
-          "Spanish": "Agua"
-        }
-      },
-      "names": {
-        "English": "Water Pulse",
-        "German": "Aquawelle",
-        "French": "Vibraqua",
-        "Italian": "Idropulsar",
-        "Japanese": "みずのはどう",
-        "Korean": "물의파동",
-        "Spanish": "Hidropulso"
-      },
-      "combat": {
-        "energy": -50,
-        "power": 80,
-        "turns": 1,
-        "buffs": null
-      }
-    }
-  },
+  "quickMoves": [
+    "BUBBLE_FAST",
+    "TACKLE_FAST"
+  ],
+  "cinematicMoves": [
+    "AQUA_JET",
+    "AQUA_TAIL",
+    "WATER_PULSE"
+  ],
   "eliteQuickMoves": [],
   "eliteCinematicMoves": [],
   "assets": {

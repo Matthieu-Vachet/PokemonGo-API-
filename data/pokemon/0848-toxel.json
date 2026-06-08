@@ -59,84 +59,12 @@
     }
   },
   "pokemonClass": null,
-  "quickMoves": {
-    "ACID_FAST": {
-      "id": "ACID_FAST",
-      "slug": "acid_fast",
-      "power": 11,
-      "energy": 10,
-      "durationMs": 1000,
-      "type": {
-        "type": "POKEMON_TYPE_POISON",
-        "names": {
-          "English": "Poison",
-          "German": "Gift",
-          "French": "Poison",
-          "Italian": "Veleno",
-          "Japanese": "どく",
-          "Korean": "독",
-          "Spanish": "Veneno"
-        }
-      },
-      "names": {
-        "English": "Acid",
-        "German": "Säure",
-        "French": "Acide",
-        "Italian": "Acido",
-        "Japanese": "ようかいえき",
-        "Korean": "용해액",
-        "Spanish": "Ácido"
-      },
-      "combat": {
-        "energy": 8,
-        "power": 6,
-        "turns": 2,
-        "buffs": null
-      }
-    }
-  },
-  "cinematicMoves": {
-    "POWER_UP_PUNCH": {
-      "id": "POWER_UP_PUNCH",
-      "slug": "power_up_punch",
-      "power": 50,
-      "energy": -33,
-      "durationMs": 2000,
-      "type": {
-        "type": "POKEMON_TYPE_FIGHTING",
-        "names": {
-          "English": "Fighting",
-          "German": "Kampf",
-          "French": "Combat",
-          "Italian": "Lotta",
-          "Japanese": "かくとう",
-          "Korean": "격투",
-          "Spanish": "Lucha"
-        }
-      },
-      "names": {
-        "English": "Power-Up Punch",
-        "German": "Steigerungshieb",
-        "French": "Poing Boost",
-        "Italian": "Crescipugno",
-        "Japanese": "グロウパンチ",
-        "Korean": "그로우펀치",
-        "Spanish": "Puño Incremento"
-      },
-      "combat": {
-        "energy": -35,
-        "power": 20,
-        "turns": 1,
-        "buffs": {
-          "activationChance": 100,
-          "attackerAttackStatsChange": 1,
-          "attackerDefenseStatsChange": null,
-          "targetAttackStatsChange": null,
-          "targetDefenseStatsChange": null
-        }
-      }
-    }
-  },
+  "quickMoves": [
+    "ACID_FAST"
+  ],
+  "cinematicMoves": [
+    "POWER_UP_PUNCH"
+  ],
   "eliteQuickMoves": [],
   "eliteCinematicMoves": [],
   "assets": {

@@ -200,35 +200,21 @@ Les objets de noms utilisent ces cles:
 
 ## Attaques
 
-Les attaques rapides sont dans `quickMoves`. Les attaques chargees sont dans `cinematicMoves`.
-Chaque entree est indexee par son identifiant technique.
+Les Pokemon stockent uniquement les identifiants de leurs attaques. Les details complets
+sont centralises dans `data/moves/`.
 
 ```json
 {
-  "quickMoves": {
-    "VINE_WHIP_FAST": {
-      "id": "VINE_WHIP_FAST",
-      "slug": "vine_whip_fast",
-      "power": 6,
-      "energy": 5,
-      "durationMs": 500,
-      "type": {
-        "type": "POKEMON_TYPE_GRASS",
-        "names": {}
-      },
-      "names": {},
-      "combat": {
-        "energy": 8,
-        "power": 5,
-        "turns": 2,
-        "buffs": null
-      }
-    }
-  }
+  "quickMoves": ["VINE_WHIP_FAST", "TACKLE_FAST"],
+  "cinematicMoves": ["SLUDGE_BOMB", "SEED_BOMB", "POWER_WHIP"],
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": []
 }
 ```
 
-| Champ | Type | Description |
+Chaque fichier du catalogue central contient :
+
+| Champ catalogue | Type | Description |
 | --- | --- | --- |
 | `id` | string | Identifiant technique de l'attaque. |
 | `slug` | string | Slug anglais de l'attaque. |
@@ -242,21 +228,13 @@ Chaque entree est indexee par son identifiant technique.
 | `combat.turns` | number | Nombre de tours PvP. |
 | `combat.buffs` | object/null | Buffs/debuffs PvP si disponibles. |
 
-Les attaques Elite sont listees separement. Un tableau vide indique qu'aucune attaque
-Elite n'existe. Lorsqu'elles existent, le champ devient un objet indexe par identifiant et
-chaque entree suit le meme schema qu'une attaque normale:
+Les quatre tableaux peuvent etre vides uniquement lorsque le Pokemon ne possede aucune
+attaque dans la categorie correspondante. Les references doivent exister dans :
 
-```json
-{
-  "eliteQuickMoves": [],
-  "eliteCinematicMoves": {
-    "FRENZY_PLANT": {
-      "id": "FRENZY_PLANT",
-      "slug": "frenzy_plant"
-    }
-  }
-}
-```
+- `data/moves/fast/`
+- `data/moves/charged/`
+- `data/moves/fast_elite/`
+- `data/moves/charged_elite/`
 
 ## PvP
 
@@ -469,8 +447,8 @@ Gigantamax, Mega et Mega X/Y.
     "names": {}
   },
   "pokemonClass": null,
-  "quickMoves": {},
-  "cinematicMoves": {},
+  "quickMoves": [],
+  "cinematicMoves": [],
   "eliteQuickMoves": [],
   "eliteCinematicMoves": [],
   "assets": {

@@ -138,12 +138,26 @@ function createValidator() {
     }
   }
 
-  function moveDictionary(value, pathName) {
+  function moveDictionary(value, pathName, allowEmpty = false) {
+    if (Array.isArray(value)) {
+      if (!allowEmpty && value.length === 0)
+        add(pathName, "empty", "au moins un identifiant d'attaque", "vide");
+      value.forEach((moveId, index) => {
+        if (typeof moveId !== "string" || moveId.trim() === "")
+          add(
+            `${pathName}[${index}]`,
+            "type",
+            "identifiant d'attaque",
+            actualType(moveId),
+          );
+      });
+      return;
+    }
     if (actualType(value) !== "object") {
       add(
         pathName,
         value === undefined ? "missing" : "type",
-        "objet non vide",
+        "tableau d'identifiants",
         actualType(value),
       );
       return;
@@ -155,8 +169,7 @@ function createValidator() {
   }
 
   function eliteMoves(value, pathName) {
-    if (Array.isArray(value)) return;
-    moveDictionary(value, pathName);
+    moveDictionary(value, pathName, true);
   }
 
   function pvp(value, pathName) {

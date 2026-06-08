@@ -48,78 +48,12 @@
   },
   "secondaryType": null,
   "pokemonClass": "POKEMON_CLASS_LEGENDARY",
-  "quickMoves": {
-    "SPLASH_FAST": {
-      "id": "SPLASH_FAST",
-      "slug": "splash_fast",
-      "power": 0,
-      "energy": 17,
-      "durationMs": 1500,
-      "type": {
-        "type": "POKEMON_TYPE_WATER",
-        "names": {
-          "English": "Water",
-          "German": "Wasser",
-          "French": "Eau",
-          "Italian": "Acqua",
-          "Japanese": "みず",
-          "Korean": "물",
-          "Spanish": "Agua"
-        }
-      },
-      "names": {
-        "English": "Splash",
-        "German": "Platscher",
-        "French": "Trempette",
-        "Italian": "Splash",
-        "Japanese": "はねる",
-        "Korean": "튀어오르기",
-        "Spanish": "Salpicadura"
-      },
-      "combat": {
-        "energy": 12,
-        "power": 0,
-        "turns": 4,
-        "buffs": null
-      }
-    }
-  },
-  "cinematicMoves": {
-    "STRUGGLE": {
-      "id": "STRUGGLE",
-      "slug": "struggle",
-      "power": 35,
-      "energy": 0,
-      "durationMs": 2000,
-      "type": {
-        "type": "POKEMON_TYPE_NORMAL",
-        "names": {
-          "English": "Normal",
-          "German": "Normal",
-          "French": "Normal",
-          "Italian": "Normale",
-          "Japanese": "ノーマル",
-          "Korean": "노말",
-          "Spanish": "Normal"
-        }
-      },
-      "names": {
-        "English": "Struggle",
-        "German": "Verzweifler",
-        "French": "Lutte",
-        "Italian": "Scontro",
-        "Japanese": "わるあがき",
-        "Korean": "발버둥",
-        "Spanish": "Combate"
-      },
-      "combat": {
-        "energy": -100,
-        "power": 35,
-        "turns": 1,
-        "buffs": null
-      }
-    }
-  },
+  "quickMoves": [
+    "SPLASH_FAST"
+  ],
+  "cinematicMoves": [
+    "STRUGGLE"
+  ],
   "eliteQuickMoves": [],
   "eliteCinematicMoves": [],
   "assets": {

@@ -45,9 +45,16 @@ PokemonGo-API-/
 │       ├── manifest.json
 │       └── sw.js
 ├── scripts/
+│   ├── audit/
 │   ├── import/
+│   ├── migrate/
 │   └── sync/
 ├── data/
+│   ├── moves/
+│   │   ├── fast/
+│   │   ├── charged/
+│   │   ├── fast_elite/
+│   │   └── charged_elite/
 │   ├── pokemon/
 │   │   ├── 0001-bulbasaur.json
 │   │   ├── 0002-ivysaur.json
@@ -62,10 +69,10 @@ PokemonGo-API-/
 │   │   ├── mega-x/
 │   │   └── mega-y/
 │   └── types/
-├── attaque/                   # JSON des attaques
 ├── config/                    # Configuration Atlas Search
 ├── docs/
 │   ├── API.md
+│   ├── DATA-NORMALIZATION.md
 │   ├── GIT-WORKFLOW.md
 │   ├── PROJECT-STRUCTURE.md
 │   ├── SCHEMA.md
@@ -88,6 +95,12 @@ Renseigner ensuite `MONGODB_URI` dans `.env`, puis synchroniser les donnees :
 
 ```bash
 npm run sync
+```
+
+Verifier les references d'attaques avant une synchronisation :
+
+```bash
+npm run audit:moves
 ```
 
 ## Demarrage
@@ -272,7 +285,8 @@ Les outils d'import et d'extraction manuels vivent dans `scripts/import/`.
 - Images Pokemon via `assets.image`, `assets.shinyImage` et `assetForms`.
 - Traductions principales dans les objets `names`.
 - `regionForms` et `megaEvolutions` valent `[]` lorsqu'ils sont vides, sinon ce sont des objets indexes.
-- `eliteQuickMoves` et `eliteCinematicMoves` valent `[]` lorsqu'ils sont vides, sinon ce sont des objets indexes.
+- Les quatre champs d'attaques des Pokemon sont des tableaux d'identifiants.
+- Les details des attaques vivent uniquement dans `data/moves/`.
 - Le contenu de `pvp` depend des ligues reellement documentees pour la fiche.
 - `hasGigantamaxEvolution: true` implique un asset avec `form: "gigantamax"` dans `assetForms`.
 

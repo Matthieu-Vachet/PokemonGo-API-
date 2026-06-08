@@ -8,21 +8,23 @@ leurs responsabilites.
 
 | Dossier | Responsabilite |
 | --- | --- |
-| `data/` | Fiches JSON Pokemon, formes, generations et types. |
-| `attaque/` | Fiches JSON des attaques rapides, chargees et Elite. |
+| `data/` | Fiches JSON Pokemon, formes, attaques, generations et types. |
 | `src/` | Coeur de l'API REST Express et synchronisation MongoDB. |
 | `api/` | Points d'entree serverless necessaires au deploiement Vercel. |
 | `apps/checklist/` | Interface, moteur et serveur de la checklist. |
 | `scripts/sync/` | Commandes de synchronisation MongoDB. |
 | `scripts/import/` | Outils d'import et d'extraction des donnees. |
+| `scripts/audit/` | Controles de coherence non destructifs. |
+| `scripts/migrate/` | Migrations explicites et validees des donnees. |
 | `config/` | Definitions des index Atlas Search. |
 | `docs/` | Documentation technique et guides du projet. |
 | `test/` | Tests automatises. |
 
 ## Donnees Protegees
 
-Les dossiers `data/`, `attaque/` et `config/` contiennent des fichiers JSON. Les outils
-lisent ces sources, mais la synchronisation vers MongoDB ne les modifie jamais.
+Les dossiers `data/` et `config/` contiennent des fichiers JSON. Les outils lisent ces
+sources, mais la synchronisation vers MongoDB ne les modifie jamais. Le catalogue
+d'attaques central est dans `data/moves/`.
 
 ## API
 

@@ -30,57 +30,62 @@
     "Spanish": "Wartortle"
   },
   "size": {
-        "height": 1,
-        "weight": 22.5
+    "height": 1,
+    "weight": 22.5
+  },
+  "weatherBoost": [
+    "rain"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "captureRewards": {
+    "candy": 5,
+    "stardust": 300
+  },
+  "megaEnergyReward": 15,
+  "secondChargeMoveCost": {
+    "candy": 25,
+    "stardust": 10000
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": true,
+    "gigantamax": false,
+    "apex": false
+  },
+  "maxCp": {
+    "maxLevel50": 1682,
+    "maxLevel40": 1488,
+    "weatherBoostLevel25": 1063,
+    "raidLevel20": 850,
+    "researchLevel15": 637
+  },
+  "pvp": {
+    "greatLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 14,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 1499
       },
-      "weatherBoost": ["rain"],
-      "buddyDistance": 3,
-      "catchRate": 20,
-      "fleeRate": 0,
-      "captureRewards": {
-        "candy": 5,
-        "stardust": 300 
-      },
-      "megaEnergyReward": 15,
-      "secondChargeMoveCost": {
-        "candy": 25,
-        "stardust": 10000
-      },
-      "availability": {
-        "released": true,
-        "shinyReleased": true,
-        "tradable": true,
-        "pokemonHomeTransfer": true,
-        "shadow": true,
-        "dynamax": true,
-        "gigantamax": false,
-        "apex": false
-      },
-      "maxCp": {
-        "maxLevel50": 1682,
-        "maxLevel40": 1488,
-        "weatherBoostLevel25": 1063,
-        "raidLevel20": 850,
-        "researchLevel15": 637
-      },
-      "pvp": {
-        "greatLeague": {
-          "tierRank": "A",
-          "rank1": {
-            "ivs": {
-              "attack": 0,
-              "defense": 14,
-              "stamina": 15
-            },
-            "level": 50,
-            "cp": 1499 
-          },
-          "bestMovesets": {
-            "fast": "WATER_GUN_FAST",
-            "charged": ["AQUA_JET", "ICE_BEAM"]
-          }
-        }
-      },
+      "bestMovesets": {
+        "fast": "WATER_GUN_FAST",
+        "charged": [
+          "AQUA_JET",
+          "ICE_BEAM"
+        ]
+      }
+    }
+  },
   "stats": {
     "stamina": 153,
     "attack": 126,
@@ -100,180 +105,15 @@
   },
   "secondaryType": null,
   "pokemonClass": null,
-  "quickMoves": {
-    "WATER_GUN_FAST": {
-      "id": "WATER_GUN_FAST",
-      "slug": "water_gun_fast",
-      "power": 5,
-      "energy": 5,
-      "durationMs": 500,
-      "type": {
-        "type": "POKEMON_TYPE_WATER",
-        "names": {
-          "English": "Water",
-          "German": "Wasser",
-          "French": "Eau",
-          "Italian": "Acqua",
-          "Japanese": "みず",
-          "Korean": "물",
-          "Spanish": "Agua"
-        }
-      },
-      "names": {
-        "English": "Water Gun",
-        "German": "Aquaknarre",
-        "French": "Pistolet à O",
-        "Italian": "Pistolacqua",
-        "Japanese": "みずでっぽう",
-        "Korean": "물대포",
-        "Spanish": "Pistola Agua"
-      },
-      "combat": {
-        "energy": 3,
-        "power": 3,
-        "turns": 1,
-        "buffs": null
-      }
-    },
-    "BITE_FAST": {
-      "id": "BITE_FAST",
-      "slug": "bite_fast",
-      "power": 6,
-      "energy": 4,
-      "durationMs": 500,
-      "type": {
-        "type": "POKEMON_TYPE_DARK",
-        "names": {
-          "English": "Dark",
-          "German": "Unlicht",
-          "French": "Ténèbres",
-          "Italian": "Buio",
-          "Japanese": "あく",
-          "Korean": "악",
-          "Spanish": "Siniestro"
-        }
-      },
-      "names": {
-        "English": "Bite",
-        "German": "Biss",
-        "French": "Morsure",
-        "Italian": "Morso",
-        "Japanese": "かみつく",
-        "Korean": "물기",
-        "Spanish": "Mordisco"
-      },
-      "combat": {
-        "energy": 2,
-        "power": 4,
-        "turns": 1,
-        "buffs": null
-      }
-    }
-  },
-  "cinematicMoves": {
-    "AQUA_JET": {
-      "id": "AQUA_JET",
-      "slug": "aqua_jet",
-      "power": 45,
-      "energy": -33,
-      "durationMs": 2500,
-      "type": {
-        "type": "POKEMON_TYPE_WATER",
-        "names": {
-          "English": "Water",
-          "German": "Wasser",
-          "French": "Eau",
-          "Italian": "Acqua",
-          "Japanese": "みず",
-          "Korean": "물",
-          "Spanish": "Agua"
-        }
-      },
-      "names": {
-        "English": "Aqua Jet",
-        "German": "Wasserdüse",
-        "French": "Aqua-Jet",
-        "Italian": "Acquagetto",
-        "Japanese": "アクアジェット",
-        "Korean": "아쿠아제트",
-        "Spanish": "Acua Jet"
-      },
-      "combat": {
-        "energy": -40,
-        "power": 70,
-        "turns": 1,
-        "buffs": null
-      }
-    },
-    "ICE_BEAM": {
-      "id": "ICE_BEAM",
-      "slug": "ice_beam",
-      "power": 95,
-      "energy": -50,
-      "durationMs": 3500,
-      "type": {
-        "type": "POKEMON_TYPE_ICE",
-        "names": {
-          "English": "Ice",
-          "German": "Eis",
-          "French": "Glace",
-          "Italian": "Ghiaccio",
-          "Japanese": "こおり",
-          "Korean": "얼음",
-          "Spanish": "Hielo"
-        }
-      },
-      "names": {
-        "English": "Ice Beam",
-        "German": "Eisstrahl",
-        "French": "Laser Glace",
-        "Italian": "Geloraggio",
-        "Japanese": "れいとうビーム",
-        "Korean": "냉동빔",
-        "Spanish": "Rayo Hielo"
-      },
-      "combat": {
-        "energy": -55,
-        "power": 90,
-        "turns": 1,
-        "buffs": null
-      }
-    },
-    "HYDRO_PUMP": {
-      "id": "HYDRO_PUMP",
-      "slug": "hydro_pump",
-      "power": 135,
-      "energy": -100,
-      "durationMs": 3500,
-      "type": {
-        "type": "POKEMON_TYPE_WATER",
-        "names": {
-          "English": "Water",
-          "German": "Wasser",
-          "French": "Eau",
-          "Italian": "Acqua",
-          "Japanese": "みず",
-          "Korean": "물",
-          "Spanish": "Agua"
-        }
-      },
-      "names": {
-        "English": "Hydro Pump",
-        "German": "Hydropumpe",
-        "French": "Hydrocanon",
-        "Italian": "Idropompa",
-        "Japanese": "ハイドロポンプ",
-        "Korean": "하이드로펌프",
-        "Spanish": "Hidrobomba"
-      },
-      "combat": {
-        "energy": -75,
-        "power": 130,
-        "turns": 1,
-        "buffs": null
-      }
-    }
-  },
+  "quickMoves": [
+    "WATER_GUN_FAST",
+    "BITE_FAST"
+  ],
+  "cinematicMoves": [
+    "AQUA_JET",
+    "ICE_BEAM",
+    "HYDRO_PUMP"
+  ],
   "eliteQuickMoves": [],
   "eliteCinematicMoves": [],
   "assets": {

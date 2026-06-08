@@ -1,5 +1,5 @@
 const express = require("express");
-const { Pokemon } = require("../models");
+const { Move, Pokemon } = require("../models");
 const { asyncHandler } = require("../lib/async-handler");
 const { paginatedResponse } = require("../lib/http");
 const {
@@ -110,6 +110,32 @@ router.get(
         assets: pokemon.data?.assets || {},
         forms: pokemon.data?.assetForms || [],
       },
+    });
+  }),
+);
+
+router.get(
+  "/:identifier/moves",
+  asyncHandler(async (request, response) => {
+    const pokemon = await findPokemon(request.params.identifier, request.query);
+    const categories = {
+      quickMoves: pokemon.data?.quickMoves || [],
+      cinematicMoves: pokemon.data?.cinematicMoves || [],
+      eliteQuickMoves: pokemon.data?.eliteQuickMoves || [],
+      eliteCinematicMoves: pokemon.data?.eliteCinematicMoves || [],
+    };
+    const ids = [...new Set(Object.values(categories).flat())];
+    const moves = await Move.find({ id: { $in: ids } }).lean();
+    const byId = new Map(moves.map((move) => [move.id, move]));
+
+    response.json({
+      data: Object.fromEntries(
+        Object.entries(categories).map(([category, moveIds]) => [
+          category,
+          moveIds.map((id) => byId.get(id)).filter(Boolean),
+        ]),
+      ),
+      meta: { pokemon: pokemon.key, total: ids.length },
     });
   }),
 );

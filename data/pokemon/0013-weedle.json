@@ -59,112 +59,13 @@
     }
   },
   "pokemonClass": null,
-  "quickMoves": {
-    "BUG_BITE_FAST": {
-      "id": "BUG_BITE_FAST",
-      "slug": "bug_bite_fast",
-      "power": 5,
-      "energy": 6,
-      "durationMs": 500,
-      "type": {
-        "type": "POKEMON_TYPE_BUG",
-        "names": {
-          "English": "Bug",
-          "German": "Käfer",
-          "French": "Insecte",
-          "Italian": "Coleottero",
-          "Japanese": "むし",
-          "Korean": "벌레",
-          "Spanish": "Bicho"
-        }
-      },
-      "names": {
-        "English": "Bug Bite",
-        "German": "Käferbiss",
-        "French": "Piqûre",
-        "Italian": "Coleomorso",
-        "Japanese": "むしくい",
-        "Korean": "벌레먹기",
-        "Spanish": "Picadura"
-      },
-      "combat": {
-        "energy": 3,
-        "power": 4,
-        "turns": 1,
-        "buffs": null
-      }
-    },
-    "POISON_STING_FAST": {
-      "id": "POISON_STING_FAST",
-      "slug": "poison_sting_fast",
-      "power": 4,
-      "energy": 6,
-      "durationMs": 500,
-      "type": {
-        "type": "POKEMON_TYPE_POISON",
-        "names": {
-          "English": "Poison",
-          "German": "Gift",
-          "French": "Poison",
-          "Italian": "Veleno",
-          "Japanese": "どく",
-          "Korean": "독",
-          "Spanish": "Veneno"
-        }
-      },
-      "names": {
-        "English": "Poison Sting",
-        "German": "Giftstachel",
-        "French": "Dard-Venin",
-        "Italian": "Velenospina",
-        "Japanese": "どくばり",
-        "Korean": "독침",
-        "Spanish": "Picotazo Veneno"
-      },
-      "combat": {
-        "energy": 9,
-        "power": 4,
-        "turns": 2,
-        "buffs": null
-      }
-    }
-  },
-  "cinematicMoves": {
-    "STRUGGLE": {
-      "id": "STRUGGLE",
-      "slug": "struggle",
-      "power": 35,
-      "energy": 0,
-      "durationMs": 2000,
-      "type": {
-        "type": "POKEMON_TYPE_NORMAL",
-        "names": {
-          "English": "Normal",
-          "German": "Normal",
-          "French": "Normal",
-          "Italian": "Normale",
-          "Japanese": "ノーマル",
-          "Korean": "노말",
-          "Spanish": "Normal"
-        }
-      },
-      "names": {
-        "English": "Struggle",
-        "German": "Verzweifler",
-        "French": "Lutte",
-        "Italian": "Scontro",
-        "Japanese": "わるあがき",
-        "Korean": "발버둥",
-        "Spanish": "Combate"
-      },
-      "combat": {
-        "energy": -100,
-        "power": 35,
-        "turns": 1,
-        "buffs": null
-      }
-    }
-  },
+  "quickMoves": [
+    "BUG_BITE_FAST",
+    "POISON_STING_FAST"
+  ],
+  "cinematicMoves": [
+    "STRUGGLE"
+  ],
   "eliteQuickMoves": [],
   "eliteCinematicMoves": [],
   "assets": {

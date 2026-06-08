@@ -1,8 +1,9 @@
 # Pokemon GO API REST
 
 L'API publique est separee de la checklist et vit dans `src/`.
-Les fichiers sous `data/` et `attaque/` restent la source de verite et ne sont jamais
-modifies par la synchronisation.
+Les fichiers sous `data/` restent la source de verite et ne sont jamais modifies par la
+synchronisation. Les details des attaques vivent dans `data/moves/`; les Pokemon ne
+conservent que leurs identifiants.
 
 ## Architecture
 
@@ -17,8 +18,10 @@ src/
   services/     logique metier
   sync/         lecture JSON et synchronisation MongoDB
 scripts/
-  sync.js
-  sync-watch.js
+  audit/
+  import/
+  migrate/
+  sync/
 ```
 
 Chaque document MongoDB conserve :
@@ -99,6 +102,7 @@ Documentation :
 | Evolutions | `/pokemon/:identifier/evolutions`, `/pokemon/:identifier/evolution-chain`, `/evolutions/special` |
 | Recherche | `/api/v1/search?q=dracaufeu` |
 | Attaques | `/moves`, `/moves/:identifier`, `/moves/:identifier/pokemon` |
+| Attaques d'un Pokemon | `/pokemon/:identifier/moves` |
 | PvP | `/pvp/:league/rankings`, `/pvp/:league/:identifier` |
 | PC | `/pokemon/:identifier/cp` |
 | Types | `/types`, `/types/:identifier`, `/types/:identifier/pokemon` |
@@ -138,6 +142,7 @@ curl "http://localhost:3000/api/v1/search?q=dracaufeu"
 curl "http://localhost:3000/api/v1/pokemon/charizard/cp?level=50&attackIv=15&defenseIv=15&staminaIv=15"
 curl "http://localhost:3000/api/v1/pvp/great/rankings?limit=20"
 curl "http://localhost:3000/api/v1/moves/BLAST_BURN/pokemon"
+curl "http://localhost:3000/api/v1/pokemon/venusaur/moves"
 ```
 
 ## Atlas Search
@@ -202,8 +207,8 @@ standard, cela implique generalement une autorisation reseau adaptee ou une solu
 d'adresse sortante fixe.
 
 Le workflow `.github/workflows/sync-mongodb.yml` synchronise automatiquement Atlas quand
-les JSON de `data/` ou `attaque/` changent sur `main`. Ajouter `MONGODB_URI` dans les
-secrets GitHub Actions du depot.
+les JSON de `data/` changent sur `main`. Ajouter `MONGODB_URI` dans les secrets GitHub
+Actions du depot.
 
 `npm run sync:watch` ne doit pas tourner sur Vercel : une Function n'est pas un processus
 permanent. Utiliser le workflow GitHub Actions ou un Cron Vercel pour les synchronisations.

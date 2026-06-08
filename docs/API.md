@@ -194,7 +194,7 @@ watchers concurrents sur les memes sources.
 
 `api/rest.js` expose l'application Express comme Vercel Function. Les routes `/api/v1`,
 `/api-docs`, `/swagger` et `/health` sont dirigees vers cette fonction par `vercel.json`.
-La checklist V3 reste disponible a la racine.
+La checklist reste disponible a la racine.
 
 Configurer dans Vercel les variables `MONGODB_URI`, `NODE_ENV=production` et
 `API_PUBLIC_URL`. Atlas doit accepter les connexions sortantes de Vercel ; sur un cluster

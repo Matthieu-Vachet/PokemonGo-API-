@@ -15,13 +15,14 @@
     }
   },
   "routes": [
-    { "src": "^/data(?:/.*)?$", "dest": "/api/blocked" },
+    { "src": "^/(?:data|attaque|config|docs|src|test)(?:/.*)?$", "dest": "/api/blocked" },
+    { "src": "^/apps/checklist/server(?:/.*)?$", "dest": "/api/blocked" },
     { "handle": "filesystem" },
     { "src": "^/(api/v1(?:/.*)?|api-docs(?:/.*)?|api-docs\\.json|swagger(?:/.*)?|health)$", "dest": "/api/rest" },
-    { "src": "^/$", "dest": "/checklist-v3/index.html" },
-    { "src": "^/manifest\\.json$", "dest": "/checklist-v3/manifest.json" },
-    { "src": "^/icon\\.svg$", "dest": "/checklist-v3/icon.svg" },
-    { "src": "^/sw\\.js$", "dest": "/checklist-v3/sw.js" }
+    { "src": "^/$", "dest": "/apps/checklist/index.html" },
+    { "src": "^/manifest\\.json$", "dest": "/apps/checklist/manifest.json" },
+    { "src": "^/icon\\.svg$", "dest": "/apps/checklist/icon.svg" },
+    { "src": "^/sw\\.js$", "dest": "/apps/checklist/sw.js" }
   ],
   "headers": [
     {
@@ -32,7 +33,7 @@
       ]
     },
     {
-      "source": "/checklist-v3/(.*)",
+      "source": "/apps/checklist/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]

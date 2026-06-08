@@ -11,7 +11,7 @@ const {
   directEvolutions,
   evolutionChain,
 } = require("../services/evolution-service");
-const { calculateCp, buildCpByLevel } = require("../../lib/pokemon-cp");
+const { calculateCp, buildCpByLevel } = require("../lib/pokemon-cp");
 
 const router = express.Router();
 

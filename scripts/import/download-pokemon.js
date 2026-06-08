@@ -7,6 +7,7 @@ const path = require("path");
 // ==============================
 
 const MAX_POKEMON = 1025;
+const rootDir = path.resolve(__dirname, "../..");
 
 // ==============================
 // FORMAT ID
@@ -62,7 +63,7 @@ async function downloadPokemon(id) {
     // SAVE PATH
     // ==============================
 
-    const pokemonDir = path.join(__dirname, "data/pokemon");
+    const pokemonDir = path.join(rootDir, "data", "pokemon");
     const filePath = path.join(pokemonDir, filename);
 
     // Ensure directory exists

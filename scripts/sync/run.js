@@ -1,5 +1,5 @@
-const { connectDatabase, disconnectDatabase } = require("../src/config/database");
-const { syncAll } = require("../src/sync/sync-service");
+const { connectDatabase, disconnectDatabase } = require("../../src/config/database");
+const { syncAll } = require("../../src/sync/sync-service");
 
 async function main() {
   const dryRun = process.argv.includes("--dry-run");

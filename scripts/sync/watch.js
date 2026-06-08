@@ -1,7 +1,7 @@
 const path = require("path");
 const chokidar = require("chokidar");
-const { connectDatabase, disconnectDatabase } = require("../src/config/database");
-const { syncAll } = require("../src/sync/sync-service");
+const { connectDatabase, disconnectDatabase } = require("../../src/config/database");
+const { syncAll } = require("../../src/sync/sync-service");
 
 let timer;
 let syncing = false;

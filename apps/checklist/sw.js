@@ -1,4 +1,4 @@
-const CACHE = "pokedex-checklist-v3-auth";
+const CACHE = "pokedex-checklist-auth";
 const SHELL = ["/", "/manifest.json", "/icon.svg"];
 
 self.addEventListener("install", (event) => {

@@ -1,13 +1,13 @@
 const express = require("express");
 const os = require("os");
 const path = require("path");
-const { buildChecklist, detailForKey } = require("../lib/checklist-v3-engine");
+const { buildChecklist, detailForKey } = require("./engine");
 
 const app = express();
-const port = Number(process.env.CHECKLIST_V3_PORT || 3003);
-const host = process.env.CHECKLIST_V3_HOST || "0.0.0.0";
+const port = Number(process.env.CHECKLIST_PORT || process.env.CHECKLIST_V3_PORT || 3003);
+const host = process.env.CHECKLIST_HOST || process.env.CHECKLIST_V3_HOST || "0.0.0.0";
 
-app.use(express.static(path.resolve(__dirname, "..", "checklist-v3")));
+app.use(express.static(path.resolve(__dirname, "..")));
 
 app.get("/api/checklist-v3", (_request, response) => {
   try {
@@ -28,7 +28,7 @@ app.get("/api/detail-v3", (request, response) => {
 });
 
 app.listen(port, host, () => {
-  console.log(`Checklist Pokemon V3 disponible sur http://localhost:${port}`);
+  console.log(`Checklist Pokemon disponible sur http://localhost:${port}`);
   for (const addresses of Object.values(os.networkInterfaces())) {
     for (const address of addresses || []) {
       if (address.family === "IPv4" && !address.internal) {

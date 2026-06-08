@@ -6,18 +6,12 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "sync": "node scripts/sync.js",
-    "sync:watch": "node scripts/sync-watch.js",
-    "sync:dry": "node scripts/sync.js --dry-run",
+    "sync": "node scripts/sync/run.js",
+    "sync:watch": "node scripts/sync/watch.js",
+    "sync:dry": "node scripts/sync/run.js --dry-run",
     "test": "node --test",
     "check": "npm run sync:dry && npm test",
-    "checklist": "node scripts/checklist-server.js",
-    "checklist:v2": "node scripts/checklist-v2-server.js",
-    "checklist:v3": "node scripts/checklist-v3-server.js",
-    "scrape": "node scraper-advanced.js",
-    "scrape:gen1": "node scraper-advanced.js 1 151",
-    "scrape:gen2": "node scraper-advanced.js 152 251",
-    "scrape:single": "node scraper-advanced.js"
+    "checklist": "node apps/checklist/server/local-server.js"
   },
   "keywords": [
     "pokemon",

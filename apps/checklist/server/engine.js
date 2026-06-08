@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { buildCpByLevel } = require("./pokemon-cp");
+const { buildCpByLevel } = require("../../../src/lib/pokemon-cp");
 
 const rootDir = process.cwd();
 const pokemonDir = path.join(rootDir, "data", "pokemon");

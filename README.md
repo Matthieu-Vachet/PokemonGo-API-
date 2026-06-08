@@ -8,7 +8,7 @@ Le backend de production vit dans `src/`. Les checklists restent des outils inde
 pour enrichir les fiches, tandis que MongoDB Atlas fournit les recherches, filtres et
 classements rapides de l'API. La synchronisation ne modifie jamais les JSON sources.
 
-Documentation detaillee de l'API : [API.md](API.md)
+Documentation detaillee de l'API : [docs/API.md](docs/API.md)
 
 ## Points Forts
 
@@ -30,6 +30,7 @@ Documentation detaillee de l'API : [API.md](API.md)
 ```text
 PokemonGo-API-/
 ├── app.js
+├── api/                       # Fonctions serverless Vercel
 ├── src/
 │   ├── config/
 │   ├── docs/
@@ -37,9 +38,15 @@ PokemonGo-API-/
 │   ├── routes/
 │   ├── services/
 │   └── sync/
+├── apps/
+│   └── checklist/
+│       ├── server/            # Moteur, auth et serveur local
+│       ├── index.html
+│       ├── manifest.json
+│       └── sw.js
 ├── scripts/
-│   ├── sync.js
-│   └── sync-watch.js
+│   ├── import/
+│   └── sync/
 ├── data/
 │   ├── pokemon/
 │   │   ├── 0001-bulbasaur.json
@@ -55,16 +62,20 @@ PokemonGo-API-/
 │   │   ├── mega-x/
 │   │   └── mega-y/
 │   └── types/
-├── locales/
-│   ├── en/
-│   └── fr/
-├── assets/
-│   └── images/
-├── SCHEMA.md
-├── TEMPLATES.md
-├── API.md
+├── attaque/                   # JSON des attaques
+├── config/                    # Configuration Atlas Search
+├── docs/
+│   ├── API.md
+│   ├── GIT-WORKFLOW.md
+│   ├── PROJECT-STRUCTURE.md
+│   ├── SCHEMA.md
+│   └── TEMPLATES.md
+├── test/
 └── package.json
 ```
+
+Le rôle détaillé de chaque dossier est expliqué dans
+[docs/PROJECT-STRUCTURE.md](docs/PROJECT-STRUCTURE.md).
 
 ## Installation
 
@@ -139,8 +150,8 @@ Les fichiers Pokemon vivent dans `data/pokemon/`.
 }
 ```
 
-Le schema complet est documente dans [SCHEMA.md](SCHEMA.md).
-Les templates de creation sont disponibles dans [TEMPLATES.md](TEMPLATES.md).
+Le schema complet est documente dans [docs/SCHEMA.md](docs/SCHEMA.md).
+Les templates de creation sont disponibles dans [docs/TEMPLATES.md](docs/TEMPLATES.md).
 
 ## Format Des Fichiers Pokemon
 
@@ -194,50 +205,35 @@ Lance le serveur avec Nodemon.
 npm run checklist
 ```
 
-Lance la checklist interactive sur `http://localhost:3001`. Elle detecte automatiquement
-les champs renseignes dans chaque fiche Pokemon, forme regionale ou speciale et
-Mega-Evolution, affiche les champs restants et sauvegarde les coches manuelles dans
-`.pokemon-checklist-progress.json`.
-
-```bash
-npm run checklist:v2
-```
-
-Lance la checklist complete V2 sur `http://localhost:3002`. Cette version separee valide
-recursivement tous les blocs JSON, les types de valeurs, les traductions, les attaques,
-les evolutions et toutes les formes. Elle adapte aussi les attentes au stade d'evolution.
-
-```bash
-npm run checklist:v3
-```
-
-Lance la checklist Pokedex V3 sur `http://localhost:3003`. Elle conserve la validation
-complete et la progression manuelle, ajoute une vue detaillee des donnees, un design
+Lance la checklist Pokedex sur `http://localhost:3003`. Elle valide recursivement les
+blocs JSON, les types de valeurs, les traductions, les attaques, les evolutions et toutes
+les formes. Elle propose une vue detaillee des donnees, un design
 responsive pour ordinateur, tablette et mobile, ainsi qu'un acces depuis les appareils
 connectes au meme reseau local. L'adresse mobile exacte est affichee au demarrage.
 
 La fiche detaillee contient aussi un tableau des PC minimum (`0/0/0`) et maximum
 (`15/15/15`) pour chaque demi-niveau de 1 a 50. Le calcul utilise les statistiques de
-base, les IV et les multiplicateurs de niveau dans `lib/pokemon-cp.js`.
+base, les IV et les multiplicateurs de niveau dans `src/lib/pokemon-cp.js`.
 
-La V3 ecoute par defaut sur le reseau local. Pour limiter temporairement l'acces au Mac:
+La checklist ecoute par defaut sur le reseau local. Pour limiter temporairement l'acces
+au Mac:
 
 ```bash
-CHECKLIST_V3_HOST=127.0.0.1 npm run checklist:v3
+CHECKLIST_HOST=127.0.0.1 npm run checklist
 ```
 
 ## Deploiement Vercel
 
-La checklist V3 est prete pour un deploiement Vercel sans serveur local permanent.
+La checklist est prete pour un deploiement Vercel sans serveur local permanent.
 
 Les commandes pour gerer `main`, `develop`, les branches `feature` et les rebases sans
-GitKraken sont documentees dans [GIT-WORKFLOW.md](GIT-WORKFLOW.md).
+GitKraken sont documentees dans [docs/GIT-WORKFLOW.md](docs/GIT-WORKFLOW.md).
 
 1. Importer le depot GitHub dans Vercel.
 2. Conserver les reglages de build automatiques.
 3. Deployer le projet.
 
-Vercel sert la V3 a la racine du domaine et expose les fonctions serverless:
+Vercel sert la checklist a la racine du domaine et expose les fonctions serverless:
 
 - `/api/checklist-v3`
 - `/api/detail-v3`
@@ -250,18 +246,18 @@ d'environnement Vercel. Les pushes GitHub redeploient automatiquement le projet 
 l'integration GitHub est active.
 
 Les API exigent la variable d'environnement Vercel `CHECKLIST_PASSWORD`. Le navigateur
-demande ce mot de passe et le conserve localement. Les acces directs a `/data` sont
-bloques afin de ne pas exposer les fichiers JSON.
+demande ce mot de passe et le conserve localement. Les acces directs aux donnees JSON,
+aux sources et au moteur interne de la checklist sont bloques.
 
 La progression manuelle est stockee dans `localStorage`. Elle reste disponible sur le
 meme navigateur, mais n'est pas synchronisee automatiquement entre plusieurs appareils.
 
-Les scripts `scrape*` sont declares dans `package.json` pour les imports de donnees, mais ils dependent du script d'import correspondant.
+Les outils d'import et d'extraction manuels vivent dans `scripts/import/`.
 
 ## Ajouter Un Pokemon
 
 1. Creer un fichier dans `data/pokemon/`.
-2. Utiliser le template Pokemon dans [TEMPLATES.md](TEMPLATES.md).
+2. Utiliser le template Pokemon dans [docs/TEMPLATES.md](docs/TEMPLATES.md).
 3. Renseigner les identifiants techniques en majuscules.
 4. Garder le slug en anglais, en minuscules et avec des tirets.
 5. Verifier que le JSON est valide.

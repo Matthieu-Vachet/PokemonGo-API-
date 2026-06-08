@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const rootDir = path.resolve(__dirname, '..');
+const rootDir = path.resolve(__dirname, '../..');
 const pokemonDir = path.join(rootDir, 'data', 'pokemon');
 const outputDir = path.join(rootDir, 'data', 'pokemon-forms');
 const allowedForms = new Set([

@@ -3,7 +3,7 @@ const { asyncHandler } = require("../lib/async-handler");
 const { ApiError } = require("../lib/api-error");
 const { csv } = require("../lib/http");
 const { findPokemon } = require("../services/pokemon-service");
-const { calculateCp } = require("../../lib/pokemon-cp");
+const { calculateCp } = require("../lib/pokemon-cp");
 
 const router = express.Router();
 

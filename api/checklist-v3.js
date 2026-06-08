@@ -1,5 +1,5 @@
-const { buildChecklist } = require("../lib/checklist-v3-engine");
-const { requireAuth } = require("../lib/checklist-auth");
+const { buildChecklist } = require("../apps/checklist/server/engine");
+const { requireAuth } = require("../apps/checklist/server/auth");
 
 module.exports = function handler(request, response) {
   if (!requireAuth(request, response)) return;

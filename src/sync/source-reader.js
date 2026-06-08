@@ -210,10 +210,10 @@ function collectPokemonDocuments() {
 
 function collectMoveDocuments() {
   const directories = [
-    ["attaque/fast", "fast", false],
-    ["attaque/charged", "charged", false],
-    ["attaque/fast_elite", "fast", true],
-    ["attaque/charged_elite", "charged", true],
+    ["data/moves/fast", "fast", false],
+    ["data/moves/charged", "charged", false],
+    ["data/moves/fast_elite", "fast", true],
+    ["data/moves/charged_elite", "charged", true],
   ];
   const documents = new Map();
 

@@ -35,12 +35,12 @@ function schedule() {
 async function main() {
   await connectDatabase();
   await runSync();
-  const watcher = chokidar.watch(
-    [path.join(process.cwd(), "data"), path.join(process.cwd(), "attaque")],
-    { ignoreInitial: true, awaitWriteFinish: true },
-  );
+  const watcher = chokidar.watch(path.join(process.cwd(), "data"), {
+    ignoreInitial: true,
+    awaitWriteFinish: true,
+  });
   watcher.on("add", schedule).on("change", schedule).on("unlink", schedule);
-  console.log("[sync:watch] surveillance de data/ et attaque/");
+  console.log("[sync:watch] surveillance de data/");
 }
 
 async function shutdown() {

@@ -335,22 +335,42 @@ function createValidator() {
     if (!["dynamax", "gigantamax"].includes(value.form))
       add(`${prefix}form`, "value", "dynamax ou gigantamax", value.form);
 
+    const maxCp = field(value, "maxCp", `${prefix}maxCp`, "object");
+    if (actualType(maxCp) === "object") {
+      const allowedMaxCp = new Set([
+        "maxLevel50",
+        "maxLevel40",
+        "maxBattlesLevel20",
+      ]);
+      for (const key of Object.keys(maxCp))
+        if (!allowedMaxCp.has(key))
+          add(
+            `${prefix}maxCp.${key}`,
+            "unexpected",
+            "uniquement maxLevel50, maxLevel40, maxBattlesLevel20",
+            "champ en trop",
+          );
+      for (const key of ["maxLevel50", "maxLevel40"])
+        field(maxCp, key, `${prefix}maxCp.${key}`, "number");
+      field(
+        maxCp,
+        "maxBattlesLevel20",
+        `${prefix}maxCp.maxBattlesLevel20`,
+        "number",
+        { nullable: true },
+      );
+    }
+
     const maxBattle = field(value, "maxBattle", `${prefix}maxBattle`, "object");
     if (actualType(maxBattle) === "object") {
-      const encounterCp = field(
-        maxBattle,
-        "encounterCp",
-        `${prefix}maxBattle.encounterCp`,
-        "object",
-      );
-      if (actualType(encounterCp) === "object")
-        field(
-          encounterCp,
-          "level20",
-          `${prefix}maxBattle.encounterCp.level20`,
-          "number",
-          { nullable: true },
-        );
+      for (const key of Object.keys(maxBattle))
+        if (key !== "moves")
+          add(
+            `${prefix}maxBattle.${key}`,
+            "unexpected",
+            "uniquement moves",
+            "champ en trop",
+          );
       moveDictionary(maxBattle.moves, `${prefix}maxBattle.moves`);
     }
     if (value.availability !== undefined) {
@@ -560,7 +580,8 @@ function evolutionProfile(data, incomingIds) {
 }
 
 function mergeInheritedForm(parent, form) {
-  return {
+  const isMaxForm = ["dynamax", "gigantamax"].includes(form.form);
+  const merged = {
     ...parent,
     ...form,
     availability: {
@@ -568,12 +589,30 @@ function mergeInheritedForm(parent, form) {
       ...(form.availability || {}),
     },
     stats: form.stats || parent.stats,
-    maxCp: form.maxCp === undefined ? parent.maxCp : form.maxCp,
+    maxCp: isMaxForm
+      ? form.maxCp || {}
+      : form.maxCp === undefined
+        ? parent.maxCp
+        : form.maxCp,
     primaryType: form.primaryType || parent.primaryType,
     secondaryType:
       form.secondaryType === undefined ? parent.secondaryType : form.secondaryType,
     pvp: form.pvp === undefined ? parent.pvp : form.pvp,
     assets: form.assets || parent.assets,
+  };
+  if (!isMaxForm) return merged;
+  return {
+    ...merged,
+    quickMoves: form.quickMoves || [],
+    cinematicMoves: form.cinematicMoves || [],
+    eliteQuickMoves: form.eliteQuickMoves || [],
+    eliteCinematicMoves: form.eliteCinematicMoves || [],
+    pvp: form.pvp === undefined ? null : form.pvp,
+    evolutions: form.evolutions || [],
+    regionForms: form.regionForms || [],
+    hasMegaEvolution: false,
+    megaEvolutions: [],
+    hasGigantamaxEvolution: form.form === "gigantamax",
   };
 }
 

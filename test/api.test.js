@@ -78,8 +78,21 @@ test("les types, PvP null et formes Max sont normalisés", () => {
   assert.deepEqual(caterpie.pvpLeagues, []);
   assert.equal(dynamax.kind, "dynamax");
   assert.deepEqual(dynamax.maxMoveIds, ["MAX_OVERGROWTH", "MAX_STRIKE"]);
+  assert.deepEqual(Object.keys(dynamax.maxCp).sort(), [
+    "maxBattlesLevel20",
+    "maxLevel40",
+    "maxLevel50",
+  ]);
+  assert.equal(dynamax.maxCp.raidLevel20, undefined);
+  assert.deepEqual(dynamax.moveIds, []);
+  assert.deepEqual(dynamax.pvpLeagues, []);
   assert.equal(gmax.kind, "gigantamax");
   assert.deepEqual(gmax.maxMoveIds, ["GMAX_VINE_LASH"]);
+  assert.deepEqual(Object.keys(gmax.maxCp).sort(), [
+    "maxBattlesLevel20",
+    "maxLevel40",
+    "maxLevel50",
+  ]);
   assert.ok(data.moves.some((move) => move.kind === "max"));
   assert.ok(data.moves.some((move) => move.kind === "gmax"));
 });
@@ -97,6 +110,11 @@ test("la checklist affiche les formes Max héritées sans dupliquer leur source"
   assert.equal(detail.names.French, "Bulbizarre");
   assert.equal(detail.sourceData.inherits, "BULBASAUR");
   assert.equal(detail.sourceData.slug, undefined);
+  assert.deepEqual(detail.maxCp, detail.sourceData.maxCp);
+  assert.equal(detail.maxCp.raidLevel20, undefined);
+  assert.deepEqual(detail.quickMoves, []);
+  assert.deepEqual(detail.cinematicMoves, []);
+  assert.equal(detail.pvp, null);
   assert.deepEqual(
     Object.values(detail.moveDetails.maxMoves).map((move) => move.id),
     ["MAX_OVERGROWTH", "MAX_STRIKE"],

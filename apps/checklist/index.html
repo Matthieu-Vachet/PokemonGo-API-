@@ -958,6 +958,8 @@
           const f = JSON.parse(localStorage.getItem("pokedex-v3-filters"));
           for (const k of ["search", "kind", "profile", "status", "sort"])
             if (f?.[k] !== undefined) el[k].value = f[k];
+          if (["dynamax", "gigantamax"].includes(el.kind.value))
+            el.status.value = "all";
           if (f?.shiny) document.body.classList.add("shiny");
         } catch {}
       }
@@ -1051,7 +1053,16 @@
       const info = (title, rows) =>
         `<article class="info"><h3>${esc(title)}</h3>${rows}</article>`;
       function overview(d) {
-        return `<div class="section-grid">${info("Identité", kv("ID", d.id) + kv("Form ID", d.formId) + kv("Slug", d.slug) + kv("Forme", d.form) + kv("Génération", d.generation) + kv("Région", d.region?.names?.French || d.region?.id))}${info("Statistiques", kv("Attaque", d.stats?.attack) + kv("Défense", d.stats?.defense) + kv("Endurance", d.stats?.stamina) + kv("Taille", d.size?.height ? d.size.height + " m" : null) + kv("Poids", d.size?.weight ? d.size.weight + " kg" : null))}${info("PC maximum", kv("Niveau 50", d.maxCp?.maxLevel50) + kv("Niveau 40", d.maxCp?.maxLevel40) + kv("Raid N.20", d.maxCp?.raidLevel20) + kv("Étude N.15", d.maxCp?.researchLevel15))}${info(
+        const maxForm = ["dynamax", "gigantamax"].includes(d.form);
+        const cpRows = maxForm
+          ? kv("Niveau 50", d.maxCp?.maxLevel50) +
+            kv("Niveau 40", d.maxCp?.maxLevel40) +
+            kv("Combat Max N.20", d.maxCp?.maxBattlesLevel20)
+          : kv("Niveau 50", d.maxCp?.maxLevel50) +
+            kv("Niveau 40", d.maxCp?.maxLevel40) +
+            kv("Raid N.20", d.maxCp?.raidLevel20) +
+            kv("Étude N.15", d.maxCp?.researchLevel15);
+        return `<div class="section-grid">${info("Identité", kv("ID", d.id) + kv("Form ID", d.formId) + kv("Slug", d.slug) + kv("Forme", d.form) + kv("Génération", d.generation) + kv("Région", d.region?.names?.French || d.region?.id))}${info("Statistiques", kv("Attaque", d.stats?.attack) + kv("Défense", d.stats?.defense) + kv("Endurance", d.stats?.stamina) + kv("Taille", d.size?.height ? d.size.height + " m" : null) + kv("Poids", d.size?.weight ? d.size.weight + " kg" : null))}${info("PC maximum", cpRows)}${info(
           "Disponibilité",
           Object.entries(d.availability || {})
             .map(([k, v]) => kv(k, v ? "Oui" : "Non"))
@@ -1268,6 +1279,11 @@
       restoreFilters();
       ["search", "kind", "profile", "form", "status", "sort"].forEach((id) =>
         el[id].addEventListener("input", () => {
+          if (
+            id === "kind" &&
+            ["dynamax", "gigantamax"].includes(el.kind.value)
+          )
+            el.status.value = "all";
           state.limit = 60;
           render();
         }),

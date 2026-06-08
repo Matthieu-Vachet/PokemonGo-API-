@@ -293,10 +293,12 @@ champs differents.
   "formId": "VENUSAUR_GIGANTAMAX",
   "form": "gigantamax",
   "inherits": "VENUSAUR",
+  "maxCp": {
+    "maxLevel50": null,
+    "maxLevel40": null,
+    "maxBattlesLevel20": null
+  },
   "maxBattle": {
-    "encounterCp": {
-      "level20": null
-    },
     "moves": ["GMAX_VINE_LASH"]
   },
   "assets": {
@@ -308,7 +310,8 @@ champs differents.
 
 Pour une forme Dynamax, utiliser `"form": "dynamax"` et des references vers
 `data/moves/max/`. Pour une forme Gigantamax, utiliser `"form": "gigantamax"` et des
-references vers `data/moves/gmax/`.
+references vers `data/moves/gmax/`. Leur bloc `maxCp` contient uniquement
+`maxLevel50`, `maxLevel40` et `maxBattlesLevel20`.
 
 ## Bloc Asset Form
 

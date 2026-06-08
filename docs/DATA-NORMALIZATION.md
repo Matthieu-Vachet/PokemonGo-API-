@@ -84,14 +84,20 @@ Max.
   "formId": "BULBASAUR_DYNAMAX",
   "form": "dynamax",
   "inherits": "BULBASAUR",
+  "maxCp": {
+    "maxLevel50": 1260,
+    "maxLevel40": 1115,
+    "maxBattlesLevel20": 637
+  },
   "maxBattle": {
-    "encounterCp": {
-      "level20": 637
-    },
     "moves": ["MAX_OVERGROWTH", "MAX_STRIKE"]
   }
 }
 ```
+
+Le bloc `maxCp` d'une forme Dynamax ou Gigantamax est propre a cette fiche et ne contient
+que `maxLevel50`, `maxLevel40` et `maxBattlesLevel20`. Il n'herite jamais du bloc `maxCp`
+normal dans l'API ou la checklist.
 
 ## Controles
 

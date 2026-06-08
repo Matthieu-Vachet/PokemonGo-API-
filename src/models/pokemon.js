@@ -36,6 +36,7 @@ const pokemonSchema = new mongoose.Schema(
     maxCp: {
       maxLevel50: { type: Number, index: true },
       maxLevel40: Number,
+      maxBattlesLevel20: Number,
       weatherBoostLevel25: Number,
       raidLevel20: Number,
       researchLevel15: Number,

@@ -293,7 +293,7 @@ Les outils d'import et d'extraction manuels vivent dans `scripts/import/`.
 - `primaryType`, `secondaryType` et `type` d'attaque utilisent les identifiants courts de `data/types/`, par exemple `"GRASS"`.
 - `pvp` peut valoir `null`; sinon les ligues `littleCup`, `greatLeague`, `ultraLeague` et `masterLeague` peuvent chacune valoir `null`.
 - `megaEnergyReward` peut valoir `null` lorsqu'il n'y a pas d'energie Mega a gagner.
-- Les formes Dynamax et Gigantamax utilisent `inherits` + `maxBattle` au lieu de dupliquer toute la fiche Pokemon.
+- Les formes Dynamax et Gigantamax utilisent `inherits`, leur propre bloc `maxCp` (`maxLevel50`, `maxLevel40`, `maxBattlesLevel20`) et `maxBattle`.
 - `hasGigantamaxEvolution: true` implique un asset avec `form: "gigantamax"` dans `assetForms`.
 
 ## Roadmap Possible

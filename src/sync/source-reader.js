@@ -88,7 +88,8 @@ function pokemonKey(data) {
 }
 
 function mergePokemon(parent, form) {
-  return {
+  const isMaxForm = ["dynamax", "gigantamax"].includes(form.form);
+  const merged = {
     ...parent,
     ...form,
     region: form.region || parent.region,
@@ -107,10 +108,28 @@ function mergePokemon(parent, form) {
       ...(parent.availability || {}),
       ...(form.availability || {}),
     },
-    maxCp: form.maxCp === undefined ? parent.maxCp : form.maxCp,
+    maxCp: isMaxForm
+      ? form.maxCp || {}
+      : form.maxCp === undefined
+        ? parent.maxCp
+        : form.maxCp,
     pvp: form.pvp === undefined ? parent.pvp : form.pvp,
     assets: form.assets || parent.assets,
     maxBattle: form.maxBattle || parent.maxBattle,
+  };
+  if (!isMaxForm) return merged;
+  return {
+    ...merged,
+    quickMoves: form.quickMoves || [],
+    cinematicMoves: form.cinematicMoves || [],
+    eliteQuickMoves: form.eliteQuickMoves || [],
+    eliteCinematicMoves: form.eliteCinematicMoves || [],
+    pvp: form.pvp === undefined ? null : form.pvp,
+    evolutions: form.evolutions || [],
+    regionForms: form.regionForms || [],
+    hasMegaEvolution: false,
+    megaEvolutions: [],
+    hasGigantamaxEvolution: form.form === "gigantamax",
   };
 }
 
@@ -177,7 +196,7 @@ function toPokemonDocument(data, sourceFiles, hint, parentKey = null) {
       pokemonHomeTransfer: availability.pokemonHomeTransfer,
       shadow: availability.shadow,
       apex: availability.apex,
-      dynamax: availability.dynamax,
+      dynamax: availability.dynamax === true || kind === "dynamax",
       gigantamax:
         availability.gigantamax === true || kind === "gigantamax",
       mega: kind === "mega",

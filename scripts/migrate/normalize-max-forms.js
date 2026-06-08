@@ -43,8 +43,8 @@ function maxMoves(form) {
 
 function normalize(form, parent) {
   const level20 =
-    form.maxBattle?.encounterCp?.level20 ??
     form.maxCp?.maxBattlesLevel20 ??
+    form.maxBattle?.encounterCp?.level20 ??
     form.maxCp?.dynamaxLevel20 ??
     null;
   const result = {
@@ -53,8 +53,12 @@ function normalize(form, parent) {
     form: form.form,
     inherits: form.inherits || parent.formId,
     availability: diffObject(parent.availability, form.availability),
+    maxCp: {
+      maxLevel50: form.maxCp?.maxLevel50 ?? parent.maxCp?.maxLevel50 ?? null,
+      maxLevel40: form.maxCp?.maxLevel40 ?? parent.maxCp?.maxLevel40 ?? null,
+      maxBattlesLevel20: level20,
+    },
     maxBattle: {
-      encounterCp: { level20 },
       moves: form.maxBattle?.moves || maxMoves(form),
     },
     assets: form.assets,

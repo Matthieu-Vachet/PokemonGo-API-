@@ -346,10 +346,12 @@ duplique que les informations propres au combat Max.
   "formId": "VENUSAUR_GIGANTAMAX",
   "form": "gigantamax",
   "inherits": "VENUSAUR",
+  "maxCp": {
+    "maxLevel50": 3075,
+    "maxLevel40": 2720,
+    "maxBattlesLevel20": 1554
+  },
   "maxBattle": {
-    "encounterCp": {
-      "level20": 1554
-    },
     "moves": ["GMAX_VINE_LASH"]
   },
   "assets": {
@@ -362,11 +364,17 @@ duplique que les informations propres au combat Max.
 | Champ | Type | Description |
 | --- | --- | --- |
 | `inherits` | string | Identifiant du Pokemon parent dont la forme herite. |
-| `maxBattle.encounterCp.level20` | number/null | PC de rencontre du combat Max. |
+| `maxCp.maxLevel50` | number | PC maximum au niveau 50 de cette fiche Max. |
+| `maxCp.maxLevel40` | number | PC maximum au niveau 40 de cette fiche Max. |
+| `maxCp.maxBattlesLevel20` | number/null | PC de rencontre en combat Max au niveau 20. |
 | `maxBattle.moves` | string[] | References vers `data/moves/max/` ou `data/moves/gmax/`. |
 
-Les champs qui changent reellement, comme `availability`, `maxCp`, `evolutions` ou
-`assets`, peuvent etre ajoutes a la forme. Les autres sont herites automatiquement.
+`maxCp` est obligatoire sur les formes Dynamax et Gigantamax et contient uniquement
+`maxLevel50`, `maxLevel40` et `maxBattlesLevel20`. Les champs propres aux Pokemon normaux,
+comme `weatherBoostLevel25`, `raidLevel20` et `researchLevel15`, ne doivent pas y figurer.
+
+Les autres champs qui changent reellement, comme `availability`, `evolutions` ou `assets`,
+peuvent etre ajoutes a la forme.
 
 ## Assets
 
@@ -405,7 +413,7 @@ Les fiches de `data/pokemon-forms/` couvrent les formes Alola, Galar, Hisui, Pal
 Dynamax, Gigantamax, Mega et Mega X/Y.
 
 - Une forme regionale utilise le schema Pokemon complet.
-- Une forme Dynamax ou Gigantamax utilise le schema minimal `inherits` + `maxBattle`.
+- Une forme Dynamax ou Gigantamax utilise le schema minimal `inherits` + `maxCp` + `maxBattle`.
 - Une Mega ou forme Primo utilise le schema Mega / Primo.
 - Les formes conservent leur propre `formId` et uniquement les champs qui different.
 

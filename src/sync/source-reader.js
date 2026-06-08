@@ -3,13 +3,18 @@ const fs = require("fs");
 const path = require("path");
 
 const rootDir = process.cwd();
+const copySuffix = / \d+\.json$/;
 
 function listJsonFiles(directory) {
   if (!fs.existsSync(directory)) return [];
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
     const file = path.join(directory, entry.name);
     if (entry.isDirectory()) return listJsonFiles(file);
-    return entry.isFile() && entry.name.endsWith(".json") ? [file] : [];
+    return entry.isFile() &&
+      entry.name.endsWith(".json") &&
+      !copySuffix.test(entry.name)
+      ? [file]
+      : [];
   });
 }
 

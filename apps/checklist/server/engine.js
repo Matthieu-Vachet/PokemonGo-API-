@@ -15,6 +15,7 @@ const languages = [
   "Korean",
   "Spanish",
 ];
+const copySuffix = / \d+\.json$/;
 
 function listJsonFiles(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -22,6 +23,7 @@ function listJsonFiles(directory) {
     if (entry.isDirectory()) return listJsonFiles(entryPath);
     return entry.isFile() &&
       entry.name.endsWith(".json") &&
+      !copySuffix.test(entry.name) &&
       entry.name !== "index.json"
       ? [entryPath]
       : [];
@@ -663,7 +665,7 @@ function buildChecklist() {
   const sources = [];
   for (const file of fs
     .readdirSync(pokemonDir)
-    .filter((name) => name.endsWith(".json"))
+    .filter((name) => name.endsWith(".json") && !copySuffix.test(name))
     .sort()
     .map((name) => path.join(pokemonDir, name))) {
     sources.push({ file, kind: "pokemon", data: readJson(file) });
@@ -819,7 +821,7 @@ function detailForKey(key) {
   if (relativeFile.startsWith("data/pokemon-forms/")) {
     const parent = fs
       .readdirSync(pokemonDir)
-      .filter((name) => name.endsWith(".json"))
+      .filter((name) => name.endsWith(".json") && !copySuffix.test(name))
       .map((name) => readJson(path.join(pokemonDir, name)))
       .find(
         (candidate) =>

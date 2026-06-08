@@ -9,6 +9,7 @@ const remoteBase =
   "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd";
 const filenamePattern =
   /^poke_capture_(\d{4})_(\d{3})_([^_]+)_([^_]+)_(\d{8})_([^_]+)_([nr])\.png$/;
+const copySuffix = / \d+\.json$/;
 
 const genderNames = {
   fd: "female-difference",
@@ -125,7 +126,7 @@ for (const filename of fs.existsSync(sourceDir) ? fs.readdirSync(sourceDir) : []
 
 const pokemonFiles = fs
   .readdirSync(pokemonDir)
-  .filter((filename) => filename.endsWith(".json"))
+  .filter((filename) => filename.endsWith(".json") && !copySuffix.test(filename))
   .map((filename) => path.join(pokemonDir, filename));
 const availableDex = new Set();
 const changed = [];

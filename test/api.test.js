@@ -39,6 +39,8 @@ test("GET /api-docs fournit la documentation Redoc", async () => {
   assert.match(response.text, /cdn\.redoc\.ly/);
   assert.match(response.text, /scroll-y-offset="\.topbar"/);
   assert.doesNotMatch(response.text, /native-scrollbars/);
+  assert.doesNotMatch(response.text, /endpoint-jump/);
+  assert.match(response.text, /mobile-endpoint/);
   assert.match(response.text, /redoc\/v2\.5\.0/);
 });
 
@@ -66,6 +68,9 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   assert.equal(data.types.length, 18);
   assert.equal(new Set(data.pokemon.map((pokemon) => pokemon.key)).size, data.pokemon.length);
   assert.ok(data.pokemon.every((pokemon) => Array.isArray(pokemon.data.quickMoves)));
+  const bulbasaur = data.pokemon.find((pokemon) => pokemon.key === "BULBASAUR");
+  assert.equal(bulbasaur.data.assets.home.source, "pokemon-home");
+  assert.ok(bulbasaur.data.assets.home.variants.length >= 1);
 });
 
 test("les types, PvP null et formes Max sont normalisés", () => {

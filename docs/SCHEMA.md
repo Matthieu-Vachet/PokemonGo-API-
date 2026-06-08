@@ -383,7 +383,13 @@ peuvent etre ajoutes a la forme.
 {
   "assets": {
     "image": "https://raw.githubusercontent.com/.../pm1.icon.png",
-    "shinyImage": "https://raw.githubusercontent.com/.../pm1.s.icon.png"
+    "shinyImage": "https://raw.githubusercontent.com/.../pm1.s.icon.png",
+    "home": {
+      "source": "pokemon-home",
+      "image": "https://raw.githubusercontent.com/.../PokemonHd/poke_capture_0001_000_mf_n_00000000_f_n.png",
+      "shinyImage": "https://raw.githubusercontent.com/.../PokemonHd/poke_capture_0001_000_mf_n_00000000_f_r.png",
+      "variants": []
+    }
   },
   "assetForms": [
     {
@@ -401,6 +407,9 @@ peuvent etre ajoutes a la forme.
 | --- | --- | --- |
 | `assets.image` | string | Image principale. |
 | `assets.shinyImage` | string | Image chromatique principale. |
+| `assets.home.image` | string/null | Image principale issue de Pokémon Home. |
+| `assets.home.shinyImage` | string/null | Image chromatique principale issue de Pokémon Home. |
+| `assets.home.variants[]` | array | Toutes les variantes Home, identifiées par index de forme, genre, Gigantamax, détail et vue. |
 | `assetForms[].form` | string/null | Forme associee a l'asset. |
 | `assetForms[].costume` | string/null | Costume associe a l'asset. |
 | `assetForms[].isFemale` | boolean | Variante visuelle femelle. |

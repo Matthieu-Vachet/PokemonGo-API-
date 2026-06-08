@@ -71,7 +71,7 @@ function redocPage() {
       .status-dot { background: #5eff91; border-radius: 50%; box-shadow: 0 0 12px #5eff91; height: 7px; width: 7px; }
       .hero {
         color: white; display: grid; gap: 40px; grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
-        margin: 0 auto; max-width: 1480px; overflow: hidden; padding: clamp(52px, 8vw, 110px) clamp(20px, 5vw, 80px) 58px;
+        margin: 0 auto; max-width: 1480px; padding: clamp(52px, 8vw, 110px) clamp(20px, 5vw, 80px) 58px;
         position: relative;
       }
       .hero::before {
@@ -124,13 +124,23 @@ function redocPage() {
       .doc-intro small { color: #1685ff; font-size: 11px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
       .doc-intro h2 { font-size: clamp(28px, 4vw, 48px); letter-spacing: -.05em; margin: 8px 0 0; }
       .doc-intro p { color: #587089; line-height: 1.55; margin: 0; max-width: 520px; }
+      .mobile-doc-nav {
+        background: #f5f8fc; display: none; padding: 0 20px 18px;
+      }
+      .mobile-doc-nav label {
+        color: #1685ff; display: block; font-size: 11px; font-weight: 900;
+        letter-spacing: .12em; margin-bottom: 7px; text-transform: uppercase;
+      }
+      .mobile-doc-nav select {
+        appearance: none; background: white; border: 1px solid #cbddec; border-radius: 12px;
+        color: #102b49; font: 750 14px/1.2 Inter, ui-rounded, system-ui, sans-serif;
+        padding: 13px 40px 13px 13px; width: 100%;
+      }
       redoc { display: block; background: #f5f8fc; }
       redoc .redoc-wrap { background: #f5f8fc !important; }
       redoc .menu-content { border-right: 1px solid #dce8f4; }
       redoc .api-content h1, redoc .api-content h2, redoc .api-content h3 { letter-spacing: -.04em !important; }
       redoc .http-verb { border-radius: 999px !important; }
-      redoc .menu-content li[data-item-id*="/operation/"] { position: relative; }
-      redoc .endpoint-jump { inset: 0; position: absolute; z-index: 4; }
       @media (max-width: 980px) {
         .hero { grid-template-columns: 1fr; }
         .visual { min-height: 330px; }
@@ -138,15 +148,18 @@ function redocPage() {
         .doc-intro { align-items: start; flex-direction: column; }
       }
       @media (max-width: 680px) {
-        .topbar { align-items: flex-start; flex-direction: column; }
+        [data-section-id] { scroll-margin-top: 16px; }
+        .topbar { align-items: flex-start; flex-direction: column; position: relative; }
         .toplinks { width: 100%; }
         .pill { flex: 1; justify-content: center; }
         .hero { padding-top: 46px; }
-        h1 { font-size: 52px; }
+        h1 { font-size: clamp(36px, 12.5vw, 46px); letter-spacing: -.06em; overflow-wrap: break-word; }
         .visual { min-height: 260px; }
         .pokemon { max-height: 210px; }
         .pokemon.pikachu { max-height: 155px; }
         .pokemon.bulbasaur { max-height: 120px; }
+        .mobile-doc-nav { display: block; position: sticky; top: 0; z-index: 45; }
+        redoc .api-content { max-width: 100vw !important; }
       }
     </style>
   </head>
@@ -192,6 +205,10 @@ function redocPage() {
       <div><small>Référence technique</small><h2>Choisissez votre endpoint</h2></div>
       <p>Chaque route contient des paramètres préremplis, une réponse réelle et des exemples prêts à utiliser en curl, JavaScript et Python.</p>
     </section>
+    <nav class="mobile-doc-nav" aria-label="Navigation mobile des endpoints">
+      <label for="mobile-endpoint">Aller à un endpoint</label>
+      <select id="mobile-endpoint"><option value="">Choisir un endpoint…</option></select>
+    </nav>
 
     <redoc
       spec-url="/api-docs.json"
@@ -240,60 +257,33 @@ function redocPage() {
       window.addEventListener("hashchange", () =>
         requestAnimationFrame(() => requestAnimationFrame(scrollToCurrentAnchor)),
       );
-      function enhanceRedocMenu() {
-        document.querySelectorAll(
-          '.menu-content li[data-item-id^="tag/"]:not([data-item-id*="/operation/"])',
-        ).forEach(category => {
-          const label = Array.from(category.children).find(
-            child => child.tagName === "LABEL",
-          );
-          if (!label || label.dataset.navigationReady) return;
-          label.dataset.navigationReady = "true";
-          label.addEventListener("click", event => {
-            const list = Array.from(category.children).find(
-              child => child.tagName === "UL",
-            );
-            if (!list) return;
-            const expanded = getComputedStyle(list).display !== "none";
-            list.style.display = expanded ? "none" : "block";
-            category.setAttribute("aria-expanded", String(!expanded));
-            event.preventDefault();
-            event.stopImmediatePropagation();
-          }, true);
-        });
-        document.querySelectorAll(
-          '.menu-content li[data-item-id*="/operation/"]',
-        ).forEach(operation => {
-          if (operation.querySelector(":scope > .endpoint-jump")) return;
-          const id = operation.dataset.itemId;
-          if (!id) return;
-          const jump = document.createElement("a");
-          jump.className = "endpoint-jump";
-          jump.href = "#" + id;
-          jump.setAttribute("aria-label", operation.getAttribute("aria-label") || id);
-          operation.append(jump);
-          jump.addEventListener("click", () => {
-            const navigate = () => {
-              history.replaceState(null, "", "#" + id);
-              scrollToCurrentAnchor(id);
-            };
-            navigate();
-            setTimeout(navigate, 100);
-            setTimeout(navigate, 450);
-            setTimeout(navigate, 800);
-          });
-        });
-      }
       window.addEventListener("load", () =>
         setTimeout(scrollToCurrentAnchor, 500),
       );
-      let previousHash = location.hash;
-      setInterval(() => {
-        enhanceRedocMenu();
-        if (location.hash === previousHash) return;
-        previousHash = location.hash;
-        setTimeout(scrollToCurrentAnchor, 50);
-        setTimeout(scrollToCurrentAnchor, 500);
+      function initializeMobileEndpointMenu() {
+        const select = document.getElementById("mobile-endpoint");
+        const links = Array.from(document.querySelectorAll('a[href*="/operation/"]'));
+        if (!select || !links.length || select.options.length > 1) return false;
+        const seen = new Set();
+        links.forEach(link => {
+          const id = decodeURIComponent(link.getAttribute("href").slice(1));
+          if (seen.has(id)) return;
+          seen.add(id);
+          const heading = link.closest("h2");
+          const label = heading
+            ? heading.textContent.replace(link.textContent, "").trim()
+            : id;
+          select.add(new Option(label, id));
+        });
+        select.addEventListener("change", () => {
+          if (!select.value) return;
+          history.replaceState(null, "", "#" + select.value);
+          scrollToCurrentAnchor(select.value);
+        });
+        return true;
+      }
+      const mobileMenuTimer = setInterval(() => {
+        if (initializeMobileEndpointMenu()) clearInterval(mobileMenuTimer);
       }, 100);
       Promise.all([
         fetch("/api/v1/stats/global").then(response => response.json()),

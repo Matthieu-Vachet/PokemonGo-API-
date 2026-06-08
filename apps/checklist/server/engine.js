@@ -269,6 +269,41 @@ function createValidator() {
     field(value, "shinyImage", `${pathName}.shinyImage`, "string", {
       nonEmpty: true,
     });
+    if (value.home !== undefined) homeAssets(value.home, `${pathName}.home`);
+  }
+
+  function homeAssets(value, pathName) {
+    if (actualType(value) !== "object") {
+      add(pathName, "type", "objet d'assets Pokémon Home", actualType(value));
+      return;
+    }
+    field(value, "source", `${pathName}.source`, "string", { nonEmpty: true });
+    field(value, "image", `${pathName}.image`, "string", {
+      nonEmpty: true,
+      nullable: true,
+    });
+    field(value, "shinyImage", `${pathName}.shinyImage`, "string", {
+      nonEmpty: true,
+      nullable: true,
+    });
+    const variants = field(value, "variants", `${pathName}.variants`, "array", {
+      nonEmpty: true,
+    });
+    if (!Array.isArray(variants)) return;
+    variants.forEach((variant, index) => {
+      const variantPath = `${pathName}.variants[${index}]`;
+      for (const key of ["formIndex", "gender", "genderCode", "detail", "view"])
+        field(variant, key, `${variantPath}.${key}`, "string", { nonEmpty: true });
+      field(variant, "gigantamax", `${variantPath}.gigantamax`, "boolean");
+      if (variant.image !== undefined)
+        field(variant, "image", `${variantPath}.image`, "string", { nonEmpty: true });
+      if (variant.shinyImage !== undefined)
+        field(variant, "shinyImage", `${variantPath}.shinyImage`, "string", {
+          nonEmpty: true,
+        });
+      if (!variant.image && !variant.shinyImage)
+        add(variantPath, "missing", "image ou shinyImage", "absent");
+    });
   }
 
   function evolution(value, pathName) {
@@ -602,7 +637,11 @@ function mergeInheritedForm(parent, form) {
     secondaryType:
       form.secondaryType === undefined ? parent.secondaryType : form.secondaryType,
     pvp: form.pvp === undefined ? parent.pvp : form.pvp,
-    assets: form.assets || parent.assets,
+    assets: {
+      ...(parent.assets || {}),
+      ...(form.assets || {}),
+      home: form.assets?.home || parent.assets?.home,
+    },
   };
   if (!isMaxForm) return merged;
   return {

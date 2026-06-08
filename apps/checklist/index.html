@@ -1088,11 +1088,19 @@
       }
       function assetsPanel(d) {
         const variants = Array.isArray(d.assetForms) ? d.assetForms : [];
+        const home = d.assets?.home || {};
+        const homeVariants = Array.isArray(home.variants) ? home.variants : [];
         const main = assetCard(
-          "Images principales",
+          "Pokémon GO",
           d.form || "normal",
           d.assets?.image,
           d.assets?.shinyImage,
+        );
+        const homeMain = assetCard(
+          "Pokémon Home",
+          `${homeVariants.length} variante${homeVariants.length > 1 ? "s" : ""}`,
+          home.image,
+          home.shinyImage,
         );
         const gallery = variants.length
           ? variants
@@ -1117,7 +1125,26 @@
               })
               .join("")
           : '<div class="empty">Aucune variante visuelle.</div>';
-        return `<div class="section-grid">${info("Capacités de formes", kv("Méga disponible", d.hasMegaEvolution) + kv("Gigantamax disponible", d.hasGigantamaxEvolution) + kv("Formes régionales", Array.isArray(d.regionForms) ? d.regionForms.length : Object.keys(d.regionForms || {}).length) + kv("Méga / Primo", Array.isArray(d.megaEvolutions) ? d.megaEvolutions.length : Object.keys(d.megaEvolutions || {}).length))}</div><section class="asset-section"><h2>Aperçu principal</h2><div class="asset-gallery">${main}</div></section><section class="asset-section"><h2>Variantes visuelles (${variants.length})</h2><div class="asset-gallery">${gallery}</div></section>`;
+        const homeGallery = homeVariants.length
+          ? homeVariants
+              .map((asset) => {
+                const details = [
+                  `Forme ${asset.formIndex}`,
+                  asset.gender,
+                  asset.gigantamax ? "Gigantamax" : null,
+                  asset.view === "back" ? "Vue arrière" : "Vue avant",
+                  asset.detail !== "00000000" ? `Détail ${asset.detail}` : null,
+                ].filter(Boolean).join(" · ");
+                return assetCard(
+                  `Home ${asset.formIndex} · ${asset.genderCode}`,
+                  details,
+                  asset.image,
+                  asset.shinyImage,
+                );
+              })
+              .join("")
+          : '<div class="empty">Aucun asset Pokémon Home.</div>';
+        return `<div class="section-grid">${info("Capacités de formes", kv("Méga disponible", d.hasMegaEvolution) + kv("Gigantamax disponible", d.hasGigantamaxEvolution) + kv("Formes régionales", Array.isArray(d.regionForms) ? d.regionForms.length : Object.keys(d.regionForms || {}).length) + kv("Méga / Primo", Array.isArray(d.megaEvolutions) ? d.megaEvolutions.length : Object.keys(d.megaEvolutions || {}).length))}</div><section class="asset-section"><h2>Aperçus principaux</h2><div class="asset-gallery">${main}${homeMain}</div></section><section class="asset-section"><h2>Variantes Pokémon GO (${variants.length})</h2><div class="asset-gallery">${gallery}</div></section><section class="asset-section"><h2>Variantes Pokémon Home (${homeVariants.length})</h2><div class="asset-gallery">${homeGallery}</div></section>`;
       }
       function cpPanel(d) {
         const rows = Array.isArray(d.cpByLevel) ? d.cpByLevel : [];

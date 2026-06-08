@@ -289,7 +289,8 @@ Les outils d'import et d'extraction manuels vivent dans `scripts/import/`.
 - `[]` pour une liste vide.
 - Identifiants techniques Pokemon GO en majuscules.
 - Slugs publics en anglais et en minuscules.
-- Images Pokemon via `assets.image`, `assets.shinyImage` et `assetForms`.
+- Images Pokémon GO via `assets.image`, `assets.shinyImage` et `assetForms`.
+- Images Pokémon Home via `assets.home`; `npm run migrate:home-assets:write` les régénère depuis `asset/HD`.
 - Traductions principales dans les objets `names`.
 - `regionForms` et `megaEvolutions` valent `[]` lorsqu'ils sont vides, sinon ce sont des objets indexes.
 - Les quatre champs d'attaques des Pokemon sont des tableaux d'identifiants.

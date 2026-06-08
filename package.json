@@ -21,6 +21,8 @@
     "migrate:max-forms:write": "node scripts/migrate/normalize-max-forms.js --write",
     "migrate:identifiers": "node scripts/migrate/normalize-identifiers.js",
     "migrate:identifiers:write": "node scripts/migrate/normalize-identifiers.js --write",
+    "migrate:home-assets": "node scripts/migrate/home-assets.js",
+    "migrate:home-assets:write": "node scripts/migrate/home-assets.js --write",
     "test": "node --test",
     "check": "npm run sync:dry && npm test",
     "checklist": "node apps/checklist/server/local-server.js"

@@ -117,7 +117,11 @@ function mergePokemon(parent, form) {
         ? parent.maxCp
         : form.maxCp,
     pvp: form.pvp === undefined ? parent.pvp : form.pvp,
-    assets: form.assets || parent.assets,
+    assets: {
+      ...(parent.assets || {}),
+      ...(form.assets || {}),
+      home: form.assets?.home || parent.assets?.home,
+    },
     maxBattle: form.maxBattle || parent.maxBattle,
   };
   if (!isMaxForm) return merged;

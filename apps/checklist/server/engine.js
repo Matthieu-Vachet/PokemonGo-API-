@@ -5,6 +5,7 @@ const { buildCpByLevel } = require("../../../src/lib/pokemon-cp");
 const rootDir = process.cwd();
 const pokemonDir = path.join(rootDir, "data", "pokemon");
 const formsDir = path.join(rootDir, "data", "pokemon-forms");
+const movesDir = path.join(rootDir, "data", "moves");
 const languages = [
   "English",
   "German",
@@ -29,6 +30,26 @@ function listJsonFiles(directory) {
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
+}
+
+function buildMoveCatalog() {
+  return new Map(
+    listJsonFiles(movesDir).map((file) => {
+      const move = readJson(file);
+      return [move.id, move];
+    }),
+  );
+}
+
+function resolveMoves(value, catalog) {
+  const ids = Array.isArray(value)
+    ? value
+    : value && typeof value === "object"
+      ? Object.keys(value)
+      : [];
+  return Object.fromEntries(
+    ids.map((id) => [id, catalog.get(id) || { id }]),
+  );
 }
 
 function actualType(value) {
@@ -611,7 +632,17 @@ function detailForKey(key) {
       ? { ...mega, dexId: data.dexId, generation: data.generation }
       : data;
   }
-  return { ...data, cpByLevel: buildCpByLevel(data.stats) };
+  const moveCatalog = buildMoveCatalog();
+  return {
+    ...data,
+    moveDetails: {
+      quickMoves: resolveMoves(data.quickMoves, moveCatalog),
+      cinematicMoves: resolveMoves(data.cinematicMoves, moveCatalog),
+      eliteQuickMoves: resolveMoves(data.eliteQuickMoves, moveCatalog),
+      eliteCinematicMoves: resolveMoves(data.eliteCinematicMoves, moveCatalog),
+    },
+    cpByLevel: buildCpByLevel(data.stats),
+  };
 }
 
 module.exports = { buildChecklist, detailForKey };

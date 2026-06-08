@@ -53,6 +53,16 @@ function moveIds(value) {
   return [];
 }
 
+function normalizePokemonMoveFields(data) {
+  return {
+    ...data,
+    quickMoves: moveIds(data.quickMoves),
+    cinematicMoves: moveIds(data.cinematicMoves),
+    eliteQuickMoves: moveIds(data.eliteQuickMoves),
+    eliteCinematicMoves: moveIds(data.eliteCinematicMoves),
+  };
+}
+
 function pokemonKind(data, hint) {
   if (hint) return hint;
   if (data.form === "gigantamax") return "gigantamax";
@@ -91,6 +101,7 @@ function mergePokemon(parent, form) {
 }
 
 function toPokemonDocument(data, sourceFiles, hint, parentKey = null) {
+  const normalizedData = normalizePokemonMoveFields(data);
   const availability = data.availability || {};
   const kind = pokemonKind(data, hint);
   const primaryType = normalizeType(data.primaryType?.type);
@@ -154,8 +165,8 @@ function toPokemonDocument(data, sourceFiles, hint, parentKey = null) {
     catchRate: data.catchRate,
     fleeRate: data.fleeRate,
     sourceFiles: [...new Set(sourceFiles)],
-    sourceHash: hash(data),
-    data,
+    sourceHash: hash(normalizedData),
+    data: normalizedData,
   };
 }
 
@@ -311,5 +322,6 @@ module.exports = {
   mergePokemon,
   namesToTerms,
   normalizeType,
+  normalizePokemonMoveFields,
   readJson,
 };

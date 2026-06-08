@@ -4,6 +4,7 @@ const request = require("supertest");
 const { createApp } = require("../src/app");
 const { normalizeLeague } = require("../src/lib/pvp");
 const { buildPokemonFilter } = require("../src/services/pokemon-service");
+const { presentPokemon } = require("../src/services/pokemon-presenter");
 const { collectAllDocuments } = require("../src/sync/source-reader");
 
 const app = createApp();
@@ -33,6 +34,8 @@ test("GET /api-docs fournit la documentation Redoc", async () => {
   assert.match(response.text, /<redoc/);
   assert.match(response.text, /cdn\.redoc\.ly/);
   assert.match(response.text, /scroll-y-offset="\.topbar"/);
+  assert.doesNotMatch(response.text, /native-scrollbars/);
+  assert.match(response.text, /redoc\/v2\.5\.0/);
 });
 
 test("GET /swagger fournit Swagger UI", async () => {
@@ -58,6 +61,20 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   assert.ok(data.moves.length >= 250);
   assert.equal(data.types.length, 18);
   assert.equal(new Set(data.pokemon.map((pokemon) => pokemon.key)).size, data.pokemon.length);
+  assert.ok(data.pokemon.every((pokemon) => Array.isArray(pokemon.data.quickMoves)));
+});
+
+test("les anciennes attaques embarquées sont présentées comme références", () => {
+  const pokemon = presentPokemon({
+    data: {
+      quickMoves: {
+        VINE_WHIP_FAST: { id: "VINE_WHIP_FAST", power: 6 },
+      },
+      cinematicMoves: ["POWER_WHIP"],
+    },
+  });
+  assert.deepEqual(pokemon.data.quickMoves, ["VINE_WHIP_FAST"]);
+  assert.deepEqual(pokemon.data.cinematicMoves, ["POWER_WHIP"]);
 });
 
 test("les alias de ligue PvP sont normalisés", () => {

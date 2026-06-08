@@ -1145,6 +1145,9 @@
           : '<div class="empty">Aucun problème détecté.</div>';
       }
       function renderDetail(e, d) {
+        const sourceJson = { ...d };
+        delete sourceJson.moveDetails;
+        delete sourceJson.cpByLevel;
         const tabs = [
           ["overview", "Aperçu"],
           ["cp", "PC par niveau"],
@@ -1166,7 +1169,7 @@
               `<button class="tab ${i === 0 ? "active" : ""}" data-tab="${id}">${label}</button>`,
           )
           .join("");
-        el.panels.innerHTML = `<div class="panel active" data-panel="overview">${overview(d)}</div><div class="panel" data-panel="cp">${cpPanel(d)}</div><div class="panel" data-panel="issues">${issuesPanel(e)}</div><div class="panel" data-panel="moves"><h2>Attaques rapides</h2>${objectCards("rapide", d.quickMoves)}<h2>Attaques chargées</h2>${objectCards("chargée", d.cinematicMoves)}</div><div class="panel" data-panel="pvp">${
+        el.panels.innerHTML = `<div class="panel active" data-panel="overview">${overview(d)}</div><div class="panel" data-panel="cp">${cpPanel(d)}</div><div class="panel" data-panel="issues">${issuesPanel(e)}</div><div class="panel" data-panel="moves"><h2>Attaques rapides</h2>${objectCards("rapide", d.moveDetails?.quickMoves)}<h2>Attaques chargées</h2>${objectCards("chargée", d.moveDetails?.cinematicMoves)}<h2>Attaques rapides élite</h2>${objectCards("rapide élite", d.moveDetails?.eliteQuickMoves)}<h2>Attaques chargées élite</h2>${objectCards("chargée élite", d.moveDetails?.eliteCinematicMoves)}</div><div class="panel" data-panel="pvp">${
           d.pvp
             ? `<div class="section-grid">${Object.entries(d.pvp)
                 .map(([league, v]) =>
@@ -1181,7 +1184,7 @@
                 )
                 .join("")}</div>`
             : '<div class="empty">Aucune donnée PvP.</div>'
-        }</div><div class="panel" data-panel="evolutions">${d.evolutions?.length ? `<div class="section-grid">${d.evolutions.map((v) => info(v.id, kv("Forme", v.form) + kv("Bonbons", v.candies) + kv("Objet", v.item))).join("")}</div>` : '<div class="empty">Aucune évolution suivante.</div>'}</div><div class="panel" data-panel="forms">${assetsPanel(d)}</div><div class="panel" data-panel="json"><pre>${esc(JSON.stringify(d, null, 2))}</pre></div>`;
+        }</div><div class="panel" data-panel="evolutions">${d.evolutions?.length ? `<div class="section-grid">${d.evolutions.map((v) => info(v.id, kv("Forme", v.form) + kv("Bonbons", v.candies) + kv("Objet", v.item))).join("")}</div>` : '<div class="empty">Aucune évolution suivante.</div>'}</div><div class="panel" data-panel="forms">${assetsPanel(d)}</div><div class="panel" data-panel="json"><pre>${esc(JSON.stringify(sourceJson, null, 2))}</pre></div>`;
         document.getElementById("closeDetail").onclick = () =>
           el.detail.close();
         el.tabs.querySelectorAll("[data-tab]").forEach(

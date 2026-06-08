@@ -129,6 +129,8 @@ function redocPage() {
       redoc .menu-content { border-right: 1px solid #dce8f4; }
       redoc .api-content h1, redoc .api-content h2, redoc .api-content h3 { letter-spacing: -.04em !important; }
       redoc .http-verb { border-radius: 999px !important; }
+      redoc .menu-content li[data-item-id*="/operation/"] { position: relative; }
+      redoc .endpoint-jump { inset: 0; position: absolute; z-index: 4; }
       @media (max-width: 980px) {
         .hero { grid-template-columns: 1fr; }
         .visual { min-height: 330px; }
@@ -195,7 +197,6 @@ function redocPage() {
       spec-url="/api-docs.json"
       expand-responses="200"
       hide-download-button="false"
-      native-scrollbars
       path-in-middle-panel
       required-props-first
       scroll-y-offset=".topbar"
@@ -219,8 +220,81 @@ function redocPage() {
         }
       }'
     ></redoc>
-    <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
+    <script src="https://cdn.redoc.ly/redoc/v2.5.0/bundles/redoc.standalone.js"></script>
     <script>
+      function scrollToCurrentAnchor(forcedId) {
+        if (!forcedId && !location.hash) return;
+        const id = forcedId || decodeURIComponent(location.hash.slice(1));
+        const target = document.getElementById(id);
+        if (!target) return;
+        const offset = document.querySelector(".topbar")?.offsetHeight || 0;
+        const top = window.scrollY + target.getBoundingClientRect().top - offset - 12;
+        const scrollTop = Math.max(0, top);
+        document.documentElement.style.scrollBehavior = "auto";
+        document.documentElement.scrollTop = scrollTop;
+        document.body.scrollTop = scrollTop;
+        requestAnimationFrame(() => {
+          document.documentElement.style.scrollBehavior = "";
+        });
+      }
+      window.addEventListener("hashchange", () =>
+        requestAnimationFrame(() => requestAnimationFrame(scrollToCurrentAnchor)),
+      );
+      function enhanceRedocMenu() {
+        document.querySelectorAll(
+          '.menu-content li[data-item-id^="tag/"]:not([data-item-id*="/operation/"])',
+        ).forEach(category => {
+          const label = Array.from(category.children).find(
+            child => child.tagName === "LABEL",
+          );
+          if (!label || label.dataset.navigationReady) return;
+          label.dataset.navigationReady = "true";
+          label.addEventListener("click", event => {
+            const list = Array.from(category.children).find(
+              child => child.tagName === "UL",
+            );
+            if (!list) return;
+            const expanded = getComputedStyle(list).display !== "none";
+            list.style.display = expanded ? "none" : "block";
+            category.setAttribute("aria-expanded", String(!expanded));
+            event.preventDefault();
+            event.stopImmediatePropagation();
+          }, true);
+        });
+        document.querySelectorAll(
+          '.menu-content li[data-item-id*="/operation/"]',
+        ).forEach(operation => {
+          if (operation.querySelector(":scope > .endpoint-jump")) return;
+          const id = operation.dataset.itemId;
+          if (!id) return;
+          const jump = document.createElement("a");
+          jump.className = "endpoint-jump";
+          jump.href = "#" + id;
+          jump.setAttribute("aria-label", operation.getAttribute("aria-label") || id);
+          operation.append(jump);
+          jump.addEventListener("click", () => {
+            const navigate = () => {
+              history.replaceState(null, "", "#" + id);
+              scrollToCurrentAnchor(id);
+            };
+            navigate();
+            setTimeout(navigate, 100);
+            setTimeout(navigate, 450);
+            setTimeout(navigate, 800);
+          });
+        });
+      }
+      window.addEventListener("load", () =>
+        setTimeout(scrollToCurrentAnchor, 500),
+      );
+      let previousHash = location.hash;
+      setInterval(() => {
+        enhanceRedocMenu();
+        if (location.hash === previousHash) return;
+        previousHash = location.hash;
+        setTimeout(scrollToCurrentAnchor, 50);
+        setTimeout(scrollToCurrentAnchor, 500);
+      }, 100);
       Promise.all([
         fetch("/api/v1/stats/global").then(response => response.json()),
         fetch("/api-docs.json").then(response => response.json()),

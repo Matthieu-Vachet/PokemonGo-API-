@@ -1,6 +1,10 @@
 const { Pokemon } = require("../models");
 const { ApiError } = require("../lib/api-error");
 const { boolean, csv, pagination, sortFromQuery } = require("../lib/http");
+const {
+  presentPokemon,
+  presentPokemonList,
+} = require("./pokemon-presenter");
 
 const SORT_FIELDS = [
   "dexNr",
@@ -117,7 +121,7 @@ async function listPokemon(query) {
       .lean(),
     Pokemon.countDocuments(filter),
   ]);
-  return { items, total, page, limit, filter, sort };
+  return { items: presentPokemonList(items), total, page, limit, filter, sort };
 }
 
 function identifierFilter(identifier) {
@@ -145,13 +149,15 @@ async function findPokemon(identifier, query = {}) {
   if (!documents.length) {
     throw new ApiError(404, `Pokémon introuvable : ${identifier}`, "POKEMON_NOT_FOUND");
   }
-  if (documents.length === 1 || query.form) return documents[0];
-  return documents.find((document) => document.form === "normal") || documents[0];
+  if (documents.length === 1 || query.form) return presentPokemon(documents[0]);
+  return presentPokemon(
+    documents.find((document) => document.form === "normal") || documents[0],
+  );
 }
 
 async function findAllForms(identifier) {
   const pokemon = await findPokemon(identifier);
-  return Pokemon.find({
+  const documents = await Pokemon.find({
     $or: [
       { id: pokemon.id },
       { dexNr: pokemon.dexNr },
@@ -161,6 +167,7 @@ async function findAllForms(identifier) {
   })
     .sort({ kind: 1, form: 1 })
     .lean();
+  return presentPokemonList(documents);
 }
 
 module.exports = {

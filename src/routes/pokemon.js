@@ -12,6 +12,11 @@ const {
   evolutionChain,
 } = require("../services/evolution-service");
 const { calculateCp, buildCpByLevel } = require("../lib/pokemon-cp");
+const {
+  moveIds,
+  presentPokemon,
+  presentPokemonList,
+} = require("../services/pokemon-presenter");
 
 const router = express.Router();
 
@@ -33,7 +38,7 @@ router.get(
   asyncHandler(async (request, response) => {
     const match = request.query.released === "true" ? { "flags.released": true } : {};
     const [pokemon] = await Pokemon.aggregate([{ $match: match }, { $sample: { size: 1 } }]);
-    response.json({ data: pokemon || null });
+    response.json({ data: presentPokemon(pokemon || null) });
   }),
 );
 
@@ -48,7 +53,7 @@ for (const [route, field] of [
     asyncHandler(async (request, response) => {
       const value = field === "dexNr" ? Number(request.params.value) : request.params.value;
       const data = await Pokemon.find({ [field]: value }).sort({ form: 1 }).lean();
-      response.json({ data, meta: { total: data.length } });
+      response.json({ data: presentPokemonList(data), meta: { total: data.length } });
     }),
   );
 }
@@ -119,10 +124,10 @@ router.get(
   asyncHandler(async (request, response) => {
     const pokemon = await findPokemon(request.params.identifier, request.query);
     const categories = {
-      quickMoves: pokemon.data?.quickMoves || [],
-      cinematicMoves: pokemon.data?.cinematicMoves || [],
-      eliteQuickMoves: pokemon.data?.eliteQuickMoves || [],
-      eliteCinematicMoves: pokemon.data?.eliteCinematicMoves || [],
+      quickMoves: moveIds(pokemon.data?.quickMoves),
+      cinematicMoves: moveIds(pokemon.data?.cinematicMoves),
+      eliteQuickMoves: moveIds(pokemon.data?.eliteQuickMoves),
+      eliteCinematicMoves: moveIds(pokemon.data?.eliteCinematicMoves),
     };
     const ids = [...new Set(Object.values(categories).flat())];
     const moves = await Move.find({ id: { $in: ids } }).lean();

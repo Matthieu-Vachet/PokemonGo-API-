@@ -55,7 +55,7 @@
   "regionForms": {
     "FRILLISH_FEMALE": {
       "id": "FRILLISH",
-      "slug": "frillish",
+      "slug": "frillish-female",
       "formId": "FRILLISH_FEMALE",
       "form": "normal",
       "dexNr": 592,
@@ -109,10 +109,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "JELLICENT",
-          "slug": "jellicent",
-          "formId": "JELLICENT_FEMALE",
-          "form": "normal",
+          "targetFormId": "JELLICENT_FEMALE",
           "candies": 50,
           "item": null,
           "quests": []
@@ -120,15 +117,13 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "FRILLISH"
     }
   },
   "evolutions": [
     {
-      "id": "JELLICENT",
-      "slug": "jellicent",
-      "formId": "JELLICENT",
-      "form": "normal",
+      "targetFormId": "JELLICENT",
       "candies": 50,
       "item": null,
       "quests": []

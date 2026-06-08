@@ -58,7 +58,7 @@
   "regionForms": {
     "LATIOS_S": {
       "id": "LATIOS",
-      "slug": "latios",
+      "slug": "latios-s",
       "formId": "LATIOS_S",
       "form": "normal",
       "dexNr": 381,
@@ -143,7 +143,8 @@
           "form": "mega"
         }
       },
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "LATIOS"
     }
   },
   "evolutions": [],
@@ -151,7 +152,7 @@
   "megaEvolutions": {
     "LATIOS_MEGA": {
       "id": "LATIOS_MEGA",
-      "slug": "latios_mega",
+      "slug": "latios-mega",
       "form": "mega",
       "names": {
         "English": "Mega Latios",
@@ -173,7 +174,9 @@
       "assets": {
         "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm381.fMEGA.icon.png",
         "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm381.fMEGA.s.icon.png"
-      }
+      },
+      "baseFormId": "LATIOS",
+      "formId": "LATIOS_MEGA"
     }
   },
   "hasGigantamaxEvolution": false,

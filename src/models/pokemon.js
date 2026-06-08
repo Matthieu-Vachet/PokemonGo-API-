@@ -10,6 +10,7 @@ const pokemonSchema = new mongoose.Schema(
       index: true,
     },
     parentKey: { type: String, default: null, index: true },
+    baseFormId: { type: String, default: null, index: true },
     id: { type: String, required: true, index: true },
     formId: { type: String, index: true },
     slug: { type: String, required: true, index: true },

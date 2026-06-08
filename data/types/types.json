@@ -1,5 +1,7 @@
 [
   {
+    "id": "NORMAL",
+    "slug": "normal",
     "type": "Normal",
     "names": {
       "English": "Normal",
@@ -10,9 +12,13 @@
       "Korean": "노말",
       "Spanish": "Normal"
     },
-    "doubleDamageFrom": ["Fighting"],
+    "doubleDamageFrom": [
+      "Fighting"
+    ],
     "halfDamageFrom": [],
-    "noDamageFrom": ["Ghost"],
+    "noDamageFrom": [
+      "Ghost"
+    ],
     "weatherBoost": {
       "id": "partlyCloudy",
       "names": {
@@ -28,6 +34,8 @@
     }
   },
   {
+    "id": "FIGHTING",
+    "slug": "fighting",
     "type": "Fighting",
     "names": {
       "English": "Fighting",
@@ -38,8 +46,16 @@
       "Korean": "격투",
       "Spanish": "Lucha"
     },
-    "doubleDamageFrom": ["Flying", "Psychic", "Fairy"],
-    "halfDamageFrom": ["Rock", "Bug", "Dark"],
+    "doubleDamageFrom": [
+      "Flying",
+      "Psychic",
+      "Fairy"
+    ],
+    "halfDamageFrom": [
+      "Rock",
+      "Bug",
+      "Dark"
+    ],
     "noDamageFrom": [],
     "weatherBoost": {
       "id": "cloudy",
@@ -56,6 +72,8 @@
     }
   },
   {
+    "id": "FLYING",
+    "slug": "flying",
     "type": "Flying",
     "names": {
       "English": "Flying",
@@ -66,9 +84,19 @@
       "Korean": "비행",
       "Spanish": "Volador"
     },
-    "doubleDamageFrom": ["Rock", "Electric", "Ice"],
-    "halfDamageFrom": ["Fighting", "Bug", "Grass"],
-    "noDamageFrom": ["Ground"],
+    "doubleDamageFrom": [
+      "Rock",
+      "Electric",
+      "Ice"
+    ],
+    "halfDamageFrom": [
+      "Fighting",
+      "Bug",
+      "Grass"
+    ],
+    "noDamageFrom": [
+      "Ground"
+    ],
     "weatherBoost": {
       "id": "windy",
       "names": {
@@ -84,6 +112,8 @@
     }
   },
   {
+    "id": "POISON",
+    "slug": "poison",
     "type": "Poison",
     "names": {
       "English": "Poison",
@@ -94,8 +124,17 @@
       "Korean": "독",
       "Spanish": "Veneno"
     },
-    "doubleDamageFrom": ["Ground", "Psychic"],
-    "halfDamageFrom": ["Fighting", "Poison", "Bug", "Grass", "Fairy"],
+    "doubleDamageFrom": [
+      "Ground",
+      "Psychic"
+    ],
+    "halfDamageFrom": [
+      "Fighting",
+      "Poison",
+      "Bug",
+      "Grass",
+      "Fairy"
+    ],
     "noDamageFrom": [],
     "weatherBoost": {
       "id": "cloudy",
@@ -112,6 +151,8 @@
     }
   },
   {
+    "id": "GROUND",
+    "slug": "ground",
     "type": "Ground",
     "names": {
       "English": "Ground",
@@ -122,9 +163,18 @@
       "Korean": "땅",
       "Spanish": "Tierra"
     },
-    "doubleDamageFrom": ["Water", "Grass", "Ice"],
-    "halfDamageFrom": ["Poison", "Rock"],
-    "noDamageFrom": ["Electric"],
+    "doubleDamageFrom": [
+      "Water",
+      "Grass",
+      "Ice"
+    ],
+    "halfDamageFrom": [
+      "Poison",
+      "Rock"
+    ],
+    "noDamageFrom": [
+      "Electric"
+    ],
     "weatherBoost": {
       "id": "sunny",
       "names": {
@@ -140,6 +190,8 @@
     }
   },
   {
+    "id": "ROCK",
+    "slug": "rock",
     "type": "Rock",
     "names": {
       "English": "Rock",
@@ -150,8 +202,19 @@
       "Korean": "바위",
       "Spanish": "Roca"
     },
-    "doubleDamageFrom": ["Fighting", "Ground", "Steel", "Water", "Grass"],
-    "halfDamageFrom": ["Normal", "Flying", "Poison", "Fire"],
+    "doubleDamageFrom": [
+      "Fighting",
+      "Ground",
+      "Steel",
+      "Water",
+      "Grass"
+    ],
+    "halfDamageFrom": [
+      "Normal",
+      "Flying",
+      "Poison",
+      "Fire"
+    ],
     "noDamageFrom": [],
     "weatherBoost": {
       "id": "partlyCloudy",
@@ -168,6 +231,8 @@
     }
   },
   {
+    "id": "BUG",
+    "slug": "bug",
     "type": "Bug",
     "names": {
       "English": "Bug",
@@ -178,8 +243,16 @@
       "Korean": "벌레",
       "Spanish": "Bicho"
     },
-    "doubleDamageFrom": ["Flying", "Rock", "Fire"],
-    "halfDamageFrom": ["Fighting", "Ground", "Grass"],
+    "doubleDamageFrom": [
+      "Flying",
+      "Rock",
+      "Fire"
+    ],
+    "halfDamageFrom": [
+      "Fighting",
+      "Ground",
+      "Grass"
+    ],
     "noDamageFrom": [],
     "weatherBoost": {
       "id": "rain",
@@ -196,6 +269,8 @@
     }
   },
   {
+    "id": "GHOST",
+    "slug": "ghost",
     "type": "Ghost",
     "names": {
       "English": "Ghost",
@@ -206,9 +281,18 @@
       "Korean": "고스트",
       "Spanish": "Fantasma"
     },
-    "doubleDamageFrom": ["Ghost", "Dark"],
-    "halfDamageFrom": ["Poison", "Bug"],
-    "noDamageFrom": ["Normal", "Fighting"],
+    "doubleDamageFrom": [
+      "Ghost",
+      "Dark"
+    ],
+    "halfDamageFrom": [
+      "Poison",
+      "Bug"
+    ],
+    "noDamageFrom": [
+      "Normal",
+      "Fighting"
+    ],
     "weatherBoost": {
       "id": "fog",
       "names": {
@@ -224,6 +308,8 @@
     }
   },
   {
+    "id": "STEEL",
+    "slug": "steel",
     "type": "Steel",
     "names": {
       "English": "Steel",
@@ -234,7 +320,11 @@
       "Korean": "강철",
       "Spanish": "Acero"
     },
-    "doubleDamageFrom": ["Fighting", "Ground", "Fire"],
+    "doubleDamageFrom": [
+      "Fighting",
+      "Ground",
+      "Fire"
+    ],
     "halfDamageFrom": [
       "Normal",
       "Flying",
@@ -247,7 +337,9 @@
       "Dragon",
       "Fairy"
     ],
-    "noDamageFrom": ["Poison"],
+    "noDamageFrom": [
+      "Poison"
+    ],
     "weatherBoost": {
       "id": "snow",
       "names": {
@@ -263,6 +355,8 @@
     }
   },
   {
+    "id": "FIRE",
+    "slug": "fire",
     "type": "Fire",
     "names": {
       "English": "Fire",
@@ -273,8 +367,19 @@
       "Korean": "불꽃",
       "Spanish": "Fuego"
     },
-    "doubleDamageFrom": ["Ground", "Rock", "Water"],
-    "halfDamageFrom": ["Bug", "Steel", "Fire", "Grass", "Ice", "Fairy"],
+    "doubleDamageFrom": [
+      "Ground",
+      "Rock",
+      "Water"
+    ],
+    "halfDamageFrom": [
+      "Bug",
+      "Steel",
+      "Fire",
+      "Grass",
+      "Ice",
+      "Fairy"
+    ],
     "noDamageFrom": [],
     "weatherBoost": {
       "id": "sunny",
@@ -291,6 +396,8 @@
     }
   },
   {
+    "id": "WATER",
+    "slug": "water",
     "type": "Water",
     "names": {
       "English": "Water",
@@ -301,8 +408,16 @@
       "Korean": "물",
       "Spanish": "Agua"
     },
-    "doubleDamageFrom": ["Grass", "Electric"],
-    "halfDamageFrom": ["Steel", "Fire", "Water", "Ice"],
+    "doubleDamageFrom": [
+      "Grass",
+      "Electric"
+    ],
+    "halfDamageFrom": [
+      "Steel",
+      "Fire",
+      "Water",
+      "Ice"
+    ],
     "noDamageFrom": [],
     "weatherBoost": {
       "id": "rain",
@@ -319,6 +434,8 @@
     }
   },
   {
+    "id": "GRASS",
+    "slug": "grass",
     "type": "Grass",
     "names": {
       "English": "Grass",
@@ -329,8 +446,19 @@
       "Korean": "풀",
       "Spanish": "Planta"
     },
-    "doubleDamageFrom": ["Flying", "Poison", "Bug", "Fire", "Ice"],
-    "halfDamageFrom": ["Ground", "Water", "Grass", "Electric"],
+    "doubleDamageFrom": [
+      "Flying",
+      "Poison",
+      "Bug",
+      "Fire",
+      "Ice"
+    ],
+    "halfDamageFrom": [
+      "Ground",
+      "Water",
+      "Grass",
+      "Electric"
+    ],
     "noDamageFrom": [],
     "weatherBoost": {
       "id": "sunny",
@@ -347,6 +475,8 @@
     }
   },
   {
+    "id": "ELECTRIC",
+    "slug": "electric",
     "type": "Electric",
     "names": {
       "English": "Electric",
@@ -357,8 +487,14 @@
       "Korean": "전기",
       "Spanish": "Eléctrico"
     },
-    "doubleDamageFrom": ["Ground"],
-    "halfDamageFrom": ["Flying", "Steel", "Electric"],
+    "doubleDamageFrom": [
+      "Ground"
+    ],
+    "halfDamageFrom": [
+      "Flying",
+      "Steel",
+      "Electric"
+    ],
     "noDamageFrom": [],
     "weatherBoost": {
       "id": "rain",
@@ -375,6 +511,8 @@
     }
   },
   {
+    "id": "PSYCHIC",
+    "slug": "psychic",
     "type": "Psychic",
     "names": {
       "English": "Psychic",
@@ -385,8 +523,15 @@
       "Korean": "에스퍼",
       "Spanish": "Psíquico"
     },
-    "doubleDamageFrom": ["Bug", "Ghost", "Dark"],
-    "halfDamageFrom": ["Fighting", "Psychic"],
+    "doubleDamageFrom": [
+      "Bug",
+      "Ghost",
+      "Dark"
+    ],
+    "halfDamageFrom": [
+      "Fighting",
+      "Psychic"
+    ],
     "noDamageFrom": [],
     "weatherBoost": {
       "id": "windy",
@@ -403,6 +548,8 @@
     }
   },
   {
+    "id": "ICE",
+    "slug": "ice",
     "type": "Ice",
     "names": {
       "English": "Ice",
@@ -413,8 +560,15 @@
       "Korean": "얼음",
       "Spanish": "Hielo"
     },
-    "doubleDamageFrom": ["Fighting", "Rock", "Steel", "Fire"],
-    "halfDamageFrom": ["Ice"],
+    "doubleDamageFrom": [
+      "Fighting",
+      "Rock",
+      "Steel",
+      "Fire"
+    ],
+    "halfDamageFrom": [
+      "Ice"
+    ],
     "noDamageFrom": [],
     "weatherBoost": {
       "id": "snow",
@@ -431,6 +585,8 @@
     }
   },
   {
+    "id": "DRAGON",
+    "slug": "dragon",
     "type": "Dragon",
     "names": {
       "English": "Dragon",
@@ -441,8 +597,17 @@
       "Korean": "드래곤",
       "Spanish": "Dragón"
     },
-    "doubleDamageFrom": ["Ice", "Dragon", "Fairy"],
-    "halfDamageFrom": ["Fire", "Water", "Grass", "Electric"],
+    "doubleDamageFrom": [
+      "Ice",
+      "Dragon",
+      "Fairy"
+    ],
+    "halfDamageFrom": [
+      "Fire",
+      "Water",
+      "Grass",
+      "Electric"
+    ],
     "noDamageFrom": [],
     "weatherBoost": {
       "id": "windy",
@@ -459,6 +624,8 @@
     }
   },
   {
+    "id": "DARK",
+    "slug": "dark",
     "type": "Dark",
     "names": {
       "English": "Dark",
@@ -469,9 +636,18 @@
       "Korean": "악",
       "Spanish": "Siniestro"
     },
-    "doubleDamageFrom": ["Fighting", "Bug", "Fairy"],
-    "halfDamageFrom": ["Ghost", "Dark"],
-    "noDamageFrom": ["Psychic"],
+    "doubleDamageFrom": [
+      "Fighting",
+      "Bug",
+      "Fairy"
+    ],
+    "halfDamageFrom": [
+      "Ghost",
+      "Dark"
+    ],
+    "noDamageFrom": [
+      "Psychic"
+    ],
     "weatherBoost": {
       "id": "fog",
       "names": {
@@ -487,6 +663,8 @@
     }
   },
   {
+    "id": "FAIRY",
+    "slug": "fairy",
     "type": "Fairy",
     "names": {
       "English": "Fairy",
@@ -497,9 +675,18 @@
       "Korean": "페어리",
       "Spanish": "Hada"
     },
-    "doubleDamageFrom": ["Poison", "Steel"],
-    "halfDamageFrom": ["Fighting", "Bug", "Dark"],
-    "noDamageFrom": ["Dragon"],
+    "doubleDamageFrom": [
+      "Poison",
+      "Steel"
+    ],
+    "halfDamageFrom": [
+      "Fighting",
+      "Bug",
+      "Dark"
+    ],
+    "noDamageFrom": [
+      "Dragon"
+    ],
     "weatherBoost": {
       "id": "cloudy",
       "names": {

@@ -55,7 +55,7 @@
   "regionForms": {
     "POLTCHAGEIST_ARTISAN": {
       "id": "POLTCHAGEIST",
-      "slug": "poltchageist",
+      "slug": "poltchageist-artisan",
       "formId": "POLTCHAGEIST_ARTISAN",
       "form": "normal",
       "dexNr": 1012,
@@ -109,10 +109,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "SINISTCHA",
-          "slug": "sinistcha",
-          "formId": "SINISTCHA_MASTERPIECE",
-          "form": "normal",
+          "targetFormId": "SINISTCHA_MASTERPIECE",
           "candies": 400,
           "item": null,
           "quests": []
@@ -120,11 +117,12 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "POLTCHAGEIST"
     },
     "POLTCHAGEIST_COUNTERFEIT": {
       "id": "POLTCHAGEIST",
-      "slug": "poltchageist",
+      "slug": "poltchageist-counterfeit",
       "formId": "POLTCHAGEIST_COUNTERFEIT",
       "form": "normal",
       "dexNr": 1012,
@@ -178,10 +176,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "SINISTCHA",
-          "slug": "sinistcha",
-          "formId": "SINISTCHA_UNREMARKABLE",
-          "form": "normal",
+          "targetFormId": "SINISTCHA_UNREMARKABLE",
           "candies": 50,
           "item": null,
           "quests": []
@@ -189,15 +184,13 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "POLTCHAGEIST"
     }
   },
   "evolutions": [
     {
-      "id": "SINISTCHA",
-      "slug": "sinistcha",
-      "formId": "SINISTCHA_UNREMARKABLE",
-      "form": "normal",
+      "targetFormId": "SINISTCHA_UNREMARKABLE",
       "candies": 50,
       "item": null,
       "quests": []

@@ -56,7 +56,7 @@
   "regionForms": {
     "VULPIX_ALOLA": {
       "id": "VULPIX",
-      "slug": "vulpix",
+      "slug": "vulpix-alola",
       "formId": "VULPIX_ALOLA",
       "form": "alola",
       "dexNr": 37,
@@ -111,10 +111,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "NINETALES",
-          "slug": "ninetales",
-          "formId": "NINETALES_ALOLA",
-          "form": "alola",
+          "targetFormId": "NINETALES_ALOLA",
           "candies": 50,
           "item": null,
           "quests": []
@@ -122,15 +119,13 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "VULPIX"
     }
   },
   "evolutions": [
     {
-      "id": "NINETALES",
-      "slug": "ninetales",
-      "formId": "NINETALES_NORMAL",
-      "form": "normal",
+      "targetFormId": "NINETALES",
       "candies": 50,
       "item": null,
       "quests": []

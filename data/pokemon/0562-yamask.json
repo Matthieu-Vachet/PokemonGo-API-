@@ -55,7 +55,7 @@
   "regionForms": {
     "YAMASK_GALARIAN": {
       "id": "YAMASK",
-      "slug": "yamask",
+      "slug": "yamask-galarian",
       "formId": "YAMASK_GALARIAN",
       "form": "galar",
       "dexNr": 562,
@@ -107,10 +107,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "RUNERIGUS",
-          "slug": "runerigus",
-          "formId": "RUNERIGUS_NORMAL",
-          "form": "normal",
+          "targetFormId": "RUNERIGUS",
           "candies": 50,
           "item": null,
           "quests": [
@@ -133,15 +130,13 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "YAMASK"
     }
   },
   "evolutions": [
     {
-      "id": "COFAGRIGUS",
-      "slug": "cofagrigus",
-      "formId": "COFAGRIGUS_NORMAL",
-      "form": "normal",
+      "targetFormId": "COFAGRIGUS",
       "candies": 50,
       "item": null,
       "quests": []

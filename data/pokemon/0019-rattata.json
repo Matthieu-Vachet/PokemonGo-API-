@@ -55,7 +55,7 @@
   "regionForms": {
     "RATTATA_ALOLA": {
       "id": "RATTATA",
-      "slug": "rattata",
+      "slug": "rattata-alola",
       "formId": "RATTATA_ALOLA",
       "form": "alola",
       "dexNr": 19,
@@ -109,10 +109,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "RATICATE",
-          "slug": "raticate",
-          "formId": "RATICATE_ALOLA",
-          "form": "alola",
+          "targetFormId": "RATICATE_ALOLA",
           "candies": 25,
           "item": null,
           "quests": []
@@ -120,15 +117,13 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "RATTATA"
     }
   },
   "evolutions": [
     {
-      "id": "RATICATE",
-      "slug": "raticate",
-      "formId": "RATICATE_NORMAL",
-      "form": "normal",
+      "targetFormId": "RATICATE",
       "candies": 25,
       "item": null,
       "quests": []

@@ -55,7 +55,7 @@
   "regionForms": {
     "FLABEBE_BLUE": {
       "id": "FLABEBE",
-      "slug": "flabebe",
+      "slug": "flabebe-blue",
       "formId": "FLABEBE_BLUE",
       "form": "normal",
       "dexNr": 669,
@@ -109,10 +109,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "FLOETTE",
-          "slug": "floette",
-          "formId": "FLOETTE_BLUE",
-          "form": "normal",
+          "targetFormId": "FLOETTE_BLUE",
           "candies": 25,
           "item": null,
           "quests": []
@@ -120,11 +117,12 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "FLABEBE"
     },
     "FLABEBE_ORANGE": {
       "id": "FLABEBE",
-      "slug": "flabebe",
+      "slug": "flabebe-orange",
       "formId": "FLABEBE_ORANGE",
       "form": "normal",
       "dexNr": 669,
@@ -178,10 +176,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "FLOETTE",
-          "slug": "floette",
-          "formId": "FLOETTE_ORANGE",
-          "form": "normal",
+          "targetFormId": "FLOETTE_ORANGE",
           "candies": 25,
           "item": null,
           "quests": []
@@ -189,11 +184,12 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "FLABEBE"
     },
     "FLABEBE_RED": {
       "id": "FLABEBE",
-      "slug": "flabebe",
+      "slug": "flabebe-red",
       "formId": "FLABEBE_RED",
       "form": "normal",
       "dexNr": 669,
@@ -247,10 +243,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "FLOETTE",
-          "slug": "floette",
-          "formId": "FLOETTE_RED",
-          "form": "normal",
+          "targetFormId": "FLOETTE_RED",
           "candies": 25,
           "item": null,
           "quests": []
@@ -258,11 +251,12 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "FLABEBE"
     },
     "FLABEBE_WHITE": {
       "id": "FLABEBE",
-      "slug": "flabebe",
+      "slug": "flabebe-white",
       "formId": "FLABEBE_WHITE",
       "form": "normal",
       "dexNr": 669,
@@ -316,10 +310,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "FLOETTE",
-          "slug": "floette",
-          "formId": "FLOETTE_WHITE",
-          "form": "normal",
+          "targetFormId": "FLOETTE_WHITE",
           "candies": 25,
           "item": null,
           "quests": []
@@ -327,11 +318,12 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "FLABEBE"
     },
     "FLABEBE_YELLOW": {
       "id": "FLABEBE",
-      "slug": "flabebe",
+      "slug": "flabebe-yellow",
       "formId": "FLABEBE_YELLOW",
       "form": "normal",
       "dexNr": 669,
@@ -385,10 +377,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "FLOETTE",
-          "slug": "floette",
-          "formId": "FLOETTE_YELLOW",
-          "form": "normal",
+          "targetFormId": "FLOETTE_YELLOW",
           "candies": 25,
           "item": null,
           "quests": []
@@ -396,15 +385,13 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "FLABEBE"
     }
   },
   "evolutions": [
     {
-      "id": "FLOETTE",
-      "slug": "floette",
-      "formId": "FLOETTE_RED",
-      "form": "normal",
+      "targetFormId": "FLOETTE_RED",
       "candies": 25,
       "item": null,
       "quests": []

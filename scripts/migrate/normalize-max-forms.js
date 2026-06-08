@@ -29,7 +29,11 @@ function parentFor(form) {
     byDex ||
     files.find((name) => {
       const candidate = read(path.join(pokemonDir, name));
-      return candidate.id === form.id || candidate.formId === form.inherits;
+      return (
+        candidate.id === form.id ||
+        candidate.formId === form.baseFormId ||
+        candidate.formId === form.inherits
+      );
     });
   if (!file) throw new Error(`Parent introuvable pour ${form.formId}`);
   return read(path.join(pokemonDir, file));
@@ -42,6 +46,10 @@ function maxMoves(form) {
 }
 
 function normalize(form, parent) {
+  const formSuffix = String(form.form || "").toLowerCase();
+  const slug =
+    form.slug ||
+    [parent.slug || form.id.toLowerCase(), formSuffix].filter(Boolean).join("-");
   const level20 =
     form.maxCp?.maxBattlesLevel20 ??
     form.maxBattle?.encounterCp?.level20 ??
@@ -50,8 +58,12 @@ function normalize(form, parent) {
   const result = {
     id: form.id,
     formId: form.formId,
+    slug,
+    dexNr: form.dexNr ?? parent.dexNr,
+    dexId: form.dexId || parent.dexId,
     form: form.form,
-    inherits: form.inherits || parent.formId,
+    generation: form.generation ?? parent.generation,
+    baseFormId: form.baseFormId || form.inherits || parent.formId,
     availability: diffObject(parent.availability, form.availability),
     maxCp: {
       maxLevel50: form.maxCp?.maxLevel50 ?? parent.maxCp?.maxLevel50 ?? null,

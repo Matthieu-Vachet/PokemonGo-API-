@@ -56,7 +56,7 @@
   "regionForms": {
     "SNEASEL_HISUIAN": {
       "id": "SNEASEL",
-      "slug": "sneasel",
+      "slug": "sneasel-hisuian",
       "formId": "SNEASEL_HISUIAN",
       "form": "hisui",
       "dexNr": 215,
@@ -110,10 +110,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "SNEASLER",
-          "slug": "sneasler",
-          "formId": "SNEASLER",
-          "form": "normal",
+          "targetFormId": "SNEASLER",
           "candies": 100,
           "item": null,
           "quests": [
@@ -136,15 +133,13 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "SNEASEL"
     }
   },
   "evolutions": [
     {
-      "id": "WEAVILE",
-      "slug": "weavile",
-      "formId": "WEAVILE_NORMAL",
-      "form": "normal",
+      "targetFormId": "WEAVILE",
       "candies": 100,
       "item": {
         "id": "ITEM_GEN4_EVOLUTION_STONE",

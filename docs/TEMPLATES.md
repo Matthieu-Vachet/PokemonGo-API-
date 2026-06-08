@@ -200,15 +200,15 @@ A ajouter dans `evolutions`.
 
 ```json
 {
-  "id": "",
-  "slug": "",
-  "formId": "",
-  "form": "normal",
+  "targetFormId": "",
   "candies": null,
   "item": null,
   "quests": []
 }
 ```
+
+`targetFormId` peut referencer une fiche qui sera ajoutee plus tard, par exemple
+`IVYSAUR_DYNAMAX`.
 
 Regles selon le stade:
 
@@ -291,8 +291,12 @@ champs differents.
 {
   "id": "VENUSAUR",
   "formId": "VENUSAUR_GIGANTAMAX",
+  "slug": "venusaur-gigantamax",
+  "dexNr": 3,
+  "dexId": "0003",
   "form": "gigantamax",
-  "inherits": "VENUSAUR",
+  "generation": 1,
+  "baseFormId": "VENUSAUR",
   "maxCp": {
     "maxLevel50": null,
     "maxLevel40": null,
@@ -329,15 +333,18 @@ A ajouter dans `assetForms` pour les costumes, formes visuelles ou variantes fem
 
 ## Type
 
-Template pour `data/types/*.json`.
+Entree du catalogue `data/types/types.json`.
 
 ```json
 {
   "id": "",
-  "name": "",
-  "weaknesses": [],
-  "strengths": [],
-  "resistances": []
+  "slug": "",
+  "type": "",
+  "names": {},
+  "doubleDamageFrom": [],
+  "halfDamageFrom": [],
+  "noDamageFrom": [],
+  "weatherBoost": {}
 }
 ```
 
@@ -351,6 +358,6 @@ Template pour `data/types/*.json`.
 - Les tableaux vides sont `[]`, les valeurs inconnues sont `null`.
 - Les assets principaux et chromatiques sont renseignes quand ils existent.
 - Les attaques contiennent `id`, `slug`, donnees PvE, identifiant de type, traductions et donnees PvP.
-- Les evolutions contiennent `id`, `slug`, `formId`, `form`, `candies`, `item` et `quests`.
+- Les evolutions contiennent `targetFormId`, `candies`, `item` et `quests`.
 - Les profils base et intermediaire possedent au moins une evolution.
 - Les formes regionales, Mega, Primo, Dynamax et Gigantamax suivent leur template dedie.

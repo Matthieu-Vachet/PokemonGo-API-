@@ -57,7 +57,7 @@
   "regionForms": {
     "LINOONE_GALARIAN": {
       "id": "LINOONE",
-      "slug": "linoone",
+      "slug": "linoone-galarian",
       "formId": "LINOONE_GALARIAN",
       "form": "galar",
       "dexNr": 264,
@@ -111,10 +111,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "OBSTAGOON",
-          "slug": "obstagoon",
-          "formId": "OBSTAGOON_NORMAL",
-          "form": "normal",
+          "targetFormId": "OBSTAGOON",
           "candies": 100,
           "item": null,
           "quests": []
@@ -122,7 +119,8 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "LINOONE"
     }
   },
   "evolutions": [],

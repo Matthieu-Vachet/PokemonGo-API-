@@ -89,9 +89,12 @@ function pokemonKey(data) {
 
 function mergePokemon(parent, form) {
   const isMaxForm = ["dynamax", "gigantamax"].includes(form.form);
+  const baseFormId = form.baseFormId || form.inherits || parent.formId || parent.id;
   const merged = {
     ...parent,
     ...form,
+    formId: form.formId || form.id || parent.formId,
+    baseFormId,
     region: form.region || parent.region,
     names: form.names || parent.names,
     stats: form.stats || parent.stats,
@@ -164,6 +167,7 @@ function toPokemonDocument(data, sourceFiles, hint, parentKey = null) {
     key,
     kind,
     parentKey,
+    baseFormId: data.baseFormId || null,
     id: data.id,
     formId: data.formId || key,
     slug: data.slug,
@@ -222,6 +226,7 @@ function collectPokemonDocuments() {
     const parentKey = pokemonKey(data);
     parents.set(data.dexId, data);
     parents.set(data.id, data);
+    parents.set(data.formId, data);
     documents.set(parentKey, toPokemonDocument(data, [source], "pokemon"));
 
     for (const form of objectValues(data.regionForms)) {
@@ -241,7 +246,12 @@ function collectPokemonDocuments() {
 
   for (const file of listJsonFiles(formsDir)) {
     const form = readJson(file);
-    const parent = parents.get(form.dexId) || parents.get(form.id) || {};
+    const parent =
+      parents.get(form.baseFormId) ||
+      parents.get(form.inherits) ||
+      parents.get(form.dexId) ||
+      parents.get(form.id) ||
+      {};
     const merged = mergePokemon(parent, form);
     const key = pokemonKey(merged);
     const existing = documents.get(key);
@@ -279,6 +289,10 @@ function collectMoveDocuments() {
         ...(existing?.categories || []),
         elite ? `${kind}_elite` : kind,
       ];
+      const legacySlugs = [
+        ...(existing?.legacySlugs || []),
+        ...(data.legacySlugs || []),
+      ];
       documents.set(data.id, {
         id: data.id,
         slug: data.slug,
@@ -290,6 +304,7 @@ function collectMoveDocuments() {
         searchTerms: [
           data.id,
           data.slug,
+          ...legacySlugs,
           normalizeType(data.type),
           ...namesToTerms(data.names),
         ].filter(Boolean),
@@ -299,6 +314,7 @@ function collectMoveDocuments() {
         combat: data.combat,
         sourceFiles: [...new Set(sourceFiles)],
         sourceHash: hash(data),
+        legacySlugs: [...new Set(legacySlugs)],
         data: { ...data, type: normalizeType(data.type) },
       });
     }
@@ -309,9 +325,15 @@ function collectMoveDocuments() {
 function collectTypeDocuments() {
   const file = path.join(rootDir, "data", "types", "types.json");
   return readJson(file).map((data) => ({
-    id: String(data.type).toUpperCase(),
+    id: String(data.id || data.type).toUpperCase(),
+    slug: data.slug,
     names: data.names || {},
-    searchTerms: [data.type, ...namesToTerms(data.names)].filter(Boolean),
+    searchTerms: [
+      data.id,
+      data.slug,
+      data.type,
+      ...namesToTerms(data.names),
+    ].filter(Boolean),
     sourceHash: hash(data),
     data,
   }));

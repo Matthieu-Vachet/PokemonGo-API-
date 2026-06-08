@@ -57,7 +57,7 @@
   "regionForms": {
     "FARFETCHD_GALARIAN": {
       "id": "FARFETCHD",
-      "slug": "farfetchd",
+      "slug": "farfetchd-galarian",
       "formId": "FARFETCHD_GALARIAN",
       "form": "galar",
       "dexNr": 83,
@@ -111,10 +111,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "SIRFETCHD",
-          "slug": "sirfetchd",
-          "formId": "SIRFETCHD_NORMAL",
-          "form": "normal",
+          "targetFormId": "SIRFETCHD",
           "candies": 50,
           "item": null,
           "quests": [
@@ -137,7 +134,8 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "FARFETCHD"
     }
   },
   "evolutions": [],

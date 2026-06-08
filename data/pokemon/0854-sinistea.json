@@ -55,7 +55,7 @@
   "regionForms": {
     "SINISTEA_ANTIQUE": {
       "id": "SINISTEA",
-      "slug": "sinistea",
+      "slug": "sinistea-antique",
       "formId": "SINISTEA_ANTIQUE",
       "form": "normal",
       "dexNr": 854,
@@ -109,10 +109,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "POLTEAGEIST",
-          "slug": "polteageist",
-          "formId": "POLTEAGEIST_ANTIQUE",
-          "form": "normal",
+          "targetFormId": "POLTEAGEIST_ANTIQUE",
           "candies": 400,
           "item": null,
           "quests": []
@@ -120,11 +117,12 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "SINISTEA"
     },
     "SINISTEA_PHONY": {
       "id": "SINISTEA",
-      "slug": "sinistea",
+      "slug": "sinistea-phony",
       "formId": "SINISTEA_PHONY",
       "form": "normal",
       "dexNr": 854,
@@ -178,10 +176,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "POLTEAGEIST",
-          "slug": "polteageist",
-          "formId": "POLTEAGEIST_PHONY",
-          "form": "normal",
+          "targetFormId": "POLTEAGEIST_PHONY",
           "candies": 50,
           "item": null,
           "quests": []
@@ -189,15 +184,13 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "SINISTEA"
     }
   },
   "evolutions": [
     {
-      "id": "POLTEAGEIST",
-      "slug": "polteageist",
-      "formId": "POLTEAGEIST",
-      "form": "normal",
+      "targetFormId": "POLTEAGEIST",
       "candies": 50,
       "item": null,
       "quests": []

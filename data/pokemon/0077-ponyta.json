@@ -57,7 +57,7 @@
   "regionForms": {
     "PONYTA_GALARIAN": {
       "id": "PONYTA",
-      "slug": "ponyta",
+      "slug": "ponyta-galarian",
       "formId": "PONYTA_GALARIAN",
       "form": "galar",
       "dexNr": 77,
@@ -111,10 +111,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "RAPIDASH",
-          "slug": "rapidash",
-          "formId": "RAPIDASH_GALARIAN",
-          "form": "galar",
+          "targetFormId": "RAPIDASH_GALARIAN",
           "candies": 50,
           "item": null,
           "quests": []
@@ -122,15 +119,13 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "PONYTA"
     }
   },
   "evolutions": [
     {
-      "id": "RAPIDASH",
-      "slug": "rapidash",
-      "formId": "RAPIDASH_NORMAL",
-      "form": "normal",
+      "targetFormId": "RAPIDASH",
       "candies": 50,
       "item": null,
       "quests": []

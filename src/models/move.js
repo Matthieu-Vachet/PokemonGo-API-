@@ -4,6 +4,7 @@ const moveSchema = new mongoose.Schema(
   {
     id: { type: String, required: true, unique: true },
     slug: { type: String, required: true, index: true },
+    legacySlugs: { type: [String], default: [], index: true },
     kind: {
       type: String,
       required: true,

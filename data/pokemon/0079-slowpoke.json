@@ -55,7 +55,7 @@
   "regionForms": {
     "SLOWPOKE_GALARIAN": {
       "id": "SLOWPOKE",
-      "slug": "slowpoke",
+      "slug": "slowpoke-galarian",
       "formId": "SLOWPOKE_GALARIAN",
       "form": "galar",
       "dexNr": 79,
@@ -109,10 +109,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "SLOWBRO",
-          "slug": "slowbro",
-          "formId": "SLOWBRO_GALARIAN",
-          "form": "galar",
+          "targetFormId": "SLOWBRO_GALARIAN",
           "candies": 50,
           "item": null,
           "quests": [
@@ -133,10 +130,7 @@
           ]
         },
         {
-          "id": "SLOWKING",
-          "slug": "slowking",
-          "formId": "SLOWKING_GALARIAN",
-          "form": "galar",
+          "targetFormId": "SLOWKING_GALARIAN",
           "candies": 50,
           "item": null,
           "quests": [
@@ -159,24 +153,19 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "SLOWPOKE"
     }
   },
   "evolutions": [
     {
-      "id": "SLOWBRO",
-      "slug": "slowbro",
-      "formId": "SLOWBRO_NORMAL",
-      "form": "normal",
+      "targetFormId": "SLOWBRO",
       "candies": 50,
       "item": null,
       "quests": []
     },
     {
-      "id": "SLOWKING",
-      "slug": "slowking",
-      "formId": "SLOWKING_NORMAL",
-      "form": "normal",
+      "targetFormId": "SLOWKING",
       "candies": 50,
       "item": {
         "id": "ITEM_KINGS_ROCK",

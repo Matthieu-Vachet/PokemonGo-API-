@@ -58,7 +58,7 @@
   "regionForms": {
     "SANDSHREW_ALOLA": {
       "id": "SANDSHREW",
-      "slug": "sandshrew",
+      "slug": "sandshrew-alola",
       "formId": "SANDSHREW_ALOLA",
       "form": "alola",
       "dexNr": 27,
@@ -112,10 +112,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "SANDSLASH",
-          "slug": "sandslash",
-          "formId": "SANDSLASH_ALOLA",
-          "form": "alola",
+          "targetFormId": "SANDSLASH_ALOLA",
           "candies": 50,
           "item": null,
           "quests": []
@@ -123,15 +120,13 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "SANDSHREW"
     }
   },
   "evolutions": [
     {
-      "id": "SANDSLASH",
-      "slug": "sandslash",
-      "formId": "SANDSLASH_NORMAL",
-      "form": "normal",
+      "targetFormId": "SANDSLASH",
       "candies": 50,
       "item": null,
       "quests": []

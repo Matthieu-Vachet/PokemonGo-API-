@@ -55,7 +55,7 @@
   "regionForms": {
     "CORSOLA_GALARIAN": {
       "id": "CORSOLA",
-      "slug": "corsola",
+      "slug": "corsola-galarian",
       "formId": "CORSOLA_GALARIAN",
       "form": "galar",
       "dexNr": 222,
@@ -109,10 +109,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "CURSOLA",
-          "slug": "cursola",
-          "formId": "CURSOLA_NORMAL",
-          "form": "normal",
+          "targetFormId": "CURSOLA",
           "candies": 50,
           "item": null,
           "quests": []
@@ -120,7 +117,8 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "CORSOLA"
     }
   },
   "evolutions": [],

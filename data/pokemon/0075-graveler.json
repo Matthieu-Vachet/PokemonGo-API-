@@ -58,7 +58,7 @@
   "regionForms": {
     "GRAVELER_ALOLA": {
       "id": "GRAVELER",
-      "slug": "graveler",
+      "slug": "graveler-alola",
       "formId": "GRAVELER_ALOLA",
       "form": "alola",
       "dexNr": 75,
@@ -112,10 +112,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "GOLEM",
-          "slug": "golem",
-          "formId": "GOLEM_ALOLA",
-          "form": "alola",
+          "targetFormId": "GOLEM_ALOLA",
           "candies": 100,
           "item": null,
           "quests": []
@@ -123,15 +120,13 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "GRAVELER"
     }
   },
   "evolutions": [
     {
-      "id": "GOLEM",
-      "slug": "golem",
-      "formId": "GOLEM_NORMAL",
-      "form": "normal",
+      "targetFormId": "GOLEM",
       "candies": 100,
       "item": null,
       "quests": []

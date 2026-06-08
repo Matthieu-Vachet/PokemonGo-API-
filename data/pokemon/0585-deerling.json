@@ -56,7 +56,7 @@
   "regionForms": {
     "DEERLING_AUTUMN": {
       "id": "DEERLING",
-      "slug": "deerling",
+      "slug": "deerling-autumn",
       "formId": "DEERLING_AUTUMN",
       "form": "normal",
       "dexNr": 585,
@@ -111,10 +111,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "SAWSBUCK",
-          "slug": "sawsbuck",
-          "formId": "SAWSBUCK_AUTUMN",
-          "form": "normal",
+          "targetFormId": "SAWSBUCK_AUTUMN",
           "candies": 50,
           "item": null,
           "quests": []
@@ -122,11 +119,12 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "DEERLING"
     },
     "DEERLING_SPRING": {
       "id": "DEERLING",
-      "slug": "deerling",
+      "slug": "deerling-spring",
       "formId": "DEERLING_SPRING",
       "form": "normal",
       "dexNr": 585,
@@ -181,10 +179,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "SAWSBUCK",
-          "slug": "sawsbuck",
-          "formId": "SAWSBUCK_SPRING",
-          "form": "normal",
+          "targetFormId": "SAWSBUCK_SPRING",
           "candies": 50,
           "item": null,
           "quests": []
@@ -192,11 +187,12 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "DEERLING"
     },
     "DEERLING_SUMMER": {
       "id": "DEERLING",
-      "slug": "deerling",
+      "slug": "deerling-summer",
       "formId": "DEERLING_SUMMER",
       "form": "normal",
       "dexNr": 585,
@@ -251,10 +247,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "SAWSBUCK",
-          "slug": "sawsbuck",
-          "formId": "SAWSBUCK_SUMMER",
-          "form": "normal",
+          "targetFormId": "SAWSBUCK_SUMMER",
           "candies": 50,
           "item": null,
           "quests": []
@@ -262,11 +255,12 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "DEERLING"
     },
     "DEERLING_WINTER": {
       "id": "DEERLING",
-      "slug": "deerling",
+      "slug": "deerling-winter",
       "formId": "DEERLING_WINTER",
       "form": "normal",
       "dexNr": 585,
@@ -321,10 +315,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "SAWSBUCK",
-          "slug": "sawsbuck",
-          "formId": "SAWSBUCK_WINTER",
-          "form": "normal",
+          "targetFormId": "SAWSBUCK_WINTER",
           "candies": 50,
           "item": null,
           "quests": []
@@ -332,7 +323,8 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "DEERLING"
     }
   },
   "evolutions": [],

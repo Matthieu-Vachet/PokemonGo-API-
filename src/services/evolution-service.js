@@ -3,8 +3,18 @@ const { findPokemon } = require("./pokemon-service");
 
 function evolutionIds(pokemon) {
   return (pokemon.data?.evolutions || [])
-    .map((evolution) => evolution.formId || evolution.id)
+    .map((evolution) => evolution.targetFormId || evolution.formId || evolution.id)
     .filter(Boolean);
+}
+
+function previousEvolutionFilter(pokemon) {
+  return {
+    $or: [
+      { "data.evolutions.targetFormId": pokemon.formId },
+      { "data.evolutions.formId": pokemon.formId },
+      { "data.evolutions.id": pokemon.id },
+    ],
+  };
 }
 
 async function directEvolutions(identifier) {
@@ -13,12 +23,7 @@ async function directEvolutions(identifier) {
   const evolutions = ids.length
     ? await Pokemon.find({ $or: [{ formId: { $in: ids } }, { id: { $in: ids } }] }).lean()
     : [];
-  const previous = await Pokemon.find({
-    $or: [
-      { "data.evolutions.formId": pokemon.formId },
-      { "data.evolutions.id": pokemon.id },
-    ],
-  }).lean();
+  const previous = await Pokemon.find(previousEvolutionFilter(pokemon)).lean();
   return { pokemon, previous, evolutions };
 }
 
@@ -38,12 +43,7 @@ async function evolutionChain(identifier) {
       ids.length
         ? Pokemon.find({ $or: [{ formId: { $in: ids } }, { id: { $in: ids } }] }).lean()
         : [],
-      Pokemon.find({
-        $or: [
-          { "data.evolutions.formId": current.formId },
-          { "data.evolutions.id": current.id },
-        ],
-      }).lean(),
+      Pokemon.find(previousEvolutionFilter(current)).lean(),
     ]);
     queue.push(...next, ...previous);
   }

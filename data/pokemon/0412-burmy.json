@@ -50,7 +50,7 @@
   "regionForms": {
     "BURMY_PLANT": {
       "id": "BURMY",
-      "slug": "burmy",
+      "slug": "burmy-plant",
       "formId": "BURMY_PLANT",
       "form": "normal",
       "dexNr": 412,
@@ -99,19 +99,13 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "WORMADAM",
-          "slug": "wormadam",
-          "formId": "WORMADAM_PLANT",
-          "form": "normal",
+          "targetFormId": "WORMADAM_PLANT",
           "candies": 50,
           "item": null,
           "quests": []
         },
         {
-          "id": "MOTHIM",
-          "slug": "mothim",
-          "formId": "MOTHIM",
-          "form": "normal",
+          "targetFormId": "MOTHIM",
           "candies": 50,
           "item": null,
           "quests": []
@@ -119,11 +113,12 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "BURMY"
     },
     "BURMY_SANDY": {
       "id": "BURMY",
-      "slug": "burmy",
+      "slug": "burmy-sandy",
       "formId": "BURMY_SANDY",
       "form": "normal",
       "dexNr": 412,
@@ -172,19 +167,13 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "WORMADAM",
-          "slug": "wormadam",
-          "formId": "WORMADAM_SANDY",
-          "form": "normal",
+          "targetFormId": "WORMADAM_SANDY",
           "candies": 50,
           "item": null,
           "quests": []
         },
         {
-          "id": "MOTHIM",
-          "slug": "mothim",
-          "formId": "MOTHIM",
-          "form": "normal",
+          "targetFormId": "MOTHIM",
           "candies": 50,
           "item": null,
           "quests": []
@@ -192,11 +181,12 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "BURMY"
     },
     "BURMY_TRASH": {
       "id": "BURMY",
-      "slug": "burmy",
+      "slug": "burmy-trash",
       "formId": "BURMY_TRASH",
       "form": "normal",
       "dexNr": 412,
@@ -245,19 +235,13 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "WORMADAM",
-          "slug": "wormadam",
-          "formId": "WORMADAM_TRASH",
-          "form": "normal",
+          "targetFormId": "WORMADAM_TRASH",
           "candies": 50,
           "item": null,
           "quests": []
         },
         {
-          "id": "MOTHIM",
-          "slug": "mothim",
-          "formId": "MOTHIM",
-          "form": "normal",
+          "targetFormId": "MOTHIM",
           "candies": 50,
           "item": null,
           "quests": []
@@ -265,24 +249,19 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "BURMY"
     }
   },
   "evolutions": [
     {
-      "id": "WORMADAM",
-      "slug": "wormadam",
-      "formId": "WORMADAM_PLANT",
-      "form": "normal",
+      "targetFormId": "WORMADAM_PLANT",
       "candies": 50,
       "item": null,
       "quests": []
     },
     {
-      "id": "MOTHIM",
-      "slug": "mothim",
-      "formId": "MOTHIM",
-      "form": "normal",
+      "targetFormId": "MOTHIM",
       "candies": 50,
       "item": null,
       "quests": []

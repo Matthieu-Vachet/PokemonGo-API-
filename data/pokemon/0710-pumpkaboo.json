@@ -55,7 +55,7 @@
   "regionForms": {
     "PUMPKABOO_AVERAGE": {
       "id": "PUMPKABOO",
-      "slug": "pumpkaboo",
+      "slug": "pumpkaboo-average",
       "formId": "PUMPKABOO_AVERAGE",
       "form": "normal",
       "dexNr": 710,
@@ -109,10 +109,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "GOURGEIST",
-          "slug": "gourgeist",
-          "formId": "GOURGEIST_AVERAGE",
-          "form": "normal",
+          "targetFormId": "GOURGEIST_AVERAGE",
           "candies": 200,
           "item": null,
           "quests": []
@@ -120,11 +117,12 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "PUMPKABOO"
     },
     "PUMPKABOO_LARGE": {
       "id": "PUMPKABOO",
-      "slug": "pumpkaboo",
+      "slug": "pumpkaboo-large",
       "formId": "PUMPKABOO_LARGE",
       "form": "normal",
       "dexNr": 710,
@@ -178,10 +176,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "GOURGEIST",
-          "slug": "gourgeist",
-          "formId": "GOURGEIST_LARGE",
-          "form": "normal",
+          "targetFormId": "GOURGEIST_LARGE",
           "candies": 200,
           "item": null,
           "quests": []
@@ -189,11 +184,12 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "PUMPKABOO"
     },
     "PUMPKABOO_SMALL": {
       "id": "PUMPKABOO",
-      "slug": "pumpkaboo",
+      "slug": "pumpkaboo-small",
       "formId": "PUMPKABOO_SMALL",
       "form": "normal",
       "dexNr": 710,
@@ -247,10 +243,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "GOURGEIST",
-          "slug": "gourgeist",
-          "formId": "GOURGEIST_SMALL",
-          "form": "normal",
+          "targetFormId": "GOURGEIST_SMALL",
           "candies": 200,
           "item": null,
           "quests": []
@@ -258,11 +251,12 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "PUMPKABOO"
     },
     "PUMPKABOO_SUPER": {
       "id": "PUMPKABOO",
-      "slug": "pumpkaboo",
+      "slug": "pumpkaboo-super",
       "formId": "PUMPKABOO_SUPER",
       "form": "normal",
       "dexNr": 710,
@@ -316,10 +310,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "GOURGEIST",
-          "slug": "gourgeist",
-          "formId": "GOURGEIST_SUPER",
-          "form": "normal",
+          "targetFormId": "GOURGEIST_SUPER",
           "candies": 200,
           "item": null,
           "quests": []
@@ -327,15 +318,13 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "PUMPKABOO"
     }
   },
   "evolutions": [
     {
-      "id": "GOURGEIST",
-      "slug": "gourgeist",
-      "formId": "GOURGEIST_SMALL",
-      "form": "normal",
+      "targetFormId": "GOURGEIST_SMALL",
       "candies": 200,
       "item": null,
       "quests": []

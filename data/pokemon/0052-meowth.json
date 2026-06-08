@@ -57,7 +57,7 @@
   "regionForms": {
     "MEOWTH_ALOLA": {
       "id": "MEOWTH",
-      "slug": "meowth",
+      "slug": "meowth-alola",
       "formId": "MEOWTH_ALOLA",
       "form": "alola",
       "dexNr": 52,
@@ -112,10 +112,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "PERSIAN",
-          "slug": "persian",
-          "formId": "PERSIAN_ALOLA",
-          "form": "alola",
+          "targetFormId": "PERSIAN_ALOLA",
           "candies": 50,
           "item": null,
           "quests": []
@@ -123,11 +120,12 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "MEOWTH"
     },
     "MEOWTH_GALARIAN": {
       "id": "MEOWTH",
-      "slug": "meowth",
+      "slug": "meowth-galarian",
       "formId": "MEOWTH_GALARIAN",
       "form": "galar",
       "dexNr": 52,
@@ -183,10 +181,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "PERRSERKER",
-          "slug": "perrserker",
-          "formId": "PERRSERKER_NORMAL",
-          "form": "normal",
+          "targetFormId": "PERRSERKER",
           "candies": 50,
           "item": null,
           "quests": []
@@ -194,15 +189,13 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "MEOWTH"
     }
   },
   "evolutions": [
     {
-      "id": "PERSIAN",
-      "slug": "persian",
-      "formId": "PERSIAN_NORMAL",
-      "form": "normal",
+      "targetFormId": "PERSIAN",
       "candies": 50,
       "item": null,
       "quests": []

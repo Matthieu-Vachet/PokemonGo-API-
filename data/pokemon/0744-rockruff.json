@@ -56,7 +56,7 @@
   "regionForms": {
     "ROCKRUFF_DUSK": {
       "id": "ROCKRUFF",
-      "slug": "rockruff",
+      "slug": "rockruff-dusk",
       "formId": "ROCKRUFF_DUSK",
       "form": "normal",
       "dexNr": 744,
@@ -111,10 +111,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "LYCANROC",
-          "slug": "lycanroc",
-          "formId": "LYCANROC_DUSK",
-          "form": "normal",
+          "targetFormId": "LYCANROC_DUSK",
           "candies": 50,
           "item": null,
           "quests": []
@@ -122,24 +119,19 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "ROCKRUFF"
     }
   },
   "evolutions": [
     {
-      "id": "LYCANROC",
-      "slug": "lycanroc",
-      "formId": "LYCANROC_MIDDAY",
-      "form": "normal",
+      "targetFormId": "LYCANROC_MIDDAY",
       "candies": 50,
       "item": null,
       "quests": []
     },
     {
-      "id": "LYCANROC",
-      "slug": "lycanroc",
-      "formId": "LYCANROC_MIDNIGHT",
-      "form": "normal",
+      "targetFormId": "LYCANROC_MIDNIGHT",
       "candies": 50,
       "item": null,
       "quests": []

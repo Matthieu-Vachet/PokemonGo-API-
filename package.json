@@ -10,6 +10,7 @@
     "sync:watch": "node scripts/sync/watch.js",
     "sync:dry": "node scripts/sync/run.js --dry-run",
     "audit:moves": "node scripts/audit/moves.js",
+    "audit:identifiers": "node scripts/audit/identifiers.js",
     "migrate:moves:catalog": "node scripts/migrate/complete-move-catalog.js",
     "migrate:moves:catalog:write": "node scripts/migrate/complete-move-catalog.js --write",
     "migrate:moves": "node scripts/migrate/normalize-moves.js",
@@ -18,6 +19,8 @@
     "migrate:types:write": "node scripts/migrate/normalize-types.js --write",
     "migrate:max-forms": "node scripts/migrate/normalize-max-forms.js",
     "migrate:max-forms:write": "node scripts/migrate/normalize-max-forms.js --write",
+    "migrate:identifiers": "node scripts/migrate/normalize-identifiers.js",
+    "migrate:identifiers:write": "node scripts/migrate/normalize-identifiers.js --write",
     "test": "node --test",
     "check": "npm run sync:dry && npm test",
     "checklist": "node apps/checklist/server/local-server.js"

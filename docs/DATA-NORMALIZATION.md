@@ -45,6 +45,10 @@ uniquement l'identifiant court :
 objets `{ "type": "POKEMON_TYPE_GRASS", "names": {} }`, mais les migrations ecrivent le
 format normalise.
 
+Chaque entree de `data/types/types.json` possede un `id` technique stable et un `slug`
+public. Les attaques possedent aussi un `id` stable, un slug avec tirets et, si necessaire,
+`legacySlugs` pour garder les anciennes URL compatibles.
+
 ## PvP Nullable
 
 `pvp` peut valoir `null` lorsqu'aucune information PvP n'est utile. Sinon, les quatre
@@ -75,15 +79,19 @@ ligues sont explicites et chaque ligue peut valoir `null`.
 ## Dynamax Et Gigantamax
 
 Les formes Dynamax et Gigantamax ne dupliquent plus toute la fiche Pokemon. Elles
-heritent du Pokemon parent via `inherits` et ne stockent que les donnees propres au combat
-Max.
+referencent la fiche normale via `baseFormId`, gardent leur propre `formId` et leur
+propre `slug`, puis ne stockent que les donnees propres au combat Max.
 
 ```json
 {
   "id": "BULBASAUR",
   "formId": "BULBASAUR_DYNAMAX",
+  "slug": "bulbasaur-dynamax",
+  "dexNr": 1,
+  "dexId": "0001",
   "form": "dynamax",
-  "inherits": "BULBASAUR",
+  "generation": 1,
+  "baseFormId": "BULBASAUR",
   "maxCp": {
     "maxLevel50": 1260,
     "maxLevel40": 1115,
@@ -91,13 +99,24 @@ Max.
   },
   "maxBattle": {
     "moves": ["MAX_OVERGROWTH", "MAX_STRIKE"]
-  }
+  },
+  "evolutions": [
+    {
+      "targetFormId": "IVYSAUR_DYNAMAX",
+      "candies": 25,
+      "item": null,
+      "quests": []
+    }
+  ]
 }
 ```
 
 Le bloc `maxCp` d'une forme Dynamax ou Gigantamax est propre a cette fiche et ne contient
 que `maxLevel50`, `maxLevel40` et `maxBattlesLevel20`. Il n'herite jamais du bloc `maxCp`
 normal dans l'API ou la checklist.
+
+Les liens d'evolution utilisent `targetFormId`. Une cible future comme
+`IVYSAUR_DYNAMAX` est valide meme si la fiche n'existe pas encore.
 
 ## Controles
 

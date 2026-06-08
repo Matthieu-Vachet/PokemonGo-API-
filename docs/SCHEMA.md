@@ -217,6 +217,7 @@ Chaque fichier du catalogue central contient :
 | --- | --- | --- |
 | `id` | string | Identifiant technique de l'attaque. |
 | `slug` | string | Slug anglais de l'attaque. |
+| `legacySlugs` | string[] | Anciens slugs encore acceptes par l'API. |
 | `power` | number | Puissance en raid/arene. |
 | `energy` | number | Energie gagnee ou consommee en raid/arene. |
 | `durationMs` | number | Duree de l'attaque en millisecondes. |
@@ -281,10 +282,7 @@ Ligues recommandees:
 {
   "evolutions": [
     {
-      "id": "IVYSAUR",
-      "slug": "ivysaur",
-      "formId": "IVYSAUR_NORMAL",
-      "form": "normal",
+      "targetFormId": "IVYSAUR",
       "candies": 25,
       "item": null,
       "quests": []
@@ -298,10 +296,7 @@ Ligues recommandees:
 
 | Champ | Type | Description |
 | --- | --- | --- |
-| `evolutions[].id` | string | Identifiant technique du Pokemon obtenu. |
-| `evolutions[].slug` | string | Slug du Pokemon obtenu. |
-| `evolutions[].formId` | string | Identifiant de forme de l'evolution. |
-| `evolutions[].form` | string | Forme du Pokemon obtenu. |
+| `evolutions[].targetFormId` | string | `formId` exact de la fiche obtenue. La cible peut etre ajoutee plus tard. |
 | `evolutions[].candies` | number/null | Cout en bonbons. |
 | `evolutions[].item` | object/null | Objet requis et ses informations, si applicable. |
 | `evolutions[].quests` | array | Conditions speciales d'evolution. |
@@ -338,14 +333,18 @@ Une entree de `megaEvolutions` contient:
 ### Schema Dynamax / Gigantamax
 
 Une forme Dynamax ou Gigantamax herite des donnees de sa fiche Pokemon normale. Elle ne
-duplique que les informations propres au combat Max.
+duplique que les informations propres au combat Max et garde sa propre identite publique.
 
 ```json
 {
   "id": "VENUSAUR",
   "formId": "VENUSAUR_GIGANTAMAX",
+  "slug": "venusaur-gigantamax",
+  "dexNr": 3,
+  "dexId": "0003",
   "form": "gigantamax",
-  "inherits": "VENUSAUR",
+  "generation": 1,
+  "baseFormId": "VENUSAUR",
   "maxCp": {
     "maxLevel50": 3075,
     "maxLevel40": 2720,
@@ -363,7 +362,9 @@ duplique que les informations propres au combat Max.
 
 | Champ | Type | Description |
 | --- | --- | --- |
-| `inherits` | string | Identifiant du Pokemon parent dont la forme herite. |
+| `formId` | string | Identifiant unique de cette fiche Max, par exemple `VENUSAUR_GIGANTAMAX`. |
+| `slug` | string | Slug public unique de cette fiche, par exemple `venusaur-gigantamax`. |
+| `baseFormId` | string | Identifiant du Pokemon normal de reference. |
 | `maxCp.maxLevel50` | number | PC maximum au niveau 50 de cette fiche Max. |
 | `maxCp.maxLevel40` | number | PC maximum au niveau 40 de cette fiche Max. |
 | `maxCp.maxBattlesLevel20` | number/null | PC de rencontre en combat Max au niveau 20. |
@@ -413,7 +414,7 @@ Les fiches de `data/pokemon-forms/` couvrent les formes Alola, Galar, Hisui, Pal
 Dynamax, Gigantamax, Mega et Mega X/Y.
 
 - Une forme regionale utilise le schema Pokemon complet.
-- Une forme Dynamax ou Gigantamax utilise le schema minimal `inherits` + `maxCp` + `maxBattle`.
+- Une forme Dynamax ou Gigantamax utilise le schema minimal `baseFormId` + `maxCp` + `maxBattle`.
 - Une Mega ou forme Primo utilise le schema Mega / Primo.
 - Les formes conservent leur propre `formId` et uniquement les champs qui different.
 

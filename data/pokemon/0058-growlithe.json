@@ -55,7 +55,7 @@
   "regionForms": {
     "GROWLITHE_HISUIAN": {
       "id": "GROWLITHE",
-      "slug": "growlithe",
+      "slug": "growlithe-hisuian",
       "formId": "GROWLITHE_HISUIAN",
       "form": "hisui",
       "dexNr": 58,
@@ -109,10 +109,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "ARCANINE",
-          "slug": "arcanine",
-          "formId": "ARCANINE_HISUIAN",
-          "form": "hisui",
+          "targetFormId": "ARCANINE_HISUIAN",
           "candies": 50,
           "item": null,
           "quests": []
@@ -120,15 +117,13 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "GROWLITHE"
     }
   },
   "evolutions": [
     {
-      "id": "ARCANINE",
-      "slug": "arcanine",
-      "formId": "ARCANINE_NORMAL",
-      "form": "normal",
+      "targetFormId": "ARCANINE",
       "candies": 50,
       "item": null,
       "quests": []

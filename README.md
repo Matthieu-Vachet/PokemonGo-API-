@@ -232,11 +232,15 @@ Les migrations de normalisation fonctionnent en simulation par defaut:
 ```bash
 npm run migrate:types
 npm run migrate:max-forms
+npm run migrate:identifiers
 npm run audit:moves
+npm run audit:identifiers
 npm run sync:dry
 ```
 
-Les variantes `:write` appliquent les changements apres validation.
+Les variantes `:write` appliquent les changements apres validation. L'audit des
+identifiants accepte les `targetFormId` futurs bien formes, mais bloque les doublons et
+les references invalides.
 
 ## Deploiement Vercel
 
@@ -293,7 +297,8 @@ Les outils d'import et d'extraction manuels vivent dans `scripts/import/`.
 - `primaryType`, `secondaryType` et `type` d'attaque utilisent les identifiants courts de `data/types/`, par exemple `"GRASS"`.
 - `pvp` peut valoir `null`; sinon les ligues `littleCup`, `greatLeague`, `ultraLeague` et `masterLeague` peuvent chacune valoir `null`.
 - `megaEnergyReward` peut valoir `null` lorsqu'il n'y a pas d'energie Mega a gagner.
-- Les formes Dynamax et Gigantamax utilisent `inherits`, leur propre bloc `maxCp` (`maxLevel50`, `maxLevel40`, `maxBattlesLevel20`) et `maxBattle`.
+- Les evolutions pointent vers `targetFormId`; la cible peut ne pas encore exister si tu ajoutes les fiches au fur et a mesure.
+- Les formes Dynamax et Gigantamax utilisent `baseFormId`, leur propre `slug`, leur propre bloc `maxCp` (`maxLevel50`, `maxLevel40`, `maxBattlesLevel20`) et `maxBattle`.
 - `hasGigantamaxEvolution: true` implique un asset avec `form: "gigantamax"` dans `assetForms`.
 
 ## Roadmap Possible

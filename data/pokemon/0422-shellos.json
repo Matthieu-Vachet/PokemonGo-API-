@@ -55,7 +55,7 @@
   "regionForms": {
     "SHELLOS_EAST_SEA": {
       "id": "SHELLOS",
-      "slug": "shellos",
+      "slug": "shellos-east-sea",
       "formId": "SHELLOS_EAST_SEA",
       "form": "normal",
       "dexNr": 422,
@@ -109,10 +109,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "GASTRODON",
-          "slug": "gastrodon",
-          "formId": "GASTRODON_EAST_SEA",
-          "form": "normal",
+          "targetFormId": "GASTRODON_EAST_SEA",
           "candies": 50,
           "item": null,
           "quests": []
@@ -120,11 +117,12 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "SHELLOS"
     },
     "SHELLOS_WEST_SEA": {
       "id": "SHELLOS",
-      "slug": "shellos",
+      "slug": "shellos-west-sea",
       "formId": "SHELLOS_WEST_SEA",
       "form": "normal",
       "dexNr": 422,
@@ -178,10 +176,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "GASTRODON",
-          "slug": "gastrodon",
-          "formId": "GASTRODON_WEST_SEA",
-          "form": "normal",
+          "targetFormId": "GASTRODON_WEST_SEA",
           "candies": 50,
           "item": null,
           "quests": []
@@ -189,15 +184,13 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "SHELLOS"
     }
   },
   "evolutions": [
     {
-      "id": "GASTRODON",
-      "slug": "gastrodon",
-      "formId": "GASTRODON_EAST_SEA",
-      "form": "normal",
+      "targetFormId": "GASTRODON_EAST_SEA",
       "candies": 50,
       "item": null,
       "quests": []

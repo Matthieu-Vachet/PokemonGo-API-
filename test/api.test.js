@@ -78,6 +78,8 @@ test("les types, PvP null et formes Max sont normalisés", () => {
   assert.deepEqual(caterpie.pvpLeagues, []);
   assert.equal(dynamax.kind, "dynamax");
   assert.deepEqual(dynamax.maxMoveIds, ["MAX_OVERGROWTH", "MAX_STRIKE"]);
+  assert.equal(dynamax.baseFormId, "BULBASAUR");
+  assert.equal(dynamax.slug, "bulbasaur-dynamax");
   assert.deepEqual(Object.keys(dynamax.maxCp).sort(), [
     "maxBattlesLevel20",
     "maxLevel40",
@@ -88,6 +90,8 @@ test("les types, PvP null et formes Max sont normalisés", () => {
   assert.deepEqual(dynamax.pvpLeagues, []);
   assert.equal(gmax.kind, "gigantamax");
   assert.deepEqual(gmax.maxMoveIds, ["GMAX_VINE_LASH"]);
+  assert.equal(gmax.baseFormId, "VENUSAUR");
+  assert.equal(gmax.slug, "venusaur-gigantamax");
   assert.deepEqual(Object.keys(gmax.maxCp).sort(), [
     "maxBattlesLevel20",
     "maxLevel40",
@@ -95,6 +99,14 @@ test("les types, PvP null et formes Max sont normalisés", () => {
   ]);
   assert.ok(data.moves.some((move) => move.kind === "max"));
   assert.ok(data.moves.some((move) => move.kind === "gmax"));
+  assert.ok(
+    data.moves.some(
+      (move) =>
+        move.id === "VINE_WHIP_FAST" &&
+        move.slug === "vine-whip-fast" &&
+        move.legacySlugs.includes("vine_whip_fast"),
+    ),
+  );
 });
 
 test("la checklist affiche les formes Max héritées sans dupliquer leur source", () => {
@@ -108,8 +120,10 @@ test("la checklist affiche les formes Max héritées sans dupliquer leur source"
 
   const detail = detailForKey(dynamax.key);
   assert.equal(detail.names.French, "Bulbizarre");
-  assert.equal(detail.sourceData.inherits, "BULBASAUR");
-  assert.equal(detail.sourceData.slug, undefined);
+  assert.equal(detail.sourceData.baseFormId, "BULBASAUR");
+  assert.equal(detail.sourceData.slug, "bulbasaur-dynamax");
+  assert.equal(detail.sourceData.inherits, undefined);
+  assert.equal(detail.sourceData.evolutions[0].targetFormId, "IVYSAUR_DYNAMAX");
   assert.deepEqual(detail.maxCp, detail.sourceData.maxCp);
   assert.equal(detail.maxCp.raidLevel20, undefined);
   assert.deepEqual(detail.quickMoves, []);

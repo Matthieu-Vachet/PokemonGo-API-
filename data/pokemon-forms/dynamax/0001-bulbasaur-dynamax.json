@@ -2,7 +2,6 @@
   "id": "BULBASAUR",
   "formId": "BULBASAUR_DYNAMAX",
   "form": "dynamax",
-  "inherits": "BULBASAUR",
   "maxCp": {
     "maxLevel50": 1260,
     "maxLevel40": 1115,
@@ -16,13 +15,15 @@
   },
   "evolutions": [
     {
-      "id": "IVYSAUR",
-      "slug": "ivysaur",
-      "formId": "IVYSAUR_DYNAMAX",
-      "form": "dynamax",
+      "targetFormId": "IVYSAUR_DYNAMAX",
       "candies": 25,
       "item": null,
       "quests": []
     }
-  ]
+  ],
+  "dexNr": 1,
+  "dexId": "0001",
+  "generation": 1,
+  "baseFormId": "BULBASAUR",
+  "slug": "bulbasaur-dynamax"
 }

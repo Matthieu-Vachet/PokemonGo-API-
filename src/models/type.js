@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const typeSchema = new mongoose.Schema(
   {
     id: { type: String, required: true, unique: true },
+    slug: { type: String, required: true, index: true },
     names: { type: mongoose.Schema.Types.Mixed, default: {} },
     searchTerms: { type: [String], default: [] },
     data: { type: mongoose.Schema.Types.Mixed, required: true },

@@ -58,7 +58,7 @@
   "regionForms": {
     "ZYGARDE_COMPLETE": {
       "id": "ZYGARDE",
-      "slug": "zygarde",
+      "slug": "zygarde-complete",
       "formId": "ZYGARDE_COMPLETE",
       "form": "normal",
       "dexNr": 718,
@@ -116,11 +116,12 @@
       "evolutions": [],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "ZYGARDE"
     },
     "ZYGARDE_COMPLETE_FIFTY_PERCENT": {
       "id": "ZYGARDE",
-      "slug": "zygarde",
+      "slug": "zygarde-complete-fifty-percent",
       "formId": "ZYGARDE_COMPLETE_FIFTY_PERCENT",
       "form": "normal",
       "dexNr": 718,
@@ -178,11 +179,12 @@
       "evolutions": [],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "ZYGARDE"
     },
     "ZYGARDE_COMPLETE_TEN_PERCENT": {
       "id": "ZYGARDE",
-      "slug": "zygarde",
+      "slug": "zygarde-complete-ten-percent",
       "formId": "ZYGARDE_COMPLETE_TEN_PERCENT",
       "form": "normal",
       "dexNr": 718,
@@ -240,11 +242,12 @@
       "evolutions": [],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "ZYGARDE"
     },
     "ZYGARDE_FIFTY_PERCENT": {
       "id": "ZYGARDE",
-      "slug": "zygarde",
+      "slug": "zygarde-fifty-percent",
       "formId": "ZYGARDE_FIFTY_PERCENT",
       "form": "normal",
       "dexNr": 718,
@@ -301,10 +304,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "ZYGARDE",
-          "slug": "zygarde",
-          "formId": "ZYGARDE_COMPLETE",
-          "form": "normal",
+          "targetFormId": "ZYGARDE_COMPLETE",
           "candies": 0,
           "item": {
             "id": "ITEM_BEANS",
@@ -324,11 +324,12 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "ZYGARDE"
     },
     "ZYGARDE_TEN_PERCENT": {
       "id": "ZYGARDE",
-      "slug": "zygarde",
+      "slug": "zygarde-ten-percent",
       "formId": "ZYGARDE_TEN_PERCENT",
       "form": "normal",
       "dexNr": 718,
@@ -385,10 +386,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "ZYGARDE",
-          "slug": "zygarde",
-          "formId": "ZYGARDE_FIFTY_PERCENT",
-          "form": "normal",
+          "targetFormId": "ZYGARDE_FIFTY_PERCENT",
           "candies": 0,
           "item": {
             "id": "ITEM_BEANS",
@@ -408,15 +406,13 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "ZYGARDE"
     }
   },
   "evolutions": [
     {
-      "id": "ZYGARDE",
-      "slug": "zygarde",
-      "formId": "ZYGARDE_FIFTY_PERCENT",
-      "form": "normal",
+      "targetFormId": "ZYGARDE_FIFTY_PERCENT",
       "candies": 0,
       "item": {
         "id": "ITEM_BEANS",

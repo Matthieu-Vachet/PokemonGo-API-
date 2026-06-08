@@ -56,7 +56,7 @@
   "regionForms": {
     "DIGLETT_ALOLA": {
       "id": "DIGLETT",
-      "slug": "diglett",
+      "slug": "diglett-alola",
       "formId": "DIGLETT_ALOLA",
       "form": "alola",
       "dexNr": 50,
@@ -111,10 +111,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "DUGTRIO",
-          "slug": "dugtrio",
-          "formId": "DUGTRIO_ALOLA",
-          "form": "alola",
+          "targetFormId": "DUGTRIO_ALOLA",
           "candies": 50,
           "item": null,
           "quests": []
@@ -122,15 +119,13 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "DIGLETT"
     }
   },
   "evolutions": [
     {
-      "id": "DUGTRIO",
-      "slug": "dugtrio",
-      "formId": "DUGTRIO_NORMAL",
-      "form": "normal",
+      "targetFormId": "DUGTRIO",
       "candies": 50,
       "item": null,
       "quests": []

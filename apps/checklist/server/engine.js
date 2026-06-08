@@ -272,8 +272,9 @@ function createValidator() {
   }
 
   function evolution(value, pathName) {
-    for (const key of ["id", "slug", "formId", "form"])
-      field(value, key, `${pathName}.${key}`, "string", { nonEmpty: true });
+    field(value, "targetFormId", `${pathName}.targetFormId`, "string", {
+      nonEmpty: true,
+    });
     field(value, "candies", `${pathName}.candies`, "number");
     field(value, "item", `${pathName}.item`, "object", { nullable: true });
     field(value, "quests", `${pathName}.quests`, "array");
@@ -330,8 +331,10 @@ function createValidator() {
 
   function maxForm(value, pathName = "") {
     const prefix = pathName ? `${pathName}.` : "";
-    for (const key of ["id", "formId", "form", "inherits"])
+    for (const key of ["id", "formId", "slug", "dexId", "form", "baseFormId"])
       field(value, key, `${prefix}${key}`, "string", { nonEmpty: true });
+    for (const key of ["dexNr", "generation"])
+      field(value, key, `${prefix}${key}`, "number");
     if (!["dynamax", "gigantamax"].includes(value.form))
       add(`${prefix}form`, "value", "dynamax ou gigantamax", value.form);
 
@@ -584,6 +587,7 @@ function mergeInheritedForm(parent, form) {
   const merged = {
     ...parent,
     ...form,
+    formId: form.formId || form.id || parent.formId,
     availability: {
       ...(parent.availability || {}),
       ...(form.availability || {}),
@@ -676,6 +680,7 @@ function buildChecklist() {
   const incomingIds = new Set();
   for (const source of sources.filter((source) => source.kind !== "mega")) {
     for (const evolutionData of source.data.evolutions || []) {
+      incomingIds.add(evolutionData.targetFormId);
       incomingIds.add(evolutionData.formId);
       incomingIds.add(evolutionData.id);
     }
@@ -702,7 +707,10 @@ function buildChecklist() {
     const displayData =
       kind === "dynamax" || kind === "gigantamax"
         ? mergeInheritedForm(
-            parents.get(data.inherits) || parents.get(data.id) || {},
+            parents.get(data.baseFormId) ||
+              parents.get(data.inherits) ||
+              parents.get(data.id) ||
+              {},
             data,
           )
         : data;
@@ -776,6 +784,8 @@ function detailForKey(key) {
       .map((name) => readJson(path.join(pokemonDir, name)))
       .find(
         (candidate) =>
+          candidate.id === data.baseFormId ||
+          candidate.formId === data.baseFormId ||
           candidate.id === data.inherits ||
           candidate.formId === data.inherits ||
           candidate.id === data.id ||

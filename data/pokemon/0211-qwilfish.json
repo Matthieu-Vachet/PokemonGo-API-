@@ -58,7 +58,7 @@
   "regionForms": {
     "QWILFISH_HISUIAN": {
       "id": "QWILFISH",
-      "slug": "qwilfish",
+      "slug": "qwilfish-hisuian",
       "formId": "QWILFISH_HISUIAN",
       "form": "hisui",
       "dexNr": 211,
@@ -114,10 +114,7 @@
       "regionForms": [],
       "evolutions": [
         {
-          "id": "OVERQWIL",
-          "slug": "overqwil",
-          "formId": "OVERQWIL",
-          "form": "normal",
+          "targetFormId": "OVERQWIL",
           "candies": 50,
           "item": null,
           "quests": [
@@ -140,7 +137,8 @@
       ],
       "hasMegaEvolution": false,
       "megaEvolutions": [],
-      "hasGigantamaxEvolution": false
+      "hasGigantamaxEvolution": false,
+      "baseFormId": "QWILFISH"
     }
   },
   "evolutions": [],

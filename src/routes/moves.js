@@ -46,8 +46,9 @@ router.get(
   "/:identifier",
   asyncHandler(async (request, response) => {
     const value = request.params.identifier;
+    const slug = value.toLowerCase();
     const move = await Move.findOne({
-      $or: [{ id: value.toUpperCase() }, { slug: value.toLowerCase() }],
+      $or: [{ id: value.toUpperCase() }, { slug }, { legacySlugs: slug }],
     }).lean();
     if (!move) throw new ApiError(404, `Attaque introuvable : ${value}`, "MOVE_NOT_FOUND");
     response.json({ data: move });

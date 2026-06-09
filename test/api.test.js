@@ -7,6 +7,7 @@ const { buildPokemonFilter } = require("../src/services/pokemon-service");
 const { presentPokemon } = require("../src/services/pokemon-presenter");
 const { collectAllDocuments } = require("../src/sync/source-reader");
 const {
+  buildSuggestedPatch,
   buildChecklist,
   detailForKey,
   validateSourceData,
@@ -163,6 +164,47 @@ test("la checklist calcule les scores, catégories et diagnostics d'assets", () 
   assert.ok(bulbasaur.assets.homeVariants >= 1);
   assert.equal(typeof bulbasaur.assets.duplicateUrls, "number");
   assert.equal(typeof bulbasaur.assets.incompletePairs, "number");
+});
+
+test("l'assistant JSON couvre chaque problème détecté", () => {
+  const checklist = buildChecklist();
+  const hasPath = (target, pathName) => {
+    const parts = String(pathName)
+      .replace(/\[(\d+)\]/g, ".$1")
+      .split(".")
+      .filter(Boolean);
+    let value = target;
+    for (const part of parts) {
+      if (
+        value === null ||
+        value === undefined ||
+        !Object.prototype.hasOwnProperty.call(value, part)
+      )
+        return false;
+      value = value[part];
+    }
+    return true;
+  };
+
+  for (const entry of checklist) {
+    assert.deepEqual(
+      entry.suggestedPatch,
+      buildSuggestedPatch(entry.issues, entry.kind),
+    );
+    for (const issue of entry.issues)
+      assert.ok(
+        hasPath(entry.suggestedPatch, issue.path),
+        `${entry.key}: ${issue.path} absent du patch`,
+      );
+  }
+
+  const gigantamax = checklist.find(
+    (entry) =>
+      entry.form === "gigantamax" &&
+      entry.key.toLowerCase().includes("butterfree"),
+  );
+  assert.ok(gigantamax.suggestedPatch.maxCp);
+  assert.deepEqual(gigantamax.suggestedPatch.maxBattle.moves, [""]);
 });
 
 test("l'atelier expose les icônes de types et valide les références", () => {

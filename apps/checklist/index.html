@@ -93,7 +93,7 @@
       }
       .header-row { display: flex; gap: 14px; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
       .header-links { display: flex; flex-wrap: wrap; gap: 7px; justify-content: flex-end; }
-      .header-links a, .header-links button { min-height: 38px; padding: 8px 11px; border: 1px solid #8fc8ff55; border-radius: 999px; color: #fff; background: #ffffff12; text-decoration: none; font-size: .72rem; font-weight: 800; }
+      .header-links a, .header-links button { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 8px 13px; border: 1px solid #8fc8ff55; border-radius: 999px; color: #fff; background: #ffffff12; text-decoration: none; text-align: center; line-height: 1.15; font-size: .72rem; font-weight: 800; }
       .api-dot { display: inline-block; width: 8px; height: 8px; margin-right: 5px; border-radius: 50%; background: var(--orange); }
       .api-dot.online { background: var(--green); box-shadow: 0 0 10px #14b86e; }
       h1 {
@@ -199,6 +199,7 @@
       }
       .result-head {
         display: flex;
+        gap: 12px;
         justify-content: space-between;
         align-items: center;
         margin: 10px 2px;
@@ -242,10 +243,12 @@
       }
       .portrait {
         position: relative;
+        flex: none;
         width: 76px;
         height: 76px;
+        aspect-ratio: 1;
         border: 1px solid #ccd7e6;
-        border-radius: 50%;
+        border-radius: 999px;
         background: linear-gradient(#fff 48%, #263248 49% 53%, #f14f50 54%);
         overflow: hidden;
       }
@@ -296,18 +299,26 @@
         line-height: 1.35;
       }
       .chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 4px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 5px;
         margin-top: 7px;
       }
       .chip {
-        padding: 3px 6px;
-        border-radius: 999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        min-height: 29px;
+        padding: 4px 7px;
+        border: 1px solid #e0e9f2;
+        border-radius: 9px;
         color: #58667d;
         background: #edf2f8;
         font-size: 0.65rem;
         font-weight: 750;
+        line-height: 1.1;
+        text-align: center;
       }
       .chip.problem {
         color: #9b5313;
@@ -317,14 +328,17 @@
         color: #167648;
         background: #dff5e9;
       }
+      .chip.wide {
+        grid-column: 1 / -1;
+      }
       .card-actions {
         display: grid;
-        grid-template-columns: auto 1fr;
+        grid-template-columns: minmax(88px, auto) minmax(105px, auto) 1fr;
         gap: 7px;
         padding: 0 12px 12px;
       }
-      .select-label { position: absolute; z-index: 3; left: 12px; top: 14px; display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid #cbd5e3; border-radius: 10px; background: #fffffff0; }
-      .select-label input { width: 19px; height: 19px; accent-color: var(--blue); }
+      .select-btn { min-height: 44px; border: 1px solid #cbd5e3; border-radius: 11px; color: var(--ink); background: #f7f9fc; font-size: .72rem; font-weight: 800; }
+      .select-btn.active { color: #fff; border-color: transparent; background: #566f91; }
       .poke-card.selected { outline: 3px solid #1685ff66; border-color: var(--blue); }
       .check-label,
       .detail-btn {
@@ -715,10 +729,12 @@
       }
       .score-ring {
         display: grid;
+        flex: none;
         place-items: center;
         width: 50px;
         height: 50px;
-        border-radius: 50%;
+        aspect-ratio: 1;
+        border-radius: 999px;
         color: var(--ink);
         background: conic-gradient(var(--blue) calc(var(--score) * 1%), #e3edf6 0);
         font-size: 0.68rem;
@@ -728,7 +744,7 @@
       .score-ring::before {
         position: absolute;
         inset: 5px;
-        border-radius: 50%;
+        border-radius: 999px;
         background: #fff;
         content: "";
       }
@@ -773,11 +789,15 @@
       .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 9px; }
       .move-card { border: 1px solid var(--line); border-radius: 14px; padding: 10px; background: #fff; }
       .type-icon { width: 24px; height: 24px; object-fit: contain; vertical-align: middle; margin-right: 5px; }
+      .chip .type-icon { width: 18px; height: 18px; margin: 0; }
       .note-list { display: grid; gap: 7px; margin-top: 12px; }
       .note { padding: 10px; border: 1px solid var(--line); border-radius: 12px; background: #fff; white-space: pre-wrap; }
       .asset-proposals { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
       .asset-proposal { padding: 8px; border: 1px solid var(--line); border-radius: 12px; background: #fff; font-size: .68rem; overflow-wrap: anywhere; }
       .asset-proposal img { width: 100%; aspect-ratio: 1; object-fit: contain; }
+      .asset-browser-head { display: grid; grid-template-columns: minmax(190px, 1fr) repeat(2, auto); gap: 8px; margin: 12px 0; }
+      .asset-browser-head input, .asset-browser-head select { width: 100%; }
+      .asset-pagination { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; margin: 14px 0; }
       .single-task .dashboard, .single-task .toolbar-wrap, .single-task .result-head, .single-task .more { display: none; }
       .single-task .grid { grid-template-columns: minmax(0, 560px); justify-content: center; }
       .quick-stage {
@@ -829,7 +849,7 @@
         }
         .header-row { display: grid; align-items: start; }
         .header-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: none; width: 100%; }
-        .header-links a, .header-links button { display: grid; place-items: center; min-height: 38px; padding: 6px 5px; font-size: .62rem; text-align: center; }
+        .header-links a, .header-links button { display: flex; align-items: center; justify-content: center; min-height: 40px; padding: 6px 5px; font-size: .62rem; text-align: center; }
         .dashboard {
           margin-top: 14px;
         }
@@ -854,8 +874,24 @@
         .grid {
           grid-template-columns: 1fr;
         }
+        .card-actions {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .card-actions .detail-btn {
+          grid-column: 1 / -1;
+        }
+        .asset-browser-head {
+          grid-template-columns: 1fr;
+        }
         .result-head {
+          display: grid;
+          grid-template-columns: auto minmax(0, 1fr);
+          gap: 8px;
           margin-top: 7px;
+          font-size: 0.72rem;
+        }
+        .result-head span:last-child {
+          text-align: right;
         }
         .results {
           margin-bottom: calc(90px + var(--safe-bottom));
@@ -978,7 +1014,7 @@
               <button class="action-btn" id="openExports">Exports & partage</button>
               <button class="action-btn" id="openHistory">Historique</button>
               <button class="action-btn" id="openMoves">Catalogue attaques</button>
-              <button class="action-btn" id="openAssets">Assistant assets HD</button>
+              <button class="action-btn" id="openAssets">Bibliothèque assets</button>
               <button class="action-btn" id="openCompare">Comparer deux fiches</button>
               <button class="action-btn" id="openBatch">Corrections groupées</button>
             </div>
@@ -1426,10 +1462,10 @@
             : '<div class="portrait"></div>';
         const categories = (e.issueCategories || [])
           .slice(0, 2)
-          .map((category) => `<span class="chip problem">${esc(problemLabels[category] || category)}</span>`)
+          .map((category, index, list) => `<span class="chip problem ${list.length === 1 ? "wide" : ""}">${esc(problemLabels[category] || category)}</span>`)
           .join("");
         const selected = state.selected.has(e.key);
-        return `<article class="poke-card ${done ? "done" : ""} ${selected ? "selected" : ""}" style="--type:${color(e)}"><label class="select-label" title="Sélectionner pour une action groupée"><input type="checkbox" data-select="${esc(e.key)}" ${selected ? "checked" : ""}></label><div class="type-strip"></div><div class="card-score score-ring" style="--score:${e.quality.score}"><span>${e.quality.score}%</span></div><div class="card-main">${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)} · Gén. ${esc(e.generation || "?")}</div><div class="chips"><span class="chip">${typeIcon(e.primaryType) ? `<img class="type-icon" src="${esc(typeIcon(e.primaryType))}" alt="">` : ""}${esc(typeName(e.primaryType) || "Type ?")}</span><span class="chip">${e.quickMoveCount} rapide(s)</span><span class="chip">${e.chargedMoveCount} chargée(s)</span>${e.maxMoveCount ? `<span class="chip">${e.maxMoveCount} Max / G-Max</span>` : ""}${e.complete ? '<span class="chip good">JSON complet</span>' : `<span class="chip problem">${e.issues.length} problème(s)</span>`}${categories}${manual ? '<span class="chip good">coché</span>' : ""}</div></div></div><div class="card-actions"><label class="check-label"><input type="checkbox" data-check="${esc(e.key)}" ${done ? "checked" : ""} ${e.complete ? "disabled" : ""}> Fait</label><button class="detail-btn" data-detail="${esc(e.key)}">Voir la fiche</button></div></article>`;
+        return `<article class="poke-card ${done ? "done" : ""} ${selected ? "selected" : ""}" style="--type:${color(e)}"><div class="type-strip"></div><div class="card-score score-ring" style="--score:${e.quality.score}"><span>${e.quality.score}%</span></div><div class="card-main">${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)} · Gén. ${esc(e.generation || "?")}</div><div class="chips"><span class="chip">${typeIcon(e.primaryType) ? `<img class="type-icon" src="${esc(typeIcon(e.primaryType))}" alt="">` : ""}${esc(typeName(e.primaryType) || "Type ?")}</span><span class="chip">${e.quickMoveCount} rapide(s)</span><span class="chip">${e.chargedMoveCount} chargée(s)</span>${e.complete ? '<span class="chip good">JSON complet</span>' : `<span class="chip problem">${e.issues.length} problème(s)</span>`}${categories}${manual ? '<span class="chip good wide">Vérifiée manuellement</span>' : ""}</div></div></div><div class="card-actions"><label class="check-label"><input type="checkbox" data-check="${esc(e.key)}" ${done ? "checked" : ""} ${e.complete ? "disabled" : ""}> Fait</label><button class="select-btn ${selected ? "active" : ""}" data-select="${esc(e.key)}">${selected ? "Dans le lot" : "Ajouter au lot"}</button><button class="detail-btn" data-detail="${esc(e.key)}">Voir la fiche</button></div></article>`;
       }
       function updateStats() {
         const done = state.entries.filter(isDone).length,
@@ -1492,10 +1528,11 @@
         el.more.hidden = shown.length >= list.length;
         el.entries
           .querySelectorAll("[data-select]")
-          .forEach((box) =>
-            box.addEventListener("change", () => {
-              if (box.checked) state.selected.add(box.dataset.select);
-              else state.selected.delete(box.dataset.select);
+          .forEach((button) =>
+            button.addEventListener("click", () => {
+              if (state.selected.has(button.dataset.select))
+                state.selected.delete(button.dataset.select);
+              else state.selected.add(button.dataset.select);
               render();
             }),
           );
@@ -1687,6 +1724,15 @@
           : '<div class="empty">Aucun problème détecté.</div>';
       }
       function suggestedValue(issue, entry) {
+        const pvpLeague = {
+          tierRank: "",
+          rank1: {
+            ivs: { attack: null, defense: null, stamina: null },
+            level: null,
+            cp: null,
+          },
+          bestMovesets: { fast: "", charged: [""] },
+        };
         const templates = {
           size: { height: null, weight: null },
           availability:
@@ -1731,41 +1777,93 @@
               Japanese: "", Korean: "", Spanish: "",
             },
           },
+          names: {
+            English: "", German: "", French: "", Italian: "",
+            Japanese: "", Korean: "", Spanish: "",
+          },
+          maxBattle: { moves: [""] },
+          pvp: {
+            littleCup: null,
+            greatLeague: null,
+            ultraLeague: null,
+            masterLeague: null,
+          },
+          littleCup: pvpLeague,
+          greatLeague: pvpLeague,
+          ultraLeague: pvpLeague,
+          masterLeague: pvpLeague,
+          rank1: {
+            ivs: { attack: null, defense: null, stamina: null },
+            level: null,
+            cp: null,
+          },
+          ivs: { attack: null, defense: null, stamina: null },
+          bestMovesets: { fast: "", charged: [""] },
+          quickMoves: [""],
+          cinematicMoves: [""],
+          eliteQuickMoves: [],
+          eliteCinematicMoves: [],
+          evolutions: [
+            { targetFormId: "", candies: null, item: null, quests: [] },
+          ],
+          regionForms: issue.expected.includes("object") ? {} : [],
+          megaEvolutions: issue.expected.includes("object") ? {} : [],
+          assetForms: [],
+          weatherBoost: [""],
+          quests: [],
+          moves: [""],
+          charged: [""],
         };
-        const root = issue.path.split(".")[0];
-        if (templates[root]) return structuredClone(templates[root]);
+        const field = issue.path
+          .replace(/\[\d+\]/g, "")
+          .split(".")
+          .filter(Boolean)
+          .at(-1);
+        if (Object.hasOwn(templates, field))
+          return structuredClone(templates[field]);
         if (issue.expected.includes("array") || issue.expected.includes("tableau"))
-          return [];
+          return issue.expected.includes("au moins") ? [""] : [];
         if (issue.expected.includes("boolean")) return false;
         if (issue.expected.includes("number")) return null;
         if (issue.expected.includes("string") || issue.expected.includes("identifiant"))
           return "";
+        if (issue.expected.includes("object") || issue.expected.includes("objet"))
+          return {};
         return null;
       }
+      function pathParts(path) {
+        return String(path)
+          .replace(/\[(\d+)\]/g, ".$1")
+          .split(".")
+          .filter(Boolean)
+          .map((part) => (/^\d+$/.test(part) ? Number(part) : part));
+      }
       function setNested(target, path, value) {
-        const parts = path.split(".").filter(Boolean);
+        const parts = pathParts(path);
         let cursor = target;
-        for (const part of parts.slice(0, -1)) {
-          if (!cursor[part] || typeof cursor[part] !== "object") cursor[part] = {};
+        for (let index = 0; index < parts.length - 1; index += 1) {
+          const part = parts[index];
+          const next = parts[index + 1];
+          if (!cursor[part] || typeof cursor[part] !== "object")
+            cursor[part] = typeof next === "number" ? [] : {};
           cursor = cursor[part];
         }
         cursor[parts.at(-1)] = value;
       }
       function suggestedPatch(e) {
+        if (e.suggestedPatch) return structuredClone(e.suggestedPatch);
         const patch = {};
-        const missing = e.issues.filter(
-          (issue) => issue.issue === "missing" && !issue.path.includes("["),
+        const issues = [...e.issues].sort(
+          (left, right) => pathParts(left.path).length - pathParts(right.path).length,
         );
-        for (const issue of missing) {
-          const root = issue.path.split(".")[0];
-          if (patch[root] !== undefined && issue.path.includes(".")) continue;
+        for (const issue of issues) {
           setNested(patch, issue.path, suggestedValue(issue, e));
         }
         return patch;
       }
       function assistantPanel(e, sourceJson) {
         const patch = suggestedPatch(e);
-        return `<div class="section-grid">${info("Résumé qualité", kv("Score", `${e.quality.score}%`) + kv("Champs absents", e.quality.missing) + kv("Valeurs invalides", e.quality.invalid) + kv("Catégories", e.issueCategories.map((category) => problemLabels[category] || category)))}${info("Diagnostic assets", kv("Pokémon GO", e.assets.go) + kv("GO shiny", e.assets.goShiny) + kv("Pokémon Home", e.assets.home) + kv("Home shiny", e.assets.homeShiny) + kv("Variantes GO / Home", `${e.assets.goVariants} / ${e.assets.homeVariants}`) + kv("URL dupliquées", e.assets.duplicateUrls) + kv("Paires normal/shiny incomplètes", e.assets.incompletePairs))}</div><div class="workspace-tools"><button class="action-btn primary" data-copy-patch>Copier le patch édité</button><button class="action-btn" data-download-patch>Télécharger le patch</button><button class="action-btn" data-download-source>Télécharger le JSON source</button></div><p class="meta">Les objets manquants sont proposés avec leur structure complète. La checklist ne modifie aucun fichier source: édite puis copie ce bloc dans ton JSON.</p><textarea data-patch>${esc(JSON.stringify(patch, null, 2))}</textarea><h2>JSON source</h2><pre>${esc(JSON.stringify(sourceJson, null, 2))}</pre>`;
+        return `<div class="section-grid">${info("Résumé qualité", kv("Score", `${e.quality.score}%`) + kv("Corrections proposées", `${e.issues.length} / ${e.issues.length}`) + kv("Champs absents", e.quality.missing) + kv("Valeurs invalides", e.quality.invalid) + kv("Catégories", e.issueCategories.map((category) => problemLabels[category] || category)))}${info("Diagnostic assets", kv("Pokémon GO", e.assets.go) + kv("GO shiny", e.assets.goShiny) + kv("Pokémon Home", e.assets.home) + kv("Home shiny", e.assets.homeShiny) + kv("Variantes GO / Home", `${e.assets.goVariants} / ${e.assets.homeVariants}`) + kv("URL dupliquées", e.assets.duplicateUrls) + kv("Paires normal/shiny incomplètes", e.assets.incompletePairs))}</div><div class="workspace-tools"><button class="action-btn primary" data-copy-patch>Copier le patch édité</button><button class="action-btn" data-download-patch>Télécharger le patch</button><button class="action-btn" data-download-source>Télécharger le JSON source</button></div><p class="meta">Le patch contient tous les problèmes détectés: clés absentes, valeurs nulles ou invalides, listes vides et références cassées. Les structures connues sont générées en entier. La checklist ne modifie aucun fichier source.</p><textarea data-patch>${esc(JSON.stringify(patch, null, 2))}</textarea><h2>JSON source</h2><pre>${esc(JSON.stringify(sourceJson, null, 2))}</pre>`;
       }
       function editorPanel(sourceJson) {
         return `<div class="workspace-tools"><button class="action-btn primary" data-editor-copy>Copier le JSON corrigé</button><button class="action-btn" data-editor-validate>Valider le brouillon</button><button class="action-btn" data-editor-diff>Prévisualiser le diff</button><button class="action-btn" data-editor-undo>Annuler la dernière saisie</button><button class="action-btn" data-editor-download>Télécharger</button></div><div class="status-box">Éditeur de brouillon uniquement. Aucun fichier source ne sera modifié.</div><div class="editor-grid"><div><h2>Brouillon modifiable</h2><textarea data-editor>${esc(JSON.stringify(sourceJson, null, 2))}</textarea></div><div><h2>Validation / diff</h2><div class="diff-box" data-editor-result>Utilise « Valider » ou « Prévisualiser le diff ».</div></div></div>`;
@@ -1971,12 +2069,99 @@
         renderMoves();
       }
       async function openAssets() {
-        const audit = (await apiFetch(`/api/assets-v3${state.activeEntry ? `?dexId=${encodeURIComponent(state.activeEntry.dexId)}` : ""}`)).data;
-        showWorkspace("Assistant assets HD", state.activeEntry ? `${state.activeEntry.dexId} ${state.activeEntry.name}` : "Audit global", `<div class="section-grid">${info("Audit global", kv("Images analysées", audit.totals.files) + kv("Images utilisées", audit.totals.used) + kv("Images inutilisées", audit.totals.unused) + kv("URLs utilisées plusieurs fois", audit.totals.duplicated))}</div><p class="meta">Les noms sont décodés automatiquement: forme, sexe, normal/shiny, Gigantamax et vue avant/arrière. Les propositions restent en lecture seule.</p><div class="asset-proposals">${audit.proposals.slice(0, 150).map((asset) => `<article class="asset-proposal"><img src="${esc(asset.url)}" loading="lazy" alt=""><strong>${esc(asset.filename)}</strong><br>Forme ${asset.formIndex} · ${esc(asset.gender)} · ${asset.shiny ? "shiny" : "normal"} · ${asset.view}${asset.gigantamax ? " · Gigantamax" : ""}<br><button class="copy" data-copy="${esc(asset.url)}">Copier URL</button></article>`).join("") || '<div class="empty">Aucune proposition pour cette fiche.</div>'}</div>`);
-        el.workspaceContent.querySelectorAll("[data-copy]").forEach((button) => button.onclick = async () => {
-          await navigator.clipboard.writeText(button.dataset.copy);
-          button.textContent = "URL copiée";
-        });
+        let audit = (
+          await apiFetch(
+            `/api/assets-v3${state.activeEntry ? `?dexId=${encodeURIComponent(state.activeEntry.dexId)}` : ""}`,
+          )
+        ).data;
+        let page = 1;
+        const pageSize = 80;
+        showWorkspace(
+          "Bibliothèque des assets",
+          state.activeEntry
+            ? `${state.activeEntry.dexId} ${state.activeEntry.name}`
+            : "Audit global",
+          `<div class="section-grid">${info("Audit global", kv("Images Pokémon Home", audit.totals.files) + kv("Images Pokémon GO", audit.totals.goFiles) + kv("Images Home utilisées", audit.totals.used) + kv("Images Home inutilisées", audit.totals.unused) + kv("URLs Home utilisées plusieurs fois", audit.totals.duplicated))}</div><p class="meta">Les noms Home sont décodés automatiquement: forme, sexe, normal/shiny, Gigantamax et vue avant/arrière. Toutes les propositions restent en lecture seule.</p><div class="asset-browser-head"><input type="search" data-asset-search placeholder="Pokémon, numéro, forme ou fichier"><select data-asset-source><option value="hd">Pokémon Home HD</option><option value="go">Pokémon GO</option></select><button class="action-btn" data-asset-all>${state.activeEntry ? "Toute la bibliothèque" : "Réinitialiser"}</button></div><div class="asset-proposals" data-asset-list></div><div class="asset-pagination"><button class="action-btn" data-asset-prev>Page précédente</button><strong data-asset-page></strong><button class="action-btn" data-asset-next>Page suivante</button></div>`,
+        );
+        const content = el.workspaceContent;
+        const listElement = content.querySelector("[data-asset-list]");
+        const search = content.querySelector("[data-asset-search]");
+        const source = content.querySelector("[data-asset-source]");
+        const pageLabel = content.querySelector("[data-asset-page]");
+        const previous = content.querySelector("[data-asset-prev]");
+        const next = content.querySelector("[data-asset-next]");
+        const renderAssets = () => {
+          const query = search.value.trim().toLocaleLowerCase("fr");
+          const assets = (source.value === "hd" ? audit.proposals : audit.goAssets).filter(
+            (asset) =>
+              !query ||
+              [
+                asset.dexId,
+                asset.filename,
+                asset.name,
+                asset.form,
+                asset.formIndex,
+                asset.gender,
+                asset.label,
+                asset.details,
+                asset.file,
+              ].some((value) =>
+                String(value || "").toLocaleLowerCase("fr").includes(query),
+              ),
+          );
+          const pages = Math.max(1, Math.ceil(assets.length / pageSize));
+          page = Math.min(page, pages);
+          const shown = assets.slice((page - 1) * pageSize, page * pageSize);
+          listElement.innerHTML =
+            shown
+              .map((asset) => {
+                const details =
+                  source.value === "hd"
+                    ? `N° ${asset.dexId} · forme ${asset.formIndex} · ${asset.gender} · ${asset.shiny ? "shiny" : "normal"} · ${asset.view}${asset.gigantamax ? " · Gigantamax" : ""}`
+                    : `N° ${asset.dexId} · ${asset.name} · ${asset.form} · ${asset.label}${asset.details ? ` · ${asset.details}` : ""}`;
+                return `<article class="asset-proposal"><img src="${esc(asset.url)}" loading="lazy" alt="${esc(asset.name || asset.filename || "")}"><strong>${esc(asset.filename)}</strong><br>${esc(details)}<br><button class="copy" data-copy="${esc(asset.url)}">Copier URL</button></article>`;
+              })
+              .join("") ||
+            '<div class="empty">Aucun asset ne correspond à cette recherche.</div>';
+          pageLabel.textContent = `${assets.length.toLocaleString("fr")} asset(s) · page ${page} / ${pages}`;
+          previous.disabled = page <= 1;
+          next.disabled = page >= pages;
+          el.workspaceSubtitle.textContent =
+            source.value === "hd"
+              ? `${assets.length.toLocaleString("fr")} asset(s) Pokémon Home HD`
+              : `${assets.length.toLocaleString("fr")} asset(s) Pokémon GO`;
+          listElement.querySelectorAll("[data-copy]").forEach((button) => {
+            button.onclick = async () => {
+              await navigator.clipboard.writeText(button.dataset.copy);
+              button.textContent = "URL copiée";
+            };
+          });
+        };
+        search.oninput = () => {
+          page = 1;
+          renderAssets();
+        };
+        source.onchange = () => {
+          page = 1;
+          renderAssets();
+        };
+        previous.onclick = () => {
+          page -= 1;
+          renderAssets();
+          content.scrollTo({ top: 0, behavior: "smooth" });
+        };
+        next.onclick = () => {
+          page += 1;
+          renderAssets();
+          content.scrollTo({ top: 0, behavior: "smooth" });
+        };
+        content.querySelector("[data-asset-all]").onclick = async () => {
+          audit = (await apiFetch("/api/assets-v3")).data;
+          search.value = "";
+          page = 1;
+          renderAssets();
+        };
+        renderAssets();
       }
       function openBatch() {
         const entries = state.entries.filter((entry) => state.selected.has(entry.key));
@@ -2007,7 +2192,7 @@
           (signatures[signature] ||= []).push(entry);
         }
         const suspicious = Object.values(signatures).filter((group) => group.length >= 4 && group.some((entry) => entry.stats)).sort((a, b) => b.length - a.length);
-        showWorkspace("Boîte à outils", `${state.selected.size} sélectionnée(s)`, `<div class="workspace-tools"><button class="action-btn" data-tool="moves">Catalogue attaques</button><button class="action-btn" data-tool="assets">Assets HD</button><button class="action-btn" data-tool="compare">Comparer</button><button class="action-btn" data-tool="batch">Corrections groupées</button><button class="action-btn" data-tool="notes">Notes & revues</button><button class="action-btn" data-tool="single">Mode une tâche</button></div><h2>Évolution quotidienne</h2><div class="history-list">${state.daily.slice().reverse().map((day) => `<div class="history-item"><strong>${day.date}</strong> · qualité ${day.average}% · ${day.complete} complètes · ${day.issues.toLocaleString("fr")} problèmes</div>`).join("")}</div><h2>Données identiques suspectes</h2><div class="history-list">${suspicious.slice(0, 20).map((group) => `<div class="history-item"><strong>${group.length} fiches identiques</strong><br>${esc(group.slice(0, 8).map((entry) => entry.name).join(", "))}</div>`).join("") || '<div class="empty">Aucun groupe suspect important.</div>'}</div>`);
+        showWorkspace("Boîte à outils", `${state.selected.size} sélectionnée(s)`, `<div class="workspace-tools"><button class="action-btn" data-tool="moves">Catalogue attaques</button><button class="action-btn" data-tool="assets">Assets Home & GO</button><button class="action-btn" data-tool="compare">Comparer</button><button class="action-btn" data-tool="batch">Corrections groupées</button><button class="action-btn" data-tool="notes">Notes & revues</button><button class="action-btn" data-tool="single">Mode une tâche</button></div><h2>Évolution quotidienne</h2><div class="history-list">${state.daily.slice().reverse().map((day) => `<div class="history-item"><strong>${day.date}</strong> · qualité ${day.average}% · ${day.complete} complètes · ${day.issues.toLocaleString("fr")} problèmes</div>`).join("")}</div><h2>Données identiques suspectes</h2><div class="history-list">${suspicious.slice(0, 20).map((group) => `<div class="history-item"><strong>${group.length} fiches identiques</strong><br>${esc(group.slice(0, 8).map((entry) => entry.name).join(", "))}</div>`).join("") || '<div class="empty">Aucun groupe suspect important.</div>'}</div>`);
         const actions = { moves: openMoves, assets: openAssets, compare: openCompare, batch: openBatch, notes: openNotes, single: () => { document.body.classList.toggle("single-task"); el.workspace.close(); render(); } };
         el.workspaceContent.querySelectorAll("[data-tool]").forEach((button) => button.onclick = actions[button.dataset.tool]);
       }
@@ -2039,7 +2224,7 @@
               `<button class="tab ${i === 0 ? "active" : ""}" data-tab="${id}">${label}</button>`,
           )
           .join("");
-        el.panels.innerHTML = `<div class="workspace-tools"><button class="action-btn" data-active-assets>Assets HD proposés</button><button class="action-btn" data-audit-urls>Vérifier les URLs</button><button class="action-btn" data-git-history>Historique Git</button><button class="action-btn" data-open-file>Afficher le fichier source</button><button class="action-btn" data-add-note>Ajouter une note</button></div><div class="panel active" data-panel="overview">${overview(d)}</div><div class="panel" data-panel="cp">${cpPanel(d)}</div><div class="panel" data-panel="issues">${issuesPanel(e)}</div><div class="panel" data-panel="moves"><h2>Attaques rapides</h2>${objectCards("rapide", d.moveDetails?.quickMoves)}<h2>Attaques chargées</h2>${objectCards("chargée", d.moveDetails?.cinematicMoves)}<h2>Attaques rapides élite</h2>${objectCards("rapide élite", d.moveDetails?.eliteQuickMoves)}<h2>Attaques chargées élite</h2>${objectCards("chargée élite", d.moveDetails?.eliteCinematicMoves)}<h2>Attaques Max / G-Max</h2>${objectCards("Max / G-Max", d.moveDetails?.maxMoves)}</div><div class="panel" data-panel="pvp">${
+        el.panels.innerHTML = `<div class="workspace-tools"><button class="action-btn" data-active-assets>Assets proposés</button><button class="action-btn" data-audit-urls>Vérifier les URLs</button><button class="action-btn" data-git-history>Historique Git</button><button class="action-btn" data-open-file>Afficher le fichier source</button><button class="action-btn" data-add-note>Ajouter une note</button></div><div class="panel active" data-panel="overview">${overview(d)}</div><div class="panel" data-panel="cp">${cpPanel(d)}</div><div class="panel" data-panel="issues">${issuesPanel(e)}</div><div class="panel" data-panel="moves"><h2>Attaques rapides</h2>${objectCards("rapide", d.moveDetails?.quickMoves)}<h2>Attaques chargées</h2>${objectCards("chargée", d.moveDetails?.cinematicMoves)}<h2>Attaques rapides élite</h2>${objectCards("rapide élite", d.moveDetails?.eliteQuickMoves)}<h2>Attaques chargées élite</h2>${objectCards("chargée élite", d.moveDetails?.eliteCinematicMoves)}<h2>Attaques Max / G-Max</h2>${objectCards("Max / G-Max", d.moveDetails?.maxMoves)}</div><div class="panel" data-panel="pvp">${
           d.pvp
             ? `<div class="section-grid">${Object.entries(d.pvp)
                 .map(([league, v]) =>

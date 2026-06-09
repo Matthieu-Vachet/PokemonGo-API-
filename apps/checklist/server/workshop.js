@@ -86,8 +86,59 @@ function usedAssetUrls() {
   return urls;
 }
 
+function allGoAssets() {
+  const assets = [];
+  const add = (data, file, label, url, shiny = false, details = "") => {
+    if (!url) return;
+    assets.push({
+      dexId: data.dexId || path.basename(file).slice(0, 4),
+      name: data.names?.French || data.names?.English || data.slug || data.id,
+      form: data.form || "normal",
+      label,
+      shiny,
+      details,
+      url,
+      filename: path.basename(url),
+      file: path.relative(rootDir, file),
+    });
+  };
+  for (const file of [
+    ...listFiles(path.join(rootDir, "data", "pokemon")),
+    ...listFiles(path.join(rootDir, "data", "pokemon-forms")),
+  ]) {
+    const data = readJson(file, {});
+    add(data, file, "Image principale", data.assets?.image);
+    add(data, file, "Image principale shiny", data.assets?.shinyImage, true);
+    for (const [index, asset] of (data.assetForms || []).entries()) {
+      const details = [
+        asset.form && `forme ${asset.form}`,
+        asset.costume && `costume ${asset.costume}`,
+        asset.isFemale && "femelle",
+      ]
+        .filter(Boolean)
+        .join(" · ");
+      add(data, file, `Variante ${index + 1}`, asset.image, false, details);
+      add(
+        data,
+        file,
+        `Variante ${index + 1} shiny`,
+        asset.shinyImage,
+        true,
+        details,
+      );
+    }
+  }
+  return assets.sort(
+    (left, right) =>
+      left.dexId.localeCompare(right.dexId) ||
+      left.form.localeCompare(right.form) ||
+      Number(left.shiny) - Number(right.shiny),
+  );
+}
+
 async function assetAudit(dexId = "") {
   const assets = await allHdAssets();
+  const goAssets = allGoAssets();
   const used = usedAssetUrls();
   const counts = new Map();
   for (const item of used)
@@ -99,8 +150,17 @@ async function assetAudit(dexId = "") {
       used: new Set(used.map((item) => item.url)).size,
       unused: assets.filter((asset) => !counts.has(asset.url)).length,
       duplicated: [...counts.values()].filter((count) => count > 1).length,
+      goFiles: goAssets.length,
     },
-    proposals: assets.filter((asset) => !dexId || asset.dexId === filterDex),
+    proposals: assets
+      .filter((asset) => !dexId || asset.dexId === filterDex)
+      .sort(
+        (left, right) =>
+          left.dexId.localeCompare(right.dexId) ||
+          left.formIndex.localeCompare(right.formIndex) ||
+          left.filename.localeCompare(right.filename),
+      ),
+    goAssets: goAssets.filter((asset) => !dexId || asset.dexId === filterDex),
     unused: assets.filter((asset) => !counts.has(asset.url)).slice(0, 300),
     duplicated: [...counts.entries()]
       .filter(([, count]) => count > 1)

@@ -733,6 +733,146 @@ function qualitySummary(issues) {
   };
 }
 
+function patchPathParts(pathName) {
+  return String(pathName)
+    .replace(/\[(\d+)\]/g, ".$1")
+    .split(".")
+    .filter(Boolean)
+    .map((part) => (/^\d+$/.test(part) ? Number(part) : part));
+}
+
+function setPatchValue(target, pathName, value) {
+  const parts = patchPathParts(pathName);
+  let cursor = target;
+  for (let index = 0; index < parts.length - 1; index += 1) {
+    const part = parts[index];
+    const next = parts[index + 1];
+    if (!cursor[part] || typeof cursor[part] !== "object")
+      cursor[part] = typeof next === "number" ? [] : {};
+    cursor = cursor[part];
+  }
+  cursor[parts.at(-1)] = value;
+}
+
+function suggestedValue(issue, kind = "pokemon") {
+  const pvpLeague = {
+    tierRank: "",
+    rank1: {
+      ivs: { attack: null, defense: null, stamina: null },
+      level: null,
+      cp: null,
+    },
+    bestMovesets: { fast: "", charged: [""] },
+  };
+  const templates = {
+    size: { height: null, weight: null },
+    availability:
+      kind === "mega"
+        ? {
+            released: false,
+            shinyReleased: false,
+            tradable: false,
+            pokemonHomeTransfer: false,
+          }
+        : {
+            released: false,
+            shinyReleased: false,
+            tradable: false,
+            pokemonHomeTransfer: false,
+            shadow: false,
+            dynamax: false,
+            gigantamax: false,
+            apex: false,
+          },
+    maxCp: {
+      maxLevel50: null,
+      maxLevel40: null,
+      ...(kind === "dynamax" || kind === "gigantamax"
+        ? { maxBattlesLevel20: null }
+        : {
+            weatherBoostLevel25: null,
+            raidLevel20: null,
+            researchLevel15: null,
+          }),
+    },
+    stats: { stamina: null, attack: null, defense: null },
+    captureRewards: { candy: null, stardust: null },
+    secondChargeMoveCost: { candy: null, stardust: null },
+    assets: { image: "", shinyImage: "" },
+    region: {
+      id: "",
+      slug: "",
+      generation: null,
+      names: Object.fromEntries(languages.map((language) => [language, ""])),
+    },
+    names: Object.fromEntries(languages.map((language) => [language, ""])),
+    maxBattle: { moves: [""] },
+    pvp: {
+      littleCup: null,
+      greatLeague: null,
+      ultraLeague: null,
+      masterLeague: null,
+    },
+    littleCup: pvpLeague,
+    greatLeague: pvpLeague,
+    ultraLeague: pvpLeague,
+    masterLeague: pvpLeague,
+    rank1: {
+      ivs: { attack: null, defense: null, stamina: null },
+      level: null,
+      cp: null,
+    },
+    ivs: { attack: null, defense: null, stamina: null },
+    bestMovesets: { fast: "", charged: [""] },
+    quickMoves: [""],
+    cinematicMoves: [""],
+    eliteQuickMoves: [],
+    eliteCinematicMoves: [],
+    evolutions: [
+      { targetFormId: "", candies: null, item: null, quests: [] },
+    ],
+    regionForms: issue.expected.includes("object") ? {} : [],
+    megaEvolutions: issue.expected.includes("object") ? {} : [],
+    assetForms: [],
+    weatherBoost: [""],
+    quests: [],
+    moves: [""],
+    charged: [""],
+  };
+  const field = issue.path
+    .replace(/\[\d+\]/g, "")
+    .split(".")
+    .filter(Boolean)
+    .at(-1);
+  if (Object.hasOwn(templates, field))
+    return structuredClone(templates[field]);
+  if (
+    issue.expected.includes("array") ||
+    issue.expected.includes("tableau")
+  )
+    return issue.expected.includes("au moins") ? [""] : [];
+  if (issue.expected.includes("boolean")) return false;
+  if (issue.expected.includes("number")) return null;
+  if (
+    issue.expected.includes("string") ||
+    issue.expected.includes("identifiant")
+  )
+    return "";
+  if (issue.expected.includes("object") || issue.expected.includes("objet"))
+    return {};
+  return null;
+}
+
+function buildSuggestedPatch(issues, kind = "pokemon") {
+  const patch = {};
+  for (const issue of [...issues].sort(
+    (left, right) =>
+      patchPathParts(left.path).length - patchPathParts(right.path).length,
+  ))
+    setPatchValue(patch, issue.path, suggestedValue(issue, kind));
+  return patch;
+}
+
 function assetSummary(data) {
   const home = data.assets?.home || {};
   const homeVariants = Array.isArray(home.variants) ? home.variants : [];
@@ -976,6 +1116,7 @@ function buildChecklist() {
         : 0,
       complete: validator.issues.length === 0,
       issues: validator.issues,
+      suggestedPatch: buildSuggestedPatch(validator.issues, kind),
       quality,
       issueCategories: quality.categories,
       assets: assetSummary(displayData),
@@ -1032,6 +1173,7 @@ function detailForKey(key) {
 
 module.exports = {
   assetSummary,
+  buildSuggestedPatch,
   buildChecklist,
   detailForKey,
   issueCategory,

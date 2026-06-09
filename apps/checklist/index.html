@@ -423,6 +423,12 @@
         padding-bottom: 10px;
         scrollbar-width: none;
       }
+      .detail-navigation {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+        margin-bottom: 9px;
+      }
       .tab {
         min-height: 42px;
         padding: 8px 12px;
@@ -641,6 +647,160 @@
       .mobile-nav {
         display: none;
       }
+      .quality-board {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.6fr);
+        gap: 12px;
+        margin-top: 14px;
+      }
+      .quality-panel {
+        border: 1px solid var(--line);
+        border-radius: 17px;
+        padding: 14px;
+        background: #ffffffed;
+        box-shadow: var(--shadow);
+      }
+      .quality-panel h2 {
+        margin: 0 0 11px;
+        font-size: 0.95rem;
+      }
+      .quality-bars {
+        display: grid;
+        gap: 8px;
+      }
+      .quality-row {
+        display: grid;
+        grid-template-columns: minmax(92px, 0.35fr) minmax(100px, 1fr) auto;
+        gap: 8px;
+        align-items: center;
+        color: var(--muted);
+        font-size: 0.72rem;
+        border: 0;
+        background: transparent;
+        padding: 2px 0;
+        text-align: left;
+        width: 100%;
+      }
+      .quality-track {
+        height: 8px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: #e7eef6;
+      }
+      .quality-track div {
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--blue), var(--cyan));
+      }
+      .action-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+      .action-btn {
+        min-height: 46px;
+        border: 1px solid #c8d8e8;
+        border-radius: 12px;
+        color: var(--ink);
+        background: #f8fbff;
+        font-size: 0.72rem;
+        font-weight: 850;
+      }
+      .action-btn.primary {
+        color: #fff;
+        border-color: transparent;
+        background: linear-gradient(135deg, var(--blue), #00b8d9);
+        box-shadow: 0 8px 20px #1685ff30;
+      }
+      .score-ring {
+        display: grid;
+        place-items: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        color: var(--ink);
+        background: conic-gradient(var(--blue) calc(var(--score) * 1%), #e3edf6 0);
+        font-size: 0.68rem;
+        font-weight: 900;
+        position: relative;
+      }
+      .score-ring::before {
+        position: absolute;
+        inset: 5px;
+        border-radius: 50%;
+        background: #fff;
+        content: "";
+      }
+      .score-ring span {
+        position: relative;
+      }
+      .card-score {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        z-index: 2;
+      }
+      .workspace {
+        width: min(1100px, 100%);
+      }
+      .workspace-content {
+        padding: 15px;
+      }
+      .workspace-tools {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+      .workspace textarea {
+        width: 100%;
+        min-height: 240px;
+        resize: vertical;
+        border: 1px solid #cbd8e7;
+        border-radius: 13px;
+        padding: 12px;
+        color: #d9e4ff;
+        background: #07152d;
+        font: 0.72rem/1.55 ui-monospace, monospace;
+      }
+      .quick-stage {
+        display: grid;
+        gap: 12px;
+        text-align: center;
+      }
+      .quick-images {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+      .quick-images .asset-picture {
+        min-height: 210px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+      }
+      .quick-images .asset-picture img {
+        max-width: 210px;
+      }
+      .quick-actions {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+      .history-list {
+        display: grid;
+        gap: 7px;
+      }
+      .history-item {
+        border: 1px solid var(--line);
+        border-radius: 11px;
+        padding: 9px;
+        background: #fff;
+        font-size: 0.72rem;
+      }
+      .poke-card.asset-broken {
+        border-color: var(--red);
+        box-shadow: 0 0 0 2px #ff3d5a24, var(--shadow);
+      }
       @media (max-width: 760px) {
         .top-shell {
           padding-top: 18px;
@@ -655,6 +815,9 @@
         }
         .stats {
           grid-template-columns: repeat(2, 1fr);
+        }
+        .quality-board {
+          grid-template-columns: 1fr;
         }
         .toolbar-wrap {
           position: static;
@@ -684,7 +847,7 @@
           right: 10px;
           bottom: calc(8px + var(--safe-bottom));
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(5, 1fr);
           gap: 5px;
           padding: 6px;
           border: 1px solid #c7d2e1;
@@ -729,6 +892,13 @@
         .asset-gallery {
           grid-template-columns: 1fr;
         }
+        .quick-images,
+        .quick-actions {
+          grid-template-columns: 1fr;
+        }
+        .workspace-content {
+          padding: 10px;
+        }
       }
     </style>
   </head>
@@ -761,6 +931,23 @@
           </div>
         </div>
         <div class="xp"><div id="xp"></div></div>
+        <div class="quality-board">
+          <section class="quality-panel">
+            <h2>Qualité des données</h2>
+            <div class="quality-bars" id="qualityBars"></div>
+            <h2 style="margin-top:16px">Complétion par génération</h2>
+            <div class="quality-bars" id="generationBars"></div>
+          </section>
+          <section class="quality-panel">
+            <h2>Atelier rapide</h2>
+            <div class="action-grid">
+              <button class="action-btn primary" id="nextEntry">Prochaine fiche</button>
+              <button class="action-btn" id="quickReview">Vérification images</button>
+              <button class="action-btn" id="openExports">Exports & partage</button>
+              <button class="action-btn" id="openHistory">Historique</button>
+            </div>
+          </section>
+        </div>
       </section>
       <div class="toolbar-wrap">
         <section class="toolbar" id="toolbar">
@@ -795,8 +982,26 @@
             <option value="all">Tous les statuts</option>
             <option value="done">Terminées</option>
           </select>
+          <select id="problem">
+            <option value="all">Tous les problèmes</option>
+            <option value="assets">Assets</option>
+            <option value="pvp">PvP</option>
+            <option value="moves">Attaques</option>
+            <option value="forms">Formes & évolutions</option>
+            <option value="translations">Traductions</option>
+            <option value="stats">Statistiques & PC</option>
+            <option value="size">Taille & poids</option>
+            <option value="gameplay">Capture & disponibilité</option>
+            <option value="structure">Structure</option>
+          </select>
+          <select id="generation">
+            <option value="all">Toutes les générations</option>
+          </select>
           <select id="sort">
             <option value="dex">N° Pokédex</option>
+            <option value="priority">Plus rapides à terminer</option>
+            <option value="score-desc">Meilleur score</option>
+            <option value="score-asc">Score le plus faible</option>
             <option value="issues-desc">Plus de problèmes</option>
             <option value="issues-asc">Moins de problèmes</option>
             <option value="name">Nom</option>
@@ -819,14 +1024,22 @@
       <button id="mobileFilters">Filtres</button
       ><button id="mobileShiny">Shiny</button
       ><button id="mobileRefresh">Actualiser</button
+      ><button id="mobileTools">Outils</button
       ><button id="mobileTop">Haut</button>
     </nav>
     <dialog id="detail">
       <header class="detail-head" id="detailHead"></header>
       <div class="detail-body">
+        <div class="detail-navigation"><button class="action-btn" id="prevDetail">Fiche précédente</button><button class="action-btn primary" id="nextDetail">Fiche suivante</button></div>
         <nav class="detail-tabs" id="tabs"></nav>
         <section id="panels"></section>
       </div>
+    </dialog>
+    <dialog class="workspace" id="workspace">
+      <header class="detail-head">
+        <div></div><div><div class="name" id="workspaceTitle">Outils</div><div class="meta" id="workspaceSubtitle"></div></div><button class="close" id="closeWorkspace">×</button>
+      </header>
+      <div class="workspace-content" id="workspaceContent"></div>
     </dialog>
     <script>
       const state = {
@@ -835,6 +1048,8 @@
         limit: 60,
         detailData: null,
         activeEntry: null,
+        history: [],
+        quickIndex: 0,
       };
       const ids = [
         "done",
@@ -842,12 +1057,20 @@
         "issues",
         "total",
         "xp",
+        "qualityBars",
+        "generationBars",
+        "nextEntry",
+        "quickReview",
+        "openExports",
+        "openHistory",
         "toolbar",
         "search",
         "kind",
         "profile",
         "form",
         "status",
+        "problem",
+        "generation",
         "sort",
         "shiny",
         "refresh",
@@ -858,11 +1081,19 @@
         "mobileFilters",
         "mobileShiny",
         "mobileRefresh",
+        "mobileTools",
         "mobileTop",
         "detail",
         "detailHead",
+        "prevDetail",
+        "nextDetail",
         "tabs",
         "panels",
+        "workspace",
+        "workspaceTitle",
+        "workspaceSubtitle",
+        "workspaceContent",
+        "closeWorkspace",
       ];
       const el = Object.fromEntries(
         ids.map((id) => [id, document.getElementById(id)]),
@@ -875,6 +1106,17 @@
         mega: "Méga / Primo",
         dynamax: "Dynamax",
         gigantamax: "Gigantamax",
+      };
+      const problemLabels = {
+        assets: "Assets",
+        pvp: "PvP",
+        moves: "Attaques",
+        forms: "Formes & évolutions",
+        translations: "Traductions",
+        stats: "Statistiques & PC",
+        size: "Taille & poids",
+        gameplay: "Capture & disponibilité",
+        structure: "Structure",
       };
       const typeColors = {
         NORMAL: "#9ca3af",
@@ -914,6 +1156,11 @@
       const accessKey = "pokedex-v3-access";
       function requestPassword(force = false) {
         let password = force ? "" : localStorage.getItem(accessKey) || "";
+        if (
+          !force &&
+          ["localhost", "127.0.0.1"].includes(location.hostname)
+        )
+          return password;
         if (!password)
           password =
             prompt("Mot de passe de la checklist Pokémon GO :") || "";
@@ -951,11 +1198,50 @@
         } catch {
           state.progress = {};
         }
+        try {
+          state.history = JSON.parse(
+            localStorage.getItem("pokedex-v3-history") || "[]",
+          );
+        } catch {
+          state.history = [];
+        }
       }
       function saveProgress() {
         localStorage.setItem(
           "pokedex-v3-progress",
           JSON.stringify(state.progress),
+        );
+      }
+      function recordHistory(action, entry, details = "") {
+        state.history.unshift({
+          date: new Date().toISOString(),
+          action,
+          key: entry?.key || null,
+          name: entry?.name || null,
+          details,
+        });
+        state.history = state.history.slice(0, 150);
+        localStorage.setItem("pokedex-v3-history", JSON.stringify(state.history));
+      }
+      function trackQualityChanges(entries) {
+        let previous = {};
+        try {
+          previous = JSON.parse(
+            localStorage.getItem("pokedex-v3-quality-snapshot") || "{}",
+          );
+        } catch {}
+        for (const entry of entries) {
+          const old = previous[entry.key];
+          if (old?.complete && !entry.complete)
+            recordHistory("Régression détectée", entry, "La fiche complète a de nouveaux problèmes.");
+          else if (old && entry.quality.score < old.score)
+            recordHistory("Score qualité en baisse", entry, `${old.score}% → ${entry.quality.score}%`);
+          else if (old && entry.quality.score > old.score)
+            recordHistory("Score qualité amélioré", entry, `${old.score}% → ${entry.quality.score}%`);
+        }
+        localStorage.setItem(
+          "pokedex-v3-quality-snapshot",
+          JSON.stringify(Object.fromEntries(entries.map((entry) => [entry.key, { score: entry.quality.score, complete: entry.complete }]))),
         );
       }
       const saveFilters = () =>
@@ -967,6 +1253,8 @@
             profile: el.profile.value,
             form: el.form.value,
             status: el.status.value,
+            problem: el.problem.value,
+            generation: el.generation.value,
             sort: el.sort.value,
             shiny: document.body.classList.contains("shiny"),
           }),
@@ -974,8 +1262,19 @@
       function restoreFilters() {
         try {
           const f = JSON.parse(localStorage.getItem("pokedex-v3-filters"));
-          for (const k of ["search", "kind", "profile", "status", "sort"])
+          const shared = Object.fromEntries(new URLSearchParams(location.search));
+          for (const k of [
+            "search",
+            "kind",
+            "profile",
+            "status",
+            "problem",
+            "generation",
+            "sort",
+          ])
             if (f?.[k] !== undefined) el[k].value = f[k];
+          for (const [key, value] of Object.entries(shared))
+            if (el[key] && value) el[key].value = value;
           if (["dynamax", "gigantamax"].includes(el.kind.value))
             el.status.value = "all";
           if (f?.shiny) document.body.classList.add("shiny");
@@ -991,16 +1290,29 @@
                 String(v || "")
                   .toLocaleLowerCase("fr")
                   .includes(q),
+              ) ||
+              e.issues.some((issue) =>
+                String(issue.path || "").toLocaleLowerCase("fr").includes(q),
               )) &&
             (el.kind.value === "all" || e.kind === el.kind.value) &&
             (el.profile.value === "all" || e.profile === el.profile.value) &&
             (el.form.value === "all" || e.form === el.form.value) &&
+            (el.problem.value === "all" ||
+              e.issueCategories?.includes(el.problem.value)) &&
+            (el.generation.value === "all" ||
+              String(e.generation) === el.generation.value) &&
             (el.status.value === "all" ||
               (el.status.value === "done" ? done : !done))
           );
         });
         return list.sort((a, b) =>
-          el.sort.value === "issues-desc"
+          el.sort.value === "priority"
+            ? b.quality.priority - a.quality.priority
+            : el.sort.value === "score-desc"
+              ? b.quality.score - a.quality.score
+              : el.sort.value === "score-asc"
+                ? a.quality.score - b.quality.score
+                : el.sort.value === "issues-desc"
             ? b.issues.length - a.issues.length
             : el.sort.value === "issues-asc"
               ? a.issues.length - b.issues.length
@@ -1016,7 +1328,11 @@
           img = e.image
             ? `<div class="portrait"><img class="normal" src="${esc(e.image)}" alt="${esc(e.name)}" loading="lazy">${e.shinyImage ? `<img class="shiny" src="${esc(e.shinyImage)}" alt="${esc(e.name)} shiny" loading="lazy">` : ""}</div>`
             : '<div class="portrait"></div>';
-        return `<article class="poke-card ${done ? "done" : ""}" style="--type:${color(e)}"><div class="type-strip"></div><div class="card-main">${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)} · Gén. ${esc(e.generation || "?")}</div><div class="chips"><span class="chip">${esc(typeName(e.primaryType) || "Type ?")}</span><span class="chip">${e.quickMoveCount} rapide(s)</span><span class="chip">${e.chargedMoveCount} chargée(s)</span>${e.maxMoveCount ? `<span class="chip">${e.maxMoveCount} Max / G-Max</span>` : ""}${e.complete ? '<span class="chip good">JSON complet</span>' : `<span class="chip problem">${e.issues.length} problème(s)</span>`}${manual ? '<span class="chip good">coché</span>' : ""}</div></div></div><div class="card-actions"><label class="check-label"><input type="checkbox" data-check="${esc(e.key)}" ${done ? "checked" : ""} ${e.complete ? "disabled" : ""}> Fait</label><button class="detail-btn" data-detail="${esc(e.key)}">Voir la fiche</button></div></article>`;
+        const categories = (e.issueCategories || [])
+          .slice(0, 2)
+          .map((category) => `<span class="chip problem">${esc(problemLabels[category] || category)}</span>`)
+          .join("");
+        return `<article class="poke-card ${done ? "done" : ""}" style="--type:${color(e)}"><div class="type-strip"></div><div class="card-score score-ring" style="--score:${e.quality.score}"><span>${e.quality.score}%</span></div><div class="card-main">${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)} · Gén. ${esc(e.generation || "?")}</div><div class="chips"><span class="chip">${esc(typeName(e.primaryType) || "Type ?")}</span><span class="chip">${e.quickMoveCount} rapide(s)</span><span class="chip">${e.chargedMoveCount} chargée(s)</span>${e.maxMoveCount ? `<span class="chip">${e.maxMoveCount} Max / G-Max</span>` : ""}${e.complete ? '<span class="chip good">JSON complet</span>' : `<span class="chip problem">${e.issues.length} problème(s)</span>`}${categories}${manual ? '<span class="chip good">coché</span>' : ""}</div></div></div><div class="card-actions"><label class="check-label"><input type="checkbox" data-check="${esc(e.key)}" ${done ? "checked" : ""} ${e.complete ? "disabled" : ""}> Fait</label><button class="detail-btn" data-detail="${esc(e.key)}">Voir la fiche</button></div></article>`;
       }
       function updateStats() {
         const done = state.entries.filter(isDone).length,
@@ -1028,6 +1344,44 @@
           .toLocaleString("fr");
         el.total.textContent = total;
         el.xp.style.width = `${total ? (done / total) * 100 : 0}%`;
+        const categoryCounts = {};
+        for (const entry of state.entries)
+          for (const category of entry.issueCategories || [])
+            categoryCounts[category] = (categoryCounts[category] || 0) + 1;
+        const max = Math.max(1, ...Object.values(categoryCounts));
+        el.qualityBars.innerHTML = Object.entries(categoryCounts)
+          .sort((a, b) => b[1] - a[1])
+          .map(([category, count]) => `<button class="quality-row" data-quality="${esc(category)}"><span>${esc(problemLabels[category] || category)}</span><span class="quality-track"><div style="width:${(count / max) * 100}%"></div></span><strong>${count}</strong></button>`)
+          .join("");
+        el.qualityBars.querySelectorAll("[data-quality]").forEach((button) => {
+          button.onclick = () => {
+            el.problem.value = button.dataset.quality;
+            el.status.value = "todo";
+            render();
+            scrollTo({ top: el.toolbar.offsetTop, behavior: "smooth" });
+          };
+        });
+        const byGeneration = {};
+        for (const entry of state.entries) {
+          const key = entry.generation || "?";
+          byGeneration[key] ||= { total: 0, score: 0 };
+          byGeneration[key].total += 1;
+          byGeneration[key].score += entry.quality.score;
+        }
+        el.generationBars.innerHTML = Object.entries(byGeneration)
+          .sort((a, b) => Number(a[0]) - Number(b[0]))
+          .map(([generation, data]) => {
+            const score = Math.round(data.score / data.total);
+            return `<button class="quality-row" data-generation="${generation}"><span>Génération ${generation}</span><span class="quality-track"><div style="width:${score}%"></div></span><strong>${score}%</strong></button>`;
+          })
+          .join("");
+        el.generationBars.querySelectorAll("[data-generation]").forEach((button) => {
+          button.onclick = () => {
+            el.generation.value = button.dataset.generation;
+            render();
+            scrollTo({ top: el.toolbar.offsetTop, behavior: "smooth" });
+          };
+        });
       }
       function render() {
         const list = filtered(),
@@ -1044,6 +1398,12 @@
               setProgress(box.dataset.check, box.checked),
             ),
           );
+        el.entries.querySelectorAll("img").forEach((image) => {
+          image.addEventListener("error", () => {
+            image.closest(".poke-card")?.classList.add("asset-broken");
+            image.title = "Image inaccessible";
+          });
+        });
         el.entries
           .querySelectorAll("[data-detail]")
           .forEach((btn) =>
@@ -1053,8 +1413,10 @@
         saveFilters();
       }
       function setProgress(key, checked) {
+        const entry = state.entries.find((item) => item.key === key);
         if (checked) state.progress[key] = true;
         else delete state.progress[key];
+        recordHistory(checked ? "Fiche cochée" : "Fiche décochée", entry);
         saveProgress();
         render();
       }
@@ -1206,6 +1568,135 @@
               .join("")
           : '<div class="empty">Aucun problème détecté.</div>';
       }
+      function suggestedValue(issue) {
+        if (issue.expected.includes("array") || issue.expected.includes("tableau"))
+          return [];
+        if (issue.expected.includes("boolean")) return false;
+        if (issue.expected.includes("number")) return null;
+        if (issue.expected.includes("string") || issue.expected.includes("identifiant"))
+          return "";
+        return null;
+      }
+      function suggestedPatch(e) {
+        return Object.fromEntries(
+          e.issues
+            .filter((issue) => issue.issue === "missing" && !issue.path.includes("["))
+            .map((issue) => [issue.path, suggestedValue(issue)]),
+        );
+      }
+      function assistantPanel(e, sourceJson) {
+        const patch = suggestedPatch(e);
+        return `<div class="section-grid">${info("Résumé qualité", kv("Score", `${e.quality.score}%`) + kv("Champs absents", e.quality.missing) + kv("Valeurs invalides", e.quality.invalid) + kv("Catégories", e.issueCategories.map((category) => problemLabels[category] || category)))}${info("Diagnostic assets", kv("Pokémon GO", e.assets.go) + kv("GO shiny", e.assets.goShiny) + kv("Pokémon Home", e.assets.home) + kv("Home shiny", e.assets.homeShiny) + kv("Variantes GO / Home", `${e.assets.goVariants} / ${e.assets.homeVariants}`) + kv("URL dupliquées", e.assets.duplicateUrls) + kv("Paires normal/shiny incomplètes", e.assets.incompletePairs))}</div><div class="workspace-tools"><button class="action-btn primary" data-copy-patch>Copier le patch édité</button><button class="action-btn" data-download-patch>Télécharger le patch</button><button class="action-btn" data-download-source>Télécharger le JSON source</button></div><p class="meta">Le patch utilise les chemins manquants comme clés. Modifie les valeurs ci-dessous avant de le copier ou télécharger.</p><textarea data-patch>${esc(JSON.stringify(patch, null, 2))}</textarea><h2>JSON source</h2><pre>${esc(JSON.stringify(sourceJson, null, 2))}</pre>`;
+      }
+      function showWorkspace(title, subtitle, content) {
+        el.workspaceTitle.textContent = title;
+        el.workspaceSubtitle.textContent = subtitle || "";
+        el.workspaceContent.innerHTML = content;
+        el.workspace.showModal();
+      }
+      function downloadText(filename, text, type = "text/plain") {
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(new Blob([text], { type }));
+        link.download = filename;
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+      }
+      function exportRows() {
+        return filtered().map((entry) => ({
+          dexId: entry.dexId,
+          name: entry.name,
+          kind: entry.kind,
+          form: entry.form,
+          generation: entry.generation,
+          score: entry.quality.score,
+          issues: entry.issues.length,
+          categories: entry.issueCategories.join("|"),
+          file: entry.file,
+        }));
+      }
+      function openExportTools() {
+        showWorkspace(
+          "Exports & partage",
+          `${filtered().length} fiches dans la sélection actuelle`,
+          `<div class="workspace-tools"><button class="action-btn primary" data-export="json">Exporter JSON</button><button class="action-btn" data-export="csv">Exporter CSV</button><button class="action-btn" data-export="markdown">Rapport Markdown</button><button class="action-btn" data-share>Copier le lien filtré</button><button class="action-btn" data-save-view>Enregistrer cette vue</button></div><textarea readonly>${esc(JSON.stringify(exportRows().slice(0, 30), null, 2))}</textarea>`,
+        );
+        el.workspaceContent.querySelectorAll("[data-export]").forEach((button) => {
+          button.onclick = () => {
+            const rows = exportRows();
+            if (button.dataset.export === "json")
+              downloadText("checklist-pokemon.json", JSON.stringify(rows, null, 2), "application/json");
+            if (button.dataset.export === "csv") {
+              const headers = Object.keys(rows[0] || {});
+              const csv = [headers, ...rows.map((row) => headers.map((key) => JSON.stringify(row[key] ?? "")))].map((row) => row.join(",")).join("\n");
+              downloadText("checklist-pokemon.csv", csv, "text/csv");
+            }
+            if (button.dataset.export === "markdown") {
+              const markdown = `# Rapport checklist Pokémon GO\n\n${rows.map((row) => `- **${row.dexId} ${row.name}** — ${row.score}% — ${row.issues} problème(s) — \`${row.file}\``).join("\n")}`;
+              downloadText("checklist-pokemon.md", markdown, "text/markdown");
+            }
+            recordHistory(`Export ${button.dataset.export}`, null, `${rows.length} fiches`);
+          };
+        });
+        el.workspaceContent.querySelector("[data-share]").onclick = async () => {
+          const params = new URLSearchParams();
+          for (const id of ["search", "kind", "profile", "status", "problem", "generation", "sort"])
+            if (el[id].value && !["all", "todo", "dex"].includes(el[id].value))
+              params.set(id, el[id].value);
+          const url = `${location.origin}${location.pathname}${params.size ? `?${params}` : ""}`;
+          await navigator.clipboard.writeText(url);
+          el.workspaceSubtitle.textContent = "Lien filtré copié.";
+        };
+        el.workspaceContent.querySelector("[data-save-view]").onclick = () => {
+          const name = `Vue ${new Date().toLocaleDateString("fr")}`;
+          const views = JSON.parse(localStorage.getItem("pokedex-v3-views") || "[]");
+          views.unshift({ name, filters: Object.fromEntries(["search", "kind", "profile", "status", "problem", "generation", "sort"].map((id) => [id, el[id].value])) });
+          localStorage.setItem("pokedex-v3-views", JSON.stringify(views.slice(0, 10)));
+          el.workspaceSubtitle.textContent = `${name} enregistrée.`;
+        };
+      }
+      function openHistory() {
+        const views = JSON.parse(localStorage.getItem("pokedex-v3-views") || "[]");
+        showWorkspace(
+          "Historique & vues",
+          `${state.history.length} actions mémorisées sur cet appareil`,
+          `<div class="workspace-tools">${views.map((view, index) => `<button class="action-btn" data-view="${index}">${esc(view.name)}</button>`).join("")}<button class="action-btn" data-clear-history>Effacer l’historique</button></div><div class="history-list">${state.history.length ? state.history.map((item) => `<div class="history-item"><strong>${esc(item.action)}</strong> · ${esc(item.name || item.details || "")}<br><span class="meta">${new Date(item.date).toLocaleString("fr")}</span></div>`).join("") : '<div class="empty">Aucune action mémorisée.</div>'}</div>`,
+        );
+        el.workspaceContent.querySelectorAll("[data-view]").forEach((button) => {
+          button.onclick = () => {
+            const view = views[Number(button.dataset.view)];
+            for (const [id, value] of Object.entries(view.filters)) if (el[id]) el[id].value = value;
+            el.workspace.close();
+            render();
+          };
+        });
+        el.workspaceContent.querySelector("[data-clear-history]").onclick = () => {
+          state.history = [];
+          localStorage.removeItem("pokedex-v3-history");
+          openHistory();
+        };
+      }
+      function quickCandidates() {
+        return filtered().filter((entry) => entry.image || entry.shinyImage);
+      }
+      function renderQuickReview() {
+        const candidates = quickCandidates();
+        if (!candidates.length) return showWorkspace("Vérification images", "", '<div class="empty">Aucune image dans cette sélection.</div>');
+        state.quickIndex = Math.min(state.quickIndex, candidates.length - 1);
+        const entry = candidates[state.quickIndex];
+        showWorkspace(
+          "Vérification images",
+          `${state.quickIndex + 1} / ${candidates.length} · ${entry.dexId} ${entry.name}`,
+          `<div class="quick-stage"><div class="quick-images">${assetPicture("Normal", entry.image)}${assetPicture("Shiny", entry.shinyImage)}</div><div class="quick-actions"><button class="action-btn primary" data-quick="valid">Images validées</button><button class="action-btn" data-quick="issue">Signaler un problème</button><button class="action-btn" data-quick="next">Suivante</button></div></div>`,
+        );
+        el.workspaceContent.querySelectorAll("[data-quick]").forEach((button) => {
+          button.onclick = () => {
+            if (button.dataset.quick !== "next")
+              recordHistory(button.dataset.quick === "valid" ? "Images validées" : "Problème d’image signalé", entry);
+            state.quickIndex = (state.quickIndex + 1) % candidates.length;
+            renderQuickReview();
+          };
+        });
+      }
       function renderDetail(e, d) {
         const sourceJson = { ...(d.sourceData || d) };
         delete sourceJson.moveDetails;
@@ -1219,6 +1710,7 @@
           ["pvp", "PvP"],
           ["evolutions", "Évolutions"],
           ["forms", "Formes & assets"],
+          ["assistant", "Assistant JSON"],
           ["json", "JSON"],
         ];
         const img = e.image
@@ -1249,7 +1741,7 @@
                 )
                 .join("")}</div>`
             : '<div class="empty">Aucune donnée PvP.</div>'
-        }</div><div class="panel" data-panel="evolutions">${d.evolutions?.length ? `<div class="section-grid">${d.evolutions.map((v) => info(v.id, kv("Forme", v.form) + kv("Bonbons", v.candies) + kv("Objet", v.item))).join("")}</div>` : '<div class="empty">Aucune évolution suivante.</div>'}</div><div class="panel" data-panel="forms">${assetsPanel(d)}</div><div class="panel" data-panel="json"><pre>${esc(JSON.stringify(sourceJson, null, 2))}</pre></div>`;
+        }</div><div class="panel" data-panel="evolutions">${d.evolutions?.length ? `<div class="section-grid">${d.evolutions.map((v) => info(v.targetFormId || v.id, kv("Bonbons", v.candies) + kv("Objet", v.item))).join("")}</div>` : '<div class="empty">Aucune évolution suivante.</div>'}</div><div class="panel" data-panel="forms">${assetsPanel(d)}</div><div class="panel" data-panel="assistant">${assistantPanel(e, sourceJson)}</div><div class="panel" data-panel="json"><pre>${esc(JSON.stringify(sourceJson, null, 2))}</pre></div>`;
         document.getElementById("closeDetail").onclick = () =>
           el.detail.close();
         el.tabs.querySelectorAll("[data-tab]").forEach(
@@ -1275,10 +1767,36 @@
               btn.textContent = "Copié";
             }),
         );
+        const copyPatch = el.panels.querySelector("[data-copy-patch]");
+        if (copyPatch)
+          copyPatch.onclick = async () => {
+            await navigator.clipboard.writeText(
+              el.panels.querySelector("[data-patch]").value,
+            );
+            copyPatch.textContent = "Patch copié";
+            recordHistory("Patch JSON copié", e);
+          };
+        const downloadPatch = el.panels.querySelector("[data-download-patch]");
+        if (downloadPatch)
+          downloadPatch.onclick = () => {
+            downloadText(
+              `${e.dexId}-${e.form}-patch.json`,
+              el.panels.querySelector("[data-patch]").value,
+              "application/json",
+            );
+            recordHistory("Patch JSON téléchargé", e);
+          };
+        const downloadSource = el.panels.querySelector("[data-download-source]");
+        if (downloadSource)
+          downloadSource.onclick = () => {
+            downloadText(`${e.dexId}-${e.form}.json`, JSON.stringify(sourceJson, null, 2), "application/json");
+            recordHistory("JSON téléchargé", e);
+          };
       }
       async function openDetail(key) {
         const e = state.entries.find((x) => x.key === key);
         if (!e) return;
+        state.activeEntry = e;
         el.detail.showModal();
         el.detailHead.innerHTML =
           '<div></div><div class="name">Chargement…</div>';
@@ -1287,16 +1805,26 @@
           const x = await apiFetch(
             `/api/detail-v3?key=${encodeURIComponent(key)}`,
           );
-          renderDetail(e, x.data || {});
+          state.detailData = x.data || {};
+          recordHistory("Fiche consultée", e);
+          renderDetail(e, state.detailData);
         } catch (error) {
           el.panels.innerHTML = `<div class="empty">${esc(error.message)}</div>`;
         }
+      }
+      function navigateDetail(direction) {
+        const list = filtered();
+        const index = list.findIndex((entry) => entry.key === state.activeEntry?.key);
+        if (!list.length) return;
+        const next = list[(Math.max(0, index) + direction + list.length) % list.length];
+        openDetail(next.key);
       }
       async function load() {
         el.refresh.disabled = true;
         try {
           const x = await apiFetch("/api/checklist-v3");
           Object.assign(state, x);
+          trackQualityChanges(state.entries);
           let selected = el.form.value;
           try {
             selected =
@@ -1312,6 +1840,15 @@
               .map((f) => `<option value="${esc(f)}">${esc(f)}</option>`)
               .join("");
           el.form.value = forms.includes(selected) ? selected : "all";
+          const generations = [
+            ...new Set(state.entries.map((e) => e.generation).filter(Boolean)),
+          ].sort((a, b) => a - b);
+          el.generation.innerHTML =
+            '<option value="all">Toutes les générations</option>' +
+            generations
+              .map((generation) => `<option value="${generation}">Génération ${generation}</option>`)
+              .join("");
+          restoreFilters();
           render();
         } catch (error) {
           el.entries.innerHTML = `<div class="empty">${esc(error.message)}</div>`;
@@ -1322,7 +1859,7 @@
       }
       loadProgress();
       restoreFilters();
-      ["search", "kind", "profile", "form", "status", "sort"].forEach((id) =>
+      ["search", "kind", "profile", "form", "status", "problem", "generation", "sort"].forEach((id) =>
         el[id].addEventListener("input", () => {
           if (
             id === "kind" &&
@@ -1346,6 +1883,21 @@
         saveFilters();
       };
       el.refresh.onclick = load;
+      el.nextEntry.onclick = () => {
+        const next = state.entries
+          .filter((entry) => !isDone(entry))
+          .sort((a, b) => b.quality.priority - a.quality.priority)[0];
+        if (next) openDetail(next.key);
+      };
+      el.quickReview.onclick = () => {
+        state.quickIndex = 0;
+        renderQuickReview();
+      };
+      el.openExports.onclick = openExportTools;
+      el.openHistory.onclick = openHistory;
+      el.closeWorkspace.onclick = () => el.workspace.close();
+      el.prevDetail.onclick = () => navigateDetail(-1);
+      el.nextDetail.onclick = () => navigateDetail(1);
       el.changeAccess.onclick = () => {
         const password = (
           prompt("Nouveau mot de passe de la checklist Pokémon GO :") || ""
@@ -1364,9 +1916,13 @@
       };
       el.mobileShiny.onclick = () => el.shiny.click();
       el.mobileRefresh.onclick = load;
+      el.mobileTools.onclick = openExportTools;
       el.mobileTop.onclick = () => scrollTo({ top: 0, behavior: "smooth" });
       el.detail.addEventListener("click", (e) => {
         if (e.target === el.detail) el.detail.close();
+      });
+      el.workspace.addEventListener("click", (e) => {
+        if (e.target === el.workspace) el.workspace.close();
       });
       if ("serviceWorker" in navigator)
         navigator.serviceWorker.register("/sw.js");

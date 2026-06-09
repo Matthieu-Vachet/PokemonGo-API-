@@ -123,6 +123,9 @@ test("la checklist affiche les formes Max héritées sans dupliquer leur source"
   assert.ok(dynamax.image);
   assert.equal(dynamax.maxMoveCount, 2);
   assert.equal(dynamax.complete, true);
+  assert.equal(dynamax.quality.score, 100);
+  assert.deepEqual(dynamax.issueCategories, []);
+  assert.equal(typeof dynamax.assets.home, "boolean");
 
   const detail = detailForKey(dynamax.key);
   assert.equal(detail.names.French, "Bulbizarre");
@@ -139,6 +142,25 @@ test("la checklist affiche les formes Max héritées sans dupliquer leur source"
     Object.values(detail.moveDetails.maxMoves).map((move) => move.id),
     ["MAX_OVERGROWTH", "MAX_STRIKE"],
   );
+});
+
+test("la checklist calcule les scores, catégories et diagnostics d'assets", () => {
+  const checklist = buildChecklist();
+  const incomplete = checklist.find((entry) => !entry.complete);
+  const bulbasaur = checklist.find(
+    (entry) => entry.kind === "pokemon" && entry.dexId === "0001",
+  );
+  assert.ok(incomplete.quality.score >= 0 && incomplete.quality.score < 100);
+  assert.ok(incomplete.issueCategories.length >= 1);
+  assert.equal(
+    incomplete.quality.missing + incomplete.quality.invalid,
+    incomplete.issues.length,
+  );
+  assert.equal(bulbasaur.assets.go, true);
+  assert.equal(bulbasaur.assets.home, true);
+  assert.ok(bulbasaur.assets.homeVariants >= 1);
+  assert.equal(typeof bulbasaur.assets.duplicateUrls, "number");
+  assert.equal(typeof bulbasaur.assets.incompletePairs, "number");
 });
 
 test("les anciennes attaques embarquées sont présentées comme références", () => {

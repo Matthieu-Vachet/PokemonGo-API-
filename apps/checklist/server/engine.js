@@ -661,6 +661,72 @@ function mergeInheritedForm(parent, form) {
   };
 }
 
+function issueCategory(pathName) {
+  const path = String(pathName || "").toLowerCase();
+  if (path.includes("asset") || path.includes("image")) return "assets";
+  if (path.includes("pvp")) return "pvp";
+  if (path.includes("move")) return "moves";
+  if (path.includes("evolution") || path.includes("form")) return "forms";
+  if (path.includes("name") || path.includes("region")) return "translations";
+  if (path.includes("stat") || path.includes("maxcp")) return "stats";
+  if (path.includes("size") || path.includes("height") || path.includes("weight"))
+    return "size";
+  if (
+    path.includes("availability") ||
+    path.includes("capture") ||
+    path.includes("catch") ||
+    path.includes("flee") ||
+    path.includes("buddy") ||
+    path.includes("weather")
+  )
+    return "gameplay";
+  return "structure";
+}
+
+function qualitySummary(issues) {
+  const categories = [...new Set(issues.map((issue) => issueCategory(issue.path)))];
+  const missing = issues.filter((issue) => issue.issue === "missing").length;
+  const invalid = issues.length - missing;
+  const score = Math.max(0, Math.round(100 - missing * 3 - invalid * 5));
+  return {
+    score,
+    categories,
+    missing,
+    invalid,
+    priority: issues.length ? score * 100 - issues.length : -1,
+  };
+}
+
+function assetSummary(data) {
+  const home = data.assets?.home || {};
+  const homeVariants = Array.isArray(home.variants) ? home.variants : [];
+  const goVariants = Array.isArray(data.assetForms) ? data.assetForms : [];
+  const urls = [
+    data.assets?.image,
+    data.assets?.shinyImage,
+    home.image,
+    home.shinyImage,
+    ...goVariants.flatMap((asset) => [asset.image, asset.shinyImage]),
+    ...homeVariants.flatMap((asset) => [asset.image, asset.shinyImage]),
+  ].filter(Boolean);
+  return {
+    go: Boolean(data.assets?.image),
+    goShiny: Boolean(data.assets?.shinyImage),
+    home: Boolean(home.image),
+    homeShiny: Boolean(home.shinyImage),
+    goVariants: goVariants.length,
+    homeVariants: homeVariants.length,
+    femaleVariants: homeVariants.filter((asset) =>
+      ["fd", "fo"].includes(asset.genderCode),
+    ).length,
+    backViews: homeVariants.filter((asset) => asset.view === "back").length,
+    duplicateUrls: urls.length - new Set(urls).size,
+    incompletePairs: [...goVariants, ...homeVariants].filter(
+      (asset) => Boolean(asset.image) !== Boolean(asset.shinyImage),
+    ).length,
+  };
+}
+
 function buildChecklist() {
   const sources = [];
   for (const file of fs
@@ -761,6 +827,7 @@ function buildChecklist() {
       displayData.slug ||
       data.id ||
       path.basename(file);
+    const quality = qualitySummary(validator.issues);
     return {
       key: `${kind}:${path.relative(rootDir, file)}`,
       kind,
@@ -805,6 +872,9 @@ function buildChecklist() {
         : 0,
       complete: validator.issues.length === 0,
       issues: validator.issues,
+      quality,
+      issueCategories: quality.categories,
+      assets: assetSummary(displayData),
     };
   });
 }
@@ -856,4 +926,10 @@ function detailForKey(key) {
   };
 }
 
-module.exports = { buildChecklist, detailForKey };
+module.exports = {
+  assetSummary,
+  buildChecklist,
+  detailForKey,
+  issueCategory,
+  qualitySummary,
+};

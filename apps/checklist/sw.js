@@ -1,4 +1,4 @@
-const CACHE = "pokedex-checklist-studio-v6";
+const CACHE = "pokedex-checklist-studio-v7";
 const SHELL = ["/", "/manifest.json", "/icon.svg"];
 
 self.addEventListener("install", (event) => {

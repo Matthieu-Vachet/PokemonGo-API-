@@ -609,6 +609,42 @@ function createValidator() {
   return { issues, pokemon, mega, maxForm };
 }
 
+function validateSourceData(data, relativeFile = "", kindHint = "") {
+  const validator = createValidator();
+  const kind =
+    relativeFile.startsWith("data/pokemon/") ? "pokemon" :
+    kindHint ||
+    (String(data.form || "").startsWith("mega")
+      ? "mega"
+      : ["dynamax", "gigantamax"].includes(data.form)
+        ? data.form
+        : "pokemon");
+  if (kind === "mega" && relativeFile.startsWith("data/pokemon-forms/"))
+    validator.mega(data, "");
+  else if (kind === "dynamax" || kind === "gigantamax")
+    validator.maxForm(data, "");
+  else validator.pokemon(data, "single");
+  for (const issue of validator.issues)
+    issue.path = issue.path.replace(/^\./, "");
+  const moveIds = new Set(buildMoveCatalog().keys());
+  const formIds = new Set();
+  for (const directory of [pokemonDir, formsDir]) {
+    for (const file of listJsonFiles(directory)) {
+      const source = readJson(file);
+      for (const value of [source.id, source.formId, source.baseFormId])
+        if (value) formIds.add(value);
+      for (const form of [
+        ...Object.values(source.regionForms || {}),
+        ...Object.values(source.megaEvolutions || {}),
+      ])
+        for (const value of [form.id, form.formId])
+          if (value) formIds.add(value);
+    }
+  }
+  validator.issues.push(...referenceIssues(data, moveIds, formIds));
+  return validator.issues;
+}
+
 function evolutionProfile(data, incomingIds) {
   const hasIncoming = incomingIds.has(data.formId) || incomingIds.has(data.id);
   const hasOutgoing =
@@ -727,6 +763,61 @@ function assetSummary(data) {
   };
 }
 
+function referenceIssues(data, moveIds, formIds) {
+  const issues = [];
+  const add = (pathName, expected, actual) =>
+    issues.push({ path: pathName, issue: "reference", expected, actual });
+  if (data.dexId && !/^\d{4}$/.test(data.dexId))
+    add("dexId", "identifiant Pokédex sur 4 chiffres", data.dexId);
+  if (
+    Number.isFinite(data.dexNr) &&
+    data.dexId &&
+    Number(data.dexId) !== data.dexNr
+  )
+    add("dexNr", `même numéro que dexId (${Number(data.dexId)})`, data.dexNr);
+  for (const block of [
+    "quickMoves",
+    "cinematicMoves",
+    "eliteQuickMoves",
+    "eliteCinematicMoves",
+  ]) {
+    const value = data[block];
+    const ids = Array.isArray(value)
+      ? value
+      : value && typeof value === "object"
+        ? Object.keys(value)
+        : [];
+    ids.forEach((id, index) => {
+      if (!moveIds.has(id))
+        add(
+          `${block}${Array.isArray(value) ? `[${index}]` : `.${id}`}`,
+          "identifiant présent dans data/moves",
+          id,
+        );
+    });
+  }
+  const maxMoves = data.maxBattle?.moves;
+  if (Array.isArray(maxMoves))
+    maxMoves.forEach((id, index) => {
+      if (!moveIds.has(id))
+        add(`maxBattle.moves[${index}]`, "identifiant présent dans data/moves", id);
+    });
+  for (const [index, evolution] of (data.evolutions || []).entries()) {
+    const target = evolution.targetFormId || evolution.formId || evolution.id;
+    const inheritedTarget = String(target || "").replace(
+      /_(DYNAMAX|GIGANTAMAX)$/,
+      "",
+    );
+    if (target && !formIds.has(target) && !formIds.has(inheritedTarget))
+      add(
+        `evolutions[${index}].targetFormId`,
+        "identifiant de forme existant",
+        target,
+      );
+  }
+  return issues;
+}
+
 function buildChecklist() {
   const sources = [];
   for (const file of fs
@@ -798,6 +889,18 @@ function buildChecklist() {
     parents.set(source.data.formId, source.data);
     parents.set(source.data.dexId, source.data);
   }
+  const moveIds = new Set(buildMoveCatalog().keys());
+  const formIds = new Set();
+  for (const source of sources) {
+    for (const value of [source.data.id, source.data.formId, source.data.baseFormId])
+      if (value) formIds.add(value);
+    for (const mega of Object.values(source.data.megaEvolutions || {}))
+      for (const value of [mega.id, mega.formId])
+        if (value) formIds.add(value);
+    for (const form of Object.values(source.data.regionForms || {}))
+      for (const value of [form.id, form.formId])
+        if (value) formIds.add(value);
+  }
 
   return sources.map(({ file, kind, data }) => {
     const validator = createValidator();
@@ -811,6 +914,7 @@ function buildChecklist() {
     else validator.pokemon(data, profile);
     for (const issue of validator.issues)
       issue.path = issue.path.replace(/^\./, "");
+    validator.issues.push(...referenceIssues(data, moveIds, formIds));
     const displayData =
       kind === "dynamax" || kind === "gigantamax"
         ? mergeInheritedForm(
@@ -932,4 +1036,6 @@ module.exports = {
   detailForKey,
   issueCategory,
   qualitySummary,
+  referenceIssues,
+  validateSourceData,
 };

@@ -84,20 +84,18 @@
         position: relative;
         z-index: 1;
       }
-      .lens {
+      .brand-logo {
         width: 58px;
         height: 58px;
         flex: none;
-        border: 3px solid #fff;
-        border-radius: 50%;
-        background: linear-gradient(var(--red) 0 44%, #07152d 44% 56%, #fff 56%);
-        box-shadow: 0 0 0 5px #1685ff55, 0 0 28px #2de2e688;
-        position: relative;
+        border-radius: 15px;
+        box-shadow: 0 0 0 4px #1685ff55, 0 0 28px #2de2e688;
       }
-      .lens::after {
-        background: #fff; border: 4px solid #07152d; border-radius: 50%;
-        content: ""; height: 13px; left: 17px; position: absolute; top: 17px; width: 13px;
-      }
+      .header-row { display: flex; gap: 14px; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
+      .header-links { display: flex; flex-wrap: wrap; gap: 7px; justify-content: flex-end; }
+      .header-links a, .header-links button { min-height: 38px; padding: 8px 11px; border: 1px solid #8fc8ff55; border-radius: 999px; color: #fff; background: #ffffff12; text-decoration: none; font-size: .72rem; font-weight: 800; }
+      .api-dot { display: inline-block; width: 8px; height: 8px; margin-right: 5px; border-radius: 50%; background: var(--orange); }
+      .api-dot.online { background: var(--green); box-shadow: 0 0 10px #14b86e; }
       h1 {
         margin: 0;
         font-size: clamp(1.45rem, 4vw, 2.3rem);
@@ -325,6 +323,9 @@
         gap: 7px;
         padding: 0 12px 12px;
       }
+      .select-label { position: absolute; z-index: 3; left: 12px; top: 14px; display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid #cbd5e3; border-radius: 10px; background: #fffffff0; }
+      .select-label input { width: 19px; height: 19px; accent-color: var(--blue); }
+      .poke-card.selected { outline: 3px solid #1685ff66; border-color: var(--blue); }
       .check-label,
       .detail-btn {
         min-height: 44px;
@@ -763,6 +764,22 @@
         background: #07152d;
         font: 0.72rem/1.55 ui-monospace, monospace;
       }
+      .editor-grid, .compare-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .editor-grid textarea { min-height: 55dvh; }
+      .diff-box { white-space: pre-wrap; overflow-wrap: anywhere; min-height: 140px; padding: 12px; border-radius: 12px; color: #d9e4ff; background: #07152d; font: .72rem/1.5 ui-monospace, monospace; }
+      .status-box { padding: 11px; margin: 9px 0; border: 1px solid var(--line); border-radius: 12px; background: #fff; font-size: .75rem; }
+      .status-box.good { border-color: #87d5ad; background: #edfbf4; }
+      .status-box.bad { border-color: #f0acac; background: #fff0f0; }
+      .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 9px; }
+      .move-card { border: 1px solid var(--line); border-radius: 14px; padding: 10px; background: #fff; }
+      .type-icon { width: 24px; height: 24px; object-fit: contain; vertical-align: middle; margin-right: 5px; }
+      .note-list { display: grid; gap: 7px; margin-top: 12px; }
+      .note { padding: 10px; border: 1px solid var(--line); border-radius: 12px; background: #fff; white-space: pre-wrap; }
+      .asset-proposals { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
+      .asset-proposal { padding: 8px; border: 1px solid var(--line); border-radius: 12px; background: #fff; font-size: .68rem; overflow-wrap: anywhere; }
+      .asset-proposal img { width: 100%; aspect-ratio: 1; object-fit: contain; }
+      .single-task .dashboard, .single-task .toolbar-wrap, .single-task .result-head, .single-task .more { display: none; }
+      .single-task .grid { grid-template-columns: minmax(0, 560px); justify-content: center; }
       .quick-stage {
         display: grid;
         gap: 12px;
@@ -806,10 +823,13 @@
           padding-top: 18px;
           padding-bottom: 18px;
         }
-        .lens {
+        .brand-logo {
           width: 48px;
           height: 48px;
         }
+        .header-row { display: grid; align-items: start; }
+        .header-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: none; width: 100%; }
+        .header-links a, .header-links button { display: grid; place-items: center; min-height: 38px; padding: 6px 5px; font-size: .62rem; text-align: center; }
         .dashboard {
           margin-top: 14px;
         }
@@ -893,7 +913,9 @@
           grid-template-columns: 1fr;
         }
         .quick-images,
-        .quick-actions {
+        .quick-actions,
+        .editor-grid,
+        .compare-grid {
           grid-template-columns: 1fr;
         }
         .workspace-content {
@@ -904,14 +926,24 @@
   </head>
   <body>
     <header class="top-shell" id="top">
-      <div class="brand">
-        <div class="lens"></div>
-        <div>
-          <h1>Pokédex Checklist</h1>
-          <p class="subtitle">
-            Inspecter les données, corriger les fiches, cocher l’avancement.
-          </p>
+      <div class="header-row">
+        <div class="brand">
+          <img class="brand-logo" src="/icon.svg" alt="" />
+          <div>
+            <h1>Pokédex Checklist</h1>
+            <p class="subtitle">
+              Inspecter les données, corriger les fiches, cocher l’avancement.
+            </p>
+          </div>
         </div>
+        <nav class="header-links">
+          <a href="/api-docs" id="docLink" target="_blank">Documentation</a>
+          <a href="/swagger" id="swaggerLink" target="_blank">API interactive</a>
+          <a href="/api-docs.json" id="openApiLink" target="_blank">OpenAPI</a>
+          <a href="/health" id="healthLink" target="_blank"><span class="api-dot" id="apiDot"></span><span id="apiState">État API</span></a>
+          <button id="openNotes">Notes</button>
+          <button id="openTools">Outils</button>
+        </nav>
       </div>
     </header>
     <main>
@@ -945,6 +977,10 @@
               <button class="action-btn" id="quickReview">Vérification images</button>
               <button class="action-btn" id="openExports">Exports & partage</button>
               <button class="action-btn" id="openHistory">Historique</button>
+              <button class="action-btn" id="openMoves">Catalogue attaques</button>
+              <button class="action-btn" id="openAssets">Assistant assets HD</button>
+              <button class="action-btn" id="openCompare">Comparer deux fiches</button>
+              <button class="action-btn" id="openBatch">Corrections groupées</button>
             </div>
           </section>
         </div>
@@ -954,7 +990,7 @@
           <input
             id="search"
             type="search"
-            placeholder="Nom, numéro, forme ou fichier…"
+            placeholder="Nom ou commande: score:&lt;50, generation:1, missing:pvp"
           />
           <select id="kind">
             <option value="all">Tous les types</option>
@@ -1050,6 +1086,9 @@
         activeEntry: null,
         history: [],
         quickIndex: 0,
+        selected: new Set(),
+        catalog: null,
+        daily: [],
       };
       const ids = [
         "done",
@@ -1063,6 +1102,18 @@
         "quickReview",
         "openExports",
         "openHistory",
+        "openMoves",
+        "openAssets",
+        "openCompare",
+        "openBatch",
+        "openNotes",
+        "openTools",
+        "apiDot",
+        "apiState",
+        "docLink",
+        "swaggerLink",
+        "openApiLink",
+        "healthLink",
         "toolbar",
         "search",
         "kind",
@@ -1151,6 +1202,10 @@
             })[c],
         );
       const typeName = (t) => String(t || "").replace("POKEMON_TYPE_", "");
+      const typeIcon = (t) => {
+        const id = typeof t === "string" ? t : t?.type;
+        return state.catalog?.types?.find((type) => type.id === typeName(id))?.assets?.icon || "";
+      };
       const color = (e) => typeColors[typeName(e.primaryType)] || "#8293a5";
       const isDone = (e) => e.complete || Boolean(state.progress[e.key]);
       const accessKey = "pokedex-v3-access";
@@ -1168,17 +1223,27 @@
         if (password) localStorage.setItem(accessKey, password);
         return password;
       }
-      async function apiFetch(url) {
+      async function apiFetch(url, options = {}) {
         let password = requestPassword();
         let response = await fetch(url, {
-          headers: { "x-checklist-password": password },
+          ...options,
+          headers: {
+            "content-type": "application/json",
+            "x-checklist-password": password,
+            ...(options.headers || {}),
+          },
         });
         if (response.status === 401) {
           localStorage.removeItem(accessKey);
           password = requestPassword(true);
           if (!password) throw new Error("Accès annulé.");
           response = await fetch(url, {
-            headers: { "x-checklist-password": password },
+            ...options,
+            headers: {
+              "content-type": "application/json",
+              "x-checklist-password": password,
+              ...(options.headers || {}),
+            },
           });
         }
         const payload = await response.json();
@@ -1223,6 +1288,12 @@
         state.history = state.history.slice(0, 150);
         localStorage.setItem("pokedex-v3-history", JSON.stringify(state.history));
       }
+      const localList = (key) => {
+        try { return JSON.parse(localStorage.getItem(key) || "[]"); }
+        catch { return []; }
+      };
+      const prependLocal = (key, value, limit = 500) =>
+        localStorage.setItem(key, JSON.stringify([value, ...localList(key)].slice(0, limit)));
       function trackQualityChanges(entries) {
         let previous = {};
         try {
@@ -1243,6 +1314,19 @@
           "pokedex-v3-quality-snapshot",
           JSON.stringify(Object.fromEntries(entries.map((entry) => [entry.key, { score: entry.quality.score, complete: entry.complete }]))),
         );
+        const today = new Date().toISOString().slice(0, 10);
+        const daily = JSON.parse(localStorage.getItem("pokedex-v3-daily") || "[]");
+        const snapshot = {
+          date: today,
+          average: Math.round(entries.reduce((sum, entry) => sum + entry.quality.score, 0) / Math.max(1, entries.length)),
+          complete: entries.filter((entry) => entry.complete).length,
+          issues: entries.reduce((sum, entry) => sum + entry.issues.length, 0),
+        };
+        const index = daily.findIndex((item) => item.date === today);
+        if (index >= 0) daily[index] = snapshot;
+        else daily.push(snapshot);
+        state.daily = daily.slice(-90);
+        localStorage.setItem("pokedex-v3-daily", JSON.stringify(state.daily));
       }
       const saveFilters = () =>
         localStorage.setItem(
@@ -1281,7 +1365,11 @@
         } catch {}
       }
       function filtered() {
-        const q = el.search.value.trim().toLocaleLowerCase("fr");
+        const query = el.search.value.trim().toLocaleLowerCase("fr");
+        const commands = Object.fromEntries(
+          [...query.matchAll(/([a-z]+):([^\s]+)/g)].map((match) => [match[1], match[2]]),
+        );
+        const q = query.replace(/[a-z]+:[^\s]+/g, "").trim();
         const list = state.entries.filter((e) => {
           const done = isDone(e);
           return (
@@ -1294,6 +1382,14 @@
               e.issues.some((issue) =>
                 String(issue.path || "").toLocaleLowerCase("fr").includes(q),
               )) &&
+            (!commands.score ||
+              (commands.score.startsWith("<") && e.quality.score < Number(commands.score.slice(1))) ||
+              (commands.score.startsWith(">") && e.quality.score > Number(commands.score.slice(1))) ||
+              e.quality.score === Number(commands.score)) &&
+            (!commands.generation || String(e.generation) === commands.generation) &&
+            (!commands.missing || e.issues.some((issue) => issue.issue === "missing" && issue.path.toLowerCase().includes(commands.missing))) &&
+            (!commands.type || [e.primaryType, e.secondaryType].some((type) => typeName(type).toLowerCase() === commands.type)) &&
+            (!commands.form || String(e.form).toLowerCase().includes(commands.form)) &&
             (el.kind.value === "all" || e.kind === el.kind.value) &&
             (el.profile.value === "all" || e.profile === el.profile.value) &&
             (el.form.value === "all" || e.form === el.form.value) &&
@@ -1332,7 +1428,8 @@
           .slice(0, 2)
           .map((category) => `<span class="chip problem">${esc(problemLabels[category] || category)}</span>`)
           .join("");
-        return `<article class="poke-card ${done ? "done" : ""}" style="--type:${color(e)}"><div class="type-strip"></div><div class="card-score score-ring" style="--score:${e.quality.score}"><span>${e.quality.score}%</span></div><div class="card-main">${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)} · Gén. ${esc(e.generation || "?")}</div><div class="chips"><span class="chip">${esc(typeName(e.primaryType) || "Type ?")}</span><span class="chip">${e.quickMoveCount} rapide(s)</span><span class="chip">${e.chargedMoveCount} chargée(s)</span>${e.maxMoveCount ? `<span class="chip">${e.maxMoveCount} Max / G-Max</span>` : ""}${e.complete ? '<span class="chip good">JSON complet</span>' : `<span class="chip problem">${e.issues.length} problème(s)</span>`}${categories}${manual ? '<span class="chip good">coché</span>' : ""}</div></div></div><div class="card-actions"><label class="check-label"><input type="checkbox" data-check="${esc(e.key)}" ${done ? "checked" : ""} ${e.complete ? "disabled" : ""}> Fait</label><button class="detail-btn" data-detail="${esc(e.key)}">Voir la fiche</button></div></article>`;
+        const selected = state.selected.has(e.key);
+        return `<article class="poke-card ${done ? "done" : ""} ${selected ? "selected" : ""}" style="--type:${color(e)}"><label class="select-label" title="Sélectionner pour une action groupée"><input type="checkbox" data-select="${esc(e.key)}" ${selected ? "checked" : ""}></label><div class="type-strip"></div><div class="card-score score-ring" style="--score:${e.quality.score}"><span>${e.quality.score}%</span></div><div class="card-main">${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)} · Gén. ${esc(e.generation || "?")}</div><div class="chips"><span class="chip">${typeIcon(e.primaryType) ? `<img class="type-icon" src="${esc(typeIcon(e.primaryType))}" alt="">` : ""}${esc(typeName(e.primaryType) || "Type ?")}</span><span class="chip">${e.quickMoveCount} rapide(s)</span><span class="chip">${e.chargedMoveCount} chargée(s)</span>${e.maxMoveCount ? `<span class="chip">${e.maxMoveCount} Max / G-Max</span>` : ""}${e.complete ? '<span class="chip good">JSON complet</span>' : `<span class="chip problem">${e.issues.length} problème(s)</span>`}${categories}${manual ? '<span class="chip good">coché</span>' : ""}</div></div></div><div class="card-actions"><label class="check-label"><input type="checkbox" data-check="${esc(e.key)}" ${done ? "checked" : ""} ${e.complete ? "disabled" : ""}> Fait</label><button class="detail-btn" data-detail="${esc(e.key)}">Voir la fiche</button></div></article>`;
       }
       function updateStats() {
         const done = state.entries.filter(isDone).length,
@@ -1385,12 +1482,23 @@
       }
       function render() {
         const list = filtered(),
-          shown = list.slice(0, state.limit);
+          shown = document.body.classList.contains("single-task")
+            ? list.filter((entry) => !isDone(entry)).slice(0, 1)
+            : list.slice(0, state.limit);
         el.entries.innerHTML = shown.length
           ? shown.map(card).join("")
           : '<div class="empty">Aucune fiche ne correspond aux filtres.</div>';
         el.resultCount.textContent = `${list.length} résultat${list.length > 1 ? "s" : ""}`;
         el.more.hidden = shown.length >= list.length;
+        el.entries
+          .querySelectorAll("[data-select]")
+          .forEach((box) =>
+            box.addEventListener("change", () => {
+              if (box.checked) state.selected.add(box.dataset.select);
+              else state.selected.delete(box.dataset.select);
+              render();
+            }),
+          );
         el.entries
           .querySelectorAll("[data-check]")
           .forEach((box) =>
@@ -1402,6 +1510,16 @@
           image.addEventListener("error", () => {
             image.closest(".poke-card")?.classList.add("asset-broken");
             image.title = "Image inaccessible";
+            const card = image.closest(".poke-card");
+            const key = card?.querySelector("[data-detail]")?.dataset.detail;
+            const entry = state.entries.find((item) => item.key === key);
+            if (entry) {
+              const review = { id: `${Date.now()}`, date: new Date().toISOString(), status: "issue", key, name: entry.name, details: `Image inaccessible: ${image.src}` };
+              apiFetch("/api/image-reviews-v3", {
+                method: "POST",
+                body: JSON.stringify(review),
+              }).catch(() => prependLocal("pokedex-v3-image-reviews", review, 2000));
+            }
           });
         });
         el.entries
@@ -1452,7 +1570,7 @@
       function objectCards(title, obj) {
         const entries = Object.entries(obj || {});
         return entries.length
-          ? `<div class="section-grid">${entries.map(([id, v]) => info(v.names?.French || v.names?.English || id, kv("ID", id) + kv("Type", typeName(typeof v.type === "string" ? v.type : v.type?.type)) + kv("Puissance", v.power) + kv("Énergie", v.energy) + kv("PvP puissance", v.combat?.power) + kv("PvP énergie", v.combat?.energy))).join("")}</div>`
+          ? `<div class="section-grid">${entries.map(([id, v]) => info(v.names?.French || v.names?.English || id, `${typeIcon(v.type) ? `<img class="type-icon" src="${esc(typeIcon(v.type))}" alt="">` : ""}` + kv("ID", id) + kv("Type", typeName(typeof v.type === "string" ? v.type : v.type?.type)) + kv("Puissance", v.power) + kv("Énergie", v.energy) + kv("PvP puissance", v.combat?.power) + kv("PvP énergie", v.combat?.energy))).join("")}</div>`
           : `<div class="empty">Aucune donnée ${esc(title)}.</div>`;
       }
       function assetPicture(label, url) {
@@ -1568,7 +1686,54 @@
               .join("")
           : '<div class="empty">Aucun problème détecté.</div>';
       }
-      function suggestedValue(issue) {
+      function suggestedValue(issue, entry) {
+        const templates = {
+          size: { height: null, weight: null },
+          availability:
+            entry?.kind === "mega"
+              ? {
+                  released: false,
+                  shinyReleased: false,
+                  tradable: false,
+                  pokemonHomeTransfer: false,
+                }
+              : {
+                  released: false,
+                  shinyReleased: false,
+                  tradable: false,
+                  pokemonHomeTransfer: false,
+                  shadow: false,
+                  dynamax: false,
+                  gigantamax: false,
+                  apex: false,
+                },
+          maxCp: {
+            maxLevel50: null,
+            maxLevel40: null,
+            ...(entry?.kind === "dynamax" || entry?.kind === "gigantamax"
+              ? { maxBattlesLevel20: null }
+              : {
+                  weatherBoostLevel25: null,
+                  raidLevel20: null,
+                  researchLevel15: null,
+                }),
+          },
+          stats: { stamina: null, attack: null, defense: null },
+          captureRewards: { candy: null, stardust: null },
+          secondChargeMoveCost: { candy: null, stardust: null },
+          assets: { image: "", shinyImage: "" },
+          region: {
+            id: "",
+            slug: "",
+            generation: null,
+            names: {
+              English: "", German: "", French: "", Italian: "",
+              Japanese: "", Korean: "", Spanish: "",
+            },
+          },
+        };
+        const root = issue.path.split(".")[0];
+        if (templates[root]) return structuredClone(templates[root]);
         if (issue.expected.includes("array") || issue.expected.includes("tableau"))
           return [];
         if (issue.expected.includes("boolean")) return false;
@@ -1577,16 +1742,33 @@
           return "";
         return null;
       }
+      function setNested(target, path, value) {
+        const parts = path.split(".").filter(Boolean);
+        let cursor = target;
+        for (const part of parts.slice(0, -1)) {
+          if (!cursor[part] || typeof cursor[part] !== "object") cursor[part] = {};
+          cursor = cursor[part];
+        }
+        cursor[parts.at(-1)] = value;
+      }
       function suggestedPatch(e) {
-        return Object.fromEntries(
-          e.issues
-            .filter((issue) => issue.issue === "missing" && !issue.path.includes("["))
-            .map((issue) => [issue.path, suggestedValue(issue)]),
+        const patch = {};
+        const missing = e.issues.filter(
+          (issue) => issue.issue === "missing" && !issue.path.includes("["),
         );
+        for (const issue of missing) {
+          const root = issue.path.split(".")[0];
+          if (patch[root] !== undefined && issue.path.includes(".")) continue;
+          setNested(patch, issue.path, suggestedValue(issue, e));
+        }
+        return patch;
       }
       function assistantPanel(e, sourceJson) {
         const patch = suggestedPatch(e);
-        return `<div class="section-grid">${info("Résumé qualité", kv("Score", `${e.quality.score}%`) + kv("Champs absents", e.quality.missing) + kv("Valeurs invalides", e.quality.invalid) + kv("Catégories", e.issueCategories.map((category) => problemLabels[category] || category)))}${info("Diagnostic assets", kv("Pokémon GO", e.assets.go) + kv("GO shiny", e.assets.goShiny) + kv("Pokémon Home", e.assets.home) + kv("Home shiny", e.assets.homeShiny) + kv("Variantes GO / Home", `${e.assets.goVariants} / ${e.assets.homeVariants}`) + kv("URL dupliquées", e.assets.duplicateUrls) + kv("Paires normal/shiny incomplètes", e.assets.incompletePairs))}</div><div class="workspace-tools"><button class="action-btn primary" data-copy-patch>Copier le patch édité</button><button class="action-btn" data-download-patch>Télécharger le patch</button><button class="action-btn" data-download-source>Télécharger le JSON source</button></div><p class="meta">Le patch utilise les chemins manquants comme clés. Modifie les valeurs ci-dessous avant de le copier ou télécharger.</p><textarea data-patch>${esc(JSON.stringify(patch, null, 2))}</textarea><h2>JSON source</h2><pre>${esc(JSON.stringify(sourceJson, null, 2))}</pre>`;
+        return `<div class="section-grid">${info("Résumé qualité", kv("Score", `${e.quality.score}%`) + kv("Champs absents", e.quality.missing) + kv("Valeurs invalides", e.quality.invalid) + kv("Catégories", e.issueCategories.map((category) => problemLabels[category] || category)))}${info("Diagnostic assets", kv("Pokémon GO", e.assets.go) + kv("GO shiny", e.assets.goShiny) + kv("Pokémon Home", e.assets.home) + kv("Home shiny", e.assets.homeShiny) + kv("Variantes GO / Home", `${e.assets.goVariants} / ${e.assets.homeVariants}`) + kv("URL dupliquées", e.assets.duplicateUrls) + kv("Paires normal/shiny incomplètes", e.assets.incompletePairs))}</div><div class="workspace-tools"><button class="action-btn primary" data-copy-patch>Copier le patch édité</button><button class="action-btn" data-download-patch>Télécharger le patch</button><button class="action-btn" data-download-source>Télécharger le JSON source</button></div><p class="meta">Les objets manquants sont proposés avec leur structure complète. La checklist ne modifie aucun fichier source: édite puis copie ce bloc dans ton JSON.</p><textarea data-patch>${esc(JSON.stringify(patch, null, 2))}</textarea><h2>JSON source</h2><pre>${esc(JSON.stringify(sourceJson, null, 2))}</pre>`;
+      }
+      function editorPanel(sourceJson) {
+        return `<div class="workspace-tools"><button class="action-btn primary" data-editor-copy>Copier le JSON corrigé</button><button class="action-btn" data-editor-validate>Valider le brouillon</button><button class="action-btn" data-editor-diff>Prévisualiser le diff</button><button class="action-btn" data-editor-undo>Annuler la dernière saisie</button><button class="action-btn" data-editor-download>Télécharger</button></div><div class="status-box">Éditeur de brouillon uniquement. Aucun fichier source ne sera modifié.</div><div class="editor-grid"><div><h2>Brouillon modifiable</h2><textarea data-editor>${esc(JSON.stringify(sourceJson, null, 2))}</textarea></div><div><h2>Validation / diff</h2><div class="diff-box" data-editor-result>Utilise « Valider » ou « Prévisualiser le diff ».</div></div></div>`;
       }
       function showWorkspace(title, subtitle, content) {
         el.workspaceTitle.textContent = title;
@@ -1631,7 +1813,7 @@
               downloadText("checklist-pokemon.csv", csv, "text/csv");
             }
             if (button.dataset.export === "markdown") {
-              const markdown = `# Rapport checklist Pokémon GO\n\n${rows.map((row) => `- **${row.dexId} ${row.name}** — ${row.score}% — ${row.issues} problème(s) — \`${row.file}\``).join("\n")}`;
+              const markdown = `# Rapport checklist Pokémon GO\n\nGénéré le ${new Date().toLocaleString("fr")}.\n\n## Résumé\n\n- Fiches: ${rows.length}\n- Problèmes: ${rows.reduce((sum, row) => sum + row.issues, 0)}\n\n## Fiches\n\n${filtered().map((entry) => `### ${entry.dexId} ${entry.name}\n\n- Score: ${entry.quality.score}%\n- Forme: ${entry.form}\n- Fichier: \`${entry.file}\`\n${entry.issues.slice(0, 30).map((issue) => `- [ ] \`${issue.path}\`: ${issue.issue}, attendu ${issue.expected}, actuel ${issue.actual}`).join("\n")}`).join("\n\n")}`;
               downloadText("checklist-pokemon.md", markdown, "text/markdown");
             }
             recordHistory(`Export ${button.dataset.export}`, null, `${rows.length} fiches`);
@@ -1686,16 +1868,148 @@
         showWorkspace(
           "Vérification images",
           `${state.quickIndex + 1} / ${candidates.length} · ${entry.dexId} ${entry.name}`,
-          `<div class="quick-stage"><div class="quick-images">${assetPicture("Normal", entry.image)}${assetPicture("Shiny", entry.shinyImage)}</div><div class="quick-actions"><button class="action-btn primary" data-quick="valid">Images validées</button><button class="action-btn" data-quick="issue">Signaler un problème</button><button class="action-btn" data-quick="next">Suivante</button></div></div>`,
+          `<div class="status-box">« Images validées » et « Signaler un problème » enregistrent désormais une revue persistante dans l’outil Notes & revues. Elles ne modifient jamais le JSON.</div><div class="quick-stage"><div class="quick-images">${assetPicture("Normal", entry.image)}${assetPicture("Shiny", entry.shinyImage)}</div><div class="quick-actions"><button class="action-btn primary" data-quick="valid">Images validées</button><button class="action-btn" data-quick="issue">Signaler un problème</button><button class="action-btn" data-quick="next">Suivante</button></div></div>`,
         );
         el.workspaceContent.querySelectorAll("[data-quick]").forEach((button) => {
-          button.onclick = () => {
-            if (button.dataset.quick !== "next")
+          button.onclick = async () => {
+            if (button.dataset.quick !== "next") {
               recordHistory(button.dataset.quick === "valid" ? "Images validées" : "Problème d’image signalé", entry);
+              const review = {
+                id: `${Date.now()}`,
+                date: new Date().toISOString(),
+                status: button.dataset.quick,
+                key: entry.key,
+                name: entry.name,
+                details: button.dataset.quick === "issue" ? "À vérifier manuellement" : "",
+              };
+              try {
+                await apiFetch("/api/image-reviews-v3", {
+                  method: "POST",
+                  body: JSON.stringify(review),
+                });
+              } catch {
+                prependLocal("pokedex-v3-image-reviews", review, 2000);
+              }
+            }
             state.quickIndex = (state.quickIndex + 1) % candidates.length;
             renderQuickReview();
           };
         });
+      }
+      function compareCard(entry) {
+        if (!entry) return '<div class="empty">Fiche absente.</div>';
+        return info(
+          `${entry.dexId} ${entry.name}`,
+          kv("Fichier", entry.file) +
+            kv("Forme", entry.form) +
+            kv("Score", `${entry.quality.score}%`) +
+            kv("Problèmes", entry.issues.length) +
+            kv("Type principal", typeName(entry.primaryType)) +
+            kv("Type secondaire", typeName(entry.secondaryType)) +
+            kv("Attaques", `${entry.quickMoveCount} rapides · ${entry.chargedMoveCount} chargées`) +
+            kv("PC N.50", entry.maxCp?.maxLevel50) +
+            kv("Assets Home", entry.assets.homeVariants),
+        );
+      }
+      function openCompare() {
+        const list = filtered().slice(0, 400);
+        const selected = [...state.selected];
+        const options = list.map((entry) => `<option value="${esc(entry.key)}">${esc(entry.dexId)} · ${esc(entry.name)} · ${esc(entry.form)}</option>`).join("");
+        showWorkspace("Comparaison", "Comparer deux Pokémon ou formes côte à côte", `<div class="workspace-tools"><select data-compare-a>${options}</select><select data-compare-b>${options}</select></div><div class="compare-grid" data-compare-result></div>`);
+        const a = el.workspaceContent.querySelector("[data-compare-a]");
+        const b = el.workspaceContent.querySelector("[data-compare-b]");
+        if (selected[0]) a.value = selected[0];
+        if (selected[1]) b.value = selected[1];
+        else b.selectedIndex = Math.min(1, b.options.length - 1);
+        const draw = () => {
+          el.workspaceContent.querySelector("[data-compare-result]").innerHTML =
+            compareCard(state.entries.find((entry) => entry.key === a.value)) +
+            compareCard(state.entries.find((entry) => entry.key === b.value));
+        };
+        a.onchange = draw;
+        b.onchange = draw;
+        draw();
+      }
+      async function openNotes() {
+        let notes = localList("pokedex-v3-notes");
+        let reviews = localList("pokedex-v3-image-reviews");
+        try {
+          const remote = await Promise.all([
+            apiFetch("/api/notes-v3"),
+            apiFetch("/api/image-reviews-v3"),
+          ]);
+          notes = remote[0].data;
+          reviews = remote[1].data;
+        } catch {}
+        showWorkspace("Notes & revues", `${notes.length} note(s) · ${reviews.length} revue(s) d’image`, `<textarea data-note placeholder="Écrire une note générale ou liée à la fiche ouverte…"></textarea><div class="workspace-tools"><button class="action-btn primary" data-save-note>Enregistrer la note</button></div><div class="note-list">${[...reviews.slice(0, 30).map((item) => `<div class="note"><strong>${item.status === "valid" ? "Images validées" : "Problème d’image"}</strong> · ${esc(item.name || "")}<br><span class="meta">${new Date(item.date).toLocaleString("fr")} · ${esc(item.details || "")}</span></div>`), ...notes.slice(0, 50).map((item) => `<div class="note"><strong>${esc(item.name || "Note générale")}</strong><br>${esc(item.text)}<br><span class="meta">${new Date(item.date).toLocaleString("fr")}</span></div>`)].join("") || '<div class="empty">Aucune note.</div>'}</div>`);
+        el.workspaceContent.querySelector("[data-save-note]").onclick = async () => {
+          const text = el.workspaceContent.querySelector("[data-note]").value.trim();
+          if (!text) return;
+          const note = { id: `${Date.now()}`, date: new Date().toISOString(), text, key: state.activeEntry?.key, name: state.activeEntry?.name };
+          try {
+            await apiFetch("/api/notes-v3", {
+              method: "POST",
+              body: JSON.stringify(note),
+            });
+          } catch {
+            prependLocal("pokedex-v3-notes", note);
+          }
+          openNotes();
+        };
+      }
+      async function openMoves() {
+        if (!state.catalog) state.catalog = (await apiFetch("/api/catalog-v3")).data;
+        const renderMoves = (query = "") => {
+          const q = query.toLowerCase();
+          const moves = state.catalog.moves.filter((move) => !q || [move.id, move.slug, move.type, ...Object.values(move.names || {})].some((value) => String(value).toLowerCase().includes(q)));
+          const typeAssets = Object.fromEntries(state.catalog.types.map((type) => [type.id, type.assets?.icon]));
+          el.workspaceContent.querySelector("[data-move-list]").innerHTML = moves.slice(0, 250).map((move) => `<article class="move-card"><h3>${typeAssets[move.type] ? `<img class="type-icon" src="${esc(typeAssets[move.type])}" alt="">` : ""}${esc(move.names?.French || move.names?.English || move.id)}</h3>${kv("ID", move.id)}${kv("Type", move.type)}${kv("Puissance", move.power)}${kv("Énergie", move.energy)}${kv("Durée", `${move.durationMs} ms`)}${kv("PvP", `${move.combat?.power ?? "—"} puissance · ${move.combat?.energy ?? "—"} énergie`)}</article>`).join("");
+          el.workspaceSubtitle.textContent = `${moves.length} attaque(s) trouvée(s)`;
+        };
+        showWorkspace("Catalogue des attaques", "Chargement…", `<input type="search" data-move-search placeholder="Rechercher une attaque, un ID ou un type"><div class="catalog-grid" data-move-list></div>`);
+        el.workspaceContent.querySelector("[data-move-search]").oninput = (event) => renderMoves(event.target.value);
+        renderMoves();
+      }
+      async function openAssets() {
+        const audit = (await apiFetch(`/api/assets-v3${state.activeEntry ? `?dexId=${encodeURIComponent(state.activeEntry.dexId)}` : ""}`)).data;
+        showWorkspace("Assistant assets HD", state.activeEntry ? `${state.activeEntry.dexId} ${state.activeEntry.name}` : "Audit global", `<div class="section-grid">${info("Audit global", kv("Images analysées", audit.totals.files) + kv("Images utilisées", audit.totals.used) + kv("Images inutilisées", audit.totals.unused) + kv("URLs utilisées plusieurs fois", audit.totals.duplicated))}</div><p class="meta">Les noms sont décodés automatiquement: forme, sexe, normal/shiny, Gigantamax et vue avant/arrière. Les propositions restent en lecture seule.</p><div class="asset-proposals">${audit.proposals.slice(0, 150).map((asset) => `<article class="asset-proposal"><img src="${esc(asset.url)}" loading="lazy" alt=""><strong>${esc(asset.filename)}</strong><br>Forme ${asset.formIndex} · ${esc(asset.gender)} · ${asset.shiny ? "shiny" : "normal"} · ${asset.view}${asset.gigantamax ? " · Gigantamax" : ""}<br><button class="copy" data-copy="${esc(asset.url)}">Copier URL</button></article>`).join("") || '<div class="empty">Aucune proposition pour cette fiche.</div>'}</div>`);
+        el.workspaceContent.querySelectorAll("[data-copy]").forEach((button) => button.onclick = async () => {
+          await navigator.clipboard.writeText(button.dataset.copy);
+          button.textContent = "URL copiée";
+        });
+      }
+      function openBatch() {
+        const entries = state.entries.filter((entry) => state.selected.has(entry.key));
+        showWorkspace("Corrections groupées", `${entries.length} fiche(s) sélectionnée(s)`, `<div class="status-box">Cet outil génère uniquement un patch à copier ou télécharger. Aucun fichier source n’est modifié.</div><div class="workspace-tools"><input data-batch-path placeholder="Chemin commun, ex: availability.released"><input data-batch-value placeholder='Valeur JSON, ex: true ou ""'><button class="action-btn primary" data-build-batch>Générer</button><button class="action-btn" data-mark-batch>Marquer vérifiées</button><button class="action-btn" data-copy-batch>Copier</button><button class="action-btn" data-download-batch>Télécharger</button></div><textarea data-batch-output>${esc(JSON.stringify(Object.fromEntries(entries.map((entry) => [entry.key, suggestedPatch(entry)])), null, 2))}</textarea>`);
+        const output = el.workspaceContent.querySelector("[data-batch-output]");
+        el.workspaceContent.querySelector("[data-build-batch]").onclick = () => {
+          const path = el.workspaceContent.querySelector("[data-batch-path]").value.trim();
+          let value;
+          try { value = JSON.parse(el.workspaceContent.querySelector("[data-batch-value]").value); }
+          catch { value = el.workspaceContent.querySelector("[data-batch-value]").value; }
+          output.value = JSON.stringify(Object.fromEntries(entries.map((entry) => {
+            const patch = {};
+            if (path) setNested(patch, path, value);
+            return [entry.key, patch];
+          })), null, 2);
+        };
+        el.workspaceContent.querySelector("[data-mark-batch]").onclick = () => {
+          for (const entry of entries) state.progress[entry.key] = true;
+          saveProgress(); render(); el.workspaceSubtitle.textContent = `${entries.length} fiche(s) marquée(s) vérifiée(s).`;
+        };
+        el.workspaceContent.querySelector("[data-copy-batch]").onclick = async () => navigator.clipboard.writeText(output.value);
+        el.workspaceContent.querySelector("[data-download-batch]").onclick = () => downloadText("patch-groupe.json", output.value, "application/json");
+      }
+      function openTools() {
+        const signatures = {};
+        for (const entry of state.entries) {
+          const signature = JSON.stringify([entry.stats, entry.maxCp, entry.availability]);
+          (signatures[signature] ||= []).push(entry);
+        }
+        const suspicious = Object.values(signatures).filter((group) => group.length >= 4 && group.some((entry) => entry.stats)).sort((a, b) => b.length - a.length);
+        showWorkspace("Boîte à outils", `${state.selected.size} sélectionnée(s)`, `<div class="workspace-tools"><button class="action-btn" data-tool="moves">Catalogue attaques</button><button class="action-btn" data-tool="assets">Assets HD</button><button class="action-btn" data-tool="compare">Comparer</button><button class="action-btn" data-tool="batch">Corrections groupées</button><button class="action-btn" data-tool="notes">Notes & revues</button><button class="action-btn" data-tool="single">Mode une tâche</button></div><h2>Évolution quotidienne</h2><div class="history-list">${state.daily.slice().reverse().map((day) => `<div class="history-item"><strong>${day.date}</strong> · qualité ${day.average}% · ${day.complete} complètes · ${day.issues.toLocaleString("fr")} problèmes</div>`).join("")}</div><h2>Données identiques suspectes</h2><div class="history-list">${suspicious.slice(0, 20).map((group) => `<div class="history-item"><strong>${group.length} fiches identiques</strong><br>${esc(group.slice(0, 8).map((entry) => entry.name).join(", "))}</div>`).join("") || '<div class="empty">Aucun groupe suspect important.</div>'}</div>`);
+        const actions = { moves: openMoves, assets: openAssets, compare: openCompare, batch: openBatch, notes: openNotes, single: () => { document.body.classList.toggle("single-task"); el.workspace.close(); render(); } };
+        el.workspaceContent.querySelectorAll("[data-tool]").forEach((button) => button.onclick = actions[button.dataset.tool]);
       }
       function renderDetail(e, d) {
         const sourceJson = { ...(d.sourceData || d) };
@@ -1711,6 +2025,7 @@
           ["evolutions", "Évolutions"],
           ["forms", "Formes & assets"],
           ["assistant", "Assistant JSON"],
+          ["editor", "Brouillon JSON"],
           ["json", "JSON"],
         ];
         const img = e.image
@@ -1724,7 +2039,7 @@
               `<button class="tab ${i === 0 ? "active" : ""}" data-tab="${id}">${label}</button>`,
           )
           .join("");
-        el.panels.innerHTML = `<div class="panel active" data-panel="overview">${overview(d)}</div><div class="panel" data-panel="cp">${cpPanel(d)}</div><div class="panel" data-panel="issues">${issuesPanel(e)}</div><div class="panel" data-panel="moves"><h2>Attaques rapides</h2>${objectCards("rapide", d.moveDetails?.quickMoves)}<h2>Attaques chargées</h2>${objectCards("chargée", d.moveDetails?.cinematicMoves)}<h2>Attaques rapides élite</h2>${objectCards("rapide élite", d.moveDetails?.eliteQuickMoves)}<h2>Attaques chargées élite</h2>${objectCards("chargée élite", d.moveDetails?.eliteCinematicMoves)}<h2>Attaques Max / G-Max</h2>${objectCards("Max / G-Max", d.moveDetails?.maxMoves)}</div><div class="panel" data-panel="pvp">${
+        el.panels.innerHTML = `<div class="workspace-tools"><button class="action-btn" data-active-assets>Assets HD proposés</button><button class="action-btn" data-audit-urls>Vérifier les URLs</button><button class="action-btn" data-git-history>Historique Git</button><button class="action-btn" data-open-file>Afficher le fichier source</button><button class="action-btn" data-add-note>Ajouter une note</button></div><div class="panel active" data-panel="overview">${overview(d)}</div><div class="panel" data-panel="cp">${cpPanel(d)}</div><div class="panel" data-panel="issues">${issuesPanel(e)}</div><div class="panel" data-panel="moves"><h2>Attaques rapides</h2>${objectCards("rapide", d.moveDetails?.quickMoves)}<h2>Attaques chargées</h2>${objectCards("chargée", d.moveDetails?.cinematicMoves)}<h2>Attaques rapides élite</h2>${objectCards("rapide élite", d.moveDetails?.eliteQuickMoves)}<h2>Attaques chargées élite</h2>${objectCards("chargée élite", d.moveDetails?.eliteCinematicMoves)}<h2>Attaques Max / G-Max</h2>${objectCards("Max / G-Max", d.moveDetails?.maxMoves)}</div><div class="panel" data-panel="pvp">${
           d.pvp
             ? `<div class="section-grid">${Object.entries(d.pvp)
                 .map(([league, v]) =>
@@ -1741,7 +2056,7 @@
                 )
                 .join("")}</div>`
             : '<div class="empty">Aucune donnée PvP.</div>'
-        }</div><div class="panel" data-panel="evolutions">${d.evolutions?.length ? `<div class="section-grid">${d.evolutions.map((v) => info(v.targetFormId || v.id, kv("Bonbons", v.candies) + kv("Objet", v.item))).join("")}</div>` : '<div class="empty">Aucune évolution suivante.</div>'}</div><div class="panel" data-panel="forms">${assetsPanel(d)}</div><div class="panel" data-panel="assistant">${assistantPanel(e, sourceJson)}</div><div class="panel" data-panel="json"><pre>${esc(JSON.stringify(sourceJson, null, 2))}</pre></div>`;
+        }</div><div class="panel" data-panel="evolutions">${d.evolutions?.length ? `<div class="section-grid">${d.evolutions.map((v) => info(v.targetFormId || v.id, kv("Bonbons", v.candies) + kv("Objet", v.item))).join("")}</div>` : '<div class="empty">Aucune évolution suivante.</div>'}</div><div class="panel" data-panel="forms">${assetsPanel(d)}</div><div class="panel" data-panel="assistant">${assistantPanel(e, sourceJson)}</div><div class="panel" data-panel="editor">${editorPanel(sourceJson)}</div><div class="panel" data-panel="json"><pre>${esc(JSON.stringify(sourceJson, null, 2))}</pre></div>`;
         document.getElementById("closeDetail").onclick = () =>
           el.detail.close();
         el.tabs.querySelectorAll("[data-tab]").forEach(
@@ -1792,6 +2107,67 @@
             downloadText(`${e.dexId}-${e.form}.json`, JSON.stringify(sourceJson, null, 2), "application/json");
             recordHistory("JSON téléchargé", e);
           };
+        const editor = el.panels.querySelector("[data-editor]");
+        if (editor) {
+          const original = JSON.stringify(sourceJson, null, 2);
+          let drafts = [original];
+          editor.oninput = () => {
+            if (drafts.at(-1) !== editor.value) drafts.push(editor.value);
+            drafts = drafts.slice(-30);
+          };
+          const editorResult = el.panels.querySelector("[data-editor-result]");
+          el.panels.querySelector("[data-editor-copy]").onclick = async () => {
+            await navigator.clipboard.writeText(editor.value);
+            editorResult.textContent = "JSON corrigé copié. Aucun fichier source n’a été modifié.";
+          };
+          el.panels.querySelector("[data-editor-download]").onclick = () =>
+            downloadText(`${e.dexId}-${e.form}-corrige.json`, editor.value, "application/json");
+          el.panels.querySelector("[data-editor-undo]").onclick = () => {
+            if (drafts.length > 1) drafts.pop();
+            editor.value = drafts.at(-1) || original;
+            editorResult.textContent = "Dernière modification du brouillon annulée.";
+          };
+          el.panels.querySelector("[data-editor-diff]").onclick = () => {
+            const before = original.split("\n");
+            const after = editor.value.split("\n");
+            const lines = [];
+            for (let index = 0; index < Math.max(before.length, after.length); index += 1) {
+              if (before[index] === after[index]) continue;
+              if (before[index] !== undefined) lines.push(`- ${before[index]}`);
+              if (after[index] !== undefined) lines.push(`+ ${after[index]}`);
+            }
+            editorResult.textContent = lines.join("\n") || "Aucune différence avec le JSON source.";
+          };
+          el.panels.querySelector("[data-editor-validate]").onclick = async () => {
+            try {
+              const data = JSON.parse(editor.value);
+              const result = await apiFetch("/api/validate-v3", {
+                method: "POST",
+                body: JSON.stringify({ data, file: e.file, kind: e.kind }),
+              });
+              const issues = result.data || [];
+              editorResult.textContent = issues.length
+                ? `${issues.length} problème(s):\n${issues.slice(0, 80).map((issue) => `${issue.path} · ${issue.issue} · attendu ${issue.expected} · actuel ${issue.actual}`).join("\n")}`
+                : "JSON valide: aucun problème détecté.";
+            } catch (error) {
+              editorResult.textContent = `Validation impossible: ${error.message}`;
+            }
+          };
+        }
+        el.panels.querySelector("[data-active-assets]").onclick = openAssets;
+        el.panels.querySelector("[data-audit-urls]").onclick = async () => {
+          showWorkspace("Vérification des URLs", e.name, '<div class="empty">Vérification en cours…</div>');
+          const results = (await apiFetch(`/api/url-audit-v3?key=${encodeURIComponent(e.key)}`)).data;
+          el.workspaceContent.innerHTML = `<div class="history-list">${results.map((result) => `<div class="history-item"><strong>${result.ok ? "Accessible" : "Inaccessible"} · HTTP ${result.status || "erreur"}</strong><br><span class="meta">${esc(result.url)}</span></div>`).join("") || '<div class="empty">Aucune URL image dans le JSON source.</div>'}</div>`;
+        };
+        el.panels.querySelector("[data-add-note]").onclick = openNotes;
+        el.panels.querySelector("[data-open-file]").onclick = async () => {
+          await apiFetch("/api/open-file-v3", { method: "POST", body: JSON.stringify({ file: e.file }) });
+        };
+        el.panels.querySelector("[data-git-history]").onclick = async () => {
+          const history = (await apiFetch(`/api/git-history-v3?file=${encodeURIComponent(e.file)}`)).data;
+          showWorkspace("Historique Git", e.file, `<div class="history-list">${history.map((item) => `<div class="history-item"><strong>${esc(item.hash)} · ${esc(item.date)}</strong><br>${esc(item.subject)}</div>`).join("") || '<div class="empty">Aucun commit trouvé.</div>'}</div>`);
+        };
       }
       async function openDetail(key) {
         const e = state.entries.find((x) => x.key === key);
@@ -1822,8 +2198,12 @@
       async function load() {
         el.refresh.disabled = true;
         try {
-          const x = await apiFetch("/api/checklist-v3");
+          const [x, catalog] = await Promise.all([
+            apiFetch("/api/checklist-v3"),
+            state.catalog ? Promise.resolve({ data: state.catalog }) : apiFetch("/api/catalog-v3"),
+          ]);
           Object.assign(state, x);
+          state.catalog = catalog.data;
           trackQualityChanges(state.entries);
           let selected = el.form.value;
           try {
@@ -1857,8 +2237,23 @@
           el.refresh.disabled = false;
         }
       }
+      function configureApiLinks() {
+        const base = ["localhost", "127.0.0.1"].includes(location.hostname)
+          ? `http://${location.hostname}:3000`
+          : location.origin;
+        for (const [element, path] of [[el.docLink, "/api-docs"], [el.swaggerLink, "/swagger"], [el.openApiLink, "/api-docs.json"], [el.healthLink, "/health"]])
+          element.href = `${base}${path}`;
+        fetch(`${base}/health`)
+          .then((response) => response.json())
+          .then((health) => {
+            el.apiDot.classList.add("online");
+            el.apiState.textContent = health.data?.database === "connected" ? "API + DB connectées" : "API en ligne";
+          })
+          .catch(() => { el.apiState.textContent = "API hors ligne"; });
+      }
       loadProgress();
       restoreFilters();
+      configureApiLinks();
       ["search", "kind", "profile", "form", "status", "problem", "generation", "sort"].forEach((id) =>
         el[id].addEventListener("input", () => {
           if (
@@ -1895,6 +2290,12 @@
       };
       el.openExports.onclick = openExportTools;
       el.openHistory.onclick = openHistory;
+      el.openMoves.onclick = openMoves;
+      el.openAssets.onclick = openAssets;
+      el.openCompare.onclick = openCompare;
+      el.openBatch.onclick = openBatch;
+      el.openNotes.onclick = openNotes;
+      el.openTools.onclick = openTools;
       el.closeWorkspace.onclick = () => el.workspace.close();
       el.prevDetail.onclick = () => navigateDetail(-1);
       el.nextDetail.onclick = () => navigateDetail(1);
@@ -1916,13 +2317,32 @@
       };
       el.mobileShiny.onclick = () => el.shiny.click();
       el.mobileRefresh.onclick = load;
-      el.mobileTools.onclick = openExportTools;
+      el.mobileTools.onclick = openTools;
       el.mobileTop.onclick = () => scrollTo({ top: 0, behavior: "smooth" });
       el.detail.addEventListener("click", (e) => {
         if (e.target === el.detail) el.detail.close();
       });
       el.workspace.addEventListener("click", (e) => {
         if (e.target === el.workspace) el.workspace.close();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (["INPUT", "TEXTAREA", "SELECT"].includes(event.target.tagName)) return;
+        if (event.key === "Escape") {
+          if (el.workspace.open) el.workspace.close();
+          else if (el.detail.open) el.detail.close();
+        }
+        if (event.key.toLowerCase() === "j") navigateDetail(1);
+        if (event.key.toLowerCase() === "k") navigateDetail(-1);
+        if (event.key.toLowerCase() === "n") openNotes();
+        if (event.key.toLowerCase() === "a") openAssets();
+        if (event.key.toLowerCase() === "t") {
+          document.body.classList.toggle("single-task");
+          render();
+        }
+        if (event.key === "Enter" && !el.detail.open && !el.workspace.open) {
+          const next = filtered()[0];
+          if (next) openDetail(next.key);
+        }
       });
       if ("serviceWorker" in navigator)
         navigator.serviceWorker.register("/sw.js");

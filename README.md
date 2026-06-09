@@ -220,6 +220,18 @@ La fiche detaillee contient aussi un tableau des PC minimum (`0/0/0`) et maximum
 (`15/15/15`) pour chaque demi-niveau de 1 a 50. Le calcul utilise les statistiques de
 base, les IV et les multiplicateurs de niveau dans `src/lib/pokemon-cp.js`.
 
+La checklist sert egalement d'atelier qualite:
+
+- assistant JSON avec structures completes pour les blocs manquants;
+- editeur de brouillon, validation avancee, apercu du diff et annulation locale;
+- corrections groupees exportables sans modifier les fichiers source;
+- analyse des assets Pokemon Home, controle des URLs et revue d'images;
+- catalogue des attaques, icones de types, comparaison de fiches et historique Git;
+- notes, rapports Markdown, recherche par commandes et mode mobile une seule tache.
+
+Les outils de correction ne modifient jamais les JSON source. Ils produisent uniquement
+du JSON a copier ou telecharger pour conserver une validation manuelle avant collage.
+
 La checklist ecoute par defaut sur le reseau local. Pour limiter temporairement l'acces
 au Mac:
 
@@ -231,6 +243,7 @@ Les migrations de normalisation fonctionnent en simulation par defaut:
 
 ```bash
 npm run migrate:types
+npm run migrate:type-assets
 npm run migrate:max-forms
 npm run migrate:identifiers
 npm run audit:moves
@@ -257,6 +270,7 @@ Vercel sert la checklist a la racine du domaine et expose les fonctions serverle
 
 - `/api/checklist-v3`
 - `/api/detail-v3`
+- `/api/catalog-v3`, `/api/assets-v3`, `/api/validate-v3` et `/api/url-audit-v3`
 - `/api/v1` pour l'API REST MongoDB
 - `/api-docs` pour la documentation moderne
 - `/swagger` pour la console interactive

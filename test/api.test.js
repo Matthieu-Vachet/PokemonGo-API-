@@ -9,7 +9,9 @@ const { collectAllDocuments } = require("../src/sync/source-reader");
 const {
   buildChecklist,
   detailForKey,
+  validateSourceData,
 } = require("../apps/checklist/server/engine");
+const { catalog } = require("../apps/checklist/server/workshop");
 
 const app = createApp();
 
@@ -161,6 +163,29 @@ test("la checklist calcule les scores, catégories et diagnostics d'assets", () 
   assert.ok(bulbasaur.assets.homeVariants >= 1);
   assert.equal(typeof bulbasaur.assets.duplicateUrls, "number");
   assert.equal(typeof bulbasaur.assets.incompletePairs, "number");
+});
+
+test("l'atelier expose les icônes de types et valide les références", () => {
+  const data = catalog();
+  assert.equal(data.types.length, 18);
+  assert.ok(data.types.every((type) => type.assets.icon.includes("/Types/ico_")));
+  assert.ok(data.moves.length > 400);
+
+  const source = detailForKey(
+    buildChecklist().find((entry) => entry.kind === "pokemon").key,
+  ).sourceData;
+  const issues = validateSourceData(
+    { ...source, quickMoves: ["ATTAQUE_INCONNUE"] },
+    "data/pokemon/test.json",
+    "pokemon",
+  );
+  assert.ok(
+    issues.some(
+      (issue) =>
+        issue.path === "quickMoves[0]" &&
+        issue.expected === "identifiant présent dans data/moves",
+    ),
+  );
 });
 
 test("les anciennes attaques embarquées sont présentées comme références", () => {

@@ -37,10 +37,11 @@ test("GET /api-docs fournit la documentation Redoc", async () => {
   assert.match(response.headers["content-type"], /text\/html/);
   assert.match(response.text, /<redoc/);
   assert.match(response.text, /cdn\.redoc\.ly/);
-  assert.match(response.text, /scroll-y-offset="\.topbar"/);
+  assert.match(response.text, /id="endpoint-tree"/);
+  assert.match(response.text, /scrollToEndpoint/);
   assert.doesNotMatch(response.text, /native-scrollbars/);
   assert.doesNotMatch(response.text, /endpoint-jump/);
-  assert.match(response.text, /mobile-endpoint/);
+  assert.match(response.text, /endpoint-select/);
   assert.match(response.text, /redoc\/v2\.5\.0/);
 });
 

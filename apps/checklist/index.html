@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
-    <meta name="theme-color" content="#d62828" />
+    <meta name="theme-color" content="#07152d" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Pokédex Checklist" />
@@ -17,18 +17,19 @@
     <style>
       :root {
         color-scheme: light;
-        --red: #d62828;
-        --red-dark: #8d111b;
-        --yellow: #ffcb05;
-        --blue: #2a75bb;
-        --ink: #152238;
-        --muted: #68758b;
-        --paper: #f4f7fb;
+        --red: #ff3d5a;
+        --red-dark: #07152d;
+        --yellow: #ffca28;
+        --blue: #1685ff;
+        --cyan: #2de2e6;
+        --ink: #102b49;
+        --muted: #587089;
+        --paper: #f5f8fc;
         --card: #fff;
-        --line: #dce3ee;
-        --green: #21a366;
+        --line: #dce8f4;
+        --green: #14b86e;
         --orange: #ed8b24;
-        --shadow: 0 12px 30px #16233a20;
+        --shadow: 0 14px 34px #07152d18;
         --safe-bottom: env(safe-area-inset-bottom, 0px);
       }
       * {
@@ -41,7 +42,10 @@
         margin: 0;
         font-family: Inter, ui-rounded, system-ui, sans-serif;
         color: var(--ink);
-        background: #eaf0f7;
+        background:
+          radial-gradient(circle at 10% 0%, #1685ff18, transparent 32rem),
+          radial-gradient(circle at 90% 8%, #2de2e612, transparent 28rem),
+          #eef4fa;
       }
       button,
       input,
@@ -53,21 +57,25 @@
       }
       .top-shell {
         position: relative;
-        padding: 24px max(16px, calc((100% - 1400px) / 2));
+        padding: 27px max(16px, calc((100% - 1400px) / 2));
         color: #fff;
-        background: linear-gradient(140deg, var(--red), #a40d21);
-        box-shadow: 0 5px 0 var(--red-dark);
+        background:
+          radial-gradient(circle at 15% 10%, #1685ff55, transparent 24rem),
+          radial-gradient(circle at 85% 20%, #2de2e62e, transparent 22rem),
+          #07152d;
+        border-bottom: 1px solid #7bcaff33;
+        box-shadow: 0 16px 42px #07152d35;
         overflow: hidden;
       }
       .top-shell::after {
         content: "";
-        position: absolute;
-        width: 280px;
-        height: 280px;
-        right: -80px;
-        top: -130px;
-        border: 32px solid #ffffff18;
-        border-radius: 50%;
+        position: absolute; inset: 0;
+        background-image:
+          linear-gradient(#7bcaff12 1px, transparent 1px),
+          linear-gradient(90deg, #7bcaff12 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: linear-gradient(90deg, #000, transparent);
+        pointer-events: none;
       }
       .brand {
         display: flex;
@@ -80,16 +88,15 @@
         width: 58px;
         height: 58px;
         flex: none;
-        border: 6px solid #fff;
+        border: 3px solid #fff;
         border-radius: 50%;
-        background: radial-gradient(
-          circle at 35% 30%,
-          #fff 0 8%,
-          #70d8ff 10% 35%,
-          #1687c8 38% 70%,
-          #08527e 72%
-        );
-        box-shadow: 0 0 0 5px #7c101a;
+        background: linear-gradient(var(--red) 0 44%, #07152d 44% 56%, #fff 56%);
+        box-shadow: 0 0 0 5px #1685ff55, 0 0 28px #2de2e688;
+        position: relative;
+      }
+      .lens::after {
+        background: #fff; border: 4px solid #07152d; border-radius: 50%;
+        content: ""; height: 13px; left: 17px; position: absolute; top: 17px; width: 13px;
       }
       h1 {
         margin: 0;
@@ -98,7 +105,7 @@
       }
       .subtitle {
         margin: 3px 0 0;
-        color: #ffe8e8;
+        color: #8fc8ff;
         font-size: 0.9rem;
       }
       .dashboard {
@@ -114,8 +121,14 @@
         padding: 14px;
         border: 1px solid var(--line);
         border-radius: 15px;
-        background: var(--card);
+        background: linear-gradient(145deg, #fff, #f7fbff);
         box-shadow: var(--shadow);
+        overflow: hidden;
+        position: relative;
+      }
+      .stat::after {
+        background: linear-gradient(90deg, var(--blue), var(--cyan));
+        bottom: 0; content: ""; height: 2px; left: 14px; position: absolute; width: 34px;
       }
       .stat strong {
         display: block;
@@ -136,7 +149,7 @@
       .xp div {
         height: 100%;
         border-radius: 999px;
-        background: linear-gradient(90deg, var(--yellow), #ff9f1c);
+        background: linear-gradient(90deg, var(--blue), var(--cyan));
         transition: 0.25s;
       }
       .toolbar-wrap {
@@ -144,7 +157,7 @@
         top: 0;
         z-index: 10;
         padding: 8px 0;
-        background: #eaf0f7e8;
+        background: #eef4fae8;
         backdrop-filter: blur(12px);
       }
       .toolbar {
@@ -156,7 +169,7 @@
         padding: 10px;
         border: 1px solid var(--line);
         border-radius: 16px;
-        background: #ffffffef;
+        background: #ffffffed;
         box-shadow: var(--shadow);
       }
       input,
@@ -178,8 +191,9 @@
       }
       .tool-btn.active {
         color: #fff;
-        border-color: var(--blue);
-        background: var(--blue);
+        border-color: transparent;
+        background: linear-gradient(135deg, var(--blue), #00b8d9);
+        box-shadow: 0 8px 22px #1685ff35;
       }
       .results {
         width: min(1400px, calc(100% - 28px));
@@ -334,8 +348,9 @@
       }
       .detail-btn {
         color: #fff;
-        border-color: var(--blue);
-        background: var(--blue);
+        border-color: transparent;
+        background: linear-gradient(135deg, var(--blue), #00b8d9);
+        box-shadow: 0 8px 20px #1685ff2b;
       }
       .more {
         width: 100%;
@@ -377,7 +392,9 @@
         align-items: center;
         padding: 15px;
         color: #fff;
-        background: linear-gradient(140deg, var(--type, var(--red)), #202b43);
+        background:
+          radial-gradient(circle at 85% 10%, #2de2e644, transparent 18rem),
+          linear-gradient(140deg, var(--type, var(--blue)), #07152d);
       }
       .detail-head .portrait {
         width: 96px;
@@ -417,8 +434,8 @@
       }
       .tab.active {
         color: #fff;
-        border-color: var(--blue);
-        background: var(--blue);
+        border-color: transparent;
+        background: linear-gradient(135deg, var(--blue), #00b8d9);
       }
       .panel {
         display: none;
@@ -615,7 +632,7 @@
         padding: 12px;
         border-radius: 12px;
         color: #d9e4ff;
-        background: #111a2b;
+        background: #07152d;
         overflow: auto;
         font:
           0.72rem/1.55 ui-monospace,
@@ -687,7 +704,8 @@
         }
         .mobile-nav button.active {
           color: #fff;
-          background: var(--red);
+          background: linear-gradient(135deg, var(--blue), #00b8d9);
+          box-shadow: 0 8px 20px #1685ff35;
         }
         dialog {
           width: 100%;

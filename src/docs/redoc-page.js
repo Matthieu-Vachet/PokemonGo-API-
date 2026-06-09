@@ -124,21 +124,49 @@ function redocPage() {
       .doc-intro small { color: #1685ff; font-size: 11px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
       .doc-intro h2 { font-size: clamp(28px, 4vw, 48px); letter-spacing: -.05em; margin: 8px 0 0; }
       .doc-intro p { color: #587089; line-height: 1.55; margin: 0; max-width: 520px; }
-      .mobile-doc-nav {
-        background: #f5f8fc; display: none; padding: 0 20px 18px;
+      .reference-shell {
+        align-items: start; background: #f5f8fc; display: grid;
+        grid-template-columns: 300px minmax(0, 1fr);
       }
-      .mobile-doc-nav label {
+      .endpoint-nav {
+        align-self: start; background: #f8fbff; border-right: 1px solid #dce8f4;
+        height: calc(100dvh - 66px); overflow: auto; padding: 18px 12px 30px;
+        position: sticky; top: 66px; z-index: 20;
+      }
+      .endpoint-nav label {
         color: #1685ff; display: block; font-size: 11px; font-weight: 900;
-        letter-spacing: .12em; margin-bottom: 7px; text-transform: uppercase;
+        letter-spacing: .12em; margin: 0 5px 10px; text-transform: uppercase;
       }
-      .mobile-doc-nav select {
+      .endpoint-nav select {
         appearance: none; background: white; border: 1px solid #cbddec; border-radius: 12px;
         color: #102b49; font: 750 14px/1.2 Inter, ui-rounded, system-ui, sans-serif;
-        padding: 13px 40px 13px 13px; width: 100%;
+        display: none; padding: 13px 40px 13px 13px; width: 100%;
+      }
+      .endpoint-tree { display: grid; gap: 10px; }
+      .endpoint-group {
+        border: 1px solid #dce8f4; border-radius: 13px; background: white; overflow: hidden;
+      }
+      .endpoint-group summary {
+        color: #102b49; cursor: pointer; font-size: 12px; font-weight: 900;
+        letter-spacing: .02em; list-style: none; padding: 11px 12px;
+      }
+      .endpoint-group summary::-webkit-details-marker { display: none; }
+      .endpoint-group summary::after { color: #1685ff; content: "+"; float: right; }
+      .endpoint-group[open] summary::after { content: "−"; }
+      .endpoint-list { border-top: 1px solid #edf3f8; display: grid; padding: 5px; }
+      .endpoint-link {
+        background: transparent; border: 0; border-radius: 9px; color: #506a84; cursor: pointer;
+        display: grid; font-size: 11px; gap: 7px; grid-template-columns: auto minmax(0, 1fr);
+        line-height: 1.35; padding: 8px; text-align: left; width: 100%;
+      }
+      .endpoint-link:hover, .endpoint-link.active { background: #eaf4ff; color: #096ed8; }
+      .endpoint-method {
+        background: #1685ff; border-radius: 999px; color: white; font-size: 8px;
+        font-weight: 950; letter-spacing: .05em; padding: 3px 5px; text-transform: uppercase;
       }
       redoc { display: block; background: #f5f8fc; }
       redoc .redoc-wrap { background: #f5f8fc !important; }
-      redoc .menu-content { border-right: 1px solid #dce8f4; }
+      redoc .menu-content { display: none !important; }
       redoc .api-content h1, redoc .api-content h2, redoc .api-content h3 { letter-spacing: -.04em !important; }
       redoc .http-verb { border-radius: 999px !important; }
       @media (max-width: 980px) {
@@ -158,7 +186,14 @@ function redocPage() {
         .pokemon { max-height: 210px; }
         .pokemon.pikachu { max-height: 155px; }
         .pokemon.bulbasaur { max-height: 120px; }
-        .mobile-doc-nav { display: block; position: sticky; top: 0; z-index: 45; }
+        .reference-shell { display: block; }
+        .endpoint-nav {
+          border-bottom: 1px solid #dce8f4; border-right: 0; height: auto; overflow: visible;
+          padding: 10px 14px; position: sticky; top: 0; z-index: 45;
+        }
+        .endpoint-nav label { margin: 0 0 6px; }
+        .endpoint-nav select { display: block; }
+        .endpoint-tree { display: none; }
         redoc .api-content { max-width: 100vw !important; }
       }
     </style>
@@ -205,85 +240,112 @@ function redocPage() {
       <div><small>Référence technique</small><h2>Choisissez votre endpoint</h2></div>
       <p>Chaque route contient des paramètres préremplis, une réponse réelle et des exemples prêts à utiliser en curl, JavaScript et Python.</p>
     </section>
-    <nav class="mobile-doc-nav" aria-label="Navigation mobile des endpoints">
-      <label for="mobile-endpoint">Aller à un endpoint</label>
-      <select id="mobile-endpoint"><option value="">Choisir un endpoint…</option></select>
-    </nav>
-
-    <redoc
-      spec-url="/api-docs.json"
-      expand-responses="200"
-      hide-download-button="false"
-      path-in-middle-panel
-      required-props-first
-      scroll-y-offset=".topbar"
-      sort-props-alphabetically
-      theme='{
-        "colors": {
-          "primary": { "main": "#1685ff" },
-          "success": { "main": "#14b86e" },
-          "http": { "get": "#1685ff" },
-          "text": { "primary": "#102b49", "secondary": "#587089" },
-          "border": { "dark": "#dce8f4", "light": "#edf3f8" }
-        },
-        "sidebar": { "width": "290px", "backgroundColor": "#f8fbff", "textColor": "#506a84", "activeTextColor": "#1685ff" },
-        "rightPanel": { "backgroundColor": "#07152d", "textColor": "#edf8ff", "width": "38%" },
-        "typography": {
-          "fontFamily": "Inter, ui-rounded, system-ui, sans-serif",
-          "fontSize": "15px",
-          "lineHeight": "1.65em",
-          "headings": { "fontFamily": "Inter, ui-rounded, system-ui, sans-serif", "fontWeight": "850" },
-          "code": { "fontFamily": "SFMono-Regular, Consolas, monospace", "fontSize": "13px" }
-        }
-      }'
-    ></redoc>
+    <section class="reference-shell">
+      <nav class="endpoint-nav" aria-label="Navigation des endpoints">
+        <label for="endpoint-select">Aller à un endpoint</label>
+        <select id="endpoint-select"><option value="">Choisir un endpoint…</option></select>
+        <div class="endpoint-tree" id="endpoint-tree"></div>
+      </nav>
+      <redoc
+        spec-url="/api-docs.json"
+        expand-responses="200"
+        hide-download-button="false"
+        path-in-middle-panel
+        required-props-first
+        sort-props-alphabetically
+        theme='{
+          "colors": {
+            "primary": { "main": "#1685ff" },
+            "success": { "main": "#14b86e" },
+            "http": { "get": "#1685ff" },
+            "text": { "primary": "#102b49", "secondary": "#587089" },
+            "border": { "dark": "#dce8f4", "light": "#edf3f8" }
+          },
+          "sidebar": { "width": "0px", "backgroundColor": "#f8fbff", "textColor": "#506a84", "activeTextColor": "#1685ff" },
+          "rightPanel": { "backgroundColor": "#07152d", "textColor": "#edf8ff", "width": "38%" },
+          "typography": {
+            "fontFamily": "Inter, ui-rounded, system-ui, sans-serif",
+            "fontSize": "15px",
+            "lineHeight": "1.65em",
+            "headings": { "fontFamily": "Inter, ui-rounded, system-ui, sans-serif", "fontWeight": "850" },
+            "code": { "fontFamily": "SFMono-Regular, Consolas, monospace", "fontSize": "13px" }
+          }
+        }'
+      ></redoc>
+    </section>
     <script src="https://cdn.redoc.ly/redoc/v2.5.0/bundles/redoc.standalone.js"></script>
     <script>
-      function scrollToCurrentAnchor(forcedId) {
-        if (!forcedId && !location.hash) return;
-        const id = forcedId || decodeURIComponent(location.hash.slice(1));
+      function scrollToEndpoint(id, updateHistory = true) {
         const target = document.getElementById(id);
         if (!target) return;
-        const offset = document.querySelector(".topbar")?.offsetHeight || 0;
+        const mobileNav = matchMedia("(max-width: 680px)").matches
+          ? document.querySelector(".endpoint-nav")?.offsetHeight || 0
+          : document.querySelector(".topbar")?.offsetHeight || 0;
+        const offset = mobileNav + 12;
         const top = window.scrollY + target.getBoundingClientRect().top - offset - 12;
-        const scrollTop = Math.max(0, top);
-        document.documentElement.style.scrollBehavior = "auto";
-        document.documentElement.scrollTop = scrollTop;
-        document.body.scrollTop = scrollTop;
-        requestAnimationFrame(() => {
-          document.documentElement.style.scrollBehavior = "";
-        });
+        window.scrollTo({ top: Math.max(0, top), behavior: "auto" });
+        if (updateHistory) history.replaceState(null, "", "#" + encodeURI(id));
+        const select = document.getElementById("endpoint-select");
+        if (select) select.value = id;
+        document.querySelectorAll(".endpoint-link").forEach(button =>
+          button.classList.toggle("active", button.dataset.target === id),
+        );
       }
-      window.addEventListener("hashchange", () =>
-        requestAnimationFrame(() => requestAnimationFrame(scrollToCurrentAnchor)),
-      );
-      window.addEventListener("load", () =>
-        setTimeout(scrollToCurrentAnchor, 500),
-      );
-      function initializeMobileEndpointMenu() {
-        const select = document.getElementById("mobile-endpoint");
-        const links = Array.from(document.querySelectorAll('a[href*="/operation/"]'));
-        if (!select || !links.length || select.options.length > 1) return false;
-        const seen = new Set();
-        links.forEach(link => {
-          const id = decodeURIComponent(link.getAttribute("href").slice(1));
-          if (seen.has(id)) return;
-          seen.add(id);
-          const heading = link.closest("h2");
+      function initializeEndpointMenu() {
+        const select = document.getElementById("endpoint-select");
+        const tree = document.getElementById("endpoint-tree");
+        const targets = Array.from(document.querySelectorAll('[id*="/operation/"]'));
+        if (!select || !tree || !targets.length || select.options.length > 1) return false;
+        const groups = new Map();
+        targets.forEach(target => {
+          const id = target.id;
+          const tag = id.split("/")[1] || "API";
+          const heading = target.querySelector("h2");
+          const anchor = heading?.querySelector("a");
           const label = heading
-            ? heading.textContent.replace(link.textContent, "").trim()
+            ? heading.textContent.replace(anchor?.textContent || "", "").trim()
             : id;
-          select.add(new Option(label, id));
+          const method = id.split("/operation/")[1]?.split("-")[0] || "get";
+          select.add(new Option(method.toUpperCase() + " · " + label, id));
+          if (!groups.has(tag)) groups.set(tag, []);
+          groups.get(tag).push({ id, label, method });
+        });
+        groups.forEach((endpoints, tag) => {
+          const details = document.createElement("details");
+          details.className = "endpoint-group";
+          details.open = ["System", "Pokemon"].includes(tag);
+          const summary = document.createElement("summary");
+          summary.textContent = tag;
+          const list = document.createElement("div");
+          list.className = "endpoint-list";
+          endpoints.forEach(({ id, label, method }) => {
+            const button = document.createElement("button");
+            button.className = "endpoint-link";
+            button.dataset.target = id;
+            const badge = document.createElement("span");
+            badge.className = "endpoint-method";
+            badge.textContent = method;
+            const text = document.createElement("span");
+            text.textContent = label;
+            button.append(badge, text);
+            list.append(button);
+          });
+          details.append(summary, list);
+          tree.append(details);
+        });
+        tree.addEventListener("click", event => {
+          const button = event.target.closest(".endpoint-link");
+          if (button) scrollToEndpoint(button.dataset.target);
         });
         select.addEventListener("change", () => {
-          if (!select.value) return;
-          history.replaceState(null, "", "#" + select.value);
-          scrollToCurrentAnchor(select.value);
+          if (select.value) scrollToEndpoint(select.value);
         });
+        if (location.hash)
+          setTimeout(() => scrollToEndpoint(decodeURIComponent(location.hash.slice(1)), false), 50);
         return true;
       }
-      const mobileMenuTimer = setInterval(() => {
-        if (initializeMobileEndpointMenu()) clearInterval(mobileMenuTimer);
+      const endpointMenuTimer = setInterval(() => {
+        if (initializeEndpointMenu()) clearInterval(endpointMenuTimer);
       }, 100);
       Promise.all([
         fetch("/api/v1/stats/global").then(response => response.json()),

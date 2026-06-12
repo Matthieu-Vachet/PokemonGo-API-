@@ -29,6 +29,61 @@
     "Korean": "버터플",
     "Spanish": "Butterfree"
   },
+  "size": {
+    "height": 1.1,
+    "weight": 32
+  },
+  "weatherBoost": ["rainy", "windy"],
+  "buddyDistance": 1,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": 0,
+  "captureRewards": {
+    "candy": 10,
+    "stardust": 500
+  },
+  "secondChargeMoveCost": {
+    "candy": 25,
+    "stardust": 10000
+  },
+  "maxCp": {
+    "maxLevel50": 2065,
+    "maxLevel40": 1827,
+    "weatherBoostLevel25": 1305,
+    "raidLevel20": 1044,
+    "researchLevel15": 783
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": true,
+    "gigantamax": true,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "F",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 13
+        },
+        "level": 33,
+        "cp": 1500
+      },
+      "bestMovesets": {
+        "fast": "CONFUSION_FAST",
+        "charged": ["BUG_BUZZ", "SIGNAL_BEAM"]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
+  },
   "stats": {
     "stamina": 155,
     "attack": 167,
@@ -37,18 +92,9 @@
   "primaryType": "BUG",
   "secondaryType": "FLYING",
   "pokemonClass": null,
-  "quickMoves": [
-    "STRUGGLE_BUG_FAST",
-    "CONFUSION_FAST"
-  ],
-  "cinematicMoves": [
-    "BUG_BUZZ",
-    "PSYCHIC",
-    "SIGNAL_BEAM"
-  ],
-  "eliteQuickMoves": [
-    "BUG_BITE_FAST"
-  ],
+  "quickMoves": ["STRUGGLE_BUG_FAST", "CONFUSION_FAST"],
+  "cinematicMoves": ["BUG_BUZZ", "PSYCHIC", "SIGNAL_BEAM"],
+  "eliteQuickMoves": ["BUG_BITE_FAST"],
   "eliteCinematicMoves": [],
   "assets": {
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm12.icon.png",

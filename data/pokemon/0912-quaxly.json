@@ -29,6 +29,66 @@
     "Korean": "꾸왁스",
     "Spanish": "Quaxly"
   },
+  "size": {
+    "height": 0.5,
+    "weight": 6.1
+  },
+  "weatherBoost": [
+    "rain"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 25,
+    "stardust": 10000
+  },
+  "maxCp": {
+    "maxLevel50": 1215,
+    "maxLevel40": 1075,
+    "weatherBoostLevel25": 768,
+    "raidLevel20": 614,
+    "researchLevel15": 460
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 13,
+          "stamina": 15
+        },
+        "level": 18.5,
+        "cp": 500
+      },
+      "bestMovesets": {
+        "fast": "WING_ATTACK_FAST",
+        "charged": [
+          "AERIAL_ACE",
+          "AQUA_JET"
+        ]
+      }
+    },
+    "greatLeague": null,
+    "ultraLeague": null,
+    "masterLeague": null
+  },
   "stats": {
     "stamina": 146,
     "attack": 120,
@@ -67,7 +127,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0912_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_Season19_DelightfulDays",
+        "name": "Delightful Days",
+        "type": "special",
+        "date": "June - September 2025",
+        "eligibleForms": [
+          "Quaxly"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_Season19_DelightfulDays.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

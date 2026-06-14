@@ -29,6 +29,66 @@
     "Korean": "플라베베",
     "Spanish": "Flabébé"
   },
+  "size": {
+    "height": 0.1,
+    "weight": 0.1
+  },
+  "weatherBoost": [
+    "cloudy"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 1202,
+    "maxLevel40": 1063,
+    "weatherBoostLevel25": 759,
+    "raidLevel20": 607,
+    "researchLevel15": 455
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "D",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 1202
+      },
+      "bestMovesets": {
+        "fast": "VINE_WHIP_FAST",
+        "charged": [
+          "DAZZLING_GLEAM",
+          "PETAL_BLIZZARD"
+        ]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
+  },
   "stats": {
     "stamina": 127,
     "attack": 108,
@@ -107,7 +167,24 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0669_004_fo_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_Season20_TalesOfTransformation",
+        "name": "Tales of Transformation",
+        "type": "special",
+        "date": "September 14th - December 2nd 2025",
+        "eligibleForms": [
+          "Flabébé (Red Flower)",
+          "Flabébé (Yellow Flower)",
+          "Flabébé (Orange Flower)",
+          "Flabébé (Blue Flower)",
+          "Flabébé (White Flower)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_Season20_TalesOfTransformation.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": {
     "FLABEBE_BLUE": {

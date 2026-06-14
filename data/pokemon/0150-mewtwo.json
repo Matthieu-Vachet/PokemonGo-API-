@@ -29,6 +29,125 @@
     "Korean": "뮤츠",
     "Spanish": "Mewtwo"
   },
+  "size": {
+    "height": 2,
+    "weight": 122
+  },
+  "weatherBoost": [
+    "windy"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 4724,
+    "maxLevel40": 4178,
+    "weatherBoostLevel25": 2984,
+    "raidLevel20": 2387,
+    "researchLevel15": 1791
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": null,
+    "ultraLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 1,
+          "defense": 15,
+          "stamina": 13
+        },
+        "level": 22,
+        "cp": 2498
+      },
+      "bestMovesets": {
+        "fast": "PSYCHO_CUT_FAST",
+        "charged": [
+          "PSYSTRIKE",
+          "SHADOW_BALL"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 4724
+      },
+      "bestMovesets": {
+        "fast": "PSYCHO_CUT_FAST",
+        "charged": [
+          "PSYSTRIKE",
+          "SHADOW_BALL"
+        ]
+      }
+    }
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2020-06-26",
+    "purificationCost": {
+      "stardust": 20000,
+      "candy": 20
+    },
+    "catchCp": {
+      "normal": {
+        "min": 833,
+        "max": 942
+      },
+      "weatherBoosted": {
+        "min": 1420,
+        "max": 1552
+      }
+    },
+    "variants": [
+      {
+        "name": "Mewtwo",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 833,
+            "max": 942
+          },
+          "weatherBoosted": {
+            "min": 1420,
+            "max": 1552
+          }
+        },
+        "purificationCost": {
+          "stardust": 20000,
+          "candy": 20
+        },
+        "releaseDate": "2020-06-26",
+        "releaseDateText": "June 26, 2020"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 214,
     "attack": 300,
@@ -93,7 +212,42 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0150_002_uk_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_GoFest2026_chicago",
+        "name": "GO Fest 2026 Chicago",
+        "type": "location",
+        "date": "June 5th - 7th 2026",
+        "eligibleForms": [
+          "Mewtwo"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2026_chicago.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_GoFest2026_copenhagen",
+        "name": "GO Fest 2026 Copenhagen",
+        "type": "location",
+        "date": "June 12th - 14th 2026",
+        "eligibleForms": [
+          "Mewtwo"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2026_copenhagen.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_GoFest2026_tokyo",
+        "name": "GO Fest 2026 Tokyo",
+        "type": "location",
+        "date": "May 28th - May 31st 2026",
+        "eligibleForms": [
+          "Mewtwo"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2026_tokyo.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

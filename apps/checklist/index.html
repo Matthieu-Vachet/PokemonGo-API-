@@ -289,6 +289,30 @@
           transform 0.15s,
           border-color 0.15s;
       }
+      .poke-card::before,
+      .detail-head::before {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background-image: var(--type-bg, none);
+        background-position: center;
+        background-size: cover;
+        opacity: 0.28;
+        pointer-events: none;
+      }
+      .poke-card::after {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background: linear-gradient(105deg, color-mix(in srgb, var(--card) 93%, transparent) 18%, color-mix(in srgb, var(--card) 68%, transparent) 66%, transparent);
+        pointer-events: none;
+      }
+      .poke-card > *,
+      .detail-head > * {
+        position: relative;
+        z-index: 1;
+      }
+      .poke-card > * { z-index: 2; }
       .poke-card:hover {
         transform: translateY(-2px);
         border-color: var(--type, #8ba2c2);
@@ -396,12 +420,21 @@
         background: #dff5e9;
       }
       .chip.type-chip {
+        flex-wrap: wrap;
         color: #fff;
         border-color: transparent;
         background: linear-gradient(135deg, var(--type, var(--blue)), color-mix(in srgb, var(--type, var(--blue)) 65%, #07152d));
         text-shadow: 0 1px 2px #0005;
       }
-      .chip.type-chip .type-icon + .type-icon { margin-left: -2px; }
+      .type-part {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        min-width: 0;
+        white-space: nowrap;
+      }
+      .type-separator { opacity: .72; }
       .chip.wide {
         grid-column: 1 / -1;
       }
@@ -919,6 +952,34 @@
         background: var(--surface);
         font-size: 0.72rem;
       }
+      .sticker-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 10px;
+        margin-top: 12px;
+      }
+      .sticker-card {
+        display: grid;
+        gap: 7px;
+        min-width: 0;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        color: var(--ink);
+        background: var(--surface);
+        text-decoration: none;
+      }
+      .sticker-card img {
+        width: 100%;
+        height: 120px;
+        object-fit: contain;
+      }
+      .sticker-card span {
+        overflow-wrap: anywhere;
+        color: var(--muted);
+        font-size: .65rem;
+        text-align: center;
+      }
       .poke-card.asset-broken {
         border-color: var(--red);
         box-shadow: 0 0 0 2px #ff3d5a24, var(--shadow);
@@ -1022,6 +1083,10 @@
       html[data-theme="dark"] .copy { color: var(--ink); background: var(--surface-soft); }
       html[data-theme="dark"] .cp-table tr.cp-landmark { color: #ffe8a3; background: #3a311c; }
       html[data-theme="dark"] .mobile-nav { background: #102238f2; }
+      html[data-theme="dark"] .poke-card::before { opacity: .36; }
+      html[data-theme="dark"] .poke-card::after {
+        background: linear-gradient(105deg, color-mix(in srgb, var(--card) 91%, transparent) 18%, color-mix(in srgb, var(--card) 58%, transparent) 70%, transparent);
+      }
       @media (max-width: 760px) {
         .top-shell {
           padding-top: 18px;
@@ -1068,6 +1133,11 @@
           width: 86px;
           height: 86px;
         }
+        .chip.type-chip {
+          grid-column: 1 / -1;
+          min-height: 34px;
+        }
+        .type-separator { display: none; }
         .card-actions .detail-btn {
           grid-column: 1 / -1;
         }
@@ -1218,6 +1288,7 @@
               <button class="action-btn" id="openHistory">Historique</button>
               <button class="action-btn" id="openMoves">Catalogue attaques</button>
               <button class="action-btn" id="openAssets">Bibliothèque assets</button>
+              <button class="action-btn" id="openStickers">Stickers</button>
               <button class="action-btn" id="openCompare">Comparer deux fiches</button>
               <button class="action-btn" id="openBatch">Corrections groupées</button>
             </div>
@@ -1376,6 +1447,7 @@
         "openHistory",
         "openMoves",
         "openAssets",
+        "openStickers",
         "openCompare",
         "openBatch",
         "openNotes",
@@ -1497,6 +1569,10 @@
       const typeIcon = (t) => {
         const id = typeof t === "string" ? t : t?.type;
         return state.catalog?.types?.find((type) => type.id === typeName(id))?.assets?.icon || "";
+      };
+      const typeBackground = (t) => {
+        const id = typeof t === "string" ? t : t?.type;
+        return state.catalog?.types?.find((type) => type.id === typeName(id))?.assets?.background || "";
       };
       const color = (e) => typeColors[typeName(e.primaryType)] || "#8293a5";
       const isDone = (e) => e.complete || Boolean(state.progress[e.key]);
@@ -1746,15 +1822,15 @@
         const typeBadge = types
           .map(
             (type) =>
-              `${typeIcon(type) ? `<img class="type-icon" src="${esc(typeIcon(type))}" alt="">` : ""}${esc(typeLabels[type] || type)}`,
+              `<span class="type-part">${typeIcon(type) ? `<img class="type-icon" src="${esc(typeIcon(type))}" alt="">` : ""}${esc(typeLabels[type] || type)}</span>`,
           )
-          .join(" / ");
+          .join('<span class="type-separator">/</span>');
         const categories = (e.issueCategories || [])
           .slice(0, 2)
           .map((category, index, list) => `<span class="chip problem ${list.length === 1 ? "wide" : ""}">${esc(problemLabels[category] || category)}</span>`)
           .join("");
         const selected = state.selected.has(e.key);
-        return `<article class="poke-card ${done ? "done" : ""} ${selected ? "selected" : ""}" style="--type:${color(e)}"><div class="type-strip"></div><div class="card-score score-ring" style="--score:${e.quality.score}"><span>${e.quality.score}%</span></div><div class="card-main">${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)} · Gén. ${esc(e.generation || "?")}</div><div class="chips"><span class="chip type-chip">${typeBadge || "Type ?"}</span><span class="chip">${e.quickMoveCount} rapide(s)</span><span class="chip">${e.chargedMoveCount} chargée(s)</span>${e.complete ? '<span class="chip good">JSON complet</span>' : `<span class="chip problem">${e.issues.length} problème(s)</span>`}${categories}${manual ? '<span class="chip good wide">Vérifiée manuellement</span>' : ""}</div></div></div><div class="card-actions"><label class="check-label"><input type="checkbox" data-check="${esc(e.key)}" ${done ? "checked" : ""} ${e.complete ? "disabled" : ""}> Fait</label><button class="select-btn ${selected ? "active" : ""}" data-select="${esc(e.key)}">${selected ? "Dans le lot" : "Ajouter au lot"}</button><button class="detail-btn" data-detail="${esc(e.key)}">Voir la fiche</button></div></article>`;
+        return `<article class="poke-card ${done ? "done" : ""} ${selected ? "selected" : ""}" style="--type:${color(e)};--type-bg:url('${esc(typeBackground(e.primaryType))}')"><div class="type-strip"></div><div class="card-score score-ring" style="--score:${e.quality.score}"><span>${e.quality.score}%</span></div><div class="card-main">${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)} · Gén. ${esc(e.generation || "?")}</div><div class="chips"><span class="chip type-chip">${typeBadge || "Type ?"}</span><span class="chip">${e.quickMoveCount} rapide(s)</span><span class="chip">${e.chargedMoveCount} chargée(s)</span>${e.complete ? '<span class="chip good">JSON complet</span>' : `<span class="chip problem">${e.issues.length} problème(s)</span>`}${categories}${manual ? '<span class="chip good wide">Vérifiée manuellement</span>' : ""}</div></div></div><div class="card-actions"><label class="check-label"><input type="checkbox" data-check="${esc(e.key)}" ${done ? "checked" : ""} ${e.complete ? "disabled" : ""}> Fait</label><button class="select-btn ${selected ? "active" : ""}" data-select="${esc(e.key)}">${selected ? "Dans le lot" : "Ajouter au lot"}</button><button class="detail-btn" data-detail="${esc(e.key)}">Voir la fiche</button></div></article>`;
       }
       function updateStats() {
         const done = state.entries.filter(isDone).length,
@@ -1883,6 +1959,7 @@
         `<article class="info"><h3>${esc(title)}</h3>${rows}</article>`;
       function overview(d) {
         const maxForm = ["dynamax", "gigantamax"].includes(d.form);
+        const shadow = d.shadow;
         const cpRows = maxForm
           ? kv("Niveau 50", d.maxCp?.maxLevel50) +
             kv("Niveau 40", d.maxCp?.maxLevel40) +
@@ -1891,18 +1968,32 @@
             kv("Niveau 40", d.maxCp?.maxLevel40) +
             kv("Raid N.20", d.maxCp?.raidLevel20) +
             kv("Étude N.15", d.maxCp?.researchLevel15);
+        const shadowRows = shadow
+          ? kv("Première sortie", shadow.firstReleaseDate) +
+            kv("Purification", `${shadow.purificationCost?.stardust} poussières · ${shadow.purificationCost?.candy} bonbons`) +
+            kv("Catch CP", `${shadow.catchCp?.normal?.min} - ${shadow.catchCp?.normal?.max}`) +
+            kv("Catch CP météo", `${shadow.catchCp?.weatherBoosted?.min} - ${shadow.catchCp?.weatherBoosted?.max}`) +
+            kv("Variantes Shadow", shadow.variants?.length)
+          : kv("Sorti", "Non");
         return `<div class="section-grid">${info("Identité", kv("ID", d.id) + kv("Form ID", d.formId) + kv("Slug", d.slug) + kv("Forme", d.form) + kv("Génération", d.generation) + kv("Région", d.region?.names?.French || d.region?.id))}${info("Statistiques", kv("Attaque", d.stats?.attack) + kv("Défense", d.stats?.defense) + kv("Endurance", d.stats?.stamina) + kv("Taille", d.size?.height ? d.size.height + " m" : null) + kv("Poids", d.size?.weight ? d.size.weight + " kg" : null))}${info("PC maximum", cpRows)}${info(
           "Disponibilité",
           Object.entries(d.availability || {})
             .map(([k, v]) => kv(k, v ? "Oui" : "Non"))
             .join(""),
-        )}${info("Capture", kv("Boost météo", d.weatherBoost) + kv("Distance copain", d.buddyDistance) + kv("Taux capture", d.catchRate) + kv("Taux fuite", d.fleeRate) + kv("Bonbons", d.captureRewards?.candy) + kv("Poussières", d.captureRewards?.stardust))}</div>`;
+        )}${info("Capture", kv("Boost météo", d.weatherBoost) + kv("Distance copain", d.buddyDistance) + kv("Taux capture", d.catchRate) + kv("Taux fuite", d.fleeRate) + kv("Bonbons", d.captureRewards?.candy) + kv("Poussières", d.captureRewards?.stardust))}${info("Shadow / Obscur", shadowRows)}</div>`;
       }
       function objectCards(title, obj) {
         const entries = Object.entries(obj || {});
         return entries.length
           ? `<div class="section-grid">${entries.map(([id, v]) => info(v.names?.French || v.names?.English || id, `${typeIcon(v.type) ? `<img class="type-icon" src="${esc(typeIcon(v.type))}" alt="">` : ""}` + kv("ID", id) + kv("Type", typeName(typeof v.type === "string" ? v.type : v.type?.type)) + kv("Puissance", v.power) + kv("Énergie", v.energy) + kv("PvP puissance", v.combat?.power) + kv("PvP énergie", v.combat?.energy))).join("")}</div>`
           : `<div class="empty">Aucune donnée ${esc(title)}.</div>`;
+      }
+      function shadowPanel(d) {
+        const shadow = d.shadow;
+        if (!shadow)
+          return '<div class="empty">Aucune version Shadow sortie pour ce Pokémon.</div>';
+        const variants = Array.isArray(shadow.variants) ? shadow.variants : [];
+        return `<div class="section-grid">${info("Résumé Shadow", kv("Première sortie", shadow.firstReleaseDate) + kv("Coût de purification", `${shadow.purificationCost?.stardust} poussières · ${shadow.purificationCost?.candy} bonbons`) + kv("Catch CP", `${shadow.catchCp?.normal?.min} - ${shadow.catchCp?.normal?.max}`) + kv("Catch CP météo", `${shadow.catchCp?.weatherBoosted?.min} - ${shadow.catchCp?.weatherBoosted?.max}`) + kv("Variantes", variants.length))}</div><h2>Variantes Shadow (${variants.length})</h2><div class="section-grid">${variants.map((variant) => info(`${variant.name} · ${variant.variant}`, kv("Date de sortie", variant.releaseDate) + kv("Date source", variant.releaseDateText) + kv("Purification", `${variant.purificationCost?.stardust} poussières · ${variant.purificationCost?.candy} bonbons`) + kv("Catch CP", `${variant.catchCp?.normal?.min} - ${variant.catchCp?.normal?.max}`) + kv("Catch CP météo", `${variant.catchCp?.weatherBoosted?.min} - ${variant.catchCp?.weatherBoosted?.max}`))).join("")}</div><p class="meta">Aucun asset Shadow n’est associé : l’image normale reste utilisée dans la checklist.</p>`;
       }
       function assetPicture(label, url) {
         return url
@@ -1915,10 +2006,19 @@
       function assetCard(title, subtitle, image, shinyImage) {
         return `<article class="asset-card"><div class="asset-card-head"><strong>${esc(title)}</strong><span>${esc(subtitle)}</span></div><div class="asset-pictures">${assetPicture("Normal", image)}${assetPicture("Shiny", shinyImage)}</div>${assetLinks(image, shinyImage)}</article>`;
       }
+      function locationCard(asset) {
+        const forms = Array.isArray(asset.eligibleForms)
+          ? asset.eligibleForms.join(" · ")
+          : "";
+        return `<article class="asset-card"><div class="asset-card-head"><strong>${esc(asset.name)}</strong><span>${esc(asset.type === "special" ? "Background spécial" : "Background de lieu")} · ${esc(asset.date)}${forms ? ` · Forme : ${esc(forms)}` : ""}</span></div><div class="asset-pictures"><a class="asset-picture" href="${esc(asset.image)}" target="_blank" rel="noopener"><img src="${esc(asset.image)}" alt="${esc(asset.name)}" loading="lazy"><span>${esc(asset.id)}</span></a></div><div class="asset-links"><a href="${esc(asset.source)}" target="_blank" rel="noopener">Source et Pokémon éligibles</a></div></article>`;
+      }
       function assetsPanel(d) {
         const variants = Array.isArray(d.assetForms) ? d.assetForms : [];
         const home = d.assets?.home || {};
         const homeVariants = Array.isArray(home.variants) ? home.variants : [];
+        const locationCards = Array.isArray(d.assets?.locationCards)
+          ? d.assets.locationCards
+          : [];
         const main = assetCard(
           "Pokémon GO",
           d.form || "normal",
@@ -1931,6 +2031,14 @@
           home.image,
           home.shinyImage,
         );
+        const megaPortrait = d.assets?.portrait || d.assets?.portraitShiny
+          ? assetCard(
+              "Portrait Méga / Primo",
+              d.form || "mega",
+              d.assets?.portrait,
+              d.assets?.portraitShiny,
+            )
+          : "";
         const gallery = variants.length
           ? variants
               .map((asset, index) => {
@@ -1973,7 +2081,10 @@
               })
               .join("")
           : '<div class="empty">Aucun asset Pokémon Home.</div>';
-        return `<div class="section-grid">${info("Capacités de formes", kv("Méga disponible", d.hasMegaEvolution) + kv("Gigantamax disponible", d.hasGigantamaxEvolution) + kv("Formes régionales", Array.isArray(d.regionForms) ? d.regionForms.length : Object.keys(d.regionForms || {}).length) + kv("Méga / Primo", Array.isArray(d.megaEvolutions) ? d.megaEvolutions.length : Object.keys(d.megaEvolutions || {}).length))}</div><section class="asset-section"><h2>Aperçus principaux</h2><div class="asset-gallery">${main}${homeMain}</div></section><section class="asset-section"><h2>Variantes Pokémon GO (${variants.length})</h2><div class="asset-gallery">${gallery}</div></section><section class="asset-section"><h2>Variantes Pokémon Home (${homeVariants.length})</h2><div class="asset-gallery">${homeGallery}</div></section>`;
+        const locationGallery = locationCards.length
+          ? locationCards.map(locationCard).join("")
+          : '<div class="empty">Aucun background éligible.</div>';
+        return `<div class="section-grid">${info("Capacités de formes", kv("Méga disponible", d.hasMegaEvolution) + kv("Gigantamax disponible", d.hasGigantamaxEvolution) + kv("Formes régionales", Array.isArray(d.regionForms) ? d.regionForms.length : Object.keys(d.regionForms || {}).length) + kv("Méga / Primo", Array.isArray(d.megaEvolutions) ? d.megaEvolutions.length : Object.keys(d.megaEvolutions || {}).length) + kv("Backgrounds éligibles", locationCards.length))}</div><section class="asset-section"><h2>Aperçus principaux</h2><div class="asset-gallery">${megaPortrait}${main}${homeMain}</div></section><section class="asset-section"><h2>Backgrounds éligibles (${locationCards.length})</h2><div class="asset-gallery">${locationGallery}</div></section><section class="asset-section"><h2>Variantes Pokémon GO (${variants.length})</h2><div class="asset-gallery">${gallery}</div></section><section class="asset-section"><h2>Variantes Pokémon Home (${homeVariants.length})</h2><div class="asset-gallery">${homeGallery}</div></section>`;
       }
       function cpPanel(d) {
         const rows = Array.isArray(d.cpByLevel) ? d.cpByLevel : [];
@@ -2362,6 +2473,34 @@
         el.workspaceContent.querySelector("[data-move-search]").oninput = (event) => renderMoves(event.target.value);
         renderMoves();
       }
+      async function openStickers() {
+        if (!state.catalog) state.catalog = (await apiFetch("/api/catalog-v3")).data;
+        let page = 1;
+        const pageSize = 100;
+        const categories = [...new Set((state.catalog.stickers || []).map((sticker) => sticker.category))].sort();
+        const renderStickers = () => {
+          const query = el.workspaceContent.querySelector("[data-sticker-search]").value.trim().toLowerCase();
+          const category = el.workspaceContent.querySelector("[data-sticker-category]").value;
+          const stickers = (state.catalog.stickers || []).filter((sticker) =>
+            (!query || [sticker.id, sticker.filename, sticker.category].some((value) => String(value).toLowerCase().includes(query))) &&
+            (!category || sticker.category === category)
+          );
+          const pages = Math.max(1, Math.ceil(stickers.length / pageSize));
+          page = Math.min(page, pages);
+          el.workspaceContent.querySelector("[data-sticker-list]").innerHTML = stickers
+            .slice((page - 1) * pageSize, page * pageSize)
+            .map((sticker) => `<a class="sticker-card" href="${esc(sticker.image)}" target="_blank" rel="noopener"><img src="${esc(sticker.image)}" alt="${esc(sticker.id)}" loading="lazy"><span>${esc(sticker.filename)}</span></a>`)
+            .join("") || '<div class="empty">Aucun sticker trouvé.</div>';
+          el.workspaceContent.querySelector("[data-sticker-page]").textContent = `Page ${page} / ${pages}`;
+          el.workspaceSubtitle.textContent = `${stickers.length.toLocaleString("fr")} sticker(s)`;
+        };
+        showWorkspace("Catalogue des stickers", `${(state.catalog.stickers || []).length.toLocaleString("fr")} stickers disponibles dans l’API`, `<div class="asset-browser-head"><input type="search" data-sticker-search placeholder="Rechercher un sticker"><select data-sticker-category><option value="">Toutes les catégories</option>${categories.map((category) => `<option value="${esc(category)}">${esc(category)}</option>`).join("")}</select></div><div class="sticker-grid" data-sticker-list></div><div class="asset-pagination"><button class="action-btn" data-sticker-prev>Page précédente</button><strong data-sticker-page></strong><button class="action-btn" data-sticker-next>Page suivante</button></div>`);
+        el.workspaceContent.querySelector("[data-sticker-search]").oninput = () => { page = 1; renderStickers(); };
+        el.workspaceContent.querySelector("[data-sticker-category]").onchange = () => { page = 1; renderStickers(); };
+        el.workspaceContent.querySelector("[data-sticker-prev]").onclick = () => { page = Math.max(1, page - 1); renderStickers(); };
+        el.workspaceContent.querySelector("[data-sticker-next]").onclick = () => { page += 1; renderStickers(); };
+        renderStickers();
+      }
       async function openAssets() {
         let audit = (
           await apiFetch(
@@ -2486,8 +2625,8 @@
           (signatures[signature] ||= []).push(entry);
         }
         const suspicious = Object.values(signatures).filter((group) => group.length >= 4 && group.some((entry) => entry.stats)).sort((a, b) => b.length - a.length);
-        showWorkspace("Boîte à outils", `${state.selected.size} sélectionnée(s)`, `<div class="workspace-tools"><button class="action-btn" data-tool="moves">Catalogue attaques</button><button class="action-btn" data-tool="assets">Assets Home & GO</button><button class="action-btn" data-tool="compare">Comparer</button><button class="action-btn" data-tool="batch">Corrections groupées</button><button class="action-btn" data-tool="notes">Notes & revues</button><button class="action-btn" data-tool="single">Mode une tâche</button></div><h2>Évolution quotidienne</h2><div class="history-list">${state.daily.slice().reverse().map((day) => `<div class="history-item"><strong>${day.date}</strong> · qualité ${day.average}% · ${day.complete} complètes · ${day.issues.toLocaleString("fr")} problèmes</div>`).join("")}</div><h2>Données identiques suspectes</h2><div class="history-list">${suspicious.slice(0, 20).map((group) => `<div class="history-item"><strong>${group.length} fiches identiques</strong><br>${esc(group.slice(0, 8).map((entry) => entry.name).join(", "))}</div>`).join("") || '<div class="empty">Aucun groupe suspect important.</div>'}</div>`);
-        const actions = { moves: openMoves, assets: openAssets, compare: openCompare, batch: openBatch, notes: openNotes, single: () => { document.body.classList.toggle("single-task"); el.workspace.close(); render(); } };
+        showWorkspace("Boîte à outils", `${state.selected.size} sélectionnée(s)`, `<div class="workspace-tools"><button class="action-btn" data-tool="moves">Catalogue attaques</button><button class="action-btn" data-tool="assets">Assets Home & GO</button><button class="action-btn" data-tool="stickers">Stickers</button><button class="action-btn" data-tool="compare">Comparer</button><button class="action-btn" data-tool="batch">Corrections groupées</button><button class="action-btn" data-tool="notes">Notes & revues</button><button class="action-btn" data-tool="single">Mode une tâche</button></div><h2>Évolution quotidienne</h2><div class="history-list">${state.daily.slice().reverse().map((day) => `<div class="history-item"><strong>${day.date}</strong> · qualité ${day.average}% · ${day.complete} complètes · ${day.issues.toLocaleString("fr")} problèmes</div>`).join("")}</div><h2>Données identiques suspectes</h2><div class="history-list">${suspicious.slice(0, 20).map((group) => `<div class="history-item"><strong>${group.length} fiches identiques</strong><br>${esc(group.slice(0, 8).map((entry) => entry.name).join(", "))}</div>`).join("") || '<div class="empty">Aucun groupe suspect important.</div>'}</div>`);
+        const actions = { moves: openMoves, assets: openAssets, stickers: openStickers, compare: openCompare, batch: openBatch, notes: openNotes, single: () => { document.body.classList.toggle("single-task"); el.workspace.close(); render(); } };
         el.workspaceContent.querySelectorAll("[data-tool]").forEach((button) => button.onclick = actions[button.dataset.tool]);
       }
       function renderDetail(e, d) {
@@ -2501,6 +2640,7 @@
           ["issues", `Checklist (${e.issues.length})`],
           ["moves", "Attaques"],
           ["pvp", "PvP"],
+          ["shadow", "Shadow"],
           ["evolutions", "Évolutions"],
           ["forms", "Formes & assets"],
           ["assistant", "Assistant JSON"],
@@ -2511,6 +2651,7 @@
           ? `<div class="portrait"><img class="normal" src="${esc(e.image)}">${e.shinyImage ? `<img class="shiny" src="${esc(e.shinyImage)}">` : ""}</div>`
           : "<div></div>";
         el.detailHead.style.setProperty("--type", color(e));
+        el.detailHead.style.setProperty("--type-bg", `url('${typeBackground(e.primaryType)}')`);
         el.detail.style.setProperty("--type", color(e));
         el.detailHead.innerHTML = `${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)}</div></div><button class="close" id="closeDetail">×</button>`;
         el.tabs.innerHTML = tabs
@@ -2536,7 +2677,7 @@
                 )
                 .join("")}</div>`
             : '<div class="empty">Aucune donnée PvP.</div>'
-        }</div><div class="panel" data-panel="evolutions">${d.evolutions?.length ? `<div class="section-grid">${d.evolutions.map((v) => info(v.targetFormId || v.id, kv("Bonbons", v.candies) + kv("Objet", v.item))).join("")}</div>` : '<div class="empty">Aucune évolution suivante.</div>'}</div><div class="panel" data-panel="forms">${assetsPanel(d)}</div><div class="panel" data-panel="assistant">${assistantPanel(e, sourceJson)}</div><div class="panel" data-panel="editor">${editorPanel(sourceJson)}</div><div class="panel" data-panel="json"><pre>${esc(JSON.stringify(sourceJson, null, 2))}</pre></div>`;
+        }</div><div class="panel" data-panel="shadow">${shadowPanel(d)}</div><div class="panel" data-panel="evolutions">${d.evolutions?.length ? `<div class="section-grid">${d.evolutions.map((v) => info(v.targetFormId || v.id, kv("Bonbons", v.candies) + kv("Objet", v.item))).join("")}</div>` : '<div class="empty">Aucune évolution suivante.</div>'}</div><div class="panel" data-panel="forms">${assetsPanel(d)}</div><div class="panel" data-panel="assistant">${assistantPanel(e, sourceJson)}</div><div class="panel" data-panel="editor">${editorPanel(sourceJson)}</div><div class="panel" data-panel="json"><pre>${esc(JSON.stringify(sourceJson, null, 2))}</pre></div>`;
         document.getElementById("closeDetail").onclick = () =>
           el.detail.close();
         el.tabs.querySelectorAll("[data-tab]").forEach(
@@ -2815,6 +2956,7 @@
       el.openHistory.onclick = openHistory;
       el.openMoves.onclick = openMoves;
       el.openAssets.onclick = openAssets;
+      el.openStickers.onclick = openStickers;
       el.openCompare.onclick = openCompare;
       el.openBatch.onclick = openBatch;
       el.openNotes.onclick = openNotes;

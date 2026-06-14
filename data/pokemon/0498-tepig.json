@@ -29,6 +29,107 @@
     "Korean": "뚜꾸리",
     "Spanish": "Tepig"
   },
+  "size": {
+    "height": 0.5,
+    "weight": 9.9
+  },
+  "weatherBoost": [
+    "sunny"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 25,
+    "stardust": 10000
+  },
+  "maxCp": {
+    "maxLevel50": 1224,
+    "maxLevel40": 1083,
+    "weatherBoostLevel25": 773,
+    "raidLevel20": 618,
+    "researchLevel15": 464
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 14,
+          "stamina": 12
+        },
+        "level": 18.5,
+        "cp": 499
+      },
+      "bestMovesets": {
+        "fast": "EMBER_FAST",
+        "charged": [
+          "BODY_SLAM",
+          "FLAME_CHARGE"
+        ]
+      }
+    },
+    "greatLeague": null,
+    "ultraLeague": null,
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2025-01-15",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 166,
+        "max": 215
+      },
+      "weatherBoosted": {
+        "min": 294,
+        "max": 355
+      }
+    },
+    "variants": [
+      {
+        "name": "Tepig",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 166,
+            "max": 215
+          },
+          "weatherBoosted": {
+            "min": 294,
+            "max": 355
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2025-01-15",
+        "releaseDateText": "January 15, 2025"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 163,
     "attack": 115,
@@ -67,7 +168,42 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0498_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoTour2025_black",
+        "name": "GO Tour Unova Black",
+        "type": "special",
+        "date": "March 1st - 2nd 2025",
+        "eligibleForms": [
+          "Tepig"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_black.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoTour2025_white",
+        "name": "GO Tour Unova White",
+        "type": "special",
+        "date": "March 1st - 2nd 2025",
+        "eligibleForms": [
+          "Tepig"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_white.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_Season20_TalesOfTransformation",
+        "name": "Tales of Transformation",
+        "type": "special",
+        "date": "September 14th - December 2nd 2025",
+        "eligibleForms": [
+          "Tepig"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_Season20_TalesOfTransformation.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

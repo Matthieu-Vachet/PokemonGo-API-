@@ -272,6 +272,44 @@ function createValidator() {
       nonEmpty: true,
     });
     if (value.home !== undefined) homeAssets(value.home, `${pathName}.home`);
+    if (value.locationCards !== undefined)
+      locationCards(value.locationCards, `${pathName}.locationCards`);
+  }
+
+  function locationCards(value, pathName) {
+    if (!Array.isArray(value)) {
+      add(pathName, "type", "tableau de cartes de lieu", actualType(value));
+      return;
+    }
+    value.forEach((card, index) => {
+      const cardPath = `${pathName}[${index}]`;
+      if (actualType(card) !== "object") {
+        add(cardPath, "type", "objet de carte de lieu", actualType(card));
+        return;
+      }
+      for (const key of ["id", "name", "date", "image", "source"])
+        field(card, key, `${cardPath}.${key}`, "string", { nonEmpty: true });
+      field(card, "type", `${cardPath}.type`, "string", { nonEmpty: true });
+      const eligibleForms = field(
+        card,
+        "eligibleForms",
+        `${cardPath}.eligibleForms`,
+        "array",
+        { nonEmpty: true },
+      );
+      if (Array.isArray(eligibleForms))
+        eligibleForms.forEach((form, formIndex) => {
+          if (actualType(form) !== "string" || !form.trim())
+            add(
+              `${cardPath}.eligibleForms[${formIndex}]`,
+              "type",
+              "libellé de forme non vide",
+              actualType(form),
+            );
+        });
+      if (!["location", "special"].includes(card.type))
+        add(`${cardPath}.type`, "valeur", "location ou special", card.type);
+    });
   }
 
   function homeAssets(value, pathName) {
@@ -315,6 +353,51 @@ function createValidator() {
     field(value, "candies", `${pathName}.candies`, "number");
     field(value, "item", `${pathName}.item`, "object", { nullable: true });
     field(value, "quests", `${pathName}.quests`, "array");
+  }
+
+  function shadow(value, pathName) {
+    if (actualType(value) !== "object") {
+      add(pathName, "type", "objet de données Shadow", actualType(value));
+      return;
+    }
+    field(value, "released", `${pathName}.released`, "boolean");
+    field(value, "firstReleaseDate", `${pathName}.firstReleaseDate`, "string", {
+      nonEmpty: true,
+    });
+    field(value, "source", `${pathName}.source`, "string", { nonEmpty: true });
+    const validateCost = (cost, costPath) => {
+      if (actualType(cost) !== "object") {
+        add(costPath, "type", "objet de coût de purification", actualType(cost));
+        return;
+      }
+      for (const key of ["stardust", "candy"])
+        field(cost, key, `${costPath}.${key}`, "number");
+    };
+    const validateCatchCp = (catchCp, cpPath) => {
+      if (actualType(catchCp) !== "object") {
+        add(cpPath, "type", "objet de Catch CP", actualType(catchCp));
+        return;
+      }
+      for (const key of ["normal", "weatherBoosted"]) {
+        const range = field(catchCp, key, `${cpPath}.${key}`, "object");
+        if (actualType(range) === "object")
+          for (const bound of ["min", "max"])
+            field(range, bound, `${cpPath}.${key}.${bound}`, "number");
+      }
+    };
+    validateCost(value.purificationCost, `${pathName}.purificationCost`);
+    validateCatchCp(value.catchCp, `${pathName}.catchCp`);
+    const variants = field(value, "variants", `${pathName}.variants`, "array", {
+      nonEmpty: true,
+    });
+    if (Array.isArray(variants))
+      variants.forEach((variant, index) => {
+        const variantPath = `${pathName}.variants[${index}]`;
+        for (const key of ["name", "variant", "releaseDate", "releaseDateText"])
+          field(variant, key, `${variantPath}.${key}`, "string", { nonEmpty: true });
+        validateCost(variant.purificationCost, `${variantPath}.purificationCost`);
+        validateCatchCp(variant.catchCp, `${variantPath}.catchCp`);
+      });
   }
 
   function mega(value, pathName) {
@@ -505,6 +588,11 @@ function createValidator() {
         field(availability, key, `${prefix}availability.${key}`, "boolean");
       }
     }
+    if (value.shadow !== undefined) shadow(value.shadow, `${prefix}shadow`);
+    if (value.availability?.shadow === true && value.shadow === undefined)
+      add(`${prefix}shadow`, "missing", "données Shadow", "absent");
+    if (value.availability?.shadow === false && value.shadow !== undefined)
+      add(`${prefix}shadow`, "unexpected", "absent si Shadow non sorti", "présent");
     pvp(value.pvp, `${prefix}pvp`);
     typeBlock(value.primaryType, `${prefix}primaryType`);
     typeBlock(value.secondaryType, `${prefix}secondaryType`, true);
@@ -875,6 +963,9 @@ function buildSuggestedPatch(issues, kind = "pokemon") {
 
 function assetSummary(data) {
   const home = data.assets?.home || {};
+  const locationCards = Array.isArray(data.assets?.locationCards)
+    ? data.assets.locationCards
+    : [];
   const homeVariants = Array.isArray(home.variants) ? home.variants : [];
   const goVariants = Array.isArray(data.assetForms) ? data.assetForms : [];
   const urls = [
@@ -892,6 +983,7 @@ function assetSummary(data) {
     homeShiny: Boolean(home.shinyImage),
     goVariants: goVariants.length,
     homeVariants: homeVariants.length,
+    locationCards: locationCards.length,
     femaleVariants: homeVariants.filter((asset) =>
       ["fd", "fo"].includes(asset.genderCode),
     ).length,
@@ -1073,7 +1165,9 @@ function buildChecklist() {
       path.basename(file);
     const quality = qualitySummary(validator.issues);
     return {
-      key: `${kind}:${path.relative(rootDir, file)}`,
+      key: `${kind}:${path.relative(rootDir, file)}${
+        kind === "mega" ? `#${data.formId || data.id}` : ""
+      }`,
       kind,
       profile,
       name,
@@ -1081,8 +1175,9 @@ function buildChecklist() {
       generation: displayData.generation || null,
       form: data.form || "normal",
       file: path.relative(rootDir, file),
-      image: displayData.assets?.image || null,
-      shinyImage: displayData.assets?.shinyImage || null,
+      image: displayData.assets?.portrait || displayData.assets?.image || null,
+      shinyImage:
+        displayData.assets?.portraitShiny || displayData.assets?.shinyImage || null,
       primaryType:
         typeof displayData.primaryType === "string"
           ? displayData.primaryType
@@ -1127,7 +1222,7 @@ function buildChecklist() {
 function detailForKey(key) {
   const separator = key.indexOf(":");
   const kind = key.slice(0, separator);
-  const relativeFile = key.slice(separator + 1);
+  const [relativeFile, requestedFormId] = key.slice(separator + 1).split("#");
   const file = path.resolve(rootDir, relativeFile);
   if (!file.startsWith(rootDir) || !fs.existsSync(file)) return null;
   const sourceData = readJson(file);
@@ -1151,7 +1246,13 @@ function detailForKey(key) {
   }
 
   if (kind === "mega" && relativeFile.startsWith("data/pokemon/")) {
-    const mega = Object.values(data.megaEvolutions || {})[0];
+    const mega =
+      data.megaEvolutions?.[requestedFormId] ||
+      Object.values(data.megaEvolutions || {}).find(
+        (candidate) =>
+          candidate.formId === requestedFormId || candidate.id === requestedFormId,
+      ) ||
+      Object.values(data.megaEvolutions || {})[0];
     data = mega
       ? { ...mega, dexId: data.dexId, generation: data.generation }
       : data;

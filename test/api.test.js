@@ -33,6 +33,24 @@ test("GET /api-docs.json fournit OpenAPI 3", async () => {
   assert.equal(response.body.openapi, "3.0.3");
   assert.ok(response.body.paths["/api/v1/pokemon"]);
   assert.ok(response.body.paths["/api/v1/pvp/{league}/{identifier}"]);
+  assert.ok(response.body.paths["/api/v1/backgrounds"]);
+  assert.ok(response.body.paths["/api/v1/backgrounds/{id}/pokemon"]);
+  assert.ok(response.body.paths["/api/v1/pokemon/{identifier}/backgrounds"]);
+  assert.ok(response.body.paths["/api/v1/shadow"]);
+  assert.ok(response.body.paths["/api/v1/shadow/{identifier}"]);
+  assert.ok(response.body.paths["/api/v1/pokemon/{identifier}/shadow"]);
+  assert.ok(response.body.paths["/api/v1/stickers"]);
+  assert.ok(response.body.paths["/api/v1/stickers/{id}"]);
+});
+
+test("GET /api/v1/stickers expose le catalogue des stickers", async () => {
+  const list = await request(app).get("/api/v1/stickers?q=2023collab&limit=5").expect(200);
+  assert.ok(list.body.data.length > 0);
+  assert.ok(list.body.data.every((sticker) => sticker.image.includes("/Stickers/")));
+  const detail = await request(app)
+    .get("/api/v1/stickers/sticker-2023collab-1")
+    .expect(200);
+  assert.equal(detail.body.data.filename, "sticker_2023collab_1.png");
 });
 
 test("GET /api-docs fournit la documentation Redoc", async () => {
@@ -75,12 +93,35 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   const bulbasaur = data.pokemon.find((pokemon) => pokemon.key === "BULBASAUR");
   assert.equal(bulbasaur.data.assets.home.source, "pokemon-home");
   assert.ok(bulbasaur.data.assets.home.variants.length >= 1);
+  const eevee = data.pokemon.find((pokemon) => pokemon.key === "EEVEE");
+  const citySafari = eevee.data.assets.locationCards.find(
+    (card) => card.id === "lc_CitySafari2023_barcelona_2023",
+  );
+  assert.equal(citySafari.date, "October 13th - 14th 2023");
+  assert.deepEqual(citySafari.eligibleForms, ["Eevee (Explorer Hat)"]);
+  assert.match(citySafari.image, /\/LocationCards\//);
+  const bulbasaurShadow = bulbasaur.data.shadow;
+  assert.equal(bulbasaurShadow.firstReleaseDate, "2019-07-22");
+  assert.deepEqual(bulbasaurShadow.purificationCost, { stardust: 3000, candy: 3 });
+  assert.deepEqual(bulbasaurShadow.catchCp.normal, { min: 198, max: 251 });
+  assert.equal(bulbasaur.data.availability.shadow, true);
+  const helioptile = data.pokemon.find((pokemon) => pokemon.key === "HELIOPTILE");
+  assert.equal(helioptile.data.availability.shadow, true);
+  const rookidee = data.pokemon.find((pokemon) => pokemon.key === "ROOKIDEE");
+  assert.equal(rookidee.data.availability.shadow, false);
+  assert.equal(rookidee.data.shadow, undefined);
 });
 
 test("les types, PvP null et formes Max sont normalisés", () => {
   const data = collectAllDocuments();
   const caterpie = data.pokemon.find((pokemon) => pokemon.key === "CATERPIE");
   const dynamax = data.pokemon.find((pokemon) => pokemon.key === "BULBASAUR_DYNAMAX");
+  const toxtricity = data.pokemon.find(
+    (pokemon) => pokemon.key === "TOXTRICITY_AMPED_DYNAMAX",
+  );
+  const urshifu = data.pokemon.find(
+    (pokemon) => pokemon.key === "URSHIFU_RAPID_STRIKE_DYNAMAX",
+  );
   const gmax = data.pokemon.find((pokemon) => pokemon.key === "VENUSAUR_GIGANTAMAX");
   assert.equal(caterpie.data.primaryType, "BUG");
   assert.equal(caterpie.data.secondaryType, null);
@@ -97,6 +138,12 @@ test("les types, PvP null et formes Max sont normalisés", () => {
   assert.equal(dynamax.maxCp.raidLevel20, undefined);
   assert.deepEqual(dynamax.moveIds, []);
   assert.deepEqual(dynamax.pvpLeagues, []);
+  assert.equal(data.pokemon.filter((pokemon) => pokemon.kind === "dynamax").length, 127);
+  assert.equal(data.moves.filter((move) => move.kind === "max").length, 18);
+  assert.equal(toxtricity.baseFormId, "TOXTRICITY_AMPED");
+  assert.deepEqual(toxtricity.maxMoveIds, ["MAX_LIGHTNING", "MAX_OOZE"]);
+  assert.equal(urshifu.baseFormId, "URSHIFU_RAPID_STRIKE");
+  assert.deepEqual(urshifu.maxMoveIds, ["MAX_GEYSER", "MAX_KNUCKLE"]);
   assert.equal(gmax.kind, "gigantamax");
   assert.deepEqual(gmax.maxMoveIds, ["GMAX_VINE_LASH"]);
   assert.equal(gmax.baseFormId, "VENUSAUR");
@@ -162,6 +209,7 @@ test("la checklist calcule les scores, catégories et diagnostics d'assets", () 
   assert.equal(bulbasaur.assets.go, true);
   assert.equal(bulbasaur.assets.home, true);
   assert.ok(bulbasaur.assets.homeVariants >= 1);
+  assert.equal(typeof bulbasaur.assets.locationCards, "number");
   assert.equal(typeof bulbasaur.assets.duplicateUrls, "number");
   assert.equal(typeof bulbasaur.assets.incompletePairs, "number");
 });
@@ -198,19 +246,23 @@ test("l'assistant JSON couvre chaque problème détecté", () => {
       );
   }
 
-  const gigantamax = checklist.find(
+  const completeGigantamax = checklist.find(
     (entry) =>
       entry.form === "gigantamax" &&
       entry.key.toLowerCase().includes("butterfree"),
   );
-  assert.ok(gigantamax.suggestedPatch.maxCp);
-  assert.deepEqual(gigantamax.suggestedPatch.maxBattle.moves, [""]);
+  assert.equal(completeGigantamax.complete, true);
+  assert.deepEqual(completeGigantamax.suggestedPatch, {});
 });
 
 test("l'atelier expose les icônes de types et valide les références", () => {
   const data = catalog();
   assert.equal(data.types.length, 18);
   assert.ok(data.types.every((type) => type.assets.icon.includes("/Types/ico_")));
+  assert.ok(
+    data.types.every((type) => type.assets.background.includes("/TypeBackgrounds/")),
+  );
+  assert.equal(data.stickers.length, 1667);
   assert.ok(data.moves.length > 400);
 
   const source = detailForKey(

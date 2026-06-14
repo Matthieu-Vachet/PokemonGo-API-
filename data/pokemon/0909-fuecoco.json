@@ -29,6 +29,84 @@
     "Korean": "뜨아거",
     "Spanish": "Fuecoco"
   },
+  "size": {
+    "height": 0.4,
+    "weight": 9.8
+  },
+  "weatherBoost": [
+    "sunny"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 25,
+    "stardust": 10000
+  },
+  "maxCp": {
+    "maxLevel50": 1274,
+    "maxLevel40": 1127,
+    "weatherBoostLevel25": 805,
+    "raidLevel20": 644,
+    "researchLevel15": 483
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 1,
+          "defense": 15,
+          "stamina": 14
+        },
+        "level": 17.5,
+        "cp": 500
+      },
+      "bestMovesets": {
+        "fast": "INCINERATE_FAST",
+        "charged": [
+          "CRUNCH",
+          "DISARMING_VOICE"
+        ]
+      }
+    },
+    "greatLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 14
+        },
+        "level": 50,
+        "cp": 1271
+      },
+      "bestMovesets": {
+        "fast": "INCINERATE_FAST",
+        "charged": [
+          "CRUNCH",
+          "FLAMETHROWER"
+        ]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
+  },
   "stats": {
     "stamina": 167,
     "attack": 112,
@@ -67,7 +145,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0909_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_Season18_MightAndMastery",
+        "name": "Might and Mastery",
+        "type": "special",
+        "date": "March 8th 2025March 22nd 2025April 27th 2025May 11th 2025May 24th 2025",
+        "eligibleForms": [
+          "Fuecoco"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_Season18_MightAndMastery.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

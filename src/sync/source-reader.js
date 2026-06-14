@@ -332,8 +332,14 @@ function collectMoveDocuments() {
 }
 
 function collectTypeDocuments() {
-  const file = path.join(rootDir, "data", "types", "types.json");
-  return readJson(file).map((data) => ({
+  const directory = path.join(rootDir, "data", "types");
+  const files = listJsonFiles(directory).filter(
+    (file) => path.basename(file) !== "types.json",
+  );
+  const types = files.length
+    ? files.map(readJson)
+    : readJson(path.join(directory, "types.json"));
+  return types.map((data) => ({
     id: String(data.id || data.type).toUpperCase(),
     slug: data.slug,
     names: data.names || {},

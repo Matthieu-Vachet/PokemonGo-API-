@@ -29,6 +29,103 @@
     "Korean": "두파팡",
     "Spanish": "Blacephalon"
   },
+  "size": {
+    "height": 1.8,
+    "weight": 13
+  },
+  "weatherBoost": [
+    "sunny",
+    "fog"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 3727,
+    "maxLevel40": 3297,
+    "weatherBoostLevel25": 2355,
+    "raidLevel20": 1884,
+    "researchLevel15": 1413
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 3,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 16.5,
+        "cp": 1497
+      },
+      "bestMovesets": {
+        "fast": "INCINERATE_FAST",
+        "charged": [
+          "MIND_BLOWN",
+          "SHADOW_BALL"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 13,
+          "stamina": 14
+        },
+        "level": 28,
+        "cp": 2494
+      },
+      "bestMovesets": {
+        "fast": "INCINERATE_FAST",
+        "charged": [
+          "MIND_BLOWN",
+          "SHADOW_BALL"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 3727
+      },
+      "bestMovesets": {
+        "fast": "INCINERATE_FAST",
+        "charged": [
+          "MIND_BLOWN",
+          "SHADOW_BALL"
+        ]
+      }
+    }
+  },
   "stats": {
     "stamina": 142,
     "attack": 315,
@@ -69,7 +166,31 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0806_000_uk_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_GoFest2024_newyork",
+        "name": "GO Fest New York City 2024",
+        "type": "location",
+        "date": "July 5th - 7th 2024",
+        "eligibleForms": [
+          "Blacephalon"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2024_newyork.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoFest2024_wormhole",
+        "name": "GO Fest 2024 Wormhole",
+        "type": "special",
+        "date": "July 8th - 14th 2024",
+        "eligibleForms": [
+          "Blacephalon"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2024_wormhole.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

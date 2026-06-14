@@ -178,11 +178,11 @@ Les grandes sections du JSON sont:
 | Identite | `id`, `formId`, `slug`, `dexNr`, `dexId`, `generation`, `form`, `region`, `pokemonClass` |
 | Noms | `names` avec les langues principales |
 | Gameplay | `size`, `weatherBoost`, `buddyDistance`, `catchRate`, `fleeRate`, `captureRewards`, `megaEnergyReward`, `secondChargeMoveCost` |
-| Disponibilite | `availability`: shiny, shadow, trade, Pokemon HOME, Dynamax, Gigamax, Apex |
+| Disponibilite | `availability`: shiny, shadow, trade, Pokemon HOME, Dynamax, Gigamax, Apex ; le bloc `shadow` détaille date, purification et Catch CP |
 | Combat | `stats`, `maxCp`, `quickMoves`, `cinematicMoves`, moves Elite |
 | PvP | ranks par ligue, IVs rang 1, movesets recommandes |
 | Evolutions | `evolutions`, `hasMegaEvolution`, `megaEvolutions`, `hasGigantamaxEvolution` |
-| Assets | images principales, shiny, costumes, formes alternatives |
+| Assets | images principales, shiny, costumes, formes alternatives, backgrounds avec dates et formes éligibles |
 | Formes | variantes regionales, Dynamax, Gigantamax, Mega et Primo |
 
 Les references principales du schema sont:
@@ -226,7 +226,9 @@ La checklist sert egalement d'atelier qualite:
 - editeur de brouillon, validation avancee, apercu du diff et annulation locale;
 - corrections groupees exportables sans modifier les fichiers source;
 - analyse des assets Pokemon Home, controle des URLs et revue d'images;
+- onglet Shadow avec dates, coûts de purification, Catch CP et variantes;
 - catalogue des attaques, icones de types, comparaison de fiches et historique Git;
+- portraits Méga, fonds de types et catalogue des stickers;
 - notes, rapports Markdown, recherche par commandes et mode mobile une seule tache.
 
 Les outils de correction ne modifient jamais les JSON source. Ils produisent uniquement

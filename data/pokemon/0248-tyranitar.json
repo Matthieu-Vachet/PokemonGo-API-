@@ -29,6 +29,144 @@
     "Korean": "마기라스",
     "Spanish": "Tyranitar"
   },
+  "size": {
+    "height": 2.01,
+    "weight": 202
+  },
+  "weatherBoost": [
+    "partlyCloudy",
+    "fog"
+  ],
+  "buddyDistance": 5,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": 25,
+  "captureRewards": {
+    "candy": 10,
+    "stardust": 500
+  },
+  "secondChargeMoveCost": {
+    "candy": 75,
+    "stardust": 75000
+  },
+  "maxCp": {
+    "maxLevel50": 4335,
+    "maxLevel40": 3834,
+    "weatherBoostLevel25": 2739,
+    "raidLevel20": 2191,
+    "researchLevel15": 1643
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 14.5,
+        "cp": 1499
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_BREATH_FAST",
+        "charged": [
+          "BRUTAL_SWING",
+          "STONE_EDGE"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 13,
+          "stamina": 11
+        },
+        "level": 24.5,
+        "cp": 2500
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_BREATH_FAST",
+        "charged": [
+          "BRUTAL_SWING",
+          "STONE_EDGE"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 4335
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_BREATH_FAST",
+        "charged": [
+          "BRUTAL_SWING",
+          "STONE_EDGE"
+        ]
+      }
+    }
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2019-09-05",
+    "purificationCost": {
+      "stardust": 5000,
+      "candy": 5
+    },
+    "catchCp": {
+      "normal": {
+        "min": 762,
+        "max": 864
+      },
+      "weatherBoosted": {
+        "min": 1300,
+        "max": 1424
+      }
+    },
+    "variants": [
+      {
+        "name": "Tyranitar",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 762,
+            "max": 864
+          },
+          "weatherBoosted": {
+            "min": 1300,
+            "max": 1424
+          }
+        },
+        "purificationCost": {
+          "stardust": 5000,
+          "candy": 5
+        },
+        "releaseDate": "2019-09-05",
+        "releaseDateText": "September 5, 2019"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 225,
     "attack": 251,
@@ -81,7 +219,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0248_001_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoTour2026_mega",
+        "name": "GO Tour 2026 Mega",
+        "type": "special",
+        "date": "February 23rd - February 27th 2026",
+        "eligibleForms": [
+          "Tyranitar"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_mega.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],
@@ -110,7 +261,9 @@
       "energyCost": 300,
       "assets": {
         "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm248.fMEGA.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm248.fMEGA.s.icon.png"
+        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm248.fMEGA.s.icon.png",
+        "portrait": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/MegaPortraits/mega_portrait_248_MEGA.png",
+        "portraitShiny": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/MegaPortraits/mega_portrait_248_MEGA.s.png"
       },
       "baseFormId": "TYRANITAR",
       "formId": "TYRANITAR_MEGA"

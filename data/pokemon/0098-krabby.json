@@ -29,6 +29,125 @@
     "Korean": "크랩",
     "Spanish": "Krabby"
   },
+  "size": {
+    "height": 0.4,
+    "weight": 6.5
+  },
+  "weatherBoost": [
+    "rain"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 1764,
+    "maxLevel40": 1561,
+    "weatherBoostLevel25": 1115,
+    "raidLevel20": 892,
+    "researchLevel15": 669
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": true,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 2,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 12,
+        "cp": 499
+      },
+      "bestMovesets": {
+        "fast": "MUD_SHOT_FAST",
+        "charged": [
+          "RAZOR_SHELL",
+          "VICE_GRIP"
+        ]
+      }
+    },
+    "greatLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 43,
+        "cp": 1496
+      },
+      "bestMovesets": {
+        "fast": "BUBBLE_FAST",
+        "charged": [
+          "VICE_GRIP",
+          "RAZOR_SHELL"
+        ]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2026-01-23",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 286,
+        "max": 351
+      },
+      "weatherBoosted": {
+        "min": 499,
+        "max": 579
+      }
+    },
+    "variants": [
+      {
+        "name": "Krabby",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 286,
+            "max": 351
+          },
+          "weatherBoosted": {
+            "min": 499,
+            "max": 579
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2026-01-23",
+        "releaseDateText": "January 23, 2026"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 102,
     "attack": 181,
@@ -68,7 +187,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0098_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoFest2025_Eternatus",
+        "name": "Dark Skies",
+        "type": "special",
+        "date": "August 18th - 24th 2025",
+        "eligibleForms": [
+          "Krabby"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

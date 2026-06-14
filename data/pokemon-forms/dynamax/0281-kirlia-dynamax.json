@@ -1,0 +1,48 @@
+{
+  "id": "KIRLIA",
+  "formId": "KIRLIA_DYNAMAX",
+  "form": "dynamax",
+  "dexNr": 281,
+  "dexId": "0281",
+  "generation": 3,
+  "baseFormId": "KIRLIA",
+  "slug": "kirlia-dynamax",
+  "maxCp": {
+    "maxLevel50": 1093,
+    "maxLevel40": 966,
+    "maxBattlesLevel20": 552
+  },
+  "maxBattle": {
+    "moves": [
+      "MAX_LIGHTNING",
+      "MAX_MINDSTORM",
+      "MAX_OVERGROWTH"
+    ]
+  },
+  "evolutions": [
+    {
+      "targetFormId": "GALLADE_DYNAMAX",
+      "candies": 100,
+      "item": {
+        "id": "ITEM_GEN4_EVOLUTION_STONE",
+        "slug": "item_gen4_evolution_stone",
+        "names": {
+          "English": "Sinnoh Stone",
+          "German": "Sinnoh-Stein",
+          "French": "Pierre Sinnoh",
+          "Italian": "Pietra Sinnoh",
+          "Japanese": "シンオウのいし",
+          "Korean": "신오의 돌",
+          "Spanish": "Piedra Sinnoh"
+        }
+      },
+      "quests": []
+    },
+    {
+      "targetFormId": "GARDEVOIR_DYNAMAX",
+      "candies": 100,
+      "item": null,
+      "quests": []
+    }
+  ]
+}

@@ -29,6 +29,143 @@
     "Korean": "크레세리아",
     "Spanish": "Cresselia"
   },
+  "size": {
+    "height": 1.5,
+    "weight": 85.6
+  },
+  "weatherBoost": [
+    "windy"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 3230,
+    "maxLevel40": 2857,
+    "weatherBoostLevel25": 2041,
+    "raidLevel20": 1633,
+    "researchLevel15": 1224
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "attack": 2,
+          "defense": 15,
+          "stamina": 13
+        },
+        "level": 20,
+        "cp": 1500
+      },
+      "bestMovesets": {
+        "fast": "PSYCHO_CUT_FAST",
+        "charged": [
+          "GRASS_KNOT",
+          "MOONBLAST"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "S",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 13,
+          "stamina": 15
+        },
+        "level": 37.5,
+        "cp": 2499
+      },
+      "bestMovesets": {
+        "fast": "PSYCHO_CUT_FAST",
+        "charged": [
+          "GRASS_KNOT",
+          "MOONBLAST"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 3230
+      },
+      "bestMovesets": {
+        "fast": "CONFUSION_FAST",
+        "charged": [
+          "MOONBLAST",
+          "GRASS_KNOT"
+        ]
+      }
+    }
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2024-08-08",
+    "purificationCost": {
+      "stardust": 20000,
+      "candy": 20
+    },
+    "catchCp": {
+      "normal": {
+        "min": 554,
+        "max": 644
+      },
+      "weatherBoosted": {
+        "min": 951,
+        "max": 1061
+      }
+    },
+    "variants": [
+      {
+        "name": "Cresselia",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 554,
+            "max": 644
+          },
+          "weatherBoosted": {
+            "min": 951,
+            "max": 1061
+          }
+        },
+        "purificationCost": {
+          "stardust": 20000,
+          "candy": 20
+        },
+        "releaseDate": "2024-08-08",
+        "releaseDateText": "August 8, 2024"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 260,
     "attack": 152,
@@ -69,7 +206,64 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0488_000_fo_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_GoFest2023_london",
+        "name": "GO Fest London",
+        "type": "location",
+        "date": "August 4th - August 6th 2023",
+        "eligibleForms": [
+          "Cresselia"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2023_london.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_GoFest2023_newyork",
+        "name": "GO Fest New York City",
+        "type": "location",
+        "date": "August 18th - August 20th 2023",
+        "eligibleForms": [
+          "Cresselia"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2023_newyork.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_GoFest2023_osaka",
+        "name": "GO Fest Osaka",
+        "type": "location",
+        "date": "August 4th - August 6th 2023",
+        "eligibleForms": [
+          "Cresselia"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2023_osaka.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_nagasaki2025",
+        "name": "GO Wild Area Nagasaki",
+        "type": "location",
+        "date": "November 7th - 9th 2025",
+        "eligibleForms": [
+          "Cresselia"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_nagasaki2025.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GOWA2025_Global",
+        "name": "GO Wild Area 2025",
+        "type": "special",
+        "date": "November 15th - 16th 2025",
+        "eligibleForms": [
+          "Cresselia"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GOWA2025_Global.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

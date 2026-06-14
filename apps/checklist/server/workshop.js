@@ -8,6 +8,7 @@ const notesFile = path.join(rootDir, ".checklist-notes.json");
 const reviewsFile = path.join(rootDir, ".checklist-image-reviews.json");
 const hdDir = path.join(rootDir, "asset", "HD");
 const typesFile = path.join(rootDir, "data", "types", "types.json");
+const stickersFile = path.join(rootDir, "data", "stickers", "stickers.json");
 const movesDir = path.join(rootDir, "data", "moves");
 const remoteHd =
   "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd";
@@ -207,6 +208,7 @@ function listFiles(directory) {
 function catalog() {
   return {
     types: readJson(typesFile, []),
+    stickers: readJson(stickersFile, []),
     moves: listFiles(movesDir)
       .map((file) => readJson(file))
       .filter(Boolean)

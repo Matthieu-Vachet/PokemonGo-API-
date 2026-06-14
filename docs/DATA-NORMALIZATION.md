@@ -45,9 +45,12 @@ uniquement l'identifiant court :
 objets `{ "type": "POKEMON_TYPE_GRASS", "names": {} }`, mais les migrations ecrivent le
 format normalise.
 
-Chaque entree de `data/types/types.json` possede un `id` technique stable et un `slug`
+Chaque entrée possède un fichier `data/types/<slug>.json`, un `id` technique stable et un `slug`
 public. Les attaques possedent aussi un `id` stable, un slug avec tirets et, si necessaire,
 `legacySlugs` pour garder les anciennes URL compatibles.
+
+`data/types/types.json` reste généré comme index de compatibilité. Les nouveaux outils
+lisent les fichiers individuels afin qu'un type puisse être modifié sans toucher les 17 autres.
 
 ## PvP Nullable
 

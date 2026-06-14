@@ -29,6 +29,107 @@
     "Korean": "치코리타",
     "Spanish": "Chikorita"
   },
+  "size": {
+    "height": 0.89,
+    "weight": 6.4
+  },
+  "weatherBoost": [
+    "sunny"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 25,
+    "stardust": 10000
+  },
+  "maxCp": {
+    "maxLevel50": 1057,
+    "maxLevel40": 935,
+    "weatherBoostLevel25": 668,
+    "raidLevel20": 534,
+    "researchLevel15": 400
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 14,
+          "stamina": 13
+        },
+        "level": 22,
+        "cp": 500
+      },
+      "bestMovesets": {
+        "fast": "VINE_WHIP_FAST",
+        "charged": [
+          "BODY_SLAM",
+          "GRASS_KNOT"
+        ]
+      }
+    },
+    "greatLeague": null,
+    "ultraLeague": null,
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2022-01-24",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 161,
+        "max": 210
+      },
+      "weatherBoosted": {
+        "min": 287,
+        "max": 347
+      }
+    },
+    "variants": [
+      {
+        "name": "Chikorita",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 161,
+            "max": 210
+          },
+          "weatherBoosted": {
+            "min": 287,
+            "max": 347
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2022-01-24",
+        "releaseDateText": "January 24, 2022"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 128,
     "attack": 92,
@@ -68,7 +169,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0152_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_Season20_TalesOfTransformation",
+        "name": "Tales of Transformation",
+        "type": "special",
+        "date": "September 14th - December 2nd 2025",
+        "eligibleForms": [
+          "Chikorita"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_Season20_TalesOfTransformation.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

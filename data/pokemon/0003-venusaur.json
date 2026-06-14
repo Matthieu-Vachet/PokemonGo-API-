@@ -40,14 +40,21 @@
   "buddyDistance": 3,
   "catchRate": 20,
   "fleeRate": 0,
+  "megaEnergyReward": 15,
   "captureRewards": {
     "candy": 10,
     "stardust": 500
   },
-  "megaEnergyReward": 15,
   "secondChargeMoveCost": {
     "candy": 25,
     "stardust": 10000
+  },
+  "maxCp": {
+    "maxLevel50": 3075,
+    "maxLevel40": 2720,
+    "weatherBoostLevel25": 1943,
+    "raidLevel20": 1554,
+    "researchLevel15": 1166
   },
   "availability": {
     "released": true,
@@ -57,25 +64,17 @@
     "shadow": true,
     "dynamax": true,
     "gigantamax": true,
-    "mega": true,
     "apex": false
-  },
-  "maxCp": {
-    "maxLevel50": 3075,
-    "maxLevel40": 2720,
-    "weatherBoostLevel25": 1943,
-    "raidLevel20": 1554,
-    "researchLevel15": 1166
   },
   "pvp": {
     "littleCup": null,
     "greatLeague": {
-      "tierRank": "A",
+      "tierRank": "B",
       "rank1": {
         "ivs": {
           "attack": 0,
-          "defense": 13,
-          "stamina": 12
+          "defense": 14,
+          "stamina": 11
         },
         "level": 21,
         "cp": 1498
@@ -83,32 +82,32 @@
       "bestMovesets": {
         "fast": "VINE_WHIP_FAST",
         "charged": [
-          "FENZY_PLANT",
+          "FRENZY_PLANT",
           "SLUDGE"
         ]
       }
     },
     "ultraLeague": {
-      "tierRank": "A",
+      "tierRank": "B",
       "rank1": {
         "ivs": {
-          "attack": 0,
-          "defense": 14,
+          "attack": 1,
+          "defense": 15,
           "stamina": 14
         },
-        "level": 39.5,
-        "cp": 2498
+        "level": 39,
+        "cp": 2499
       },
       "bestMovesets": {
         "fast": "VINE_WHIP_FAST",
         "charged": [
-          "FENZY_PLANT",
+          "FRENZY_PLANT",
           "SLUDGE"
         ]
       }
     },
     "masterLeague": {
-      "tierRank": "D",
+      "tierRank": "C",
       "rank1": {
         "ivs": {
           "attack": 15,
@@ -121,11 +120,52 @@
       "bestMovesets": {
         "fast": "VINE_WHIP_FAST",
         "charged": [
-          "FENZY_PLANT",
+          "FRENZY_PLANT",
           "SLUDGE"
         ]
       }
     }
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2019-07-22",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 528,
+        "max": 613
+      },
+      "weatherBoosted": {
+        "min": 906,
+        "max": 1010
+      }
+    },
+    "variants": [
+      {
+        "name": "Venusaur",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 528,
+            "max": 613
+          },
+          "weatherBoosted": {
+            "min": 906,
+            "max": 1010
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2019-07-22",
+        "releaseDateText": "July 22, 2019"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
   },
   "stats": {
     "stamina": 190,
@@ -198,7 +238,31 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0003_001_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoFest2025_Eternatus",
+        "name": "Dark Skies",
+        "type": "special",
+        "date": "August 18th - 24th 2025",
+        "eligibleForms": [
+          "Venusaur"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoTour2026_mega",
+        "name": "GO Tour 2026 Mega",
+        "type": "special",
+        "date": "February 23rd - February 27th 2026",
+        "eligibleForms": [
+          "Venusaur"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_mega.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],
@@ -247,7 +311,9 @@
       "energyCost": 200,
       "assets": {
         "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm3.fMEGA.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm3.fMEGA.s.icon.png"
+        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm3.fMEGA.s.icon.png",
+        "portrait": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/MegaPortraits/mega_portrait_3_MEGA.png",
+        "portraitShiny": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/MegaPortraits/mega_portrait_3_MEGA.s.png"
       },
       "baseFormId": "VENUSAUR"
     }

@@ -29,6 +29,126 @@
     "Korean": "야돈",
     "Spanish": "Slowpoke"
   },
+  "size": {
+    "height": 1.2,
+    "weight": 36
+  },
+  "weatherBoost": [
+    "rain",
+    "windy"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": 15,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 1386,
+    "maxLevel40": 1226,
+    "weatherBoostLevel25": 876,
+    "raidLevel20": 700,
+    "researchLevel15": 525
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 2,
+          "defense": 15,
+          "stamina": 14
+        },
+        "level": 16,
+        "cp": 500
+      },
+      "bestMovesets": {
+        "fast": "CONFUSION_FAST",
+        "charged": [
+          "PSYSHOCK",
+          "WATER_PULSE"
+        ]
+      }
+    },
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 1386
+      },
+      "bestMovesets": {
+        "fast": "CONFUSION_FAST",
+        "charged": [
+          "PSYSHOCK",
+          "WATER_PULSE"
+        ]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2020-10-12",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 218,
+        "max": 276
+      },
+      "weatherBoosted": {
+        "min": 384,
+        "max": 455
+      }
+    },
+    "variants": [
+      {
+        "name": "Slowpoke",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 218,
+            "max": 276
+          },
+          "weatherBoosted": {
+            "min": 384,
+            "max": 455
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2020-10-12",
+        "releaseDateText": "October 12, 2020"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 207,
     "attack": 109,
@@ -77,7 +197,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0079_001_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_TokMun_shinagawa",
+        "name": "GO Fest Tokyo Shinagawa",
+        "type": "location",
+        "date": "May 28th - May 31st 2026",
+        "eligibleForms": [
+          "Slowpoke"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_TokMun_shinagawa.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": {
     "SLOWPOKE_GALARIAN": {

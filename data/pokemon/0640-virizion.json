@@ -29,6 +29,85 @@
     "Korean": "비리디온",
     "Spanish": "Virizion"
   },
+  "size": {
+    "height": 2,
+    "weight": 200
+  },
+  "weatherBoost": [
+    "sunny",
+    "cloudy"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 3417,
+    "maxLevel40": 3022,
+    "weatherBoostLevel25": 2159,
+    "raidLevel20": 1727,
+    "researchLevel15": 1295
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": null,
+    "ultraLeague": {
+      "tierRank": "S",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 14,
+          "stamina": 15
+        },
+        "level": 32.5,
+        "cp": 2498
+      },
+      "bestMovesets": {
+        "fast": "DOUBLE_KICK_FAST",
+        "charged": [
+          "LEAF_BLADE",
+          "SACRED_SWORD"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 3417
+      },
+      "bestMovesets": {
+        "fast": "DOUBLE_KICK_FAST",
+        "charged": [
+          "LEAF_BLADE",
+          "SACRED_SWORD"
+        ]
+      }
+    }
+  },
   "stats": {
     "stamina": 209,
     "attack": 192,
@@ -70,7 +149,31 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0640_000_uk_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoTour2025_black",
+        "name": "GO Tour Unova Black",
+        "type": "special",
+        "date": "March 1st - 2nd 2025",
+        "eligibleForms": [
+          "Virizion"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_black.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoTour2025_white",
+        "name": "GO Tour Unova White",
+        "type": "special",
+        "date": "March 1st - 2nd 2025",
+        "eligibleForms": [
+          "Virizion"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_white.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

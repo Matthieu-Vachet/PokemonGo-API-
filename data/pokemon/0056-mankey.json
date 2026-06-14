@@ -29,6 +29,107 @@
     "Korean": "망키",
     "Spanish": "Mankey"
   },
+  "size": {
+    "height": 0.5,
+    "weight": 28
+  },
+  "weatherBoost": [
+    "cloudy"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 1317,
+    "maxLevel40": 1164,
+    "weatherBoostLevel25": 832,
+    "raidLevel20": 665,
+    "researchLevel15": 499
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 1317
+      },
+      "bestMovesets": {
+        "fast": "KARATE_CHOP_FAST",
+        "charged": [
+          "CROSS_CHOP",
+          "BRICK_BREAK"
+        ]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2024-10-08",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 125,
+        "max": 168
+      },
+      "weatherBoosted": {
+        "min": 224,
+        "max": 278
+      }
+    },
+    "variants": [
+      {
+        "name": "Mankey",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 125,
+            "max": 168
+          },
+          "weatherBoosted": {
+            "min": 224,
+            "max": 278
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2024-10-08",
+        "releaseDateText": "October 8, 2024"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 120,
     "attack": 148,
@@ -67,7 +168,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0056_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_2024_decemberCdRecap",
+        "name": "Community Day 2024",
+        "type": "special",
+        "date": "December 21st - 22nd 2024",
+        "eligibleForms": [
+          "Mankey"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_2024_decemberCdRecap.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

@@ -29,6 +29,107 @@
     "Korean": "알통몬",
     "Spanish": "Machop"
   },
+  "size": {
+    "height": 0.8,
+    "weight": 19.5
+  },
+  "weatherBoost": [
+    "cloudy"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 1445,
+    "maxLevel40": 1278,
+    "weatherBoostLevel25": 913,
+    "raidLevel20": 730,
+    "researchLevel15": 548
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": true,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 1445
+      },
+      "bestMovesets": {
+        "fast": "KARATE_CHOP_FAST",
+        "charged": [
+          "CROSS_CHOP",
+          "BRICK_BREAK"
+        ]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2020-06-10",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 229,
+        "max": 288
+      },
+      "weatherBoosted": {
+        "min": 402,
+        "max": 474
+      }
+    },
+    "variants": [
+      {
+        "name": "Machop",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 229,
+            "max": 288
+          },
+          "weatherBoosted": {
+            "min": 402,
+            "max": 474
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2020-06-10",
+        "releaseDateText": "June 10, 2020"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 172,
     "attack": 137,
@@ -69,7 +170,31 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0066_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoFest2025_Eternatus",
+        "name": "Dark Skies",
+        "type": "special",
+        "date": "August 18th - 24th 2025",
+        "eligibleForms": [
+          "Machop"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_Season18_MightAndMastery",
+        "name": "Might and Mastery",
+        "type": "special",
+        "date": "March 8th 2025March 22nd 2025April 27th 2025May 11th 2025May 24th 2025",
+        "eligibleForms": [
+          "Machop"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_Season18_MightAndMastery.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

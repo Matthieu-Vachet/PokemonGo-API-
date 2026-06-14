@@ -29,6 +29,125 @@
     "Korean": "그란돈",
     "Spanish": "Groudon"
   },
+  "size": {
+    "height": 3.51,
+    "weight": 950
+  },
+  "weatherBoost": [
+    "sunny"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": 100,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 4652,
+    "maxLevel40": 4115,
+    "weatherBoostLevel25": 2939,
+    "raidLevel20": 2351,
+    "researchLevel15": 1764
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": null,
+    "ultraLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 13
+        },
+        "level": 22.5,
+        "cp": 2495
+      },
+      "bestMovesets": {
+        "fast": "MUD_SHOT_FAST",
+        "charged": [
+          "PRECIPICE_BLADES",
+          "FIRE_PUNCH"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 4652
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_TAIL_FAST",
+        "charged": [
+          "FIRE_PUNCH",
+          "PRECIPICE_BLADES"
+        ]
+      }
+    }
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2024-03-27",
+    "purificationCost": {
+      "stardust": 20000,
+      "candy": 20
+    },
+    "catchCp": {
+      "normal": {
+        "min": 821,
+        "max": 927
+      },
+      "weatherBoosted": {
+        "min": 1399,
+        "max": 1528
+      }
+    },
+    "variants": [
+      {
+        "name": "Groudon",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 821,
+            "max": 927
+          },
+          "weatherBoosted": {
+            "min": 1399,
+            "max": 1528
+          }
+        },
+        "purificationCost": {
+          "stardust": 20000,
+          "candy": 20
+        },
+        "releaseDate": "2024-03-27",
+        "releaseDateText": "March 27, 2024"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 205,
     "attack": 270,
@@ -80,7 +199,64 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0383_001_uk_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_GoFest2026_chicago",
+        "name": "GO Fest 2026 Chicago",
+        "type": "location",
+        "date": "June 5th - 7th 2026",
+        "eligibleForms": [
+          "Groudon"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2026_chicago.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_GoFest2026_copenhagen",
+        "name": "GO Fest 2026 Copenhagen",
+        "type": "location",
+        "date": "June 12th - 14th 2026",
+        "eligibleForms": [
+          "Groudon"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2026_copenhagen.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_GoFest2026_tokyo",
+        "name": "GO Fest 2026 Tokyo",
+        "type": "location",
+        "date": "May 28th - May 31st 2026",
+        "eligibleForms": [
+          "Groudon"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2026_tokyo.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoTour2026_ruby",
+        "name": "GO Tour 2026 Ruby",
+        "type": "special",
+        "date": "February 23rd - February 27th 2026",
+        "eligibleForms": [
+          "Groudon"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_ruby.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GOWA_fukuoka",
+        "name": "GO Wild Area 2024",
+        "type": "special",
+        "date": "November 23rd - 24th 2024",
+        "eligibleForms": [
+          "Groudon"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GOWA_fukuoka.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],
@@ -108,7 +284,9 @@
       "energyCost": 400,
       "assets": {
         "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm383.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm383.s.icon.png"
+        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm383.s.icon.png",
+        "portrait": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/MegaPortraits/mega_portrait_383_PRIMAL.png",
+        "portraitShiny": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/MegaPortraits/mega_portrait_383_PRIMAL.s.png"
       },
       "baseFormId": "GROUDON",
       "formId": "GROUDON_PRIMAL"

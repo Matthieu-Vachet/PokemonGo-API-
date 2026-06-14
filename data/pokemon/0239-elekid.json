@@ -29,6 +29,66 @@
     "Korean": "에레키드",
     "Spanish": "Elekid"
   },
+  "size": {
+    "height": 0.61,
+    "weight": 23.5
+  },
+  "weatherBoost": [
+    "rain"
+  ],
+  "buddyDistance": 5,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 25,
+    "stardust": 10000
+  },
+  "maxCp": {
+    "maxLevel50": 1364,
+    "maxLevel40": 1206,
+    "weatherBoostLevel25": 861,
+    "raidLevel20": 689,
+    "researchLevel15": 517
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 1364
+      },
+      "bestMovesets": {
+        "fast": "THUNDER_SHOCK_FAST",
+        "charged": [
+          "THUNDER_PUNCH",
+          "BRICK_BREAK"
+        ]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
+  },
   "stats": {
     "stamina": 128,
     "attack": 135,
@@ -69,7 +129,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0239_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_TeamLeader_yellow",
+        "name": "Team Instinct",
+        "type": "special",
+        "date": "August 26th 2024 - August 30th",
+        "eligibleForms": [
+          "Elekid (Spark Accessory)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_TeamLeader_yellow.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

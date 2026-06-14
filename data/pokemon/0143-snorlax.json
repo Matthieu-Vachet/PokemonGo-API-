@@ -29,6 +29,163 @@
     "Korean": "잠만보",
     "Spanish": "Snorlax"
   },
+  "size": {
+    "height": 2.1,
+    "weight": 460
+  },
+  "weatherBoost": [
+    "partlyCloudy"
+  ],
+  "buddyDistance": 5,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 75,
+    "stardust": 75000
+  },
+  "maxCp": {
+    "maxLevel50": 3647,
+    "maxLevel40": 3225,
+    "weatherBoostLevel25": 2304,
+    "raidLevel20": 1843,
+    "researchLevel15": 1382
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": true,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 1,
+          "defense": 15,
+          "stamina": 14
+        },
+        "level": 17.5,
+        "cp": 1500
+      },
+      "bestMovesets": {
+        "fast": "LICK_FAST",
+        "charged": [
+          "BODY_SLAM",
+          "SUPER_POWER"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 12,
+          "stamina": 15
+        },
+        "level": 29.5,
+        "cp": 2499
+      },
+      "bestMovesets": {
+        "fast": "LICK_FAST",
+        "charged": [
+          "BODY_SLAM",
+          "EARTHQUAKE"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 3647
+      },
+      "bestMovesets": {
+        "fast": "LICK_FAST",
+        "charged": [
+          "BODY_SLAM",
+          "SUPER_POWER"
+        ]
+      }
+    }
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2019-07-22",
+    "purificationCost": {
+      "stardust": 5000,
+      "candy": 5
+    },
+    "catchCp": {
+      "normal": {
+        "min": 631,
+        "max": 727
+      },
+      "weatherBoosted": {
+        "min": 1081,
+        "max": 1198
+      }
+    },
+    "variants": [
+      {
+        "name": "Snorlax",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 631,
+            "max": 727
+          },
+          "weatherBoosted": {
+            "min": 1081,
+            "max": 1198
+          }
+        },
+        "purificationCost": {
+          "stardust": 5000,
+          "candy": 5
+        },
+        "releaseDate": "2019-07-22",
+        "releaseDateText": "July 22, 2019"
+      },
+      {
+        "name": "Snorlax",
+        "variant": "GOFest2022",
+        "catchCp": {
+          "normal": {
+            "min": 631,
+            "max": 727
+          },
+          "weatherBoosted": {
+            "min": 1081,
+            "max": 1198
+          }
+        },
+        "purificationCost": {
+          "stardust": 5000,
+          "candy": 5
+        },
+        "releaseDate": "2023-08-26",
+        "releaseDateText": "August 26, 2023"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 330,
     "attack": 190,
@@ -83,7 +240,31 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0143_000_mf_g_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoFest2025_Eternatus",
+        "name": "Dark Skies",
+        "type": "special",
+        "date": "August 18th - 24th 2025",
+        "eligibleForms": [
+          "Snorlax"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_pokopia2026",
+        "name": "Pokemon Pokopia",
+        "type": "special",
+        "date": "March 10th - March 16th 2026",
+        "eligibleForms": [
+          "Snorlax"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_pokopia2026.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

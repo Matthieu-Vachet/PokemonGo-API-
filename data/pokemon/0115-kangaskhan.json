@@ -29,6 +29,102 @@
     "Korean": "캥카",
     "Spanish": "Kangaskhan"
   },
+  "size": {
+    "height": 2.2,
+    "weight": 80
+  },
+  "weatherBoost": [
+    "partlyCloudy"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": 15,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 2924,
+    "maxLevel40": 2586,
+    "weatherBoostLevel25": 1847,
+    "raidLevel20": 1477,
+    "researchLevel15": 1108
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 14,
+          "stamina": 15
+        },
+        "level": 22,
+        "cp": 1497
+      },
+      "bestMovesets": {
+        "fast": "LOW_KICK_FAST",
+        "charged": [
+          "BRICK_BREAK",
+          "CRUNCH"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 13
+        },
+        "level": 44,
+        "cp": 2500
+      },
+      "bestMovesets": {
+        "fast": "LOW_KICK_FAST",
+        "charged": [
+          "POWER_UP_PUNCH",
+          "OUTRAGE"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "D",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 2924
+      },
+      "bestMovesets": {
+        "fast": "LOW_KICK_FAST",
+        "charged": [
+          "BRICK_BREAK",
+          "CRUNCH"
+        ]
+      }
+    }
+  },
   "stats": {
     "stamina": 233,
     "attack": 181,
@@ -81,7 +177,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0115_001_fo_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoTour2026_mega",
+        "name": "GO Tour 2026 Mega",
+        "type": "special",
+        "date": "February 23rd - February 27th 2026",
+        "eligibleForms": [
+          "Kangaskhan"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_mega.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],
@@ -110,7 +219,9 @@
       "energyCost": 200,
       "assets": {
         "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm115.fMEGA.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm115.fMEGA.s.icon.png"
+        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm115.fMEGA.s.icon.png",
+        "portrait": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/MegaPortraits/mega_portrait_115_MEGA.png",
+        "portraitShiny": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/MegaPortraits/mega_portrait_115_MEGA.s.png"
       },
       "baseFormId": "KANGASKHAN",
       "formId": "KANGASKHAN_MEGA"

@@ -29,6 +29,144 @@
     "Korean": "야도란",
     "Spanish": "Slowbro"
   },
+  "size": {
+    "height": 1.6,
+    "weight": 78.5
+  },
+  "weatherBoost": [
+    "rain",
+    "windy"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": 15,
+  "captureRewards": {
+    "candy": 5,
+    "stardust": 300
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 2877,
+    "maxLevel40": 2545,
+    "weatherBoostLevel25": 1817,
+    "raidLevel20": 1454,
+    "researchLevel15": 1090
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 13,
+          "stamina": 15
+        },
+        "level": 22.5,
+        "cp": 1500
+      },
+      "bestMovesets": {
+        "fast": "CONFUSION_FAST",
+        "charged": [
+          "DRAIN_PUNCH",
+          "ICE_BEAM"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 14,
+          "stamina": 14
+        },
+        "level": 45.5,
+        "cp": 2500
+      },
+      "bestMovesets": {
+        "fast": "CONFUSION_FAST",
+        "charged": [
+          "DRAIN_PUNCH",
+          "ICE_BEAM"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 2877
+      },
+      "bestMovesets": {
+        "fast": "CONFUSION_FAST",
+        "charged": [
+          "SURF",
+          "DRAIN_PUNCH"
+        ]
+      }
+    }
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2020-10-12",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 491,
+        "max": 573
+      },
+      "weatherBoosted": {
+        "min": 844,
+        "max": 945
+      }
+    },
+    "variants": [
+      {
+        "name": "Slowbro",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 491,
+            "max": 573
+          },
+          "weatherBoosted": {
+            "min": 844,
+            "max": 945
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2020-10-12",
+        "releaseDateText": "October 12, 2020"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 216,
     "attack": 177,
@@ -186,7 +324,9 @@
       "energyCost": 100,
       "assets": {
         "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm80.fMEGA.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm80.fMEGA.s.icon.png"
+        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm80.fMEGA.s.icon.png",
+        "portrait": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/MegaPortraits/mega_portrait_80_MEGA.png",
+        "portraitShiny": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/MegaPortraits/mega_portrait_80_MEGA.s.png"
       },
       "baseFormId": "SLOWBRO",
       "formId": "SLOWBRO_MEGA"

@@ -29,6 +29,85 @@
     "Korean": "투구",
     "Spanish": "Kabuto"
   },
+  "size": {
+    "height": 0.5,
+    "weight": 11.5
+  },
+  "weatherBoost": [
+    "partlyCloudy",
+    "rain"
+  ],
+  "buddyDistance": 5,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 75,
+    "stardust": 75000
+  },
+  "maxCp": {
+    "maxLevel50": 1549,
+    "maxLevel40": 1370,
+    "weatherBoostLevel25": 979,
+    "raidLevel20": 783,
+    "researchLevel15": 587
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": true,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 1,
+          "defense": 14,
+          "stamina": 15
+        },
+        "level": 14,
+        "cp": 499
+      },
+      "bestMovesets": {
+        "fast": "MUD_SHOT_FAST",
+        "charged": [
+          "ROCK_TOMB",
+          "ANCIENT_POWER"
+        ]
+      }
+    },
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 10,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 49.5,
+        "cp": 1493
+      },
+      "bestMovesets": {
+        "fast": "MUD_SHOT_FAST",
+        "charged": [
+          "AQUA_JET",
+          "ROCK_TOMB"
+        ]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
+  },
   "stats": {
     "stamina": 102,
     "attack": 148,
@@ -67,7 +146,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0140_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoFest2025_Eternatus",
+        "name": "Dark Skies",
+        "type": "special",
+        "date": "August 18th - 24th 2025",
+        "eligibleForms": [
+          "Kabuto"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

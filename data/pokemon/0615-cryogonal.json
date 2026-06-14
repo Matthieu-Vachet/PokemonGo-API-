@@ -29,6 +29,102 @@
     "Korean": "프리지오",
     "Spanish": "Cryogonal"
   },
+  "size": {
+    "height": 1.1,
+    "weight": 148
+  },
+  "weatherBoost": [
+    "snow"
+  ],
+  "buddyDistance": 5,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 75,
+    "stardust": 75000
+  },
+  "maxCp": {
+    "maxLevel50": 3163,
+    "maxLevel40": 2798,
+    "weatherBoostLevel25": 1998,
+    "raidLevel20": 1598,
+    "researchLevel15": 1199
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": true,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 14,
+          "stamina": 11
+        },
+        "level": 20.5,
+        "cp": 1500
+      },
+      "bestMovesets": {
+        "fast": "ICE_SHARD_FAST",
+        "charged": [
+          "TRIPLE_AXEL",
+          "NIGHT_SLASH"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 37.5,
+        "cp": 2500
+      },
+      "bestMovesets": {
+        "fast": "ICE_SHARD_FAST",
+        "charged": [
+          "NIGHT_SLASH",
+          "TRIPLE_AXEL"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 3163
+      },
+      "bestMovesets": {
+        "fast": "ICE_SHARD_FAST",
+        "charged": [
+          "TRIPLE_AXEL",
+          "NIGHT_SLASH"
+        ]
+      }
+    }
+  },
   "stats": {
     "stamina": 190,
     "attack": 190,
@@ -69,7 +165,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0615_000_uk_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoFest2025_Eternatus",
+        "name": "Dark Skies",
+        "type": "special",
+        "date": "August 18th - 24th 2025",
+        "eligibleForms": [
+          "Cryogonal"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

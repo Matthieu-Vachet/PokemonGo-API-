@@ -29,6 +29,107 @@
     "Korean": "유니란",
     "Spanish": "Solosis"
   },
+  "size": {
+    "height": 0.3,
+    "weight": 1
+  },
+  "weatherBoost": [
+    "windy"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 1546,
+    "maxLevel40": 1367,
+    "weatherBoostLevel25": 977,
+    "raidLevel20": 781,
+    "researchLevel15": 586
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "D",
+      "rank1": {
+        "ivs": {
+          "attack": 9,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 1496
+      },
+      "bestMovesets": {
+        "fast": "HIDDEN_POWER_FAST",
+        "charged": [
+          "PSYSHOCK",
+          "NIGHT_SHADE"
+        ]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2024-03-27",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 246,
+        "max": 308
+      },
+      "weatherBoosted": {
+        "min": 432,
+        "max": 508
+      }
+    },
+    "variants": [
+      {
+        "name": "Solosis",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 246,
+            "max": 308
+          },
+          "weatherBoosted": {
+            "min": 432,
+            "max": 508
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2024-03-27",
+        "releaseDateText": "March 27, 2024"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 128,
     "attack": 170,
@@ -67,7 +168,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0577_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_Season20_TalesOfTransformation",
+        "name": "Tales of Transformation",
+        "type": "special",
+        "date": "September 14th - December 2nd 2025",
+        "eligibleForms": [
+          "Solosis"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_Season20_TalesOfTransformation.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

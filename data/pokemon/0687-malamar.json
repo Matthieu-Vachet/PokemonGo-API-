@@ -29,6 +29,126 @@
     "Korean": "칼라마네로",
     "Spanish": "Malamar"
   },
+  "size": {
+    "height": 1.5,
+    "weight": 47
+  },
+  "weatherBoost": [
+    "fog",
+    "windy"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": 15,
+  "captureRewards": {
+    "candy": 5,
+    "stardust": 300
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 2667,
+    "maxLevel40": 2359,
+    "weatherBoostLevel25": 1685,
+    "raidLevel20": 1347,
+    "researchLevel15": 1011
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": true,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "S",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 9
+        },
+        "level": 24.5,
+        "cp": 1500
+      },
+      "bestMovesets": {
+        "fast": "PSYWAVE_FAST",
+        "charged": [
+          "SUPER_POWER",
+          "FOUL_PLAY"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "S",
+      "rank1": {
+        "ivs": {
+          "attack": 3,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 2500
+      },
+      "bestMovesets": {
+        "fast": "PSYWAVE_FAST",
+        "charged": [
+          "FOUL_PLAY",
+          "SUPER_POWER"
+        ]
+      }
+    },
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2025-05-14",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 555,
+        "max": 643
+      },
+      "weatherBoosted": {
+        "min": 952,
+        "max": 1060
+      }
+    },
+    "variants": [
+      {
+        "name": "Malamar",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 555,
+            "max": 643
+          },
+          "weatherBoosted": {
+            "min": 952,
+            "max": 1060
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2025-05-14",
+        "releaseDateText": "May 14, 2025"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 200,
     "attack": 177,
@@ -69,7 +189,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0687_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoTour2026_mega",
+        "name": "GO Tour 2026 Mega",
+        "type": "special",
+        "date": "February 23rd - February 27th 2026",
+        "eligibleForms": [
+          "Malamar"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_mega.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

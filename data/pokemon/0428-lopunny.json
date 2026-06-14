@@ -29,6 +29,84 @@
     "Korean": "이어롭",
     "Spanish": "Lopunny"
   },
+  "size": {
+    "height": 1.2,
+    "weight": 33.3
+  },
+  "weatherBoost": [
+    "partlyCloudy"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": 15,
+  "captureRewards": {
+    "candy": 5,
+    "stardust": 300
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 2328,
+    "maxLevel40": 2059,
+    "weatherBoostLevel25": 1471,
+    "raidLevel20": 1177,
+    "researchLevel15": 882
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 14
+        },
+        "level": 28,
+        "cp": 1499
+      },
+      "bestMovesets": {
+        "fast": "LOW_KICK_FAST",
+        "charged": [
+          "THUNDER_PUNCH",
+          "SHADOW_BALL"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 2328
+      },
+      "bestMovesets": {
+        "fast": "DOUBLE_KICK_FAST",
+        "charged": [
+          "THUNDER_PUNCH",
+          "SHADOW_BALL"
+        ]
+      }
+    },
+    "masterLeague": null
+  },
   "stats": {
     "stamina": 163,
     "attack": 156,
@@ -108,7 +186,9 @@
       "energyCost": 200,
       "assets": {
         "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm428.fMEGA.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm428.fMEGA.s.icon.png"
+        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm428.fMEGA.s.icon.png",
+        "portrait": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/MegaPortraits/mega_portrait_428_MEGA.png",
+        "portraitShiny": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/MegaPortraits/mega_portrait_428_MEGA.s.png"
       },
       "baseFormId": "LOPUNNY",
       "formId": "LOPUNNY_MEGA"

@@ -29,6 +29,67 @@
     "Korean": "단칼빙",
     "Spanish": "Honedge"
   },
+  "size": {
+    "height": 0.8,
+    "weight": 2
+  },
+  "weatherBoost": [
+    "snow",
+    "fog"
+  ],
+  "buddyDistance": 5,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 75,
+    "stardust": 75000
+  },
+  "maxCp": {
+    "maxLevel50": 1571,
+    "maxLevel40": 1390,
+    "weatherBoostLevel25": 993,
+    "raidLevel20": 794,
+    "researchLevel15": 595
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": false,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 8,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 1498
+      },
+      "bestMovesets": {
+        "fast": "PSYCHO_CUT_FAST",
+        "charged": [
+          "GYRO_BALL",
+          "IRON_HEAD"
+        ]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
+  },
   "stats": {
     "stamina": 128,
     "attack": 135,
@@ -66,7 +127,53 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0679_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_GoTour2026_losAngeles",
+        "name": "GO Tour 2026 Los Angeles",
+        "type": "location",
+        "date": "February 21st - 22nd 2026",
+        "eligibleForms": [
+          "Honedge"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoTour2026_losAngeles.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_GoTour2026_tainan",
+        "name": "GO Tour 2026 Tainan",
+        "type": "location",
+        "date": "February 21st - 22nd 2026",
+        "eligibleForms": [
+          "Honedge"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoTour2026_tainan.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoTour2026_x",
+        "name": "GO Tour 2026 X",
+        "type": "special",
+        "date": "February 23rd - February 27th 2026",
+        "eligibleForms": [
+          "Honedge"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_x.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoTour2026_y",
+        "name": "GO Tour 2026 Y",
+        "type": "special",
+        "date": "February 23rd - February 27th 2026",
+        "eligibleForms": [
+          "Honedge"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_y.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

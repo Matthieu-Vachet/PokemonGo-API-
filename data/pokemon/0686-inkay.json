@@ -29,6 +29,90 @@
     "Korean": "오케이징",
     "Spanish": "Inkay"
   },
+  "size": {
+    "height": 0.4,
+    "weight": 3.5
+  },
+  "weatherBoost": [
+    "fog",
+    "windy"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": 15,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 1048,
+    "maxLevel40": 927,
+    "weatherBoostLevel25": 662,
+    "raidLevel20": 529,
+    "researchLevel15": 397
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": true,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": null,
+    "ultraLeague": null,
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2025-05-14",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 212,
+        "max": 268
+      },
+      "weatherBoosted": {
+        "min": 373,
+        "max": 441
+      }
+    },
+    "variants": [
+      {
+        "name": "Inkay",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 212,
+            "max": 268
+          },
+          "weatherBoosted": {
+            "min": 373,
+            "max": 441
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2025-05-14",
+        "releaseDateText": "May 14, 2025"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 142,
     "attack": 98,
@@ -67,7 +151,31 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0686_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_GoTour2026_losAngeles",
+        "name": "GO Tour 2026 Los Angeles",
+        "type": "location",
+        "date": "February 21st - 22nd 2026",
+        "eligibleForms": [
+          "Inkay"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoTour2026_losAngeles.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_GoTour2026_tainan",
+        "name": "GO Tour 2026 Tainan",
+        "type": "location",
+        "date": "February 21st - 22nd 2026",
+        "eligibleForms": [
+          "Inkay"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoTour2026_tainan.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

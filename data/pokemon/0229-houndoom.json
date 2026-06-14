@@ -29,6 +29,126 @@
     "Korean": "헬가",
     "Spanish": "Houndoom"
   },
+  "size": {
+    "height": 1.4,
+    "weight": 35
+  },
+  "weatherBoost": [
+    "fog",
+    "sunny"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": 15,
+  "captureRewards": {
+    "candy": 5,
+    "stardust": 300
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 2979,
+    "maxLevel40": 2635,
+    "weatherBoostLevel25": 1882,
+    "raidLevel20": 1505,
+    "researchLevel15": 1129
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 13,
+          "stamina": 13
+        },
+        "level": 21.5,
+        "cp": 1499
+      },
+      "bestMovesets": {
+        "fast": "FIRE_FANG_FAST",
+        "charged": [
+          "FOUL_PLAY",
+          "FLAMETHROWER"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 14
+        },
+        "level": 41,
+        "cp": 2494
+      },
+      "bestMovesets": {
+        "fast": "SNARL_FAST",
+        "charged": [
+          "FOUL_PLAY",
+          "FLAMETHROWER"
+        ]
+      }
+    },
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2019-08-01",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 509,
+        "max": 594
+      },
+      "weatherBoosted": {
+        "min": 875,
+        "max": 978
+      }
+    },
+    "variants": [
+      {
+        "name": "Houndoom",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 509,
+            "max": 594
+          },
+          "weatherBoosted": {
+            "min": 875,
+            "max": 978
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2019-08-01",
+        "releaseDateText": "August 1, 2019"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 181,
     "attack": 224,
@@ -117,7 +237,9 @@
       "energyCost": 100,
       "assets": {
         "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm229.fMEGA.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm229.fMEGA.s.icon.png"
+        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm229.fMEGA.s.icon.png",
+        "portrait": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/MegaPortraits/mega_portrait_229_MEGA.png",
+        "portraitShiny": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/MegaPortraits/mega_portrait_229_MEGA.s.png"
       },
       "baseFormId": "HOUNDOOM",
       "formId": "HOUNDOOM_MEGA"

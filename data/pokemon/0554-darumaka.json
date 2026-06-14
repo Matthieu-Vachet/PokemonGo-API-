@@ -29,6 +29,125 @@
     "Korean": "달막화",
     "Spanish": "Darumaka"
   },
+  "size": {
+    "height": 0.6,
+    "weight": 37.5
+  },
+  "weatherBoost": [
+    "sunny"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 1630,
+    "maxLevel40": 1442,
+    "weatherBoostLevel25": 1030,
+    "raidLevel20": 823,
+    "researchLevel15": 618
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": true,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 13,
+          "stamina": 14
+        },
+        "level": 13.5,
+        "cp": 500
+      },
+      "bestMovesets": {
+        "fast": "FIRE_FANG_FAST",
+        "charged": [
+          "FIRE_PUNCH",
+          "FLAME_CHARGE"
+        ]
+      }
+    },
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 2,
+          "defense": 15,
+          "stamina": 14
+        },
+        "level": 50,
+        "cp": 1500
+      },
+      "bestMovesets": {
+        "fast": "FIRE_FANG_FAST",
+        "charged": [
+          "FIRE_PUNCH",
+          "FLAME_CHARGE"
+        ]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2024-03-27",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 262,
+        "max": 325
+      },
+      "weatherBoosted": {
+        "min": 458,
+        "max": 535
+      }
+    },
+    "variants": [
+      {
+        "name": "Darumaka",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 262,
+            "max": 325
+          },
+          "weatherBoosted": {
+            "min": 458,
+            "max": 535
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2024-03-27",
+        "releaseDateText": "March 27, 2024"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 172,
     "attack": 153,
@@ -76,7 +195,31 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0554_001_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoFest2025_Eternatus",
+        "name": "Dark Skies",
+        "type": "special",
+        "date": "August 18th - 24th 2025",
+        "eligibleForms": [
+          "Darumaka"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoTour2025_enigma",
+        "name": "GO Tour Enigma",
+        "type": "special",
+        "date": "February 21st - 23rd 2025",
+        "eligibleForms": [
+          "Darumaka"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_enigma.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": {
     "DARUMAKA_GALARIAN": {

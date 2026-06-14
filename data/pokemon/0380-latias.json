@@ -29,6 +29,143 @@
     "Korean": "라티아스",
     "Spanish": "Latias"
   },
+  "size": {
+    "height": 1.4,
+    "weight": 40
+  },
+  "weatherBoost": [
+    "windy"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": 100,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 3968,
+    "maxLevel40": 3510,
+    "weatherBoostLevel25": 2507,
+    "raidLevel20": 2006,
+    "researchLevel15": 1504
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": true,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 14,
+          "stamina": 14
+        },
+        "level": 16,
+        "cp": 1499
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_BREATH_FAST",
+        "charged": [
+          "AURA_SPHERE",
+          "MIST_BALL"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "attack": 1,
+          "defense": 15,
+          "stamina": 14
+        },
+        "level": 26.5,
+        "cp": 2498
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_BREATH_FAST",
+        "charged": [
+          "MIST_BALL",
+          "AURA_SPHERE"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 3968
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_BREATH_FAST",
+        "charged": [
+          "AURA_SPHERE",
+          "MIST_BALL"
+        ]
+      }
+    }
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2022-04-03",
+    "purificationCost": {
+      "stardust": 20000,
+      "candy": 20
+    },
+    "catchCp": {
+      "normal": {
+        "min": 694,
+        "max": 791
+      },
+      "weatherBoosted": {
+        "min": 1185,
+        "max": 1304
+      }
+    },
+    "variants": [
+      {
+        "name": "Latias",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 694,
+            "max": 791
+          },
+          "weatherBoosted": {
+            "min": 1185,
+            "max": 1304
+          }
+        },
+        "purificationCost": {
+          "stardust": 20000,
+          "candy": 20
+        },
+        "releaseDate": "2022-04-03",
+        "releaseDateText": "April 3, 2022"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 190,
     "attack": 228,
@@ -81,7 +218,86 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0380_001_fo_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_AirAdv2024_bali",
+        "name": "Air Adventures Bali",
+        "type": "location",
+        "date": "March 2nd - 3rd 2024",
+        "eligibleForms": [
+          "Latias"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_AirAdv2024_bali.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_AirAdv2024_jakarta",
+        "name": "Air Adventures Jakarta",
+        "type": "location",
+        "date": "September 21st - 22nd 2024",
+        "eligibleForms": [
+          "Latias"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_AirAdv2024_jakarta.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_JejuAirAdv2023",
+        "name": "Air Adventures Jeju Island",
+        "type": "location",
+        "date": "July 28th - 30th 2023",
+        "eligibleForms": [
+          "Latias"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_JejuAirAdv2023.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_AirAdv2024_surabaya",
+        "name": "Air Adventures Surabaya",
+        "type": "location",
+        "date": "May 11th - 12th 2024",
+        "eligibleForms": [
+          "Latias"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_AirAdv2024_surabaya.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_AirAdv2024_yogyakarta",
+        "name": "Air Adventures Yogyakarta",
+        "type": "location",
+        "date": "August 24th - 25th 2024",
+        "eligibleForms": [
+          "Latias"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_AirAdv2024_yogyakarta.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoFest2025_Eternatus",
+        "name": "Dark Skies",
+        "type": "special",
+        "date": "August 18th - 24th 2025",
+        "eligibleForms": [
+          "Latias"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoTour2026_mega",
+        "name": "GO Tour 2026 Mega",
+        "type": "special",
+        "date": "February 23rd - February 27th 2026",
+        "eligibleForms": [
+          "Latias"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_mega.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": {
     "LATIAS_S": {
@@ -202,7 +418,9 @@
       "energyCost": 300,
       "assets": {
         "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.fMEGA.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.fMEGA.s.icon.png"
+        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.fMEGA.s.icon.png",
+        "portrait": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/MegaPortraits/mega_portrait_380_MEGA.png",
+        "portraitShiny": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/MegaPortraits/mega_portrait_380_MEGA.s.png"
       },
       "baseFormId": "LATIAS",
       "formId": "LATIAS_MEGA"

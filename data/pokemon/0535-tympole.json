@@ -29,6 +29,66 @@
     "Korean": "동챙이",
     "Spanish": "Tympole"
   },
+  "size": {
+    "height": 0.5,
+    "weight": 4.5
+  },
+  "weatherBoost": [
+    "rain"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 948,
+    "maxLevel40": 839,
+    "weatherBoostLevel25": 599,
+    "raidLevel20": 479,
+    "researchLevel15": 359
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 10
+        },
+        "level": 24.5,
+        "cp": 500
+      },
+      "bestMovesets": {
+        "fast": "MUD_SHOT_FAST",
+        "charged": [
+          "MUD_BOMB",
+          "SLUDGE_WAVE"
+        ]
+      }
+    },
+    "greatLeague": null,
+    "ultraLeague": null,
+    "masterLeague": null
+  },
   "stats": {
     "stamina": 137,
     "attack": 98,
@@ -67,7 +127,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0535_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoTour2025_enigma",
+        "name": "GO Tour Enigma",
+        "type": "special",
+        "date": "February 21st - 23rd 2025",
+        "eligibleForms": [
+          "Tympole"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_enigma.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

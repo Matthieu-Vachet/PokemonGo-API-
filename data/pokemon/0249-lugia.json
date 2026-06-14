@@ -29,6 +29,163 @@
     "Korean": "루기아",
     "Spanish": "Lugia"
   },
+  "size": {
+    "height": 5.21,
+    "weight": 216
+  },
+  "weatherBoost": [
+    "windy"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 4186,
+    "maxLevel40": 3703,
+    "weatherBoostLevel25": 2645,
+    "raidLevel20": 2115,
+    "researchLevel15": 1587
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": true
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 11,
+          "stamina": 11
+        },
+        "level": 15.5,
+        "cp": 1500
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_TAIL_FAST",
+        "charged": [
+          "FLY",
+          "AEROBLAST"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 14,
+          "stamina": 15
+        },
+        "level": 25.5,
+        "cp": 2499
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_TAIL_FAST",
+        "charged": [
+          "AEROBLAST",
+          "FLY"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "S",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 4186
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_TAIL_FAST",
+        "charged": [
+          "AEROBLAST",
+          "FLY"
+        ]
+      }
+    }
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2021-11-09",
+    "purificationCost": {
+      "stardust": 20000,
+      "candy": 20
+    },
+    "catchCp": {
+      "normal": {
+        "min": 733,
+        "max": 834
+      },
+      "weatherBoosted": {
+        "min": 1252,
+        "max": 1375
+      }
+    },
+    "variants": [
+      {
+        "name": "Lugia",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 733,
+            "max": 834
+          },
+          "weatherBoosted": {
+            "min": 1252,
+            "max": 1375
+          }
+        },
+        "purificationCost": {
+          "stardust": 20000,
+          "candy": 20
+        },
+        "releaseDate": "2021-11-09",
+        "releaseDateText": "November 9, 2021"
+      },
+      {
+        "name": "Lugia",
+        "variant": "A",
+        "catchCp": {
+          "normal": {
+            "min": 733,
+            "max": 834
+          },
+          "weatherBoosted": {
+            "min": 1252,
+            "max": 1375
+          }
+        },
+        "purificationCost": {
+          "stardust": 5000,
+          "candy": 5
+        },
+        "releaseDate": "2022-03-26",
+        "releaseDateText": "March 26, 2022"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 235,
     "attack": 193,
@@ -70,7 +227,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0249_000_uk_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoTour2026_silver",
+        "name": "GO Tour 2026 Silver",
+        "type": "special",
+        "date": "February 23rd - February 27th 2026",
+        "eligibleForms": [
+          "Lugia"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_silver.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": {
     "LUGIA_S": {

@@ -29,6 +29,125 @@
     "Korean": "리아코",
     "Spanish": "Totodile"
   },
+  "size": {
+    "height": 0.61,
+    "weight": 9.5
+  },
+  "weatherBoost": [
+    "rain"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 25,
+    "stardust": 10000
+  },
+  "maxCp": {
+    "maxLevel50": 1279,
+    "maxLevel40": 1131,
+    "weatherBoostLevel25": 808,
+    "raidLevel20": 646,
+    "researchLevel15": 485
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 14
+        },
+        "level": 17.5,
+        "cp": 499
+      },
+      "bestMovesets": {
+        "fast": "WATER_GUN_FAST",
+        "charged": [
+          "CRUNCH",
+          "AQUA_JET"
+        ]
+      }
+    },
+    "greatLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 1279
+      },
+      "bestMovesets": {
+        "fast": "WATER_GUN_FAST",
+        "charged": [
+          "AQUA_JET",
+          "CRUNCH"
+        ]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2022-01-24",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 201,
+        "max": 255
+      },
+      "weatherBoosted": {
+        "min": 354,
+        "max": 420
+      }
+    },
+    "variants": [
+      {
+        "name": "Totodile",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 201,
+            "max": 255
+          },
+          "weatherBoosted": {
+            "min": 354,
+            "max": 420
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2022-01-24",
+        "releaseDateText": "January 24, 2022"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 137,
     "attack": 117,
@@ -67,7 +186,31 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0158_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_Season18_MightAndMastery",
+        "name": "Might and Mastery",
+        "type": "special",
+        "date": "March 8th 2025March 22nd 2025April 27th 2025May 11th 2025May 24th 2025",
+        "eligibleForms": [
+          "Totodile"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_Season18_MightAndMastery.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_Season20_TalesOfTransformation",
+        "name": "Tales of Transformation",
+        "type": "special",
+        "date": "September 14th - December 2nd 2025",
+        "eligibleForms": [
+          "Totodile"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_Season20_TalesOfTransformation.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

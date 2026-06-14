@@ -29,6 +29,66 @@
     "Korean": "나오하",
     "Spanish": "Sprigatito"
   },
+  "size": {
+    "height": 0.4,
+    "weight": 4.1
+  },
+  "weatherBoost": [
+    "sunny"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 25,
+    "stardust": 10000
+  },
+  "maxCp": {
+    "maxLevel50": 1147,
+    "maxLevel40": 1015,
+    "weatherBoostLevel25": 725,
+    "raidLevel20": 579,
+    "researchLevel15": 435
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 14
+        },
+        "level": 19.5,
+        "cp": 498
+      },
+      "bestMovesets": {
+        "fast": "LEAFAGE_FAST",
+        "charged": [
+          "GRASS_KNOT",
+          "ENERGY_BALL"
+        ]
+      }
+    },
+    "greatLeague": null,
+    "ultraLeague": null,
+    "masterLeague": null
+  },
   "stats": {
     "stamina": 120,
     "attack": 116,
@@ -67,7 +127,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0906_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_Season17_DuelDestiny",
+        "name": "Dual Destiny",
+        "type": "special",
+        "date": "January 5th 2025January 25th 2025February 9th 2025",
+        "eligibleForms": [
+          "Sprigatito"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_Season17_DuelDestiny.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

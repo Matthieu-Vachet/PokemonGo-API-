@@ -29,6 +29,107 @@
     "Korean": "으랏차",
     "Spanish": "Timburr"
   },
+  "size": {
+    "height": 0.6,
+    "weight": 12.5
+  },
+  "weatherBoost": [
+    "cloudy"
+  ],
+  "buddyDistance": 5,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 75,
+    "stardust": 75000
+  },
+  "maxCp": {
+    "maxLevel50": 1487,
+    "maxLevel40": 1315,
+    "weatherBoostLevel25": 939,
+    "raidLevel20": 751,
+    "researchLevel15": 563
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 1487
+      },
+      "bestMovesets": {
+        "fast": "LOW_KICK_FAST",
+        "charged": [
+          "BRICK_BREAK",
+          "ROCK_TOMB"
+        ]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2024-08-08",
+    "purificationCost": {
+      "stardust": 5000,
+      "candy": 5
+    },
+    "catchCp": {
+      "normal": {
+        "min": 236,
+        "max": 296
+      },
+      "weatherBoosted": {
+        "min": 415,
+        "max": 488
+      }
+    },
+    "variants": [
+      {
+        "name": "Timburr",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 236,
+            "max": 296
+          },
+          "weatherBoosted": {
+            "min": 415,
+            "max": 488
+          }
+        },
+        "purificationCost": {
+          "stardust": 5000,
+          "candy": 5
+        },
+        "releaseDate": "2024-08-08",
+        "releaseDateText": "August 8, 2024"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 181,
     "attack": 134,
@@ -67,7 +168,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0532_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoTour2025_enigma",
+        "name": "GO Tour Enigma",
+        "type": "special",
+        "date": "February 21st - 23rd 2025",
+        "eligibleForms": [
+          "Timburr"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_enigma.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

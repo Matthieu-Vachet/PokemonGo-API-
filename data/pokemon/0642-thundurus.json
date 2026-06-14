@@ -29,6 +29,90 @@
     "Korean": "볼트로스",
     "Spanish": "Thundurus"
   },
+  "size": {
+    "height": 1.5,
+    "weight": 61
+  },
+  "weatherBoost": [
+    "rain",
+    "windy"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 3782,
+    "maxLevel40": 3345,
+    "weatherBoostLevel25": 2389,
+    "raidLevel20": 1911,
+    "researchLevel15": 1433
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": null,
+    "ultraLeague": null,
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2026-01-23",
+    "purificationCost": {
+      "stardust": 20000,
+      "candy": 20
+    },
+    "catchCp": {
+      "normal": {
+        "min": 657,
+        "max": 754
+      },
+      "weatherBoosted": {
+        "min": 1125,
+        "max": 1242
+      }
+    },
+    "variants": [
+      {
+        "name": "Thundurus",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 657,
+            "max": 754
+          },
+          "weatherBoosted": {
+            "min": 1125,
+            "max": 1242
+          }
+        },
+        "purificationCost": {
+          "stardust": 20000,
+          "candy": 20
+        },
+        "releaseDate": "2026-01-23",
+        "releaseDateText": "January 23, 2026"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 188,
     "attack": 266,
@@ -78,7 +162,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0642_001_mo_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoTour2025_white",
+        "name": "GO Tour Unova White",
+        "type": "special",
+        "date": "March 1st - 2nd 2025",
+        "eligibleForms": [
+          "Thundurus (Therian Forme)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_white.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": {
     "THUNDURUS_INCARNATE": {

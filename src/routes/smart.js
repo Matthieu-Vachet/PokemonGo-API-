@@ -51,6 +51,7 @@ router.get(
         shiny: pokemon.data?.assets?.shinyImage || null,
         variants: pokemon.data?.assetForms || [],
         home: pokemon.data?.assets?.home || null,
+        backgrounds: pokemon.data?.assets?.locationCards || [],
       },
     });
   }),

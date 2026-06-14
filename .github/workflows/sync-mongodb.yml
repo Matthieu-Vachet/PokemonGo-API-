@@ -29,6 +29,8 @@ jobs:
 
       - run: npm ci
 
+      - run: npm run audit:weather
+
       - run: npm run sync
         env:
           NODE_ENV: production

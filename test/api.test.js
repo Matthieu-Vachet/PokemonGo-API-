@@ -3,6 +3,7 @@ const assert = require("node:assert/strict");
 const request = require("supertest");
 const { createApp } = require("../src/app");
 const { normalizeLeague } = require("../src/lib/pvp");
+const { normalizeWeatherId } = require("../src/lib/weather");
 const { buildPokemonFilter } = require("../src/services/pokemon-service");
 const { presentPokemon } = require("../src/services/pokemon-presenter");
 const { collectAllDocuments } = require("../src/sync/source-reader");
@@ -41,6 +42,8 @@ test("GET /api-docs.json fournit OpenAPI 3", async () => {
   assert.ok(response.body.paths["/api/v1/pokemon/{identifier}/shadow"]);
   assert.ok(response.body.paths["/api/v1/stickers"]);
   assert.ok(response.body.paths["/api/v1/stickers/{id}"]);
+  assert.ok(response.body.paths["/api/v1/weather"]);
+  assert.ok(response.body.paths["/api/v1/weather/{identifier}"]);
 });
 
 test("GET /api/v1/stickers expose le catalogue des stickers", async () => {
@@ -88,6 +91,7 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   assert.ok(data.pokemon.length >= 1000);
   assert.ok(data.moves.length >= 250);
   assert.equal(data.types.length, 18);
+  assert.equal(data.weather.length, 7);
   assert.equal(new Set(data.pokemon.map((pokemon) => pokemon.key)).size, data.pokemon.length);
   assert.ok(data.pokemon.every((pokemon) => Array.isArray(pokemon.data.quickMoves)));
   const bulbasaur = data.pokemon.find((pokemon) => pokemon.key === "BULBASAUR");
@@ -110,6 +114,26 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   const rookidee = data.pokemon.find((pokemon) => pokemon.key === "ROOKIDEE");
   assert.equal(rookidee.data.availability.shadow, false);
   assert.equal(rookidee.data.shadow, undefined);
+});
+
+test("les météos et leurs boosts de types sont normalisés", () => {
+  const data = collectAllDocuments();
+  const weatherByType = new Map(
+    data.weather.flatMap((weather) =>
+      weather.boostedTypes.map((type) => [type, weather.id]),
+    ),
+  );
+  for (const pokemon of data.pokemon) {
+    const expected = [
+      ...new Set(pokemon.types.map((type) => weatherByType.get(type)).filter(Boolean)),
+    ];
+    assert.deepEqual(pokemon.weatherBoost, expected, pokemon.key);
+  }
+  assert.equal(normalizeWeatherId("rainy"), "rain");
+  assert.equal(normalizeWeatherId("partyCloudy"), "partlyCloudy");
+  assert.deepEqual(buildPokemonFilter({ weather: "partly-cloudy" }).weatherBoost, {
+    $in: ["partlyCloudy"],
+  });
 });
 
 test("les types, PvP null et formes Max sont normalisés", () => {

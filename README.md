@@ -245,11 +245,13 @@ Les migrations de normalisation fonctionnent en simulation par defaut:
 
 ```bash
 npm run migrate:types
+npm run migrate:weather
 npm run migrate:type-assets
 npm run migrate:max-forms
 npm run migrate:identifiers
 npm run audit:moves
 npm run audit:identifiers
+npm run audit:weather
 npm run sync:dry
 ```
 
@@ -312,6 +314,7 @@ Les outils d'import et d'extraction manuels vivent dans `scripts/import/`.
 - Les quatre champs d'attaques des Pokemon sont des tableaux d'identifiants.
 - Les details des attaques vivent uniquement dans `data/moves/`, y compris `max/` et `gmax/`.
 - `primaryType`, `secondaryType` et `type` d'attaque utilisent les identifiants courts de `data/types/`, par exemple `"GRASS"`.
+- `weatherBoost` utilise uniquement les identifiants de `data/weather/`; les aliases comme `rainy` et `partyCloudy` sont normalises.
 - `pvp` peut valoir `null`; sinon les ligues `littleCup`, `greatLeague`, `ultraLeague` et `masterLeague` peuvent chacune valoir `null`.
 - `megaEnergyReward` peut valoir `null` lorsqu'il n'y a pas d'energie Mega a gagner.
 - Les evolutions pointent vers `targetFormId`; la cible peut ne pas encore exister si tu ajoutes les fiches au fur et a mesure.

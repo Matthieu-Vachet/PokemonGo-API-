@@ -140,7 +140,7 @@ Ces champs referencent les identifiants courts de `data/types/`.
 
 | Champ | Type | Description |
 | --- | --- | --- |
-| `weatherBoost` | string[] | Meteos qui boostent le Pokemon. |
+| `weatherBoost` | string[] | Identifiants canoniques de `data/weather/` derives des types du Pokemon. |
 | `buddyDistance` | number | Distance en km pour obtenir un bonbon. |
 | `catchRate` | number | Taux de capture de base. |
 | `fleeRate` | number | Taux de fuite de base. |

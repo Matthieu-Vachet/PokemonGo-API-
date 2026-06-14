@@ -1,7 +1,8 @@
 const express = require("express");
-const { Generation, Pokemon, Region, Type } = require("../models");
+const { Generation, Pokemon, Region, Type, Weather } = require("../models");
 const { asyncHandler } = require("../lib/async-handler");
 const { ApiError } = require("../lib/api-error");
+const { normalizeWeatherId } = require("../lib/weather");
 
 function catalogRouter(Model, field, pokemonField, normalize = (value) => value) {
   const router = express.Router();
@@ -40,4 +41,5 @@ module.exports = {
   generations: catalogRouter(Generation, "generation", "generation", Number),
   regions: catalogRouter(Region, "id", "regionId", (value) => String(value).toUpperCase()),
   types: catalogRouter(Type, "id", "types", (value) => String(value).toUpperCase()),
+  weather: catalogRouter(Weather, "id", "weatherBoost", normalizeWeatherId),
 };

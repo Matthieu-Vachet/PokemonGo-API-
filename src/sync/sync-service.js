@@ -6,6 +6,7 @@ const {
   Region,
   SyncRun,
   Type,
+  Weather,
 } = require("../models");
 const { env } = require("../config/env");
 const { clearCache } = require("../lib/cache");
@@ -68,6 +69,7 @@ function buildGlobalStats(data) {
       pokemon: data.pokemon.length,
       moves: data.moves.length,
       types: data.types.length,
+      weather: data.weather.length,
       regions: data.regions.length,
       generations: data.generations.length,
     },
@@ -77,6 +79,7 @@ function buildGlobalStats(data) {
     pokemonByType: countBy(data.pokemon, (item) => item.types),
     movesByKind: countBy(data.moves, (item) => item.kind),
     movesByType: countBy(data.moves, (item) => item.type),
+    pokemonByWeather: countBy(data.pokemon, (item) => item.weatherBoost),
   };
 }
 
@@ -85,6 +88,7 @@ async function rebuildIndexes() {
     Pokemon.syncIndexes(),
     Move.syncIndexes(),
     Type.syncIndexes(),
+    Weather.syncIndexes(),
     Region.syncIndexes(),
     Generation.syncIndexes(),
     GlobalStat.syncIndexes(),
@@ -102,14 +106,15 @@ async function syncAll({ dryRun = false } = {}) {
   try {
     // Remove obsolete constraints before writing, for example when the data model evolves.
     await rebuildIndexes();
-    const [pokemon, moves, types, regions, generations] = await Promise.all([
+    const [pokemon, moves, types, weather, regions, generations] = await Promise.all([
       writeCollection(Pokemon, data.pokemon, "key"),
       writeCollection(Move, data.moves, "id"),
       writeCollection(Type, data.types, "id"),
+      writeCollection(Weather, data.weather, "id"),
       writeCollection(Region, data.regions, "id"),
       writeCollection(Generation, data.generations, "id"),
     ]);
-    const changes = { pokemon, moves, types, regions, generations };
+    const changes = { pokemon, moves, types, weather, regions, generations };
     await GlobalStat.findOneAndUpdate(
       { key: "global" },
       { $set: { data: stats, generatedAt: new Date() } },

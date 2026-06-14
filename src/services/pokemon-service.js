@@ -1,5 +1,6 @@
 const { Pokemon } = require("../models");
 const { ApiError } = require("../lib/api-error");
+const { normalizeWeatherId } = require("../lib/weather");
 const { boolean, csv, pagination, sortFromQuery } = require("../lib/http");
 const {
   presentPokemon,
@@ -51,7 +52,7 @@ function buildPokemonFilter(query = {}) {
   const forms = csv(query.form).map((value) => value.toLowerCase());
   const kinds = csv(query.kind).map((value) => value.toLowerCase());
   const types = csv(query.type).map((value) => value.toUpperCase());
-  const weather = csv(query.weather);
+  const weather = csv(query.weather).map(normalizeWeatherId);
   const moves = csv(query.move).map((value) => value.toUpperCase());
 
   if (generations.length) filter.generation = { $in: generations };

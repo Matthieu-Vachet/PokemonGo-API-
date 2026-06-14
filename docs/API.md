@@ -137,6 +137,10 @@ Filtres disponibles :
 - `maxCpMin`, `maxCpMax`
 - `page`, `limit`, `sort`
 
+Le catalogue meteo est disponible via `GET /api/v1/weather` et
+`GET /api/v1/weather/{identifier}`. Les aliases historiques comme `rainy`,
+`partyCloudy` et le slug public `partly-cloudy` sont acceptes par les filtres.
+
 Une fiche dont `availability.shadow` vaut `true` expose aussi `data.shadow` avec
 la première date de sortie, le coût de purification, les Catch CP normal et
 boosté par la météo, ainsi que les variantes régionales, Apex ou costumées.

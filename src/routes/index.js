@@ -31,6 +31,7 @@ router.get("/", (_request, response) => {
         dynamax: "/api/v1/dynamax",
         gigantamax: "/api/v1/gigantamax",
         types: "/api/v1/types",
+        weather: "/api/v1/weather",
         regions: "/api/v1/regions",
         generations: "/api/v1/generations",
         compare: "/api/v1/compare/pokemon?ids=charizard,blastoise",
@@ -59,6 +60,7 @@ router.use("/dynamax", forms.dynamax);
 router.use("/gigantamax", forms.gigantamax);
 router.use("/regional", forms.regional);
 router.use("/types", catalogs.types);
+router.use("/weather", catalogs.weather);
 router.use("/regions", catalogs.regions);
 router.use("/generations", catalogs.generations);
 

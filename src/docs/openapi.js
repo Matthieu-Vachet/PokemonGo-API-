@@ -160,6 +160,7 @@ function createOpenApi() {
       ["PvP", "Classements, IV et movesets par ligue."],
       ["Attaques", "Attaques rapides, chargées et élite."],
       ["Types", "Types, faiblesses, résistances et Pokémon associés."],
+      ["Météo", "Conditions météo, traductions et types renforcés."],
       ["Régions", "Régions et Pokémon associés."],
       ["Générations", "Générations et Pokémon associés."],
       ["Comparaison", "Comparaison de Pokémon."],
@@ -329,6 +330,14 @@ function createOpenApi() {
         description: "Identifiant météo utilisé dans les JSON.",
         response: listResponse(),
       }),
+      [`${api}/weather`]: operation("Météo", "Lister les conditions météo", {
+        errors: false,
+        response: listResponse(),
+      }),
+      [`${api}/weather/{identifier}`]: detail("Météo", "Afficher une condition météo", "partly-cloudy", {
+        name: "identifier",
+        description: "ID, slug ou alias météo.",
+      }),
       [`${api}/assets/{identifier}`]: detail("Assets", "Afficher les images normales, shiny et variantes", "pikachu"),
       [`${api}/backgrounds`]: operation("Backgrounds", "Lister le catalogue des backgrounds", {
         parameters: [
@@ -470,7 +479,7 @@ function createOpenApi() {
     { name: "Commencer", tags: ["System", "Recherche"] },
     { name: "Pokédex", tags: ["Pokémon", "Évolutions", "Méga", "Dynamax", "Gigantamax", "Shadow", "Assets", "Backgrounds", "Stickers"] },
     { name: "Combat", tags: ["PvP", "Raid", "Attaques", "Types", "Statistiques", "Comparaison"] },
-    { name: "Univers", tags: ["Régions", "Générations", "Collection"] },
+    { name: "Univers", tags: ["Régions", "Générations", "Météo", "Collection"] },
     { name: "Administration", tags: ["Métadonnées"] },
   ];
 

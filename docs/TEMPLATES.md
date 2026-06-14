@@ -356,11 +356,26 @@ Entrée individuelle du catalogue `data/types/<slug>.json`. L'index
   "doubleDamageFrom": [],
   "halfDamageFrom": [],
   "noDamageFrom": [],
-  "weatherBoost": {},
+  "weatherBoost": "",
   "assets": {
     "icon": "",
     "background": ""
   }
+}
+```
+
+## Meteo
+
+Entree individuelle de `data/weather/<slug>.json`.
+
+```json
+{
+  "id": "partlyCloudy",
+  "slug": "partly-cloudy",
+  "aliases": ["partyCloudy", "partlycloudy"],
+  "names": {},
+  "assetName": "partlycloudy_day",
+  "boostedTypes": ["NORMAL", "ROCK"]
 }
 ```
 

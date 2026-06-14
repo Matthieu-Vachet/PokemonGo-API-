@@ -1,6 +1,7 @@
 const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
+const { normalizeWeatherId } = require("../lib/weather");
 
 const rootDir = process.cwd();
 const copySuffix = / \d+\.json$/;
@@ -71,6 +72,7 @@ function normalizePokemonMoveFields(data) {
     cinematicMoves: moveIds(data.cinematicMoves),
     eliteQuickMoves: moveIds(data.eliteQuickMoves),
     eliteCinematicMoves: moveIds(data.eliteCinematicMoves),
+    weatherBoost: (data.weatherBoost || []).map(normalizeWeatherId),
     maxBattle: data.maxBattle
       ? { ...data.maxBattle, moves: moveIds(data.maxBattle.moves) }
       : data.maxBattle,
@@ -190,7 +192,7 @@ function toPokemonDocument(data, sourceFiles, hint, parentKey = null) {
     primaryType: primaryType || undefined,
     secondaryType: secondaryType || undefined,
     types: [primaryType, secondaryType].filter(Boolean),
-    weatherBoost: (data.weatherBoost || []).map(String),
+    weatherBoost: (data.weatherBoost || []).map(normalizeWeatherId),
     moveIds: [...new Set([...quickMoves, ...chargedMoves])],
     eliteMoveIds: [...new Set([...eliteQuickMoves, ...eliteChargedMoves])],
     maxMoveIds: [...new Set(maxMoves)],
@@ -354,6 +356,27 @@ function collectTypeDocuments() {
   }));
 }
 
+function collectWeatherDocuments() {
+  return listJsonFiles(path.join(rootDir, "data", "weather")).map((file) => {
+    const data = readJson(file);
+    return {
+      id: data.id,
+      slug: data.slug,
+      aliases: data.aliases || [],
+      names: data.names || {},
+      boostedTypes: data.boostedTypes || [],
+      searchTerms: [
+        data.id,
+        data.slug,
+        ...(data.aliases || []),
+        ...namesToTerms(data.names),
+      ].filter(Boolean),
+      sourceHash: hash(data),
+      data,
+    };
+  });
+}
+
 function collectGenerationDocuments() {
   return listJsonFiles(path.join(rootDir, "data", "generations")).map((file) => {
     const data = readJson(file);
@@ -389,6 +412,7 @@ function collectAllDocuments() {
     pokemon: collectPokemonDocuments(),
     moves: collectMoveDocuments(),
     types: collectTypeDocuments(),
+    weather: collectWeatherDocuments(),
     generations,
     regions: collectRegionDocuments(generations),
   };
@@ -402,5 +426,6 @@ module.exports = {
   namesToTerms,
   normalizeType,
   normalizePokemonMoveFields,
+  collectWeatherDocuments,
   readJson,
 };

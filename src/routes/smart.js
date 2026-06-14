@@ -4,6 +4,7 @@ const { asyncHandler } = require("../lib/async-handler");
 const { ApiError } = require("../lib/api-error");
 const { integer } = require("../lib/http");
 const { findPokemon } = require("../services/pokemon-service");
+const { normalizeWeatherId } = require("../lib/weather");
 
 const router = express.Router();
 
@@ -33,10 +34,11 @@ router.get(
 router.get(
   "/weather/:weather/pokemon",
   asyncHandler(async (request, response) => {
-    const data = await Pokemon.find({ weatherBoost: request.params.weather })
+    const weather = normalizeWeatherId(request.params.weather);
+    const data = await Pokemon.find({ weatherBoost: weather })
       .sort({ dexNr: 1, form: 1 })
       .lean();
-    response.json({ data, meta: { weather: request.params.weather, total: data.length } });
+    response.json({ data, meta: { weather, total: data.length } });
   }),
 );
 

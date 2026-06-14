@@ -52,6 +52,18 @@ public. Les attaques possedent aussi un `id` stable, un slug avec tirets et, si 
 `data/types/types.json` reste généré comme index de compatibilité. Les nouveaux outils
 lisent les fichiers individuels afin qu'un type puisse être modifié sans toucher les 17 autres.
 
+## Meteo
+
+Les 7 conditions meteo vivent dans `data/weather/`. Les fiches Pokemon utilisent
+uniquement leurs identifiants canoniques : `sunny`, `partlyCloudy`, `cloudy`, `rain`,
+`snow`, `windy` et `fog`.
+
+Chaque condition contient ses traductions, ses anciens aliases et les types renforces.
+Les fichiers de types referencent uniquement l'identifiant meteo. La commande
+`npm run migrate:weather:write` recalcule `weatherBoost` depuis les types primaire et
+secondaire. Les formes Dynamax et Gigantamax minimales continuent d'heriter des types de
+leur fiche normale.
+
 ## PvP Nullable
 
 `pvp` peut valoir `null` lorsqu'aucune information PvP n'est utile. Sinon, les quatre

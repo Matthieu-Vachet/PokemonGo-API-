@@ -1980,7 +1980,7 @@
           Object.entries(d.availability || {})
             .map(([k, v]) => kv(k, v ? "Oui" : "Non"))
             .join(""),
-        )}${info("Capture", kv("Boost météo", d.weatherBoost) + kv("Distance copain", d.buddyDistance) + kv("Taux capture", d.catchRate) + kv("Taux fuite", d.fleeRate) + kv("Bonbons", d.captureRewards?.candy) + kv("Poussières", d.captureRewards?.stardust))}${info("Shadow / Obscur", shadowRows)}</div>`;
+        )}${info("Capture", kv("Boost météo", (d.weatherDetails || []).map((weather) => weather.names?.French || weather.names?.English || weather.id)) + kv("Distance copain", d.buddyDistance) + kv("Taux capture", d.catchRate) + kv("Taux fuite", d.fleeRate) + kv("Bonbons", d.captureRewards?.candy) + kv("Poussières", d.captureRewards?.stardust))}${info("Shadow / Obscur", shadowRows)}</div>`;
       }
       function objectCards(title, obj) {
         const entries = Object.entries(obj || {});

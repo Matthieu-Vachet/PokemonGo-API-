@@ -6,6 +6,7 @@ const rootDir = process.cwd();
 const pokemonDir = path.join(rootDir, "data", "pokemon");
 const formsDir = path.join(rootDir, "data", "pokemon-forms");
 const movesDir = path.join(rootDir, "data", "moves");
+const weatherDir = path.join(rootDir, "data", "weather");
 const languages = [
   "English",
   "German",
@@ -42,6 +43,21 @@ function buildMoveCatalog() {
     }),
   );
 }
+
+function buildWeatherCatalog() {
+  const weather = listJsonFiles(weatherDir).map(readJson);
+  return {
+    ids: new Set(weather.map((item) => item.id)),
+    byId: new Map(weather.map((item) => [item.id, item])),
+    byType: new Map(
+      weather.flatMap((item) =>
+        (item.boostedTypes || []).map((type) => [type, item.id]),
+      ),
+    ),
+  };
+}
+
+const weatherCatalog = buildWeatherCatalog();
 
 function resolveMoves(value, catalog) {
   const ids = Array.isArray(value)
@@ -540,9 +556,42 @@ function createValidator() {
     if (actualType(size) === "object")
       for (const key of ["height", "weight"])
         field(size, key, `${prefix}size.${key}`, "number");
-    field(value, "weatherBoost", `${prefix}weatherBoost`, "array", {
+    const weatherBoost = field(value, "weatherBoost", `${prefix}weatherBoost`, "array", {
       nonEmpty: true,
     });
+    if (Array.isArray(weatherBoost)) {
+      for (const weather of weatherBoost)
+        if (!weatherCatalog.ids.has(weather))
+          add(
+            `${prefix}weatherBoost`,
+            "value",
+            "identifiants de data/weather/",
+            weather,
+          );
+      const expectedWeather = [
+        ...new Set(
+          [value.primaryType, value.secondaryType]
+            .map((type) =>
+              weatherCatalog.byType.get(
+                String(type || "")
+                  .replace(/^POKEMON_TYPE_/, "")
+                  .toUpperCase(),
+              ),
+            )
+            .filter(Boolean),
+        ),
+      ];
+      if (
+        expectedWeather.length &&
+        JSON.stringify(weatherBoost) !== JSON.stringify(expectedWeather)
+      )
+        add(
+          `${prefix}weatherBoost`,
+          "value",
+          expectedWeather.join(", "),
+          weatherBoost.join(", "),
+        );
+    }
     for (const key of ["buddyDistance", "catchRate", "fleeRate"])
       field(value, key, `${prefix}${key}`, "number");
     field(value, "megaEnergyReward", `${prefix}megaEnergyReward`, "number", {
@@ -1261,6 +1310,9 @@ function detailForKey(key) {
   return {
     ...data,
     sourceData,
+    weatherDetails: (data.weatherBoost || []).map(
+      (id) => weatherCatalog.byId.get(id) || { id },
+    ),
     moveDetails: {
       quickMoves: resolveMoves(data.quickMoves, moveCatalog),
       cinematicMoves: resolveMoves(data.cinematicMoves, moveCatalog),

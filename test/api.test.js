@@ -39,6 +39,18 @@ test("GET /api-docs.json fournit OpenAPI 3", async () => {
   assert.ok(response.body.paths["/api/v1/shadow"]);
   assert.ok(response.body.paths["/api/v1/shadow/{identifier}"]);
   assert.ok(response.body.paths["/api/v1/pokemon/{identifier}/shadow"]);
+  assert.ok(response.body.paths["/api/v1/stickers"]);
+  assert.ok(response.body.paths["/api/v1/stickers/{id}"]);
+});
+
+test("GET /api/v1/stickers expose le catalogue des stickers", async () => {
+  const list = await request(app).get("/api/v1/stickers?q=2023collab&limit=5").expect(200);
+  assert.ok(list.body.data.length > 0);
+  assert.ok(list.body.data.every((sticker) => sticker.image.includes("/Stickers/")));
+  const detail = await request(app)
+    .get("/api/v1/stickers/sticker-2023collab-1")
+    .expect(200);
+  assert.equal(detail.body.data.filename, "sticker_2023collab_1.png");
 });
 
 test("GET /api-docs fournit la documentation Redoc", async () => {
@@ -104,6 +116,12 @@ test("les types, PvP null et formes Max sont normalisés", () => {
   const data = collectAllDocuments();
   const caterpie = data.pokemon.find((pokemon) => pokemon.key === "CATERPIE");
   const dynamax = data.pokemon.find((pokemon) => pokemon.key === "BULBASAUR_DYNAMAX");
+  const toxtricity = data.pokemon.find(
+    (pokemon) => pokemon.key === "TOXTRICITY_AMPED_DYNAMAX",
+  );
+  const urshifu = data.pokemon.find(
+    (pokemon) => pokemon.key === "URSHIFU_RAPID_STRIKE_DYNAMAX",
+  );
   const gmax = data.pokemon.find((pokemon) => pokemon.key === "VENUSAUR_GIGANTAMAX");
   assert.equal(caterpie.data.primaryType, "BUG");
   assert.equal(caterpie.data.secondaryType, null);
@@ -120,6 +138,12 @@ test("les types, PvP null et formes Max sont normalisés", () => {
   assert.equal(dynamax.maxCp.raidLevel20, undefined);
   assert.deepEqual(dynamax.moveIds, []);
   assert.deepEqual(dynamax.pvpLeagues, []);
+  assert.equal(data.pokemon.filter((pokemon) => pokemon.kind === "dynamax").length, 127);
+  assert.equal(data.moves.filter((move) => move.kind === "max").length, 18);
+  assert.equal(toxtricity.baseFormId, "TOXTRICITY_AMPED");
+  assert.deepEqual(toxtricity.maxMoveIds, ["MAX_LIGHTNING", "MAX_OOZE"]);
+  assert.equal(urshifu.baseFormId, "URSHIFU_RAPID_STRIKE");
+  assert.deepEqual(urshifu.maxMoveIds, ["MAX_GEYSER", "MAX_KNUCKLE"]);
   assert.equal(gmax.kind, "gigantamax");
   assert.deepEqual(gmax.maxMoveIds, ["GMAX_VINE_LASH"]);
   assert.equal(gmax.baseFormId, "VENUSAUR");
@@ -235,6 +259,10 @@ test("l'atelier expose les icônes de types et valide les références", () => {
   const data = catalog();
   assert.equal(data.types.length, 18);
   assert.ok(data.types.every((type) => type.assets.icon.includes("/Types/ico_")));
+  assert.ok(
+    data.types.every((type) => type.assets.background.includes("/TypeBackgrounds/")),
+  );
+  assert.equal(data.stickers.length, 1667);
   assert.ok(data.moves.length > 400);
 
   const source = detailForKey(

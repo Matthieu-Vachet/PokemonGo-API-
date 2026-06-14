@@ -449,12 +449,21 @@ peuvent etre ajoutes a la forme.
 | --- | --- | --- |
 | `assets.image` | string | Image principale. |
 | `assets.shinyImage` | string | Image chromatique principale. |
+| `assets.portrait` | string | Portrait dédié d'une Méga-Évolution ou Primo-Résurgence. |
+| `assets.portraitShiny` | string | Portrait chromatique dédié d'une Méga ou Primo. |
 | `assets.home.image` | string/null | Image principale issue de Pokémon Home. |
 | `assets.home.shinyImage` | string/null | Image chromatique principale issue de Pokémon Home. |
 | `assets.home.variants[]` | array | Toutes les variantes Home, identifiées par index de forme, genre, Gigantamax, détail et vue. |
 | `assets.locationCards[]` | array | Backgrounds de lieu et spéciaux auxquels ce numéro Pokédex est éligible. |
 | `assets.locationCards[].date` | string | Période exacte indiquée par la source. |
 | `assets.locationCards[].eligibleForms` | string[] | Formes et costumes exacts éligibles pour ce Pokémon. |
+
+Les types vivent dans `data/types/<slug>.json`. Leur bloc `assets` contient `icon` et
+`background`. `data/types/types.json` reste un index complet compatible avec les anciens
+consommateurs.
+
+Le catalogue `data/stickers/stickers.json` expose pour chaque sticker `id`, `filename`,
+`category` et `image`.
 | `assetForms[].form` | string/null | Forme associee a l'asset. |
 | `assetForms[].costume` | string/null | Costume associe a l'asset. |
 | `assetForms[].isFemale` | boolean | Variante visuelle femelle. |

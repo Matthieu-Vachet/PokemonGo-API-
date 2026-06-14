@@ -344,7 +344,8 @@ A ajouter dans `assetForms` pour les costumes, formes visuelles ou variantes fem
 
 ## Type
 
-Entree du catalogue `data/types/types.json`.
+Entrée individuelle du catalogue `data/types/<slug>.json`. L'index
+`data/types/types.json` est conservé pour compatibilité.
 
 ```json
 {
@@ -355,7 +356,11 @@ Entree du catalogue `data/types/types.json`.
   "doubleDamageFrom": [],
   "halfDamageFrom": [],
   "noDamageFrom": [],
-  "weatherBoost": {}
+  "weatherBoost": {},
+  "assets": {
+    "icon": "",
+    "background": ""
+  }
 }
 ```
 

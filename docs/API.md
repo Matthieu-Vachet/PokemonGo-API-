@@ -111,6 +111,7 @@ Documentation :
 | Assets | `/assets/:identifier`, `/pokemon/:identifier/assets` |
 | Backgrounds | `/backgrounds`, `/backgrounds/:id/pokemon`, `/pokemon/:identifier/backgrounds` |
 | Shadow | `/shadow`, `/shadow/:identifier`, `/pokemon/:identifier/shadow` |
+| Stickers | `/stickers`, `/stickers/:id` |
 | Comparaison | `/compare/pokemon?ids=charizard,blastoise` |
 | Classements | `/stats/top/attack`, `/stats/top/defense`, `/stats/top/stamina`, `/stats/top/cp` |
 | Collection | `/collection/checklist` |
@@ -155,6 +156,8 @@ curl "http://localhost:3000/api/v1/pokemon/eevee/backgrounds"
 curl "http://localhost:3000/api/v1/shadow?releasedFrom=2025-01-01"
 curl "http://localhost:3000/api/v1/shadow/bulbasaur"
 curl "http://localhost:3000/api/v1/pokemon/bulbasaur/shadow"
+curl "http://localhost:3000/api/v1/stickers?q=collab&limit=50"
+curl "http://localhost:3000/api/v1/stickers/sticker-2023collab-1"
 curl "http://localhost:3000/api/v1/dynamax"
 curl "http://localhost:3000/api/v1/gigantamax"
 ```

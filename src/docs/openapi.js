@@ -169,6 +169,7 @@ function createOpenApi() {
       ["Assets", "Images et variantes visuelles."],
       ["Backgrounds", "Backgrounds de lieu et spéciaux, dates et Pokémon éligibles."],
       ["Shadow", "Sorties Obscures, coûts de purification, Catch CP et variantes."],
+      ["Stickers", "Catalogue des stickers Pokémon GO disponibles comme assets."],
       ["Métadonnées", "Filtres disponibles et synchronisation."],
     ].map(([name, description]) => ({ name, description })),
     paths: {
@@ -354,6 +355,24 @@ function createOpenApi() {
         parameter("releasedTo", "query", "2025-12-31", "Première date de sortie maximale, format YYYY-MM-DD."),
       ]),
       [`${api}/shadow/{identifier}`]: detail("Shadow", "Afficher les données Shadow détaillées", "bulbasaur"),
+      [`${api}/stickers`]: operation("Stickers", "Lister et rechercher les stickers", {
+        parameters: [
+          page,
+          limit,
+          parameter("q", "query", "collab", "Recherche dans l'identifiant, le fichier ou la catégorie."),
+          parameter("category", "query", "2023collab", "Catégorie déduite du nom de fichier."),
+        ],
+        response: listResponse({
+          id: "sticker-2023collab-1",
+          filename: "sticker_2023collab_1.png",
+          category: "2023collab",
+          image: "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Stickers/sticker_2023collab_1.png",
+        }),
+      }),
+      [`${api}/stickers/{id}`]: detail("Stickers", "Afficher un sticker", "sticker-2023collab-1", {
+        name: "id",
+        description: "Identifiant du sticker construit depuis son nom de fichier.",
+      }),
       [`${api}/collection/checklist`]: operation("Collection", "Créer une checklist de collection", {
         parameters: [
           parameter("shiny", "query", true, "Uniquement les shiny sortis.", { type: "boolean" }),
@@ -449,7 +468,7 @@ function createOpenApi() {
 
   specification["x-tagGroups"] = [
     { name: "Commencer", tags: ["System", "Recherche"] },
-    { name: "Pokédex", tags: ["Pokémon", "Évolutions", "Méga", "Dynamax", "Gigantamax", "Shadow", "Assets", "Backgrounds"] },
+    { name: "Pokédex", tags: ["Pokémon", "Évolutions", "Méga", "Dynamax", "Gigantamax", "Shadow", "Assets", "Backgrounds", "Stickers"] },
     { name: "Combat", tags: ["PvP", "Raid", "Attaques", "Types", "Statistiques", "Comparaison"] },
     { name: "Univers", tags: ["Régions", "Générations", "Collection"] },
     { name: "Administration", tags: ["Métadonnées"] },

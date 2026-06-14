@@ -11,6 +11,7 @@ const forms = require("./forms");
 const smart = require("./smart");
 const backgrounds = require("./backgrounds");
 const shadow = require("./shadow");
+const stickers = require("./stickers");
 
 const router = express.Router();
 
@@ -36,6 +37,7 @@ router.get("/", (_request, response) => {
         stats: "/api/v1/stats/global",
         backgrounds: "/api/v1/backgrounds",
         shadow: "/api/v1/shadow",
+        stickers: "/api/v1/stickers",
       },
     },
   });
@@ -44,6 +46,7 @@ router.get("/", (_request, response) => {
 router.use("/pokemon", pokemon);
 router.use("/backgrounds", backgrounds);
 router.use("/shadow", shadow);
+router.use("/stickers", stickers);
 router.use("/search", search);
 router.use("/moves", moves);
 router.use("/pvp", pvp);

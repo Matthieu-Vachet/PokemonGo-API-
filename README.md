@@ -228,6 +228,7 @@ La checklist sert egalement d'atelier qualite:
 - analyse des assets Pokemon Home, controle des URLs et revue d'images;
 - onglet Shadow avec dates, coûts de purification, Catch CP et variantes;
 - catalogue des attaques, icones de types, comparaison de fiches et historique Git;
+- portraits Méga, fonds de types et catalogue des stickers;
 - notes, rapports Markdown, recherche par commandes et mode mobile une seule tache.
 
 Les outils de correction ne modifient jamais les JSON source. Ils produisent uniquement

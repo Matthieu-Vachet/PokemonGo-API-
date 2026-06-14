@@ -31,6 +31,10 @@
     "import:location-cards:write": "node scripts/import/location-cards.js --write",
     "import:shadow-pokemon": "node scripts/import/shadow-pokemon.js",
     "import:shadow-pokemon:write": "node scripts/import/shadow-pokemon.js --write",
+    "import:dynamax-pokemon": "node scripts/import/dynamax-pokemon.js",
+    "import:dynamax-pokemon:write": "node scripts/import/dynamax-pokemon.js --write",
+    "import:visual-assets": "node scripts/import/visual-assets.js",
+    "import:visual-assets:write": "node scripts/import/visual-assets.js --write",
     "test": "node --test",
     "check": "npm run sync:dry && npm test",
     "checklist": "node apps/checklist/server/local-server.js"

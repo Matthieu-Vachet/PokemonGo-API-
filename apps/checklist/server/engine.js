@@ -1165,7 +1165,9 @@ function buildChecklist() {
       path.basename(file);
     const quality = qualitySummary(validator.issues);
     return {
-      key: `${kind}:${path.relative(rootDir, file)}`,
+      key: `${kind}:${path.relative(rootDir, file)}${
+        kind === "mega" ? `#${data.formId || data.id}` : ""
+      }`,
       kind,
       profile,
       name,
@@ -1173,8 +1175,9 @@ function buildChecklist() {
       generation: displayData.generation || null,
       form: data.form || "normal",
       file: path.relative(rootDir, file),
-      image: displayData.assets?.image || null,
-      shinyImage: displayData.assets?.shinyImage || null,
+      image: displayData.assets?.portrait || displayData.assets?.image || null,
+      shinyImage:
+        displayData.assets?.portraitShiny || displayData.assets?.shinyImage || null,
       primaryType:
         typeof displayData.primaryType === "string"
           ? displayData.primaryType
@@ -1219,7 +1222,7 @@ function buildChecklist() {
 function detailForKey(key) {
   const separator = key.indexOf(":");
   const kind = key.slice(0, separator);
-  const relativeFile = key.slice(separator + 1);
+  const [relativeFile, requestedFormId] = key.slice(separator + 1).split("#");
   const file = path.resolve(rootDir, relativeFile);
   if (!file.startsWith(rootDir) || !fs.existsSync(file)) return null;
   const sourceData = readJson(file);
@@ -1243,7 +1246,13 @@ function detailForKey(key) {
   }
 
   if (kind === "mega" && relativeFile.startsWith("data/pokemon/")) {
-    const mega = Object.values(data.megaEvolutions || {})[0];
+    const mega =
+      data.megaEvolutions?.[requestedFormId] ||
+      Object.values(data.megaEvolutions || {}).find(
+        (candidate) =>
+          candidate.formId === requestedFormId || candidate.id === requestedFormId,
+      ) ||
+      Object.values(data.megaEvolutions || {})[0];
     data = mega
       ? { ...mega, dexId: data.dexId, generation: data.generation }
       : data;

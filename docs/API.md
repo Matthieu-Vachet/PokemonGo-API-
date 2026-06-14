@@ -109,6 +109,8 @@ Documentation :
 | Regions | `/regions`, `/regions/:identifier/pokemon` |
 | Generations | `/generations`, `/generations/:identifier/pokemon` |
 | Assets | `/assets/:identifier`, `/pokemon/:identifier/assets` |
+| Backgrounds | `/backgrounds`, `/backgrounds/:id/pokemon`, `/pokemon/:identifier/backgrounds` |
+| Shadow | `/shadow`, `/shadow/:identifier`, `/pokemon/:identifier/shadow` |
 | Comparaison | `/compare/pokemon?ids=charizard,blastoise` |
 | Classements | `/stats/top/attack`, `/stats/top/defense`, `/stats/top/stamina`, `/stats/top/cp` |
 | Collection | `/collection/checklist` |
@@ -134,6 +136,10 @@ Filtres disponibles :
 - `maxCpMin`, `maxCpMax`
 - `page`, `limit`, `sort`
 
+Une fiche dont `availability.shadow` vaut `true` expose aussi `data.shadow` avec
+la première date de sortie, le coût de purification, les Catch CP normal et
+boosté par la météo, ainsi que les variantes régionales, Apex ou costumées.
+
 ## Exemples
 
 ```bash
@@ -143,6 +149,12 @@ curl "http://localhost:3000/api/v1/pokemon/charizard/cp?level=50&attackIv=15&def
 curl "http://localhost:3000/api/v1/pvp/great/rankings?limit=20"
 curl "http://localhost:3000/api/v1/moves/BLAST_BURN/pokemon"
 curl "http://localhost:3000/api/v1/pokemon/venusaur/moves"
+curl "http://localhost:3000/api/v1/backgrounds?type=location&date=2025"
+curl "http://localhost:3000/api/v1/backgrounds/lc_GoFest2025_paris/pokemon"
+curl "http://localhost:3000/api/v1/pokemon/eevee/backgrounds"
+curl "http://localhost:3000/api/v1/shadow?releasedFrom=2025-01-01"
+curl "http://localhost:3000/api/v1/shadow/bulbasaur"
+curl "http://localhost:3000/api/v1/pokemon/bulbasaur/shadow"
 curl "http://localhost:3000/api/v1/dynamax"
 curl "http://localhost:3000/api/v1/gigantamax"
 ```

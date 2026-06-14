@@ -29,6 +29,143 @@
     "Korean": "전룡",
     "Spanish": "Ampharos"
   },
+  "size": {
+    "height": 1.4,
+    "weight": 61.5
+  },
+  "weatherBoost": [
+    "rain"
+  ],
+  "buddyDistance": 5,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": 25,
+  "captureRewards": {
+    "candy": 10,
+    "stardust": 500
+  },
+  "secondChargeMoveCost": {
+    "candy": 75,
+    "stardust": 75000
+  },
+  "maxCp": {
+    "maxLevel50": 3225,
+    "maxLevel40": 2852,
+    "weatherBoostLevel25": 2037,
+    "raidLevel20": 1630,
+    "researchLevel15": 1222
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 13,
+          "stamina": 11
+        },
+        "level": 20,
+        "cp": 1499
+      },
+      "bestMovesets": {
+        "fast": "VOLT_SWITCH_FAST",
+        "charged": [
+          "BRUTAL_SWING",
+          "TRAILBLAZE"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 13,
+          "stamina": 15
+        },
+        "level": 36,
+        "cp": 2497
+      },
+      "bestMovesets": {
+        "fast": "VOLT_SWITCH_FAST",
+        "charged": [
+          "BRUTAL_SWING",
+          "TRAILBLAZE"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 3225
+      },
+      "bestMovesets": {
+        "fast": "VOLT_SWITCH_FAST",
+        "charged": [
+          "BRUTAL_SWING",
+          "THUNDER_PUNCH"
+        ]
+      }
+    }
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2019-10-17",
+    "purificationCost": {
+      "stardust": 5000,
+      "candy": 5
+    },
+    "catchCp": {
+      "normal": {
+        "min": 555,
+        "max": 643
+      },
+      "weatherBoosted": {
+        "min": 953,
+        "max": 1059
+      }
+    },
+    "variants": [
+      {
+        "name": "Ampharos",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 555,
+            "max": 643
+          },
+          "weatherBoosted": {
+            "min": 953,
+            "max": 1059
+          }
+        },
+        "purificationCost": {
+          "stardust": 5000,
+          "candy": 5
+        },
+        "releaseDate": "2019-10-17",
+        "releaseDateText": "October 17, 2019"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 207,
     "attack": 211,
@@ -83,7 +220,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0181_001_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_pokelid_nagasaki",
+        "name": "Pokelid Nagasaki",
+        "type": "location",
+        "date": "November 7th 2025",
+        "eligibleForms": [
+          "Ampharos"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_pokelid_nagasaki.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

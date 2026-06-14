@@ -29,6 +29,126 @@
     "Korean": "팬텀",
     "Spanish": "Gengar"
   },
+  "size": {
+    "height": 1.5,
+    "weight": 40.5
+  },
+  "weatherBoost": [
+    "fog",
+    "cloudy"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": 15,
+  "captureRewards": {
+    "candy": 10,
+    "stardust": 500
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 3254,
+    "maxLevel40": 2878,
+    "weatherBoostLevel25": 2055,
+    "raidLevel20": 1644,
+    "researchLevel15": 1233
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": true,
+    "gigantamax": true,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 13,
+          "stamina": 13
+        },
+        "level": 19.5,
+        "cp": 1498
+      },
+      "bestMovesets": {
+        "fast": "SHADOW_CLAW_FAST",
+        "charged": [
+          "SHADOW_PUNCH",
+          "SHADOW_BALL"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 14
+        },
+        "level": 34.5,
+        "cp": 2500
+      },
+      "bestMovesets": {
+        "fast": "SHADOW_CLAW_FAST",
+        "charged": [
+          "SHADOW_PUNCH",
+          "SHADOW_BALL"
+        ]
+      }
+    },
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2023-10-26",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 558,
+        "max": 648
+      },
+      "weatherBoosted": {
+        "min": 958,
+        "max": 1069
+      }
+    },
+    "variants": [
+      {
+        "name": "Gengar",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 558,
+            "max": 648
+          },
+          "weatherBoosted": {
+            "min": 958,
+            "max": 1069
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2023-10-26",
+        "releaseDateText": "October 26, 2023"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 155,
     "attack": 261,
@@ -96,7 +216,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0094_001_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoFest2025_Eternatus",
+        "name": "Dark Skies",
+        "type": "special",
+        "date": "August 18th - 24th 2025",
+        "eligibleForms": [
+          "Gengar"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

@@ -29,6 +29,103 @@
     "Korean": "차곡차곡",
     "Spanish": "Stakataka"
   },
+  "size": {
+    "height": 5.5,
+    "weight": 820
+  },
+  "weatherBoost": [
+    "partlyCloudy",
+    "snow"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 3724,
+    "maxLevel40": 3294,
+    "weatherBoostLevel25": 2353,
+    "raidLevel20": 1882,
+    "researchLevel15": 1412
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 1,
+          "defense": 14,
+          "stamina": 15
+        },
+        "level": 17,
+        "cp": 1499
+      },
+      "bestMovesets": {
+        "fast": "ROCK_THROW_FAST",
+        "charged": [
+          "STONE_EDGE",
+          "FLASH_CANNON"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 14
+        },
+        "level": 28.5,
+        "cp": 2498
+      },
+      "bestMovesets": {
+        "fast": "ROCK_THROW_FAST",
+        "charged": [
+          "STONE_EDGE",
+          "BULLDOZE"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 3724
+      },
+      "bestMovesets": {
+        "fast": "ROCK_THROW_FAST",
+        "charged": [
+          "STONE_EDGE",
+          "BULLDOZE"
+        ]
+      }
+    }
+  },
   "stats": {
     "stamina": 156,
     "attack": 213,
@@ -67,7 +164,42 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0805_000_uk_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_GoFest2024_madrid",
+        "name": "GO Fest Madrid",
+        "type": "location",
+        "date": "June 14th - 16th 2024",
+        "eligibleForms": [
+          "Stakataka"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2024_madrid.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_GoFest2024_sendai",
+        "name": "GO Fest Sendai",
+        "type": "location",
+        "date": "May 30th 2024 - June 2nd 2024",
+        "eligibleForms": [
+          "Stakataka"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2024_sendai.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoFest2024_wormhole",
+        "name": "GO Fest 2024 Wormhole",
+        "type": "special",
+        "date": "July 8th - 14th 2024",
+        "eligibleForms": [
+          "Stakataka"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2024_wormhole.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

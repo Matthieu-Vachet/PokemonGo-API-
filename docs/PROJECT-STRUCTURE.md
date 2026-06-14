@@ -28,6 +28,14 @@ d'attaques central est dans `data/moves/`, avec les categories classiques, Elite
 G-Max. Les formes Dynamax et Gigantamax minimales vivent dans
 `data/pokemon-forms/dynamax/` et `data/pokemon-forms/gigantamax/`.
 
+Les images de backgrounds de lieu et spéciaux sont rangées dans
+`asset/LocationCards/`. Le script `scripts/import/location-cards.js` associe ces
+fichiers aux Pokémon éligibles depuis Serebii et conserve leurs dates et formes.
+
+Le script `scripts/import/shadow-pokemon.js` synchronise depuis Bulbapedia les
+sorties Shadow déjà effectives, les coûts de purification, les Catch CP et les
+dates. Il ignore les dates futures et ne crée aucun asset Shadow.
+
 ## API
 
 - `app.js` demarre le serveur Node local.

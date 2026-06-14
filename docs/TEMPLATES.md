@@ -109,7 +109,18 @@ Template complet:
   "eliteCinematicMoves": [],
   "assets": {
     "image": "",
-    "shinyImage": ""
+    "shinyImage": "",
+    "locationCards": [
+      {
+        "id": "lc_CitySafari2023_barcelona_2023",
+        "name": "City Safari Barcelona",
+        "type": "location",
+        "date": "October 13th - 14th 2023",
+        "eligibleForms": ["Eevee (Explorer Hat)"],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_CitySafari2023_barcelona_2023.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

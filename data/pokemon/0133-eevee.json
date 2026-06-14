@@ -29,6 +29,66 @@
     "Korean": "이브이",
     "Spanish": "Eevee"
   },
+  "size": {
+    "height": 0.3,
+    "weight": 6.5
+  },
+  "weatherBoost": [
+    "partlyCloudy"
+  ],
+  "buddyDistance": 5,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 75,
+    "stardust": 75000
+  },
+  "maxCp": {
+    "maxLevel50": 1210,
+    "maxLevel40": 1071,
+    "weatherBoostLevel25": 765,
+    "raidLevel20": 612,
+    "researchLevel15": 459
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": true,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 1210
+      },
+      "bestMovesets": {
+        "fast": "QUICK_ATTACK_FAST",
+        "charged": [
+          "BODY_SLAM",
+          "DIG"
+        ]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
+  },
   "stats": {
     "stamina": 146,
     "attack": 104,
@@ -89,7 +149,174 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0133_000_mf_g_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_AirAdv2024_jakarta",
+        "name": "Air Adventures Jakarta",
+        "type": "location",
+        "date": "September 21st - 22nd 2024",
+        "eligibleForms": [
+          "Eevee"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_AirAdv2024_jakarta.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_CitySafari2023_barcelona_2023",
+        "name": "City Safari Barcelona",
+        "type": "location",
+        "date": "October 13th - 14th 2023",
+        "eligibleForms": [
+          "Eevee (Explorer Hat)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_CitySafari2023_barcelona_2023.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_CitySafari2025_buenosAires",
+        "name": "City Safari Buenos Aires",
+        "type": "location",
+        "date": "December 14th 2025",
+        "eligibleForms": [
+          "Eevee (Explorer Hat)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_CitySafari2025_buenosAires.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_CitySafari2024_hongkong",
+        "name": "City Safari Hong Kong",
+        "type": "location",
+        "date": "December 7th - 8th 2024",
+        "eligibleForms": [
+          "Eevee (Explorer Hat)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_CitySafari2024_hongkong.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_CitySafari2023_mexicoCity_2023",
+        "name": "City Safari Mexico City",
+        "type": "location",
+        "date": "November 4th - 5th 2023",
+        "eligibleForms": [
+          "Eevee (Explorer Hat)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_CitySafari2023_mexicoCity_2023.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_CitySafari2025_miami",
+        "name": "City Safari Miami",
+        "type": "location",
+        "date": "December 14th 2025",
+        "eligibleForms": [
+          "Eevee (Explorer Hat)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_CitySafari2025_miami.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_CitySafari2024_milan",
+        "name": "City Safari Milan",
+        "type": "location",
+        "date": "March 29th - 30th 2025",
+        "eligibleForms": [
+          "Eevee (Explorer Hat)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_CitySafari2024_milan.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_CitySafari2024_mumbai",
+        "name": "City Safari Mumbai",
+        "type": "location",
+        "date": "March 29th - 30th 2025",
+        "eligibleForms": [
+          "Eevee (Explorer Hat)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_CitySafari2024_mumbai.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_CitySafari2024_santiago",
+        "name": "City Safari Santiago",
+        "type": "location",
+        "date": "March 29th - 30th 2025",
+        "eligibleForms": [
+          "Eevee (Explorer Hat)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_CitySafari2024_santiago.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_CitySafari2024_saopaulo",
+        "name": "City Safari Sao Paulo",
+        "type": "location",
+        "date": "December 7th - 8th 2024",
+        "eligibleForms": [
+          "Eevee (Explorer Hat)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_CitySafari2024_saopaulo.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_CitySafari2023_seoul_2023",
+        "name": "City Safari Seoul",
+        "type": "location",
+        "date": "October 7th - 8th 2023",
+        "eligibleForms": [
+          "Eevee (Explorer Hat)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_CitySafari2023_seoul_2023.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_CitySafari2024_singapore",
+        "name": "City Safari Singapore",
+        "type": "location",
+        "date": "March 29th - 30th 2025",
+        "eligibleForms": [
+          "Eevee (Explorer Hat)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_CitySafari2024_singapore.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_CitySafari2025_sydney",
+        "name": "City Safari Sydney",
+        "type": "location",
+        "date": "December 14th 2025",
+        "eligibleForms": [
+          "Eevee (Explorer Hat)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_CitySafari2025_sydney.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_CitySafari2024_tainan",
+        "name": "City Safari Tainan",
+        "type": "location",
+        "date": "May 11th - 12th 2024",
+        "eligibleForms": [
+          "Eevee (Explorer Hat)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_CitySafari2024_tainan.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_Season19_DelightfulDays",
+        "name": "Delightful Days",
+        "type": "special",
+        "date": "June - September 2025",
+        "eligibleForms": [
+          "Eevee"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_Season19_DelightfulDays.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

@@ -29,6 +29,108 @@
     "Korean": "철시드",
     "Spanish": "Ferroseed"
   },
+  "size": {
+    "height": 0.6,
+    "weight": 18.8
+  },
+  "weatherBoost": [
+    "sunny",
+    "snow"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 75,
+    "stardust": 75000
+  },
+  "maxCp": {
+    "maxLevel50": 1064,
+    "maxLevel40": 941,
+    "weatherBoostLevel25": 672,
+    "raidLevel20": 537,
+    "researchLevel15": 403
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 1,
+          "defense": 15,
+          "stamina": 12
+        },
+        "level": 22,
+        "cp": 500
+      },
+      "bestMovesets": {
+        "fast": "TACKLE_FAST",
+        "charged": [
+          "IRON_HEAD",
+          "FLASH_CANNON"
+        ]
+      }
+    },
+    "greatLeague": null,
+    "ultraLeague": null,
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2024-01-27",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 161,
+        "max": 212
+      },
+      "weatherBoosted": {
+        "min": 287,
+        "max": 349
+      }
+    },
+    "variants": [
+      {
+        "name": "Ferroseed",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 161,
+            "max": 212
+          },
+          "weatherBoosted": {
+            "min": 287,
+            "max": 349
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2024-01-27",
+        "releaseDateText": "January 27, 2024"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 127,
     "attack": 82,
@@ -67,7 +169,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0597_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoTour2025_enigma",
+        "name": "GO Tour Enigma",
+        "type": "special",
+        "date": "February 21st - 23rd 2025",
+        "eligibleForms": [
+          "Ferroseed"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_enigma.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

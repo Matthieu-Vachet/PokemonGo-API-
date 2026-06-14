@@ -29,6 +29,90 @@
     "Korean": "랄토스",
     "Spanish": "Ralts"
   },
+  "size": {
+    "height": 0.41,
+    "weight": 6.6
+  },
+  "weatherBoost": [
+    "windy",
+    "cloudy"
+  ],
+  "buddyDistance": 5,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 75,
+    "stardust": 75000
+  },
+  "maxCp": {
+    "maxLevel50": 609,
+    "maxLevel40": 539,
+    "weatherBoostLevel25": 385,
+    "raidLevel20": 308,
+    "researchLevel15": 231
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": null,
+    "ultraLeague": null,
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2019-08-08",
+    "purificationCost": {
+      "stardust": 5000,
+      "candy": 5
+    },
+    "catchCp": {
+      "normal": {
+        "min": 85,
+        "max": 121
+      },
+      "weatherBoosted": {
+        "min": 155,
+        "max": 200
+      }
+    },
+    "variants": [
+      {
+        "name": "Ralts",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 85,
+            "max": 121
+          },
+          "weatherBoosted": {
+            "min": 155,
+            "max": 200
+          }
+        },
+        "purificationCost": {
+          "stardust": 5000,
+          "candy": 5
+        },
+        "releaseDate": "2019-08-08",
+        "releaseDateText": "August 8, 2019"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 99,
     "attack": 79,
@@ -67,7 +151,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0280_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_Season17_DuelDestiny",
+        "name": "Dual Destiny",
+        "type": "special",
+        "date": "January 5th 2025January 25th 2025February 9th 2025",
+        "eligibleForms": [
+          "Ralts"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_Season17_DuelDestiny.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

@@ -29,6 +29,84 @@
     "Korean": "인텔리레온",
     "Spanish": "Inteleon"
   },
+  "size": {
+    "height": 1.9,
+    "weight": 45.2
+  },
+  "weatherBoost": [
+    "rain"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 10,
+    "stardust": 500
+  },
+  "secondChargeMoveCost": {
+    "candy": 25,
+    "stardust": 10000
+  },
+  "maxCp": {
+    "maxLevel50": 3351,
+    "maxLevel40": 2964,
+    "weatherBoostLevel25": 2117,
+    "raidLevel20": 1693,
+    "researchLevel15": 1270
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": false,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": true,
+    "gigantamax": true,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 13,
+          "stamina": 12
+        },
+        "level": 19,
+        "cp": 1500
+      },
+      "bestMovesets": {
+        "fast": "WATER_GUN_FAST",
+        "charged": [
+          "SURF",
+          "SHADOW_BALL"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 1,
+          "defense": 15,
+          "stamina": 13
+        },
+        "level": 32.5,
+        "cp": 2499
+      },
+      "bestMovesets": {
+        "fast": "WATER_GUN_FAST",
+        "charged": [
+          "SURF",
+          "SHADOW_BALL"
+        ]
+      }
+    },
+    "masterLeague": null
+  },
   "stats": {
     "stamina": 172,
     "attack": 262,
@@ -77,7 +155,42 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0818_000_mf_g_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_GoFest2025_paris",
+        "name": "GO Fest 2025 Paris",
+        "type": "location",
+        "date": "June 13th - June 15th 2025September 13th-14th 2025",
+        "eligibleForms": [
+          "Inteleon"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2025_paris.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoFest2025_Eternatus",
+        "name": "Dark Skies",
+        "type": "special",
+        "date": "August 18th - 24th 2025",
+        "eligibleForms": [
+          "Inteleon"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_Season19_DelightfulDays",
+        "name": "Delightful Days",
+        "type": "special",
+        "date": "June - September 2025",
+        "eligibleForms": [
+          "Inteleon"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_Season19_DelightfulDays.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

@@ -40,14 +40,21 @@
   "buddyDistance": 3,
   "catchRate": 20,
   "fleeRate": 0,
+  "megaEnergyReward": 15,
   "captureRewards": {
     "candy": 10,
     "stardust": 500
   },
-  "megaEnergyReward": 15,
   "secondChargeMoveCost": {
     "candy": 25,
     "stardust": 10000
+  },
+  "maxCp": {
+    "maxLevel50": 3266,
+    "maxLevel40": 2889,
+    "weatherBoostLevel25": 2064,
+    "raidLevel20": 1651,
+    "researchLevel15": 1238
   },
   "availability": {
     "released": true,
@@ -58,13 +65,6 @@
     "dynamax": true,
     "gigantamax": true,
     "apex": false
-  },
-  "maxCp": {
-    "maxLevel50": 3266,
-    "maxLevel40": 2889,
-    "weatherBoostLevel25": 2064,
-    "raidLevel20": 1651,
-    "researchLevel15": 1238
   },
   "pvp": {
     "littleCup": null,
@@ -88,7 +88,7 @@
       }
     },
     "ultraLeague": {
-      "tierRank": "B",
+      "tierRank": "A",
       "rank1": {
         "ivs": {
           "attack": 0,
@@ -125,6 +125,47 @@
         ]
       }
     }
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2019-07-22",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 563,
+        "max": 651
+      },
+      "weatherBoosted": {
+        "min": 965,
+        "max": 1073
+      }
+    },
+    "variants": [
+      {
+        "name": "Charizard",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 563,
+            "max": 651
+          },
+          "weatherBoosted": {
+            "min": 965,
+            "max": 1073
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2019-07-22",
+        "releaseDateText": "July 22, 2019"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
   },
   "stats": {
     "stamina": 186,
@@ -202,7 +243,31 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0006_002_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoFest2025_Eternatus",
+        "name": "Dark Skies",
+        "type": "special",
+        "date": "August 18th - 24th 2025",
+        "eligibleForms": [
+          "Charizard"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoTour2026_mega",
+        "name": "GO Tour 2026 Mega",
+        "type": "special",
+        "date": "February 23rd - February 27th 2026",
+        "eligibleForms": [
+          "Charizard"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_mega.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

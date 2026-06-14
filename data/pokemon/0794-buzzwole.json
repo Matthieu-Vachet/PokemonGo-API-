@@ -29,6 +29,103 @@
     "Korean": "매시붕",
     "Spanish": "Buzzwole"
   },
+  "size": {
+    "height": 2.4,
+    "weight": 333.6
+  },
+  "weatherBoost": [
+    "rain",
+    "cloudy"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 3912,
+    "maxLevel40": 3461,
+    "weatherBoostLevel25": 2472,
+    "raidLevel20": 1977,
+    "researchLevel15": 1483
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 2,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 16,
+        "cp": 1500
+      },
+      "bestMovesets": {
+        "fast": "COUNTER_FAST",
+        "charged": [
+          "SUPER_POWER",
+          "LUNGE"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 13,
+          "stamina": 15
+        },
+        "level": 27,
+        "cp": 2498
+      },
+      "bestMovesets": {
+        "fast": "COUNTER_FAST",
+        "charged": [
+          "SUPER_POWER",
+          "LUNGE"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 3912
+      },
+      "bestMovesets": {
+        "fast": "COUNTER_FAST",
+        "charged": [
+          "SUPER_POWER",
+          "LUNGE"
+        ]
+      }
+    }
+  },
   "stats": {
     "stamina": 216,
     "attack": 236,
@@ -68,7 +165,42 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0794_000_uk_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_GoFest2024_madrid",
+        "name": "GO Fest Madrid",
+        "type": "location",
+        "date": "June 14th - 16th 2024",
+        "eligibleForms": [
+          "Buzzwole"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2024_madrid.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_GoFest2024_newyork",
+        "name": "GO Fest New York City 2024",
+        "type": "location",
+        "date": "July 5th - 7th 2024",
+        "eligibleForms": [
+          "Buzzwole"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2024_newyork.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoFest2024_wormhole",
+        "name": "GO Fest 2024 Wormhole",
+        "type": "special",
+        "date": "July 8th - 14th 2024",
+        "eligibleForms": [
+          "Buzzwole"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2024_wormhole.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

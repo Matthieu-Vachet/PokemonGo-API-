@@ -29,6 +29,144 @@
     "Korean": "엘레이드",
     "Spanish": "Gallade"
   },
+  "size": {
+    "height": 1.6,
+    "weight": 52
+  },
+  "weatherBoost": [
+    "windy",
+    "cloudy"
+  ],
+  "buddyDistance": 5,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 10,
+    "stardust": 500
+  },
+  "secondChargeMoveCost": {
+    "candy": 75,
+    "stardust": 75000
+  },
+  "maxCp": {
+    "maxLevel50": 3497,
+    "maxLevel40": 3093,
+    "weatherBoostLevel25": 2209,
+    "raidLevel20": 1767,
+    "researchLevel15": 1326
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 18,
+        "cp": 1496
+      },
+      "bestMovesets": {
+        "fast": "PSYCHO_CUT_FAST",
+        "charged": [
+          "CLOSE_COMBAT",
+          "LEAF_BLADE"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 12,
+          "stamina": 15
+        },
+        "level": 30.5,
+        "cp": 2496
+      },
+      "bestMovesets": {
+        "fast": "PSYCHO_CUT_FAST",
+        "charged": [
+          "CLOSE_COMBAT",
+          "LEAF_BLADE"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 3497
+      },
+      "bestMovesets": {
+        "fast": "PSYCHO_CUT_FAST",
+        "charged": [
+          "CLOSE_COMBAT",
+          "LEAF_BLADE"
+        ]
+      }
+    }
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2019-08-08",
+    "purificationCost": {
+      "stardust": 5000,
+      "candy": 5
+    },
+    "catchCp": {
+      "normal": {
+        "min": 605,
+        "max": 697
+      },
+      "weatherBoosted": {
+        "min": 1037,
+        "max": 1149
+      }
+    },
+    "variants": [
+      {
+        "name": "Gallade",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 605,
+            "max": 697
+          },
+          "weatherBoosted": {
+            "min": 1037,
+            "max": 1149
+          }
+        },
+        "purificationCost": {
+          "stardust": 5000,
+          "candy": 5
+        },
+        "releaseDate": "2019-08-08",
+        "releaseDateText": "August 8, 2019"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 169,
     "attack": 237,
@@ -81,7 +219,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0475_001_mo_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoTour2026_mega",
+        "name": "GO Tour 2026 Mega",
+        "type": "special",
+        "date": "February 23rd - February 27th 2026",
+        "eligibleForms": [
+          "Gallade"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_mega.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

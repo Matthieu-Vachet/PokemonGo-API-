@@ -1883,6 +1883,7 @@
         `<article class="info"><h3>${esc(title)}</h3>${rows}</article>`;
       function overview(d) {
         const maxForm = ["dynamax", "gigantamax"].includes(d.form);
+        const shadow = d.shadow;
         const cpRows = maxForm
           ? kv("Niveau 50", d.maxCp?.maxLevel50) +
             kv("Niveau 40", d.maxCp?.maxLevel40) +
@@ -1891,18 +1892,32 @@
             kv("Niveau 40", d.maxCp?.maxLevel40) +
             kv("Raid N.20", d.maxCp?.raidLevel20) +
             kv("Étude N.15", d.maxCp?.researchLevel15);
+        const shadowRows = shadow
+          ? kv("Première sortie", shadow.firstReleaseDate) +
+            kv("Purification", `${shadow.purificationCost?.stardust} poussières · ${shadow.purificationCost?.candy} bonbons`) +
+            kv("Catch CP", `${shadow.catchCp?.normal?.min} - ${shadow.catchCp?.normal?.max}`) +
+            kv("Catch CP météo", `${shadow.catchCp?.weatherBoosted?.min} - ${shadow.catchCp?.weatherBoosted?.max}`) +
+            kv("Variantes Shadow", shadow.variants?.length)
+          : kv("Sorti", "Non");
         return `<div class="section-grid">${info("Identité", kv("ID", d.id) + kv("Form ID", d.formId) + kv("Slug", d.slug) + kv("Forme", d.form) + kv("Génération", d.generation) + kv("Région", d.region?.names?.French || d.region?.id))}${info("Statistiques", kv("Attaque", d.stats?.attack) + kv("Défense", d.stats?.defense) + kv("Endurance", d.stats?.stamina) + kv("Taille", d.size?.height ? d.size.height + " m" : null) + kv("Poids", d.size?.weight ? d.size.weight + " kg" : null))}${info("PC maximum", cpRows)}${info(
           "Disponibilité",
           Object.entries(d.availability || {})
             .map(([k, v]) => kv(k, v ? "Oui" : "Non"))
             .join(""),
-        )}${info("Capture", kv("Boost météo", d.weatherBoost) + kv("Distance copain", d.buddyDistance) + kv("Taux capture", d.catchRate) + kv("Taux fuite", d.fleeRate) + kv("Bonbons", d.captureRewards?.candy) + kv("Poussières", d.captureRewards?.stardust))}</div>`;
+        )}${info("Capture", kv("Boost météo", d.weatherBoost) + kv("Distance copain", d.buddyDistance) + kv("Taux capture", d.catchRate) + kv("Taux fuite", d.fleeRate) + kv("Bonbons", d.captureRewards?.candy) + kv("Poussières", d.captureRewards?.stardust))}${info("Shadow / Obscur", shadowRows)}</div>`;
       }
       function objectCards(title, obj) {
         const entries = Object.entries(obj || {});
         return entries.length
           ? `<div class="section-grid">${entries.map(([id, v]) => info(v.names?.French || v.names?.English || id, `${typeIcon(v.type) ? `<img class="type-icon" src="${esc(typeIcon(v.type))}" alt="">` : ""}` + kv("ID", id) + kv("Type", typeName(typeof v.type === "string" ? v.type : v.type?.type)) + kv("Puissance", v.power) + kv("Énergie", v.energy) + kv("PvP puissance", v.combat?.power) + kv("PvP énergie", v.combat?.energy))).join("")}</div>`
           : `<div class="empty">Aucune donnée ${esc(title)}.</div>`;
+      }
+      function shadowPanel(d) {
+        const shadow = d.shadow;
+        if (!shadow)
+          return '<div class="empty">Aucune version Shadow sortie pour ce Pokémon.</div>';
+        const variants = Array.isArray(shadow.variants) ? shadow.variants : [];
+        return `<div class="section-grid">${info("Résumé Shadow", kv("Première sortie", shadow.firstReleaseDate) + kv("Coût de purification", `${shadow.purificationCost?.stardust} poussières · ${shadow.purificationCost?.candy} bonbons`) + kv("Catch CP", `${shadow.catchCp?.normal?.min} - ${shadow.catchCp?.normal?.max}`) + kv("Catch CP météo", `${shadow.catchCp?.weatherBoosted?.min} - ${shadow.catchCp?.weatherBoosted?.max}`) + kv("Variantes", variants.length))}</div><h2>Variantes Shadow (${variants.length})</h2><div class="section-grid">${variants.map((variant) => info(`${variant.name} · ${variant.variant}`, kv("Date de sortie", variant.releaseDate) + kv("Date source", variant.releaseDateText) + kv("Purification", `${variant.purificationCost?.stardust} poussières · ${variant.purificationCost?.candy} bonbons`) + kv("Catch CP", `${variant.catchCp?.normal?.min} - ${variant.catchCp?.normal?.max}`) + kv("Catch CP météo", `${variant.catchCp?.weatherBoosted?.min} - ${variant.catchCp?.weatherBoosted?.max}`))).join("")}</div><p class="meta">Aucun asset Shadow n’est associé : l’image normale reste utilisée dans la checklist.</p>`;
       }
       function assetPicture(label, url) {
         return url
@@ -1915,10 +1930,19 @@
       function assetCard(title, subtitle, image, shinyImage) {
         return `<article class="asset-card"><div class="asset-card-head"><strong>${esc(title)}</strong><span>${esc(subtitle)}</span></div><div class="asset-pictures">${assetPicture("Normal", image)}${assetPicture("Shiny", shinyImage)}</div>${assetLinks(image, shinyImage)}</article>`;
       }
+      function locationCard(asset) {
+        const forms = Array.isArray(asset.eligibleForms)
+          ? asset.eligibleForms.join(" · ")
+          : "";
+        return `<article class="asset-card"><div class="asset-card-head"><strong>${esc(asset.name)}</strong><span>${esc(asset.type === "special" ? "Background spécial" : "Background de lieu")} · ${esc(asset.date)}${forms ? ` · Forme : ${esc(forms)}` : ""}</span></div><div class="asset-pictures"><a class="asset-picture" href="${esc(asset.image)}" target="_blank" rel="noopener"><img src="${esc(asset.image)}" alt="${esc(asset.name)}" loading="lazy"><span>${esc(asset.id)}</span></a></div><div class="asset-links"><a href="${esc(asset.source)}" target="_blank" rel="noopener">Source et Pokémon éligibles</a></div></article>`;
+      }
       function assetsPanel(d) {
         const variants = Array.isArray(d.assetForms) ? d.assetForms : [];
         const home = d.assets?.home || {};
         const homeVariants = Array.isArray(home.variants) ? home.variants : [];
+        const locationCards = Array.isArray(d.assets?.locationCards)
+          ? d.assets.locationCards
+          : [];
         const main = assetCard(
           "Pokémon GO",
           d.form || "normal",
@@ -1973,7 +1997,10 @@
               })
               .join("")
           : '<div class="empty">Aucun asset Pokémon Home.</div>';
-        return `<div class="section-grid">${info("Capacités de formes", kv("Méga disponible", d.hasMegaEvolution) + kv("Gigantamax disponible", d.hasGigantamaxEvolution) + kv("Formes régionales", Array.isArray(d.regionForms) ? d.regionForms.length : Object.keys(d.regionForms || {}).length) + kv("Méga / Primo", Array.isArray(d.megaEvolutions) ? d.megaEvolutions.length : Object.keys(d.megaEvolutions || {}).length))}</div><section class="asset-section"><h2>Aperçus principaux</h2><div class="asset-gallery">${main}${homeMain}</div></section><section class="asset-section"><h2>Variantes Pokémon GO (${variants.length})</h2><div class="asset-gallery">${gallery}</div></section><section class="asset-section"><h2>Variantes Pokémon Home (${homeVariants.length})</h2><div class="asset-gallery">${homeGallery}</div></section>`;
+        const locationGallery = locationCards.length
+          ? locationCards.map(locationCard).join("")
+          : '<div class="empty">Aucun background éligible.</div>';
+        return `<div class="section-grid">${info("Capacités de formes", kv("Méga disponible", d.hasMegaEvolution) + kv("Gigantamax disponible", d.hasGigantamaxEvolution) + kv("Formes régionales", Array.isArray(d.regionForms) ? d.regionForms.length : Object.keys(d.regionForms || {}).length) + kv("Méga / Primo", Array.isArray(d.megaEvolutions) ? d.megaEvolutions.length : Object.keys(d.megaEvolutions || {}).length) + kv("Backgrounds éligibles", locationCards.length))}</div><section class="asset-section"><h2>Aperçus principaux</h2><div class="asset-gallery">${main}${homeMain}</div></section><section class="asset-section"><h2>Backgrounds éligibles (${locationCards.length})</h2><div class="asset-gallery">${locationGallery}</div></section><section class="asset-section"><h2>Variantes Pokémon GO (${variants.length})</h2><div class="asset-gallery">${gallery}</div></section><section class="asset-section"><h2>Variantes Pokémon Home (${homeVariants.length})</h2><div class="asset-gallery">${homeGallery}</div></section>`;
       }
       function cpPanel(d) {
         const rows = Array.isArray(d.cpByLevel) ? d.cpByLevel : [];
@@ -2501,6 +2528,7 @@
           ["issues", `Checklist (${e.issues.length})`],
           ["moves", "Attaques"],
           ["pvp", "PvP"],
+          ["shadow", "Shadow"],
           ["evolutions", "Évolutions"],
           ["forms", "Formes & assets"],
           ["assistant", "Assistant JSON"],
@@ -2536,7 +2564,7 @@
                 )
                 .join("")}</div>`
             : '<div class="empty">Aucune donnée PvP.</div>'
-        }</div><div class="panel" data-panel="evolutions">${d.evolutions?.length ? `<div class="section-grid">${d.evolutions.map((v) => info(v.targetFormId || v.id, kv("Bonbons", v.candies) + kv("Objet", v.item))).join("")}</div>` : '<div class="empty">Aucune évolution suivante.</div>'}</div><div class="panel" data-panel="forms">${assetsPanel(d)}</div><div class="panel" data-panel="assistant">${assistantPanel(e, sourceJson)}</div><div class="panel" data-panel="editor">${editorPanel(sourceJson)}</div><div class="panel" data-panel="json"><pre>${esc(JSON.stringify(sourceJson, null, 2))}</pre></div>`;
+        }</div><div class="panel" data-panel="shadow">${shadowPanel(d)}</div><div class="panel" data-panel="evolutions">${d.evolutions?.length ? `<div class="section-grid">${d.evolutions.map((v) => info(v.targetFormId || v.id, kv("Bonbons", v.candies) + kv("Objet", v.item))).join("")}</div>` : '<div class="empty">Aucune évolution suivante.</div>'}</div><div class="panel" data-panel="forms">${assetsPanel(d)}</div><div class="panel" data-panel="assistant">${assistantPanel(e, sourceJson)}</div><div class="panel" data-panel="editor">${editorPanel(sourceJson)}</div><div class="panel" data-panel="json"><pre>${esc(JSON.stringify(sourceJson, null, 2))}</pre></div>`;
         document.getElementById("closeDetail").onclick = () =>
           el.detail.close();
         el.tabs.querySelectorAll("[data-tab]").forEach(

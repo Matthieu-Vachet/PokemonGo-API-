@@ -29,6 +29,144 @@
     "Korean": "프리져",
     "Spanish": "Articuno"
   },
+  "size": {
+    "height": 1.7,
+    "weight": 55.4
+  },
+  "weatherBoost": [
+    "snow",
+    "windy"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 3450,
+    "maxLevel40": 3051,
+    "weatherBoostLevel25": 2179,
+    "raidLevel20": 1743,
+    "researchLevel15": 1308
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": true,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 18.5,
+        "cp": 1496
+      },
+      "bestMovesets": {
+        "fast": "POWDER_SNOW_FAST",
+        "charged": [
+          "ICY_WIND",
+          "HURRICANE"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 13,
+          "stamina": 15
+        },
+        "level": 32,
+        "cp": 2497
+      },
+      "bestMovesets": {
+        "fast": "POWDER_SNOW_FAST",
+        "charged": [
+          "ICY_WIND",
+          "HURRICANE"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 3450
+      },
+      "bestMovesets": {
+        "fast": "POWDER_SNOW_FAST",
+        "charged": [
+          "ICY_WIND",
+          "HURRICANE"
+        ]
+      }
+    }
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2019-11-05",
+    "purificationCost": {
+      "stardust": 20000,
+      "candy": 20
+    },
+    "catchCp": {
+      "normal": {
+        "min": 597,
+        "max": 688
+      },
+      "weatherBoosted": {
+        "min": 1023,
+        "max": 1133
+      }
+    },
+    "variants": [
+      {
+        "name": "Articuno",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 597,
+            "max": 688
+          },
+          "weatherBoosted": {
+            "min": 1023,
+            "max": 1133
+          }
+        },
+        "purificationCost": {
+          "stardust": 20000,
+          "candy": 20
+        },
+        "releaseDate": "2019-11-05",
+        "releaseDateText": "November 5, 2019"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 207,
     "attack": 192,
@@ -82,7 +220,53 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0144_001_uk_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_GoFest2026_tokyo",
+        "name": "GO Fest 2026 Tokyo",
+        "type": "location",
+        "date": "May 28th - May 31st 2026",
+        "eligibleForms": [
+          "Articuno"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2026_tokyo.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_2026_ppk_001",
+        "name": "PokePark Kanto",
+        "type": "location",
+        "date": "February 5th 2026",
+        "eligibleForms": [
+          "Articuno"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_2026_ppk_001.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoFest2025_Eternatus",
+        "name": "Dark Skies",
+        "type": "special",
+        "date": "August 18th - 24th 2025",
+        "eligibleForms": [
+          "Articuno"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_Season19_DelightfulDays",
+        "name": "Delightful Days",
+        "type": "special",
+        "date": "June - September 2025",
+        "eligibleForms": [
+          "Articuno"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_Season19_DelightfulDays.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": {
     "ARTICUNO_GALARIAN": {

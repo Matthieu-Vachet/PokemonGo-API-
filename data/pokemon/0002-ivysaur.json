@@ -40,14 +40,21 @@
   "buddyDistance": 3,
   "catchRate": 20,
   "fleeRate": 0,
+  "megaEnergyReward": 15,
   "captureRewards": {
     "candy": 5,
     "stardust": 300
   },
-  "megaEnergyReward": 15,
   "secondChargeMoveCost": {
     "candy": 25,
     "stardust": 10000
+  },
+  "maxCp": {
+    "maxLevel50": 1921,
+    "maxLevel40": 1699,
+    "weatherBoostLevel25": 1213,
+    "raidLevel20": 970,
+    "researchLevel15": 728
   },
   "availability": {
     "released": true,
@@ -57,28 +64,20 @@
     "shadow": true,
     "dynamax": true,
     "gigantamax": false,
-    "mega": false,
     "apex": false
-  },
-  "maxCp": {
-    "maxLevel50": 1921,
-    "maxLevel40": 1699,
-    "weatherBoostLevel25": 1213,
-    "raidLevel20": 970,
-    "researchLevel15": 728
   },
   "pvp": {
     "littleCup": null,
     "greatLeague": {
-      "tierRank": "C",
+      "tierRank": "B",
       "rank1": {
         "ivs": {
-          "attack": 1,
-          "defense": 15,
-          "stamina": 15
+          "attack": 0,
+          "defense": 13,
+          "stamina": 14
         },
-        "level": 37.5,
-        "cp": 1500
+        "level": 38.5,
+        "cp": 1498
       },
       "bestMovesets": {
         "fast": "VINE_WHIP_FAST",
@@ -90,6 +89,47 @@
     },
     "ultraLeague": null,
     "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2019-07-22",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 316,
+        "max": 383
+      },
+      "weatherBoosted": {
+        "min": 549,
+        "max": 631
+      }
+    },
+    "variants": [
+      {
+        "name": "Ivysaur",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 316,
+            "max": 383
+          },
+          "weatherBoosted": {
+            "min": 549,
+            "max": 631
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2019-07-22",
+        "releaseDateText": "July 22, 2019"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
   },
   "stats": {
     "stamina": 155,

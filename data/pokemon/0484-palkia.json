@@ -29,6 +29,126 @@
     "Korean": "펄기아",
     "Spanish": "Palkia"
   },
+  "size": {
+    "height": 4.2,
+    "weight": 336
+  },
+  "weatherBoost": [
+    "rain",
+    "windy"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 4512,
+    "maxLevel40": 3991,
+    "weatherBoostLevel25": 2850,
+    "raidLevel20": 2280,
+    "researchLevel15": 1710
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": null,
+    "ultraLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 2,
+          "defense": 15,
+          "stamina": 14
+        },
+        "level": 23,
+        "cp": 2500
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_BREATH_FAST",
+        "charged": [
+          "AQUA_TAIL",
+          "DRACO_METEOR"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 4512
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_BREATH_FAST",
+        "charged": [
+          "AQUA_TAIL",
+          "FIRE_BLAST"
+        ]
+      }
+    }
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2025-01-15",
+    "purificationCost": {
+      "stardust": 20000,
+      "candy": 20
+    },
+    "catchCp": {
+      "normal": {
+        "min": 794,
+        "max": 899
+      },
+      "weatherBoosted": {
+        "min": 1354,
+        "max": 1482
+      }
+    },
+    "variants": [
+      {
+        "name": "Palkia",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 794,
+            "max": 899
+          },
+          "weatherBoosted": {
+            "min": 1354,
+            "max": 1482
+          }
+        },
+        "purificationCost": {
+          "stardust": 20000,
+          "candy": 20
+        },
+        "releaseDate": "2025-01-15",
+        "releaseDateText": "January 15, 2025"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 189,
     "attack": 280,
@@ -78,7 +198,65 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0484_001_uk_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_GoTour2024_losAngeles",
+        "name": "GO Tour Los Angeles",
+        "type": "location",
+        "date": "February 17th - 18th 2024",
+        "eligibleForms": [
+          "Palkia (Origin Forme)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoTour2024_losAngeles.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_GoTour2025_losAngeles",
+        "name": "GO Tour Los Angeles",
+        "type": "location",
+        "date": "February 17th - 18th 2024",
+        "eligibleForms": [
+          "Palkia (Origin Forme)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoTour2025_losAngeles.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_GOWA_fukuoka",
+        "name": "GO Wild Area Fukuoka",
+        "type": "location",
+        "date": "November 16th - 17th 2024",
+        "eligibleForms": [
+          "Palkia"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GOWA_fukuoka.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoTour2026_pearl",
+        "name": "GO Tour 2026 Pearl",
+        "type": "special",
+        "date": "February 23rd - February 27th 2026",
+        "eligibleForms": [
+          "Palkia",
+          "Palkia (Origin Forme)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_pearl.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GOWA_fukuoka",
+        "name": "GO Wild Area 2024",
+        "type": "special",
+        "date": "November 23rd - 24th 2024",
+        "eligibleForms": [
+          "Palkia"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GOWA_fukuoka.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": {
     "PALKIA_ORIGIN": {

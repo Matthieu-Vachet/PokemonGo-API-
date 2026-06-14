@@ -29,6 +29,85 @@
     "Korean": "나몰빼미",
     "Spanish": "Rowlet"
   },
+  "size": {
+    "height": 0.3,
+    "weight": 1.5
+  },
+  "weatherBoost": [
+    "sunny",
+    "windy"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 25,
+    "stardust": 10000
+  },
+  "maxCp": {
+    "maxLevel50": 1196,
+    "maxLevel40": 1058,
+    "weatherBoostLevel25": 755,
+    "raidLevel20": 604,
+    "researchLevel15": 453
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 19,
+        "cp": 500
+      },
+      "bestMovesets": {
+        "fast": "LEAFAGE_FAST",
+        "charged": [
+          "SEED_BOMB",
+          "ENERGY_BALL"
+        ]
+      }
+    },
+    "greatLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 1196
+      },
+      "bestMovesets": {
+        "fast": "LEAFAGE_FAST",
+        "charged": [
+          "ENERGY_BALL",
+          "SEED_BOMB"
+        ]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
+  },
   "stats": {
     "stamina": 169,
     "attack": 102,
@@ -68,7 +147,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0722_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_2024_decemberCdRecap",
+        "name": "Community Day 2024",
+        "type": "special",
+        "date": "December 21st - 22nd 2024",
+        "eligibleForms": [
+          "Rowlet"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_2024_decemberCdRecap.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

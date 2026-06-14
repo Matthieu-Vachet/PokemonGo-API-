@@ -106,6 +106,29 @@ router.get(
 );
 
 router.get(
+  "/:identifier/shadow",
+  asyncHandler(async (request, response) => {
+    const pokemon = await findPokemon(request.params.identifier, request.query);
+    response.json({
+      data: pokemon.data?.shadow || null,
+      meta: { pokemon: pokemon.key, released: Boolean(pokemon.data?.shadow) },
+    });
+  }),
+);
+
+router.get(
+  "/:identifier/backgrounds",
+  asyncHandler(async (request, response) => {
+    const pokemon = await findPokemon(request.params.identifier, request.query);
+    const backgrounds = pokemon.data?.assets?.locationCards || [];
+    response.json({
+      data: backgrounds,
+      meta: { pokemon: pokemon.key, total: backgrounds.length },
+    });
+  }),
+);
+
+router.get(
   "/:identifier/assets",
   asyncHandler(async (request, response) => {
     const pokemon = await findPokemon(request.params.identifier, request.query);
@@ -113,6 +136,7 @@ router.get(
       data: {
         key: pokemon.key,
         assets: pokemon.data?.assets || {},
+        backgrounds: pokemon.data?.assets?.locationCards || [],
         forms: pokemon.data?.assetForms || [],
       },
     });

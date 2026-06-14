@@ -39,14 +39,21 @@
   "buddyDistance": 3,
   "catchRate": 20,
   "fleeRate": 0,
+  "megaEnergyReward": 15,
   "captureRewards": {
     "candy": 5,
     "stardust": 300
   },
-  "megaEnergyReward": 15,
   "secondChargeMoveCost": {
     "candy": 25,
     "stardust": 10000
+  },
+  "maxCp": {
+    "maxLevel50": 1682,
+    "maxLevel40": 1488,
+    "weatherBoostLevel25": 1063,
+    "raidLevel20": 850,
+    "researchLevel15": 637
   },
   "availability": {
     "released": true,
@@ -58,17 +65,10 @@
     "gigantamax": false,
     "apex": false
   },
-  "maxCp": {
-    "maxLevel50": 1682,
-    "maxLevel40": 1488,
-    "weatherBoostLevel25": 1063,
-    "raidLevel20": 850,
-    "researchLevel15": 637
-  },
   "pvp": {
     "littleCup": null,
     "greatLeague": {
-      "tierRank": "A",
+      "tierRank": "B",
       "rank1": {
         "ivs": {
           "attack": 0,
@@ -88,6 +88,47 @@
     },
     "ultraLeague": null,
     "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2019-07-22",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 273,
+        "max": 335
+      },
+      "weatherBoosted": {
+        "min": 476,
+        "max": 552
+      }
+    },
+    "variants": [
+      {
+        "name": "Wartortle",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 273,
+            "max": 335
+          },
+          "weatherBoosted": {
+            "min": 476,
+            "max": 552
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2019-07-22",
+        "releaseDateText": "July 22, 2019"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
   },
   "stats": {
     "stamina": 153,

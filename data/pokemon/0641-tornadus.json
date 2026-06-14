@@ -29,6 +29,89 @@
     "Korean": "토네로스",
     "Spanish": "Tornadus"
   },
+  "size": {
+    "height": 1.5,
+    "weight": 63
+  },
+  "weatherBoost": [
+    "windy"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 3782,
+    "maxLevel40": 3345,
+    "weatherBoostLevel25": 2389,
+    "raidLevel20": 1911,
+    "researchLevel15": 1433
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": null,
+    "ultraLeague": null,
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2025-09-16",
+    "purificationCost": {
+      "stardust": 20000,
+      "candy": 20
+    },
+    "catchCp": {
+      "normal": {
+        "min": 657,
+        "max": 754
+      },
+      "weatherBoosted": {
+        "min": 1125,
+        "max": 1242
+      }
+    },
+    "variants": [
+      {
+        "name": "Tornadus",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 657,
+            "max": 754
+          },
+          "weatherBoosted": {
+            "min": 1125,
+            "max": 1242
+          }
+        },
+        "purificationCost": {
+          "stardust": 20000,
+          "candy": 20
+        },
+        "releaseDate": "2025-09-16",
+        "releaseDateText": "September 16, 2025"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 188,
     "attack": 266,
@@ -78,7 +161,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0641_001_mo_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoTour2025_black",
+        "name": "GO Tour Unova Black",
+        "type": "special",
+        "date": "March 1st - 2nd 2025",
+        "eligibleForms": [
+          "Tornadus (Therian Forme)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_black.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": {
     "TORNADUS_INCARNATE": {

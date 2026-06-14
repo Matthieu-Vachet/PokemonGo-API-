@@ -29,6 +29,103 @@
     "Korean": "철화구야",
     "Spanish": "Celesteela"
   },
+  "size": {
+    "height": 9.2,
+    "weight": 999.9
+  },
+  "weatherBoost": [
+    "snow",
+    "windy"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 3507,
+    "maxLevel40": 3102,
+    "weatherBoostLevel25": 2216,
+    "raidLevel20": 1772,
+    "researchLevel15": 1329
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 2,
+          "defense": 15,
+          "stamina": 14
+        },
+        "level": 18,
+        "cp": 1499
+      },
+      "bestMovesets": {
+        "fast": "AIR_SLASH_FAST",
+        "charged": [
+          "BODY_SLAM",
+          "IRON_HEAD"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 14
+        },
+        "level": 30.5,
+        "cp": 2495
+      },
+      "bestMovesets": {
+        "fast": "AIR_SLASH_FAST",
+        "charged": [
+          "BODY_SLAM",
+          "BULLDOZE"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 3507
+      },
+      "bestMovesets": {
+        "fast": "AIR_SLASH_FAST",
+        "charged": [
+          "BODY_SLAM",
+          "BULLDOZE"
+        ]
+      }
+    }
+  },
   "stats": {
     "stamina": 219,
     "attack": 207,
@@ -68,7 +165,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0797_000_uk_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoFest2024_wormhole",
+        "name": "GO Fest 2024 Wormhole",
+        "type": "special",
+        "date": "July 8th - 14th 2024",
+        "eligibleForms": [
+          "Celesteela"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2024_wormhole.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

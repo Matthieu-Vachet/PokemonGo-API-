@@ -29,6 +29,66 @@
     "Korean": "삐삐",
     "Spanish": "Clefairy"
   },
+  "size": {
+    "height": 0.6,
+    "weight": 7.5
+  },
+  "weatherBoost": [
+    "cloudy"
+  ],
+  "buddyDistance": 1,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 25,
+    "stardust": 10000
+  },
+  "maxCp": {
+    "maxLevel50": 1306,
+    "maxLevel40": 1155,
+    "weatherBoostLevel25": 825,
+    "raidLevel20": 660,
+    "researchLevel15": 495
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "F",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 1306
+      },
+      "bestMovesets": {
+        "fast": "ZEN_HEADBUTT_FAST",
+        "charged": [
+          "DISARMING_VOICE",
+          "BODY_SLAM"
+        ]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
+  },
   "stats": {
     "stamina": 172,
     "attack": 107,
@@ -68,7 +128,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0035_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_ObservatoryExhibitionTour",
+        "name": "Pokemon Astronomical Observatory",
+        "type": "special",
+        "date": "November 1st 2025",
+        "eligibleForms": [
+          "Clefairy"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_ObservatoryExhibitionTour.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

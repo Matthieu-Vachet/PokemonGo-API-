@@ -9,6 +9,8 @@ const meta = require("./meta");
 const catalogs = require("./catalogs");
 const forms = require("./forms");
 const smart = require("./smart");
+const backgrounds = require("./backgrounds");
+const shadow = require("./shadow");
 
 const router = express.Router();
 
@@ -32,12 +34,16 @@ router.get("/", (_request, response) => {
         generations: "/api/v1/generations",
         compare: "/api/v1/compare/pokemon?ids=charizard,blastoise",
         stats: "/api/v1/stats/global",
+        backgrounds: "/api/v1/backgrounds",
+        shadow: "/api/v1/shadow",
       },
     },
   });
 });
 
 router.use("/pokemon", pokemon);
+router.use("/backgrounds", backgrounds);
+router.use("/shadow", shadow);
 router.use("/search", search);
 router.use("/moves", moves);
 router.use("/pvp", pvp);

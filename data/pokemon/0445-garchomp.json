@@ -29,6 +29,144 @@
     "Korean": "한카리아스",
     "Spanish": "Garchomp"
   },
+  "size": {
+    "height": 1.9,
+    "weight": 95
+  },
+  "weatherBoost": [
+    "windy",
+    "sunny"
+  ],
+  "buddyDistance": 5,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": 25,
+  "captureRewards": {
+    "candy": 10,
+    "stardust": 500
+  },
+  "secondChargeMoveCost": {
+    "candy": 75,
+    "stardust": 75000
+  },
+  "maxCp": {
+    "maxLevel50": 4479,
+    "maxLevel40": 3962,
+    "weatherBoostLevel25": 2830,
+    "raidLevel20": 2264,
+    "researchLevel15": 1698
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 14
+        },
+        "level": 14,
+        "cp": 1495
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_TAIL_FAST",
+        "charged": [
+          "TWISTER",
+          "SAND_TOMB"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 14,
+          "stamina": 13
+        },
+        "level": 23.5,
+        "cp": 2499
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_TAIL_FAST",
+        "charged": [
+          "SAND_TOMB",
+          "TWISTER"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 4479
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_TAIL_FAST",
+        "charged": [
+          "TWISTER",
+          "EARTH_POWER"
+        ]
+      }
+    }
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2023-06-21",
+    "purificationCost": {
+      "stardust": 5000,
+      "candy": 5
+    },
+    "catchCp": {
+      "normal": {
+        "min": 789,
+        "max": 893
+      },
+      "weatherBoosted": {
+        "min": 1345,
+        "max": 1471
+      }
+    },
+    "variants": [
+      {
+        "name": "Garchomp",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 789,
+            "max": 893
+          },
+          "weatherBoosted": {
+            "min": 1345,
+            "max": 1471
+          }
+        },
+        "purificationCost": {
+          "stardust": 5000,
+          "candy": 5
+        },
+        "releaseDate": "2023-06-21",
+        "releaseDateText": "June 21, 2023"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 239,
     "attack": 261,
@@ -92,7 +230,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0445_001_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoTour2026_mega",
+        "name": "GO Tour 2026 Mega",
+        "type": "special",
+        "date": "February 23rd - February 27th 2026",
+        "eligibleForms": [
+          "Garchomp"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_mega.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

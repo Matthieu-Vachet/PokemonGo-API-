@@ -29,6 +29,85 @@
     "Korean": "사철록",
     "Spanish": "Deerling"
   },
+  "size": {
+    "height": 0.6,
+    "weight": 19.5
+  },
+  "weatherBoost": [
+    "partlyCloudy",
+    "sunny"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 1283,
+    "maxLevel40": 1135,
+    "weatherBoostLevel25": 810,
+    "raidLevel20": 648,
+    "researchLevel15": 486
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 14,
+          "stamina": 15
+        },
+        "level": 17.5,
+        "cp": 499
+      },
+      "bestMovesets": {
+        "fast": "TACKLE_FAST",
+        "charged": [
+          "WILD_CHARGE",
+          "TRAILBLAZE"
+        ]
+      }
+    },
+    "greatLeague": {
+      "tierRank": "D",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 14
+        },
+        "level": 50,
+        "cp": 1279
+      },
+      "bestMovesets": {
+        "fast": "TACKLE_FAST",
+        "charged": [
+          "WILD_CHARGE",
+          "ENERGY_BALL"
+        ]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
+  },
   "stats": {
     "stamina": 155,
     "attack": 115,
@@ -98,7 +177,53 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0585_003_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_Jangheung_Water_Festival_2025",
+        "name": "Jangheung Water Festival",
+        "type": "location",
+        "date": "July 28th - August 3rd 2025",
+        "eligibleForms": [
+          "Deerling (Summer Form)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_Jangheung_Water_Festival_2025.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_2025_kr_pyeongchangWinterFestival",
+        "name": "Pyeongchang Winter Festival",
+        "type": "location",
+        "date": "January 19th - January 25th",
+        "eligibleForms": [
+          "Deerling (Winter Form)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_2025_kr_pyeongchangWinterFestival.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_CherryBlossomFest2025_yeouido",
+        "name": "Spring Blossom Festival",
+        "type": "location",
+        "date": "March 30th - April 8th 2025",
+        "eligibleForms": [
+          "Deerling"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_CherryBlossomFest2025_yeouido.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_taipeiFlowerFestival_2026",
+        "name": "Taipei Floral Picnic 2016",
+        "type": "location",
+        "date": "March 28th - April 6th 2026",
+        "eligibleForms": [
+          "Deerling"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_taipeiFlowerFestival_2026.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": {
     "DEERLING_AUTUMN": {

@@ -39,14 +39,21 @@
   "buddyDistance": 3,
   "catchRate": 20,
   "fleeRate": 0,
+  "megaEnergyReward": 15,
   "captureRewards": {
     "candy": 10,
     "stardust": 500
   },
-  "megaEnergyReward": 15,
   "secondChargeMoveCost": {
     "candy": 25,
     "stardust": 10000
+  },
+  "maxCp": {
+    "maxLevel50": 2788,
+    "maxLevel40": 2466,
+    "weatherBoostLevel25": 1761,
+    "raidLevel20": 1409,
+    "researchLevel15": 1057
   },
   "availability": {
     "released": true,
@@ -58,17 +65,10 @@
     "gigantamax": true,
     "apex": false
   },
-  "maxCp": {
-    "maxLevel50": 2788,
-    "maxLevel40": 2466,
-    "weatherBoostLevel25": 1761,
-    "raidLevel20": 1409,
-    "researchLevel15": 1057
-  },
   "pvp": {
     "littleCup": null,
     "greatLeague": {
-      "tierRank": "S",
+      "tierRank": "A",
       "rank1": {
         "ivs": {
           "attack": 1,
@@ -91,11 +91,11 @@
       "rank1": {
         "ivs": {
           "attack": 0,
-          "defense": 14,
+          "defense": 12,
           "stamina": 15
         },
-        "level": 48,
-        "cp": 2496
+        "level": 48.5,
+        "cp": 2500
       },
       "bestMovesets": {
         "fast": "ROLLOUT_FAST",
@@ -106,7 +106,7 @@
       }
     },
     "masterLeague": {
-      "tierRank": "D",
+      "tierRank": "C",
       "rank1": {
         "ivs": {
           "attack": 15,
@@ -124,6 +124,47 @@
         ]
       }
     }
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2019-07-22",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 474,
+        "max": 555
+      },
+      "weatherBoosted": {
+        "min": 817,
+        "max": 916
+      }
+    },
+    "variants": [
+      {
+        "name": "Blastoise",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 474,
+            "max": 555
+          },
+          "weatherBoosted": {
+            "min": 817,
+            "max": 916
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2019-07-22",
+        "releaseDateText": "July 22, 2019"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
   },
   "stats": {
     "stamina": 188,
@@ -187,7 +228,31 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0009_001_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoFest2025_Eternatus",
+        "name": "Dark Skies",
+        "type": "special",
+        "date": "August 18th - 24th 2025",
+        "eligibleForms": [
+          "Blastoise"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoTour2026_mega",
+        "name": "GO Tour 2026 Mega",
+        "type": "special",
+        "date": "February 23rd - February 27th 2026",
+        "eligibleForms": [
+          "Blastoise"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_mega.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

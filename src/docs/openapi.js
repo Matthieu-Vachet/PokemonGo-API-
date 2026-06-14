@@ -167,6 +167,8 @@ function createOpenApi() {
       ["Collection", "Routes adaptées aux outils de collection."],
       ["Raid", "Suggestions de contres Raid."],
       ["Assets", "Images et variantes visuelles."],
+      ["Backgrounds", "Backgrounds de lieu et spéciaux, dates et Pokémon éligibles."],
+      ["Shadow", "Sorties Obscures, coûts de purification, Catch CP et variantes."],
       ["Métadonnées", "Filtres disponibles et synchronisation."],
     ].map(([name, description]) => ({ name, description })),
     paths: {
@@ -238,6 +240,8 @@ function createOpenApi() {
         response: dataResponse({ pokemon: "CHARIZARD", level: 50, ivs: { attack: 15, defense: 15, stamina: 15 }, cp: 3266 }),
       }),
       [`${api}/pokemon/{identifier}/assets`]: detail("Assets", "Afficher tous les assets d'une fiche", "pikachu"),
+      [`${api}/pokemon/{identifier}/backgrounds`]: detail("Backgrounds", "Afficher les backgrounds éligibles d'un Pokémon", "eevee"),
+      [`${api}/pokemon/{identifier}/shadow`]: detail("Shadow", "Afficher les données Shadow d'un Pokémon", "bulbasaur"),
       [`${api}/pokemon/{identifier}/moves`]: detail("Attaques", "Afficher les attaques détaillées d'un Pokémon", "bulbasaur", {
         response: dataResponse({
           quickMoves: [examples.move],
@@ -325,6 +329,31 @@ function createOpenApi() {
         response: listResponse(),
       }),
       [`${api}/assets/{identifier}`]: detail("Assets", "Afficher les images normales, shiny et variantes", "pikachu"),
+      [`${api}/backgrounds`]: operation("Backgrounds", "Lister le catalogue des backgrounds", {
+        parameters: [
+          parameter("type", "query", "location", "Type : location ou special.", { enum: ["location", "special"] }),
+          parameter("date", "query", "2025", "Recherche libre dans la période du background."),
+        ],
+        response: listResponse({
+          id: "lc_GoFest2025_paris",
+          name: "Pokémon GO Fest 2025: Paris",
+          type: "location",
+          date: "June 13th - 15th 2025",
+          eligibleForms: ["Eevee (Explorer Hat)"],
+          image: "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2025_paris.png",
+        }),
+      }),
+      [`${api}/backgrounds/{id}/pokemon`]: detail("Backgrounds", "Lister les Pokémon éligibles à un background", "lc_GoFest2025_paris", {
+        name: "id",
+        description: "Identifiant construit à partir du nom du fichier dans LocationCards.",
+        response: listResponse(),
+      }),
+      [`${api}/shadow`]: list("Shadow", "Lister les Pokémon Shadow déjà sortis", [
+        parameter("variant", "query", "A", "Identifiant de variante Bulbapedia, par exemple A pour certaines formes régionales ou Apex."),
+        parameter("releasedFrom", "query", "2025-01-01", "Première date de sortie minimale, format YYYY-MM-DD."),
+        parameter("releasedTo", "query", "2025-12-31", "Première date de sortie maximale, format YYYY-MM-DD."),
+      ]),
+      [`${api}/shadow/{identifier}`]: detail("Shadow", "Afficher les données Shadow détaillées", "bulbasaur"),
       [`${api}/collection/checklist`]: operation("Collection", "Créer une checklist de collection", {
         parameters: [
           parameter("shiny", "query", true, "Uniquement les shiny sortis.", { type: "boolean" }),
@@ -420,7 +449,7 @@ function createOpenApi() {
 
   specification["x-tagGroups"] = [
     { name: "Commencer", tags: ["System", "Recherche"] },
-    { name: "Pokédex", tags: ["Pokémon", "Évolutions", "Méga", "Dynamax", "Gigantamax", "Assets"] },
+    { name: "Pokédex", tags: ["Pokémon", "Évolutions", "Méga", "Dynamax", "Gigantamax", "Shadow", "Assets", "Backgrounds"] },
     { name: "Combat", tags: ["PvP", "Raid", "Attaques", "Types", "Statistiques", "Comparaison"] },
     { name: "Univers", tags: ["Régions", "Générations", "Collection"] },
     { name: "Administration", tags: ["Métadonnées"] },

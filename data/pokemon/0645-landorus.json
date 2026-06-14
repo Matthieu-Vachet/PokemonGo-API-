@@ -29,6 +29,90 @@
     "Korean": "랜드로스",
     "Spanish": "Landorus"
   },
+  "size": {
+    "height": 1.5,
+    "weight": 68
+  },
+  "weatherBoost": [
+    "sunny",
+    "windy"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 4057,
+    "maxLevel40": 3588,
+    "weatherBoostLevel25": 2563,
+    "raidLevel20": 2050,
+    "researchLevel15": 1538
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": null,
+    "ultraLeague": null,
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2026-04-30",
+    "purificationCost": {
+      "stardust": 20000,
+      "candy": 20
+    },
+    "catchCp": {
+      "normal": {
+        "min": 709,
+        "max": 809
+      },
+      "weatherBoosted": {
+        "min": 1212,
+        "max": 1333
+      }
+    },
+    "variants": [
+      {
+        "name": "Landorus",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 709,
+            "max": 809
+          },
+          "weatherBoosted": {
+            "min": 1212,
+            "max": 1333
+          }
+        },
+        "purificationCost": {
+          "stardust": 20000,
+          "candy": 20
+        },
+        "releaseDate": "2026-04-30",
+        "releaseDateText": "April 30, 2026"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 205,
     "attack": 261,
@@ -78,7 +162,31 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0645_001_mo_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoTour2025_black",
+        "name": "GO Tour Unova Black",
+        "type": "special",
+        "date": "March 1st - 2nd 2025",
+        "eligibleForms": [
+          "Landorus (Therian Forme)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_black.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoTour2025_white",
+        "name": "GO Tour Unova White",
+        "type": "special",
+        "date": "March 1st - 2nd 2025",
+        "eligibleForms": [
+          "Landorus (Therian Forme)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_white.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": {
     "LANDORUS_INCARNATE": {

@@ -29,6 +29,126 @@
     "Korean": "디아루가",
     "Spanish": "Dialga"
   },
+  "size": {
+    "height": 5.4,
+    "weight": 683
+  },
+  "weatherBoost": [
+    "snow",
+    "windy"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 4565,
+    "maxLevel40": 4038,
+    "weatherBoostLevel25": 2884,
+    "raidLevel20": 2307,
+    "researchLevel15": 1731
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": null,
+    "ultraLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 12
+        },
+        "level": 23,
+        "cp": 2499
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_BREATH_FAST",
+        "charged": [
+          "IRON_HEAD",
+          "THUNDER"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 4565
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_BREATH_FAST",
+        "charged": [
+          "IRON_HEAD",
+          "DRACO_METEOR"
+        ]
+      }
+    }
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2025-05-14",
+    "purificationCost": {
+      "stardust": 20000,
+      "candy": 20
+    },
+    "catchCp": {
+      "normal": {
+        "min": 805,
+        "max": 910
+      },
+      "weatherBoosted": {
+        "min": 1372,
+        "max": 1500
+      }
+    },
+    "variants": [
+      {
+        "name": "Dialga",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 805,
+            "max": 910
+          },
+          "weatherBoosted": {
+            "min": 1372,
+            "max": 1500
+          }
+        },
+        "purificationCost": {
+          "stardust": 20000,
+          "candy": 20
+        },
+        "releaseDate": "2025-05-14",
+        "releaseDateText": "May 14, 2025"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 205,
     "attack": 275,
@@ -77,7 +197,65 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0483_001_uk_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_GoTour2024_losAngeles",
+        "name": "GO Tour Los Angeles",
+        "type": "location",
+        "date": "February 17th - 18th 2024",
+        "eligibleForms": [
+          "Dialga (Origin Forme)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoTour2024_losAngeles.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_GoTour2025_losAngeles",
+        "name": "GO Tour Los Angeles",
+        "type": "location",
+        "date": "February 17th - 18th 2024",
+        "eligibleForms": [
+          "Dialga (Origin Forme)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoTour2025_losAngeles.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_GOWA_fukuoka",
+        "name": "GO Wild Area Fukuoka",
+        "type": "location",
+        "date": "November 16th - 17th 2024",
+        "eligibleForms": [
+          "Dialga"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GOWA_fukuoka.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoTour2026_diamond",
+        "name": "GO Tour 2026 Diamond",
+        "type": "special",
+        "date": "February 23rd - February 27th 2026",
+        "eligibleForms": [
+          "Dialga",
+          "Dialga (Origin Forme)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_diamond.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GOWA_fukuoka",
+        "name": "GO Wild Area 2024",
+        "type": "special",
+        "date": "November 23rd - 24th 2024",
+        "eligibleForms": [
+          "Dialga"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GOWA_fukuoka.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": {
     "DIALGA_ORIGIN": {

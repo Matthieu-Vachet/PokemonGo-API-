@@ -33,6 +33,12 @@ test("GET /api-docs.json fournit OpenAPI 3", async () => {
   assert.equal(response.body.openapi, "3.0.3");
   assert.ok(response.body.paths["/api/v1/pokemon"]);
   assert.ok(response.body.paths["/api/v1/pvp/{league}/{identifier}"]);
+  assert.ok(response.body.paths["/api/v1/backgrounds"]);
+  assert.ok(response.body.paths["/api/v1/backgrounds/{id}/pokemon"]);
+  assert.ok(response.body.paths["/api/v1/pokemon/{identifier}/backgrounds"]);
+  assert.ok(response.body.paths["/api/v1/shadow"]);
+  assert.ok(response.body.paths["/api/v1/shadow/{identifier}"]);
+  assert.ok(response.body.paths["/api/v1/pokemon/{identifier}/shadow"]);
 });
 
 test("GET /api-docs fournit la documentation Redoc", async () => {
@@ -75,6 +81,23 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   const bulbasaur = data.pokemon.find((pokemon) => pokemon.key === "BULBASAUR");
   assert.equal(bulbasaur.data.assets.home.source, "pokemon-home");
   assert.ok(bulbasaur.data.assets.home.variants.length >= 1);
+  const eevee = data.pokemon.find((pokemon) => pokemon.key === "EEVEE");
+  const citySafari = eevee.data.assets.locationCards.find(
+    (card) => card.id === "lc_CitySafari2023_barcelona_2023",
+  );
+  assert.equal(citySafari.date, "October 13th - 14th 2023");
+  assert.deepEqual(citySafari.eligibleForms, ["Eevee (Explorer Hat)"]);
+  assert.match(citySafari.image, /\/LocationCards\//);
+  const bulbasaurShadow = bulbasaur.data.shadow;
+  assert.equal(bulbasaurShadow.firstReleaseDate, "2019-07-22");
+  assert.deepEqual(bulbasaurShadow.purificationCost, { stardust: 3000, candy: 3 });
+  assert.deepEqual(bulbasaurShadow.catchCp.normal, { min: 198, max: 251 });
+  assert.equal(bulbasaur.data.availability.shadow, true);
+  const helioptile = data.pokemon.find((pokemon) => pokemon.key === "HELIOPTILE");
+  assert.equal(helioptile.data.availability.shadow, true);
+  const rookidee = data.pokemon.find((pokemon) => pokemon.key === "ROOKIDEE");
+  assert.equal(rookidee.data.availability.shadow, false);
+  assert.equal(rookidee.data.shadow, undefined);
 });
 
 test("les types, PvP null et formes Max sont normalisés", () => {
@@ -162,6 +185,7 @@ test("la checklist calcule les scores, catégories et diagnostics d'assets", () 
   assert.equal(bulbasaur.assets.go, true);
   assert.equal(bulbasaur.assets.home, true);
   assert.ok(bulbasaur.assets.homeVariants >= 1);
+  assert.equal(typeof bulbasaur.assets.locationCards, "number");
   assert.equal(typeof bulbasaur.assets.duplicateUrls, "number");
   assert.equal(typeof bulbasaur.assets.incompletePairs, "number");
 });
@@ -198,13 +222,13 @@ test("l'assistant JSON couvre chaque problème détecté", () => {
       );
   }
 
-  const gigantamax = checklist.find(
+  const completeGigantamax = checklist.find(
     (entry) =>
       entry.form === "gigantamax" &&
       entry.key.toLowerCase().includes("butterfree"),
   );
-  assert.ok(gigantamax.suggestedPatch.maxCp);
-  assert.deepEqual(gigantamax.suggestedPatch.maxBattle.moves, [""]);
+  assert.equal(completeGigantamax.complete, true);
+  assert.deepEqual(completeGigantamax.suggestedPatch, {});
 });
 
 test("l'atelier expose les icônes de types et valide les références", () => {

@@ -29,6 +29,107 @@
     "Korean": "딱정곤",
     "Spanish": "Karrablast"
   },
+  "size": {
+    "height": 0.5,
+    "weight": 5.9
+  },
+  "weatherBoost": [
+    "rain"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 1336,
+    "maxLevel40": 1182,
+    "weatherBoostLevel25": 844,
+    "raidLevel20": 675,
+    "researchLevel15": 506
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 1336
+      },
+      "bestMovesets": {
+        "fast": "FURY_CUTTER_FAST",
+        "charged": [
+          "DRILL_RUN",
+          "X_SCISSOR"
+        ]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2024-10-08",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 233,
+        "max": 291
+      },
+      "weatherBoosted": {
+        "min": 409,
+        "max": 480
+      }
+    },
+    "variants": [
+      {
+        "name": "Karrablast",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 233,
+            "max": 291
+          },
+          "weatherBoosted": {
+            "min": 409,
+            "max": 480
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2024-10-08",
+        "releaseDateText": "October 8, 2024"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 137,
     "attack": 137,
@@ -68,7 +169,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0588_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_Season17_DuelDestiny",
+        "name": "Dual Destiny",
+        "type": "special",
+        "date": "January 5th 2025January 25th 2025February 9th 2025",
+        "eligibleForms": [
+          "Karrablast"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_Season17_DuelDestiny.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

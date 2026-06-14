@@ -29,6 +29,84 @@
     "Korean": "전수목",
     "Spanish": "Xurkitree"
   },
+  "size": {
+    "height": 3.8,
+    "weight": 100
+  },
+  "weatherBoost": [
+    "rain"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 4451,
+    "maxLevel40": 3937,
+    "weatherBoostLevel25": 2812,
+    "raidLevel20": 2249,
+    "researchLevel15": 1687
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": null,
+    "ultraLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 12,
+          "stamina": 14
+        },
+        "level": 23.5,
+        "cp": 2498
+      },
+      "bestMovesets": {
+        "fast": "THUNDER_SHOCK_FAST",
+        "charged": [
+          "DISCHARGE",
+          "POWER_WHIP"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 50,
+        "cp": 4451
+      },
+      "bestMovesets": {
+        "fast": "THUNDER_SHOCK_FAST",
+        "charged": [
+          "DISCHARGE",
+          "DAZZLING_GLEAM"
+        ]
+      }
+    }
+  },
   "stats": {
     "stamina": 195,
     "attack": 330,
@@ -68,7 +146,31 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0796_000_uk_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_GoFest2024_sendai",
+        "name": "GO Fest Sendai",
+        "type": "location",
+        "date": "May 30th 2024 - June 2nd 2024",
+        "eligibleForms": [
+          "Xurkitree"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2024_sendai.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoFest2024_wormhole",
+        "name": "GO Fest 2024 Wormhole",
+        "type": "special",
+        "date": "July 8th - 14th 2024",
+        "eligibleForms": [
+          "Xurkitree"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2024_wormhole.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

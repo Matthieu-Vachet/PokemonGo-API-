@@ -29,6 +29,90 @@
     "Korean": "단단지",
     "Spanish": "Shuckle"
   },
+  "size": {
+    "height": 0.61,
+    "weight": 20.5
+  },
+  "weatherBoost": [
+    "rain",
+    "partlyCloudy"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 458,
+    "maxLevel40": 405,
+    "weatherBoostLevel25": 289,
+    "raidLevel20": 231,
+    "researchLevel15": 173
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": null,
+    "ultraLeague": null,
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2020-06-10",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 43,
+        "max": 91
+      },
+      "weatherBoosted": {
+        "min": 91,
+        "max": 150
+      }
+    },
+    "variants": [
+      {
+        "name": "Shuckle",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 43,
+            "max": 91
+          },
+          "weatherBoosted": {
+            "min": 91,
+            "max": 150
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2020-06-10",
+        "releaseDateText": "June 10, 2020"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 85,
     "attack": 17,
@@ -67,7 +151,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0213_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoFest2025_Eternatus",
+        "name": "Dark Skies",
+        "type": "special",
+        "date": "August 18th - 24th 2025",
+        "eligibleForms": [
+          "Shuckle"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

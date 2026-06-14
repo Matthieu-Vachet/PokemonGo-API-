@@ -29,6 +29,125 @@
     "Korean": "나무킹",
     "Spanish": "Sceptile"
   },
+  "size": {
+    "height": 1.7,
+    "weight": 52.2
+  },
+  "weatherBoost": [
+    "sunny"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": 15,
+  "captureRewards": {
+    "candy": 10,
+    "stardust": 500
+  },
+  "secondChargeMoveCost": {
+    "candy": 25,
+    "stardust": 10000
+  },
+  "maxCp": {
+    "maxLevel50": 3117,
+    "maxLevel40": 2757,
+    "weatherBoostLevel25": 1969,
+    "raidLevel20": 1575,
+    "researchLevel15": 1181
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 12,
+          "stamina": 15
+        },
+        "level": 20.5,
+        "cp": 1500
+      },
+      "bestMovesets": {
+        "fast": "FURY_CUTTER_FAST",
+        "charged": [
+          "LEAF_BLADE",
+          "BREAKING_SWIPE"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 13
+        },
+        "level": 38,
+        "cp": 2496
+      },
+      "bestMovesets": {
+        "fast": "FURY_CUTTER_FAST",
+        "charged": [
+          "LEAF_BLADE",
+          "BREAKING_SWIPE"
+        ]
+      }
+    },
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2023-03-25",
+    "purificationCost": {
+      "stardust": 3000,
+      "candy": 3
+    },
+    "catchCp": {
+      "normal": {
+        "min": 535,
+        "max": 621
+      },
+      "weatherBoosted": {
+        "min": 919,
+        "max": 1024
+      }
+    },
+    "variants": [
+      {
+        "name": "Sceptile",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 535,
+            "max": 621
+          },
+          "weatherBoosted": {
+            "min": 919,
+            "max": 1024
+          }
+        },
+        "purificationCost": {
+          "stardust": 3000,
+          "candy": 3
+        },
+        "releaseDate": "2023-03-25",
+        "releaseDateText": "March 25, 2023"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 172,
     "attack": 223,
@@ -81,7 +200,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0254_001_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoTour2026_mega",
+        "name": "GO Tour 2026 Mega",
+        "type": "special",
+        "date": "February 23rd - February 27th 2026",
+        "eligibleForms": [
+          "Sceptile"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_mega.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

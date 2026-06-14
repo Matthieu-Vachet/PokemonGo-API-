@@ -29,6 +29,67 @@
     "Korean": "곤율랭",
     "Spanish": "Scraggy"
   },
+  "size": {
+    "height": 0.6,
+    "weight": 11.8
+  },
+  "weatherBoost": [
+    "fog",
+    "cloudy"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 1551,
+    "maxLevel40": 1372,
+    "weatherBoostLevel25": 980,
+    "raidLevel20": 784,
+    "researchLevel15": 588
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 11,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 49.5,
+        "cp": 1500
+      },
+      "bestMovesets": {
+        "fast": "FEINT_ATTACK_FAST",
+        "charged": [
+          "UPPER_HAND",
+          "FOUL_PLAY"
+        ]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
+  },
   "stats": {
     "stamina": 137,
     "attack": 132,
@@ -69,7 +130,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0559_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_GoTour2025_enigma",
+        "name": "GO Tour Enigma",
+        "type": "special",
+        "date": "February 21st - 23rd 2025",
+        "eligibleForms": [
+          "Scraggy"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_enigma.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

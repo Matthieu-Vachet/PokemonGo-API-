@@ -29,6 +29,84 @@
     "Korean": "켄타로스",
     "Spanish": "Tauros"
   },
+  "size": {
+    "height": 1.4,
+    "weight": 88.4
+  },
+  "weatherBoost": [
+    "partlyCloudy"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 2962,
+    "maxLevel40": 2620,
+    "weatherBoostLevel25": 1872,
+    "raidLevel20": 1497,
+    "researchLevel15": 1123
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 21.5,
+        "cp": 1496
+      },
+      "bestMovesets": {
+        "fast": "TACKLE_FAST",
+        "charged": [
+          "TRAILBLAZE",
+          "HORN_ATTACK"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 14
+        },
+        "level": 42,
+        "cp": 2491
+      },
+      "bestMovesets": {
+        "fast": "TACKLE_FAST",
+        "charged": [
+          "TRAILBLAZE",
+          "HORN_ATTACK"
+        ]
+      }
+    },
+    "masterLeague": null
+  },
   "stats": {
     "stamina": 181,
     "attack": 198,
@@ -98,7 +176,42 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0128_003_md_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_GoFest2026_chicago",
+        "name": "GO Fest 2026 Chicago",
+        "type": "location",
+        "date": "June 5th - 7th 2026",
+        "eligibleForms": [
+          "Tauros (Paldean Form - Blaze Breed)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2026_chicago.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_GoFest2026_copenhagen",
+        "name": "GO Fest 2026 Copenhagen",
+        "type": "location",
+        "date": "June 12th - 14th 2026",
+        "eligibleForms": [
+          "Tauros (Paldean Form - Combat Breed)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2026_copenhagen.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_GoFest2026_tokyo",
+        "name": "GO Fest 2026 Tokyo",
+        "type": "location",
+        "date": "May 28th - May 31st 2026",
+        "eligibleForms": [
+          "Tauros (Paldean Form - Aqua Breed)"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2026_tokyo.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": {
     "TAUROS_PALDEA_AQUA": {

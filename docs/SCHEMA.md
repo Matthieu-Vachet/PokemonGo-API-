@@ -178,6 +178,37 @@ Ces champs referencent les identifiants courts de `data/types/`.
 | `gigantamax` | Compatible Gigamax. |
 | `apex` | Existe en version Apex. |
 
+### Shadow / Obscur
+
+Le bloc `shadow` existe uniquement lorsque `availability.shadow` vaut `true`.
+Il ne contient aucun asset visuel tant qu'aucune collection d'images Shadow n'est disponible.
+
+```json
+{
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2019-07-22",
+    "purificationCost": { "stardust": 3000, "candy": 3 },
+    "catchCp": {
+      "normal": { "min": 198, "max": 251 },
+      "weatherBoosted": { "min": 348, "max": 414 }
+    },
+    "variants": [
+      {
+        "name": "Bulbasaur",
+        "variant": "normal",
+        "releaseDate": "2019-07-22",
+        "releaseDateText": "July 22, 2019"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  }
+}
+```
+
+`variants[]` conserve séparément les formes régionales, Apex et costumées partageant
+le même numéro Pokédex, ainsi que leurs propres coûts et Catch CP.
+
 ### Stats Et CP
 
 ```json
@@ -389,7 +420,18 @@ peuvent etre ajoutes a la forme.
       "image": "https://raw.githubusercontent.com/.../PokemonHd/poke_capture_0001_000_mf_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/.../PokemonHd/poke_capture_0001_000_mf_n_00000000_f_r.png",
       "variants": []
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_GoFest2025_paris",
+        "name": "Pokémon GO Fest 2025: Paris",
+        "type": "location",
+        "date": "June 13th - 15th 2025",
+        "eligibleForms": ["Eevee (Explorer Hat)"],
+        "image": "https://raw.githubusercontent.com/.../LocationCards/lc_GoFest2025_paris.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "assetForms": [
     {
@@ -410,6 +452,9 @@ peuvent etre ajoutes a la forme.
 | `assets.home.image` | string/null | Image principale issue de Pokémon Home. |
 | `assets.home.shinyImage` | string/null | Image chromatique principale issue de Pokémon Home. |
 | `assets.home.variants[]` | array | Toutes les variantes Home, identifiées par index de forme, genre, Gigantamax, détail et vue. |
+| `assets.locationCards[]` | array | Backgrounds de lieu et spéciaux auxquels ce numéro Pokédex est éligible. |
+| `assets.locationCards[].date` | string | Période exacte indiquée par la source. |
+| `assets.locationCards[].eligibleForms` | string[] | Formes et costumes exacts éligibles pour ce Pokémon. |
 | `assetForms[].form` | string/null | Forme associee a l'asset. |
 | `assetForms[].costume` | string/null | Costume associe a l'asset. |
 | `assetForms[].isFemale` | boolean | Variante visuelle femelle. |

@@ -29,6 +29,89 @@
     "Korean": "아공이",
     "Spanish": "Bagon"
   },
+  "size": {
+    "height": 0.61,
+    "weight": 42.1
+  },
+  "weatherBoost": [
+    "windy"
+  ],
+  "buddyDistance": 5,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": 25,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 75,
+    "stardust": 75000
+  },
+  "maxCp": {
+    "maxLevel50": 1307,
+    "maxLevel40": 1156,
+    "weatherBoostLevel25": 826,
+    "raidLevel20": 660,
+    "researchLevel15": 495
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": true,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": null,
+    "ultraLeague": null,
+    "masterLeague": null
+  },
+  "shadow": {
+    "released": true,
+    "firstReleaseDate": "2019-12-24",
+    "purificationCost": {
+      "stardust": 5000,
+      "candy": 5
+    },
+    "catchCp": {
+      "normal": {
+        "min": 205,
+        "max": 260
+      },
+      "weatherBoosted": {
+        "min": 362,
+        "max": 429
+      }
+    },
+    "variants": [
+      {
+        "name": "Bagon",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 205,
+            "max": 260
+          },
+          "weatherBoosted": {
+            "min": 362,
+            "max": 429
+          }
+        },
+        "purificationCost": {
+          "stardust": 5000,
+          "candy": 5
+        },
+        "releaseDate": "2019-12-24",
+        "releaseDateText": "December 24, 2019"
+      }
+    ],
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+  },
   "stats": {
     "stamina": 128,
     "attack": 134,
@@ -67,7 +150,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0371_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "sb_2024_decemberCdRecap",
+        "name": "Community Day 2024",
+        "type": "special",
+        "date": "December 21st - 22nd 2024",
+        "eligibleForms": [
+          "Bagon"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_2024_decemberCdRecap.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

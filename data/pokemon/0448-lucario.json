@@ -29,6 +29,85 @@
     "Korean": "루카리오",
     "Spanish": "Lucario"
   },
+  "size": {
+    "height": 1.2,
+    "weight": 54
+  },
+  "weatherBoost": [
+    "cloudy",
+    "snow"
+  ],
+  "buddyDistance": 5,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": 25,
+  "captureRewards": {
+    "candy": 5,
+    "stardust": 300
+  },
+  "secondChargeMoveCost": {
+    "candy": 75,
+    "stardust": 75000
+  },
+  "maxCp": {
+    "maxLevel50": 3056,
+    "maxLevel40": 2703,
+    "weatherBoostLevel25": 1930,
+    "raidLevel20": 1544,
+    "researchLevel15": 1158
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 1,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 20.5,
+        "cp": 1494
+      },
+      "bestMovesets": {
+        "fast": "FORCE_PALM_FAST",
+        "charged": [
+          "AURA_SPHERE",
+          "SHADOW_BALL"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "attack": 1,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level": 38.5,
+        "cp": 2497
+      },
+      "bestMovesets": {
+        "fast": "FORCE_PALM_FAST",
+        "charged": [
+          "AURA_SPHERE",
+          "SHADOW_BALL"
+        ]
+      }
+    },
+    "masterLeague": null
+  },
   "stats": {
     "stamina": 172,
     "attack": 236,
@@ -84,7 +163,42 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0448_001_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_GoTour2026_losAngeles",
+        "name": "GO Tour 2026 Los Angeles",
+        "type": "location",
+        "date": "February 21st - 22nd 2026",
+        "eligibleForms": [
+          "Lucario"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoTour2026_losAngeles.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "lc_GoTour2026_tainan",
+        "name": "GO Tour 2026 Tainan",
+        "type": "location",
+        "date": "February 21st - 22nd 2026",
+        "eligibleForms": [
+          "Lucario"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoTour2026_tainan.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      },
+      {
+        "id": "sb_GoTour2026_mega",
+        "name": "GO Tour 2026 Mega",
+        "type": "special",
+        "date": "February 23rd - February 27th 2026",
+        "eligibleForms": [
+          "Lucario"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_mega.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [],

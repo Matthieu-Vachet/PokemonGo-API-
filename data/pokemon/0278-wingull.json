@@ -29,6 +29,67 @@
     "Korean": "갈모매",
     "Spanish": "Wingull"
   },
+  "size": {
+    "height": 0.61,
+    "weight": 9.5
+  },
+  "weatherBoost": [
+    "rain",
+    "windy"
+  ],
+  "buddyDistance": 3,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 50,
+    "stardust": 50000
+  },
+  "maxCp": {
+    "maxLevel50": 865,
+    "maxLevel40": 765,
+    "weatherBoostLevel25": 546,
+    "raidLevel20": 437,
+    "researchLevel15": 328
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "attack": 0,
+          "defense": 15,
+          "stamina": 11
+        },
+        "level": 26.5,
+        "cp": 500
+      },
+      "bestMovesets": {
+        "fast": "QUICK_ATTACK_FAST",
+        "charged": [
+          "AIR_CUTTER",
+          "WATER_PULSE"
+        ]
+      }
+    },
+    "greatLeague": null,
+    "ultraLeague": null,
+    "masterLeague": null
+  },
   "stats": {
     "stamina": 120,
     "attack": 106,
@@ -67,7 +128,20 @@
           "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0278_000_mf_n_00000000_f_r.png"
         }
       ]
-    }
+    },
+    "locationCards": [
+      {
+        "id": "lc_TokMun_koto",
+        "name": "GO Fest Tokyo Koto",
+        "type": "location",
+        "date": "May 28th - May 31st 2026",
+        "eligibleForms": [
+          "Wingull"
+        ],
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_TokMun_koto.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+      }
+    ]
   },
   "regionForms": [],
   "evolutions": [

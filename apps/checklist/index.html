@@ -426,6 +426,21 @@
         background: linear-gradient(135deg, var(--type, var(--blue)), color-mix(in srgb, var(--type, var(--blue)) 65%, #07152d));
         text-shadow: 0 1px 2px #0005;
       }
+      .chip.weather-chip {
+        color: var(--ink);
+        background: color-mix(in srgb, #d8f4ff 76%, var(--surface));
+      }
+      .weather-part {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+      }
+      .weather-icon {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+      }
       .type-part {
         display: inline-flex;
         align-items: center;
@@ -1574,6 +1589,16 @@
         const id = typeof t === "string" ? t : t?.type;
         return state.catalog?.types?.find((type) => type.id === typeName(id))?.assets?.background || "";
       };
+      const weatherInfo = (id) =>
+        state.catalog?.weather?.find((weather) => weather.id === id);
+      const weatherBadge = (ids) =>
+        [...new Set((ids || []).filter(Boolean))]
+          .map((id) => {
+            const weather = weatherInfo(id);
+            const label = weather?.names?.French || weather?.names?.English || id;
+            return `<span class="weather-part">${weather?.assets?.icon ? `<img class="weather-icon" src="${esc(weather.assets.icon)}" alt="">` : ""}${esc(label)}</span>`;
+          })
+          .join('<span class="type-separator">/</span>');
       const color = (e) => typeColors[typeName(e.primaryType)] || "#8293a5";
       const isDone = (e) => e.complete || Boolean(state.progress[e.key]);
       const accessKey = "pokedex-v3-access";
@@ -1830,7 +1855,8 @@
           .map((category, index, list) => `<span class="chip problem ${list.length === 1 ? "wide" : ""}">${esc(problemLabels[category] || category)}</span>`)
           .join("");
         const selected = state.selected.has(e.key);
-        return `<article class="poke-card ${done ? "done" : ""} ${selected ? "selected" : ""}" style="--type:${color(e)};--type-bg:url('${esc(typeBackground(e.primaryType))}')"><div class="type-strip"></div><div class="card-score score-ring" style="--score:${e.quality.score}"><span>${e.quality.score}%</span></div><div class="card-main">${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)} · Gén. ${esc(e.generation || "?")}</div><div class="chips"><span class="chip type-chip">${typeBadge || "Type ?"}</span><span class="chip">${e.quickMoveCount} rapide(s)</span><span class="chip">${e.chargedMoveCount} chargée(s)</span>${e.complete ? '<span class="chip good">JSON complet</span>' : `<span class="chip problem">${e.issues.length} problème(s)</span>`}${categories}${manual ? '<span class="chip good wide">Vérifiée manuellement</span>' : ""}</div></div></div><div class="card-actions"><label class="check-label"><input type="checkbox" data-check="${esc(e.key)}" ${done ? "checked" : ""} ${e.complete ? "disabled" : ""}> Fait</label><button class="select-btn ${selected ? "active" : ""}" data-select="${esc(e.key)}">${selected ? "Dans le lot" : "Ajouter au lot"}</button><button class="detail-btn" data-detail="${esc(e.key)}">Voir la fiche</button></div></article>`;
+        const weather = weatherBadge(e.weatherBoost);
+        return `<article class="poke-card ${done ? "done" : ""} ${selected ? "selected" : ""}" style="--type:${color(e)};--type-bg:url('${esc(typeBackground(e.primaryType))}')"><div class="type-strip"></div><div class="card-score score-ring" style="--score:${e.quality.score}"><span>${e.quality.score}%</span></div><div class="card-main">${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)} · Gén. ${esc(e.generation || "?")}</div><div class="chips"><span class="chip type-chip">${typeBadge || "Type ?"}</span>${weather ? `<span class="chip weather-chip">${weather}</span>` : ""}<span class="chip">${e.quickMoveCount} rapide(s)</span><span class="chip">${e.chargedMoveCount} chargée(s)</span>${e.complete ? '<span class="chip good">JSON complet</span>' : `<span class="chip problem">${e.issues.length} problème(s)</span>`}${categories}${manual ? '<span class="chip good wide">Vérifiée manuellement</span>' : ""}</div></div></div><div class="card-actions"><label class="check-label"><input type="checkbox" data-check="${esc(e.key)}" ${done ? "checked" : ""} ${e.complete ? "disabled" : ""}> Fait</label><button class="select-btn ${selected ? "active" : ""}" data-select="${esc(e.key)}">${selected ? "Dans le lot" : "Ajouter au lot"}</button><button class="detail-btn" data-detail="${esc(e.key)}">Voir la fiche</button></div></article>`;
       }
       function updateStats() {
         const done = state.entries.filter(isDone).length,
@@ -1973,14 +1999,15 @@
             kv("Purification", `${shadow.purificationCost?.stardust} poussières · ${shadow.purificationCost?.candy} bonbons`) +
             kv("Catch CP", `${shadow.catchCp?.normal?.min} - ${shadow.catchCp?.normal?.max}`) +
             kv("Catch CP météo", `${shadow.catchCp?.weatherBoosted?.min} - ${shadow.catchCp?.weatherBoosted?.max}`) +
-            kv("Variantes Shadow", shadow.variants?.length)
+            kv("Variantes Shadow", shadow?.variants?.length)
           : kv("Sorti", "Non");
+        const weather = weatherBadge(d.weatherBoost);
         return `<div class="section-grid">${info("Identité", kv("ID", d.id) + kv("Form ID", d.formId) + kv("Slug", d.slug) + kv("Forme", d.form) + kv("Génération", d.generation) + kv("Région", d.region?.names?.French || d.region?.id))}${info("Statistiques", kv("Attaque", d.stats?.attack) + kv("Défense", d.stats?.defense) + kv("Endurance", d.stats?.stamina) + kv("Taille", d.size?.height ? d.size.height + " m" : null) + kv("Poids", d.size?.weight ? d.size.weight + " kg" : null))}${info("PC maximum", cpRows)}${info(
           "Disponibilité",
           Object.entries(d.availability || {})
             .map(([k, v]) => kv(k, v ? "Oui" : "Non"))
             .join(""),
-        )}${info("Capture", kv("Boost météo", d.weatherBoost) + kv("Distance copain", d.buddyDistance) + kv("Taux capture", d.catchRate) + kv("Taux fuite", d.fleeRate) + kv("Bonbons", d.captureRewards?.candy) + kv("Poussières", d.captureRewards?.stardust))}${info("Shadow / Obscur", shadowRows)}</div>`;
+        )}${info("Capture", `${weather ? `<div class="chip weather-chip wide">${weather}</div>` : ""}` + kv("Distance copain", d.buddyDistance) + kv("Taux capture", d.catchRate) + kv("Taux fuite", d.fleeRate) + kv("Bonbons", d.captureRewards?.candy) + kv("Poussières", d.captureRewards?.stardust))}${info("Shadow / Obscur", shadowRows)}</div>`;
       }
       function objectCards(title, obj) {
         const entries = Object.entries(obj || {});
@@ -1997,7 +2024,7 @@
           : [];
         if (!shadow && !shuffleVariants.length)
           return '<div class="empty">Aucune version Shadow sortie pour ce Pokémon.</div>';
-        const variants = Array.isArray(shadow.variants) ? shadow.variants : [];
+        const variants = Array.isArray(shadow?.variants) ? shadow.variants : [];
         const summary = shadow
           ? info("Résumé Shadow", kv("Première sortie", shadow.firstReleaseDate) + kv("Coût de purification", `${shadow.purificationCost?.stardust} poussières · ${shadow.purificationCost?.candy} bonbons`) + kv("Catch CP", `${shadow.catchCp?.normal?.min} - ${shadow.catchCp?.normal?.max}`) + kv("Catch CP météo", `${shadow.catchCp?.weatherBoosted?.min} - ${shadow.catchCp?.weatherBoosted?.max}`) + kv("Variantes", variants.length))
           : info("Résumé Shadow", kv("Sortie Pokémon GO", "Non renseignée") + kv("Assets Shuffle", shuffleVariants.length));
@@ -2487,7 +2514,8 @@
           const q = query.toLowerCase();
           const moves = state.catalog.moves.filter((move) => !q || [move.id, move.slug, move.type, ...Object.values(move.names || {})].some((value) => String(value).toLowerCase().includes(q)));
           const typeAssets = Object.fromEntries(state.catalog.types.map((type) => [type.id, type.assets?.icon]));
-          el.workspaceContent.querySelector("[data-move-list]").innerHTML = moves.slice(0, 250).map((move) => `<article class="move-card"><h3>${typeAssets[move.type] ? `<img class="type-icon" src="${esc(typeAssets[move.type])}" alt="">` : ""}${esc(move.names?.French || move.names?.English || move.id)}</h3>${kv("ID", move.id)}${kv("Type", move.type)}${kv("Puissance", move.power)}${kv("Énergie", move.energy)}${kv("Durée", `${move.durationMs} ms`)}${kv("PvP", `${move.combat?.power ?? "—"} puissance · ${move.combat?.energy ?? "—"} énergie`)}</article>`).join("");
+          const typeWeather = Object.fromEntries(state.catalog.types.map((type) => [type.id, type.weatherBoost]));
+          el.workspaceContent.querySelector("[data-move-list]").innerHTML = moves.slice(0, 250).map((move) => `<article class="move-card"><h3>${typeAssets[move.type] ? `<img class="type-icon" src="${esc(typeAssets[move.type])}" alt="">` : ""}${esc(move.names?.French || move.names?.English || move.id)}</h3>${typeWeather[move.type] ? `<div class="chip weather-chip wide">${weatherBadge([typeWeather[move.type]])}</div>` : ""}${kv("ID", move.id)}${kv("Type", move.type)}${kv("Puissance", move.power)}${kv("Énergie", move.energy)}${kv("Durée", `${move.durationMs} ms`)}${kv("PvP", `${move.combat?.power ?? "—"} puissance · ${move.combat?.energy ?? "—"} énergie`)}</article>`).join("");
           el.workspaceSubtitle.textContent = `${moves.length} attaque(s) trouvée(s)`;
         };
         showWorkspace("Catalogue des attaques", "Chargement…", `<input type="search" data-move-search placeholder="Rechercher une attaque, un ID ou un type"><div class="catalog-grid" data-move-list></div>`);

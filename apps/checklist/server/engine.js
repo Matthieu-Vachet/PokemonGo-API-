@@ -6,6 +6,7 @@ const rootDir = process.cwd();
 const pokemonDir = path.join(rootDir, "data", "pokemon");
 const formsDir = path.join(rootDir, "data", "pokemon-forms");
 const movesDir = path.join(rootDir, "data", "moves");
+const generationsDir = path.join(rootDir, "data", "generations");
 const languages = [
   "English",
   "German",
@@ -118,22 +119,6 @@ function createValidator() {
       nullable ? "identifiant ou null" : "identifiant de type",
       actualType(value),
     );
-  }
-
-  function region(value, pathName) {
-    if (actualType(value) !== "object") {
-      add(
-        pathName,
-        value === undefined ? "missing" : "type",
-        "objet",
-        actualType(value),
-      );
-      return;
-    }
-    field(value, "id", `${pathName}.id`, "string", { nonEmpty: true });
-    field(value, "slug", `${pathName}.slug`, "string", { nonEmpty: true });
-    field(value, "generation", `${pathName}.generation`, "number");
-    names(value.names, `${pathName}.names`);
   }
 
   function move(value, pathName) {
@@ -268,13 +253,10 @@ function createValidator() {
       );
       return;
     }
-    const shuffleOnly =
-      value.shuffle !== undefined &&
-      value.image === undefined &&
-      value.shinyImage === undefined;
+    if (partial && Object.keys(value).length === 0)
+      add(pathName, "empty", "objet d'assets non vide", "vide");
     if (
       !partial &&
-      !shuffleOnly &&
       !(nullable && value.image === undefined && value.shinyImage === undefined)
     ) {
       field(value, "image", `${pathName}.image`, "string", { nonEmpty: true });
@@ -445,8 +427,9 @@ function createValidator() {
       add(pathName, "type", "objet Méga / Primo", actualType(value));
       return;
     }
-    for (const key of ["id", "slug", "formId", "form"])
+    for (const key of ["id", "slug", "formId", "form", "dexId", "baseFormId"])
       field(value, key, `${pathName}.${key}`, "string", { nonEmpty: true });
+    field(value, "dexNr", `${pathName}.dexNr`, "number");
     names(value.names, `${pathName}.names`);
     const size = field(value, "size", `${pathName}.size`, "object");
     if (actualType(size) === "object")
@@ -497,10 +480,20 @@ function createValidator() {
     const prefix = pathName ? `${pathName}.` : "";
     for (const key of ["id", "formId", "slug", "dexId", "form", "baseFormId"])
       field(value, key, `${prefix}${key}`, "string", { nonEmpty: true });
-    for (const key of ["dexNr", "generation"])
-      field(value, key, `${prefix}${key}`, "number");
+    field(value, "dexNr", `${prefix}dexNr`, "number");
     if (!["dynamax", "gigantamax"].includes(value.form))
       add(`${prefix}form`, "value", "dynamax ou gigantamax", value.form);
+    if (value.names !== undefined) names(value.names, `${prefix}names`);
+    if (value.stats !== undefined) {
+      const stats = field(value, "stats", `${prefix}stats`, "object");
+      if (actualType(stats) === "object")
+        for (const key of ["stamina", "attack", "defense"])
+          field(stats, key, `${prefix}stats.${key}`, "number");
+    }
+    if (value.primaryType !== undefined)
+      typeBlock(value.primaryType, `${prefix}primaryType`);
+    if (value.secondaryType !== undefined)
+      typeBlock(value.secondaryType, `${prefix}secondaryType`, true);
 
     const maxCp = field(value, "maxCp", `${prefix}maxCp`, "object");
     if (actualType(maxCp) === "object") {
@@ -557,14 +550,13 @@ function createValidator() {
               actualType(flag),
             );
     }
-    if (value.assets !== undefined)
-      assets(
-        value.assets,
-        `${prefix}assets`,
-        value.availability?.released === false,
-        true,
-      );
-    if (value.evolutions !== undefined) {
+    assets(
+      value.assets,
+      `${prefix}assets`,
+      value.availability?.released === false,
+      true,
+    );
+    if (value.form === "dynamax" || value.evolutions !== undefined) {
       const evolutions = field(
         value,
         "evolutions",
@@ -578,14 +570,17 @@ function createValidator() {
     }
   }
 
-  function pokemon(value, profile, pathName = "") {
+  function pokemon(value, profile, pathName = "", requireBaseFormId = false) {
     const prefix = pathName ? `${pathName}.` : "";
     for (const key of ["id", "formId", "slug", "dexId", "form"])
       field(value, key, `${prefix}${key}`, "string", { nonEmpty: true });
-    for (const key of ["dexNr", "generation"])
-      field(value, key, `${prefix}${key}`, "number");
+    if (requireBaseFormId)
+      field(value, "baseFormId", `${prefix}baseFormId`, "string", {
+        nonEmpty: true,
+      });
+    field(value, "dexNr", `${prefix}dexNr`, "number");
     names(value.names, `${prefix}names`);
-    region(value.region, `${prefix}region`);
+    field(value, "regionId", `${prefix}regionId`, "string", { nonEmpty: true });
     const size = field(value, "size", `${prefix}size`, "object");
     if (actualType(size) === "object")
       for (const key of ["height", "weight"])
@@ -721,7 +716,7 @@ function createValidator() {
     );
     if (actualType(regionForms) === "object") {
       for (const [id, formData] of Object.entries(regionForms))
-        pokemon(formData, "form", `${prefix}regionForms.${id}`);
+        pokemon(formData, "form", `${prefix}regionForms.${id}`, true);
     } else if (Array.isArray(regionForms)) {
       regionForms.forEach((formId, index) =>
         field(regionForms, index, `${prefix}regionForms[${index}]`, "string", {
@@ -788,16 +783,18 @@ function validateSourceData(data, relativeFile = "", kindHint = "") {
   const kind =
     relativeFile.startsWith("data/pokemon/") ? "pokemon" :
     kindHint ||
-    (String(data.form || "").startsWith("mega")
-      ? "mega"
-      : ["dynamax", "gigantamax"].includes(data.form)
-        ? data.form
-        : "pokemon");
+    (relativeFile.startsWith("data/pokemon-forms/")
+      ? String(data.form || "").startsWith("mega") || data.form === "primal"
+        ? "mega"
+        : ["dynamax", "gigantamax"].includes(data.form)
+          ? data.form
+          : "form"
+      : "pokemon");
   if (kind === "mega" && relativeFile.startsWith("data/pokemon-forms/"))
     validator.mega(data, "");
   else if (kind === "dynamax" || kind === "gigantamax")
     validator.maxForm(data, "");
-  else validator.pokemon(data, "single");
+  else validator.pokemon(data, "single", "", kind === "form");
   for (const issue of validator.issues)
     issue.path = issue.path.replace(/^\./, "");
   const moveIds = new Set(buildMoveCatalog().keys());
@@ -839,12 +836,37 @@ function mergedFormAssets(parent, form) {
   return assets;
 }
 
+function generationCatalog() {
+  return new Map(
+    listJsonFiles(generationsDir).map((file) => {
+      const generation = readJson(file);
+      return [generation.id, generation];
+    }),
+  );
+}
+
+function resolveRegionReference(data, parent = {}, catalog = generationCatalog()) {
+  const regionId =
+    data.regionId ||
+    (typeof data.region === "string" ? data.region : data.region?.id) ||
+    parent.regionId ||
+    parent.region?.id;
+  const region = catalog.get(regionId) || data.region || parent.region;
+  return {
+    ...data,
+    regionId,
+    region,
+    generation: data.generation || region?.generation || parent.generation,
+  };
+}
+
 function mergeInheritedForm(parent, form) {
   const isMaxForm = ["dynamax", "gigantamax"].includes(form.form);
   const merged = {
     ...parent,
     ...form,
     formId: form.formId || form.id || parent.formId,
+    regionId: form.regionId || parent.regionId,
     availability: {
       ...(parent.availability || {}),
       ...(form.availability || {}),
@@ -979,12 +1001,7 @@ function suggestedValue(issue, kind = "pokemon") {
     captureRewards: { candy: null, stardust: null },
     secondChargeMoveCost: { candy: null, stardust: null },
     assets: { image: "", shinyImage: "" },
-    region: {
-      id: "",
-      slug: "",
-      generation: null,
-      names: Object.fromEntries(languages.map((language) => [language, ""])),
-    },
+    regionId: "",
     names: Object.fromEntries(languages.map((language) => [language, ""])),
     maxBattle: { moves: [""] },
     pvp: {
@@ -1196,6 +1213,7 @@ function buildChecklist() {
     parents.set(source.data.dexId, source.data);
   }
   const moveIds = new Set(buildMoveCatalog().keys());
+  const regions = generationCatalog();
   const formIds = new Set();
   for (const source of sources) {
     for (const value of [source.data.id, source.data.formId, source.data.baseFormId])
@@ -1211,20 +1229,20 @@ function buildChecklist() {
     if (kind === "mega") validator.mega(data, "");
     else if (kind === "dynamax" || kind === "gigantamax")
       validator.maxForm(data, "");
-    else validator.pokemon(data, profile);
+    else validator.pokemon(data, profile, "", kind === "form");
     for (const issue of validator.issues)
       issue.path = issue.path.replace(/^\./, "");
     validator.issues.push(...referenceIssues(data, moveIds, formIds));
-    const displayData =
+    const parent =
+      parents.get(data.baseFormId) ||
+      parents.get(data.inherits) ||
+      parents.get(data.id) ||
+      {};
+    const inheritedData =
       kind !== "pokemon"
-        ? mergeInheritedForm(
-            parents.get(data.baseFormId) ||
-              parents.get(data.inherits) ||
-              parents.get(data.id) ||
-              {},
-            data,
-          )
+        ? mergeInheritedForm(parent, data)
         : data;
+    const displayData = resolveRegionReference(inheritedData, parent, regions);
     const name =
       displayData.names?.French ||
       displayData.names?.English ||
@@ -1257,6 +1275,7 @@ function buildChecklist() {
       stats: displayData.stats || null,
       maxCp: displayData.maxCp || null,
       availability: displayData.availability || null,
+      weatherBoost: displayData.weatherBoost || [],
       pvpLeagues:
         displayData.pvp && typeof displayData.pvp === "object"
           ? Object.entries(displayData.pvp)
@@ -1321,10 +1340,9 @@ function detailForKey(key) {
           candidate.formId === requestedFormId || candidate.id === requestedFormId,
       ) ||
       Object.values(data.megaEvolutions || {})[0];
-    data = mega
-      ? { ...mega, dexId: data.dexId, generation: data.generation }
-      : data;
+    data = mega ? { ...mega, dexId: data.dexId, regionId: data.regionId } : data;
   }
+  data = resolveRegionReference(data);
   const moveCatalog = buildMoveCatalog();
   return {
     ...data,

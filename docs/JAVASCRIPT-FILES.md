@@ -43,14 +43,17 @@ Les commandes sans suffixe `:write` simulent généralement le résultat. Les co
 | `scripts/migrate/type-assets.js` | Associe les icônes de types au catalogue. |
 | `scripts/migrate/extract-form-references.js` | Extrait les formes intégrées puis conserve seulement leurs références. |
 | `scripts/migrate/order-json-keys.js` | Uniformise l'ordre logique des clés sans modifier les valeurs. |
-| `scripts/audit/forms.js` | Vérifie les références vers les fiches de formes séparées. |
+| `scripts/migrate/centralize-regions.js` | Remplace les régions et générations dupliquées par `regionId`. |
+| `scripts/migrate/weather-catalog.js` | Construit le catalogue météo central et ses références de types. |
 
 ## Audits Et Synchronisation
 
 | Fichier | Rôle |
 | --- | --- |
 | `scripts/audit/identifiers.js` | Détecte les IDs dupliqués et références invalides. |
+| `scripts/audit/forms.js` | Vérifie les références vers les fiches de formes séparées. |
 | `scripts/audit/moves.js` | Vérifie toutes les références d'attaques. |
+| `scripts/audit/weather.js` | Vérifie les références météo, types boostés et icônes. |
 | `scripts/sync/run.js` | Synchronise les JSON vers MongoDB, ou simule avec `--dry-run`. |
 | `scripts/sync/watch.js` | Relance la synchronisation lors des modifications locales. |
 
@@ -59,6 +62,7 @@ Les commandes sans suffixe `:write` simulent généralement le résultat. Les co
 - `src/app.js` configure Express, sécurité, documentation et gestion des erreurs.
 - `src/routes/*.js` définit les routes REST publiques.
 - `src/routes/shuffle.js` expose les assets Shuffle associés avec filtres par état, forme et shiny.
+- `src/routes/weather.js` expose le catalogue météo et les Pokémon, types et attaques associés.
 - `src/services/*.js` contient la logique métier partagée.
 - `src/models/*.js` définit les modèles MongoDB.
 - `src/sync/source-reader.js` transforme les fichiers JSON en documents MongoDB.
@@ -73,6 +77,7 @@ npm test
 npm run sync:dry
 npm run audit:moves
 npm run audit:identifiers
+npm run audit:weather
 npm run import:visual-assets
 ```
 

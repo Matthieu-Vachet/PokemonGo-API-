@@ -160,6 +160,7 @@ function createOpenApi() {
       ["PvP", "Classements, IV et movesets par ligue."],
       ["Attaques", "Attaques rapides, chargées et élite."],
       ["Types", "Types, faiblesses, résistances et Pokémon associés."],
+      ["Météo", "Météos Pokémon GO, icônes et ressources boostées."],
       ["Régions", "Régions et Pokémon associés."],
       ["Générations", "Générations et Pokémon associés."],
       ["Comparaison", "Comparaison de Pokémon."],
@@ -280,6 +281,24 @@ function createOpenApi() {
       [`${api}/types`]: operation("Types", "Lister les 18 types", { response: dataResponse([{ id: "FIRE", names: { English: "Fire", French: "Feu" } }]) }),
       [`${api}/types/{identifier}`]: detail("Types", "Afficher faiblesses et résistances d'un type", "FIRE", { description: "ID du type en anglais.", response: dataResponse({ id: "FIRE", names: { English: "Fire", French: "Feu" } }) }),
       [`${api}/types/{identifier}/pokemon`]: detail("Types", "Lister les Pokémon d'un type", "FIRE", { description: "ID du type en anglais.", response: listResponse() }),
+      [`${api}/weather`]: operation("Météo", "Lister les 7 météos Pokémon GO", {
+        response: dataResponse([{ id: "sunny", names: { French: "Ensoleillé" }, assets: { icon: "https://raw.githubusercontent.com/.../weather/1.png" }, boostedTypes: ["FIRE", "GRASS", "GROUND"] }]),
+      }),
+      [`${api}/weather/{identifier}`]: detail("Météo", "Afficher une météo", "sunny", {
+        description: "Identifiant ou slug météo.",
+      }),
+      [`${api}/weather/{identifier}/pokemon`]: detail("Météo", "Lister les Pokémon boostés par une météo", "sunny", {
+        description: "Identifiant ou slug météo.",
+        response: listResponse(),
+      }),
+      [`${api}/weather/{identifier}/types`]: detail("Météo", "Lister les types boostés par une météo", "sunny", {
+        description: "Identifiant ou slug météo.",
+        response: listResponse({ id: "FIRE", names: { French: "Feu" } }),
+      }),
+      [`${api}/weather/{identifier}/moves`]: detail("Météo", "Lister les attaques boostées par une météo via leur type", "sunny", {
+        description: "Identifiant ou slug météo.",
+        response: listResponse(examples.move),
+      }),
       [`${api}/regions`]: operation("Régions", "Lister les régions", { response: dataResponse([{ id: "KANTO", generation: 1, names: { French: "Kanto" } }]) }),
       [`${api}/regions/{identifier}`]: detail("Régions", "Afficher une région", "KANTO", { description: "ID ou slug de région." }),
       [`${api}/regions/{identifier}/pokemon`]: detail("Régions", "Lister les Pokémon d'une région", "KANTO", { description: "ID de région.", response: listResponse() }),
@@ -324,11 +343,6 @@ function createOpenApi() {
       [`${api}/availability/{flag}`]: detail("Pokémon", "Lister selon une disponibilité", "shinyReleased", {
         name: "flag",
         description: "released, shinyReleased, tradable, pokemonHomeTransfer, shadow, apex, dynamax, gigantamax ou mega.",
-        response: listResponse(),
-      }),
-      [`${api}/weather/{weather}/pokemon`]: detail("Pokémon", "Lister les Pokémon boostés par une météo", "sunny", {
-        name: "weather",
-        description: "Identifiant météo utilisé dans les JSON.",
         response: listResponse(),
       }),
       [`${api}/assets/{identifier}`]: detail("Assets", "Afficher les images normales, shiny et variantes", "pikachu"),

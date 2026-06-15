@@ -31,16 +31,6 @@ router.get(
 );
 
 router.get(
-  "/weather/:weather/pokemon",
-  asyncHandler(async (request, response) => {
-    const data = await Pokemon.find({ weatherBoost: request.params.weather })
-      .sort({ dexNr: 1, form: 1 })
-      .lean();
-    response.json({ data, meta: { weather: request.params.weather, total: data.length } });
-  }),
-);
-
-router.get(
   "/assets/:identifier",
   asyncHandler(async (request, response) => {
     const pokemon = await findPokemon(request.params.identifier, request.query);

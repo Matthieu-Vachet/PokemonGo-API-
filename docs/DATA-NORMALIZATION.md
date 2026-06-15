@@ -52,6 +52,27 @@ public. Les attaques possedent aussi un `id` stable, un slug avec tirets et, si 
 `data/types/types.json` reste généré comme index de compatibilité. Les nouveaux outils
 lisent les fichiers individuels afin qu'un type puisse être modifié sans toucher les 17 autres.
 
+## Régions Et Générations
+
+Les traductions et le numéro de génération vivent uniquement dans `data/generations/`.
+Une fiche Pokémon complète stocke la référence stable :
+
+```json
+{
+  "regionId": "KANTO"
+}
+```
+
+Les formes Méga, Dynamax et Gigantamax héritent cette référence de leur `baseFormId`.
+La lecture des sources, l'API et la checklist recomposent automatiquement `region` et
+`generation`.
+
+## Météo
+
+Les sept météos Pokémon GO vivent dans `data/weather/`. Chaque entrée contient ses
+traductions, son icône et les identifiants des types boostés. Les Pokémon utilisent
+`weatherBoost: string[]`; chaque type utilise `weatherBoost: string`.
+
 ## PvP Nullable
 
 `pvp` peut valoir `null` lorsqu'aucune information PvP n'est utile. Sinon, les quatre
@@ -93,7 +114,6 @@ propre `slug`, puis ne stockent que les donnees propres au combat Max.
   "dexNr": 1,
   "dexId": "0001",
   "form": "dynamax",
-  "generation": 1,
   "baseFormId": "BULBASAUR",
   "maxCp": {
     "maxLevel50": 1260,
@@ -125,6 +145,8 @@ Les liens d'evolution utilisent `targetFormId`. Une cible future comme
 
 ```bash
 npm run audit:moves
+npm run audit:weather
+npm run audit:identifiers
 npm run sync:dry
 npm test
 ```
@@ -139,6 +161,8 @@ npm run migrate:moves:catalog
 npm run migrate:moves
 npm run migrate:types
 npm run migrate:max-forms
+npm run migrate:regions
+npm run migrate:weather
 ```
 
 Ces commandes fonctionnent en simulation. Les variantes `:write` ecrivent uniquement

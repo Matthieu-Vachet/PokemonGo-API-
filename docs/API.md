@@ -106,6 +106,7 @@ Documentation :
 | PvP | `/pvp/:league/rankings`, `/pvp/:league/:identifier` |
 | PC | `/pokemon/:identifier/cp` |
 | Types | `/types`, `/types/:identifier`, `/types/:identifier/pokemon` |
+| Météo | `/weather`, `/weather/:identifier`, `/weather/:identifier/pokemon`, `/weather/:identifier/types`, `/weather/:identifier/moves` |
 | Regions | `/regions`, `/regions/:identifier/pokemon` |
 | Generations | `/generations`, `/generations/:identifier/pokemon` |
 | Assets | `/assets/:identifier`, `/pokemon/:identifier/assets` |
@@ -162,6 +163,8 @@ curl "http://localhost:3000/api/v1/stickers/sticker-2023collab-1"
 curl "http://localhost:3000/api/v1/shuffle?state=shadow&shiny=true"
 curl "http://localhost:3000/api/v1/shuffle/venusaur-mega"
 curl "http://localhost:3000/api/v1/pokemon/rattata-alola/shuffle"
+curl "http://localhost:3000/api/v1/weather/sunny/pokemon"
+curl "http://localhost:3000/api/v1/weather/rain/moves"
 curl "http://localhost:3000/api/v1/dynamax"
 curl "http://localhost:3000/api/v1/gigantamax"
 ```

@@ -95,11 +95,13 @@ Les valeurs inconnues ou non applicables utilisent `null`. Les listes vides util
 | `slug` | string | Slug public lisible dans les URLs et fichiers. |
 | `dexNr` | number | Numero Pokedex numerique. |
 | `dexId` | string | Numero Pokedex formate sur 4 chiffres. |
-| `generation` | number | Generation principale du Pokemon. |
 | `names` | object | Noms localises par langue. |
 | `form` | string | Forme technique en minuscules, ex. `normal`, `alola`, `mega`. |
-| `region` | object | Region avec `id`, `slug`, `generation` et noms localises. |
+| `regionId` | string | Référence vers la région centrale de `data/generations/`. |
 | `pokemonClass` | string/null | Classe speciale si disponible, sinon `null`. |
+
+L'API et la checklist recomposent `region` et `generation` depuis `regionId`. Les formes
+Méga, Dynamax et Gigantamax héritent cette référence de leur fiche de base.
 
 ### Langues Supportees
 
@@ -140,7 +142,7 @@ Ces champs referencent les identifiants courts de `data/types/`.
 
 | Champ | Type | Description |
 | --- | --- | --- |
-| `weatherBoost` | string[] | Meteos qui boostent le Pokemon. |
+| `weatherBoost` | string[] | Références vers les identifiants de `data/weather/`. |
 | `buddyDistance` | number | Distance en km pour obtenir un bonbon. |
 | `catchRate` | number | Taux de capture de base. |
 | `fleeRate` | number | Taux de fuite de base. |
@@ -354,7 +356,7 @@ si cette forme est disponible dans Pokemon GO.
 
 Une entree de `megaEvolutions` contient:
 
-- Identite: `id`, `slug`, `formId`, `form`, `names`.
+- Identite: `id`, `slug`, `formId`, `form`, `dexNr`, `dexId`, `baseFormId` et `names`.
 - Gameplay: `size`, `catchRate`, `fleeRate`, `availability`.
 - Combat: `maxCp`, `stats`, `primaryType`, `secondaryType`.
 - Mega: `energyCost`.
@@ -376,7 +378,6 @@ duplique que les informations propres au combat Max et garde sa propre identite 
   "dexNr": 3,
   "dexId": "0003",
   "form": "gigantamax",
-  "generation": 1,
   "baseFormId": "VENUSAUR",
   "maxCp": {
     "maxLevel50": 3075,
@@ -407,8 +408,10 @@ duplique que les informations propres au combat Max et garde sa propre identite 
 `maxLevel50`, `maxLevel40` et `maxBattlesLevel20`. Les champs propres aux Pokemon normaux,
 comme `weatherBoostLevel25`, `raidLevel20` et `researchLevel15`, ne doivent pas y figurer.
 
-Les autres champs qui changent reellement, comme `availability`, `evolutions` ou `assets`,
-peuvent etre ajoutes a la forme.
+`assets` est obligatoire afin que chaque fiche Max expose ses propres visuels disponibles.
+Une forme Dynamax conserve aussi son tableau `evolutions`. Les autres champs qui changent
+reellement, comme `availability`, `names`, `stats` ou les types, peuvent etre ajoutes a la
+forme et sont valides lorsqu'ils existent.
 
 ## Assets
 
@@ -467,13 +470,18 @@ peuvent etre ajoutes a la forme.
 | `assets.shuffle.variants[].tags` | string[] | Codes utiles sans l'état terminal ni `chromatique`. |
 | `assets.shuffle.variants[].shiny` | boolean | Vrai lorsque le fichier se termine par `chromatique`. |
 
-Un bloc `assets` peut ne contenir que `shuffle` lorsqu'aucune image Pokémon GO n'est
-disponible pour la forme. Les assets Shadow et purifiés sont conservés ensemble sur
-la fiche exacte de la forme concernée.
+Un bloc `assets` peut ne contenir que `shuffle` sur une forme Max ou sur une fiche qui
+n'est pas encore sortie dans Pokémon GO. Une fiche normale, régionale, Méga ou Primo
+déjà sortie doit toujours conserver `assets.image` et `assets.shinyImage`. Les assets
+Shadow et purifiés sont conservés ensemble sur la fiche exacte de la forme concernée.
 
 Les types vivent dans `data/types/<slug>.json`. Leur bloc `assets` contient `icon` et
 `background`. `data/types/types.json` reste un index complet compatible avec les anciens
-consommateurs.
+consommateurs. Leur champ `weatherBoost` contient un identifiant de `data/weather/`.
+
+Les sept météos vivent dans `data/weather/<slug>.json`. Chaque entrée possède `id`,
+`slug`, `names`, `assets.icon` et `boostedTypes`. `data/weather/weather.json` reste
+l'index complet de compatibilité.
 
 Le catalogue `data/stickers/stickers.json` expose pour chaque sticker `id`, `filename`,
 `category` et `image`.
@@ -503,7 +511,7 @@ Dynamax, Gigantamax, Mega et Mega X/Y.
   "slug": "bulbasaur",
   "dexNr": 1,
   "dexId": "0001",
-  "generation": 1,
+  "regionId": "KANTO",
   "names": {
     "English": "Bulbasaur",
     "German": "Bisasam",
@@ -514,12 +522,6 @@ Dynamax, Gigantamax, Mega et Mega X/Y.
     "Spanish": "Bulbasaur"
   },
   "form": "normal",
-  "region": {
-    "id": "KANTO",
-    "slug": "kanto",
-    "generation": 1,
-    "names": {}
-  },
   "size": {
     "height": 0.7,
     "weight": 6.9

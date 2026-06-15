@@ -9,6 +9,7 @@ const reviewsFile = path.join(rootDir, ".checklist-image-reviews.json");
 const hdDir = path.join(rootDir, "asset", "HD");
 const shuffleDir = path.join(rootDir, "asset", "pokemonShuffle");
 const typesFile = path.join(rootDir, "data", "types", "types.json");
+const weatherFile = path.join(rootDir, "data", "weather", "weather.json");
 const stickersFile = path.join(rootDir, "data", "stickers", "stickers.json");
 const movesDir = path.join(rootDir, "data", "moves");
 const remoteHd =
@@ -272,6 +273,7 @@ function listFiles(directory) {
 function catalog() {
   return {
     types: readJson(typesFile, []),
+    weather: readJson(weatherFile, []),
     stickers: readJson(stickersFile, []),
     moves: listFiles(movesDir)
       .map((file) => readJson(file))

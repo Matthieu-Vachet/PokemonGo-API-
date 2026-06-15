@@ -10,10 +10,11 @@ const directories = [
   "data/moves",
   "data/generations",
   "data/types",
+  "data/weather",
   "data/stickers",
 ];
 const keys = [
-  "id", "formId", "form", "slug", "dexNr", "dexId", "generation",
+  "id", "formId", "form", "slug", "dexNr", "dexId", "generation", "regionId",
   "baseFormId", "inherits", "region", "names", "size", "height", "weight",
   "weatherBoost", "buddyDistance", "catchRate", "fleeRate", "megaEnergyReward",
   "energyCost", "captureRewards", "secondChargeMoveCost", "candy", "stardust",
@@ -30,7 +31,7 @@ const keys = [
   "regionForms", "evolutions", "hasMegaEvolution", "megaEvolutions",
   "dynamaxForms", "hasGigantamaxEvolution", "gigantamaxForms", "power",
   "energy", "durationMs", "type", "combat",
-  "legacySlugs", "doubleDamageFrom", "halfDamageFrom", "noDamageFrom",
+  "legacySlugs", "boostedTypes", "doubleDamageFrom", "halfDamageFrom", "noDamageFrom",
 ];
 const rank = new Map(keys.map((key, index) => [key, index]));
 

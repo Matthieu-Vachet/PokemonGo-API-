@@ -30,7 +30,7 @@ Template complet:
   "slug": "",
   "dexNr": null,
   "dexId": "",
-  "generation": null,
+  "regionId": "",
   "names": {
     "English": "",
     "German": "",
@@ -41,20 +41,6 @@ Template complet:
     "Spanish": ""
   },
   "form": "normal",
-  "region": {
-    "id": "",
-    "slug": "",
-    "generation": null,
-    "names": {
-      "English": "",
-      "German": "",
-      "French": "",
-      "Italian": "",
-      "Japanese": "",
-      "Korean": "",
-      "Spanish": ""
-    }
-  },
   "size": {
     "height": null,
     "weight": null
@@ -306,7 +292,8 @@ Lorsqu'une forme existe, la liste contient uniquement son `formId`.
 
 `regionForms` suit la meme logique que `megaEvolutions`: tableau vide lorsqu'aucune forme
 n'existe, sinon objet indexe par `formId`. Une forme regionale reprend le template Pokemon
-complet et utilise une valeur `form` comme `alola`, `galar`, `hisui` ou `paldea`.
+complet, utilise une valeur `form` comme `alola`, `galar`, `hisui` ou `paldea`, et
+référence sa région avec `regionId`.
 
 ## Dynamax Et Gigantamax
 
@@ -322,7 +309,6 @@ champs differents.
   "dexNr": 3,
   "dexId": "0003",
   "form": "gigantamax",
-  "generation": 1,
   "baseFormId": "VENUSAUR",
   "maxCp": {
     "maxLevel50": null,
@@ -343,6 +329,10 @@ Pour une forme Dynamax, utiliser `"form": "dynamax"` et des references vers
 `data/moves/max/`. Pour une forme Gigantamax, utiliser `"form": "gigantamax"` et des
 references vers `data/moves/gmax/`. Leur bloc `maxCp` contient uniquement
 `maxLevel50`, `maxLevel40` et `maxBattlesLevel20`.
+
+Le bloc `assets` est obligatoire sur chaque fiche Max et peut contenir uniquement
+`shuffle` lorsqu'aucune image Pokémon GO propre à cette forme n'existe. Une forme
+Dynamax conserve également son tableau `evolutions`.
 
 ## Bloc Asset Form
 
@@ -372,13 +362,16 @@ Entrée individuelle du catalogue `data/types/<slug>.json`. L'index
   "doubleDamageFrom": [],
   "halfDamageFrom": [],
   "noDamageFrom": [],
-  "weatherBoost": {},
+  "weatherBoost": "",
   "assets": {
     "icon": "",
     "background": ""
   }
 }
 ```
+
+`weatherBoost` référence une entrée de `data/weather/`. Les traductions et l'icône de
+la météo ne doivent pas être recopiées dans le type.
 
 ## Checklist Avant Ajout
 
@@ -388,6 +381,8 @@ Entrée individuelle du catalogue `data/types/<slug>.json`. L'index
 - Le slug est en minuscules et en anglais.
 - Les langues de `names` sont toutes presentes.
 - Les tableaux vides sont `[]`, les valeurs inconnues sont `null`.
+- Les fiches complètes référencent `data/generations/` avec `regionId`.
+- Les Pokémon et les types référencent `data/weather/` avec leurs identifiants.
 - Les assets principaux et chromatiques sont renseignes quand ils existent.
 - Les attaques contiennent `id`, `slug`, donnees PvE, identifiant de type, traductions et donnees PvP.
 - Les evolutions contiennent `targetFormId`, `candies`, `item` et `quests`.

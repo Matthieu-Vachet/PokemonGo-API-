@@ -137,7 +137,7 @@ Les fichiers Pokemon vivent dans `data/pokemon/`.
   "slug": "bulbasaur",
   "dexNr": 1,
   "dexId": "0001",
-  "generation": 1,
+  "regionId": "KANTO",
   "names": {
     "English": "Bulbasaur",
     "French": "Bulbizarre"
@@ -175,7 +175,7 @@ Les grandes sections du JSON sont:
 
 | Section | Contenu |
 | --- | --- |
-| Identite | `id`, `formId`, `slug`, `dexNr`, `dexId`, `generation`, `form`, `region`, `pokemonClass` |
+| Identite | `id`, `formId`, `slug`, `dexNr`, `dexId`, `form`, `regionId`, `pokemonClass` |
 | Noms | `names` avec les langues principales |
 | Gameplay | `size`, `weatherBoost`, `buddyDistance`, `catchRate`, `fleeRate`, `captureRewards`, `megaEnergyReward`, `secondChargeMoveCost` |
 | Disponibilite | `availability`: shiny, shadow, trade, Pokemon HOME, Dynamax, Gigamax, Apex ; le bloc `shadow` détaille date, purification et Catch CP |
@@ -313,6 +313,8 @@ Les outils d'import et d'extraction manuels vivent dans `scripts/import/`.
 - Traductions principales dans les objets `names`.
 - `regionForms`, `megaEvolutions`, `dynamaxForms` et `gigantamaxForms` sont des listes de références `formId`.
 - Les données complètes de chaque forme vivent uniquement dans `data/pokemon-forms/`.
+- `regionId` référence `data/generations/`; l'API recompose la région traduite et la génération.
+- `weatherBoost` référence les identifiants du catalogue `data/weather/`.
 - Les icônes Pokémon Shuffle vivent dans `assets.shuffle` sur leur fiche exacte
   (normale, régionale, Méga, Dynamax ou Gigantamax) et sont importées avec
   `npm run import:pokemon-shuffle:write`. Les fichiers sans fiche compatible restent

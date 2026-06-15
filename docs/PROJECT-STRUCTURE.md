@@ -8,7 +8,7 @@ leurs responsabilites.
 
 | Dossier | Responsabilite |
 | --- | --- |
-| `data/` | Fiches JSON Pokemon, formes, attaques, generations et types. |
+| `data/` | Fiches JSON Pokemon, formes et catalogues centraux. |
 | `src/` | Coeur de l'API REST Express et synchronisation MongoDB. |
 | `api/` | Points d'entree serverless necessaires au deploiement Vercel. |
 | `apps/checklist/` | Interface, moteur et serveur de la checklist. |
@@ -37,6 +37,11 @@ Les portraits Méga/Primo vivent dans `asset/MegaPortraits/`, les fonds de types
 `data/stickers/stickers.json`. Le script `scripts/import/visual-assets.js` associe ces
 ressources aux données. Chaque type possède un fichier dans `data/types/<slug>.json`;
 `data/types/types.json` reste un index compatible avec les anciens outils.
+
+Les régions et générations sont centralisées dans `data/generations/`. Les fiches
+Pokémon complètes conservent uniquement `regionId`; l'API et la checklist recomposent
+la région traduite et la génération. Les sept météos vivent dans `data/weather/`,
+référencent leurs types boostés et exposent les icônes de `asset/weather/`.
 
 Le script `scripts/import/shadow-pokemon.js` synchronise depuis Bulbapedia les
 sorties Shadow déjà effectives, les coûts de purification, les Catch CP et les

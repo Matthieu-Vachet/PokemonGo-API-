@@ -110,6 +110,7 @@ function mergePokemon(parent, form) {
     ...form,
     formId: form.formId || form.id || parent.formId,
     baseFormId,
+    regionId: form.regionId || parent.regionId,
     region: form.region || parent.region,
     names: form.names || parent.names,
     stats: form.stats || parent.stats,
@@ -171,6 +172,7 @@ function toPokemonDocument(data, sourceFiles, hint, parentKey = null) {
     data.slug,
     data.dexId,
     data.form,
+    data.regionId,
     data.region?.id,
     ...namesToTerms(data.names),
     ...quickMoves,
@@ -192,7 +194,7 @@ function toPokemonDocument(data, sourceFiles, hint, parentKey = null) {
     dexId: data.dexId || String(data.dexNr || "").padStart(4, "0"),
     form: data.form || "normal",
     generation: data.generation || data.region?.generation,
-    regionId: data.region?.id,
+    regionId: data.regionId || data.region?.id,
     names: data.names || {},
     searchTerms: [...new Set(searchTerms)],
     primaryType: primaryType || undefined,
@@ -231,14 +233,30 @@ function toPokemonDocument(data, sourceFiles, hint, parentKey = null) {
   };
 }
 
-function collectPokemonDocuments() {
+function resolveRegionReference(data, regions, parent = {}) {
+  const regionId =
+    data.regionId ||
+    (typeof data.region === "string" ? data.region : data.region?.id) ||
+    parent.regionId ||
+    parent.region?.id;
+  const region = regions.get(regionId) || data.region || parent.region;
+  return {
+    ...data,
+    regionId,
+    region,
+    generation: data.generation || region?.generation || parent.generation,
+  };
+}
+
+function collectPokemonDocuments(generations = collectGenerationDocuments()) {
   const pokemonDir = path.join(rootDir, "data", "pokemon");
   const formsDir = path.join(rootDir, "data", "pokemon-forms");
   const documents = new Map();
   const parents = new Map();
+  const regions = new Map(generations.map((entry) => [entry.id, entry.data]));
 
   for (const file of listJsonFiles(pokemonDir)) {
-    const data = readJson(file);
+    const data = resolveRegionReference(readJson(file), regions);
     const source = relative(file);
     const parentKey = pokemonKey(data);
     parents.set(data.dexId, data);
@@ -256,7 +274,10 @@ function collectPokemonDocuments() {
       parents.get(form.dexId) ||
       parents.get(form.id) ||
       {};
-    const merged = mergePokemon(parent, form);
+    const merged = mergePokemon(
+      parent,
+      resolveRegionReference(form, regions, parent),
+    );
     const key = pokemonKey(merged);
     const existing = documents.get(key);
     const parentKey = parent.id ? pokemonKey(parent) : null;
@@ -349,6 +370,32 @@ function collectTypeDocuments() {
   }));
 }
 
+function collectWeatherDocuments() {
+  const directory = path.join(rootDir, "data", "weather");
+  const files = listJsonFiles(directory).filter(
+    (file) => path.basename(file) !== "weather.json",
+  );
+  const weather = files.length
+    ? files.map(readJson)
+    : readJson(path.join(directory, "weather.json"));
+  return weather.map((data) => ({
+    id: data.id,
+    slug: data.slug,
+    names: data.names || {},
+    assets: data.assets || {},
+    boostedTypes: data.boostedTypes || [],
+    searchTerms: [
+      data.id,
+      data.slug,
+      ...namesToTerms(data.names),
+    ]
+      .filter(Boolean)
+      .map((value) => String(value).toLowerCase()),
+    sourceHash: hash(data),
+    data,
+  }));
+}
+
 function collectGenerationDocuments() {
   return listJsonFiles(path.join(rootDir, "data", "generations")).map((file) => {
     const data = readJson(file);
@@ -381,9 +428,10 @@ function collectRegionDocuments(generations) {
 function collectAllDocuments() {
   const generations = collectGenerationDocuments();
   return {
-    pokemon: collectPokemonDocuments(),
+    pokemon: collectPokemonDocuments(generations),
     moves: collectMoveDocuments(),
     types: collectTypeDocuments(),
+    weather: collectWeatherDocuments(),
     generations,
     regions: collectRegionDocuments(generations),
   };
@@ -391,6 +439,7 @@ function collectAllDocuments() {
 
 module.exports = {
   collectAllDocuments,
+  collectWeatherDocuments,
   hash,
   listJsonFiles,
   mergePokemon,

@@ -6,4 +6,5 @@ module.exports = {
   Region: require("./region"),
   SyncRun: require("./sync-run"),
   Type: require("./type"),
+  Weather: require("./weather"),
 };

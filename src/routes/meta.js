@@ -1,5 +1,5 @@
 const express = require("express");
-const { Move, Pokemon, SyncRun } = require("../models");
+const { Move, Pokemon, SyncRun, Weather } = require("../models");
 const { asyncHandler } = require("../lib/async-handler");
 
 const router = express.Router();
@@ -7,18 +7,19 @@ const router = express.Router();
 router.get(
   "/filters",
   asyncHandler(async (_request, response) => {
-    const [forms, kinds, regions, generations, types, leagues, moveTypes] =
+    const [forms, kinds, regions, generations, types, weather, leagues, moveTypes] =
       await Promise.all([
         Pokemon.distinct("form"),
         Pokemon.distinct("kind"),
         Pokemon.distinct("regionId"),
         Pokemon.distinct("generation"),
         Pokemon.distinct("types"),
+        Weather.distinct("id"),
         Pokemon.distinct("pvpLeagues"),
         Move.distinct("type"),
       ]);
     response.json({
-      data: { forms, kinds, regions, generations, types, leagues, moveTypes },
+      data: { forms, kinds, regions, generations, types, weather, leagues, moveTypes },
     });
   }),
 );

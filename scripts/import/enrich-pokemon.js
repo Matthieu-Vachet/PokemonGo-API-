@@ -339,7 +339,10 @@ async function main() {
     }
   }
   const typeWeather = new Map(
-    JSON.parse(fs.readFileSync(typesFile, "utf8")).map((type) => [type.id, type.weatherBoost.id]),
+    JSON.parse(fs.readFileSync(typesFile, "utf8")).map((type) => [
+      type.id,
+      type.weatherBoost?.id || type.weatherBoost,
+    ]),
   );
   const sets = {
     released: new Set(Object.keys(released)),

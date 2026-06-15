@@ -6,7 +6,12 @@
 - `data/pokemon-forms/` contient les données complètes de chaque forme.
 - `regionForms`, `megaEvolutions`, `dynamaxForms` et `gigantamaxForms` sont des
   listes de références `formId`.
-- `data/moves/` et `data/types/` sont les catalogues centraux.
+- `data/moves/`, `data/types/`, `data/generations/` et `data/weather/` sont les
+  catalogues centraux.
+- Les fiches complètes utilisent `regionId`; ne jamais recopier l'objet région ni
+  la génération. Les formes Méga et Max héritent ces informations de leur base.
+- `weatherBoost` et `data/types/*/weatherBoost` utilisent les identifiants de
+  `data/weather/`.
 
 Ne jamais recopier les données complètes d'une forme dans une fiche principale.
 
@@ -17,11 +22,21 @@ npm run migrate:json-order:write
 npm run audit:forms
 npm run audit:identifiers
 npm run audit:moves
+npm run audit:weather
 npm test
 ```
 
 Le normaliseur d'ordre vérifie que les valeurs sont strictement identiques avant
 chaque écriture.
+
+La checklist valide tous les champs obligatoires de chaque famille de fiche :
+Pokémon normal, forme complète, Méga / Primo et forme Max. Un asset complémentaire
+comme Pokémon Shuffle ne remplace jamais les images Pokémon GO obligatoires d'une
+fiche déjà sortie.
+
+Les migrations `npm run migrate:regions` et `npm run migrate:weather` doivent
+indiquer `changedFiles: 0` après une contribution. Utiliser leurs variantes
+`:write` uniquement lorsqu'une migration centrale est réellement nécessaire.
 
 ## Imports D'assets
 

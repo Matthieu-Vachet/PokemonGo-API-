@@ -44,6 +44,11 @@ test("GET /api-docs.json fournit OpenAPI 3", async () => {
   assert.ok(response.body.paths["/api/v1/shuffle"]);
   assert.ok(response.body.paths["/api/v1/shuffle/{identifier}"]);
   assert.ok(response.body.paths["/api/v1/pokemon/{identifier}/shuffle"]);
+  assert.ok(response.body.paths["/api/v1/weather"]);
+  assert.ok(response.body.paths["/api/v1/weather/{identifier}"]);
+  assert.ok(response.body.paths["/api/v1/weather/{identifier}/pokemon"]);
+  assert.ok(response.body.paths["/api/v1/weather/{identifier}/types"]);
+  assert.ok(response.body.paths["/api/v1/weather/{identifier}/moves"]);
 });
 
 test("GET /api/v1/stickers expose le catalogue des stickers", async () => {
@@ -91,9 +96,22 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   assert.ok(data.pokemon.length >= 1000);
   assert.ok(data.moves.length >= 250);
   assert.equal(data.types.length, 18);
+  assert.equal(data.weather.length, 7);
+  assert.equal(data.regions.length, 10);
   assert.equal(new Set(data.pokemon.map((pokemon) => pokemon.key)).size, data.pokemon.length);
   assert.ok(data.pokemon.every((pokemon) => Array.isArray(pokemon.data.quickMoves)));
+  assert.ok(data.weather.every((weather) => weather.assets.icon.includes("/weather/")));
+  assert.ok(
+    data.types.every(
+      (type) =>
+        typeof type.data.weatherBoost === "string" &&
+        data.weather.some((weather) => weather.id === type.data.weatherBoost),
+    ),
+  );
   const bulbasaur = data.pokemon.find((pokemon) => pokemon.key === "BULBASAUR");
+  assert.equal(bulbasaur.generation, 1);
+  assert.equal(bulbasaur.regionId, "KANTO");
+  assert.equal(bulbasaur.data.region.names.French, "Kanto");
   assert.equal(bulbasaur.data.assets.home.source, "pokemon-home");
   assert.ok(bulbasaur.data.assets.home.variants.length >= 1);
   assert.equal(bulbasaur.data.assets.shuffle.source, "pokemon-shuffle");
@@ -247,6 +265,22 @@ test("les formes séparées sont référencées sans données dupliquées", () =
   assert.equal(mega.data.formId, "VENUSAUR_MEGA");
 });
 
+test("les régions et générations sont centralisées dans leurs catalogues", () => {
+  const bulbasaur = require("../data/pokemon/0001-bulbasaur.json");
+  const rattataAlola = require("../data/pokemon-forms/alola/0019-rattata-alola.json");
+  const venusaurMega = require("../data/pokemon-forms/mega/0003-venusaur-mega.json");
+  const bulbasaurDynamax = require("../data/pokemon-forms/dynamax/0001-bulbasaur-dynamax.json");
+
+  assert.equal(bulbasaur.regionId, "KANTO");
+  assert.equal(bulbasaur.region, undefined);
+  assert.equal(bulbasaur.generation, undefined);
+  assert.equal(rattataAlola.regionId, "ALOLA");
+  assert.equal(rattataAlola.region, undefined);
+  assert.equal(rattataAlola.generation, undefined);
+  assert.equal(venusaurMega.generation, undefined);
+  assert.equal(bulbasaurDynamax.generation, undefined);
+});
+
 test("l'assistant JSON couvre chaque problème détecté", () => {
   const checklist = buildChecklist();
   const hasPath = (target, pathName) => {
@@ -291,12 +325,14 @@ test("l'assistant JSON couvre chaque problème détecté", () => {
 test("l'atelier expose les icônes de types et valide les références", () => {
   const data = catalog();
   assert.equal(data.types.length, 18);
+  assert.equal(data.weather.length, 7);
   assert.ok(data.types.every((type) => type.assets.icon.includes("/Types/ico_")));
   assert.ok(
     data.types.every((type) => type.assets.background.includes("/TypeBackgrounds/")),
   );
   assert.equal(data.stickers.length, 1667);
   assert.ok(data.moves.length > 400);
+  assert.ok(data.weather.every((weather) => weather.assets.icon.includes("/weather/")));
 
   const source = detailForKey(
     buildChecklist().find((entry) => entry.kind === "pokemon").key,
@@ -378,6 +414,65 @@ test("assets peut être null uniquement pour une forme non sortie", () => {
   );
   assert.ok(!unreleasedIssues.some((issue) => issue.path === "assets"));
   assert.ok(releasedIssues.some((issue) => issue.path === "assets"));
+});
+
+test("un asset Shuffle ne remplace pas les images GO d'une fiche sortie", () => {
+  const released = structuredClone(
+    require("../data/pokemon-forms/normal/0201-unown-a.json"),
+  );
+  released.assets = { shuffle: released.assets.shuffle };
+  const issues = validateSourceData(
+    released,
+    "data/pokemon-forms/normal/0201-unown-a.json",
+    "form",
+  );
+  assert.ok(issues.some((issue) => issue.path === "assets.image"));
+  assert.ok(issues.some((issue) => issue.path === "assets.shinyImage"));
+});
+
+test("la checklist exige les champs propres à chaque famille Pokémon", () => {
+  const cases = [
+    {
+      source: require("../data/pokemon/0001-bulbasaur.json"),
+      file: "data/pokemon/0001-bulbasaur.json",
+      kind: "pokemon",
+      removed: "size",
+    },
+    {
+      source: require("../data/pokemon-forms/alola/0019-rattata-alola.json"),
+      file: "data/pokemon-forms/alola/0019-rattata-alola.json",
+      kind: "form",
+      removed: "baseFormId",
+    },
+    {
+      source: require("../data/pokemon-forms/mega/0003-venusaur-mega.json"),
+      file: "data/pokemon-forms/mega/0003-venusaur-mega.json",
+      kind: "mega",
+      removed: "dexId",
+    },
+    {
+      source: require("../data/pokemon-forms/dynamax/0001-bulbasaur-dynamax.json"),
+      file: "data/pokemon-forms/dynamax/0001-bulbasaur-dynamax.json",
+      kind: "dynamax",
+      removed: "assets",
+    },
+    {
+      source: require("../data/pokemon-forms/dynamax/0001-bulbasaur-dynamax.json"),
+      file: "data/pokemon-forms/dynamax/0001-bulbasaur-dynamax.json",
+      kind: "dynamax",
+      removed: "evolutions",
+    },
+  ];
+
+  for (const testCase of cases) {
+    const source = structuredClone(testCase.source);
+    delete source[testCase.removed];
+    const issues = validateSourceData(source, testCase.file, testCase.kind);
+    assert.ok(
+      issues.some((issue) => issue.path === testCase.removed),
+      `${testCase.file} doit signaler ${testCase.removed}`,
+    );
+  }
 });
 
 test("les anciennes attaques embarquées sont présentées comme références", () => {

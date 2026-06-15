@@ -30,6 +30,103 @@
     "Korean": "볼트로스 (화신폼)",
     "Spanish": "Thundurus (Forma Avatar)"
   },
+  "size": {
+    "height": 1.5,
+    "weight": 61
+  },
+  "weatherBoost": [
+    "rain",
+    "windy"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 3782,
+    "maxLevel40": 3345,
+    "weatherBoostLevel25": 2389,
+    "raidLevel20": 1911,
+    "researchLevel15": 1433
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 1,
+          "defense": 15
+        },
+        "level": 16.5,
+        "cp": 1498
+      },
+      "bestMovesets": {
+        "fast": "THUNDER_SHOCK_FAST",
+        "charged": [
+          "THUNDER_PUNCH",
+          "BRICK_BREAK"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 1,
+          "defense": 15
+        },
+        "level": 27.5,
+        "cp": 2497
+      },
+      "bestMovesets": {
+        "fast": "THUNDER_SHOCK_FAST",
+        "charged": [
+          "CRUNCH",
+          "THUNDER"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 15,
+          "defense": 15
+        },
+        "level": 50,
+        "cp": 3782
+      },
+      "bestMovesets": {
+        "fast": "THUNDER_SHOCK_FAST",
+        "charged": [
+          "CRUNCH",
+          "THUNDER"
+        ]
+      }
+    }
+  },
   "stats": {
     "stamina": 188,
     "attack": 266,
@@ -54,6 +151,7 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm642.fINCARNATE.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm642.fINCARNATE.s.icon.png"
   },
+  "assetForms": [],
   "regionForms": [],
   "evolutions": [],
   "hasMegaEvolution": false,

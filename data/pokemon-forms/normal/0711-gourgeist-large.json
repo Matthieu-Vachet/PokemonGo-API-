@@ -30,6 +30,103 @@
     "Korean": "펌킨인 (대과종)",
     "Spanish": "Gourgeist (Variante Grande)"
   },
+  "size": {
+    "height": 1.1,
+    "weight": 14
+  },
+  "weatherBoost": [
+    "fog",
+    "sunny"
+  ],
+  "buddyDistance": 5,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 5,
+    "stardust": 300
+  },
+  "secondChargeMoveCost": {
+    "candy": 75,
+    "stardust": 75000
+  },
+  "maxCp": {
+    "maxLevel50": 2850,
+    "maxLevel40": 2521,
+    "weatherBoostLevel25": 1801,
+    "raidLevel20": 1440,
+    "researchLevel15": 1080
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 1,
+          "defense": 14
+        },
+        "level": 22.5,
+        "cp": 1500
+      },
+      "bestMovesets": {
+        "fast": "INCINERATE_FAST",
+        "charged": [
+          "SHADOW_BALL",
+          "SEED_BOMB"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 1,
+          "defense": 14
+        },
+        "level": 45.5,
+        "cp": 2499
+      },
+      "bestMovesets": {
+        "fast": "INCINERATE_FAST",
+        "charged": [
+          "SHADOW_BALL",
+          "SEED_BOMB"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 15,
+          "defense": 15
+        },
+        "level": 50,
+        "cp": 2850
+      },
+      "bestMovesets": {
+        "fast": "INCINERATE_FAST",
+        "charged": [
+          "SHADOW_BALL",
+          "FOUL_PLAY"
+        ]
+      }
+    }
+  },
   "stats": {
     "stamina": 181,
     "attack": 179,
@@ -56,6 +153,7 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm711.fLARGE.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm711.fLARGE.s.icon.png"
   },
+  "assetForms": [],
   "regionForms": [],
   "evolutions": [],
   "hasMegaEvolution": false,

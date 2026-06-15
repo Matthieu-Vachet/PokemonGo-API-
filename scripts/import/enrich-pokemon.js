@@ -7,6 +7,19 @@ const formsDir = path.join(rootDir, "data", "pokemon-forms");
 const typesFile = path.join(rootDir, "data", "types", "types.json");
 const pokemonReportFile = path.join(rootDir, "data", "pokemon-enrichment-report.json");
 const formsReportFile = path.join(rootDir, "data", "forms-enrichment-report.json");
+const enrichableFormKinds = new Set([
+  "normal",
+  "alola",
+  "galar",
+  "hisui",
+  "paldea",
+  "mega",
+  "mega-x",
+  "mega-y",
+  "primal",
+]);
+const megaFormKinds = new Set(["mega", "mega-x", "mega-y", "primal"]);
+const megaTargetKeys = ["size", "catchRate", "fleeRate", "maxCp", "availability"];
 
 const targetKeys = [
   "size",
@@ -141,16 +154,21 @@ function mapMove(moveId, fast, catalog) {
   return equivalent || null;
 }
 
-function findRanking(pokemon, rankings) {
-  const candidates = [
+function findRanking(pokemon, rankings, allowBaseFallback) {
+  const exactCandidates = [
     normalizeSpeciesId(pokemon.slug),
+    normalizeSpeciesId(pokemon.formId),
+  ];
+  const exact = rankings.find((ranking) => exactCandidates.includes(ranking.speciesId));
+  if (exact || !allowBaseFallback) return exact || null;
+  const baseCandidates = [
     normalizeSpeciesId(pokemon.names?.English),
     normalizeSpeciesId(pokemon.id),
   ];
-  return rankings.find((ranking) => candidates.includes(ranking.speciesId)) || null;
+  return rankings.find((ranking) => baseCandidates.includes(ranking.speciesId)) || null;
 }
 
-function pvpBlock(pokemon, rankingsByLeague, multipliers, catalog, warnings) {
+function pvpBlock(pokemon, rankingsByLeague, multipliers, catalog, warnings, allowBaseFallback) {
   const leagues = {
     littleCup: 500,
     greatLeague: 1500,
@@ -159,7 +177,7 @@ function pvpBlock(pokemon, rankingsByLeague, multipliers, catalog, warnings) {
   };
   const pvp = {};
   for (const [league, cap] of Object.entries(leagues)) {
-    const ranking = findRanking(pokemon, rankingsByLeague[league]);
+    const ranking = findRanking(pokemon, rankingsByLeague[league], allowBaseFallback);
     if (!ranking?.moveset?.length) {
       pvp[league] = null;
       continue;
@@ -188,12 +206,33 @@ function pvpBlock(pokemon, rankingsByLeague, multipliers, catalog, warnings) {
   return pvp;
 }
 
-function gameMasterPokemon(gameMaster, pokemon) {
+function gameMasterPokemon(gameMaster, pokemon, allowBaseFallback) {
   const prefix = `V${pokemon.dexId}_POKEMON_`;
   const preferred = `${prefix}${pokemon.formId}`;
   const exact = gameMaster.find((template) => template.templateId === preferred);
   const base = gameMaster.find((template) => template.templateId === `${prefix}${pokemon.id}`);
-  return (exact || (pokemon.form === "normal" ? base : null))?.data?.pokemonSettings || null;
+  return (exact || (allowBaseFallback ? base : null))?.data?.pokemonSettings || null;
+}
+
+function sorted(values) {
+  return [...(values || [])].sort();
+}
+
+function gameplayEquivalent(pokemon, basePokemon) {
+  if (!basePokemon) return false;
+  return (
+    JSON.stringify(pokemon.stats) === JSON.stringify(basePokemon.stats) &&
+    pokemon.primaryType === basePokemon.primaryType &&
+    pokemon.secondaryType === basePokemon.secondaryType &&
+    pokemon.pokemonClass === basePokemon.pokemonClass &&
+    JSON.stringify(sorted(pokemon.quickMoves)) === JSON.stringify(sorted(basePokemon.quickMoves)) &&
+    JSON.stringify(sorted(pokemon.cinematicMoves)) ===
+      JSON.stringify(sorted(basePokemon.cinematicMoves)) &&
+    JSON.stringify(sorted(pokemon.eliteQuickMoves)) ===
+      JSON.stringify(sorted(basePokemon.eliteQuickMoves)) &&
+    JSON.stringify(sorted(pokemon.eliteCinematicMoves)) ===
+      JSON.stringify(sorted(basePokemon.eliteCinematicMoves))
+  );
 }
 
 function weatherBoost(pokemon, typeWeather) {
@@ -211,8 +250,9 @@ function maxCp(stats, multipliers) {
 }
 
 function hasCompleteEnrichment(pokemon) {
+  const keys = megaFormKinds.has(pokemon.form) ? megaTargetKeys : targetKeys;
   return (
-    targetKeys.every((key) => key in pokemon) &&
+    keys.every((key) => key in pokemon) &&
     pokemon.maxCp?.maxLevel50 != null &&
     pokemon.maxCp?.maxLevel40 != null
   );
@@ -234,10 +274,10 @@ function availability(pokemon, settings, sets, dynamax, gigantamax) {
   };
 }
 
-function orderedPokemon(pokemon, enrichment) {
+function orderedPokemon(pokemon, enrichment, enrichmentKeys = targetKeys) {
   const result = {};
   for (const [key, value] of Object.entries(pokemon)) {
-    if (targetKeys.includes(key)) continue;
+    if (enrichmentKeys.includes(key)) continue;
     if (key === "stats") Object.assign(result, enrichment);
     result[key] = value;
   }
@@ -323,14 +363,13 @@ async function main() {
     processed: 0,
     enriched: 0,
     skippedExisting: 0,
+    inheritedFromBase: [],
     missingGameMaster: [],
     warnings: [],
   };
   let files = args.forms
     ? listJsonFiles(formsDir).filter((file) =>
-        ["alola", "galar", "hisui", "paldea"].includes(
-          JSON.parse(fs.readFileSync(file, "utf8")).form,
-        ),
+        enrichableFormKinds.has(JSON.parse(fs.readFileSync(file, "utf8")).form),
       )
     : fs
         .readdirSync(pokemonDir)
@@ -338,6 +377,13 @@ async function main() {
         .map((file) => path.join(pokemonDir, file));
   files.sort();
   if (Number.isFinite(args.limit)) files = files.slice(0, args.limit);
+  const basePokemonById = new Map(
+    fs
+      .readdirSync(pokemonDir)
+      .filter((file) => file.endsWith(".json"))
+      .map((file) => JSON.parse(fs.readFileSync(path.join(pokemonDir, file), "utf8")))
+      .map((pokemon) => [pokemon.id, pokemon]),
+  );
 
   for (const file of files) {
     report.processed += 1;
@@ -347,36 +393,78 @@ async function main() {
       report.skippedExisting += 1;
       continue;
     }
-    const settings = gameMasterPokemon(gameMaster, pokemon);
+    const allowBaseFallback =
+      pokemon.formId === pokemon.id || gameplayEquivalent(pokemon, basePokemonById.get(pokemon.id));
+    const settings = gameMasterPokemon(gameMaster, pokemon, allowBaseFallback);
     if (!settings) {
       report.missingGameMaster.push(`${pokemon.dexId}:${pokemon.formId}`);
       continue;
     }
+    if (
+      pokemon.formId !== pokemon.id &&
+      allowBaseFallback &&
+      !gameMasterPokemon(gameMaster, pokemon, false)
+    ) {
+      report.inheritedFromBase.push(`${pokemon.dexId}:${pokemon.formId}`);
+    }
     const encounter = settings.encounter || {};
-    const enrichment = {
-      size: {
-        height: settings.pokedexHeightM ?? null,
-        weight: settings.pokedexWeightKg ?? null,
-      },
-      weatherBoost: weatherBoost(pokemon, typeWeather),
-      buddyDistance: settings.kmBuddyDistance ?? null,
-      catchRate: pokemon.pokemonClass ? 2 : 20,
-      fleeRate: 0,
-      megaEnergyReward: settings.buddyWalkedMegaEnergyAward ?? null,
-      captureRewards: {
-        candy: 3 + (encounter.bonusCandyCaptureReward || 0),
-        stardust: 100 + (encounter.bonusStardustCaptureReward || 0),
-      },
-      secondChargeMoveCost: {
-        candy: settings.thirdMove?.candyToUnlock ?? null,
-        stardust: settings.thirdMove?.stardustToUnlock ?? null,
-      },
-      maxCp: maxCp(pokemon.stats, multipliers),
-      availability: availability(pokemon, settings, sets, dynamax, gigantamax),
-      pvp: pvpBlock(pokemon, rankings, multipliers, catalog, report.warnings),
-      assetForms: pokemon.assetForms || [],
-    };
-    if (args.write) writeJson(filePath, orderedPokemon(pokemon, enrichment));
+    const isMegaForm = megaFormKinds.has(pokemon.form);
+    const computedAvailability = availability(pokemon, settings, sets, dynamax, gigantamax);
+    const enrichment = isMegaForm
+      ? {
+          size: pokemon.size || {
+            height: settings.pokedexHeightM ?? null,
+            weight: settings.pokedexWeightKg ?? null,
+          },
+          catchRate:
+            pokemon.catchRate ?? (encounter.baseCaptureRate != null
+              ? encounter.baseCaptureRate * 100
+              : null),
+          fleeRate:
+            pokemon.fleeRate ?? (encounter.baseFleeRate != null ? encounter.baseFleeRate * 100 : null),
+          maxCp: pokemon.maxCp || maxCp(pokemon.stats, multipliers),
+          availability: {
+            released: pokemon.availability?.released ?? computedAvailability.released,
+            shinyReleased:
+              pokemon.availability?.shinyReleased ?? computedAvailability.shinyReleased,
+            tradable: pokemon.availability?.tradable ?? computedAvailability.tradable,
+            pokemonHomeTransfer:
+              pokemon.availability?.pokemonHomeTransfer ??
+              computedAvailability.pokemonHomeTransfer,
+          },
+        }
+      : {
+          size: {
+            height: settings.pokedexHeightM ?? null,
+            weight: settings.pokedexWeightKg ?? null,
+          },
+          weatherBoost: weatherBoost(pokemon, typeWeather),
+          buddyDistance: settings.kmBuddyDistance ?? null,
+          catchRate: pokemon.pokemonClass ? 2 : 20,
+          fleeRate: 0,
+          megaEnergyReward: settings.buddyWalkedMegaEnergyAward ?? null,
+          captureRewards: {
+            candy: 3 + (encounter.bonusCandyCaptureReward || 0),
+            stardust: 100 + (encounter.bonusStardustCaptureReward || 0),
+          },
+          secondChargeMoveCost: {
+            candy: settings.thirdMove?.candyToUnlock ?? null,
+            stardust: settings.thirdMove?.stardustToUnlock ?? null,
+          },
+          maxCp: maxCp(pokemon.stats, multipliers),
+          availability: computedAvailability,
+          pvp: pvpBlock(
+            pokemon,
+            rankings,
+            multipliers,
+            catalog,
+            report.warnings,
+            allowBaseFallback,
+          ),
+          assetForms: pokemon.assetForms || [],
+        };
+    if (args.write)
+      writeJson(filePath, orderedPokemon(pokemon, enrichment, isMegaForm ? megaTargetKeys : targetKeys));
     report.enriched += 1;
   }
 

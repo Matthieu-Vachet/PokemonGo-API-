@@ -30,6 +30,103 @@
     "Korean": "우라오스 (일격의 태세)",
     "Spanish": "Urshifu (Estilo Brusco)"
   },
+  "size": {
+    "height": 1.9,
+    "weight": 105
+  },
+  "weatherBoost": [
+    "cloudy",
+    "fog"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 5,
+    "stardust": 300
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 4077,
+    "maxLevel40": 3606,
+    "weatherBoostLevel25": 2576,
+    "raidLevel20": 2060,
+    "researchLevel15": 1545
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": false,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 0,
+          "defense": 13
+        },
+        "level": 15.5,
+        "cp": 1500
+      },
+      "bestMovesets": {
+        "fast": "SUCKER_PUNCH_FAST",
+        "charged": [
+          "BRICK_BREAK",
+          "DYNAMIC_PUNCH"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "stamina": 13,
+          "attack": 0,
+          "defense": 12
+        },
+        "level": 26,
+        "cp": 2499
+      },
+      "bestMovesets": {
+        "fast": "SUCKER_PUNCH_FAST",
+        "charged": [
+          "PAYBACK",
+          "DYNAMIC_PUNCH"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 15,
+          "defense": 15
+        },
+        "level": 50,
+        "cp": 4077
+      },
+      "bestMovesets": {
+        "fast": "SUCKER_PUNCH_FAST",
+        "charged": [
+          "DYNAMIC_PUNCH",
+          "PAYBACK"
+        ]
+      }
+    }
+  },
   "stats": {
     "stamina": 225,
     "attack": 254,
@@ -55,6 +152,7 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm892.fSINGLE_STRIKE.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm892.fSINGLE_STRIKE.s.icon.png"
   },
+  "assetForms": [],
   "regionForms": [],
   "evolutions": [],
   "hasMegaEvolution": false,

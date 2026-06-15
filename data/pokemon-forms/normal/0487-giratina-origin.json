@@ -30,6 +30,103 @@
     "Korean": "기라티나 (오리진폼)",
     "Spanish": "Giratina (Forma Origen)"
   },
+  "size": {
+    "height": 6.9,
+    "weight": 650
+  },
+  "weatherBoost": [
+    "fog",
+    "windy"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 4164,
+    "maxLevel40": 3683,
+    "weatherBoostLevel25": 2631,
+    "raidLevel20": 2105,
+    "researchLevel15": 1578
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "stamina": 11,
+          "attack": 0,
+          "defense": 10
+        },
+        "level": 15.5,
+        "cp": 1500
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_TAIL_FAST",
+        "charged": [
+          "OMINOUS_WIND",
+          "SHADOW_BALL"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "stamina": 14,
+          "attack": 0,
+          "defense": 13
+        },
+        "level": 25.5,
+        "cp": 2499
+      },
+      "bestMovesets": {
+        "fast": "SHADOW_CLAW_FAST",
+        "charged": [
+          "SHADOW_BALL",
+          "DRAGON_PULSE"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 15,
+          "defense": 15
+        },
+        "level": 50,
+        "cp": 4164
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_TAIL_FAST",
+        "charged": [
+          "SHADOW_BALL",
+          "OMINOUS_WIND"
+        ]
+      }
+    }
+  },
   "stats": {
     "stamina": 284,
     "attack": 225,
@@ -55,6 +152,7 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm487.fORIGIN.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm487.fORIGIN.s.icon.png"
   },
+  "assetForms": [],
   "regionForms": [],
   "evolutions": [],
   "hasMegaEvolution": false,

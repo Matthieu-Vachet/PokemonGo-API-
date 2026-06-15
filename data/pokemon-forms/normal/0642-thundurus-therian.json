@@ -30,6 +30,85 @@
     "Korean": "볼트로스 (영물폼)",
     "Spanish": "Thundurus (Forma Tótem)"
   },
+  "size": {
+    "height": 3,
+    "weight": 61
+  },
+  "weatherBoost": [
+    "rain",
+    "windy"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 4137,
+    "maxLevel40": 3659,
+    "weatherBoostLevel25": 2614,
+    "raidLevel20": 2091,
+    "researchLevel15": 1568
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": null,
+    "ultraLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 1,
+          "defense": 15
+        },
+        "level": 25,
+        "cp": 2496
+      },
+      "bestMovesets": {
+        "fast": "VOLT_SWITCH_FAST",
+        "charged": [
+          "WILDBOLT_STORM",
+          "FOCUS_BLAST"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 15,
+          "defense": 15
+        },
+        "level": 50,
+        "cp": 4137
+      },
+      "bestMovesets": {
+        "fast": "VOLT_SWITCH_FAST",
+        "charged": [
+          "WILDBOLT_STORM",
+          "FOCUS_BLAST"
+        ]
+      }
+    }
+  },
   "stats": {
     "stamina": 188,
     "attack": 295,
@@ -56,6 +135,7 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm642.fTHERIAN.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm642.fTHERIAN.s.icon.png"
   },
+  "assetForms": [],
   "regionForms": [],
   "evolutions": [],
   "hasMegaEvolution": false,

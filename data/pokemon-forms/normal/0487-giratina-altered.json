@@ -30,6 +30,85 @@
     "Korean": "기라티나 (어나더폼)",
     "Spanish": "Giratina (Forma Modificada)"
   },
+  "size": {
+    "height": 4.5,
+    "weight": 750
+  },
+  "weatherBoost": [
+    "fog",
+    "windy"
+  ],
+  "buddyDistance": 20,
+  "catchRate": 2,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 3,
+    "stardust": 100
+  },
+  "secondChargeMoveCost": {
+    "candy": 100,
+    "stardust": 100000
+  },
+  "maxCp": {
+    "maxLevel50": 3820,
+    "maxLevel40": 3379,
+    "weatherBoostLevel25": 2414,
+    "raidLevel20": 1931,
+    "researchLevel15": 1448
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": null,
+    "ultraLeague": {
+      "tierRank": "S",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 0,
+          "defense": 14
+        },
+        "level": 28,
+        "cp": 2497
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_BREATH_FAST",
+        "charged": [
+          "DRAGON_CLAW",
+          "SHADOW_SNEAK"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 15,
+          "defense": 15
+        },
+        "level": 50,
+        "cp": 3820
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_BREATH_FAST",
+        "charged": [
+          "DRAGON_CLAW",
+          "ANCIENT_POWER"
+        ]
+      }
+    }
+  },
   "stats": {
     "stamina": 284,
     "attack": 187,
@@ -55,6 +134,7 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm487.fALTERED.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm487.fALTERED.s.icon.png"
   },
+  "assetForms": [],
   "regionForms": [],
   "evolutions": [],
   "hasMegaEvolution": false,

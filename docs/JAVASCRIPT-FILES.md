@@ -25,6 +25,7 @@ imports, aux migrations, aux audits ou à la synchronisation.
 | `scripts/import/dynamax-pokemon.js` | Synchronise les Pokémon Dynamax et leurs attaques Max. |
 | `scripts/import/visual-assets.js` | Associe les portraits Méga, fonds de types et construit le catalogue stickers. |
 | `scripts/import/pokemon-shuffle.js` | Associe les icônes Pokémon Shuffle sans interpréter les codes inconnus. |
+| `scripts/import/enrich-pokemon.js` | Enrichit les Pokémon normaux ou, avec `--forms`, les formes régionales depuis le Game Master et PvPoke. |
 
 Les commandes sans suffixe `:write` simulent généralement le résultat. Les commandes
 `:write` modifient les fichiers JSON.

@@ -3,8 +3,10 @@ const path = require("path");
 
 const rootDir = path.resolve(__dirname, "../..");
 const pokemonDir = path.join(rootDir, "data", "pokemon");
+const formsDir = path.join(rootDir, "data", "pokemon-forms");
 const typesFile = path.join(rootDir, "data", "types", "types.json");
-const reportFile = path.join(rootDir, "data", "pokemon-enrichment-report.json");
+const pokemonReportFile = path.join(rootDir, "data", "pokemon-enrichment-report.json");
+const formsReportFile = path.join(rootDir, "data", "forms-enrichment-report.json");
 
 const targetKeys = [
   "size",
@@ -18,6 +20,7 @@ const targetKeys = [
   "maxCp",
   "availability",
   "pvp",
+  "assetForms",
 ];
 
 const sources = {
@@ -38,6 +41,7 @@ function parseArgs(argv) {
   const args = {
     write: argv.includes("--write"),
     force: argv.includes("--force"),
+    forms: argv.includes("--forms"),
     limit: null,
   };
   const limitIndex = argv.indexOf("--limit");
@@ -189,7 +193,7 @@ function gameMasterPokemon(gameMaster, pokemon) {
   const preferred = `${prefix}${pokemon.formId}`;
   const exact = gameMaster.find((template) => template.templateId === preferred);
   const base = gameMaster.find((template) => template.templateId === `${prefix}${pokemon.id}`);
-  return (exact || base)?.data?.pokemonSettings || null;
+  return (exact || (pokemon.form === "normal" ? base : null))?.data?.pokemonSettings || null;
 }
 
 function weatherBoost(pokemon, typeWeather) {
@@ -215,15 +219,18 @@ function hasCompleteEnrichment(pokemon) {
 }
 
 function availability(pokemon, settings, sets, dynamax, gigantamax) {
+  const isBaseForm = pokemon.form === "normal" && pokemon.formId === pokemon.id;
   return {
     released: sets.released.has(String(pokemon.dexNr)),
     shinyReleased: sets.shiny.has(String(pokemon.dexNr)),
     tradable: settings.isTradable === true,
     pokemonHomeTransfer: settings.isTransferable !== false,
-    shadow: pokemon.shadow?.released === true || sets.shadow.has(String(pokemon.dexNr)),
-    dynamax: dynamax.has(pokemon.id),
-    gigantamax: gigantamax.has(pokemon.id),
-    apex: ["LUGIA", "HO_OH"].includes(pokemon.id),
+    shadow:
+      pokemon.shadow?.released === true ||
+      (isBaseForm && sets.shadow.has(String(pokemon.dexNr))),
+    dynamax: dynamax.has(pokemon.formId),
+    gigantamax: gigantamax.has(pokemon.formId),
+    apex: isBaseForm && ["LUGIA", "HO_OH"].includes(pokemon.id),
   };
 }
 
@@ -240,6 +247,18 @@ function orderedPokemon(pokemon, enrichment) {
 
 function writeJson(filePath, value) {
   fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`);
+}
+
+function listJsonFiles(directory) {
+  if (!fs.existsSync(directory)) return [];
+  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const file = path.join(directory, entry.name);
+    return entry.isDirectory()
+      ? listJsonFiles(file)
+      : entry.name.endsWith(".json")
+        ? [file]
+        : [];
+  });
 }
 
 async function main() {
@@ -307,12 +326,22 @@ async function main() {
     missingGameMaster: [],
     warnings: [],
   };
-  let files = fs.readdirSync(pokemonDir).filter((file) => file.endsWith(".json")).sort();
+  let files = args.forms
+    ? listJsonFiles(formsDir).filter((file) =>
+        ["alola", "galar", "hisui", "paldea"].includes(
+          JSON.parse(fs.readFileSync(file, "utf8")).form,
+        ),
+      )
+    : fs
+        .readdirSync(pokemonDir)
+        .filter((file) => file.endsWith(".json"))
+        .map((file) => path.join(pokemonDir, file));
+  files.sort();
   if (Number.isFinite(args.limit)) files = files.slice(0, args.limit);
 
   for (const file of files) {
     report.processed += 1;
-    const filePath = path.join(pokemonDir, file);
+    const filePath = file;
     const pokemon = JSON.parse(fs.readFileSync(filePath, "utf8"));
     if (!args.force && hasCompleteEnrichment(pokemon)) {
       report.skippedExisting += 1;
@@ -345,12 +374,13 @@ async function main() {
       maxCp: maxCp(pokemon.stats, multipliers),
       availability: availability(pokemon, settings, sets, dynamax, gigantamax),
       pvp: pvpBlock(pokemon, rankings, multipliers, catalog, report.warnings),
+      assetForms: pokemon.assetForms || [],
     };
     if (args.write) writeJson(filePath, orderedPokemon(pokemon, enrichment));
     report.enriched += 1;
   }
 
-  if (args.write) writeJson(reportFile, report);
+  if (args.write) writeJson(args.forms ? formsReportFile : pokemonReportFile, report);
   console.log(JSON.stringify(report, null, 2));
 }
 

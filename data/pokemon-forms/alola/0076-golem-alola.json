@@ -30,6 +30,103 @@
     "Korean": "알로라 딱구리",
     "Spanish": "Golem de Alola"
   },
+  "size": {
+    "height": 1.7,
+    "weight": 316
+  },
+  "weatherBoost": [
+    "partlyCloudy",
+    "rain"
+  ],
+  "buddyDistance": 1,
+  "catchRate": 20,
+  "fleeRate": 0,
+  "megaEnergyReward": null,
+  "captureRewards": {
+    "candy": 10,
+    "stardust": 500
+  },
+  "secondChargeMoveCost": {
+    "candy": 25,
+    "stardust": 10000
+  },
+  "maxCp": {
+    "maxLevel50": 3334,
+    "maxLevel40": 2949,
+    "weatherBoostLevel25": 2106,
+    "raidLevel20": 1685,
+    "researchLevel15": 1264
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true,
+    "shadow": false,
+    "dynamax": false,
+    "gigantamax": false,
+    "apex": false
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 1,
+          "defense": 14
+        },
+        "level": 19,
+        "cp": 1498
+      },
+      "bestMovesets": {
+        "fast": "MUD_SLAP_FAST",
+        "charged": [
+          "STONE_EDGE",
+          "EARTHQUAKE"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 0,
+          "defense": 15
+        },
+        "level": 33.5,
+        "cp": 2498
+      },
+      "bestMovesets": {
+        "fast": "MUD_SLAP_FAST",
+        "charged": [
+          "EARTHQUAKE",
+          "STONE_EDGE"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "D",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 15,
+          "defense": 15
+        },
+        "level": 50,
+        "cp": 3334
+      },
+      "bestMovesets": {
+        "fast": "MUD_SLAP_FAST",
+        "charged": [
+          "EARTHQUAKE",
+          "STONE_EDGE"
+        ]
+      }
+    }
+  },
   "stats": {
     "stamina": 190,
     "attack": 211,
@@ -55,6 +152,7 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm76.fALOLA.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm76.fALOLA.s.icon.png"
   },
+  "assetForms": [],
   "regionForms": [],
   "evolutions": [],
   "hasMegaEvolution": false,

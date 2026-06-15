@@ -28,6 +28,8 @@ chaque écriture.
 ```bash
 npm run import:pokemon-shuffle
 npm run import:pokemon-shuffle:write
+npm run import:enrich-forms
+npm run import:enrich-forms:write
 ```
 
 Toujours contrôler le mode sans `:write` avant l'écriture. Les suffixes Shuffle

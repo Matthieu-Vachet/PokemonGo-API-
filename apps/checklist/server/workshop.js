@@ -141,29 +141,27 @@ function allGoAssets() {
 }
 
 function allShuffleAssets() {
-  if (!fs.existsSync(shuffleDir)) return [];
-  return fs
-    .readdirSync(shuffleDir)
-    .flatMap((filename) => {
-      const match = filename.match(/^(\d+)(.*)\.png$/i);
-      if (!match) return [];
-      const codes = match[2]
-        .replace(/^[_\s]+/, "")
-        .replace(/\s+/g, "_")
-        .split("_")
-        .filter(Boolean);
-      return [{
-        dexId: String(Number(match[1])).padStart(4, "0"),
-        name: `Pokémon n° ${Number(match[1])}`,
+  const assets = [];
+  for (const file of listFiles(path.join(rootDir, "data", "pokemon"))) {
+    const pokemon = readJson(file, {});
+    for (const variant of pokemon.assets?.shuffle?.variants || [])
+      assets.push({
+        dexId: pokemon.dexId,
+        name:
+          pokemon.names?.French ||
+          pokemon.names?.English ||
+          pokemon.slug ||
+          pokemon.id,
         form: "shuffle",
-        label: codes.join(" · ") || "standard",
-        shiny: codes.at(-1) === "s",
-        details: codes.join(" · "),
-        url: `${remoteShuffle}/${encodeURIComponent(filename)}`,
-        filename,
-        file: path.relative(rootDir, path.join(shuffleDir, filename)),
-      }];
-    })
+        label: variant.codes?.join(" · ") || "standard",
+        shiny: variant.shiny === true,
+        details: variant.codes?.join(" · ") || "",
+        url: variant.image,
+        filename: variant.filename,
+        file: path.relative(rootDir, file),
+      });
+  }
+  return assets
     .sort(
       (left, right) =>
         left.dexId.localeCompare(right.dexId) ||

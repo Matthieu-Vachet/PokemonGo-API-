@@ -257,12 +257,13 @@ function createValidator() {
     }
   }
 
-  function assets(value, pathName) {
+  function assets(value, pathName, nullable = false) {
+    if (value === null && nullable) return;
     if (actualType(value) !== "object") {
       add(
         pathName,
         value === undefined ? "missing" : "type",
-        "objet",
+        nullable ? "objet ou null si non sorti" : "objet",
         actualType(value),
       );
       return;
@@ -465,7 +466,11 @@ function createValidator() {
         field(stats, key, `${pathName}.stats.${key}`, "number");
     typeBlock(value.primaryType, `${pathName}.primaryType`);
     typeBlock(value.secondaryType, `${pathName}.secondaryType`, true);
-    assets(value.assets, `${pathName}.assets`);
+    assets(
+      value.assets,
+      `${pathName}.assets`,
+      value.availability?.released === false,
+    );
   }
 
   function maxForm(value, pathName = "") {
@@ -532,7 +537,8 @@ function createValidator() {
               actualType(flag),
             );
     }
-    if (value.assets !== undefined) assets(value.assets, `${prefix}assets`);
+    if (value.assets !== undefined)
+      assets(value.assets, `${prefix}assets`, value.availability?.released === false);
     if (value.evolutions !== undefined) {
       const evolutions = field(
         value,
@@ -631,7 +637,11 @@ function createValidator() {
         "absent",
       );
     else eliteMoves(value.eliteCinematicMoves, `${prefix}eliteCinematicMoves`);
-    assets(value.assets, `${prefix}assets`);
+    assets(
+      value.assets,
+      `${prefix}assets`,
+      value.availability?.released === false,
+    );
 
     const evolutions = field(
       value,

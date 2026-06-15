@@ -325,6 +325,23 @@ test("une forme Pokémon Home peut déclarer une liste de variantes vide", () =>
   assert.ok(!issues.some((issue) => issue.path === "assets.home.variants"));
 });
 
+test("assets peut être null uniquement pour une forme non sortie", () => {
+  const unreleased = require("../data/pokemon-forms/normal/0327-spinda-10.json");
+  const released = require("../data/pokemon-forms/normal/0327-spinda-00.json");
+  const unreleasedIssues = validateSourceData(
+    unreleased,
+    "data/pokemon-forms/normal/0327-spinda-10.json",
+    "form",
+  );
+  const releasedIssues = validateSourceData(
+    { ...released, assets: null },
+    "data/pokemon-forms/normal/0327-spinda-00.json",
+    "form",
+  );
+  assert.ok(!unreleasedIssues.some((issue) => issue.path === "assets"));
+  assert.ok(releasedIssues.some((issue) => issue.path === "assets"));
+});
+
 test("les anciennes attaques embarquées sont présentées comme références", () => {
   const pokemon = presentPokemon({
     data: {

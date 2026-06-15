@@ -313,7 +313,10 @@ Les outils d'import et d'extraction manuels vivent dans `scripts/import/`.
 - Traductions principales dans les objets `names`.
 - `regionForms`, `megaEvolutions`, `dynamaxForms` et `gigantamaxForms` sont des listes de références `formId`.
 - Les données complètes de chaque forme vivent uniquement dans `data/pokemon-forms/`.
-- Les icônes Pokémon Shuffle vivent dans `assets.shuffle` et sont importées avec `npm run import:pokemon-shuffle:write`.
+- Les icônes Pokémon Shuffle vivent dans `assets.shuffle` sur leur fiche exacte
+  (normale, régionale, Méga, Dynamax ou Gigantamax) et sont importées avec
+  `npm run import:pokemon-shuffle:write`. Les fichiers sans fiche compatible restent
+  dans la galerie globale et dans `data/pokemon-shuffle-import-report.json`.
 - Les quatre champs d'attaques des Pokemon sont des tableaux d'identifiants.
 - Les details des attaques vivent uniquement dans `data/moves/`, y compris `max/` et `gmax/`.
 - `primaryType`, `secondaryType` et `type` d'attaque utilisent les identifiants courts de `data/types/`, par exemple `"GRASS"`.

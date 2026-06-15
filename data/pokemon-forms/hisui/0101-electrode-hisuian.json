@@ -130,7 +130,45 @@
   "eliteCinematicMoves": [],
   "assets": {
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm101.fHISUIAN.icon.png",
-    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm101.fHISUIAN.s.icon.png"
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm101.fHISUIAN.s.icon.png",
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "0101_electrode_hisui_chromatique",
+          "form": "hisui",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/0101_electrode_hisui_chromatique.png",
+          "filename": "0101_electrode_hisui_chromatique.png",
+          "state": "normal",
+          "codes": [
+            "electrode",
+            "hisui",
+            "chromatique"
+          ],
+          "tags": [
+            "electrode",
+            "hisui"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "0101_electrode_hisui",
+          "form": "hisui",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/0101_electrode_hisui.png",
+          "filename": "0101_electrode_hisui.png",
+          "state": "normal",
+          "codes": [
+            "electrode",
+            "hisui"
+          ],
+          "tags": [
+            "electrode",
+            "hisui"
+          ],
+          "shiny": false
+        }
+      ]
+    }
   },
   "assetForms": [],
   "regionForms": [],

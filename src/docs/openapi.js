@@ -170,6 +170,7 @@ function createOpenApi() {
       ["Backgrounds", "Backgrounds de lieu et spéciaux, dates et Pokémon éligibles."],
       ["Shadow", "Sorties Obscures, coûts de purification, Catch CP et variantes."],
       ["Stickers", "Catalogue des stickers Pokémon GO disponibles comme assets."],
+      ["Shuffle", "Icônes Pokémon Shuffle associées à leur fiche exacte."],
       ["Métadonnées", "Filtres disponibles et synchronisation."],
     ].map(([name, description]) => ({ name, description })),
     paths: {
@@ -243,6 +244,7 @@ function createOpenApi() {
       [`${api}/pokemon/{identifier}/assets`]: detail("Assets", "Afficher tous les assets d'une fiche", "pikachu"),
       [`${api}/pokemon/{identifier}/backgrounds`]: detail("Backgrounds", "Afficher les backgrounds éligibles d'un Pokémon", "eevee"),
       [`${api}/pokemon/{identifier}/shadow`]: detail("Shadow", "Afficher les données Shadow d'un Pokémon", "bulbasaur"),
+      [`${api}/pokemon/{identifier}/shuffle`]: detail("Shuffle", "Afficher les assets Shuffle d'un Pokémon ou d'une forme", "bulbasaur"),
       [`${api}/pokemon/{identifier}/moves`]: detail("Attaques", "Afficher les attaques détaillées d'un Pokémon", "bulbasaur", {
         response: dataResponse({
           quickMoves: [examples.move],
@@ -373,6 +375,26 @@ function createOpenApi() {
         name: "id",
         description: "Identifiant du sticker construit depuis son nom de fichier.",
       }),
+      [`${api}/shuffle`]: operation("Shuffle", "Lister et filtrer les assets Pokémon Shuffle associés", {
+        parameters: [
+          page,
+          limit,
+          parameter("q", "query", "bulbasaur", "Recherche dans le nom du fichier."),
+          parameter("state", "query", "shadow", "État : normal, event, shadow, purified, mega, dynamax ou gigantamax."),
+          parameter("form", "query", "alola", "Forme JSON à laquelle l'asset est associé."),
+          parameter("shiny", "query", true, "Limiter aux assets chromatiques.", { type: "boolean" }),
+        ],
+        response: listResponse({
+          pokemon: { key: "BULBASAUR", formId: "BULBASAUR", dexId: "0001", form: "normal" },
+          asset: {
+            id: "0001_bulbasaur_shadow",
+            filename: "0001_bulbasaur_shadow.png",
+            state: "shadow",
+            shiny: false,
+          },
+        }),
+      }),
+      [`${api}/shuffle/{identifier}`]: detail("Shuffle", "Afficher les assets Shuffle d'une fiche", "venusaur-mega"),
       [`${api}/collection/checklist`]: operation("Collection", "Créer une checklist de collection", {
         parameters: [
           parameter("shiny", "query", true, "Uniquement les shiny sortis.", { type: "boolean" }),
@@ -468,7 +490,7 @@ function createOpenApi() {
 
   specification["x-tagGroups"] = [
     { name: "Commencer", tags: ["System", "Recherche"] },
-    { name: "Pokédex", tags: ["Pokémon", "Évolutions", "Méga", "Dynamax", "Gigantamax", "Shadow", "Assets", "Backgrounds", "Stickers"] },
+    { name: "Pokédex", tags: ["Pokémon", "Évolutions", "Méga", "Dynamax", "Gigantamax", "Shadow", "Assets", "Backgrounds", "Stickers", "Shuffle"] },
     { name: "Combat", tags: ["PvP", "Raid", "Attaques", "Types", "Statistiques", "Comparaison"] },
     { name: "Univers", tags: ["Régions", "Générations", "Collection"] },
     { name: "Administration", tags: ["Métadonnées"] },

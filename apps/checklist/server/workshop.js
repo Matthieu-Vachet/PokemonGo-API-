@@ -142,16 +142,26 @@ function allGoAssets() {
 }
 
 function parseShuffleAsset(filename) {
-  const match = filename.match(/^(\d+)(.*)\.png$/i);
+  const match = filename.match(/^(\d+)_([^.]+)\.png$/i);
   if (!match) return null;
-  const suffix = match[2].replace(/^[_\s]+/, "").replace(/\s+/g, "_");
-  const codes = suffix.split("_").filter(Boolean);
+  const codes = match[2].split("_").filter(Boolean);
+  const shiny = codes.at(-1) === "chromatique";
+  const withoutShiny = shiny ? codes.slice(0, -1) : codes;
+  const terminal = ["dynamax", "gigantamax", "shadow", "purified"].includes(
+    withoutShiny.at(-1),
+  )
+    ? withoutShiny.at(-1)
+    : null;
+  const state =
+    terminal ||
+    (withoutShiny.includes("mega") ? "mega" : withoutShiny.includes("event") ? "event" : "normal");
   return {
     dexId: String(Number(match[1])).padStart(4, "0"),
     name: `Pokémon n° ${Number(match[1])}`,
     form: "shuffle",
-    label: codes.join(" · ") || "standard",
-    shiny: codes.at(-1) === "s",
+    state,
+    label: `${state}${shiny ? " · chromatique" : ""}`,
+    shiny,
     details: codes.join(" · ") || "",
     url: `${remoteShuffle}/${encodeURIComponent(filename)}`,
     filename,

@@ -120,7 +120,22 @@ Template complet:
         "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_CitySafari2023_barcelona_2023.png",
         "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
       }
-    ]
+    ],
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "0001_bulbasaur_shadow",
+          "filename": "0001_bulbasaur_shadow.png",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/0001_bulbasaur_shadow.png",
+          "form": "normal",
+          "state": "shadow",
+          "codes": ["bulbasaur", "shadow"],
+          "tags": ["bulbasaur"],
+          "shiny": false
+        }
+      ]
+    }
   },
   "regionForms": [],
   "evolutions": [],

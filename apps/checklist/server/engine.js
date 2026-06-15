@@ -257,7 +257,7 @@ function createValidator() {
     }
   }
 
-  function assets(value, pathName, nullable = false) {
+  function assets(value, pathName, nullable = false, partial = false) {
     if (value === null && nullable) return;
     if (actualType(value) !== "object") {
       add(
@@ -268,10 +268,27 @@ function createValidator() {
       );
       return;
     }
-    field(value, "image", `${pathName}.image`, "string", { nonEmpty: true });
-    field(value, "shinyImage", `${pathName}.shinyImage`, "string", {
-      nonEmpty: true,
-    });
+    const shuffleOnly =
+      value.shuffle !== undefined &&
+      value.image === undefined &&
+      value.shinyImage === undefined;
+    if (
+      !partial &&
+      !shuffleOnly &&
+      !(nullable && value.image === undefined && value.shinyImage === undefined)
+    ) {
+      field(value, "image", `${pathName}.image`, "string", { nonEmpty: true });
+      field(value, "shinyImage", `${pathName}.shinyImage`, "string", {
+        nonEmpty: true,
+      });
+    } else {
+      if (value.image !== undefined)
+        field(value, "image", `${pathName}.image`, "string", { nonEmpty: true });
+      if (value.shinyImage !== undefined)
+        field(value, "shinyImage", `${pathName}.shinyImage`, "string", {
+          nonEmpty: true,
+        });
+    }
     if (value.home !== undefined) homeAssets(value.home, `${pathName}.home`);
     if (value.locationCards !== undefined)
       locationCards(value.locationCards, `${pathName}.locationCards`);
@@ -293,7 +310,10 @@ function createValidator() {
       const variantPath = `${pathName}.variants[${index}]`;
       for (const key of ["id", "filename", "image"])
         field(variant, key, `${variantPath}.${key}`, "string", { nonEmpty: true });
+      field(variant, "form", `${variantPath}.form`, "string", { nonEmpty: true });
+      field(variant, "state", `${variantPath}.state`, "string", { nonEmpty: true });
       field(variant, "codes", `${variantPath}.codes`, "array");
+      field(variant, "tags", `${variantPath}.tags`, "array");
       field(variant, "shiny", `${variantPath}.shiny`, "boolean");
     });
   }
@@ -538,7 +558,12 @@ function createValidator() {
             );
     }
     if (value.assets !== undefined)
-      assets(value.assets, `${prefix}assets`, value.availability?.released === false);
+      assets(
+        value.assets,
+        `${prefix}assets`,
+        value.availability?.released === false,
+        true,
+      );
     if (value.evolutions !== undefined) {
       const evolutions = field(
         value,
@@ -804,6 +829,16 @@ function evolutionProfile(data, incomingIds) {
   return "single";
 }
 
+function mergedFormAssets(parent, form) {
+  const assets = {
+    ...(parent.assets || {}),
+    ...(form.assets || {}),
+    home: form.assets?.home || parent.assets?.home,
+  };
+  if (form.assets?.shuffle === undefined) delete assets.shuffle;
+  return assets;
+}
+
 function mergeInheritedForm(parent, form) {
   const isMaxForm = ["dynamax", "gigantamax"].includes(form.form);
   const merged = {
@@ -824,11 +859,7 @@ function mergeInheritedForm(parent, form) {
     secondaryType:
       form.secondaryType === undefined ? parent.secondaryType : form.secondaryType,
     pvp: form.pvp === undefined ? parent.pvp : form.pvp,
-    assets: {
-      ...(parent.assets || {}),
-      ...(form.assets || {}),
-      home: form.assets?.home || parent.assets?.home,
-    },
+    assets: mergedFormAssets(parent, form),
   };
   if (!isMaxForm) return merged;
   return {

@@ -1990,10 +1990,21 @@
       }
       function shadowPanel(d) {
         const shadow = d.shadow;
-        if (!shadow)
+        const shuffleVariants = Array.isArray(d.assets?.shuffle?.variants)
+          ? d.assets.shuffle.variants.filter((asset) =>
+              ["shadow", "purified"].includes(asset.state),
+            )
+          : [];
+        if (!shadow && !shuffleVariants.length)
           return '<div class="empty">Aucune version Shadow sortie pour ce Pokémon.</div>';
         const variants = Array.isArray(shadow.variants) ? shadow.variants : [];
-        return `<div class="section-grid">${info("Résumé Shadow", kv("Première sortie", shadow.firstReleaseDate) + kv("Coût de purification", `${shadow.purificationCost?.stardust} poussières · ${shadow.purificationCost?.candy} bonbons`) + kv("Catch CP", `${shadow.catchCp?.normal?.min} - ${shadow.catchCp?.normal?.max}`) + kv("Catch CP météo", `${shadow.catchCp?.weatherBoosted?.min} - ${shadow.catchCp?.weatherBoosted?.max}`) + kv("Variantes", variants.length))}</div><h2>Variantes Shadow (${variants.length})</h2><div class="section-grid">${variants.map((variant) => info(`${variant.name} · ${variant.variant}`, kv("Date de sortie", variant.releaseDate) + kv("Date source", variant.releaseDateText) + kv("Purification", `${variant.purificationCost?.stardust} poussières · ${variant.purificationCost?.candy} bonbons`) + kv("Catch CP", `${variant.catchCp?.normal?.min} - ${variant.catchCp?.normal?.max}`) + kv("Catch CP météo", `${variant.catchCp?.weatherBoosted?.min} - ${variant.catchCp?.weatherBoosted?.max}`))).join("")}</div><p class="meta">Aucun asset Shadow n’est associé : l’image normale reste utilisée dans la checklist.</p>`;
+        const summary = shadow
+          ? info("Résumé Shadow", kv("Première sortie", shadow.firstReleaseDate) + kv("Coût de purification", `${shadow.purificationCost?.stardust} poussières · ${shadow.purificationCost?.candy} bonbons`) + kv("Catch CP", `${shadow.catchCp?.normal?.min} - ${shadow.catchCp?.normal?.max}`) + kv("Catch CP météo", `${shadow.catchCp?.weatherBoosted?.min} - ${shadow.catchCp?.weatherBoosted?.max}`) + kv("Variantes", variants.length))
+          : info("Résumé Shadow", kv("Sortie Pokémon GO", "Non renseignée") + kv("Assets Shuffle", shuffleVariants.length));
+        const assetGallery = shuffleVariants.length
+          ? shuffleVariants.map((asset) => `<article class="asset-card"><div class="asset-card-head"><strong>${esc(asset.state === "purified" ? "Purifié" : "Shadow")}</strong><span>${esc(asset.tags?.join(" · ") || asset.filename)}${asset.shiny ? " · chromatique" : ""}</span></div><div class="asset-pictures">${assetPicture(asset.state === "purified" ? "Purifié" : "Shadow", asset.image)}</div></article>`).join("")
+          : '<div class="empty">Aucun asset Shuffle Shadow ou purifié.</div>';
+        return `<div class="section-grid">${summary}</div>${shadow ? `<h2>Variantes Shadow Pokémon GO (${variants.length})</h2><div class="section-grid">${variants.map((variant) => info(`${variant.name} · ${variant.variant}`, kv("Date de sortie", variant.releaseDate) + kv("Date source", variant.releaseDateText) + kv("Purification", `${variant.purificationCost?.stardust} poussières · ${variant.purificationCost?.candy} bonbons`) + kv("Catch CP", `${variant.catchCp?.normal?.min} - ${variant.catchCp?.normal?.max}`) + kv("Catch CP météo", `${variant.catchCp?.weatherBoosted?.min} - ${variant.catchCp?.weatherBoosted?.max}`))).join("")}</div>` : ""}<h2>Assets Shuffle Shadow & purifiés (${shuffleVariants.length})</h2><div class="asset-gallery">${assetGallery}</div>`;
       }
       function assetPicture(label, url) {
         return url
@@ -2090,7 +2101,7 @@
         const shuffleGallery = shuffleVariants.length
           ? shuffleVariants
               .map((asset) =>
-                `<article class="asset-card"><div class="asset-card-head"><strong>${esc(asset.id)}</strong><span>${esc(asset.codes?.join(" · ") || "standard")}${asset.shiny ? " · shiny" : ""}</span></div><div class="asset-pictures">${assetPicture("Shuffle", asset.image)}</div></article>`,
+                `<article class="asset-card"><div class="asset-card-head"><strong>${esc(asset.id)}</strong><span>${esc(asset.state || "normal")} · ${esc(asset.tags?.join(" · ") || asset.codes?.join(" · ") || "standard")}${asset.shiny ? " · chromatique" : ""}</span></div><div class="asset-pictures">${assetPicture("Shuffle", asset.image)}</div></article>`,
               )
               .join("")
           : '<div class="empty">Aucun asset Pokémon Shuffle.</div>';

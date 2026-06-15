@@ -59,6 +59,18 @@ router.get(
 );
 
 router.get(
+  "/pokemon/:identifier/shuffle",
+  asyncHandler(async (request, response) => {
+    const pokemon = await findPokemon(request.params.identifier, request.query);
+    const variants = pokemon.data?.assets?.shuffle?.variants || [];
+    response.json({
+      data: variants,
+      meta: { pokemon: pokemon.key, total: variants.length },
+    });
+  }),
+);
+
+router.get(
   "/collection/checklist",
   asyncHandler(async (request, response) => {
     const filter = { "flags.released": true };

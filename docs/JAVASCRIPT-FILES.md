@@ -24,7 +24,7 @@ imports, aux migrations, aux audits ou à la synchronisation.
 | `scripts/import/shadow-pokemon.js` | Synchronise les Pokémon Shadow sortis. |
 | `scripts/import/dynamax-pokemon.js` | Synchronise les Pokémon Dynamax et leurs attaques Max. |
 | `scripts/import/visual-assets.js` | Associe les portraits Méga, fonds de types et construit le catalogue stickers. |
-| `scripts/import/pokemon-shuffle.js` | Associe les icônes Pokémon Shuffle sans interpréter les codes inconnus. |
+| `scripts/import/pokemon-shuffle.js` | Associe chaque icône Pokémon Shuffle à une seule fiche normale ou de forme et produit le rapport des fichiers sans cible. |
 | `scripts/import/enrich-pokemon.js` | Enrichit les Pokémon normaux ou, avec `--forms`, les formes régionales depuis le Game Master et PvPoke. |
 
 Les commandes sans suffixe `:write` simulent généralement le résultat. Les commandes
@@ -58,6 +58,7 @@ Les commandes sans suffixe `:write` simulent généralement le résultat. Les co
 
 - `src/app.js` configure Express, sécurité, documentation et gestion des erreurs.
 - `src/routes/*.js` définit les routes REST publiques.
+- `src/routes/shuffle.js` expose les assets Shuffle associés avec filtres par état, forme et shiny.
 - `src/services/*.js` contient la logique métier partagée.
 - `src/models/*.js` définit les modèles MongoDB.
 - `src/sync/source-reader.js` transforme les fichiers JSON en documents MongoDB.

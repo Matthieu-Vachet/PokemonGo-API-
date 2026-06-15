@@ -460,9 +460,16 @@ peuvent etre ajoutes a la forme.
 | `assets.locationCards[].date` | string | Période exacte indiquée par la source. |
 | `assets.locationCards[].eligibleForms` | string[] | Formes et costumes exacts éligibles pour ce Pokémon. |
 | `assets.shuffle.source` | string | Origine du catalogue Pokémon Shuffle. |
-| `assets.shuffle.variants[]` | array | Variantes Shuffle associées au numéro Pokédex. |
+| `assets.shuffle.variants[]` | array | Variantes Shuffle associées uniquement à cette fiche exacte. |
+| `assets.shuffle.variants[].form` | string | Forme JSON cible : normal, alola, mega, dynamax, etc. |
+| `assets.shuffle.variants[].state` | string | État visuel : normal, event, shadow, purified, mega, dynamax ou gigantamax. |
 | `assets.shuffle.variants[].codes` | string[] | Codes bruts extraits du nom de fichier. |
-| `assets.shuffle.variants[].shiny` | boolean | Vrai lorsque le dernier code est `s`. |
+| `assets.shuffle.variants[].tags` | string[] | Codes utiles sans l'état terminal ni `chromatique`. |
+| `assets.shuffle.variants[].shiny` | boolean | Vrai lorsque le fichier se termine par `chromatique`. |
+
+Un bloc `assets` peut ne contenir que `shuffle` lorsqu'aucune image Pokémon GO n'est
+disponible pour la forme. Les assets Shadow et purifiés sont conservés ensemble sur
+la fiche exacte de la forme concernée.
 
 Les types vivent dans `data/types/<slug>.json`. Leur bloc `assets` contient `icon` et
 `background`. `data/types/types.json` reste un index complet compatible avec les anciens

@@ -41,6 +41,9 @@ test("GET /api-docs.json fournit OpenAPI 3", async () => {
   assert.ok(response.body.paths["/api/v1/pokemon/{identifier}/shadow"]);
   assert.ok(response.body.paths["/api/v1/stickers"]);
   assert.ok(response.body.paths["/api/v1/stickers/{id}"]);
+  assert.ok(response.body.paths["/api/v1/shuffle"]);
+  assert.ok(response.body.paths["/api/v1/shuffle/{identifier}"]);
+  assert.ok(response.body.paths["/api/v1/pokemon/{identifier}/shuffle"]);
 });
 
 test("GET /api/v1/stickers expose le catalogue des stickers", async () => {
@@ -93,7 +96,13 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   const bulbasaur = data.pokemon.find((pokemon) => pokemon.key === "BULBASAUR");
   assert.equal(bulbasaur.data.assets.home.source, "pokemon-home");
   assert.ok(bulbasaur.data.assets.home.variants.length >= 1);
-  assert.equal(bulbasaur.data.assets.shuffle, undefined);
+  assert.equal(bulbasaur.data.assets.shuffle.source, "pokemon-shuffle");
+  assert.ok(bulbasaur.data.assets.shuffle.variants.length >= 1);
+  assert.ok(
+    bulbasaur.data.assets.shuffle.variants.every(
+      (asset) => asset.form === "normal" && !asset.filename.includes("_dynamax"),
+    ),
+  );
   const eevee = data.pokemon.find((pokemon) => pokemon.key === "EEVEE");
   const citySafari = eevee.data.assets.locationCards.find(
     (card) => card.id === "lc_CitySafari2023_barcelona_2023",
@@ -220,7 +229,7 @@ test("la checklist calcule les scores, catégories et diagnostics d'assets", () 
   assert.equal(bulbasaur.assets.go, true);
   assert.equal(bulbasaur.assets.home, true);
   assert.ok(bulbasaur.assets.homeVariants >= 1);
-  assert.equal(bulbasaur.assets.shuffleVariants, 0);
+  assert.ok(bulbasaur.assets.shuffleVariants >= 1);
   assert.equal(typeof bulbasaur.assets.locationCards, "number");
   assert.equal(typeof bulbasaur.assets.duplicateUrls, "number");
   assert.equal(typeof bulbasaur.assets.incompletePairs, "number");
@@ -312,6 +321,35 @@ test("la bibliothèque d'assets expose les icônes Pokémon Shuffle", async () =
   assert.ok(audit.shuffleAssets.length >= 1);
   assert.ok(
     audit.shuffleAssets.every((asset) => asset.url.includes("/pokemonShuffle/")),
+  );
+});
+
+test("les assets Shuffle sont associés une seule fois à leur forme exacte", () => {
+  const data = collectAllDocuments().pokemon;
+  const filenames = data.flatMap((pokemon) =>
+    (pokemon.data.assets?.shuffle?.variants || []).map((asset) => asset.filename),
+  );
+  assert.equal(new Set(filenames).size, filenames.length);
+
+  const rattataAlola = data.find((pokemon) => pokemon.key === "RATTATA_ALOLA");
+  assert.ok(
+    rattataAlola.data.assets.shuffle.variants.every((asset) =>
+      asset.filename.includes("_rattata_alola"),
+    ),
+  );
+  const venusaurMega = data.find((pokemon) => pokemon.key === "VENUSAUR_MEGA");
+  assert.ok(
+    venusaurMega.data.assets.shuffle.variants.every(
+      (asset) => asset.form === "mega" && !asset.filename.endsWith("_dynamax.png"),
+    ),
+  );
+  const bulbasaurDynamax = data.find(
+    (pokemon) => pokemon.key === "BULBASAUR_DYNAMAX",
+  );
+  assert.ok(
+    bulbasaurDynamax.data.assets.shuffle.variants.every(
+      (asset) => asset.state === "dynamax",
+    ),
   );
 });
 

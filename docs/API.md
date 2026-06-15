@@ -112,6 +112,7 @@ Documentation :
 | Backgrounds | `/backgrounds`, `/backgrounds/:id/pokemon`, `/pokemon/:identifier/backgrounds` |
 | Shadow | `/shadow`, `/shadow/:identifier`, `/pokemon/:identifier/shadow` |
 | Stickers | `/stickers`, `/stickers/:id` |
+| Pokémon Shuffle | `/shuffle`, `/shuffle/:identifier`, `/pokemon/:identifier/shuffle` |
 | Comparaison | `/compare/pokemon?ids=charizard,blastoise` |
 | Classements | `/stats/top/attack`, `/stats/top/defense`, `/stats/top/stamina`, `/stats/top/cp` |
 | Collection | `/collection/checklist` |
@@ -158,6 +159,9 @@ curl "http://localhost:3000/api/v1/shadow/bulbasaur"
 curl "http://localhost:3000/api/v1/pokemon/bulbasaur/shadow"
 curl "http://localhost:3000/api/v1/stickers?q=collab&limit=50"
 curl "http://localhost:3000/api/v1/stickers/sticker-2023collab-1"
+curl "http://localhost:3000/api/v1/shuffle?state=shadow&shiny=true"
+curl "http://localhost:3000/api/v1/shuffle/venusaur-mega"
+curl "http://localhost:3000/api/v1/pokemon/rattata-alola/shuffle"
 curl "http://localhost:3000/api/v1/dynamax"
 curl "http://localhost:3000/api/v1/gigantamax"
 ```

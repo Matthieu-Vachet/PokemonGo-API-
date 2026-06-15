@@ -92,6 +92,16 @@ function pokemonKey(data) {
   return String(data.formId || `${data.id}:${data.form || "normal"}`).toUpperCase();
 }
 
+function mergedFormAssets(parent, form) {
+  const assets = {
+    ...(parent.assets || {}),
+    ...(form.assets || {}),
+    home: form.assets?.home || parent.assets?.home,
+  };
+  if (form.assets?.shuffle === undefined) delete assets.shuffle;
+  return assets;
+}
+
 function mergePokemon(parent, form) {
   const isMaxForm = ["dynamax", "gigantamax"].includes(form.form);
   const baseFormId = form.baseFormId || form.inherits || parent.formId || parent.id;
@@ -122,11 +132,7 @@ function mergePokemon(parent, form) {
         ? parent.maxCp
         : form.maxCp,
     pvp: form.pvp === undefined ? parent.pvp : form.pvp,
-    assets: {
-      ...(parent.assets || {}),
-      ...(form.assets || {}),
-      home: form.assets?.home || parent.assets?.home,
-    },
+    assets: mergedFormAssets(parent, form),
     maxBattle: form.maxBattle || parent.maxBattle,
   };
   if (!isMaxForm) return merged;

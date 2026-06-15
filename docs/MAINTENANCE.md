@@ -32,8 +32,11 @@ npm run import:enrich-forms
 npm run import:enrich-forms:write
 ```
 
-Toujours contrôler le mode sans `:write` avant l'écriture. Les suffixes Shuffle
-inconnus restent dans `codes`; seul le suffixe final `s` est identifié comme shiny.
+Toujours contrôler le mode sans `:write` avant l'écriture. L'importeur Shuffle associe
+chaque fichier à une seule fiche exacte, utilise `chromatique` pour le shiny et classe
+les suffixes `shadow`, `purified`, `dynamax` et `gigantamax`. Les fichiers sans fiche
+compatible restent dans la galerie et sont listés dans
+`data/pokemon-shuffle-import-report.json`.
 
 ## Évolution Du Schéma
 

@@ -347,9 +347,7 @@ function createValidator() {
       nonEmpty: true,
       nullable: true,
     });
-    const variants = field(value, "variants", `${pathName}.variants`, "array", {
-      nonEmpty: true,
-    });
+    const variants = field(value, "variants", `${pathName}.variants`, "array");
     if (!Array.isArray(variants)) return;
     variants.forEach((variant, index) => {
       const variantPath = `${pathName}.variants[${index}]`;

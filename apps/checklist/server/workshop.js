@@ -18,6 +18,7 @@ const remoteShuffle =
 const filenamePattern =
   /^poke_capture_(\d{4})_(\d{3})_([^_]+)_([^_]+)_(\d{8})_([^_]+)_([nr])\.png$/;
 let remoteHdCache = null;
+let remoteShuffleCache = null;
 
 function readJson(file, fallback = null) {
   try {
@@ -140,26 +141,42 @@ function allGoAssets() {
   );
 }
 
-function allShuffleAssets() {
-  const assets = [];
-  for (const file of listFiles(path.join(rootDir, "data", "pokemon"))) {
-    const pokemon = readJson(file, {});
-    for (const variant of pokemon.assets?.shuffle?.variants || [])
-      assets.push({
-        dexId: pokemon.dexId,
-        name:
-          pokemon.names?.French ||
-          pokemon.names?.English ||
-          pokemon.slug ||
-          pokemon.id,
-        form: "shuffle",
-        label: variant.codes?.join(" · ") || "standard",
-        shiny: variant.shiny === true,
-        details: variant.codes?.join(" · ") || "",
-        url: variant.image,
-        filename: variant.filename,
-        file: path.relative(rootDir, file),
-      });
+function parseShuffleAsset(filename) {
+  const match = filename.match(/^(\d+)(.*)\.png$/i);
+  if (!match) return null;
+  const suffix = match[2].replace(/^[_\s]+/, "").replace(/\s+/g, "_");
+  const codes = suffix.split("_").filter(Boolean);
+  return {
+    dexId: String(Number(match[1])).padStart(4, "0"),
+    name: `Pokémon n° ${Number(match[1])}`,
+    form: "shuffle",
+    label: codes.join(" · ") || "standard",
+    shiny: codes.at(-1) === "s",
+    details: codes.join(" · ") || "",
+    url: `${remoteShuffle}/${encodeURIComponent(filename)}`,
+    filename,
+    file: null,
+  };
+}
+
+async function allShuffleAssets() {
+  let assets;
+  if (fs.existsSync(shuffleDir)) {
+    assets = fs.readdirSync(shuffleDir).map(parseShuffleAsset).filter(Boolean);
+  } else if (remoteShuffleCache) {
+    assets = remoteShuffleCache;
+  } else {
+    const response = await fetch(
+      "https://api.github.com/repos/Matthieu-Vachet/PokemonGo-Assets-API/git/trees/main?recursive=1",
+      { headers: { "user-agent": "PokemonGo-API-checklist" } },
+    );
+    if (!response.ok) throw new Error(`GitHub assets: HTTP ${response.status}`);
+    const tree = await response.json();
+    remoteShuffleCache = (tree.tree || [])
+      .filter((item) => item.type === "blob" && item.path.startsWith("pokemonShuffle/"))
+      .map((item) => parseShuffleAsset(path.basename(item.path)))
+      .filter(Boolean);
+    assets = remoteShuffleCache;
   }
   return assets
     .sort(
@@ -172,7 +189,7 @@ function allShuffleAssets() {
 async function assetAudit(dexId = "") {
   const assets = await allHdAssets();
   const goAssets = allGoAssets();
-  const shuffleAssets = allShuffleAssets();
+  const shuffleAssets = await allShuffleAssets();
   const used = usedAssetUrls();
   const counts = new Map();
   for (const item of used)

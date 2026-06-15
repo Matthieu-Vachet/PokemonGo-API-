@@ -4,10 +4,9 @@ const path = require("path");
 const rootDir = path.resolve(__dirname, "../..");
 const sourceDir = path.join(rootDir, "asset", "pokemonShuffle");
 const pokemonDir = path.join(rootDir, "data", "pokemon");
+const formsDir = path.join(rootDir, "data", "pokemon-forms");
 const reportFile = path.join(rootDir, "data", "pokemon-shuffle-import-report.json");
 const write = process.argv.includes("--write");
-const remoteBase =
-  "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle";
 
 function read(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
@@ -17,18 +16,15 @@ function writeJson(file, data) {
   fs.writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`);
 }
 
-function canonical(value) {
-  if (Array.isArray(value)) return value.map(canonical);
-  if (!value || typeof value !== "object") return value;
-  return Object.fromEntries(
-    Object.keys(value)
-      .sort()
-      .map((key) => [key, canonical(value[key])]),
-  );
-}
-
-function same(left, right) {
-  return JSON.stringify(canonical(left)) === JSON.stringify(canonical(right));
+function files(directory) {
+  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const file = path.join(directory, entry.name);
+    return entry.isDirectory()
+      ? files(file)
+      : entry.name.endsWith(".json")
+        ? [file]
+        : [];
+  });
 }
 
 function parse(filename) {
@@ -38,13 +34,7 @@ function parse(filename) {
   const codes = suffix.split("_").filter(Boolean);
   return {
     dexNr: Number(match[1]),
-    variant: {
-      id: filename.replace(/\.png$/i, ""),
-      filename,
-      codes,
-      shiny: codes.at(-1) === "s",
-      image: `${remoteBase}/${encodeURIComponent(filename)}`,
-    },
+    variant: { filename, codes, shiny: codes.at(-1) === "s" },
   };
 }
 
@@ -64,20 +54,12 @@ for (const filename of fs.readdirSync(sourceDir).sort()) {
 
 const changedFiles = [];
 const matchedDex = new Set();
-for (const filename of fs.readdirSync(pokemonDir).filter((name) => name.endsWith(".json"))) {
-  const file = path.join(pokemonDir, filename);
+for (const file of [...files(pokemonDir), ...files(formsDir)]) {
   const pokemon = read(file);
-  const variants = byDex.get(pokemon.dexNr);
-  if (!variants) continue;
-  matchedDex.add(pokemon.dexNr);
-  const next = {
-    ...pokemon,
-    assets: {
-      ...(pokemon.assets || {}),
-      shuffle: { source: "pokemon-shuffle", variants },
-    },
-  };
-  if (same(next, pokemon)) continue;
+  if (byDex.has(pokemon.dexNr)) matchedDex.add(pokemon.dexNr);
+  if (!pokemon.assets?.shuffle) continue;
+  const next = { ...pokemon, assets: { ...pokemon.assets } };
+  delete next.assets.shuffle;
   changedFiles.push(path.relative(rootDir, file));
   if (write) writeJson(file, next);
 }
@@ -91,7 +73,7 @@ const report = {
   changedFiles: changedFiles.length,
   unmatchedDex: [...byDex.keys()].filter((dexNr) => !matchedDex.has(dexNr)).sort(),
   invalidFiles,
-  note: "Les codes sont conservés bruts; seul le suffixe final s est identifié comme shiny.",
+  note: "Les assets Shuffle restent dans la galerie et ne sont pas intégrés aux fiches Pokémon.",
 };
 if (write) writeJson(reportFile, report);
 console.log(JSON.stringify(report, null, 2));

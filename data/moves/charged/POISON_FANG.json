@@ -1,10 +1,6 @@
 {
   "id": "POISON_FANG",
   "slug": "poison-fang",
-  "power": 30,
-  "energy": -33,
-  "durationMs": 1500,
-  "type": "POISON",
   "names": {
     "English": "Poison Fang",
     "German": "Giftzahn",
@@ -14,9 +10,13 @@
     "Korean": "맹독엄니",
     "Spanish": "Colmillo Veneno"
   },
+  "power": 30,
+  "energy": -33,
+  "durationMs": 1500,
+  "type": "POISON",
   "combat": {
-    "energy": -40,
     "power": 45,
+    "energy": -40,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

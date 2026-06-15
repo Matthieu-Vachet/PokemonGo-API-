@@ -94,36 +94,113 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm527.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm527.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0527_000_mf_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0527_000_mf_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0527_000_mf_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0527_000_mf_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "shared",
           "genderCode": "mf",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0527_000_mf_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0527_000_mf_n_00000000_f_r.png"
+          "view": "front"
         }
       ]
     },
     "locationCards": [
       {
         "id": "sb_GoTour2025_enigma",
-        "name": "GO Tour Enigma",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_enigma.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "special",
+        "name": "GO Tour Enigma",
         "date": "February 21st - 23rd 2025",
         "eligibleForms": [
           "Woobat"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_enigma.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       }
-    ]
+    ],
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "527",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/527.png",
+          "filename": "527.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "527_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/527_a1.png",
+          "filename": "527_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "527_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/527_a1_s.png",
+          "filename": "527_a1_s.png",
+          "codes": [
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "527_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/527_a2.png",
+          "filename": "527_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "527_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/527_a2_s.png",
+          "filename": "527_a2_s.png",
+          "codes": [
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "527_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/527_b1.png",
+          "filename": "527_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "527_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/527_s.png",
+          "filename": "527_s.png",
+          "codes": [
+            "s"
+          ],
+          "shiny": true
+        }
+      ]
+    }
   },
+  "assetForms": [
+    {
+      "form": null,
+      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm527.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm527.s.icon.png",
+      "costume": null,
+      "isFemale": false
+    }
+  ],
   "regionForms": [],
   "evolutions": [
     {
@@ -134,7 +211,6 @@
         {
           "id": "SWOOBAT_EVOLUTION_QUEST",
           "slug": "swoobat_evolution_quest",
-          "type": "QUEST_BUDDY_EVOLUTION_WALK",
           "names": {
             "English": "Walk 1 km with your buddy",
             "German": "Laufe 1 km mit deinem Kumpel.",
@@ -143,21 +219,16 @@
             "Japanese": "相棒のポケモンと一緒に1km歩く",
             "Korean": "파트너 포켓몬과 1 km 걷는다",
             "Spanish": "Camina 1 km con tu Pokémon compañero"
-          }
+          },
+          "type": "QUEST_BUDDY_EVOLUTION_WALK"
         }
       ]
     }
   ],
   "hasMegaEvolution": false,
   "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
-  "assetForms": [
-    {
-      "form": null,
-      "costume": null,
-      "isFemale": false,
-      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm527.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm527.s.icon.png"
-    }
-  ]
+  "dynamaxForms": [
+    "WOOBAT_DYNAMAX"
+  ],
+  "hasGigantamaxEvolution": false
 }

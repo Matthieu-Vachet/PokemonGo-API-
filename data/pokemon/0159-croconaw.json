@@ -65,47 +65,9 @@
     "gigantamax": false,
     "apex": false
   },
-  "pvp": {
-    "littleCup": null,
-    "greatLeague": {
-      "tierRank": "B",
-      "rank1": {
-        "ivs": {
-          "attack": 0,
-          "defense": 13,
-          "stamina": 15
-        },
-        "level": 37.5,
-        "cp": 1500
-      },
-      "bestMovesets": {
-        "fast": "WATER_GUN_FAST",
-        "charged": [
-          "ICE_PUNCH",
-          "WATER_PULSE"
-        ]
-      }
-    },
-    "ultraLeague": null,
-    "masterLeague": null
-  },
   "shadow": {
     "released": true,
-    "firstReleaseDate": "2022-01-24",
-    "purificationCost": {
-      "stardust": 3000,
-      "candy": 3
-    },
-    "catchCp": {
-      "normal": {
-        "min": 321,
-        "max": 388
-      },
-      "weatherBoosted": {
-        "min": 557,
-        "max": 639
-      }
-    },
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO",
     "variants": [
       {
         "name": "Croconaw",
@@ -121,14 +83,52 @@
           }
         },
         "purificationCost": {
-          "stardust": 3000,
-          "candy": 3
+          "candy": 3,
+          "stardust": 3000
         },
         "releaseDate": "2022-01-24",
         "releaseDateText": "January 24, 2022"
       }
     ],
-    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+    "firstReleaseDate": "2022-01-24",
+    "purificationCost": {
+      "candy": 3,
+      "stardust": 3000
+    },
+    "catchCp": {
+      "normal": {
+        "min": 321,
+        "max": 388
+      },
+      "weatherBoosted": {
+        "min": 557,
+        "max": 639
+      }
+    }
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 0,
+          "defense": 13
+        },
+        "level": 37.5,
+        "cp": 1500
+      },
+      "bestMovesets": {
+        "fast": "WATER_GUN_FAST",
+        "charged": [
+          "ICE_PUNCH",
+          "WATER_PULSE"
+        ]
+      }
+    },
+    "ultraLeague": null,
+    "masterLeague": null
   },
   "stats": {
     "stamina": 163,
@@ -153,23 +153,109 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm159.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm159.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0159_000_mf_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0159_000_mf_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0159_000_mf_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0159_000_mf_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "shared",
           "genderCode": "mf",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0159_000_mf_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0159_000_mf_n_00000000_f_r.png"
+          "view": "front"
+        }
+      ]
+    },
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "159",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/159.png",
+          "filename": "159.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "159_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/159_a1.png",
+          "filename": "159_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "159_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/159_a1_s.png",
+          "filename": "159_a1_s.png",
+          "codes": [
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "159_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/159_a2.png",
+          "filename": "159_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "159_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/159_a2_s.png",
+          "filename": "159_a2_s.png",
+          "codes": [
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "159_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/159_b1.png",
+          "filename": "159_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "159_f1140",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/159_f1140.png",
+          "filename": "159_f1140.png",
+          "codes": [
+            "f1140"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "159_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/159_s.png",
+          "filename": "159_s.png",
+          "codes": [
+            "s"
+          ],
+          "shiny": true
         }
       ]
     }
   },
+  "assetForms": [
+    {
+      "form": null,
+      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm159.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm159.s.icon.png",
+      "costume": null,
+      "isFemale": false
+    }
+  ],
   "regionForms": [],
   "evolutions": [
     {
@@ -181,14 +267,5 @@
   ],
   "hasMegaEvolution": false,
   "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
-  "assetForms": [
-    {
-      "form": null,
-      "costume": null,
-      "isFemale": false,
-      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm159.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm159.s.icon.png"
-    }
-  ]
+  "hasGigantamaxEvolution": false
 }

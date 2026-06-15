@@ -332,8 +332,10 @@ Ligues recommandees:
 | `evolutions[].item` | object/null | Objet requis et ses informations, si applicable. |
 | `evolutions[].quests` | array | Conditions speciales d'evolution. |
 | `hasMegaEvolution` | boolean | Indique si le Pokemon possede une Mega-Evolution. |
-| `megaEvolutions` | array/object | `[]` sans Mega, sinon objet indexe par identifiant. |
+| `megaEvolutions` | string[] | Références `formId` vers les fiches Méga/Primo séparées. |
+| `dynamaxForms` | string[] | Références `formId` vers les fiches Dynamax séparées. |
 | `hasGigantamaxEvolution` | boolean | Indique si le Pokemon possede une forme Gigamax. |
+| `gigantamaxForms` | string[] | Références `formId` vers les fiches Gigamax séparées. |
 
 Lorsque `hasGigantamaxEvolution` vaut `true`, `assetForms` contient normalement une
 entree avec `form: "gigantamax"`. Le champ `availability.gigantamax` indique separement
@@ -457,6 +459,10 @@ peuvent etre ajoutes a la forme.
 | `assets.locationCards[]` | array | Backgrounds de lieu et spéciaux auxquels ce numéro Pokédex est éligible. |
 | `assets.locationCards[].date` | string | Période exacte indiquée par la source. |
 | `assets.locationCards[].eligibleForms` | string[] | Formes et costumes exacts éligibles pour ce Pokémon. |
+| `assets.shuffle.source` | string | Origine du catalogue Pokémon Shuffle. |
+| `assets.shuffle.variants[]` | array | Variantes Shuffle associées au numéro Pokédex. |
+| `assets.shuffle.variants[].codes` | string[] | Codes bruts extraits du nom de fichier. |
+| `assets.shuffle.variants[].shiny` | boolean | Vrai lorsque le dernier code est `s`. |
 
 Les types vivent dans `data/types/<slug>.json`. Leur bloc `assets` contient `icon` et
 `background`. `data/types/types.json` reste un index complet compatible avec les anciens
@@ -469,7 +475,7 @@ Le catalogue `data/stickers/stickers.json` expose pour chaque sticker `id`, `fil
 | `assetForms[].isFemale` | boolean | Variante visuelle femelle. |
 | `assetForms[].image` | string | Image de la variante. |
 | `assetForms[].shinyImage` | string | Image chromatique de la variante. |
-| `regionForms` | array/object | `[]` sans forme, sinon objet indexe par `formId`. |
+| `regionForms` | string[] | Références `formId` vers les fiches de formes séparées. |
 
 ## Formes Separees
 

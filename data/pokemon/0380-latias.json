@@ -65,15 +65,56 @@
     "gigantamax": false,
     "apex": false
   },
+  "shadow": {
+    "released": true,
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO",
+    "variants": [
+      {
+        "name": "Latias",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 694,
+            "max": 791
+          },
+          "weatherBoosted": {
+            "min": 1185,
+            "max": 1304
+          }
+        },
+        "purificationCost": {
+          "candy": 20,
+          "stardust": 20000
+        },
+        "releaseDate": "2022-04-03",
+        "releaseDateText": "April 3, 2022"
+      }
+    ],
+    "firstReleaseDate": "2022-04-03",
+    "purificationCost": {
+      "candy": 20,
+      "stardust": 20000
+    },
+    "catchCp": {
+      "normal": {
+        "min": 694,
+        "max": 791
+      },
+      "weatherBoosted": {
+        "min": 1185,
+        "max": 1304
+      }
+    }
+  },
   "pvp": {
     "littleCup": null,
     "greatLeague": {
       "tierRank": "A",
       "rank1": {
         "ivs": {
+          "stamina": 14,
           "attack": 0,
-          "defense": 14,
-          "stamina": 14
+          "defense": 14
         },
         "level": 16,
         "cp": 1499
@@ -90,9 +131,9 @@
       "tierRank": "A",
       "rank1": {
         "ivs": {
+          "stamina": 14,
           "attack": 1,
-          "defense": 15,
-          "stamina": 14
+          "defense": 15
         },
         "level": 26.5,
         "cp": 2498
@@ -109,9 +150,9 @@
       "tierRank": "A",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 15,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 50,
         "cp": 3968
@@ -124,47 +165,6 @@
         ]
       }
     }
-  },
-  "shadow": {
-    "released": true,
-    "firstReleaseDate": "2022-04-03",
-    "purificationCost": {
-      "stardust": 20000,
-      "candy": 20
-    },
-    "catchCp": {
-      "normal": {
-        "min": 694,
-        "max": 791
-      },
-      "weatherBoosted": {
-        "min": 1185,
-        "max": 1304
-      }
-    },
-    "variants": [
-      {
-        "name": "Latias",
-        "variant": "normal",
-        "catchCp": {
-          "normal": {
-            "min": 694,
-            "max": 791
-          },
-          "weatherBoosted": {
-            "min": 1185,
-            "max": 1304
-          }
-        },
-        "purificationCost": {
-          "stardust": 20000,
-          "candy": 20
-        },
-        "releaseDate": "2022-04-03",
-        "releaseDateText": "April 3, 2022"
-      }
-    ],
-    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
   },
   "stats": {
     "stamina": 190,
@@ -193,261 +193,284 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0380_000_fo_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0380_000_fo_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0380_000_fo_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0380_000_fo_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "female-only",
           "genderCode": "fo",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0380_000_fo_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0380_000_fo_n_00000000_f_r.png"
+          "view": "front"
         },
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0380_001_fo_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0380_001_fo_n_00000000_f_r.png",
           "formIndex": "001",
           "gender": "female-only",
           "genderCode": "fo",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0380_001_fo_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0380_001_fo_n_00000000_f_r.png"
+          "view": "front"
         }
       ]
     },
     "locationCards": [
       {
         "id": "lc_AirAdv2024_bali",
-        "name": "Air Adventures Bali",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_AirAdv2024_bali.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "location",
+        "name": "Air Adventures Bali",
         "date": "March 2nd - 3rd 2024",
         "eligibleForms": [
           "Latias"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_AirAdv2024_bali.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       },
       {
         "id": "lc_AirAdv2024_jakarta",
-        "name": "Air Adventures Jakarta",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_AirAdv2024_jakarta.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "location",
+        "name": "Air Adventures Jakarta",
         "date": "September 21st - 22nd 2024",
         "eligibleForms": [
           "Latias"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_AirAdv2024_jakarta.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       },
       {
         "id": "lc_JejuAirAdv2023",
-        "name": "Air Adventures Jeju Island",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_JejuAirAdv2023.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "location",
+        "name": "Air Adventures Jeju Island",
         "date": "July 28th - 30th 2023",
         "eligibleForms": [
           "Latias"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_JejuAirAdv2023.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       },
       {
         "id": "lc_AirAdv2024_surabaya",
-        "name": "Air Adventures Surabaya",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_AirAdv2024_surabaya.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "location",
+        "name": "Air Adventures Surabaya",
         "date": "May 11th - 12th 2024",
         "eligibleForms": [
           "Latias"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_AirAdv2024_surabaya.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       },
       {
         "id": "lc_AirAdv2024_yogyakarta",
-        "name": "Air Adventures Yogyakarta",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_AirAdv2024_yogyakarta.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "location",
+        "name": "Air Adventures Yogyakarta",
         "date": "August 24th - 25th 2024",
         "eligibleForms": [
           "Latias"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_AirAdv2024_yogyakarta.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       },
       {
         "id": "sb_GoFest2025_Eternatus",
-        "name": "Dark Skies",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "special",
+        "name": "Dark Skies",
         "date": "August 18th - 24th 2025",
         "eligibleForms": [
           "Latias"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       },
       {
         "id": "sb_GoTour2026_mega",
-        "name": "GO Tour 2026 Mega",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_mega.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "special",
+        "name": "GO Tour 2026 Mega",
         "date": "February 23rd - February 27th 2026",
         "eligibleForms": [
           "Latias"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_mega.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       }
-    ]
-  },
-  "regionForms": {
-    "LATIAS_S": {
-      "id": "LATIAS",
-      "slug": "latias-s",
-      "formId": "LATIAS_S",
-      "form": "normal",
-      "dexNr": 380,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
+    ],
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "380",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/380.png",
+          "filename": "380.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "380_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/380_a1.png",
+          "filename": "380_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "380_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/380_a1_s.png",
+          "filename": "380_a1_s.png",
+          "codes": [
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "380_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/380_a2.png",
+          "filename": "380_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "380_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/380_a2_s.png",
+          "filename": "380_a2_s.png",
+          "codes": [
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "380_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/380_b1.png",
+          "filename": "380_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "380_e1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/380_e1.png",
+          "filename": "380_e1.png",
+          "codes": [
+            "e1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "380_e1_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/380_e1_a1.png",
+          "filename": "380_e1_a1.png",
+          "codes": [
+            "e1",
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "380_e1_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/380_e1_a1_s.png",
+          "filename": "380_e1_a1_s.png",
+          "codes": [
+            "e1",
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "380_e1_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/380_e1_a2.png",
+          "filename": "380_e1_a2.png",
+          "codes": [
+            "e1",
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "380_e1_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/380_e1_a2_s.png",
+          "filename": "380_e1_a2_s.png",
+          "codes": [
+            "e1",
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "380_e1_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/380_e1_b1.png",
+          "filename": "380_e1_b1.png",
+          "codes": [
+            "e1",
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "380_e1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/380_e1_s.png",
+          "filename": "380_e1_s.png",
+          "codes": [
+            "e1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "380_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/380_s.png",
+          "filename": "380_s.png",
+          "codes": [
+            "s"
+          ],
+          "shiny": true
         }
-      },
-      "names": {
-        "English": "Latias",
-        "German": "Latias",
-        "French": "Latias",
-        "Italian": "Latias",
-        "Japanese": "ラティアス",
-        "Korean": "라티아스",
-        "Spanish": "Latias"
-      },
-      "stats": {
-        "stamina": 190,
-        "attack": 228,
-        "defense": 246
-      },
-      "primaryType": "DRAGON",
-      "secondaryType": "PSYCHIC",
-      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
-      "quickMoves": [
-        "DRAGON_BREATH_FAST",
-        "ZEN_HEADBUTT_FAST",
-        "CHARM_FAST"
-      ],
-      "cinematicMoves": [
-        "PSYCHIC",
-        "OUTRAGE",
-        "THUNDER",
-        "AURA_SPHERE"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [
-        "MIST_BALL"
-      ],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.fS.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.fS.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": true,
-      "megaEvolutions": {
-        "LATIAS_MEGA": {
-          "id": "LATIAS_MEGA",
-          "slug": "latias_mega",
-          "names": {
-            "English": "Mega Latias",
-            "German": "Mega-Latias",
-            "French": "Méga-Latias",
-            "Italian": "MegaLatias",
-            "Japanese": "メガラティアス",
-            "Korean": "메가라티아스",
-            "Spanish": "Mega-Latias"
-          },
-          "stats": {
-            "stamina": 190,
-            "attack": 289,
-            "defense": 297
-          },
-          "primaryType": "DRAGON",
-          "secondaryType": "PSYCHIC",
-          "energyCost": 300,
-          "assets": {
-            "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.fMEGA.icon.png",
-            "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.fMEGA.s.icon.png"
-          },
-          "form": "mega"
-        }
-      },
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "LATIAS"
+      ]
     }
   },
-  "evolutions": [],
-  "hasMegaEvolution": true,
-  "megaEvolutions": {
-    "LATIAS_MEGA": {
-      "id": "LATIAS_MEGA",
-      "slug": "latias-mega",
-      "form": "mega",
-      "names": {
-        "English": "Mega Latias",
-        "German": "Mega-Latias",
-        "French": "Méga-Latias",
-        "Italian": "MegaLatias",
-        "Japanese": "メガラティアス",
-        "Korean": "메가라티아스",
-        "Spanish": "Mega-Latias"
-      },
-      "stats": {
-        "stamina": 190,
-        "attack": 289,
-        "defense": 297
-      },
-      "primaryType": "DRAGON",
-      "secondaryType": "PSYCHIC",
-      "energyCost": 300,
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.fMEGA.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.fMEGA.s.icon.png",
-        "portrait": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/MegaPortraits/mega_portrait_380_MEGA.png",
-        "portraitShiny": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/MegaPortraits/mega_portrait_380_MEGA.s.png"
-      },
-      "baseFormId": "LATIAS",
-      "formId": "LATIAS_MEGA"
-    }
-  },
-  "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "costume": null,
-      "isFemale": false,
+      "form": "mega",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.fMEGA.icon.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.fMEGA.s.icon.png",
-      "form": "mega"
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": "S",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.fS.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.fS.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.fS.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": null,
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm380.s.icon.png",
+      "costume": null,
+      "isFemale": false
     }
-  ]
+  ],
+  "regionForms": [
+    "LATIAS_S"
+  ],
+  "evolutions": [],
+  "hasMegaEvolution": true,
+  "megaEvolutions": [
+    "LATIAS_MEGA"
+  ],
+  "dynamaxForms": [
+    "LATIAS_DYNAMAX"
+  ],
+  "hasGigantamaxEvolution": false
 }

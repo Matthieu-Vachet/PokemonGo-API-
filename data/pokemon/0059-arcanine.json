@@ -65,15 +65,56 @@
     "gigantamax": false,
     "apex": false
   },
+  "shadow": {
+    "released": true,
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO",
+    "variants": [
+      {
+        "name": "Arcanine",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 592,
+            "max": 683
+          },
+          "weatherBoosted": {
+            "min": 1015,
+            "max": 1125
+          }
+        },
+        "purificationCost": {
+          "candy": 3,
+          "stardust": 3000
+        },
+        "releaseDate": "2019-09-05",
+        "releaseDateText": "September 5, 2019"
+      }
+    ],
+    "firstReleaseDate": "2019-09-05",
+    "purificationCost": {
+      "candy": 3,
+      "stardust": 3000
+    },
+    "catchCp": {
+      "normal": {
+        "min": 592,
+        "max": 683
+      },
+      "weatherBoosted": {
+        "min": 1015,
+        "max": 1125
+      }
+    }
+  },
   "pvp": {
     "littleCup": null,
     "greatLeague": {
       "tierRank": "B",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 0,
-          "defense": 14,
-          "stamina": 15
+          "defense": 14
         },
         "level": 18.5,
         "cp": 1498
@@ -90,9 +131,9 @@
       "tierRank": "C",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 0,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 31.5,
         "cp": 2497
@@ -109,9 +150,9 @@
       "tierRank": "C",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 15,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 50,
         "cp": 3425
@@ -124,47 +165,6 @@
         ]
       }
     }
-  },
-  "shadow": {
-    "released": true,
-    "firstReleaseDate": "2019-09-05",
-    "purificationCost": {
-      "stardust": 3000,
-      "candy": 3
-    },
-    "catchCp": {
-      "normal": {
-        "min": 592,
-        "max": 683
-      },
-      "weatherBoosted": {
-        "min": 1015,
-        "max": 1125
-      }
-    },
-    "variants": [
-      {
-        "name": "Arcanine",
-        "variant": "normal",
-        "catchCp": {
-          "normal": {
-            "min": 592,
-            "max": 683
-          },
-          "weatherBoosted": {
-            "min": 1015,
-            "max": 1125
-          }
-        },
-        "purificationCost": {
-          "stardust": 3000,
-          "candy": 3
-        },
-        "releaseDate": "2019-09-05",
-        "releaseDateText": "September 5, 2019"
-      }
-    ],
-    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
   },
   "stats": {
     "stamina": 207,
@@ -197,115 +197,162 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm59.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm59.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0059_000_mf_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0059_000_mf_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0059_000_mf_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0059_000_mf_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "shared",
           "genderCode": "mf",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0059_000_mf_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0059_000_mf_n_00000000_f_r.png"
+          "view": "front"
         },
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0059_001_mf_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0059_001_mf_n_00000000_f_r.png",
           "formIndex": "001",
           "gender": "shared",
           "genderCode": "mf",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0059_001_mf_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0059_001_mf_n_00000000_f_r.png"
+          "view": "front"
+        }
+      ]
+    },
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "59",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/59.png",
+          "filename": "59.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "59_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/59_a1.png",
+          "filename": "59_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "59_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/59_a1_s.png",
+          "filename": "59_a1_s.png",
+          "codes": [
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "59_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/59_a2.png",
+          "filename": "59_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "59_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/59_a2_s.png",
+          "filename": "59_a2_s.png",
+          "codes": [
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "59_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/59_b1.png",
+          "filename": "59_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "59_b1_f2793",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/59_b1_f2793.png",
+          "filename": "59_b1_f2793.png",
+          "codes": [
+            "b1",
+            "f2793"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "59_f2793",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/59_f2793.png",
+          "filename": "59_f2793.png",
+          "codes": [
+            "f2793"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "59_f284",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/59_f284.png",
+          "filename": "59_f284.png",
+          "codes": [
+            "f284"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "59_f285",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/59_f285.png",
+          "filename": "59_f285.png",
+          "codes": [
+            "f285"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "59_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/59_s.png",
+          "filename": "59_s.png",
+          "codes": [
+            "s"
+          ],
+          "shiny": true
         }
       ]
     }
   },
-  "regionForms": {
-    "ARCANINE_HISUIAN": {
-      "id": "ARCANINE",
-      "slug": "arcanine-hisuian",
-      "formId": "ARCANINE_HISUIAN",
-      "form": "hisui",
-      "dexNr": 59,
-      "generation": 4,
-      "region": {
-        "id": "HISUI",
-        "slug": "hisui",
-        "generation": 4,
-        "names": {
-          "English": "Hisui",
-          "German": "Hisui",
-          "French": "Hisui",
-          "Italian": "Hisui",
-          "Japanese": "ヒスイ",
-          "Korean": "히스이",
-          "Spanish": "Hisui"
-        }
-      },
-      "names": {
-        "English": "Hisuian Arcanine",
-        "German": "Hisuian-Arkani",
-        "French": "Arcanin de Hisuian",
-        "Italian": "Arcanine di Hisuian",
-        "Japanese": "ウインディ",
-        "Korean": "윈디",
-        "Spanish": "Arcanine de Galar"
-      },
-      "stats": {
-        "stamina": 216,
-        "attack": 232,
-        "defense": 165
-      },
-      "primaryType": "FIRE",
-      "secondaryType": "ROCK",
-      "pokemonClass": null,
-      "quickMoves": [
-        "FIRE_FANG_FAST",
-        "SNARL_FAST",
-        "ROCK_SMASH_FAST"
-      ],
-      "cinematicMoves": [
-        "ROCK_SLIDE",
-        "WILD_CHARGE",
-        "CRUNCH",
-        "FLAMETHROWER"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm59.fHISUIAN.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm59.fHISUIAN.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "ARCANINE"
-    }
-  },
-  "evolutions": [],
-  "hasMegaEvolution": false,
-  "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "costume": null,
-      "isFemale": false,
+      "form": "hisui",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm59.fHISUIAN.icon.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm59.fHISUIAN.s.icon.png",
-      "form": "hisui"
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": null,
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm59.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm59.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm59.s.icon.png",
+      "costume": null,
+      "isFemale": false
     }
-  ]
+  ],
+  "regionForms": [
+    "ARCANINE_HISUIAN"
+  ],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "dynamaxForms": [
+    "ARCANINE_DYNAMAX"
+  ],
+  "hasGigantamaxEvolution": false
 }

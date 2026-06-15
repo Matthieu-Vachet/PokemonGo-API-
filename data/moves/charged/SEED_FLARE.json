@@ -1,10 +1,6 @@
 {
   "id": "SEED_FLARE",
   "slug": "seed-flare",
-  "power": 115,
-  "energy": -100,
-  "durationMs": 2500,
-  "type": "GRASS",
   "names": {
     "English": "Seed Flare",
     "German": "Schocksamen",
@@ -14,9 +10,13 @@
     "Korean": "시드플레어",
     "Spanish": "Fogonazo"
   },
+  "power": 115,
+  "energy": -100,
+  "durationMs": 2500,
+  "type": "GRASS",
   "combat": {
-    "energy": -75,
     "power": 130,
+    "energy": -75,
     "turns": 1,
     "buffs": {
       "activationChance": 40,

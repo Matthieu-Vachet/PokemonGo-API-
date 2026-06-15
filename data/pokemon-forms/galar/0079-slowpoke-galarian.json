@@ -1,11 +1,12 @@
 {
-  "dexId": "0079",
   "id": "SLOWPOKE",
-  "slug": "slowpoke-galarian",
   "formId": "SLOWPOKE_GALARIAN",
   "form": "galar",
+  "slug": "slowpoke-galarian",
   "dexNr": 79,
+  "dexId": "0079",
   "generation": 8,
+  "baseFormId": "SLOWPOKE",
   "region": {
     "id": "GALAR",
     "slug": "galar",
@@ -62,7 +63,6 @@
         {
           "id": "SLOWBRO_G_EVOLUTION_QUEST",
           "slug": "slowbro_g_evolution_quest",
-          "type": "QUEST_CATCH_POKEMON",
           "names": {
             "English": "Catch 30 Poison-type Pokémon",
             "German": "Fange 30 Pokémon vom Typ Gift.",
@@ -71,7 +71,8 @@
             "Japanese": "どくタイプのポケモンを30匹捕まえる",
             "Korean": "독타입 포켓몬을 30마리 잡는다",
             "Spanish": "Captura 30 Pokémon de tipo Veneno"
-          }
+          },
+          "type": "QUEST_CATCH_POKEMON"
         }
       ]
     },
@@ -83,7 +84,6 @@
         {
           "id": "SLOWKING_G_EVOLUTION_QUEST",
           "slug": "slowking_g_evolution_quest",
-          "type": "QUEST_CATCH_POKEMON",
           "names": {
             "English": "Catch 30 Psychic-type Pokémon",
             "German": "Fange 30 Pokémon vom Typ Psycho.",
@@ -92,13 +92,13 @@
             "Japanese": "エスパータイプのポケモンを30匹捕まえる",
             "Korean": "에스퍼타입 포켓몬을 30마리 잡는다",
             "Spanish": "Captura 30 Pokémon de tipo Psíquico"
-          }
+          },
+          "type": "QUEST_CATCH_POKEMON"
         }
       ]
     }
   ],
   "hasMegaEvolution": false,
   "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
-  "baseFormId": "SLOWPOKE"
+  "hasGigantamaxEvolution": false
 }

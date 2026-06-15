@@ -65,14 +65,55 @@
     "gigantamax": false,
     "apex": false
   },
+  "shadow": {
+    "released": true,
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO",
+    "variants": [
+      {
+        "name": "Krabby",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 286,
+            "max": 351
+          },
+          "weatherBoosted": {
+            "min": 499,
+            "max": 579
+          }
+        },
+        "purificationCost": {
+          "candy": 3,
+          "stardust": 3000
+        },
+        "releaseDate": "2026-01-23",
+        "releaseDateText": "January 23, 2026"
+      }
+    ],
+    "firstReleaseDate": "2026-01-23",
+    "purificationCost": {
+      "candy": 3,
+      "stardust": 3000
+    },
+    "catchCp": {
+      "normal": {
+        "min": 286,
+        "max": 351
+      },
+      "weatherBoosted": {
+        "min": 499,
+        "max": 579
+      }
+    }
+  },
   "pvp": {
     "littleCup": {
       "tierRank": "C",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 2,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 12,
         "cp": 499
@@ -89,9 +130,9 @@
       "tierRank": "C",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 0,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 43,
         "cp": 1496
@@ -106,47 +147,6 @@
     },
     "ultraLeague": null,
     "masterLeague": null
-  },
-  "shadow": {
-    "released": true,
-    "firstReleaseDate": "2026-01-23",
-    "purificationCost": {
-      "stardust": 3000,
-      "candy": 3
-    },
-    "catchCp": {
-      "normal": {
-        "min": 286,
-        "max": 351
-      },
-      "weatherBoosted": {
-        "min": 499,
-        "max": 579
-      }
-    },
-    "variants": [
-      {
-        "name": "Krabby",
-        "variant": "normal",
-        "catchCp": {
-          "normal": {
-            "min": 286,
-            "max": 351
-          },
-          "weatherBoosted": {
-            "min": 499,
-            "max": 579
-          }
-        },
-        "purificationCost": {
-          "stardust": 3000,
-          "candy": 3
-        },
-        "releaseDate": "2026-01-23",
-        "releaseDateText": "January 23, 2026"
-      }
-    ],
-    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
   },
   "stats": {
     "stamina": 102,
@@ -172,36 +172,131 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm98.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm98.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0098_000_mf_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0098_000_mf_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0098_000_mf_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0098_000_mf_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "shared",
           "genderCode": "mf",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0098_000_mf_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0098_000_mf_n_00000000_f_r.png"
+          "view": "front"
         }
       ]
     },
     "locationCards": [
       {
         "id": "sb_GoFest2025_Eternatus",
-        "name": "Dark Skies",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "special",
+        "name": "Dark Skies",
         "date": "August 18th - 24th 2025",
         "eligibleForms": [
           "Krabby"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       }
-    ]
+    ],
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "98",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/98.png",
+          "filename": "98.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "98_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/98_a1.png",
+          "filename": "98_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "98_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/98_a1_s.png",
+          "filename": "98_a1_s.png",
+          "codes": [
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "98_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/98_a2.png",
+          "filename": "98_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "98_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/98_a2_s.png",
+          "filename": "98_a2_s.png",
+          "codes": [
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "98_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/98_b1.png",
+          "filename": "98_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "98_f871",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/98_f871.png",
+          "filename": "98_f871.png",
+          "codes": [
+            "f871"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "98_f872",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/98_f872.png",
+          "filename": "98_f872.png",
+          "codes": [
+            "f872"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "98_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/98_s.png",
+          "filename": "98_s.png",
+          "codes": [
+            "s"
+          ],
+          "shiny": true
+        }
+      ]
+    }
   },
+  "assetForms": [
+    {
+      "form": null,
+      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm98.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm98.s.icon.png",
+      "costume": null,
+      "isFemale": false
+    }
+  ],
   "regionForms": [],
   "evolutions": [
     {
@@ -213,14 +308,8 @@
   ],
   "hasMegaEvolution": false,
   "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
-  "assetForms": [
-    {
-      "form": null,
-      "costume": null,
-      "isFemale": false,
-      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm98.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm98.s.icon.png"
-    }
-  ]
+  "dynamaxForms": [
+    "KRABBY_DYNAMAX"
+  ],
+  "hasGigantamaxEvolution": false
 }

@@ -65,83 +65,9 @@
     "gigantamax": false,
     "apex": true
   },
-  "pvp": {
-    "littleCup": null,
-    "greatLeague": {
-      "tierRank": "B",
-      "rank1": {
-        "ivs": {
-          "attack": 0,
-          "defense": 11,
-          "stamina": 11
-        },
-        "level": 15.5,
-        "cp": 1500
-      },
-      "bestMovesets": {
-        "fast": "DRAGON_TAIL_FAST",
-        "charged": [
-          "FLY",
-          "AEROBLAST"
-        ]
-      }
-    },
-    "ultraLeague": {
-      "tierRank": "A",
-      "rank1": {
-        "ivs": {
-          "attack": 0,
-          "defense": 14,
-          "stamina": 15
-        },
-        "level": 25.5,
-        "cp": 2499
-      },
-      "bestMovesets": {
-        "fast": "DRAGON_TAIL_FAST",
-        "charged": [
-          "AEROBLAST",
-          "FLY"
-        ]
-      }
-    },
-    "masterLeague": {
-      "tierRank": "S",
-      "rank1": {
-        "ivs": {
-          "attack": 15,
-          "defense": 15,
-          "stamina": 15
-        },
-        "level": 50,
-        "cp": 4186
-      },
-      "bestMovesets": {
-        "fast": "DRAGON_TAIL_FAST",
-        "charged": [
-          "AEROBLAST",
-          "FLY"
-        ]
-      }
-    }
-  },
   "shadow": {
     "released": true,
-    "firstReleaseDate": "2021-11-09",
-    "purificationCost": {
-      "stardust": 20000,
-      "candy": 20
-    },
-    "catchCp": {
-      "normal": {
-        "min": 733,
-        "max": 834
-      },
-      "weatherBoosted": {
-        "min": 1252,
-        "max": 1375
-      }
-    },
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO",
     "variants": [
       {
         "name": "Lugia",
@@ -157,8 +83,8 @@
           }
         },
         "purificationCost": {
-          "stardust": 20000,
-          "candy": 20
+          "candy": 20,
+          "stardust": 20000
         },
         "releaseDate": "2021-11-09",
         "releaseDateText": "November 9, 2021"
@@ -177,14 +103,88 @@
           }
         },
         "purificationCost": {
-          "stardust": 5000,
-          "candy": 5
+          "candy": 5,
+          "stardust": 5000
         },
         "releaseDate": "2022-03-26",
         "releaseDateText": "March 26, 2022"
       }
     ],
-    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+    "firstReleaseDate": "2021-11-09",
+    "purificationCost": {
+      "candy": 20,
+      "stardust": 20000
+    },
+    "catchCp": {
+      "normal": {
+        "min": 733,
+        "max": 834
+      },
+      "weatherBoosted": {
+        "min": 1252,
+        "max": 1375
+      }
+    }
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "stamina": 11,
+          "attack": 0,
+          "defense": 11
+        },
+        "level": 15.5,
+        "cp": 1500
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_TAIL_FAST",
+        "charged": [
+          "FLY",
+          "AEROBLAST"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 0,
+          "defense": 14
+        },
+        "level": 25.5,
+        "cp": 2499
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_TAIL_FAST",
+        "charged": [
+          "AEROBLAST",
+          "FLY"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "S",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 15,
+          "defense": 15
+        },
+        "level": 50,
+        "cp": 4186
+      },
+      "bestMovesets": {
+        "fast": "DRAGON_TAIL_FAST",
+        "charged": [
+          "AEROBLAST",
+          "FLY"
+        ]
+      }
+    }
   },
   "stats": {
     "stamina": 235,
@@ -212,126 +212,132 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm249.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm249.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0249_000_uk_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0249_000_uk_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0249_000_uk_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0249_000_uk_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "genderless",
           "genderCode": "uk",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0249_000_uk_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0249_000_uk_n_00000000_f_r.png"
+          "view": "front"
         }
       ]
     },
     "locationCards": [
       {
         "id": "sb_GoTour2026_silver",
-        "name": "GO Tour 2026 Silver",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_silver.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "special",
+        "name": "GO Tour 2026 Silver",
         "date": "February 23rd - February 27th 2026",
         "eligibleForms": [
           "Lugia"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_silver.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       }
-    ]
-  },
-  "regionForms": {
-    "LUGIA_S": {
-      "id": "LUGIA",
-      "slug": "lugia-s",
-      "formId": "LUGIA_S",
-      "form": "normal",
-      "dexNr": 249,
-      "generation": 2,
-      "region": {
-        "id": "JOHTO",
-        "slug": "johto",
-        "generation": 2,
-        "names": {
-          "English": "Johto",
-          "German": "Johto",
-          "French": "Johto",
-          "Italian": "Johto",
-          "Japanese": "ジョウト",
-          "Korean": "성도",
-          "Spanish": "Johto"
+    ],
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "249",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/249.png",
+          "filename": "249.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "249_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/249_a1.png",
+          "filename": "249_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "249_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/249_a1_s.png",
+          "filename": "249_a1_s.png",
+          "codes": [
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "249_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/249_a2.png",
+          "filename": "249_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "249_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/249_a2_s.png",
+          "filename": "249_a2_s.png",
+          "codes": [
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "249_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/249_b1.png",
+          "filename": "249_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "249_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/249_s.png",
+          "filename": "249_s.png",
+          "codes": [
+            "s"
+          ],
+          "shiny": true
         }
-      },
-      "names": {
-        "English": "Lugia",
-        "German": "Lugia",
-        "French": "Lugia",
-        "Italian": "Lugia",
-        "Japanese": "ルギア",
-        "Korean": "루기아",
-        "Spanish": "Lugia"
-      },
-      "stats": {
-        "stamina": 235,
-        "attack": 193,
-        "defense": 310
-      },
-      "primaryType": "PSYCHIC",
-      "secondaryType": "FLYING",
-      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
-      "quickMoves": [
-        "EXTRASENSORY_FAST",
-        "DRAGON_TAIL_FAST"
-      ],
-      "cinematicMoves": [
-        "SKY_ATTACK",
-        "HYDRO_PUMP",
-        "FUTURESIGHT",
-        "FLY"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [
-        "AEROBLAST"
-      ],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm249.fS.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm249.fS.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "LUGIA"
+      ]
     }
   },
-  "evolutions": [],
-  "hasMegaEvolution": false,
-  "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
   "assetForms": [
     {
       "form": null,
-      "costume": "ONE_YEAR_ANNIVERSARY",
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm249.cONE_YEAR_ANNIVERSARY.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm249.cONE_YEAR_ANNIVERSARY.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm249.cONE_YEAR_ANNIVERSARY.s.icon.png",
+      "costume": "ONE_YEAR_ANNIVERSARY",
+      "isFemale": false
     },
     {
       "form": "S",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm249.fS.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm249.fS.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm249.fS.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": null,
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm249.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm249.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm249.s.icon.png",
+      "costume": null,
+      "isFemale": false
     }
-  ]
+  ],
+  "regionForms": [
+    "LUGIA_S"
+  ],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
 }

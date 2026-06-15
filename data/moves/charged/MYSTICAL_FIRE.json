@@ -1,10 +1,6 @@
 {
   "id": "MYSTICAL_FIRE",
   "slug": "mystical-fire",
-  "power": 60,
-  "energy": -33,
-  "durationMs": 2000,
-  "type": "FIRE",
   "names": {
     "English": "Mystical Fire",
     "German": "Magieflamme",
@@ -14,9 +10,13 @@
     "Korean": "매지컬플레임",
     "Spanish": "Llama Embrujada"
   },
+  "power": 60,
+  "energy": -33,
+  "durationMs": 2000,
+  "type": "FIRE",
   "combat": {
-    "energy": -45,
     "power": 60,
+    "energy": -45,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

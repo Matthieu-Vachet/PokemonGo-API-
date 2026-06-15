@@ -1,10 +1,6 @@
 {
   "id": "WRAP",
   "slug": "wrap",
-  "power": 60,
-  "energy": -33,
-  "durationMs": 3000,
-  "type": "NORMAL",
   "names": {
     "English": "Wrap",
     "German": "Wickel",
@@ -14,9 +10,13 @@
     "Korean": "김밥말이",
     "Spanish": "Constricción"
   },
+  "power": 60,
+  "energy": -33,
+  "durationMs": 3000,
+  "type": "NORMAL",
   "combat": {
-    "energy": -45,
     "power": 60,
+    "energy": -45,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

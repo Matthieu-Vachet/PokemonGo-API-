@@ -1,7 +1,6 @@
 {
   "id": "GHOST",
   "slug": "ghost",
-  "type": "Ghost",
   "names": {
     "English": "Ghost",
     "German": "Geist",
@@ -11,18 +10,6 @@
     "Korean": "고스트",
     "Spanish": "Fantasma"
   },
-  "doubleDamageFrom": [
-    "Ghost",
-    "Dark"
-  ],
-  "halfDamageFrom": [
-    "Poison",
-    "Bug"
-  ],
-  "noDamageFrom": [
-    "Normal",
-    "Fighting"
-  ],
   "weatherBoost": {
     "id": "fog",
     "names": {
@@ -39,5 +26,18 @@
   "assets": {
     "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_7_ghost.png",
     "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_ghost.png"
-  }
+  },
+  "type": "Ghost",
+  "doubleDamageFrom": [
+    "Ghost",
+    "Dark"
+  ],
+  "halfDamageFrom": [
+    "Poison",
+    "Bug"
+  ],
+  "noDamageFrom": [
+    "Normal",
+    "Fighting"
+  ]
 }

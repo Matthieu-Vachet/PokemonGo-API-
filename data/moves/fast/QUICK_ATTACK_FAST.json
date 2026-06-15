@@ -1,10 +1,6 @@
 {
   "id": "QUICK_ATTACK_FAST",
   "slug": "quick-attack-fast",
-  "power": 10,
-  "energy": 13,
-  "durationMs": 1000,
-  "type": "NORMAL",
   "names": {
     "English": "Quick Attack",
     "German": "Ruckzuckhieb",
@@ -14,9 +10,13 @@
     "Korean": "전광석화",
     "Spanish": "Ataque Rápido"
   },
+  "power": 10,
+  "energy": 13,
+  "durationMs": 1000,
+  "type": "NORMAL",
   "combat": {
-    "energy": 8,
     "power": 5,
+    "energy": 8,
     "turns": 2,
     "buffs": null
   },

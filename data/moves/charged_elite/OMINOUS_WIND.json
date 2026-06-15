@@ -1,10 +1,6 @@
 {
   "id": "OMINOUS_WIND",
   "slug": "ominous-wind",
-  "power": 55,
-  "energy": -33,
-  "durationMs": 2500,
-  "type": "GHOST",
   "names": {
     "English": "Ominous Wind",
     "German": "Unheilböen",
@@ -14,9 +10,13 @@
     "Korean": "괴상한바람",
     "Spanish": "Viento Aciago"
   },
+  "power": 55,
+  "energy": -33,
+  "durationMs": 2500,
+  "type": "GHOST",
   "combat": {
-    "energy": -45,
     "power": 45,
+    "energy": -45,
     "turns": 1,
     "buffs": {
       "activationChance": 10,

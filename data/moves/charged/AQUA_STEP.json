@@ -1,10 +1,6 @@
 {
   "id": "AQUA_STEP",
   "slug": "aqua-step",
-  "power": 55,
-  "energy": -33,
-  "durationMs": 3500,
-  "type": "WATER",
   "names": {
     "English": "Aqua Step",
     "German": "Wogentanz",
@@ -14,9 +10,13 @@
     "Korean": "아쿠아스텝",
     "Spanish": "Danza Acuática"
   },
+  "power": 55,
+  "energy": -33,
+  "durationMs": 3500,
+  "type": "WATER",
   "combat": {
-    "energy": -40,
     "power": 55,
+    "energy": -40,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

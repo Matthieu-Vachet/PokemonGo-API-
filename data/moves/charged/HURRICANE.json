@@ -1,10 +1,6 @@
 {
   "id": "HURRICANE",
   "slug": "hurricane",
-  "power": 105,
-  "energy": -100,
-  "durationMs": 2500,
-  "type": "FLYING",
   "names": {
     "English": "Hurricane",
     "German": "Orkan",
@@ -14,9 +10,13 @@
     "Korean": "폭풍",
     "Spanish": "Vendaval"
   },
+  "power": 105,
+  "energy": -100,
+  "durationMs": 2500,
+  "type": "FLYING",
   "combat": {
-    "energy": -65,
     "power": 110,
+    "energy": -65,
     "turns": 1,
     "buffs": null
   }

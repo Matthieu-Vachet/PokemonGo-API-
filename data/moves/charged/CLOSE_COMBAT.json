@@ -1,10 +1,6 @@
 {
   "id": "CLOSE_COMBAT",
   "slug": "close-combat",
-  "power": 105,
-  "energy": -100,
-  "durationMs": 2500,
-  "type": "FIGHTING",
   "names": {
     "English": "Close Combat",
     "German": "Nahkampf",
@@ -14,9 +10,13 @@
     "Korean": "인파이트",
     "Spanish": "A Bocajarro"
   },
+  "power": 105,
+  "energy": -100,
+  "durationMs": 2500,
+  "type": "FIGHTING",
   "combat": {
-    "energy": -45,
     "power": 100,
+    "energy": -45,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

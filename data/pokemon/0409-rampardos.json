@@ -65,15 +65,56 @@
     "gigantamax": false,
     "apex": false
   },
+  "shadow": {
+    "released": true,
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO",
+    "variants": [
+      {
+        "name": "Rampardos",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 641,
+            "max": 743
+          },
+          "weatherBoosted": {
+            "min": 1101,
+            "max": 1225
+          }
+        },
+        "purificationCost": {
+          "candy": 5,
+          "stardust": 5000
+        },
+        "releaseDate": "2023-10-26",
+        "releaseDateText": "October 26, 2023"
+      }
+    ],
+    "firstReleaseDate": "2023-10-26",
+    "purificationCost": {
+      "candy": 5,
+      "stardust": 5000
+    },
+    "catchCp": {
+      "normal": {
+        "min": 641,
+        "max": 743
+      },
+      "weatherBoosted": {
+        "min": 1101,
+        "max": 1225
+      }
+    }
+  },
   "pvp": {
     "littleCup": null,
     "greatLeague": {
       "tierRank": "C",
       "rank1": {
         "ivs": {
+          "stamina": 8,
           "attack": 1,
-          "defense": 14,
-          "stamina": 8
+          "defense": 14
         },
         "level": 17,
         "cp": 1500
@@ -90,9 +131,9 @@
       "tierRank": "D",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 0,
-          "defense": 14,
-          "stamina": 15
+          "defense": 14
         },
         "level": 28,
         "cp": 2500
@@ -109,9 +150,9 @@
       "tierRank": "F",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 15,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 50,
         "cp": 3728
@@ -124,47 +165,6 @@
         ]
       }
     }
-  },
-  "shadow": {
-    "released": true,
-    "firstReleaseDate": "2023-10-26",
-    "purificationCost": {
-      "stardust": 5000,
-      "candy": 5
-    },
-    "catchCp": {
-      "normal": {
-        "min": 641,
-        "max": 743
-      },
-      "weatherBoosted": {
-        "min": 1101,
-        "max": 1225
-      }
-    },
-    "variants": [
-      {
-        "name": "Rampardos",
-        "variant": "normal",
-        "catchCp": {
-          "normal": {
-            "min": 641,
-            "max": 743
-          },
-          "weatherBoosted": {
-            "min": 1101,
-            "max": 1225
-          }
-        },
-        "purificationCost": {
-          "stardust": 5000,
-          "candy": 5
-        },
-        "releaseDate": "2023-10-26",
-        "releaseDateText": "October 26, 2023"
-      }
-    ],
-    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
   },
   "stats": {
     "stamina": 219,
@@ -189,35 +189,103 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm409.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm409.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0409_000_mf_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0409_000_mf_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0409_000_mf_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0409_000_mf_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "shared",
           "genderCode": "mf",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0409_000_mf_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0409_000_mf_n_00000000_f_r.png"
+          "view": "front"
+        }
+      ]
+    },
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "409",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/409.png",
+          "filename": "409.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "409_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/409_a1.png",
+          "filename": "409_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "409_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/409_a1_s.png",
+          "filename": "409_a1_s.png",
+          "codes": [
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "409_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/409_a2.png",
+          "filename": "409_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "409_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/409_a2_s.png",
+          "filename": "409_a2_s.png",
+          "codes": [
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "409_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/409_b1.png",
+          "filename": "409_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "409_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/409_s.png",
+          "filename": "409_s.png",
+          "codes": [
+            "s"
+          ],
+          "shiny": true
         }
       ]
     }
   },
+  "assetForms": [
+    {
+      "form": null,
+      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm409.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm409.s.icon.png",
+      "costume": null,
+      "isFemale": false
+    }
+  ],
   "regionForms": [],
   "evolutions": [],
   "hasMegaEvolution": false,
   "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
-  "assetForms": [
-    {
-      "form": null,
-      "costume": null,
-      "isFemale": false,
-      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm409.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm409.s.icon.png"
-    }
-  ]
+  "hasGigantamaxEvolution": false
 }

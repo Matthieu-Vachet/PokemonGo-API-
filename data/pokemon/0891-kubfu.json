@@ -71,9 +71,9 @@
       "tierRank": "C",
       "rank1": {
         "ivs": {
+          "stamina": 14,
           "attack": 0,
-          "defense": 15,
-          "stamina": 14
+          "defense": 15
         },
         "level": 37.5,
         "cp": 1499
@@ -112,23 +112,71 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm891.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm891.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0891_000_mf_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0891_000_mf_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0891_000_mf_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0891_000_mf_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "shared",
           "genderCode": "mf",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0891_000_mf_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0891_000_mf_n_00000000_f_r.png"
+          "view": "front"
+        }
+      ]
+    },
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "891",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/891.png",
+          "filename": "891.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "891_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/891_a1.png",
+          "filename": "891_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "891_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/891_a2.png",
+          "filename": "891_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "891_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/891_b1.png",
+          "filename": "891_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
         }
       ]
     }
   },
+  "assetForms": [
+    {
+      "form": null,
+      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm891.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm891.s.icon.png",
+      "costume": null,
+      "isFemale": false
+    }
+  ],
   "regionForms": [],
   "evolutions": [
     {
@@ -139,7 +187,6 @@
         {
           "id": "KUBFU_SINGLE_STRIKE_EVOLUTION_QUEST",
           "slug": "kubfu_single_strike_evolution_quest",
-          "type": "QUEST_COMPLETE_BATTLE",
           "names": {
             "English": "Defeat 30 Dark-type Pokémon in raids or Max Battles",
             "German": "Besiege 30 Pokémon vom Typ Unlicht in Raids oder Dyna-Kämpfen.",
@@ -148,7 +195,8 @@
             "Japanese": "レイドかマックスバトルであくタイプのポケモン30匹に勝つ",
             "Korean": "레이드배틀 또는 맥스배틀에서 악타입 포켓몬 30마리에게 이긴다",
             "Spanish": "Derrota a 30 Pokémon de tipo Siniestro en incursiones o Combates Max"
-          }
+          },
+          "type": "QUEST_COMPLETE_BATTLE"
         }
       ]
     },
@@ -160,7 +208,6 @@
         {
           "id": "KUBFU_RAPID_STRIKE_EVOLUTION_QUEST",
           "slug": "kubfu_rapid_strike_evolution_quest",
-          "type": "QUEST_COMPLETE_BATTLE",
           "names": {
             "English": "Defeat 30 Water-type Pokémon in raids or Max Battles",
             "German": "Besiege 30 Pokémon vom Typ Wasser in Raids oder Dyna-Kämpfen.",
@@ -169,21 +216,16 @@
             "Japanese": "レイドかマックスバトルでみずタイプのポケモン30匹に勝つ",
             "Korean": "레이드배틀 또는 맥스배틀에서 물타입 포켓몬 30마리에게 이긴다",
             "Spanish": "Derrota a 30 Pokémon de tipo Agua en incursiones o Combates Max"
-          }
+          },
+          "type": "QUEST_COMPLETE_BATTLE"
         }
       ]
     }
   ],
   "hasMegaEvolution": false,
   "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
-  "assetForms": [
-    {
-      "form": null,
-      "costume": null,
-      "isFemale": false,
-      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm891.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm891.s.icon.png"
-    }
-  ]
+  "dynamaxForms": [
+    "KUBFU_DYNAMAX"
+  ],
+  "hasGigantamaxEvolution": false
 }

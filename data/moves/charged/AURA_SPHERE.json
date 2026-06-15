@@ -1,10 +1,6 @@
 {
   "id": "AURA_SPHERE",
   "slug": "aura-sphere",
-  "power": 100,
-  "energy": -50,
-  "durationMs": 2000,
-  "type": "FIGHTING",
   "names": {
     "English": "Aura Sphere",
     "German": "Aurasphäre",
@@ -14,9 +10,13 @@
     "Korean": "파동탄",
     "Spanish": "Esfera Aural"
   },
+  "power": 100,
+  "energy": -50,
+  "durationMs": 2000,
+  "type": "FIGHTING",
   "combat": {
-    "energy": -40,
     "power": 80,
+    "energy": -40,
     "turns": 1,
     "buffs": null
   },

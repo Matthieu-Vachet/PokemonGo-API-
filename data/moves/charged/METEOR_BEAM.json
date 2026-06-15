@@ -1,10 +1,6 @@
 {
   "id": "METEOR_BEAM",
   "slug": "meteor-beam",
-  "power": 140,
-  "energy": -100,
-  "durationMs": 2000,
-  "type": "ROCK",
   "names": {
     "English": "Meteor Beam",
     "German": "Meteorstrahl",
@@ -14,9 +10,13 @@
     "Korean": "메테오빔",
     "Spanish": "Rayo Meteórico"
   },
+  "power": 140,
+  "energy": -100,
+  "durationMs": 2000,
+  "type": "ROCK",
   "combat": {
-    "energy": -60,
     "power": 120,
+    "energy": -60,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

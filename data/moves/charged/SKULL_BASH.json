@@ -1,10 +1,6 @@
 {
   "id": "SKULL_BASH",
   "slug": "skull-bash",
-  "power": 130,
-  "energy": -100,
-  "durationMs": 3000,
-  "type": "NORMAL",
   "names": {
     "English": "Skull Bash",
     "German": "Schädelwumme",
@@ -14,9 +10,13 @@
     "Korean": "로켓박치기",
     "Spanish": "Cabezazo"
   },
+  "power": 130,
+  "energy": -100,
+  "durationMs": 3000,
+  "type": "NORMAL",
   "combat": {
-    "energy": -75,
     "power": 130,
+    "energy": -75,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

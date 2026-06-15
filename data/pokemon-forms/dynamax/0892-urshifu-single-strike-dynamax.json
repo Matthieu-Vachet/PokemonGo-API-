@@ -2,23 +2,11 @@
   "id": "URSHIFU",
   "formId": "URSHIFU_SINGLE_STRIKE_DYNAMAX",
   "form": "dynamax",
+  "slug": "urshifu-single-strike-dynamax",
   "dexNr": 892,
   "dexId": "0892",
   "generation": 8,
   "baseFormId": "URSHIFU_SINGLE_STRIKE",
-  "slug": "urshifu-single-strike-dynamax",
-  "maxCp": {
-    "maxLevel50": 4077,
-    "maxLevel40": 3606,
-    "maxBattlesLevel20": 2060
-  },
-  "maxBattle": {
-    "moves": [
-      "MAX_DARKNESS",
-      "MAX_KNUCKLE"
-    ]
-  },
-  "evolutions": [],
   "names": {
     "English": "Urshifu (Single Strike Style)",
     "German": "Wulaosu (Fokussierter Stil)",
@@ -28,6 +16,11 @@
     "Korean": "우라오스 (일격의 태세)",
     "Spanish": "Urshifu (Estilo Brusco)"
   },
+  "maxCp": {
+    "maxLevel50": 4077,
+    "maxLevel40": 3606,
+    "maxBattlesLevel20": 2060
+  },
   "stats": {
     "stamina": 225,
     "attack": 254,
@@ -35,8 +28,15 @@
   },
   "primaryType": "FIGHTING",
   "secondaryType": "DARK",
+  "maxBattle": {
+    "moves": [
+      "MAX_DARKNESS",
+      "MAX_KNUCKLE"
+    ]
+  },
   "assets": {
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm892.fSINGLE_STRIKE.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm892.fSINGLE_STRIKE.s.icon.png"
-  }
+  },
+  "evolutions": []
 }

@@ -141,7 +141,9 @@ function mergePokemon(parent, form) {
     regionForms: form.regionForms || [],
     hasMegaEvolution: false,
     megaEvolutions: [],
+    dynamaxForms: [],
     hasGigantamaxEvolution: form.form === "gigantamax",
+    gigantamaxForms: [],
   };
 }
 
@@ -238,19 +240,6 @@ function collectPokemonDocuments() {
     parents.set(data.formId, data);
     documents.set(parentKey, toPokemonDocument(data, [source], "pokemon"));
 
-    for (const form of objectValues(data.regionForms)) {
-      const merged = mergePokemon(data, form);
-      const key = pokemonKey(merged);
-      documents.set(
-        key,
-        toPokemonDocument(merged, [source], "regional", parentKey),
-      );
-    }
-    for (const mega of objectValues(data.megaEvolutions)) {
-      const merged = mergePokemon(data, mega);
-      const key = pokemonKey(merged);
-      documents.set(key, toPokemonDocument(merged, [source], "mega", parentKey));
-    }
   }
 
   for (const file of listJsonFiles(formsDir)) {

@@ -1,10 +1,6 @@
 {
   "id": "BUBBLE_BEAM",
   "slug": "bubble-beam",
-  "power": 45,
-  "energy": -33,
-  "durationMs": 2000,
-  "type": "WATER",
   "names": {
     "English": "Bubble Beam",
     "German": "Blubbstrahl",
@@ -14,9 +10,13 @@
     "Korean": "거품광선",
     "Spanish": "Rayo Burbuja"
   },
+  "power": 45,
+  "energy": -33,
+  "durationMs": 2000,
+  "type": "WATER",
   "combat": {
-    "energy": -40,
     "power": 25,
+    "energy": -40,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

@@ -1,10 +1,6 @@
 {
   "id": "FIRE_BLAST",
   "slug": "fire-blast",
-  "power": 140,
-  "energy": -100,
-  "durationMs": 4000,
-  "type": "FIRE",
   "names": {
     "English": "Fire Blast",
     "German": "Feuersturm",
@@ -14,9 +10,13 @@
     "Korean": "불대문자",
     "Spanish": "Llamarada"
   },
+  "power": 140,
+  "energy": -100,
+  "durationMs": 4000,
+  "type": "FIRE",
   "combat": {
-    "energy": -80,
     "power": 140,
+    "energy": -80,
     "turns": 1,
     "buffs": null
   },

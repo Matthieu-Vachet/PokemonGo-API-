@@ -66,15 +66,56 @@
     "gigantamax": false,
     "apex": false
   },
+  "shadow": {
+    "released": true,
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO",
+    "variants": [
+      {
+        "name": "Gallade",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 605,
+            "max": 697
+          },
+          "weatherBoosted": {
+            "min": 1037,
+            "max": 1149
+          }
+        },
+        "purificationCost": {
+          "candy": 5,
+          "stardust": 5000
+        },
+        "releaseDate": "2019-08-08",
+        "releaseDateText": "August 8, 2019"
+      }
+    ],
+    "firstReleaseDate": "2019-08-08",
+    "purificationCost": {
+      "candy": 5,
+      "stardust": 5000
+    },
+    "catchCp": {
+      "normal": {
+        "min": 605,
+        "max": 697
+      },
+      "weatherBoosted": {
+        "min": 1037,
+        "max": 1149
+      }
+    }
+  },
   "pvp": {
     "littleCup": null,
     "greatLeague": {
       "tierRank": "A",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 0,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 18,
         "cp": 1496
@@ -91,9 +132,9 @@
       "tierRank": "B",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 0,
-          "defense": 12,
-          "stamina": 15
+          "defense": 12
         },
         "level": 30.5,
         "cp": 2496
@@ -110,9 +151,9 @@
       "tierRank": "B",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 15,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 50,
         "cp": 3497
@@ -125,47 +166,6 @@
         ]
       }
     }
-  },
-  "shadow": {
-    "released": true,
-    "firstReleaseDate": "2019-08-08",
-    "purificationCost": {
-      "stardust": 5000,
-      "candy": 5
-    },
-    "catchCp": {
-      "normal": {
-        "min": 605,
-        "max": 697
-      },
-      "weatherBoosted": {
-        "min": 1037,
-        "max": 1149
-      }
-    },
-    "variants": [
-      {
-        "name": "Gallade",
-        "variant": "normal",
-        "catchCp": {
-          "normal": {
-            "min": 605,
-            "max": 697
-          },
-          "weatherBoosted": {
-            "min": 1037,
-            "max": 1149
-          }
-        },
-        "purificationCost": {
-          "stardust": 5000,
-          "candy": 5
-        },
-        "releaseDate": "2019-08-08",
-        "releaseDateText": "August 8, 2019"
-      }
-    ],
-    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
   },
   "stats": {
     "stamina": 169,
@@ -194,96 +194,227 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm475.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm475.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0475_000_mo_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0475_000_mo_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0475_000_mo_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0475_000_mo_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "male-only",
           "genderCode": "mo",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0475_000_mo_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0475_000_mo_n_00000000_f_r.png"
+          "view": "front"
         },
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0475_001_mo_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0475_001_mo_n_00000000_f_r.png",
           "formIndex": "001",
           "gender": "male-only",
           "genderCode": "mo",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0475_001_mo_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0475_001_mo_n_00000000_f_r.png"
+          "view": "front"
         }
       ]
     },
     "locationCards": [
       {
         "id": "sb_GoTour2026_mega",
-        "name": "GO Tour 2026 Mega",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_mega.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "special",
+        "name": "GO Tour 2026 Mega",
         "date": "February 23rd - February 27th 2026",
         "eligibleForms": [
           "Gallade"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_mega.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       }
-    ]
-  },
-  "regionForms": [],
-  "evolutions": [],
-  "hasMegaEvolution": true,
-  "megaEvolutions": {
-    "GALLADE_MEGA": {
-      "id": "GALLADE_MEGA",
-      "slug": "gallade-mega",
-      "form": "mega",
-      "names": {
-        "English": "Mega Gallade",
-        "German": "Mega-Galagladi",
-        "French": "Méga-Gallame",
-        "Italian": "MegaGallade",
-        "Japanese": "メガエルレイド",
-        "Korean": "메가엘레이드",
-        "Spanish": "Mega-Gallade"
-      },
-      "stats": {
-        "stamina": 169,
-        "attack": 326,
-        "defense": 230
-      },
-      "primaryType": "PSYCHIC",
-      "secondaryType": "FIGHTING",
-      "energyCost": 200,
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm475.fMEGA.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm475.fMEGA.s.icon.png",
-        "portrait": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/MegaPortraits/mega_portrait_475_MEGA.png",
-        "portraitShiny": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/MegaPortraits/mega_portrait_475_MEGA.s.png"
-      },
-      "baseFormId": "GALLADE",
-      "formId": "GALLADE_MEGA"
+    ],
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "475",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/475.png",
+          "filename": "475.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "475_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/475_a1.png",
+          "filename": "475_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "475_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/475_a1_s.png",
+          "filename": "475_a1_s.png",
+          "codes": [
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "475_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/475_a2.png",
+          "filename": "475_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "475_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/475_a2_s.png",
+          "filename": "475_a2_s.png",
+          "codes": [
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "475_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/475_b1.png",
+          "filename": "475_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "475_e1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/475_e1.png",
+          "filename": "475_e1.png",
+          "codes": [
+            "e1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "475_e1_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/475_e1_a1.png",
+          "filename": "475_e1_a1.png",
+          "codes": [
+            "e1",
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "475_e1_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/475_e1_a1_s.png",
+          "filename": "475_e1_a1_s.png",
+          "codes": [
+            "e1",
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "475_e1_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/475_e1_a2.png",
+          "filename": "475_e1_a2.png",
+          "codes": [
+            "e1",
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "475_e1_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/475_e1_a2_s.png",
+          "filename": "475_e1_a2_s.png",
+          "codes": [
+            "e1",
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "475_e1_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/475_e1_b1.png",
+          "filename": "475_e1_b1.png",
+          "codes": [
+            "e1",
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "475_e1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/475_e1_s.png",
+          "filename": "475_e1_s.png",
+          "codes": [
+            "e1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "475_f302",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/475_f302.png",
+          "filename": "475_f302.png",
+          "codes": [
+            "f302"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "475_f303",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/475_f303.png",
+          "filename": "475_f303.png",
+          "codes": [
+            "f303"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "475_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/475_s.png",
+          "filename": "475_s.png",
+          "codes": [
+            "s"
+          ],
+          "shiny": true
+        }
+      ]
     }
   },
-  "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "costume": null,
-      "isFemale": false,
+      "form": "mega",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm475.fMEGA.icon.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm475.fMEGA.s.icon.png",
-      "form": "mega"
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": null,
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm475.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm475.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm475.s.icon.png",
+      "costume": null,
+      "isFemale": false
     }
-  ]
+  ],
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": true,
+  "megaEvolutions": [
+    "GALLADE_MEGA"
+  ],
+  "dynamaxForms": [
+    "GALLADE_DYNAMAX"
+  ],
+  "hasGigantamaxEvolution": false
 }

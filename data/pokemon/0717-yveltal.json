@@ -73,9 +73,9 @@
       "tierRank": "A",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 0,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 24.5,
         "cp": 2497
@@ -92,9 +92,9 @@
       "tierRank": "A",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 15,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 50,
         "cp": 4275
@@ -136,103 +136,171 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm717.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm717.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0717_000_uk_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0717_000_uk_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0717_000_uk_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0717_000_uk_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "genderless",
           "genderCode": "uk",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0717_000_uk_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0717_000_uk_n_00000000_f_r.png"
+          "view": "front"
         }
       ]
     },
     "locationCards": [
       {
         "id": "lc_GoFest2023_london",
-        "name": "GO Fest London",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2023_london.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "location",
+        "name": "GO Fest London",
         "date": "August 4th - August 6th 2023",
         "eligibleForms": [
           "Yveltal"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2023_london.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       },
       {
         "id": "lc_GoFest2023_newyork",
-        "name": "GO Fest New York City",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2023_newyork.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "location",
+        "name": "GO Fest New York City",
         "date": "August 18th - August 20th 2023",
         "eligibleForms": [
           "Yveltal"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2023_newyork.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       },
       {
         "id": "lc_GoFest2023_osaka",
-        "name": "GO Fest Osaka",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2023_osaka.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "location",
+        "name": "GO Fest Osaka",
         "date": "August 4th - August 6th 2023",
         "eligibleForms": [
           "Yveltal"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2023_osaka.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       },
       {
         "id": "lc_GoTour2026_losAngeles",
-        "name": "GO Tour 2026 Los Angeles",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoTour2026_losAngeles.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "location",
+        "name": "GO Tour 2026 Los Angeles",
         "date": "February 21st - 22nd 2026",
         "eligibleForms": [
           "Yveltal"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoTour2026_losAngeles.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       },
       {
         "id": "lc_GoTour2026_tainan",
-        "name": "GO Tour 2026 Tainan",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoTour2026_tainan.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "location",
+        "name": "GO Tour 2026 Tainan",
         "date": "February 21st - 22nd 2026",
         "eligibleForms": [
           "Yveltal"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoTour2026_tainan.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       },
       {
         "id": "sb_GoTour2026_y",
-        "name": "GO Tour 2026 Y",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_y.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "special",
+        "name": "GO Tour 2026 Y",
         "date": "February 23rd - February 27th 2026",
         "eligibleForms": [
           "Yveltal"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_y.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       }
-    ]
+    ],
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "717",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/717.png",
+          "filename": "717.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "717_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/717_a1.png",
+          "filename": "717_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "717_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/717_a1_s.png",
+          "filename": "717_a1_s.png",
+          "codes": [
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "717_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/717_a2.png",
+          "filename": "717_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "717_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/717_a2_s.png",
+          "filename": "717_a2_s.png",
+          "codes": [
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "717_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/717_b1.png",
+          "filename": "717_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "717_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/717_s.png",
+          "filename": "717_s.png",
+          "codes": [
+            "s"
+          ],
+          "shiny": true
+        }
+      ]
+    }
   },
+  "assetForms": [
+    {
+      "form": null,
+      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm717.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm717.s.icon.png",
+      "costume": null,
+      "isFemale": false
+    }
+  ],
   "regionForms": [],
   "evolutions": [],
   "hasMegaEvolution": false,
   "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
-  "assetForms": [
-    {
-      "form": null,
-      "costume": null,
-      "isFemale": false,
-      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm717.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm717.s.icon.png"
-    }
-  ]
+  "hasGigantamaxEvolution": false
 }

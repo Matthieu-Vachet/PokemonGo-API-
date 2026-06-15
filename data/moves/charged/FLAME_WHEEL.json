@@ -1,10 +1,6 @@
 {
   "id": "FLAME_WHEEL",
   "slug": "flame-wheel",
-  "power": 55,
-  "energy": -50,
-  "durationMs": 2500,
-  "type": "FIRE",
   "names": {
     "English": "Flame Wheel",
     "German": "Flammenrad",
@@ -14,9 +10,13 @@
     "Korean": "화염바퀴",
     "Spanish": "Rueda Fuego"
   },
+  "power": 55,
+  "energy": -50,
+  "durationMs": 2500,
+  "type": "FIRE",
   "combat": {
-    "energy": -45,
     "power": 80,
+    "energy": -45,
     "turns": 1,
     "buffs": null
   },

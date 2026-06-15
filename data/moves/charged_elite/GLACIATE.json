@@ -1,10 +1,6 @@
 {
   "id": "GLACIATE",
   "slug": "glaciate",
-  "power": 160,
-  "energy": -100,
-  "durationMs": 2500,
-  "type": "ICE",
   "names": {
     "English": "Glaciate",
     "German": "Eiszeit",
@@ -14,9 +10,13 @@
     "Korean": "얼어붙은세계",
     "Spanish": "Mundo Gélido"
   },
+  "power": 160,
+  "energy": -100,
+  "durationMs": 2500,
+  "type": "ICE",
   "combat": {
-    "energy": -40,
     "power": 60,
+    "energy": -40,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

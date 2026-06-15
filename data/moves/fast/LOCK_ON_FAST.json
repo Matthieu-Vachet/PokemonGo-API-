@@ -1,10 +1,6 @@
 {
   "id": "LOCK_ON_FAST",
   "slug": "lock-on-fast",
-  "power": 2,
-  "energy": 10,
-  "durationMs": 500,
-  "type": "NORMAL",
   "names": {
     "English": "Lock-On",
     "German": "Zielschuss",
@@ -14,9 +10,13 @@
     "Korean": "록온",
     "Spanish": "Fijar Blanco"
   },
+  "power": 2,
+  "energy": 10,
+  "durationMs": 500,
+  "type": "NORMAL",
   "combat": {
-    "energy": 5,
     "power": 1,
+    "energy": 5,
     "turns": 1,
     "buffs": null
   },

@@ -1,10 +1,6 @@
 {
   "id": "TECHNO_BLAST_WATER",
   "slug": "techno-blast-water",
-  "power": 120,
-  "energy": -100,
-  "durationMs": 2000,
-  "type": "WATER",
   "names": {
     "English": "Techno Blast",
     "German": "Techblaster",
@@ -14,9 +10,13 @@
     "Korean": "테크노버스터",
     "Spanish": "Tecno Shock"
   },
+  "power": 120,
+  "energy": -100,
+  "durationMs": 2000,
+  "type": "WATER",
   "combat": {
-    "energy": -55,
     "power": 120,
+    "energy": -55,
     "turns": 1,
     "buffs": null
   },

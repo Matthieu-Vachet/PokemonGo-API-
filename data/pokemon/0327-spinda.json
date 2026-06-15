@@ -71,9 +71,9 @@
       "tierRank": "B",
       "rank1": {
         "ivs": {
+          "stamina": 14,
           "attack": 15,
-          "defense": 15,
-          "stamina": 14
+          "defense": 15
         },
         "level": 50,
         "cp": 1376
@@ -112,1259 +112,180 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f00.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f00.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0327_000_mf_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0327_000_mf_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0327_000_mf_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0327_000_mf_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "shared",
           "genderCode": "mf",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0327_000_mf_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0327_000_mf_n_00000000_f_r.png"
+          "view": "front"
+        }
+      ]
+    },
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "327",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/327.png",
+          "filename": "327.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "327_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/327_a1.png",
+          "filename": "327_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "327_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/327_a1_s.png",
+          "filename": "327_a1_s.png",
+          "codes": [
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "327_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/327_a2.png",
+          "filename": "327_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "327_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/327_a2_s.png",
+          "filename": "327_a2_s.png",
+          "codes": [
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "327_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/327_b1.png",
+          "filename": "327_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "327_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/327_s.png",
+          "filename": "327_s.png",
+          "codes": [
+            "s"
+          ],
+          "shiny": true
         }
       ]
     }
   },
-  "regionForms": {
-    "SPINDA_00": {
-      "id": "SPINDA",
-      "slug": "spinda-00",
-      "formId": "SPINDA_00",
-      "form": "normal",
-      "dexNr": 327,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
-        }
-      },
-      "names": {
-        "English": "Spinda",
-        "German": "Pandir",
-        "French": "Spinda",
-        "Italian": "Spinda",
-        "Japanese": "パッチール",
-        "Korean": "얼루기",
-        "Spanish": "Spinda"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 116,
-        "defense": 116
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "SUCKER_PUNCH_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "DIG",
-        "ROCK_TOMB",
-        "ICY_WIND"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f00.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f00.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SPINDA"
-    },
-    "SPINDA_01": {
-      "id": "SPINDA",
-      "slug": "spinda-01",
-      "formId": "SPINDA_01",
-      "form": "normal",
-      "dexNr": 327,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
-        }
-      },
-      "names": {
-        "English": "Spinda",
-        "German": "Pandir",
-        "French": "Spinda",
-        "Italian": "Spinda",
-        "Japanese": "パッチール",
-        "Korean": "얼루기",
-        "Spanish": "Spinda"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 116,
-        "defense": 116
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "SUCKER_PUNCH_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "DIG",
-        "ROCK_TOMB",
-        "ICY_WIND"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f01.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f01.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SPINDA"
-    },
-    "SPINDA_02": {
-      "id": "SPINDA",
-      "slug": "spinda-02",
-      "formId": "SPINDA_02",
-      "form": "normal",
-      "dexNr": 327,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
-        }
-      },
-      "names": {
-        "English": "Spinda",
-        "German": "Pandir",
-        "French": "Spinda",
-        "Italian": "Spinda",
-        "Japanese": "パッチール",
-        "Korean": "얼루기",
-        "Spanish": "Spinda"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 116,
-        "defense": 116
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "SUCKER_PUNCH_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "DIG",
-        "ROCK_TOMB",
-        "ICY_WIND"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f02.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f02.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SPINDA"
-    },
-    "SPINDA_03": {
-      "id": "SPINDA",
-      "slug": "spinda-03",
-      "formId": "SPINDA_03",
-      "form": "normal",
-      "dexNr": 327,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
-        }
-      },
-      "names": {
-        "English": "Spinda",
-        "German": "Pandir",
-        "French": "Spinda",
-        "Italian": "Spinda",
-        "Japanese": "パッチール",
-        "Korean": "얼루기",
-        "Spanish": "Spinda"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 116,
-        "defense": 116
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "SUCKER_PUNCH_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "DIG",
-        "ROCK_TOMB",
-        "ICY_WIND"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f03.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f03.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SPINDA"
-    },
-    "SPINDA_04": {
-      "id": "SPINDA",
-      "slug": "spinda-04",
-      "formId": "SPINDA_04",
-      "form": "normal",
-      "dexNr": 327,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
-        }
-      },
-      "names": {
-        "English": "Spinda",
-        "German": "Pandir",
-        "French": "Spinda",
-        "Italian": "Spinda",
-        "Japanese": "パッチール",
-        "Korean": "얼루기",
-        "Spanish": "Spinda"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 116,
-        "defense": 116
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "SUCKER_PUNCH_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "DIG",
-        "ROCK_TOMB",
-        "ICY_WIND"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f04.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f04.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SPINDA"
-    },
-    "SPINDA_05": {
-      "id": "SPINDA",
-      "slug": "spinda-05",
-      "formId": "SPINDA_05",
-      "form": "normal",
-      "dexNr": 327,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
-        }
-      },
-      "names": {
-        "English": "Spinda",
-        "German": "Pandir",
-        "French": "Spinda",
-        "Italian": "Spinda",
-        "Japanese": "パッチール",
-        "Korean": "얼루기",
-        "Spanish": "Spinda"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 116,
-        "defense": 116
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "SUCKER_PUNCH_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "DIG",
-        "ROCK_TOMB",
-        "ICY_WIND"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f05.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f05.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SPINDA"
-    },
-    "SPINDA_06": {
-      "id": "SPINDA",
-      "slug": "spinda-06",
-      "formId": "SPINDA_06",
-      "form": "normal",
-      "dexNr": 327,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
-        }
-      },
-      "names": {
-        "English": "Spinda",
-        "German": "Pandir",
-        "French": "Spinda",
-        "Italian": "Spinda",
-        "Japanese": "パッチール",
-        "Korean": "얼루기",
-        "Spanish": "Spinda"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 116,
-        "defense": 116
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "SUCKER_PUNCH_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "DIG",
-        "ROCK_TOMB",
-        "ICY_WIND"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f06.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f06.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SPINDA"
-    },
-    "SPINDA_07": {
-      "id": "SPINDA",
-      "slug": "spinda-07",
-      "formId": "SPINDA_07",
-      "form": "normal",
-      "dexNr": 327,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
-        }
-      },
-      "names": {
-        "English": "Spinda",
-        "German": "Pandir",
-        "French": "Spinda",
-        "Italian": "Spinda",
-        "Japanese": "パッチール",
-        "Korean": "얼루기",
-        "Spanish": "Spinda"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 116,
-        "defense": 116
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "SUCKER_PUNCH_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "DIG",
-        "ROCK_TOMB",
-        "ICY_WIND"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f07.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f07.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SPINDA"
-    },
-    "SPINDA_08": {
-      "id": "SPINDA",
-      "slug": "spinda-08",
-      "formId": "SPINDA_08",
-      "form": "normal",
-      "dexNr": 327,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
-        }
-      },
-      "names": {
-        "English": "Spinda",
-        "German": "Pandir",
-        "French": "Spinda",
-        "Italian": "Spinda",
-        "Japanese": "パッチール",
-        "Korean": "얼루기",
-        "Spanish": "Spinda"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 116,
-        "defense": 116
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "SUCKER_PUNCH_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "DIG",
-        "ROCK_TOMB",
-        "ICY_WIND"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f08.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f08.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SPINDA"
-    },
-    "SPINDA_09": {
-      "id": "SPINDA",
-      "slug": "spinda-09",
-      "formId": "SPINDA_09",
-      "form": "normal",
-      "dexNr": 327,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
-        }
-      },
-      "names": {
-        "English": "Spinda",
-        "German": "Pandir",
-        "French": "Spinda",
-        "Italian": "Spinda",
-        "Japanese": "パッチール",
-        "Korean": "얼루기",
-        "Spanish": "Spinda"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 116,
-        "defense": 116
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "SUCKER_PUNCH_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "DIG",
-        "ROCK_TOMB",
-        "ICY_WIND"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": null,
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SPINDA"
-    },
-    "SPINDA_10": {
-      "id": "SPINDA",
-      "slug": "spinda-10",
-      "formId": "SPINDA_10",
-      "form": "normal",
-      "dexNr": 327,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
-        }
-      },
-      "names": {
-        "English": "Spinda",
-        "German": "Pandir",
-        "French": "Spinda",
-        "Italian": "Spinda",
-        "Japanese": "パッチール",
-        "Korean": "얼루기",
-        "Spanish": "Spinda"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 116,
-        "defense": 116
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "SUCKER_PUNCH_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "DIG",
-        "ROCK_TOMB",
-        "ICY_WIND"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": null,
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SPINDA"
-    },
-    "SPINDA_11": {
-      "id": "SPINDA",
-      "slug": "spinda-11",
-      "formId": "SPINDA_11",
-      "form": "normal",
-      "dexNr": 327,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
-        }
-      },
-      "names": {
-        "English": "Spinda",
-        "German": "Pandir",
-        "French": "Spinda",
-        "Italian": "Spinda",
-        "Japanese": "パッチール",
-        "Korean": "얼루기",
-        "Spanish": "Spinda"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 116,
-        "defense": 116
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "SUCKER_PUNCH_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "DIG",
-        "ROCK_TOMB",
-        "ICY_WIND"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": null,
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SPINDA"
-    },
-    "SPINDA_12": {
-      "id": "SPINDA",
-      "slug": "spinda-12",
-      "formId": "SPINDA_12",
-      "form": "normal",
-      "dexNr": 327,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
-        }
-      },
-      "names": {
-        "English": "Spinda",
-        "German": "Pandir",
-        "French": "Spinda",
-        "Italian": "Spinda",
-        "Japanese": "パッチール",
-        "Korean": "얼루기",
-        "Spanish": "Spinda"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 116,
-        "defense": 116
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "SUCKER_PUNCH_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "DIG",
-        "ROCK_TOMB",
-        "ICY_WIND"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": null,
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SPINDA"
-    },
-    "SPINDA_13": {
-      "id": "SPINDA",
-      "slug": "spinda-13",
-      "formId": "SPINDA_13",
-      "form": "normal",
-      "dexNr": 327,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
-        }
-      },
-      "names": {
-        "English": "Spinda",
-        "German": "Pandir",
-        "French": "Spinda",
-        "Italian": "Spinda",
-        "Japanese": "パッチール",
-        "Korean": "얼루기",
-        "Spanish": "Spinda"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 116,
-        "defense": 116
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "SUCKER_PUNCH_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "DIG",
-        "ROCK_TOMB",
-        "ICY_WIND"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": null,
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SPINDA"
-    },
-    "SPINDA_14": {
-      "id": "SPINDA",
-      "slug": "spinda-14",
-      "formId": "SPINDA_14",
-      "form": "normal",
-      "dexNr": 327,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
-        }
-      },
-      "names": {
-        "English": "Spinda",
-        "German": "Pandir",
-        "French": "Spinda",
-        "Italian": "Spinda",
-        "Japanese": "パッチール",
-        "Korean": "얼루기",
-        "Spanish": "Spinda"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 116,
-        "defense": 116
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "SUCKER_PUNCH_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "DIG",
-        "ROCK_TOMB",
-        "ICY_WIND"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": null,
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SPINDA"
-    },
-    "SPINDA_15": {
-      "id": "SPINDA",
-      "slug": "spinda-15",
-      "formId": "SPINDA_15",
-      "form": "normal",
-      "dexNr": 327,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
-        }
-      },
-      "names": {
-        "English": "Spinda",
-        "German": "Pandir",
-        "French": "Spinda",
-        "Italian": "Spinda",
-        "Japanese": "パッチール",
-        "Korean": "얼루기",
-        "Spanish": "Spinda"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 116,
-        "defense": 116
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "SUCKER_PUNCH_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "DIG",
-        "ROCK_TOMB",
-        "ICY_WIND"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": null,
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SPINDA"
-    },
-    "SPINDA_16": {
-      "id": "SPINDA",
-      "slug": "spinda-16",
-      "formId": "SPINDA_16",
-      "form": "normal",
-      "dexNr": 327,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
-        }
-      },
-      "names": {
-        "English": "Spinda",
-        "German": "Pandir",
-        "French": "Spinda",
-        "Italian": "Spinda",
-        "Japanese": "パッチール",
-        "Korean": "얼루기",
-        "Spanish": "Spinda"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 116,
-        "defense": 116
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "SUCKER_PUNCH_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "DIG",
-        "ROCK_TOMB",
-        "ICY_WIND"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": null,
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SPINDA"
-    },
-    "SPINDA_17": {
-      "id": "SPINDA",
-      "slug": "spinda-17",
-      "formId": "SPINDA_17",
-      "form": "normal",
-      "dexNr": 327,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
-        }
-      },
-      "names": {
-        "English": "Spinda",
-        "German": "Pandir",
-        "French": "Spinda",
-        "Italian": "Spinda",
-        "Japanese": "パッチール",
-        "Korean": "얼루기",
-        "Spanish": "Spinda"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 116,
-        "defense": 116
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "SUCKER_PUNCH_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "DIG",
-        "ROCK_TOMB",
-        "ICY_WIND"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": null,
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SPINDA"
-    },
-    "SPINDA_18": {
-      "id": "SPINDA",
-      "slug": "spinda-18",
-      "formId": "SPINDA_18",
-      "form": "normal",
-      "dexNr": 327,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
-        }
-      },
-      "names": {
-        "English": "Spinda",
-        "German": "Pandir",
-        "French": "Spinda",
-        "Italian": "Spinda",
-        "Japanese": "パッチール",
-        "Korean": "얼루기",
-        "Spanish": "Spinda"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 116,
-        "defense": 116
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "SUCKER_PUNCH_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "DIG",
-        "ROCK_TOMB",
-        "ICY_WIND"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": null,
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SPINDA"
-    },
-    "SPINDA_19": {
-      "id": "SPINDA",
-      "slug": "spinda-19",
-      "formId": "SPINDA_19",
-      "form": "normal",
-      "dexNr": 327,
-      "generation": 3,
-      "region": {
-        "id": "HOENN",
-        "slug": "hoenn",
-        "generation": 3,
-        "names": {
-          "English": "Hoenn",
-          "German": "Hoenn",
-          "French": "Hoenn",
-          "Italian": "Hoenn",
-          "Japanese": "ホウエン",
-          "Korean": "호연",
-          "Spanish": "Hoenn"
-        }
-      },
-      "names": {
-        "English": "Spinda",
-        "German": "Pandir",
-        "French": "Spinda",
-        "Italian": "Spinda",
-        "Japanese": "パッチール",
-        "Korean": "얼루기",
-        "Spanish": "Spinda"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 116,
-        "defense": 116
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "SUCKER_PUNCH_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "DIG",
-        "ROCK_TOMB",
-        "ICY_WIND"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": null,
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SPINDA"
-    }
-  },
-  "evolutions": [],
-  "hasMegaEvolution": false,
-  "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
   "assetForms": [
     {
       "form": "00",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f00.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f00.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f00.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": "01",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f01.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f01.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f01.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": "02",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f02.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f02.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f02.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": "03",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f03.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f03.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f03.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": "04",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f04.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f04.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f04.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": "05",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f05.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f05.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f05.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": "06",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f06.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f06.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f06.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": "07",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f07.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f07.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f07.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": "08",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f08.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f08.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm327.f08.s.icon.png",
+      "costume": null,
+      "isFemale": false
     }
-  ]
+  ],
+  "regionForms": [
+    "SPINDA_00",
+    "SPINDA_01",
+    "SPINDA_02",
+    "SPINDA_03",
+    "SPINDA_04",
+    "SPINDA_05",
+    "SPINDA_06",
+    "SPINDA_07",
+    "SPINDA_08",
+    "SPINDA_09",
+    "SPINDA_10",
+    "SPINDA_11",
+    "SPINDA_12",
+    "SPINDA_13",
+    "SPINDA_14",
+    "SPINDA_15",
+    "SPINDA_16",
+    "SPINDA_17",
+    "SPINDA_18",
+    "SPINDA_19"
+  ],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
 }

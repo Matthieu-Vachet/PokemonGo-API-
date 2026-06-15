@@ -1,12 +1,12 @@
 {
-  "dexId": "0006",
   "id": "CHARIZARD_MEGA_X",
-  "slug": "charizard-mega-x",
+  "formId": "CHARIZARD_MEGA_X",
   "form": "mega-x",
+  "slug": "charizard-mega-x",
   "dexNr": 6,
+  "dexId": "0006",
   "generation": 1,
   "baseFormId": "CHARIZARD",
-  "formId": "CHARIZARD_MEGA_X",
   "names": {
     "English": "Mega Charizard X",
     "German": "Mega-Glurak X",
@@ -22,18 +22,19 @@
   },
   "catchRate": 5,
   "fleeRate": 5,
-  "availability": {
-    "released": true,
-    "shinyReleased": true,
-    "tradable": true,
-    "pokemonHomeTransfer": true
-  },
+  "energyCost": 200,
   "maxCp": {
     "maxLevel50": 4353,
     "maxLevel40": 3850,
     "weatherBoostLevel25": 2750,
     "raidLevel20": 2200,
     "researchLevel15": 1650
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true
   },
   "stats": {
     "stamina": 186,
@@ -42,7 +43,6 @@
   },
   "primaryType": "FIRE",
   "secondaryType": "DRAGON",
-  "energyCost": 200,
   "assets": {
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm6.fMEGA_X.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm6.fMEGA_X.s.icon.png"

@@ -1,10 +1,6 @@
 {
   "id": "WATER_GUN_FAST",
   "slug": "water-gun-fast",
-  "power": 5,
-  "energy": 5,
-  "durationMs": 500,
-  "type": "WATER",
   "names": {
     "English": "Water Gun",
     "German": "Aquaknarre",
@@ -14,9 +10,13 @@
     "Korean": "물대포",
     "Spanish": "Pistola Agua"
   },
+  "power": 5,
+  "energy": 5,
+  "durationMs": 500,
+  "type": "WATER",
   "combat": {
-    "energy": 3,
     "power": 3,
+    "energy": 3,
     "turns": 1,
     "buffs": null
   },

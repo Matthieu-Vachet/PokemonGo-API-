@@ -1,10 +1,6 @@
 {
   "id": "RAGE_FIST",
   "slug": "rage-fist",
-  "power": 100,
-  "energy": -50,
-  "durationMs": 3000,
-  "type": "GHOST",
   "names": {
     "English": "Rage Fist",
     "German": "Zornesfaust",
@@ -14,9 +10,13 @@
     "Korean": "분노의주먹",
     "Spanish": "Puño Furia"
   },
+  "power": 100,
+  "energy": -50,
+  "durationMs": 3000,
+  "type": "GHOST",
   "combat": {
-    "energy": -35,
     "power": 50,
+    "energy": -35,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

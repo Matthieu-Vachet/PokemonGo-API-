@@ -66,83 +66,9 @@
     "gigantamax": false,
     "apex": false
   },
-  "pvp": {
-    "littleCup": null,
-    "greatLeague": {
-      "tierRank": "C",
-      "rank1": {
-        "ivs": {
-          "attack": 1,
-          "defense": 15,
-          "stamina": 14
-        },
-        "level": 18.5,
-        "cp": 1500
-      },
-      "bestMovesets": {
-        "fast": "CONFUSION_FAST",
-        "charged": [
-          "SEED_BOMB",
-          "PSYCHIC"
-        ]
-      }
-    },
-    "ultraLeague": {
-      "tierRank": "C",
-      "rank1": {
-        "ivs": {
-          "attack": 1,
-          "defense": 15,
-          "stamina": 15
-        },
-        "level": 31.5,
-        "cp": 2499
-      },
-      "bestMovesets": {
-        "fast": "CONFUSION_FAST",
-        "charged": [
-          "SEED_BOMB",
-          "PSYCHIC"
-        ]
-      }
-    },
-    "masterLeague": {
-      "tierRank": "D",
-      "rank1": {
-        "ivs": {
-          "attack": 15,
-          "defense": 15,
-          "stamina": 15
-        },
-        "level": 50,
-        "cp": 3408
-      },
-      "bestMovesets": {
-        "fast": "CONFUSION_FAST",
-        "charged": [
-          "SEED_BOMB",
-          "PSYCHIC"
-        ]
-      }
-    }
-  },
   "shadow": {
     "released": true,
-    "firstReleaseDate": "2020-02-03",
-    "purificationCost": {
-      "stardust": 3000,
-      "candy": 3
-    },
-    "catchCp": {
-      "normal": {
-        "min": 588,
-        "max": 679
-      },
-      "weatherBoosted": {
-        "min": 1008,
-        "max": 1119
-      }
-    },
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO",
     "variants": [
       {
         "name": "Exeggutor",
@@ -158,8 +84,8 @@
           }
         },
         "purificationCost": {
-          "stardust": 3000,
-          "candy": 3
+          "candy": 3,
+          "stardust": 3000
         },
         "releaseDate": "2020-02-03",
         "releaseDateText": "February 3, 2020"
@@ -178,14 +104,88 @@
           }
         },
         "purificationCost": {
-          "stardust": 3000,
-          "candy": 3
+          "candy": 3,
+          "stardust": 3000
         },
         "releaseDate": "2022-04-03",
         "releaseDateText": "April 3, 2022"
       }
     ],
-    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+    "firstReleaseDate": "2020-02-03",
+    "purificationCost": {
+      "candy": 3,
+      "stardust": 3000
+    },
+    "catchCp": {
+      "normal": {
+        "min": 588,
+        "max": 679
+      },
+      "weatherBoosted": {
+        "min": 1008,
+        "max": 1119
+      }
+    }
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "stamina": 14,
+          "attack": 1,
+          "defense": 15
+        },
+        "level": 18.5,
+        "cp": 1500
+      },
+      "bestMovesets": {
+        "fast": "CONFUSION_FAST",
+        "charged": [
+          "SEED_BOMB",
+          "PSYCHIC"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "C",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 1,
+          "defense": 15
+        },
+        "level": 31.5,
+        "cp": 2499
+      },
+      "bestMovesets": {
+        "fast": "CONFUSION_FAST",
+        "charged": [
+          "SEED_BOMB",
+          "PSYCHIC"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "D",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 15,
+          "defense": 15
+        },
+        "level": 50,
+        "cp": 3408
+      },
+      "bestMovesets": {
+        "fast": "CONFUSION_FAST",
+        "charged": [
+          "SEED_BOMB",
+          "PSYCHIC"
+        ]
+      }
+    }
   },
   "stats": {
     "stamina": 216,
@@ -213,115 +213,211 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm103.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm103.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0103_000_mf_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0103_000_mf_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0103_000_mf_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0103_000_mf_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "shared",
           "genderCode": "mf",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0103_000_mf_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0103_000_mf_n_00000000_f_r.png"
+          "view": "front"
         },
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0103_001_mf_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0103_001_mf_n_00000000_f_r.png",
           "formIndex": "001",
           "gender": "shared",
           "genderCode": "mf",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0103_001_mf_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0103_001_mf_n_00000000_f_r.png"
+          "view": "front"
+        }
+      ]
+    },
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "103",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/103.png",
+          "filename": "103.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "103_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/103_a1.png",
+          "filename": "103_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "103_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/103_a1_s.png",
+          "filename": "103_a1_s.png",
+          "codes": [
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "103_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/103_a2.png",
+          "filename": "103_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "103_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/103_a2_s.png",
+          "filename": "103_a2_s.png",
+          "codes": [
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "103_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/103_b1.png",
+          "filename": "103_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "103_b1_f78",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/103_b1_f78.png",
+          "filename": "103_b1_f78.png",
+          "codes": [
+            "b1",
+            "f78"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "103_f732",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/103_f732.png",
+          "filename": "103_f732.png",
+          "codes": [
+            "f732"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "103_f733",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/103_f733.png",
+          "filename": "103_f733.png",
+          "codes": [
+            "f733"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "103_f78",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/103_f78.png",
+          "filename": "103_f78.png",
+          "codes": [
+            "f78"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "103_f78_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/103_f78_a1.png",
+          "filename": "103_f78_a1.png",
+          "codes": [
+            "f78",
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "103_f78_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/103_f78_a1_s.png",
+          "filename": "103_f78_a1_s.png",
+          "codes": [
+            "f78",
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "103_f78_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/103_f78_a2.png",
+          "filename": "103_f78_a2.png",
+          "codes": [
+            "f78",
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "103_f78_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/103_f78_a2_s.png",
+          "filename": "103_f78_a2_s.png",
+          "codes": [
+            "f78",
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "103_f78_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/103_f78_s.png",
+          "filename": "103_f78_s.png",
+          "codes": [
+            "f78",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "103_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/103_s.png",
+          "filename": "103_s.png",
+          "codes": [
+            "s"
+          ],
+          "shiny": true
         }
       ]
     }
   },
-  "regionForms": {
-    "EXEGGUTOR_ALOLA": {
-      "id": "EXEGGUTOR",
-      "slug": "exeggutor-alola",
-      "formId": "EXEGGUTOR_ALOLA",
-      "form": "alola",
-      "dexNr": 103,
-      "generation": 7,
-      "region": {
-        "id": "ALOLA",
-        "slug": "alola",
-        "generation": 7,
-        "names": {
-          "English": "Alola",
-          "German": "Alola",
-          "French": "Alola",
-          "Italian": "Alola",
-          "Japanese": "アローラ",
-          "Korean": "알로라",
-          "Spanish": "Alola"
-        }
-      },
-      "names": {
-        "English": "Alolan Exeggutor",
-        "German": "Alola-Kokowei",
-        "French": "Noadkoko d'Alola",
-        "Italian": "Exeggutor di Alola",
-        "Japanese": "アローラ ナッシー",
-        "Korean": "알로라 나시",
-        "Spanish": "Exeggutor de Alola"
-      },
-      "stats": {
-        "stamina": 216,
-        "attack": 230,
-        "defense": 153
-      },
-      "primaryType": "GRASS",
-      "secondaryType": "DRAGON",
-      "pokemonClass": null,
-      "quickMoves": [
-        "BULLET_SEED_FAST",
-        "DRAGON_TAIL_FAST"
-      ],
-      "cinematicMoves": [
-        "SEED_BOMB",
-        "DRAGON_PULSE",
-        "SOLAR_BEAM"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [
-        "DRACO_METEOR"
-      ],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm103.fALOLA.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm103.fALOLA.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "EXEGGUTOR"
-    }
-  },
-  "evolutions": [],
-  "hasMegaEvolution": false,
-  "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "costume": null,
-      "isFemale": false,
+      "form": "alola",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm103.fALOLA.icon.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm103.fALOLA.s.icon.png",
-      "form": "alola"
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": null,
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm103.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm103.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm103.s.icon.png",
+      "costume": null,
+      "isFemale": false
     }
-  ]
+  ],
+  "regionForms": [
+    "EXEGGUTOR_ALOLA"
+  ],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
 }

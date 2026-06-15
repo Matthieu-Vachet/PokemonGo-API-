@@ -1,7 +1,6 @@
 {
   "id": "WATER",
   "slug": "water",
-  "type": "Water",
   "names": {
     "English": "Water",
     "German": "Wasser",
@@ -11,17 +10,6 @@
     "Korean": "물",
     "Spanish": "Agua"
   },
-  "doubleDamageFrom": [
-    "Grass",
-    "Electric"
-  ],
-  "halfDamageFrom": [
-    "Steel",
-    "Fire",
-    "Water",
-    "Ice"
-  ],
-  "noDamageFrom": [],
   "weatherBoost": {
     "id": "rain",
     "names": {
@@ -38,5 +26,17 @@
   "assets": {
     "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_10_water.png",
     "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_water.png"
-  }
+  },
+  "type": "Water",
+  "doubleDamageFrom": [
+    "Grass",
+    "Electric"
+  ],
+  "halfDamageFrom": [
+    "Steel",
+    "Fire",
+    "Water",
+    "Ice"
+  ],
+  "noDamageFrom": []
 }

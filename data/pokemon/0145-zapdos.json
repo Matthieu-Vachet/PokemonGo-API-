@@ -66,15 +66,56 @@
     "gigantamax": false,
     "apex": false
   },
+  "shadow": {
+    "released": true,
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO",
+    "variants": [
+      {
+        "name": "Zapdos",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 697,
+            "max": 795
+          },
+          "weatherBoosted": {
+            "min": 1190,
+            "max": 1310
+          }
+        },
+        "purificationCost": {
+          "candy": 20,
+          "stardust": 20000
+        },
+        "releaseDate": "2019-12-01",
+        "releaseDateText": "December 1, 2019"
+      }
+    ],
+    "firstReleaseDate": "2019-12-01",
+    "purificationCost": {
+      "candy": 20,
+      "stardust": 20000
+    },
+    "catchCp": {
+      "normal": {
+        "min": 697,
+        "max": 795
+      },
+      "weatherBoosted": {
+        "min": 1190,
+        "max": 1310
+      }
+    }
+  },
   "pvp": {
     "littleCup": null,
     "greatLeague": {
       "tierRank": "B",
       "rank1": {
         "ivs": {
+          "stamina": 12,
           "attack": 0,
-          "defense": 12,
-          "stamina": 12
+          "defense": 12
         },
         "level": 16,
         "cp": 1500
@@ -91,9 +132,9 @@
       "tierRank": "A",
       "rank1": {
         "ivs": {
+          "stamina": 13,
           "attack": 0,
-          "defense": 13,
-          "stamina": 13
+          "defense": 13
         },
         "level": 26.5,
         "cp": 2497
@@ -110,9 +151,9 @@
       "tierRank": "B",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 15,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 50,
         "cp": 3987
@@ -125,47 +166,6 @@
         ]
       }
     }
-  },
-  "shadow": {
-    "released": true,
-    "firstReleaseDate": "2019-12-01",
-    "purificationCost": {
-      "stardust": 20000,
-      "candy": 20
-    },
-    "catchCp": {
-      "normal": {
-        "min": 697,
-        "max": 795
-      },
-      "weatherBoosted": {
-        "min": 1190,
-        "max": 1310
-      }
-    },
-    "variants": [
-      {
-        "name": "Zapdos",
-        "variant": "normal",
-        "catchCp": {
-          "normal": {
-            "min": 697,
-            "max": 795
-          },
-          "weatherBoosted": {
-            "min": 1190,
-            "max": 1310
-          }
-        },
-        "purificationCost": {
-          "stardust": 20000,
-          "candy": 20
-        },
-        "releaseDate": "2019-12-01",
-        "releaseDateText": "December 1, 2019"
-      }
-    ],
-    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
   },
   "stats": {
     "stamina": 207,
@@ -194,159 +194,260 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm145.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm145.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0145_000_uk_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0145_000_uk_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0145_000_uk_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0145_000_uk_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "genderless",
           "genderCode": "uk",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0145_000_uk_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0145_000_uk_n_00000000_f_r.png"
+          "view": "front"
         },
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0145_001_uk_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0145_001_uk_n_00000000_f_r.png",
           "formIndex": "001",
           "gender": "genderless",
           "genderCode": "uk",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0145_001_uk_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0145_001_uk_n_00000000_f_r.png"
+          "view": "front"
         }
       ]
     },
     "locationCards": [
       {
         "id": "lc_GoFest2026_chicago",
-        "name": "GO Fest 2026 Chicago",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2026_chicago.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "location",
+        "name": "GO Fest 2026 Chicago",
         "date": "June 5th - 7th 2026",
         "eligibleForms": [
           "Zapdos"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2026_chicago.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       },
       {
         "id": "lc_2026_ppk_001",
-        "name": "PokePark Kanto",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_2026_ppk_001.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "location",
+        "name": "PokePark Kanto",
         "date": "February 5th 2026",
         "eligibleForms": [
           "Zapdos"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_2026_ppk_001.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       },
       {
         "id": "sb_GoFest2025_Eternatus",
-        "name": "Dark Skies",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "special",
+        "name": "Dark Skies",
         "date": "August 18th - 24th 2025",
         "eligibleForms": [
           "Zapdos"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       },
       {
         "id": "sb_Season19_DelightfulDays",
-        "name": "Delightful Days",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_Season19_DelightfulDays.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "special",
+        "name": "Delightful Days",
         "date": "June - September 2025",
         "eligibleForms": [
           "Zapdos"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_Season19_DelightfulDays.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       }
-    ]
-  },
-  "regionForms": {
-    "ZAPDOS_GALARIAN": {
-      "id": "ZAPDOS",
-      "slug": "zapdos-galarian",
-      "formId": "ZAPDOS_GALARIAN",
-      "form": "galar",
-      "dexNr": 145,
-      "generation": 8,
-      "region": {
-        "id": "GALAR",
-        "slug": "galar",
-        "generation": 8,
-        "names": {
-          "English": "Galar",
-          "German": "Galar",
-          "French": "Galar",
-          "Italian": "Galar",
-          "Japanese": "ガラル",
-          "Korean": "가라르",
-          "Spanish": "Galar"
+    ],
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "145",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/145.png",
+          "filename": "145.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "145_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/145_a1.png",
+          "filename": "145_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "145_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/145_a1_s.png",
+          "filename": "145_a1_s.png",
+          "codes": [
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "145_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/145_a2.png",
+          "filename": "145_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "145_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/145_a2_s.png",
+          "filename": "145_a2_s.png",
+          "codes": [
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "145_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/145_b1.png",
+          "filename": "145_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "145_b1_f2800",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/145_b1_f2800.png",
+          "filename": "145_b1_f2800.png",
+          "codes": [
+            "b1",
+            "f2800"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "145_f2800",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/145_f2800.png",
+          "filename": "145_f2800.png",
+          "codes": [
+            "f2800"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "145_f2800_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/145_f2800_s.png",
+          "filename": "145_f2800_s.png",
+          "codes": [
+            "f2800",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "145_f774",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/145_f774.png",
+          "filename": "145_f774.png",
+          "codes": [
+            "f774"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "145_f775",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/145_f775.png",
+          "filename": "145_f775.png",
+          "codes": [
+            "f775"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "145_f_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/145_f_a1.png",
+          "filename": "145_f_a1.png",
+          "codes": [
+            "f",
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "145_f_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/145_f_a1_s.png",
+          "filename": "145_f_a1_s.png",
+          "codes": [
+            "f",
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "145_f_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/145_f_a2.png",
+          "filename": "145_f_a2.png",
+          "codes": [
+            "f",
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "145_f_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/145_f_a2_s.png",
+          "filename": "145_f_a2_s.png",
+          "codes": [
+            "f",
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "145_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/145_s.png",
+          "filename": "145_s.png",
+          "codes": [
+            "s"
+          ],
+          "shiny": true
         }
-      },
-      "names": {
-        "English": "Galarian Zapdos",
-        "German": "Galar-Zapdos",
-        "French": "Électhor de Galar",
-        "Italian": "Zapdos di Galar",
-        "Japanese": "ガラル サンダー",
-        "Korean": "가라르 썬더",
-        "Spanish": "Zapdos de Galar"
-      },
-      "stats": {
-        "stamina": 207,
-        "attack": 252,
-        "defense": 189
-      },
-      "primaryType": "FIGHTING",
-      "secondaryType": "FLYING",
-      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
-      "quickMoves": [
-        "COUNTER_FAST"
-      ],
-      "cinematicMoves": [
-        "CLOSE_COMBAT",
-        "ANCIENT_POWER",
-        "BRAVE_BIRD",
-        "FLY"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm145.fGALARIAN.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm145.fGALARIAN.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "ZAPDOS"
+      ]
     }
   },
-  "evolutions": [],
-  "hasMegaEvolution": false,
-  "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
   "assetForms": [
     {
-      "costume": null,
-      "isFemale": false,
+      "form": "galar",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm145.fGALARIAN.icon.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm145.fGALARIAN.s.icon.png",
-      "form": "galar"
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": null,
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm145.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm145.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm145.s.icon.png",
+      "costume": null,
+      "isFemale": false
     }
-  ]
+  ],
+  "regionForms": [
+    "ZAPDOS_GALARIAN"
+  ],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "dynamaxForms": [
+    "ZAPDOS_DYNAMAX"
+  ],
+  "hasGigantamaxEvolution": false
 }

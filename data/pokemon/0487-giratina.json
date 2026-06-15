@@ -66,29 +66,9 @@
     "gigantamax": false,
     "apex": false
   },
-  "pvp": {
-    "littleCup": null,
-    "greatLeague": null,
-    "ultraLeague": null,
-    "masterLeague": null
-  },
   "shadow": {
     "released": true,
-    "firstReleaseDate": "2025-08-11",
-    "purificationCost": {
-      "stardust": 20000,
-      "candy": 20
-    },
-    "catchCp": {
-      "normal": {
-        "min": 665,
-        "max": 761
-      },
-      "weatherBoosted": {
-        "min": 1138,
-        "max": 1255
-      }
-    },
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO",
     "variants": [
       {
         "name": "Giratina",
@@ -104,14 +84,34 @@
           }
         },
         "purificationCost": {
-          "stardust": 20000,
-          "candy": 20
+          "candy": 20,
+          "stardust": 20000
         },
         "releaseDate": "2025-08-11",
         "releaseDateText": "August 11, 2025"
       }
     ],
-    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+    "firstReleaseDate": "2025-08-11",
+    "purificationCost": {
+      "candy": 20,
+      "stardust": 20000
+    },
+    "catchCp": {
+      "normal": {
+        "min": 665,
+        "max": 761
+      },
+      "weatherBoosted": {
+        "min": 1138,
+        "max": 1255
+      }
+    }
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": null,
+    "ultraLeague": null,
+    "masterLeague": null
   },
   "stats": {
     "stamina": 284,
@@ -138,184 +138,204 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm487.fALTERED.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm487.fALTERED.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0487_000_uk_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0487_000_uk_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0487_000_uk_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0487_000_uk_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "genderless",
           "genderCode": "uk",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0487_000_uk_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0487_000_uk_n_00000000_f_r.png"
+          "view": "front"
         },
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0487_001_uk_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0487_001_uk_n_00000000_f_r.png",
           "formIndex": "001",
           "gender": "genderless",
           "genderCode": "uk",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0487_001_uk_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0487_001_uk_n_00000000_f_r.png"
+          "view": "front"
+        }
+      ]
+    },
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "487",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/487.png",
+          "filename": "487.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "487_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/487_a1.png",
+          "filename": "487_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "487_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/487_a2.png",
+          "filename": "487_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "487_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/487_b1.png",
+          "filename": "487_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "487_b1_f91",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/487_b1_f91.png",
+          "filename": "487_b1_f91.png",
+          "codes": [
+            "b1",
+            "f91"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "487_f90_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/487_f90_a1_s.png",
+          "filename": "487_f90_a1_s.png",
+          "codes": [
+            "f90",
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "487_f90_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/487_f90_a2_s.png",
+          "filename": "487_f90_a2_s.png",
+          "codes": [
+            "f90",
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "487_f90_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/487_f90_s.png",
+          "filename": "487_f90_s.png",
+          "codes": [
+            "f90",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "487_f91",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/487_f91.png",
+          "filename": "487_f91.png",
+          "codes": [
+            "f91"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "487_f91_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/487_f91_a1.png",
+          "filename": "487_f91_a1.png",
+          "codes": [
+            "f91",
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "487_f91_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/487_f91_a1_s.png",
+          "filename": "487_f91_a1_s.png",
+          "codes": [
+            "f91",
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "487_f91_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/487_f91_a2.png",
+          "filename": "487_f91_a2.png",
+          "codes": [
+            "f91",
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "487_f91_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/487_f91_a2_s.png",
+          "filename": "487_f91_a2_s.png",
+          "codes": [
+            "f91",
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "487_f91_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/487_f91_s.png",
+          "filename": "487_f91_s.png",
+          "codes": [
+            "f91",
+            "s"
+          ],
+          "shiny": true
         }
       ]
     }
   },
-  "regionForms": {
-    "GIRATINA_ALTERED": {
-      "id": "GIRATINA",
-      "slug": "giratina-altered",
-      "formId": "GIRATINA_ALTERED",
-      "form": "normal",
-      "dexNr": 487,
-      "generation": 4,
-      "region": {
-        "id": "SINNOH",
-        "slug": "sinnoh",
-        "generation": 4,
-        "names": {
-          "English": "Sinnoh",
-          "German": "Sinnoh",
-          "French": "Sinnoh",
-          "Italian": "Sinnoh",
-          "Japanese": "シンオウ",
-          "Korean": "신오",
-          "Spanish": "Sinnoh"
-        }
-      },
-      "names": {
-        "English": "Giratina (Altered Forme)",
-        "German": "Giratina (Wandelform)",
-        "French": "Giratina (Forme Alternative)",
-        "Italian": "Giratina (Forma Alterata)",
-        "Japanese": "ギラティナ (アナザーフォルム)",
-        "Korean": "기라티나 (어나더폼)",
-        "Spanish": "Giratina (Forma Modificada)"
-      },
-      "stats": {
-        "stamina": 284,
-        "attack": 187,
-        "defense": 225
-      },
-      "primaryType": "GHOST",
-      "secondaryType": "DRAGON",
-      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
-      "quickMoves": [
-        "DRAGON_BREATH_FAST",
-        "SHADOW_CLAW_FAST"
-      ],
-      "cinematicMoves": [
-        "DRAGON_CLAW",
-        "ANCIENT_POWER",
-        "SHADOW_SNEAK"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [
-        "SHADOW_FORCE"
-      ],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm487.fALTERED.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm487.fALTERED.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "GIRATINA"
-    },
-    "GIRATINA_ORIGIN": {
-      "id": "GIRATINA",
-      "slug": "giratina-origin",
-      "formId": "GIRATINA_ORIGIN",
-      "form": "normal",
-      "dexNr": 487,
-      "generation": 4,
-      "region": {
-        "id": "SINNOH",
-        "slug": "sinnoh",
-        "generation": 4,
-        "names": {
-          "English": "Sinnoh",
-          "German": "Sinnoh",
-          "French": "Sinnoh",
-          "Italian": "Sinnoh",
-          "Japanese": "シンオウ",
-          "Korean": "신오",
-          "Spanish": "Sinnoh"
-        }
-      },
-      "names": {
-        "English": "Giratina (Origin Forme)",
-        "German": "Giratina (Urform)",
-        "French": "Giratina (Forme Originelle)",
-        "Italian": "Giratina (Forma Originale)",
-        "Japanese": "ギラティナ (オリジンフォルム)",
-        "Korean": "기라티나 (오리진폼)",
-        "Spanish": "Giratina (Forma Origen)"
-      },
-      "stats": {
-        "stamina": 284,
-        "attack": 225,
-        "defense": 187
-      },
-      "primaryType": "GHOST",
-      "secondaryType": "DRAGON",
-      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
-      "quickMoves": [
-        "DRAGON_TAIL_FAST",
-        "SHADOW_CLAW_FAST"
-      ],
-      "cinematicMoves": [
-        "DRAGON_PULSE",
-        "OMINOUS_WIND",
-        "SHADOW_BALL"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [
-        "SHADOW_FORCE"
-      ],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm487.fORIGIN.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm487.fORIGIN.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "GIRATINA"
-    }
-  },
-  "evolutions": [],
-  "hasMegaEvolution": false,
-  "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
   "assetForms": [
     {
       "form": "ALTERED",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm487.fALTERED.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm487.fALTERED.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm487.fALTERED.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": "ORIGIN",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm487.fORIGIN.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm487.fORIGIN.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm487.fORIGIN.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": null,
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm487.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm487.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm487.s.icon.png",
+      "costume": null,
+      "isFemale": false
     }
-  ]
+  ],
+  "regionForms": [
+    "GIRATINA_ALTERED",
+    "GIRATINA_ORIGIN"
+  ],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
 }

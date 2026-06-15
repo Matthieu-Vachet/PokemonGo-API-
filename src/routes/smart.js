@@ -52,6 +52,7 @@ router.get(
         variants: pokemon.data?.assetForms || [],
         home: pokemon.data?.assets?.home || null,
         backgrounds: pokemon.data?.assets?.locationCards || [],
+        shuffle: pokemon.data?.assets?.shuffle || null,
       },
     });
   }),

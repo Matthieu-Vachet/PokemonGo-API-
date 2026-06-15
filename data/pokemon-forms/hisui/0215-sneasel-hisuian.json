@@ -1,11 +1,12 @@
 {
-  "dexId": "0215",
   "id": "SNEASEL",
-  "slug": "sneasel-hisuian",
   "formId": "SNEASEL_HISUIAN",
   "form": "hisui",
+  "slug": "sneasel-hisuian",
   "dexNr": 215,
+  "dexId": "0215",
   "generation": 4,
+  "baseFormId": "SNEASEL",
   "region": {
     "id": "HISUI",
     "slug": "hisui",
@@ -62,7 +63,6 @@
         {
           "id": "SNEASLER_EVOLUTION_QUEST",
           "slug": "sneasler_evolution_quest",
-          "type": "QUEST_BUDDY_EVOLUTION_WALK",
           "names": {
             "English": "Walk 7 km with your buddy",
             "German": "Laufe 7 km mit deinem Kumpel.",
@@ -71,13 +71,13 @@
             "Japanese": "相棒のポケモンと一緒に7km歩く",
             "Korean": "파트너 포켓몬과 7 km 걷는다",
             "Spanish": "Camina 7 km con tu Pokémon compañero"
-          }
+          },
+          "type": "QUEST_BUDDY_EVOLUTION_WALK"
         }
       ]
     }
   ],
   "hasMegaEvolution": false,
   "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
-  "baseFormId": "SNEASEL"
+  "hasGigantamaxEvolution": false
 }

@@ -230,7 +230,8 @@ Regles selon le stade:
 
 ## Bloc Mega / Primo
 
-A ajouter dans `megaEvolutions` avec l'identifiant de la forme comme cle.
+A créer dans `data/pokemon-forms/`, puis ajouter son `formId` à la liste
+`megaEvolutions` de la fiche principale.
 
 ```json
 {
@@ -284,7 +285,7 @@ A ajouter dans `megaEvolutions` avec l'identifiant de la forme comme cle.
 ```
 
 `megaEvolutions` vaut `[]` lorsqu'aucune Mega-Evolution ou forme Primo n'existe.
-Lorsqu'une forme existe, `megaEvolutions` est un objet indexe par identifiant.
+Lorsqu'une forme existe, la liste contient uniquement son `formId`.
 
 ## Bloc Forme Regionale
 

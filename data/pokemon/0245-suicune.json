@@ -65,15 +65,56 @@
     "gigantamax": false,
     "apex": false
   },
+  "shadow": {
+    "released": true,
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO",
+    "variants": [
+      {
+        "name": "Suicune",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 582,
+            "max": 672
+          },
+          "weatherBoosted": {
+            "min": 998,
+            "max": 1108
+          }
+        },
+        "purificationCost": {
+          "candy": 20,
+          "stardust": 20000
+        },
+        "releaseDate": "2020-06-10",
+        "releaseDateText": "June 10, 2020"
+      }
+    ],
+    "firstReleaseDate": "2020-06-10",
+    "purificationCost": {
+      "candy": 20,
+      "stardust": 20000
+    },
+    "catchCp": {
+      "normal": {
+        "min": 582,
+        "max": 672
+      },
+      "weatherBoosted": {
+        "min": 998,
+        "max": 1108
+      }
+    }
+  },
   "pvp": {
     "littleCup": null,
     "greatLeague": {
       "tierRank": "B",
       "rank1": {
         "ivs": {
+          "stamina": 14,
           "attack": 1,
-          "defense": 15,
-          "stamina": 14
+          "defense": 15
         },
         "level": 19,
         "cp": 1500
@@ -90,9 +131,9 @@
       "tierRank": "B",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 0,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 33.5,
         "cp": 2498
@@ -109,9 +150,9 @@
       "tierRank": "C",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 15,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 50,
         "cp": 3372
@@ -124,47 +165,6 @@
         ]
       }
     }
-  },
-  "shadow": {
-    "released": true,
-    "firstReleaseDate": "2020-06-10",
-    "purificationCost": {
-      "stardust": 20000,
-      "candy": 20
-    },
-    "catchCp": {
-      "normal": {
-        "min": 582,
-        "max": 672
-      },
-      "weatherBoosted": {
-        "min": 998,
-        "max": 1108
-      }
-    },
-    "variants": [
-      {
-        "name": "Suicune",
-        "variant": "normal",
-        "catchCp": {
-          "normal": {
-            "min": 582,
-            "max": 672
-          },
-          "weatherBoosted": {
-            "min": 998,
-            "max": 1108
-          }
-        },
-        "purificationCost": {
-          "stardust": 20000,
-          "candy": 20
-        },
-        "releaseDate": "2020-06-10",
-        "releaseDateText": "June 10, 2020"
-      }
-    ],
-    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
   },
   "stats": {
     "stamina": 225,
@@ -195,126 +195,132 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm245.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm245.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0245_000_uk_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0245_000_uk_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0245_000_uk_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0245_000_uk_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "genderless",
           "genderCode": "uk",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0245_000_uk_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0245_000_uk_n_00000000_f_r.png"
+          "view": "front"
         }
       ]
     },
     "locationCards": [
       {
         "id": "lc_GoFest2026_tokyo",
-        "name": "GO Fest 2026 Tokyo",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2026_tokyo.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "location",
+        "name": "GO Fest 2026 Tokyo",
         "date": "May 28th - May 31st 2026",
         "eligibleForms": [
           "Suicune"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2026_tokyo.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       },
       {
         "id": "sb_GoFest2025_Eternatus",
-        "name": "Dark Skies",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "special",
+        "name": "Dark Skies",
         "date": "August 18th - 24th 2025",
         "eligibleForms": [
           "Suicune"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       }
-    ]
-  },
-  "regionForms": {
-    "SUICUNE_S": {
-      "id": "SUICUNE",
-      "slug": "suicune-s",
-      "formId": "SUICUNE_S",
-      "form": "normal",
-      "dexNr": 245,
-      "generation": 2,
-      "region": {
-        "id": "JOHTO",
-        "slug": "johto",
-        "generation": 2,
-        "names": {
-          "English": "Johto",
-          "German": "Johto",
-          "French": "Johto",
-          "Italian": "Johto",
-          "Japanese": "ジョウト",
-          "Korean": "성도",
-          "Spanish": "Johto"
+    ],
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "245",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/245.png",
+          "filename": "245.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "245_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/245_a1.png",
+          "filename": "245_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "245_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/245_a1_s.png",
+          "filename": "245_a1_s.png",
+          "codes": [
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "245_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/245_a2.png",
+          "filename": "245_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "245_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/245_a2_s.png",
+          "filename": "245_a2_s.png",
+          "codes": [
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "245_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/245_b1.png",
+          "filename": "245_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "245_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/245_s.png",
+          "filename": "245_s.png",
+          "codes": [
+            "s"
+          ],
+          "shiny": true
         }
-      },
-      "names": {
-        "English": "Suicune",
-        "German": "Suicune",
-        "French": "Suicune",
-        "Italian": "Suicune",
-        "Japanese": "スイクン",
-        "Korean": "스이쿤",
-        "Spanish": "Suicune"
-      },
-      "stats": {
-        "stamina": 225,
-        "attack": 180,
-        "defense": 235
-      },
-      "primaryType": "WATER",
-      "secondaryType": null,
-      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
-      "quickMoves": [
-        "EXTRASENSORY_FAST",
-        "SNARL_FAST",
-        "ICE_FANG_FAST",
-        "WATER_GUN_FAST"
-      ],
-      "cinematicMoves": [
-        "HYDRO_PUMP",
-        "BUBBLE_BEAM",
-        "WATER_PULSE",
-        "ICE_BEAM",
-        "SCALD"
-      ],
-      "eliteQuickMoves": [
-        "HIDDEN_POWER_FAST"
-      ],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm245.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm245.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SUICUNE"
+      ]
     }
   },
-  "evolutions": [],
-  "hasMegaEvolution": false,
-  "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
   "assetForms": [
     {
       "form": null,
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm245.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm245.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm245.s.icon.png",
+      "costume": null,
+      "isFemale": false
     }
-  ]
+  ],
+  "regionForms": [
+    "SUICUNE_S"
+  ],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "dynamaxForms": [
+    "SUICUNE_DYNAMAX"
+  ],
+  "hasGigantamaxEvolution": false
 }

@@ -1,10 +1,6 @@
 {
   "id": "DRUM_BEATING",
   "slug": "drum-beating",
-  "power": 115,
-  "energy": -33,
-  "durationMs": 4500,
-  "type": "GRASS",
   "names": {
     "English": "Drum Beating",
     "German": "Trommelschläge",
@@ -14,9 +10,13 @@
     "Korean": "드럼어택",
     "Spanish": "Batería Asalto"
   },
+  "power": 115,
+  "energy": -33,
+  "durationMs": 4500,
+  "type": "GRASS",
   "combat": {
-    "energy": -35,
     "power": 60,
+    "energy": -35,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

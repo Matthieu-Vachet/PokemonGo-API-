@@ -65,15 +65,56 @@
     "gigantamax": false,
     "apex": false
   },
+  "shadow": {
+    "released": true,
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO",
+    "variants": [
+      {
+        "name": "Dragonite",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 753,
+            "max": 855
+          },
+          "weatherBoosted": {
+            "min": 1284,
+            "max": 1408
+          }
+        },
+        "purificationCost": {
+          "candy": 5,
+          "stardust": 5000
+        },
+        "releaseDate": "2019-07-22",
+        "releaseDateText": "July 22, 2019"
+      }
+    ],
+    "firstReleaseDate": "2019-07-22",
+    "purificationCost": {
+      "candy": 5,
+      "stardust": 5000
+    },
+    "catchCp": {
+      "normal": {
+        "min": 753,
+        "max": 855
+      },
+      "weatherBoosted": {
+        "min": 1284,
+        "max": 1408
+      }
+    }
+  },
   "pvp": {
     "littleCup": null,
     "greatLeague": {
       "tierRank": "B",
       "rank1": {
         "ivs": {
+          "stamina": 14,
           "attack": 3,
-          "defense": 15,
-          "stamina": 14
+          "defense": 15
         },
         "level": 14.5,
         "cp": 1500
@@ -90,9 +131,9 @@
       "tierRank": "B",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 0,
-          "defense": 13,
-          "stamina": 15
+          "defense": 13
         },
         "level": 24.5,
         "cp": 2499
@@ -109,9 +150,9 @@
       "tierRank": "B",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 15,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 50,
         "cp": 4287
@@ -124,47 +165,6 @@
         ]
       }
     }
-  },
-  "shadow": {
-    "released": true,
-    "firstReleaseDate": "2019-07-22",
-    "purificationCost": {
-      "stardust": 5000,
-      "candy": 5
-    },
-    "catchCp": {
-      "normal": {
-        "min": 753,
-        "max": 855
-      },
-      "weatherBoosted": {
-        "min": 1284,
-        "max": 1408
-      }
-    },
-    "variants": [
-      {
-        "name": "Dragonite",
-        "variant": "normal",
-        "catchCp": {
-          "normal": {
-            "min": 753,
-            "max": 855
-          },
-          "weatherBoosted": {
-            "min": 1284,
-            "max": 1408
-          }
-        },
-        "purificationCost": {
-          "stardust": 5000,
-          "candy": 5
-        },
-        "releaseDate": "2019-07-22",
-        "releaseDateText": "July 22, 2019"
-      }
-    ],
-    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
   },
   "stats": {
     "stamina": 209,
@@ -196,106 +196,275 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm149.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm149.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0149_000_mf_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0149_000_mf_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0149_000_mf_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0149_000_mf_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "shared",
           "genderCode": "mf",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0149_000_mf_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0149_000_mf_n_00000000_f_r.png"
+          "view": "front"
         }
       ]
     },
     "locationCards": [
       {
         "id": "lc_GoTour2026_losAngeles",
-        "name": "GO Tour 2026 Los Angeles",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoTour2026_losAngeles.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "location",
+        "name": "GO Tour 2026 Los Angeles",
         "date": "February 21st - 22nd 2026",
         "eligibleForms": [
           "Dragonite"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoTour2026_losAngeles.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       },
       {
         "id": "lc_GoTour2026_tainan",
-        "name": "GO Tour 2026 Tainan",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoTour2026_tainan.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "location",
+        "name": "GO Tour 2026 Tainan",
         "date": "February 21st - 22nd 2026",
         "eligibleForms": [
           "Dragonite"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoTour2026_tainan.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       },
       {
         "id": "lc_pokopia2026",
-        "name": "Pokemon Pokopia",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_pokopia2026.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "special",
+        "name": "Pokemon Pokopia",
         "date": "March 10th - March 16th 2026",
         "eligibleForms": [
           "Dragonite"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_pokopia2026.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       }
-    ]
-  },
-  "regionForms": [],
-  "evolutions": [],
-  "hasMegaEvolution": true,
-  "megaEvolutions": {
-    "DRAGONITE_MEGA": {
-      "id": "DRAGONITE_MEGA",
-      "slug": "dragonite-mega",
-      "form": "mega",
-      "names": {
-        "English": "Mega Dragonite",
-        "German": "Mega-Dragoran",
-        "French": "Méga-Dracolosse",
-        "Italian": "MegaDragonite",
-        "Japanese": "メガカイリュー",
-        "Korean": "메가망나뇽",
-        "Spanish": "Mega-Dragonite"
-      },
-      "stats": {
-        "stamina": 209,
-        "attack": 299,
-        "defense": 255
-      },
-      "primaryType": "DRAGON",
-      "secondaryType": "FLYING",
-      "energyCost": 300,
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm149.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm149.s.icon.png"
-      },
-      "baseFormId": "DRAGONITE",
-      "formId": "DRAGONITE_MEGA"
+    ],
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "149",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/149.png",
+          "filename": "149.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "149_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/149_a1.png",
+          "filename": "149_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "149_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/149_a1_s.png",
+          "filename": "149_a1_s.png",
+          "codes": [
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "149_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/149_a2.png",
+          "filename": "149_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "149_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/149_a2_s.png",
+          "filename": "149_a2_s.png",
+          "codes": [
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "149_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/149_b1.png",
+          "filename": "149_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "149_b1_e1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/149_b1_e1.png",
+          "filename": "149_b1_e1.png",
+          "codes": [
+            "b1",
+            "e1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "149_c70",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/149_c70.png",
+          "filename": "149_c70.png",
+          "codes": [
+            "c70"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "149_c70_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/149_c70_a1.png",
+          "filename": "149_c70_a1.png",
+          "codes": [
+            "c70",
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "149_c70_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/149_c70_a1_s.png",
+          "filename": "149_c70_a1_s.png",
+          "codes": [
+            "c70",
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "149_c70_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/149_c70_a2.png",
+          "filename": "149_c70_a2.png",
+          "codes": [
+            "c70",
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "149_c70_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/149_c70_a2_s.png",
+          "filename": "149_c70_a2_s.png",
+          "codes": [
+            "c70",
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "149_c70_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/149_c70_b1.png",
+          "filename": "149_c70_b1.png",
+          "codes": [
+            "c70",
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "149_c70_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/149_c70_s.png",
+          "filename": "149_c70_s.png",
+          "codes": [
+            "c70",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "149_e1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/149_e1.png",
+          "filename": "149_e1.png",
+          "codes": [
+            "e1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "149_e1_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/149_e1_a1.png",
+          "filename": "149_e1_a1.png",
+          "codes": [
+            "e1",
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "149_e1_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/149_e1_a2.png",
+          "filename": "149_e1_a2.png",
+          "codes": [
+            "e1",
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "149_f197",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/149_f197.png",
+          "filename": "149_f197.png",
+          "codes": [
+            "f197"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "149_f198",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/149_f198.png",
+          "filename": "149_f198.png",
+          "codes": [
+            "f198"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "149_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/149_s.png",
+          "filename": "149_s.png",
+          "codes": [
+            "s"
+          ],
+          "shiny": true
+        }
+      ]
     }
   },
-  "hasGigantamaxEvolution": false,
   "assetForms": [
     {
       "form": null,
-      "costume": "FALL_2023",
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm149.cFALL_2023.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm149.cFALL_2023.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm149.cFALL_2023.s.icon.png",
+      "costume": "FALL_2023",
+      "isFemale": false
     },
     {
       "form": null,
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm149.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm149.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm149.s.icon.png",
+      "costume": null,
+      "isFemale": false
     }
-  ]
+  ],
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": true,
+  "megaEvolutions": [
+    "DRAGONITE_MEGA"
+  ],
+  "hasGigantamaxEvolution": false
 }

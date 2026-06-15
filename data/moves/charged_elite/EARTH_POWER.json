@@ -1,10 +1,6 @@
 {
   "id": "EARTH_POWER",
   "slug": "earth-power",
-  "power": 100,
-  "energy": -50,
-  "durationMs": 3500,
-  "type": "GROUND",
   "names": {
     "English": "Earth Power",
     "German": "Erdkräfte",
@@ -14,9 +10,13 @@
     "Korean": "대지의힘",
     "Spanish": "Tierra Viva"
   },
+  "power": 100,
+  "energy": -50,
+  "durationMs": 3500,
+  "type": "GROUND",
   "combat": {
-    "energy": -55,
     "power": 90,
+    "energy": -55,
     "turns": 1,
     "buffs": {
       "activationChance": 10,

@@ -274,6 +274,27 @@ function createValidator() {
     if (value.home !== undefined) homeAssets(value.home, `${pathName}.home`);
     if (value.locationCards !== undefined)
       locationCards(value.locationCards, `${pathName}.locationCards`);
+    if (value.shuffle !== undefined)
+      shuffleAssets(value.shuffle, `${pathName}.shuffle`);
+  }
+
+  function shuffleAssets(value, pathName) {
+    if (actualType(value) !== "object") {
+      add(pathName, "type", "objet d'assets Pokémon Shuffle", actualType(value));
+      return;
+    }
+    field(value, "source", `${pathName}.source`, "string", { nonEmpty: true });
+    const variants = field(value, "variants", `${pathName}.variants`, "array", {
+      nonEmpty: true,
+    });
+    if (!Array.isArray(variants)) return;
+    variants.forEach((variant, index) => {
+      const variantPath = `${pathName}.variants[${index}]`;
+      for (const key of ["id", "filename", "image"])
+        field(variant, key, `${variantPath}.${key}`, "string", { nonEmpty: true });
+      field(variant, "codes", `${variantPath}.codes`, "array");
+      field(variant, "shiny", `${variantPath}.shiny`, "boolean");
+    });
   }
 
   function locationCards(value, pathName) {
@@ -639,6 +660,26 @@ function createValidator() {
       `${prefix}hasGigantamaxEvolution`,
       "boolean",
     );
+    for (const referenceField of ["dynamaxForms", "gigantamaxForms"]) {
+      if (value[referenceField] === undefined) continue;
+      const references = field(
+        value,
+        referenceField,
+        `${prefix}${referenceField}`,
+        "array",
+        { nonEmpty: true },
+      );
+      if (Array.isArray(references))
+        references.forEach((formId, index) =>
+          field(
+            references,
+            index,
+            `${prefix}${referenceField}[${index}]`,
+            "string",
+            { nonEmpty: true },
+          ),
+        );
+    }
     const regionForms = field(
       value,
       "regionForms",
@@ -648,6 +689,12 @@ function createValidator() {
     if (actualType(regionForms) === "object") {
       for (const [id, formData] of Object.entries(regionForms))
         pokemon(formData, "form", `${prefix}regionForms.${id}`);
+    } else if (Array.isArray(regionForms)) {
+      regionForms.forEach((formId, index) =>
+        field(regionForms, index, `${prefix}regionForms[${index}]`, "string", {
+          nonEmpty: true,
+        }),
+      );
     }
     const megas = field(
       value,
@@ -670,6 +717,12 @@ function createValidator() {
     if (actualType(megas) === "object")
       for (const [id, megaData] of Object.entries(megas))
         mega(megaData, `${prefix}megaEvolutions.${id}`);
+    else if (Array.isArray(megas))
+      megas.forEach((formId, index) =>
+        field(megas, index, `${prefix}megaEvolutions[${index}]`, "string", {
+          nonEmpty: true,
+        }),
+      );
     const assetForms = field(
       value,
       "assetForms",
@@ -968,6 +1021,9 @@ function assetSummary(data) {
     : [];
   const homeVariants = Array.isArray(home.variants) ? home.variants : [];
   const goVariants = Array.isArray(data.assetForms) ? data.assetForms : [];
+  const shuffleVariants = Array.isArray(data.assets?.shuffle?.variants)
+    ? data.assets.shuffle.variants
+    : [];
   const urls = [
     data.assets?.image,
     data.assets?.shinyImage,
@@ -975,6 +1031,7 @@ function assetSummary(data) {
     home.shinyImage,
     ...goVariants.flatMap((asset) => [asset.image, asset.shinyImage]),
     ...homeVariants.flatMap((asset) => [asset.image, asset.shinyImage]),
+    ...shuffleVariants.map((asset) => asset.image),
   ].filter(Boolean);
   return {
     go: Boolean(data.assets?.image),
@@ -984,6 +1041,7 @@ function assetSummary(data) {
     goVariants: goVariants.length,
     homeVariants: homeVariants.length,
     locationCards: locationCards.length,
+    shuffleVariants: shuffleVariants.length,
     femaleVariants: homeVariants.filter((asset) =>
       ["fd", "fo"].includes(asset.genderCode),
     ).length,
@@ -1047,6 +1105,17 @@ function referenceIssues(data, moveIds, formIds) {
         target,
       );
   }
+  for (const field of [
+    "regionForms",
+    "megaEvolutions",
+    "dynamaxForms",
+    "gigantamaxForms",
+  ])
+    if (Array.isArray(data[field]))
+      data[field].forEach((formId, index) => {
+        if (!formIds.has(formId))
+          add(`${field}[${index}]`, "identifiant de forme existant", formId);
+      });
   return issues;
 }
 
@@ -1064,47 +1133,13 @@ function buildChecklist() {
     const form = String(data.form || "");
     sources.push({
       file,
-      kind: form.startsWith("mega")
+      kind: form.startsWith("mega") || form === "primal"
         ? "mega"
         : ["dynamax", "gigantamax"].includes(form)
           ? form
           : "form",
       data,
     });
-  }
-
-  const dedicatedMegaIds = new Set(
-    sources
-      .filter((source) => source.kind === "mega")
-      .map(
-        (source) =>
-          `${source.data.dexId}:${source.data.formId || source.data.id}`,
-      ),
-  );
-  for (const source of sources.filter((item) => item.kind === "pokemon")) {
-    if (actualType(source.data.megaEvolutions) !== "object") continue;
-    for (const [megaId, megaData] of Object.entries(
-      source.data.megaEvolutions,
-    )) {
-      if (
-        dedicatedMegaIds.has(
-          `${source.data.dexId}:${megaData.formId || megaData.id || megaId}`,
-        )
-      )
-        continue;
-      sources.push({
-        file: source.file,
-        kind: "mega",
-        data: {
-          dexId: source.data.dexId,
-          generation: source.data.generation,
-          formId: megaData.formId || megaData.id || megaId,
-          form:
-            megaData.form || (megaId.includes("PRIMAL") ? "primal" : "mega"),
-          ...megaData,
-        },
-      });
-    }
   }
 
   const incomingIds = new Set();
@@ -1126,12 +1161,6 @@ function buildChecklist() {
   for (const source of sources) {
     for (const value of [source.data.id, source.data.formId, source.data.baseFormId])
       if (value) formIds.add(value);
-    for (const mega of Object.values(source.data.megaEvolutions || {}))
-      for (const value of [mega.id, mega.formId])
-        if (value) formIds.add(value);
-    for (const form of Object.values(source.data.regionForms || {}))
-      for (const value of [form.id, form.formId])
-        if (value) formIds.add(value);
   }
 
   return sources.map(({ file, kind, data }) => {
@@ -1148,7 +1177,7 @@ function buildChecklist() {
       issue.path = issue.path.replace(/^\./, "");
     validator.issues.push(...referenceIssues(data, moveIds, formIds));
     const displayData =
-      kind === "dynamax" || kind === "gigantamax"
+      kind !== "pokemon"
         ? mergeInheritedForm(
             parents.get(data.baseFormId) ||
               parents.get(data.inherits) ||

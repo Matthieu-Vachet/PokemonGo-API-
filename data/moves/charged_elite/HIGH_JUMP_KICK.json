@@ -1,10 +1,6 @@
 {
   "id": "HIGH_JUMP_KICK",
   "slug": "high-jump-kick",
-  "power": 90,
-  "energy": -100,
-  "durationMs": 1500,
-  "type": "FIGHTING",
   "names": {
     "English": "High Jump Kick",
     "German": "Turmkick",
@@ -14,9 +10,13 @@
     "Korean": "무릎차기",
     "Spanish": "Patada Salto Alta"
   },
+  "power": 90,
+  "energy": -100,
+  "durationMs": 1500,
+  "type": "FIGHTING",
   "combat": {
-    "energy": -55,
     "power": 110,
+    "energy": -55,
     "turns": 1,
     "buffs": {
       "activationChance": 10,

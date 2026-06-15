@@ -66,29 +66,9 @@
     "gigantamax": false,
     "apex": false
   },
-  "pvp": {
-    "littleCup": null,
-    "greatLeague": null,
-    "ultraLeague": null,
-    "masterLeague": null
-  },
   "shadow": {
     "released": true,
-    "firstReleaseDate": "2026-04-30",
-    "purificationCost": {
-      "stardust": 20000,
-      "candy": 20
-    },
-    "catchCp": {
-      "normal": {
-        "min": 709,
-        "max": 809
-      },
-      "weatherBoosted": {
-        "min": 1212,
-        "max": 1333
-      }
-    },
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO",
     "variants": [
       {
         "name": "Landorus",
@@ -104,14 +84,34 @@
           }
         },
         "purificationCost": {
-          "stardust": 20000,
-          "candy": 20
+          "candy": 20,
+          "stardust": 20000
         },
         "releaseDate": "2026-04-30",
         "releaseDateText": "April 30, 2026"
       }
     ],
-    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+    "firstReleaseDate": "2026-04-30",
+    "purificationCost": {
+      "candy": 20,
+      "stardust": 20000
+    },
+    "catchCp": {
+      "normal": {
+        "min": 709,
+        "max": 809
+      },
+      "weatherBoosted": {
+        "min": 1212,
+        "max": 1333
+      }
+    }
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": null,
+    "ultraLeague": null,
+    "masterLeague": null
   },
   "stats": {
     "stamina": 205,
@@ -137,201 +137,221 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm645.fINCARNATE.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm645.fINCARNATE.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0645_000_mo_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0645_000_mo_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0645_000_mo_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0645_000_mo_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "male-only",
           "genderCode": "mo",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0645_000_mo_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0645_000_mo_n_00000000_f_r.png"
+          "view": "front"
         },
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0645_001_mo_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0645_001_mo_n_00000000_f_r.png",
           "formIndex": "001",
           "gender": "male-only",
           "genderCode": "mo",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0645_001_mo_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0645_001_mo_n_00000000_f_r.png"
+          "view": "front"
         }
       ]
     },
     "locationCards": [
       {
         "id": "sb_GoTour2025_black",
-        "name": "GO Tour Unova Black",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_black.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "special",
+        "name": "GO Tour Unova Black",
         "date": "March 1st - 2nd 2025",
         "eligibleForms": [
           "Landorus (Therian Forme)"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_black.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       },
       {
         "id": "sb_GoTour2025_white",
-        "name": "GO Tour Unova White",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_white.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "special",
+        "name": "GO Tour Unova White",
         "date": "March 1st - 2nd 2025",
         "eligibleForms": [
           "Landorus (Therian Forme)"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_white.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       }
-    ]
-  },
-  "regionForms": {
-    "LANDORUS_INCARNATE": {
-      "id": "LANDORUS",
-      "slug": "landorus-incarnate",
-      "formId": "LANDORUS_INCARNATE",
-      "form": "normal",
-      "dexNr": 645,
-      "generation": 5,
-      "region": {
-        "id": "UNOVA",
-        "slug": "unova",
-        "generation": 5,
-        "names": {
-          "English": "Unova",
-          "German": "Einall",
-          "French": "Unys",
-          "Italian": "Unima",
-          "Japanese": "イッシュ",
-          "Korean": "하나",
-          "Spanish": "Teselia"
+    ],
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "645",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/645.png",
+          "filename": "645.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "645_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/645_a1.png",
+          "filename": "645_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "645_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/645_a2.png",
+          "filename": "645_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "645_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/645_b1.png",
+          "filename": "645_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "645_b1_f145",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/645_b1_f145.png",
+          "filename": "645_b1_f145.png",
+          "codes": [
+            "b1",
+            "f145"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "645_f144_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/645_f144_a1_s.png",
+          "filename": "645_f144_a1_s.png",
+          "codes": [
+            "f144",
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "645_f144_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/645_f144_a2_s.png",
+          "filename": "645_f144_a2_s.png",
+          "codes": [
+            "f144",
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "645_f144_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/645_f144_s.png",
+          "filename": "645_f144_s.png",
+          "codes": [
+            "f144",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "645_f145",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/645_f145.png",
+          "filename": "645_f145.png",
+          "codes": [
+            "f145"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "645_f145_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/645_f145_a1.png",
+          "filename": "645_f145_a1.png",
+          "codes": [
+            "f145",
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "645_f145_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/645_f145_a1_s.png",
+          "filename": "645_f145_a1_s.png",
+          "codes": [
+            "f145",
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "645_f145_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/645_f145_a2.png",
+          "filename": "645_f145_a2.png",
+          "codes": [
+            "f145",
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "645_f145_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/645_f145_a2_s.png",
+          "filename": "645_f145_a2_s.png",
+          "codes": [
+            "f145",
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "645_f145_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/645_f145_s.png",
+          "filename": "645_f145_s.png",
+          "codes": [
+            "f145",
+            "s"
+          ],
+          "shiny": true
         }
-      },
-      "names": {
-        "English": "Landorus (Incarnate Forme)",
-        "German": "Demeteros (Inkarnationsform)",
-        "French": "Démétéros (Forme Avatar)",
-        "Italian": "Landorus (Forma Incarnazione)",
-        "Japanese": "ランドロス (けしんフォルム)",
-        "Korean": "랜드로스 (화신폼)",
-        "Spanish": "Landorus (Forma Avatar)"
-      },
-      "stats": {
-        "stamina": 205,
-        "attack": 261,
-        "defense": 182
-      },
-      "primaryType": "GROUND",
-      "secondaryType": "FLYING",
-      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
-      "quickMoves": [
-        "MUD_SHOT_FAST",
-        "ROCK_THROW_FAST"
-      ],
-      "cinematicMoves": [
-        "EARTH_POWER",
-        "OUTRAGE",
-        "ROCK_SLIDE",
-        "FOCUS_BLAST"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm645.fINCARNATE.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm645.fINCARNATE.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "LANDORUS"
-    },
-    "LANDORUS_THERIAN": {
-      "id": "LANDORUS",
-      "slug": "landorus-therian",
-      "formId": "LANDORUS_THERIAN",
-      "form": "normal",
-      "dexNr": 645,
-      "generation": 5,
-      "region": {
-        "id": "UNOVA",
-        "slug": "unova",
-        "generation": 5,
-        "names": {
-          "English": "Unova",
-          "German": "Einall",
-          "French": "Unys",
-          "Italian": "Unima",
-          "Japanese": "イッシュ",
-          "Korean": "하나",
-          "Spanish": "Teselia"
-        }
-      },
-      "names": {
-        "English": "Landorus (Therian Forme)",
-        "German": "Demeteros (Tiergeistform)",
-        "French": "Démétéros (Forme Totémique)",
-        "Italian": "Landorus (Forma Totem)",
-        "Japanese": "ランドロス (れいじゅうフォルム)",
-        "Korean": "랜드로스 (영물폼)",
-        "Spanish": "Landorus (Forma Tótem)"
-      },
-      "stats": {
-        "stamina": 205,
-        "attack": 289,
-        "defense": 179
-      },
-      "primaryType": "GROUND",
-      "secondaryType": "FLYING",
-      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
-      "quickMoves": [
-        "MUD_SHOT_FAST",
-        "EXTRASENSORY_FAST"
-      ],
-      "cinematicMoves": [
-        "EARTHQUAKE",
-        "BULLDOZE",
-        "STONE_EDGE",
-        "SUPER_POWER"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [
-        "SANDSEAR_STORM"
-      ],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm645.fTHERIAN.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm645.fTHERIAN.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "LANDORUS"
+      ]
     }
   },
-  "evolutions": [],
-  "hasMegaEvolution": false,
-  "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
   "assetForms": [
     {
       "form": "INCARNATE",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm645.fINCARNATE.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm645.fINCARNATE.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm645.fINCARNATE.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": "THERIAN",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm645.fTHERIAN.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm645.fTHERIAN.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm645.fTHERIAN.s.icon.png",
+      "costume": null,
+      "isFemale": false
     }
-  ]
+  ],
+  "regionForms": [
+    "LANDORUS_INCARNATE",
+    "LANDORUS_THERIAN"
+  ],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
 }

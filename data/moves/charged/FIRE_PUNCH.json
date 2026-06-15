@@ -1,10 +1,6 @@
 {
   "id": "FIRE_PUNCH",
   "slug": "fire-punch",
-  "power": 50,
-  "energy": -33,
-  "durationMs": 2000,
-  "type": "FIRE",
   "names": {
     "English": "Fire Punch",
     "German": "Feuerschlag",
@@ -14,9 +10,13 @@
     "Korean": "불꽃펀치",
     "Spanish": "Puño Fuego"
   },
+  "power": 50,
+  "energy": -33,
+  "durationMs": 2000,
+  "type": "FIRE",
   "combat": {
-    "energy": -40,
     "power": 60,
+    "energy": -40,
     "turns": 1,
     "buffs": null
   },

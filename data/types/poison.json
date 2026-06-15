@@ -1,7 +1,6 @@
 {
   "id": "POISON",
   "slug": "poison",
-  "type": "Poison",
   "names": {
     "English": "Poison",
     "German": "Gift",
@@ -11,18 +10,6 @@
     "Korean": "독",
     "Spanish": "Veneno"
   },
-  "doubleDamageFrom": [
-    "Ground",
-    "Psychic"
-  ],
-  "halfDamageFrom": [
-    "Fighting",
-    "Poison",
-    "Bug",
-    "Grass",
-    "Fairy"
-  ],
-  "noDamageFrom": [],
   "weatherBoost": {
     "id": "cloudy",
     "names": {
@@ -39,5 +26,18 @@
   "assets": {
     "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_3_poison.png",
     "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_poison.png"
-  }
+  },
+  "type": "Poison",
+  "doubleDamageFrom": [
+    "Ground",
+    "Psychic"
+  ],
+  "halfDamageFrom": [
+    "Fighting",
+    "Poison",
+    "Bug",
+    "Grass",
+    "Fairy"
+  ],
+  "noDamageFrom": []
 }

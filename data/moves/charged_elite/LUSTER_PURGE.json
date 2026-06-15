@@ -1,10 +1,6 @@
 {
   "id": "LUSTER_PURGE",
   "slug": "luster-purge",
-  "power": 100,
-  "energy": -100,
-  "durationMs": 1500,
-  "type": "PSYCHIC",
   "names": {
     "English": "Luster Purge",
     "German": "Scheinwerfer",
@@ -14,9 +10,13 @@
     "Korean": "러스터퍼지",
     "Spanish": "Resplandor"
   },
+  "power": 100,
+  "energy": -100,
+  "durationMs": 1500,
+  "type": "PSYCHIC",
   "combat": {
-    "energy": -60,
     "power": 120,
+    "energy": -60,
     "turns": 1,
     "buffs": {
       "activationChance": 50,

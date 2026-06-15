@@ -1,10 +1,6 @@
 {
   "id": "BLEAKWIND_STORM",
   "slug": "bleakwind-storm",
-  "power": 150,
-  "energy": -100,
-  "durationMs": 2500,
-  "type": "FLYING",
   "names": {
     "English": "Bleakwind Storm",
     "German": "Polarorkan",
@@ -14,9 +10,13 @@
     "Korean": "찬바람폭풍",
     "Spanish": "Vendaval Gélido"
   },
+  "power": 150,
+  "energy": -100,
+  "durationMs": 2500,
+  "type": "FLYING",
   "combat": {
-    "energy": -45,
     "power": 60,
+    "energy": -45,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

@@ -65,15 +65,56 @@
     "gigantamax": false,
     "apex": false
   },
+  "shadow": {
+    "released": true,
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO",
+    "variants": [
+      {
+        "name": "Raikou",
+        "variant": "normal",
+        "catchCp": {
+          "normal": {
+            "min": 681,
+            "max": 778
+          },
+          "weatherBoosted": {
+            "min": 1164,
+            "max": 1282
+          }
+        },
+        "purificationCost": {
+          "candy": 20,
+          "stardust": 20000
+        },
+        "releaseDate": "2020-02-01",
+        "releaseDateText": "February 1, 2020"
+      }
+    ],
+    "firstReleaseDate": "2020-02-01",
+    "purificationCost": {
+      "candy": 20,
+      "stardust": 20000
+    },
+    "catchCp": {
+      "normal": {
+        "min": 681,
+        "max": 778
+      },
+      "weatherBoosted": {
+        "min": 1164,
+        "max": 1282
+      }
+    }
+  },
   "pvp": {
     "littleCup": null,
     "greatLeague": {
       "tierRank": "A",
       "rank1": {
         "ivs": {
+          "stamina": 14,
           "attack": 3,
-          "defense": 15,
-          "stamina": 14
+          "defense": 15
         },
         "level": 16,
         "cp": 1500
@@ -90,9 +131,9 @@
       "tierRank": "A",
       "rank1": {
         "ivs": {
+          "stamina": 12,
           "attack": 1,
-          "defense": 15,
-          "stamina": 12
+          "defense": 15
         },
         "level": 27,
         "cp": 2500
@@ -109,9 +150,9 @@
       "tierRank": "B",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 15,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 50,
         "cp": 3902
@@ -124,47 +165,6 @@
         ]
       }
     }
-  },
-  "shadow": {
-    "released": true,
-    "firstReleaseDate": "2020-02-01",
-    "purificationCost": {
-      "stardust": 20000,
-      "candy": 20
-    },
-    "catchCp": {
-      "normal": {
-        "min": 681,
-        "max": 778
-      },
-      "weatherBoosted": {
-        "min": 1164,
-        "max": 1282
-      }
-    },
-    "variants": [
-      {
-        "name": "Raikou",
-        "variant": "normal",
-        "catchCp": {
-          "normal": {
-            "min": 681,
-            "max": 778
-          },
-          "weatherBoosted": {
-            "min": 1164,
-            "max": 1282
-          }
-        },
-        "purificationCost": {
-          "stardust": 20000,
-          "candy": 20
-        },
-        "releaseDate": "2020-02-01",
-        "releaseDateText": "February 1, 2020"
-      }
-    ],
-    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
   },
   "stats": {
     "stamina": 207,
@@ -191,122 +191,132 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm243.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm243.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0243_000_uk_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0243_000_uk_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0243_000_uk_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0243_000_uk_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "genderless",
           "genderCode": "uk",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0243_000_uk_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0243_000_uk_n_00000000_f_r.png"
+          "view": "front"
         }
       ]
     },
     "locationCards": [
       {
         "id": "lc_GoFest2026_chicago",
-        "name": "GO Fest 2026 Chicago",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2026_chicago.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "location",
+        "name": "GO Fest 2026 Chicago",
         "date": "June 5th - 7th 2026",
         "eligibleForms": [
           "Raikou"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_GoFest2026_chicago.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       },
       {
         "id": "sb_GoFest2025_Eternatus",
-        "name": "Dark Skies",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "special",
+        "name": "Dark Skies",
         "date": "August 18th - 24th 2025",
         "eligibleForms": [
           "Raikou"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoFest2025_Eternatus.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       }
-    ]
-  },
-  "regionForms": {
-    "RAIKOU_S": {
-      "id": "RAIKOU",
-      "slug": "raikou-s",
-      "formId": "RAIKOU_S",
-      "form": "normal",
-      "dexNr": 243,
-      "generation": 2,
-      "region": {
-        "id": "JOHTO",
-        "slug": "johto",
-        "generation": 2,
-        "names": {
-          "English": "Johto",
-          "German": "Johto",
-          "French": "Johto",
-          "Italian": "Johto",
-          "Japanese": "ジョウト",
-          "Korean": "성도",
-          "Spanish": "Johto"
+    ],
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "243",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/243.png",
+          "filename": "243.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "243_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/243_a1.png",
+          "filename": "243_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "243_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/243_a1_s.png",
+          "filename": "243_a1_s.png",
+          "codes": [
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "243_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/243_a2.png",
+          "filename": "243_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "243_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/243_a2_s.png",
+          "filename": "243_a2_s.png",
+          "codes": [
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "243_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/243_b1.png",
+          "filename": "243_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "243_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/243_s.png",
+          "filename": "243_s.png",
+          "codes": [
+            "s"
+          ],
+          "shiny": true
         }
-      },
-      "names": {
-        "English": "Raikou",
-        "German": "Raikou",
-        "French": "Raikou",
-        "Italian": "Raikou",
-        "Japanese": "ライコウ",
-        "Korean": "라이코",
-        "Spanish": "Raikou"
-      },
-      "stats": {
-        "stamina": 207,
-        "attack": 241,
-        "defense": 195
-      },
-      "primaryType": "ELECTRIC",
-      "secondaryType": null,
-      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
-      "quickMoves": [
-        "THUNDER_SHOCK_FAST",
-        "VOLT_SWITCH_FAST"
-      ],
-      "cinematicMoves": [
-        "THUNDER",
-        "THUNDERBOLT",
-        "WILD_CHARGE",
-        "SHADOW_BALL",
-        "AURA_SPHERE"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm243.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm243.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "RAIKOU"
+      ]
     }
   },
-  "evolutions": [],
-  "hasMegaEvolution": false,
-  "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
   "assetForms": [
     {
       "form": null,
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm243.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm243.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm243.s.icon.png",
+      "costume": null,
+      "isFemale": false
     }
-  ]
+  ],
+  "regionForms": [
+    "RAIKOU_S"
+  ],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "dynamaxForms": [
+    "RAIKOU_DYNAMAX"
+  ],
+  "hasGigantamaxEvolution": false
 }

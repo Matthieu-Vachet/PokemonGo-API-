@@ -1,10 +1,6 @@
 {
   "id": "GUNK_SHOT",
   "slug": "gunk-shot",
-  "power": 130,
-  "energy": -100,
-  "durationMs": 3000,
-  "type": "POISON",
   "names": {
     "English": "Gunk Shot",
     "German": "Mülltreffer",
@@ -14,9 +10,13 @@
     "Korean": "더스트슈트",
     "Spanish": "Lanzamugre"
   },
+  "power": 130,
+  "energy": -100,
+  "durationMs": 3000,
+  "type": "POISON",
   "combat": {
-    "energy": -75,
     "power": 130,
+    "energy": -75,
     "turns": 1,
     "buffs": null
   },

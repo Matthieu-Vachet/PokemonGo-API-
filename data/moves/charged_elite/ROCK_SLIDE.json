@@ -1,10 +1,6 @@
 {
   "id": "ROCK_SLIDE",
   "slug": "rock-slide",
-  "power": 75,
-  "energy": -50,
-  "durationMs": 2500,
-  "type": "ROCK",
   "names": {
     "English": "Rock Slide",
     "German": "Steinhagel",
@@ -14,9 +10,13 @@
     "Korean": "스톤샤워",
     "Spanish": "Avalancha"
   },
+  "power": 75,
+  "energy": -50,
+  "durationMs": 2500,
+  "type": "ROCK",
   "combat": {
-    "energy": -45,
     "power": 75,
+    "energy": -45,
     "turns": 1,
     "buffs": null
   },

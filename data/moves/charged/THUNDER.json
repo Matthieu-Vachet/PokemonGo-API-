@@ -1,10 +1,6 @@
 {
   "id": "THUNDER",
   "slug": "thunder",
-  "power": 100,
-  "energy": -100,
-  "durationMs": 2500,
-  "type": "ELECTRIC",
   "names": {
     "English": "Thunder",
     "German": "Donner",
@@ -14,9 +10,13 @@
     "Korean": "번개",
     "Spanish": "Trueno"
   },
+  "power": 100,
+  "energy": -100,
+  "durationMs": 2500,
+  "type": "ELECTRIC",
   "combat": {
-    "energy": -60,
     "power": 100,
+    "energy": -60,
     "turns": 1,
     "buffs": null
   }

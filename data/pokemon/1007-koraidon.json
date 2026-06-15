@@ -94,95 +94,96 @@
   "eliteCinematicMoves": [],
   "assets": {
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1007_000_uk_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1007_000_uk_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1007_000_uk_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1007_000_uk_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "genderless",
           "genderCode": "uk",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1007_000_uk_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1007_000_uk_n_00000000_f_r.png"
+          "view": "front"
         },
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1007_001_uk_n_00000000_f_n.png",
           "formIndex": "001",
           "gender": "genderless",
           "genderCode": "uk",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1007_001_uk_n_00000000_f_n.png"
+          "view": "front"
+        }
+      ]
+    },
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "1007",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/1007.png",
+          "filename": "1007.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "1007_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/1007_a1.png",
+          "filename": "1007_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "1007_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/1007_a2.png",
+          "filename": "1007_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "1007_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/1007_b1.png",
+          "filename": "1007_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "1007_b1_f2996",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/1007_b1_f2996.png",
+          "filename": "1007_b1_f2996.png",
+          "codes": [
+            "b1",
+            "f2996"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "1007_f2996",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/1007_f2996.png",
+          "filename": "1007_f2996.png",
+          "codes": [
+            "f2996"
+          ],
+          "shiny": false
         }
       ]
     }
   },
-  "regionForms": {
-    "KORAIDON_APEX": {
-      "id": "KORAIDON",
-      "slug": "koraidon-apex",
-      "formId": "KORAIDON_APEX",
-      "form": "normal",
-      "dexNr": 1007,
-      "generation": 9,
-      "region": {
-        "id": "PALDEA",
-        "slug": "paldea",
-        "generation": 9,
-        "names": {
-          "English": "Paldea",
-          "German": "Paldea",
-          "French": "Paldea",
-          "Italian": "Paldea",
-          "Japanese": "パルデア",
-          "Korean": "팔데아",
-          "Spanish": "Paldea"
-        }
-      },
-      "names": {
-        "English": "Koraidon (Apex Build)",
-        "German": "Koraidon (Vollkommene Gestalt)",
-        "French": "Koraidon (Forme Finale)",
-        "Italian": "Koraidon (Foggia Integrale)",
-        "Japanese": "コライドン (かんぜんけいたい)",
-        "Korean": "코라이돈 (완전형태)",
-        "Spanish": "Koraidon (Fisonomía Plena)"
-      },
-      "stats": {
-        "stamina": 205,
-        "attack": 263,
-        "defense": 223
-      },
-      "primaryType": "FIGHTING",
-      "secondaryType": "DRAGON",
-      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
-      "quickMoves": [
-        "ROCK_SMASH_FAST",
-        "DRAGON_TAIL_FAST"
-      ],
-      "cinematicMoves": [
-        "GIGA_IMPACT",
-        "DRAGON_CLAW",
-        "CLOSE_COMBAT",
-        "OUTRAGE"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": null,
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "KORAIDON"
-    }
-  },
+  "assetForms": [],
+  "regionForms": [
+    "KORAIDON_APEX"
+  ],
   "evolutions": [],
   "hasMegaEvolution": false,
   "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
-  "assetForms": []
+  "hasGigantamaxEvolution": false
 }

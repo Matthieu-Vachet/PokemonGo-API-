@@ -70,9 +70,9 @@
       "tierRank": "C",
       "rank1": {
         "ivs": {
+          "stamina": 11,
           "attack": 0,
-          "defense": 12,
-          "stamina": 11
+          "defense": 12
         },
         "level": 11.5,
         "cp": 500
@@ -89,9 +89,9 @@
       "tierRank": "B",
       "rank1": {
         "ivs": {
+          "stamina": 14,
           "attack": 0,
-          "defense": 15,
-          "stamina": 14
+          "defense": 15
         },
         "level": 37.5,
         "cp": 1499
@@ -132,127 +132,308 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm77.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm77.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0077_000_mf_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0077_000_mf_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0077_000_mf_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0077_000_mf_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "shared",
           "genderCode": "mf",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0077_000_mf_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0077_000_mf_n_00000000_f_r.png"
+          "view": "front"
         },
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0077_001_mf_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0077_001_mf_n_00000000_f_r.png",
           "formIndex": "001",
           "gender": "shared",
           "genderCode": "mf",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0077_001_mf_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0077_001_mf_n_00000000_f_r.png"
+          "view": "front"
         }
       ]
     },
     "locationCards": [
       {
         "id": "sb_2024_decemberCdRecap",
-        "name": "Community Day 2024",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_2024_decemberCdRecap.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "special",
+        "name": "Community Day 2024",
         "date": "December 21st - 22nd 2024",
         "eligibleForms": [
           "Ponyta",
           "Ponyta (Galarian Form)"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_2024_decemberCdRecap.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       },
       {
         "id": "sb_TeamLeader_red",
-        "name": "Team Valor",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_TeamLeader_red.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "special",
+        "name": "Team Valor",
         "date": "August 26th 2024 - August 30th",
         "eligibleForms": [
           "Ponyta (Candela Accessory)"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_TeamLeader_red.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       }
-    ]
-  },
-  "regionForms": {
-    "PONYTA_GALARIAN": {
-      "id": "PONYTA",
-      "slug": "ponyta-galarian",
-      "formId": "PONYTA_GALARIAN",
-      "form": "galar",
-      "dexNr": 77,
-      "generation": 8,
-      "region": {
-        "id": "GALAR",
-        "slug": "galar",
-        "generation": 8,
-        "names": {
-          "English": "Galar",
-          "German": "Galar",
-          "French": "Galar",
-          "Italian": "Galar",
-          "Japanese": "ガラル",
-          "Korean": "가라르",
-          "Spanish": "Galar"
-        }
-      },
-      "names": {
-        "English": "Galarian Ponyta",
-        "German": "Galar-Ponita",
-        "French": "Ponyta de Galar",
-        "Italian": "Ponyta di Galar",
-        "Japanese": "ガラル ポニータ",
-        "Korean": "가라르 포니타",
-        "Spanish": "Ponyta de Galar"
-      },
-      "stats": {
-        "stamina": 137,
-        "attack": 170,
-        "defense": 127
-      },
-      "primaryType": "PSYCHIC",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "LOW_KICK_FAST",
-        "PSYCHO_CUT_FAST"
-      ],
-      "cinematicMoves": [
-        "PLAY_ROUGH",
-        "PSYBEAM",
-        "SWIFT"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm77.fGALARIAN.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm77.fGALARIAN.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [
+    ],
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
         {
-          "targetFormId": "RAPIDASH_GALARIAN",
-          "candies": 50,
-          "item": null,
-          "quests": []
+          "id": "77",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77.png",
+          "filename": "77.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "77_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77_a1.png",
+          "filename": "77_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "77_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77_a1_s.png",
+          "filename": "77_a1_s.png",
+          "codes": [
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "77_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77_a2.png",
+          "filename": "77_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "77_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77_a2_s.png",
+          "filename": "77_a2_s.png",
+          "codes": [
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "77_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77_b1.png",
+          "filename": "77_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "77_b1_f2336",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77_b1_f2336.png",
+          "filename": "77_b1_f2336.png",
+          "codes": [
+            "b1",
+            "f2336"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "77_f2336",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77_f2336.png",
+          "filename": "77_f2336.png",
+          "codes": [
+            "f2336"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "77_f2336_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77_f2336_a1.png",
+          "filename": "77_f2336_a1.png",
+          "codes": [
+            "f2336",
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "77_f2336_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77_f2336_a1_s.png",
+          "filename": "77_f2336_a1_s.png",
+          "codes": [
+            "f2336",
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "77_f2336_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77_f2336_a2.png",
+          "filename": "77_f2336_a2.png",
+          "codes": [
+            "f2336",
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "77_f2336_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77_f2336_a2_s.png",
+          "filename": "77_f2336_a2_s.png",
+          "codes": [
+            "f2336",
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "77_f2336_c47",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77_f2336_c47.png",
+          "filename": "77_f2336_c47.png",
+          "codes": [
+            "f2336",
+            "c47"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "77_f2336_c47_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77_f2336_c47_a1.png",
+          "filename": "77_f2336_c47_a1.png",
+          "codes": [
+            "f2336",
+            "c47",
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "77_f2336_c47_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77_f2336_c47_a1_s.png",
+          "filename": "77_f2336_c47_a1_s.png",
+          "codes": [
+            "f2336",
+            "c47",
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "77_f2336_c47_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77_f2336_c47_a2.png",
+          "filename": "77_f2336_c47_a2.png",
+          "codes": [
+            "f2336",
+            "c47",
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "77_f2336_c47_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77_f2336_c47_a2_s.png",
+          "filename": "77_f2336_c47_a2_s.png",
+          "codes": [
+            "f2336",
+            "c47",
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "77_f2336_c47_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77_f2336_c47_b1.png",
+          "filename": "77_f2336_c47_b1.png",
+          "codes": [
+            "f2336",
+            "c47",
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "77_f2336_c47_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77_f2336_c47_s.png",
+          "filename": "77_f2336_c47_s.png",
+          "codes": [
+            "f2336",
+            "c47",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "77_f2336_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77_f2336_s.png",
+          "filename": "77_f2336_s.png",
+          "codes": [
+            "f2336",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "77_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/77_s.png",
+          "filename": "77_s.png",
+          "codes": [
+            "s"
+          ],
+          "shiny": true
         }
-      ],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "PONYTA"
+      ]
     }
   },
+  "assetForms": [
+    {
+      "form": null,
+      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm77.cSPRING_2023_VALOR.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm77.cSPRING_2023_VALOR.s.icon.png",
+      "costume": "SPRING_2023_VALOR",
+      "isFemale": false
+    },
+    {
+      "form": "galar",
+      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm77.fGALARIAN.cGOFEST_2021_NOEVOLVE.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm77.fGALARIAN.cGOFEST_2021_NOEVOLVE.s.icon.png",
+      "costume": "GOFEST_2021_NOEVOLVE",
+      "isFemale": false
+    },
+    {
+      "form": "galar",
+      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm77.fGALARIAN.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm77.fGALARIAN.s.icon.png",
+      "costume": null,
+      "isFemale": false
+    },
+    {
+      "form": null,
+      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm77.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm77.s.icon.png",
+      "costume": null,
+      "isFemale": false
+    }
+  ],
+  "regionForms": [
+    "PONYTA_GALARIAN"
+  ],
   "evolutions": [
     {
       "targetFormId": "RAPIDASH",
@@ -263,35 +444,5 @@
   ],
   "hasMegaEvolution": false,
   "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
-  "assetForms": [
-    {
-      "form": null,
-      "costume": "SPRING_2023_VALOR",
-      "isFemale": false,
-      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm77.cSPRING_2023_VALOR.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm77.cSPRING_2023_VALOR.s.icon.png"
-    },
-    {
-      "costume": "GOFEST_2021_NOEVOLVE",
-      "isFemale": false,
-      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm77.fGALARIAN.cGOFEST_2021_NOEVOLVE.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm77.fGALARIAN.cGOFEST_2021_NOEVOLVE.s.icon.png",
-      "form": "galar"
-    },
-    {
-      "costume": null,
-      "isFemale": false,
-      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm77.fGALARIAN.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm77.fGALARIAN.s.icon.png",
-      "form": "galar"
-    },
-    {
-      "form": null,
-      "costume": null,
-      "isFemale": false,
-      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm77.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm77.s.icon.png"
-    }
-  ]
+  "hasGigantamaxEvolution": false
 }

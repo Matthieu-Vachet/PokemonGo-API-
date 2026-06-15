@@ -1,10 +1,6 @@
 {
   "id": "AURA_WHEEL_ELECTRIC",
   "slug": "aura-wheel-electric",
-  "power": 100,
-  "energy": -50,
-  "durationMs": 2500,
-  "type": "ELECTRIC",
   "names": {
     "English": "Aura Wheel",
     "German": "Aura-Rad",
@@ -14,9 +10,13 @@
     "Korean": "오라휠",
     "Spanish": "Rueda Aural"
   },
+  "power": 100,
+  "energy": -50,
+  "durationMs": 2500,
+  "type": "ELECTRIC",
   "combat": {
-    "energy": -45,
     "power": 100,
+    "energy": -45,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

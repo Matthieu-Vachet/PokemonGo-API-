@@ -1,0 +1,83 @@
+{
+  "id": "FLOETTE",
+  "formId": "FLOETTE_YELLOW",
+  "form": "normal",
+  "slug": "floette-yellow",
+  "dexNr": 670,
+  "dexId": "0670",
+  "generation": 6,
+  "baseFormId": "FLOETTE",
+  "region": {
+    "id": "KALOS",
+    "slug": "kalos",
+    "generation": 6,
+    "names": {
+      "English": "Kalos",
+      "German": "Kalos",
+      "French": "Kalos",
+      "Italian": "Kalos",
+      "Japanese": "カロス",
+      "Korean": "칼로스",
+      "Spanish": "Kalos"
+    }
+  },
+  "names": {
+    "English": "Floette (Yellow Flower)",
+    "German": "Floette (Gelbblütler)",
+    "French": "Floette (Fleur Jaune)",
+    "Italian": "Floette (Fiore Giallo)",
+    "Japanese": "フラエッテ (きいろのはな)",
+    "Korean": "플라엣테 (노란 꽃)",
+    "Spanish": "Floette (Flor Amarilla)"
+  },
+  "stats": {
+    "stamina": 144,
+    "attack": 136,
+    "defense": 151
+  },
+  "primaryType": "FAIRY",
+  "secondaryType": null,
+  "pokemonClass": null,
+  "quickMoves": [
+    "VINE_WHIP_FAST",
+    "TACKLE_FAST"
+  ],
+  "cinematicMoves": [
+    "DAZZLING_GLEAM",
+    "PETAL_BLIZZARD",
+    "PSYCHIC"
+  ],
+  "eliteQuickMoves": [],
+  "eliteCinematicMoves": [],
+  "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm670.fYELLOW.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm670.fYELLOW.s.icon.png"
+  },
+  "regionForms": [],
+  "evolutions": [
+    {
+      "targetFormId": "FLORGES_YELLOW",
+      "candies": 100,
+      "item": null,
+      "quests": [
+        {
+          "id": "FLORGES_EVOLUTION_QUEST",
+          "slug": "florges_evolution_quest",
+          "names": {
+            "English": "Earn a heart with your buddy",
+            "German": "Verdiene ein Herz mit deinem Kumpel.",
+            "French": "Gagne un cœur avec ton copain",
+            "Italian": "Guadagna un cuore con il tuo compagno",
+            "Japanese": "相棒のハートを獲得する",
+            "Korean": "하트 획득",
+            "Spanish": "Consigue un corazón con tu compañero"
+          },
+          "type": "QUEST_BUDDY_EARN_AFFECTION_POINTS"
+        }
+      ]
+    }
+  ],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
+}

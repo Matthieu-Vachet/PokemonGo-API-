@@ -1,10 +1,6 @@
 {
   "id": "DRACO_METEOR",
   "slug": "draco-meteor",
-  "power": 150,
-  "energy": -100,
-  "durationMs": 3500,
-  "type": "DRAGON",
   "names": {
     "English": "Draco Meteor",
     "German": "Draco Meteor",
@@ -14,9 +10,13 @@
     "Korean": "용성군",
     "Spanish": "Cometa Draco"
   },
+  "power": 150,
+  "energy": -100,
+  "durationMs": 3500,
+  "type": "DRAGON",
   "combat": {
-    "energy": -65,
     "power": 150,
+    "energy": -65,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

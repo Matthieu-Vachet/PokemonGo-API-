@@ -1,10 +1,6 @@
 {
   "id": "MOONBLAST",
   "slug": "moonblast",
-  "power": 130,
-  "energy": -100,
-  "durationMs": 4000,
-  "type": "FAIRY",
   "names": {
     "English": "Moonblast",
     "German": "Mondgewalt",
@@ -14,9 +10,13 @@
     "Korean": "문포스",
     "Spanish": "Fuerza Lunar"
   },
+  "power": 130,
+  "energy": -100,
+  "durationMs": 4000,
+  "type": "FAIRY",
   "combat": {
-    "energy": -60,
     "power": 110,
+    "energy": -60,
     "turns": 1,
     "buffs": {
       "activationChance": 10,

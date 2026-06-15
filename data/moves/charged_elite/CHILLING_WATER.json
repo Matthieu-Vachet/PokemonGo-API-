@@ -1,10 +1,6 @@
 {
   "id": "CHILLING_WATER",
   "slug": "chilling-water",
-  "power": 65,
-  "energy": -33,
-  "durationMs": 3500,
-  "type": "WATER",
   "names": {
     "English": "Chilling Water",
     "German": "Kalte Dusche",
@@ -14,9 +10,13 @@
     "Korean": "찬물끼얹기",
     "Spanish": "Agua Fría"
   },
+  "power": 65,
+  "energy": -33,
+  "durationMs": 3500,
+  "type": "WATER",
   "combat": {
-    "energy": -45,
     "power": 60,
+    "energy": -45,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

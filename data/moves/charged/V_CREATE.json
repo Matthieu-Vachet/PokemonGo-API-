@@ -1,10 +1,6 @@
 {
   "id": "V_CREATE",
   "slug": "v-create",
-  "power": 105,
-  "energy": -33,
-  "durationMs": 3000,
-  "type": "FIRE",
   "names": {
     "English": "V-create",
     "German": "V-Generator",
@@ -14,9 +10,13 @@
     "Korean": "V제너레이트",
     "Spanish": "V de Fuego"
   },
+  "power": 105,
+  "energy": -33,
+  "durationMs": 3000,
+  "type": "FIRE",
   "combat": {
-    "energy": -40,
     "power": 95,
+    "energy": -40,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

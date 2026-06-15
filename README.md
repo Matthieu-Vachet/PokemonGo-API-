@@ -248,8 +248,11 @@ npm run migrate:types
 npm run migrate:type-assets
 npm run migrate:max-forms
 npm run migrate:identifiers
+npm run migrate:form-references
+npm run migrate:json-order
 npm run audit:moves
 npm run audit:identifiers
+npm run audit:forms
 npm run sync:dry
 ```
 
@@ -308,7 +311,9 @@ Les outils d'import et d'extraction manuels vivent dans `scripts/import/`.
 - Images Pokémon GO via `assets.image`, `assets.shinyImage` et `assetForms`.
 - Images Pokémon Home via `assets.home`; `npm run migrate:home-assets:write` les régénère depuis `asset/HD`.
 - Traductions principales dans les objets `names`.
-- `regionForms` et `megaEvolutions` valent `[]` lorsqu'ils sont vides, sinon ce sont des objets indexes.
+- `regionForms`, `megaEvolutions`, `dynamaxForms` et `gigantamaxForms` sont des listes de références `formId`.
+- Les données complètes de chaque forme vivent uniquement dans `data/pokemon-forms/`.
+- Les icônes Pokémon Shuffle vivent dans `assets.shuffle` et sont importées avec `npm run import:pokemon-shuffle:write`.
 - Les quatre champs d'attaques des Pokemon sont des tableaux d'identifiants.
 - Les details des attaques vivent uniquement dans `data/moves/`, y compris `max/` et `gmax/`.
 - `primaryType`, `secondaryType` et `type` d'attaque utilisent les identifiants courts de `data/types/`, par exemple `"GRASS"`.

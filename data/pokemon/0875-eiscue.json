@@ -91,150 +91,118 @@
   "eliteCinematicMoves": [],
   "assets": {
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0875_000_mf_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0875_000_mf_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0875_000_mf_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0875_000_mf_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "shared",
           "genderCode": "mf",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0875_000_mf_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0875_000_mf_n_00000000_f_r.png"
+          "view": "front"
         },
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0875_001_mf_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0875_001_mf_n_00000000_f_r.png",
           "formIndex": "001",
           "gender": "shared",
           "genderCode": "mf",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0875_001_mf_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0875_001_mf_n_00000000_f_r.png"
+          "view": "front"
+        }
+      ]
+    },
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "875",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/875.png",
+          "filename": "875.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "875_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/875_a1.png",
+          "filename": "875_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "875_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/875_a2.png",
+          "filename": "875_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "875_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/875_b1.png",
+          "filename": "875_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "875_b1_f2541",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/875_b1_f2541.png",
+          "filename": "875_b1_f2541.png",
+          "codes": [
+            "b1",
+            "f2541"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "875_f1_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/875_f1_a1.png",
+          "filename": "875_f1_a1.png",
+          "codes": [
+            "f1",
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "875_f1_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/875_f1_a2.png",
+          "filename": "875_f1_a2.png",
+          "codes": [
+            "f1",
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "875_f2541",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/875_f2541.png",
+          "filename": "875_f2541.png",
+          "codes": [
+            "f2541"
+          ],
+          "shiny": false
         }
       ]
     }
   },
-  "regionForms": {
-    "EISCUE_ICE": {
-      "id": "EISCUE",
-      "slug": "eiscue-ice",
-      "formId": "EISCUE_ICE",
-      "form": "normal",
-      "dexNr": 875,
-      "generation": 8,
-      "region": {
-        "id": "GALAR",
-        "slug": "galar",
-        "generation": 8,
-        "names": {
-          "English": "Galar",
-          "German": "Galar",
-          "French": "Galar",
-          "Italian": "Galar",
-          "Japanese": "ガラル",
-          "Korean": "가라르",
-          "Spanish": "Galar"
-        }
-      },
-      "names": {
-        "English": "Eiscue (Ice Face)",
-        "German": "Kubuin (Tiefkühlkopf)",
-        "French": "Bekaglaçon (Ice Face)",
-        "Italian": "Eiscue (Gelofaccia)",
-        "Japanese": "コオリッポ (アイスフェイス)",
-        "Korean": "빙큐보 (Ice Face)",
-        "Spanish": "Eiscue (Cara de Hielo)"
-      },
-      "stats": {
-        "stamina": 181,
-        "attack": 148,
-        "defense": 195
-      },
-      "primaryType": "ICE",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "POWDER_SNOW_FAST"
-      ],
-      "cinematicMoves": [
-        "ICY_WIND",
-        "WEATHER_BALL_ICE",
-        "SURF"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": null,
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "EISCUE"
-    },
-    "EISCUE_NOICE": {
-      "id": "EISCUE",
-      "slug": "eiscue-noice",
-      "formId": "EISCUE_NOICE",
-      "form": "normal",
-      "dexNr": 875,
-      "generation": 8,
-      "region": {
-        "id": "GALAR",
-        "slug": "galar",
-        "generation": 8,
-        "names": {
-          "English": "Galar",
-          "German": "Galar",
-          "French": "Galar",
-          "Italian": "Galar",
-          "Japanese": "ガラル",
-          "Korean": "가라르",
-          "Spanish": "Galar"
-        }
-      },
-      "names": {
-        "English": "Eiscue (Noice Face)",
-        "German": "Kubuin (Wohlfühlkopf)",
-        "French": "Bekaglaçon (Noice Face)",
-        "Italian": "Eiscue (Liquefaccia)",
-        "Japanese": "コオリッポ (ナイスフェイス)",
-        "Korean": "빙큐보 (Noice Face)",
-        "Spanish": "Eiscue (Cara Deshielo)"
-      },
-      "stats": {
-        "stamina": 181,
-        "attack": 173,
-        "defense": 139
-      },
-      "primaryType": "ICE",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "POWDER_SNOW_FAST"
-      ],
-      "cinematicMoves": [
-        "ICY_WIND",
-        "WEATHER_BALL_ICE",
-        "SURF"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": null,
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "EISCUE"
-    }
-  },
+  "assetForms": [],
+  "regionForms": [
+    "EISCUE_ICE",
+    "EISCUE_NOICE"
+  ],
   "evolutions": [],
   "hasMegaEvolution": false,
   "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
-  "assetForms": []
+  "hasGigantamaxEvolution": false
 }

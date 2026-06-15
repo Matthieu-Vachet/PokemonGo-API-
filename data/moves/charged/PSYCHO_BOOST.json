@@ -1,10 +1,6 @@
 {
   "id": "PSYCHO_BOOST",
   "slug": "psycho-boost",
-  "power": 70,
-  "energy": -50,
-  "durationMs": 4000,
-  "type": "PSYCHIC",
   "names": {
     "English": "Psycho Boost",
     "German": "Psyschub",
@@ -14,9 +10,13 @@
     "Korean": "사이코부스트",
     "Spanish": "Psicoataque"
   },
+  "power": 70,
+  "energy": -50,
+  "durationMs": 4000,
+  "type": "PSYCHIC",
   "combat": {
-    "energy": -35,
     "power": 70,
+    "energy": -35,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

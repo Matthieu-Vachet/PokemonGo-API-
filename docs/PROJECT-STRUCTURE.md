@@ -45,6 +45,13 @@ dates. Il ignore les dates futures et ne crée aucun asset Shadow.
 Le rôle détaillé de chaque fichier JavaScript est documenté dans
 `docs/JAVASCRIPT-FILES.md`.
 
+Les icônes de style Pokémon Shuffle vivent dans `asset/pokemonShuffle/`.
+`scripts/import/pokemon-shuffle.js` les associe aux fiches principales dans
+`assets.shuffle`; les formes en héritent lors de la lecture.
+
+Les fiches principales ne dupliquent plus les données de formes. `regionForms` et
+`megaEvolutions` contiennent uniquement des références vers `data/pokemon-forms/`.
+
 ## API
 
 - `app.js` demarre le serveur Node local.

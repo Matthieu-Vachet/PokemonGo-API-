@@ -1,10 +1,6 @@
 {
   "id": "PARABOLIC_CHARGE",
   "slug": "parabolic-charge",
-  "power": 70,
-  "energy": -50,
-  "durationMs": 3000,
-  "type": "ELECTRIC",
   "names": {
     "English": "Parabolic Charge",
     "German": "Parabolladung",
@@ -14,9 +10,13 @@
     "Korean": "파라볼라차지",
     "Spanish": "Carga Parábola"
   },
+  "power": 70,
+  "energy": -50,
+  "durationMs": 3000,
+  "type": "ELECTRIC",
   "combat": {
-    "energy": -50,
     "power": 70,
+    "energy": -50,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

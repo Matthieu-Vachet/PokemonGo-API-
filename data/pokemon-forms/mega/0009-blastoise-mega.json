@@ -1,12 +1,12 @@
 {
-  "dexId": "0009",
   "id": "BLASTOISE_MEGA",
-  "slug": "blastoise-mega",
+  "formId": "BLASTOISE_MEGA",
   "form": "mega",
+  "slug": "blastoise-mega",
   "dexNr": 9,
+  "dexId": "0009",
   "generation": 1,
   "baseFormId": "BLASTOISE",
-  "formId": "BLASTOISE_MEGA",
   "names": {
     "English": "Mega Blastoise",
     "German": "Mega-Turtok",
@@ -22,18 +22,19 @@
   },
   "catchRate": 5,
   "fleeRate": 5,
-  "availability": {
-    "released": true,
-    "shinyReleased": true,
-    "tradable": true,
-    "pokemonHomeTransfer": true
-  },
+  "energyCost": 200,
   "maxCp": {
     "maxLevel50": 4455,
     "maxLevel40": 3941,
     "weatherBoostLevel25": 2815,
     "raidLevel20": 2252,
     "researchLevel15": 1689
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true
   },
   "stats": {
     "stamina": 188,
@@ -42,7 +43,6 @@
   },
   "primaryType": "WATER",
   "secondaryType": null,
-  "energyCost": 200,
   "assets": {
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm9.fMEGA.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm9.fMEGA.s.icon.png",

@@ -1,10 +1,6 @@
 {
   "id": "HYDRO_CANNON",
   "slug": "hydro-cannon",
-  "power": 90,
-  "energy": -50,
-  "durationMs": 2000,
-  "type": "WATER",
   "names": {
     "English": "Hydro Cannon",
     "German": "Aquahaubitze",
@@ -14,9 +10,13 @@
     "Korean": "하이드로캐논",
     "Spanish": "Hidrocañón"
   },
+  "power": 90,
+  "energy": -50,
+  "durationMs": 2000,
+  "type": "WATER",
   "combat": {
-    "energy": -40,
     "power": 80,
+    "energy": -40,
     "turns": 1,
     "buffs": null
   },

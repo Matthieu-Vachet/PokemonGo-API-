@@ -1,10 +1,6 @@
 {
   "id": "SANDSEAR_STORM",
   "slug": "sandsear-storm",
-  "power": 150,
-  "energy": -100,
-  "durationMs": 2500,
-  "type": "GROUND",
   "names": {
     "English": "Sandsear Storm",
     "German": "Wüstenorkan",
@@ -14,9 +10,13 @@
     "Korean": "열사의폭풍",
     "Spanish": "Simún de Arena"
   },
+  "power": 150,
+  "energy": -100,
+  "durationMs": 2500,
+  "type": "GROUND",
   "combat": {
-    "energy": -45,
     "power": 60,
+    "energy": -45,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

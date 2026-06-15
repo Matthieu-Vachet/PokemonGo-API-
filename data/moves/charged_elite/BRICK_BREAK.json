@@ -1,10 +1,6 @@
 {
   "id": "BRICK_BREAK",
   "slug": "brick-break",
-  "power": 40,
-  "energy": -33,
-  "durationMs": 1500,
-  "type": "FIGHTING",
   "names": {
     "English": "Brick Break",
     "German": "Durchbruch",
@@ -14,9 +10,13 @@
     "Korean": "깨트리기",
     "Spanish": "Demolición"
   },
+  "power": 40,
+  "energy": -33,
+  "durationMs": 1500,
+  "type": "FIGHTING",
   "combat": {
-    "energy": -40,
     "power": 50,
+    "energy": -40,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

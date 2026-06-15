@@ -1,7 +1,6 @@
 {
   "id": "FLYING",
   "slug": "flying",
-  "type": "Flying",
   "names": {
     "English": "Flying",
     "German": "Flug",
@@ -11,19 +10,6 @@
     "Korean": "비행",
     "Spanish": "Volador"
   },
-  "doubleDamageFrom": [
-    "Rock",
-    "Electric",
-    "Ice"
-  ],
-  "halfDamageFrom": [
-    "Fighting",
-    "Bug",
-    "Grass"
-  ],
-  "noDamageFrom": [
-    "Ground"
-  ],
   "weatherBoost": {
     "id": "windy",
     "names": {
@@ -40,5 +26,19 @@
   "assets": {
     "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_2_flying.png",
     "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_flying.png"
-  }
+  },
+  "type": "Flying",
+  "doubleDamageFrom": [
+    "Rock",
+    "Electric",
+    "Ice"
+  ],
+  "halfDamageFrom": [
+    "Fighting",
+    "Bug",
+    "Grass"
+  ],
+  "noDamageFrom": [
+    "Ground"
+  ]
 }

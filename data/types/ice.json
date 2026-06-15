@@ -1,7 +1,6 @@
 {
   "id": "ICE",
   "slug": "ice",
-  "type": "Ice",
   "names": {
     "English": "Ice",
     "German": "Eis",
@@ -11,16 +10,6 @@
     "Korean": "얼음",
     "Spanish": "Hielo"
   },
-  "doubleDamageFrom": [
-    "Fighting",
-    "Rock",
-    "Steel",
-    "Fire"
-  ],
-  "halfDamageFrom": [
-    "Ice"
-  ],
-  "noDamageFrom": [],
   "weatherBoost": {
     "id": "snow",
     "names": {
@@ -37,5 +26,16 @@
   "assets": {
     "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_14_ice.png",
     "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_ice.png"
-  }
+  },
+  "type": "Ice",
+  "doubleDamageFrom": [
+    "Fighting",
+    "Rock",
+    "Steel",
+    "Fire"
+  ],
+  "halfDamageFrom": [
+    "Ice"
+  ],
+  "noDamageFrom": []
 }

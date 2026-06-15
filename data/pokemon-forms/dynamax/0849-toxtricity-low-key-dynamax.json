@@ -2,23 +2,11 @@
   "id": "TOXTRICITY",
   "formId": "TOXTRICITY_LOW_KEY_DYNAMAX",
   "form": "dynamax",
+  "slug": "toxtricity-low-key-dynamax",
   "dexNr": 849,
   "dexId": "0849",
   "generation": 8,
   "baseFormId": "TOXTRICITY_LOW_KEY",
-  "slug": "toxtricity-low-key-dynamax",
-  "maxCp": {
-    "maxLevel50": 2941,
-    "maxLevel40": 2601,
-    "maxBattlesLevel20": 1486
-  },
-  "maxBattle": {
-    "moves": [
-      "MAX_LIGHTNING",
-      "MAX_OOZE"
-    ]
-  },
-  "evolutions": [],
   "names": {
     "English": "Toxtricity (Low Key Form)",
     "German": "Riffex (Tief-Form)",
@@ -28,6 +16,11 @@
     "Korean": "스트린더 (Low Key Form)",
     "Spanish": "Toxtricity (Forma Grave)"
   },
+  "maxCp": {
+    "maxLevel50": 2941,
+    "maxLevel40": 2601,
+    "maxBattlesLevel20": 1486
+  },
   "stats": {
     "stamina": 181,
     "attack": 224,
@@ -35,8 +28,15 @@
   },
   "primaryType": "ELECTRIC",
   "secondaryType": "POISON",
+  "maxBattle": {
+    "moves": [
+      "MAX_LIGHTNING",
+      "MAX_OOZE"
+    ]
+  },
   "assets": {
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm849.fLOW_KEY.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm849.fLOW_KEY.s.icon.png"
-  }
+  },
+  "evolutions": []
 }

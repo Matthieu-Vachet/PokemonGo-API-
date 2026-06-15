@@ -1,10 +1,6 @@
 {
   "id": "NIGHT_SLASH",
   "slug": "night-slash",
-  "power": 45,
-  "energy": -33,
-  "durationMs": 2000,
-  "type": "DARK",
   "names": {
     "English": "Night Slash",
     "German": "Nachthieb",
@@ -14,9 +10,13 @@
     "Korean": "깜짝베기",
     "Spanish": "Tajo Umbrío"
   },
+  "power": 45,
+  "energy": -33,
+  "durationMs": 2000,
+  "type": "DARK",
   "combat": {
-    "energy": -35,
     "power": 50,
+    "energy": -35,
     "turns": 1,
     "buffs": {
       "activationChance": 12,

@@ -72,9 +72,9 @@
       "tierRank": "A",
       "rank1": {
         "ivs": {
+          "stamina": 14,
           "attack": 1,
-          "defense": 15,
-          "stamina": 14
+          "defense": 15
         },
         "level": 24.5,
         "cp": 1500
@@ -91,9 +91,9 @@
       "tierRank": "A",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 6,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 50,
         "cp": 2499
@@ -132,175 +132,194 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm423.fWEST_SEA.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm423.fWEST_SEA.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0423_000_mf_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0423_000_mf_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0423_000_mf_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0423_000_mf_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "shared",
           "genderCode": "mf",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0423_000_mf_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0423_000_mf_n_00000000_f_r.png"
+          "view": "front"
         },
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0423_001_mf_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0423_001_mf_n_00000000_f_r.png",
           "formIndex": "001",
           "gender": "shared",
           "genderCode": "mf",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0423_001_mf_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0423_001_mf_n_00000000_f_r.png"
+          "view": "front"
+        }
+      ]
+    },
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "423",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/423.png",
+          "filename": "423.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "423_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/423_a1.png",
+          "filename": "423_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "423_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/423_a1_s.png",
+          "filename": "423_a1_s.png",
+          "codes": [
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "423_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/423_a2.png",
+          "filename": "423_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "423_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/423_a2_s.png",
+          "filename": "423_a2_s.png",
+          "codes": [
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "423_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/423_b1.png",
+          "filename": "423_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "423_b1_f99",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/423_b1_f99.png",
+          "filename": "423_b1_f99.png",
+          "codes": [
+            "b1",
+            "f99"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "423_f99",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/423_f99.png",
+          "filename": "423_f99.png",
+          "codes": [
+            "f99"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "423_f99_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/423_f99_a1.png",
+          "filename": "423_f99_a1.png",
+          "codes": [
+            "f99",
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "423_f99_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/423_f99_a1_s.png",
+          "filename": "423_f99_a1_s.png",
+          "codes": [
+            "f99",
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "423_f99_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/423_f99_a2.png",
+          "filename": "423_f99_a2.png",
+          "codes": [
+            "f99",
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "423_f99_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/423_f99_a2_s.png",
+          "filename": "423_f99_a2_s.png",
+          "codes": [
+            "f99",
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "423_f99_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/423_f99_s.png",
+          "filename": "423_f99_s.png",
+          "codes": [
+            "f99",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "423_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/423_s.png",
+          "filename": "423_s.png",
+          "codes": [
+            "s"
+          ],
+          "shiny": true
         }
       ]
     }
   },
-  "regionForms": {
-    "GASTRODON_EAST_SEA": {
-      "id": "GASTRODON",
-      "slug": "gastrodon-east-sea",
-      "formId": "GASTRODON_EAST_SEA",
-      "form": "normal",
-      "dexNr": 423,
-      "generation": 4,
-      "region": {
-        "id": "SINNOH",
-        "slug": "sinnoh",
-        "generation": 4,
-        "names": {
-          "English": "Sinnoh",
-          "German": "Sinnoh",
-          "French": "Sinnoh",
-          "Italian": "Sinnoh",
-          "Japanese": "シンオウ",
-          "Korean": "신오",
-          "Spanish": "Sinnoh"
-        }
-      },
-      "names": {
-        "English": "Gastrodon (East Sea)",
-        "German": "Gastrodon (Östliches Meer)",
-        "French": "Tritosor (Mer Orient)",
-        "Italian": "Gastrodon (Mare Est)",
-        "Japanese": "トリトドン (ひがしのうみ)",
-        "Korean": "트리토돈 (동쪽바다)",
-        "Spanish": "Gastrodon (Mar Este)"
-      },
-      "stats": {
-        "stamina": 244,
-        "attack": 169,
-        "defense": 143
-      },
-      "primaryType": "WATER",
-      "secondaryType": "GROUND",
-      "pokemonClass": null,
-      "quickMoves": [
-        "MUD_SLAP_FAST",
-        "HIDDEN_POWER_FAST"
-      ],
-      "cinematicMoves": [
-        "WATER_PULSE",
-        "EARTH_POWER",
-        "BODY_SLAM",
-        "EARTHQUAKE"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm423.fEAST_SEA.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm423.fEAST_SEA.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "GASTRODON"
-    },
-    "GASTRODON_WEST_SEA": {
-      "id": "GASTRODON",
-      "slug": "gastrodon-west-sea",
-      "formId": "GASTRODON_WEST_SEA",
-      "form": "normal",
-      "dexNr": 423,
-      "generation": 4,
-      "region": {
-        "id": "SINNOH",
-        "slug": "sinnoh",
-        "generation": 4,
-        "names": {
-          "English": "Sinnoh",
-          "German": "Sinnoh",
-          "French": "Sinnoh",
-          "Italian": "Sinnoh",
-          "Japanese": "シンオウ",
-          "Korean": "신오",
-          "Spanish": "Sinnoh"
-        }
-      },
-      "names": {
-        "English": "Gastrodon (West Sea)",
-        "German": "Gastrodon (Westliches Meer)",
-        "French": "Tritosor (Mer Occident)",
-        "Italian": "Gastrodon (Mare Ovest)",
-        "Japanese": "トリトドン (にしのうみ)",
-        "Korean": "트리토돈 (서쪽바다)",
-        "Spanish": "Gastrodon (Mar Oeste)"
-      },
-      "stats": {
-        "stamina": 244,
-        "attack": 169,
-        "defense": 143
-      },
-      "primaryType": "WATER",
-      "secondaryType": "GROUND",
-      "pokemonClass": null,
-      "quickMoves": [
-        "MUD_SLAP_FAST",
-        "HIDDEN_POWER_FAST"
-      ],
-      "cinematicMoves": [
-        "WATER_PULSE",
-        "EARTH_POWER",
-        "BODY_SLAM",
-        "EARTHQUAKE"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm423.fWEST_SEA.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm423.fWEST_SEA.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "GASTRODON"
-    }
-  },
-  "evolutions": [],
-  "hasMegaEvolution": false,
-  "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
   "assetForms": [
     {
       "form": "EAST_SEA",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm423.fEAST_SEA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm423.fEAST_SEA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm423.fEAST_SEA.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": "WEST_SEA",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm423.fWEST_SEA.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm423.fWEST_SEA.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm423.fWEST_SEA.s.icon.png",
+      "costume": null,
+      "isFemale": false
     }
-  ]
+  ],
+  "regionForms": [
+    "GASTRODON_EAST_SEA",
+    "GASTRODON_WEST_SEA"
+  ],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
 }

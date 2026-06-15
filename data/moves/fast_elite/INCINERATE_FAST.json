@@ -1,10 +1,6 @@
 {
   "id": "INCINERATE_FAST",
   "slug": "incinerate-fast",
-  "power": 32,
-  "energy": 22,
-  "durationMs": 2500,
-  "type": "FIRE",
   "names": {
     "English": "Incinerate",
     "German": "Einäschern",
@@ -14,9 +10,13 @@
     "Korean": "불태우기",
     "Spanish": "Calcinación"
   },
+  "power": 32,
+  "energy": 22,
+  "durationMs": 2500,
+  "type": "FIRE",
   "combat": {
-    "energy": 20,
     "power": 20,
+    "energy": 20,
     "turns": 5,
     "buffs": null
   },

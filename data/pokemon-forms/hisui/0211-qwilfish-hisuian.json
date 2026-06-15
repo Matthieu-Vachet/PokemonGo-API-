@@ -1,11 +1,12 @@
 {
-  "dexId": "0211",
   "id": "QWILFISH",
-  "slug": "qwilfish-hisuian",
   "formId": "QWILFISH_HISUIAN",
   "form": "hisui",
+  "slug": "qwilfish-hisuian",
   "dexNr": 211,
+  "dexId": "0211",
   "generation": 4,
+  "baseFormId": "QWILFISH",
   "region": {
     "id": "HISUI",
     "slug": "hisui",
@@ -64,7 +65,6 @@
         {
           "id": "OVERQWIL_EVOLUTION_QUEST",
           "slug": "overqwil_evolution_quest",
-          "type": "QUEST_COMPLETE_RAID_BATTLE",
           "names": {
             "English": "Win 10 raids",
             "German": "Gewinne 10 Raids.",
@@ -73,13 +73,13 @@
             "Japanese": "レイドバトルで10回勝つ",
             "Korean": "레이드배틀에서 10번 이긴다",
             "Spanish": "Gana en 10 incursiones"
-          }
+          },
+          "type": "QUEST_COMPLETE_RAID_BATTLE"
         }
       ]
     }
   ],
   "hasMegaEvolution": false,
   "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
-  "baseFormId": "QWILFISH"
+  "hasGigantamaxEvolution": false
 }

@@ -71,9 +71,9 @@
       "tierRank": "B",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 0,
-          "defense": 14,
-          "stamina": 15
+          "defense": 14
         },
         "level": 29,
         "cp": 1498
@@ -90,9 +90,9 @@
       "tierRank": "C",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 15,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 50,
         "cp": 2244
@@ -131,195 +131,134 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm925.fFAMILY_OF_FOUR.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm925.fFAMILY_OF_FOUR.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0925_000_mf_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0925_000_mf_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
-          "formIndex": "000",
-          "gender": "shared",
-          "genderCode": "mf",
           "gigantamax": false,
-          "detail": "00000000",
-          "view": "front",
           "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0925_000_mf_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0925_000_mf_n_00000000_f_r.png"
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0925_000_mf_n_00000000_f_r.png",
+          "formIndex": "000",
+          "gender": "shared",
+          "genderCode": "mf",
+          "detail": "00000000",
+          "view": "front"
         },
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0925_000_uk_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0925_000_uk_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "genderless",
           "genderCode": "uk",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0925_000_uk_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0925_000_uk_n_00000000_f_r.png"
+          "view": "front"
         },
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0925_001_mf_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0925_001_mf_n_00000000_f_r.png",
           "formIndex": "001",
           "gender": "shared",
           "genderCode": "mf",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0925_001_mf_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0925_001_mf_n_00000000_f_r.png"
+          "view": "front"
         },
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0925_001_uk_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0925_001_uk_n_00000000_f_r.png",
           "formIndex": "001",
           "gender": "genderless",
           "genderCode": "uk",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0925_001_uk_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0925_001_uk_n_00000000_f_r.png"
+          "view": "front"
+        }
+      ]
+    },
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "925",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/925.png",
+          "filename": "925.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "925_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/925_b1.png",
+          "filename": "925_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "925_b1_f2983",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/925_b1_f2983.png",
+          "filename": "925_b1_f2983.png",
+          "codes": [
+            "b1",
+            "f2983"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "925_b1_f2984",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/925_b1_f2984.png",
+          "filename": "925_b1_f2984.png",
+          "codes": [
+            "b1",
+            "f2984"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "925_f2983",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/925_f2983.png",
+          "filename": "925_f2983.png",
+          "codes": [
+            "f2983"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "925_f2984",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/925_f2984.png",
+          "filename": "925_f2984.png",
+          "codes": [
+            "f2984"
+          ],
+          "shiny": false
         }
       ]
     }
   },
-  "regionForms": {
-    "MAUSHOLD_FAMILY_OF_FOUR": {
-      "id": "MAUSHOLD",
-      "slug": "maushold-family-of-four",
-      "formId": "MAUSHOLD_FAMILY_OF_FOUR",
-      "form": "normal",
-      "dexNr": 925,
-      "generation": 9,
-      "region": {
-        "id": "PALDEA",
-        "slug": "paldea",
-        "generation": 9,
-        "names": {
-          "English": "Paldea",
-          "German": "Paldea",
-          "French": "Paldea",
-          "Italian": "Paldea",
-          "Japanese": "パルデア",
-          "Korean": "팔데아",
-          "Spanish": "Paldea"
-        }
-      },
-      "names": {
-        "English": "Maushold (Family of Four)",
-        "German": "Famieps (Viererfamilie)",
-        "French": "Famignol (Famille de Quatre)",
-        "Italian": "Maushold (Quadrifamiglia)",
-        "Japanese": "イッカネズミ (４ひきかぞく)",
-        "Korean": "파밀리쥐 (네 식구)",
-        "Spanish": "Maushold (Familia de Cuatro)"
-      },
-      "stats": {
-        "stamina": 179,
-        "attack": 159,
-        "defense": 157
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "TAKE_DOWN_FAST",
-        "MUD_SHOT_FAST",
-        "BULLET_SEED_FAST"
-      ],
-      "cinematicMoves": [
-        "SWIFT",
-        "PLAY_ROUGH",
-        "CRUNCH"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm925.fFAMILY_OF_FOUR.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm925.fFAMILY_OF_FOUR.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "MAUSHOLD"
-    },
-    "MAUSHOLD_FAMILY_OF_THREE": {
-      "id": "MAUSHOLD",
-      "slug": "maushold-family-of-three",
-      "formId": "MAUSHOLD_FAMILY_OF_THREE",
-      "form": "normal",
-      "dexNr": 925,
-      "generation": 9,
-      "region": {
-        "id": "PALDEA",
-        "slug": "paldea",
-        "generation": 9,
-        "names": {
-          "English": "Paldea",
-          "German": "Paldea",
-          "French": "Paldea",
-          "Italian": "Paldea",
-          "Japanese": "パルデア",
-          "Korean": "팔데아",
-          "Spanish": "Paldea"
-        }
-      },
-      "names": {
-        "English": "Maushold (Family of Three)",
-        "German": "Famieps (Dreierfamilie)",
-        "French": "Famignol (Famille de Trois)",
-        "Italian": "Maushold (Trifamiglia)",
-        "Japanese": "イッカネズミ (３びきかぞく)",
-        "Korean": "파밀리쥐 (세 식구)",
-        "Spanish": "Maushold (Familia de Tres)"
-      },
-      "stats": {
-        "stamina": 179,
-        "attack": 159,
-        "defense": 157
-      },
-      "primaryType": "NORMAL",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "TAKE_DOWN_FAST",
-        "MUD_SHOT_FAST",
-        "BULLET_SEED_FAST"
-      ],
-      "cinematicMoves": [
-        "SWIFT",
-        "PLAY_ROUGH",
-        "CRUNCH"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm925.fFAMILY_OF_THREE.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm925.fFAMILY_OF_THREE.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "MAUSHOLD"
-    }
-  },
-  "evolutions": [],
-  "hasMegaEvolution": false,
-  "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
   "assetForms": [
     {
       "form": "FAMILY_OF_FOUR",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm925.fFAMILY_OF_FOUR.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm925.fFAMILY_OF_FOUR.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm925.fFAMILY_OF_FOUR.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": "FAMILY_OF_THREE",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm925.fFAMILY_OF_THREE.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm925.fFAMILY_OF_THREE.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm925.fFAMILY_OF_THREE.s.icon.png",
+      "costume": null,
+      "isFemale": false
     }
-  ]
+  ],
+  "regionForms": [
+    "MAUSHOLD_FAMILY_OF_FOUR",
+    "MAUSHOLD_FAMILY_OF_THREE"
+  ],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
 }

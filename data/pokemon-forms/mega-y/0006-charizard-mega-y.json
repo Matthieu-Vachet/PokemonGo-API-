@@ -1,12 +1,12 @@
 {
-  "dexId": "0006",
   "id": "CHARIZARD_MEGA_Y",
-  "slug": "charizard-mega-y",
+  "formId": "CHARIZARD_MEGA_Y",
   "form": "mega-y",
+  "slug": "charizard-mega-y",
   "dexNr": 6,
+  "dexId": "0006",
   "generation": 1,
   "baseFormId": "CHARIZARD",
-  "formId": "CHARIZARD_MEGA_Y",
   "names": {
     "English": "Mega Charizard Y",
     "German": "Mega-Glurak Y",
@@ -22,18 +22,19 @@
   },
   "catchRate": 5,
   "fleeRate": 5,
-  "availability": {
-    "released": true,
-    "shinyReleased": true,
-    "tradable": true,
-    "pokemonHomeTransfer": true
-  },
+  "energyCost": 200,
   "maxCp": {
     "maxLevel50": 5037,
     "maxLevel40": 4455,
     "weatherBoostLevel25": 3182,
     "raidLevel20": 2546,
     "researchLevel15": 1909
+  },
+  "availability": {
+    "released": true,
+    "shinyReleased": true,
+    "tradable": true,
+    "pokemonHomeTransfer": true
   },
   "stats": {
     "stamina": 186,
@@ -42,7 +43,6 @@
   },
   "primaryType": "FIRE",
   "secondaryType": "FLYING",
-  "energyCost": 200,
   "assets": {
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm6.fMEGA_Y.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm6.fMEGA_Y.s.icon.png"

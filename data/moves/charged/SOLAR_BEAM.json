@@ -1,10 +1,6 @@
 {
   "id": "SOLAR_BEAM",
   "slug": "solar-beam",
-  "power": 180,
-  "energy": -100,
-  "durationMs": 5000,
-  "type": "GRASS",
   "names": {
     "English": "Solar Beam",
     "German": "Solarstrahl",
@@ -14,9 +10,13 @@
     "Korean": "솔라빔",
     "Spanish": "Rayo Solar"
   },
+  "power": 180,
+  "energy": -100,
+  "durationMs": 5000,
+  "type": "GRASS",
   "combat": {
-    "energy": -80,
     "power": 150,
+    "energy": -80,
     "turns": 1,
     "buffs": null
   },

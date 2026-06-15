@@ -1,10 +1,6 @@
 {
   "id": "FLAMETHROWER",
   "slug": "flamethrower",
-  "power": 65,
-  "energy": -50,
-  "durationMs": 2000,
-  "type": "FIRE",
   "names": {
     "English": "Flamethrower",
     "German": "Flammenwurf",
@@ -14,9 +10,13 @@
     "Korean": "화염방사",
     "Spanish": "Lanzallamas"
   },
+  "power": 65,
+  "energy": -50,
+  "durationMs": 2000,
+  "type": "FIRE",
   "combat": {
-    "energy": -55,
     "power": 90,
+    "energy": -55,
     "turns": 1,
     "buffs": null
   }

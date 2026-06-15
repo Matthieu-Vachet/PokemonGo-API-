@@ -1,11 +1,12 @@
 {
-  "dexId": "0083",
   "id": "FARFETCHD",
-  "slug": "farfetchd-galarian",
   "formId": "FARFETCHD_GALARIAN",
   "form": "galar",
+  "slug": "farfetchd-galarian",
   "dexNr": 83,
+  "dexId": "0083",
   "generation": 8,
+  "baseFormId": "FARFETCHD",
   "region": {
     "id": "GALAR",
     "slug": "galar",
@@ -62,7 +63,6 @@
         {
           "id": "SIRFETCHD_EVOLUTION_QUEST",
           "slug": "sirfetchd_evolution_quest",
-          "type": "QUEST_LAND_THROW",
           "names": {
             "English": "Make 10 Excellent Throws",
             "German": "Lande 10 fabelhafte Würfe.",
@@ -71,13 +71,13 @@
             "Japanese": "エクセレントスローを10回投げる",
             "Korean": "Excellent가 나오게 10회 던진다",
             "Spanish": "Haz 10 lanzamientos excelentes"
-          }
+          },
+          "type": "QUEST_LAND_THROW"
         }
       ]
     }
   ],
   "hasMegaEvolution": false,
   "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
-  "baseFormId": "FARFETCHD"
+  "hasGigantamaxEvolution": false
 }

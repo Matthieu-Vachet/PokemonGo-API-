@@ -1,10 +1,6 @@
 {
   "id": "EARTHQUAKE",
   "slug": "earthquake",
-  "power": 140,
-  "energy": -100,
-  "durationMs": 3500,
-  "type": "GROUND",
   "names": {
     "English": "Earthquake",
     "German": "Erdbeben",
@@ -14,9 +10,13 @@
     "Korean": "지진",
     "Spanish": "Terremoto"
   },
+  "power": 140,
+  "energy": -100,
+  "durationMs": 3500,
+  "type": "GROUND",
   "combat": {
-    "energy": -65,
     "power": 110,
+    "energy": -65,
     "turns": 1,
     "buffs": null
   }

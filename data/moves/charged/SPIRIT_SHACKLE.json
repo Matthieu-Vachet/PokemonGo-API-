@@ -1,10 +1,6 @@
 {
   "id": "SPIRIT_SHACKLE",
   "slug": "spirit-shackle",
-  "power": 70,
-  "energy": -33,
-  "durationMs": 2500,
-  "type": "GHOST",
   "names": {
     "English": "Spirit Shackle",
     "German": "Schattenfessel",
@@ -14,9 +10,13 @@
     "Korean": "그림자꿰매기",
     "Spanish": "Puntada Sombría"
   },
+  "power": 70,
+  "energy": -33,
+  "durationMs": 2500,
+  "type": "GHOST",
   "combat": {
-    "energy": -40,
     "power": 50,
+    "energy": -40,
     "turns": 1,
     "buffs": {
       "activationChance": 33,

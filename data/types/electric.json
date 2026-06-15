@@ -1,7 +1,6 @@
 {
   "id": "ELECTRIC",
   "slug": "electric",
-  "type": "Electric",
   "names": {
     "English": "Electric",
     "German": "Elektro",
@@ -11,15 +10,6 @@
     "Korean": "전기",
     "Spanish": "Eléctrico"
   },
-  "doubleDamageFrom": [
-    "Ground"
-  ],
-  "halfDamageFrom": [
-    "Flying",
-    "Steel",
-    "Electric"
-  ],
-  "noDamageFrom": [],
   "weatherBoost": {
     "id": "rain",
     "names": {
@@ -36,5 +26,15 @@
   "assets": {
     "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_12_electric.png",
     "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_electric.png"
-  }
+  },
+  "type": "Electric",
+  "doubleDamageFrom": [
+    "Ground"
+  ],
+  "halfDamageFrom": [
+    "Flying",
+    "Steel",
+    "Electric"
+  ],
+  "noDamageFrom": []
 }

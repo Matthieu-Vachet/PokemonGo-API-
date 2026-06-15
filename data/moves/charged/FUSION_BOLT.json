@@ -1,10 +1,6 @@
 {
   "id": "FUSION_BOLT",
   "slug": "fusion-bolt",
-  "power": 140,
-  "energy": -100,
-  "durationMs": 2000,
-  "type": "ELECTRIC",
   "names": {
     "English": "Fusion Bolt",
     "German": "Kreuzdonner",
@@ -14,9 +10,13 @@
     "Korean": "크로스썬더",
     "Spanish": "Rayo Fusión"
   },
+  "power": 140,
+  "energy": -100,
+  "durationMs": 2000,
+  "type": "ELECTRIC",
   "combat": {
-    "energy": -45,
     "power": 90,
+    "energy": -45,
     "turns": 1,
     "buffs": null
   },

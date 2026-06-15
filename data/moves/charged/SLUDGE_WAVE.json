@@ -1,10 +1,6 @@
 {
   "id": "SLUDGE_WAVE",
   "slug": "sludge-wave",
-  "power": 105,
-  "energy": -100,
-  "durationMs": 3000,
-  "type": "POISON",
   "names": {
     "English": "Sludge Wave",
     "German": "Schlammwoge",
@@ -14,9 +10,13 @@
     "Korean": "오물웨이브",
     "Spanish": "Onda Tóxica"
   },
+  "power": 105,
+  "energy": -100,
+  "durationMs": 3000,
+  "type": "POISON",
   "combat": {
-    "energy": -65,
     "power": 110,
+    "energy": -65,
     "turns": 1,
     "buffs": null
   },

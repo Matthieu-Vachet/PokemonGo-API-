@@ -24,6 +24,7 @@ imports, aux migrations, aux audits ou à la synchronisation.
 | `scripts/import/shadow-pokemon.js` | Synchronise les Pokémon Shadow sortis. |
 | `scripts/import/dynamax-pokemon.js` | Synchronise les Pokémon Dynamax et leurs attaques Max. |
 | `scripts/import/visual-assets.js` | Associe les portraits Méga, fonds de types et construit le catalogue stickers. |
+| `scripts/import/pokemon-shuffle.js` | Associe les icônes Pokémon Shuffle sans interpréter les codes inconnus. |
 
 Les commandes sans suffixe `:write` simulent généralement le résultat. Les commandes
 `:write` modifient les fichiers JSON.
@@ -39,6 +40,9 @@ Les commandes sans suffixe `:write` simulent généralement le résultat. Les co
 | `scripts/migrate/normalize-moves.js` | Remplace les attaques embarquées par leurs identifiants. |
 | `scripts/migrate/normalize-types.js` | Normalise les références de types. |
 | `scripts/migrate/type-assets.js` | Associe les icônes de types au catalogue. |
+| `scripts/migrate/extract-form-references.js` | Extrait les formes intégrées puis conserve seulement leurs références. |
+| `scripts/migrate/order-json-keys.js` | Uniformise l'ordre logique des clés sans modifier les valeurs. |
+| `scripts/audit/forms.js` | Vérifie les références vers les fiches de formes séparées. |
 
 ## Audits Et Synchronisation
 

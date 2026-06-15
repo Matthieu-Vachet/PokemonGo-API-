@@ -7,11 +7,14 @@ const rootDir = process.cwd();
 const notesFile = path.join(rootDir, ".checklist-notes.json");
 const reviewsFile = path.join(rootDir, ".checklist-image-reviews.json");
 const hdDir = path.join(rootDir, "asset", "HD");
+const shuffleDir = path.join(rootDir, "asset", "pokemonShuffle");
 const typesFile = path.join(rootDir, "data", "types", "types.json");
 const stickersFile = path.join(rootDir, "data", "stickers", "stickers.json");
 const movesDir = path.join(rootDir, "data", "moves");
 const remoteHd =
   "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd";
+const remoteShuffle =
+  "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle";
 const filenamePattern =
   /^poke_capture_(\d{4})_(\d{3})_([^_]+)_([^_]+)_(\d{8})_([^_]+)_([nr])\.png$/;
 let remoteHdCache = null;
@@ -137,9 +140,41 @@ function allGoAssets() {
   );
 }
 
+function allShuffleAssets() {
+  if (!fs.existsSync(shuffleDir)) return [];
+  return fs
+    .readdirSync(shuffleDir)
+    .flatMap((filename) => {
+      const match = filename.match(/^(\d+)(.*)\.png$/i);
+      if (!match) return [];
+      const codes = match[2]
+        .replace(/^[_\s]+/, "")
+        .replace(/\s+/g, "_")
+        .split("_")
+        .filter(Boolean);
+      return [{
+        dexId: String(Number(match[1])).padStart(4, "0"),
+        name: `Pokémon n° ${Number(match[1])}`,
+        form: "shuffle",
+        label: codes.join(" · ") || "standard",
+        shiny: codes.at(-1) === "s",
+        details: codes.join(" · "),
+        url: `${remoteShuffle}/${encodeURIComponent(filename)}`,
+        filename,
+        file: path.relative(rootDir, path.join(shuffleDir, filename)),
+      }];
+    })
+    .sort(
+      (left, right) =>
+        left.dexId.localeCompare(right.dexId) ||
+        left.filename.localeCompare(right.filename),
+    );
+}
+
 async function assetAudit(dexId = "") {
   const assets = await allHdAssets();
   const goAssets = allGoAssets();
+  const shuffleAssets = allShuffleAssets();
   const used = usedAssetUrls();
   const counts = new Map();
   for (const item of used)
@@ -152,6 +187,7 @@ async function assetAudit(dexId = "") {
       unused: assets.filter((asset) => !counts.has(asset.url)).length,
       duplicated: [...counts.values()].filter((count) => count > 1).length,
       goFiles: goAssets.length,
+      shuffleFiles: shuffleAssets.length,
     },
     proposals: assets
       .filter((asset) => !dexId || asset.dexId === filterDex)
@@ -162,6 +198,9 @@ async function assetAudit(dexId = "") {
           left.filename.localeCompare(right.filename),
       ),
     goAssets: goAssets.filter((asset) => !dexId || asset.dexId === filterDex),
+    shuffleAssets: shuffleAssets.filter(
+      (asset) => !dexId || asset.dexId === filterDex,
+    ),
     unused: assets.filter((asset) => !counts.has(asset.url)).slice(0, 300),
     duplicated: [...counts.entries()]
       .filter(([, count]) => count > 1)

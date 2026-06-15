@@ -1,10 +1,6 @@
 {
   "id": "CROSS_CHOP",
   "slug": "cross-chop",
-  "power": 50,
-  "energy": -50,
-  "durationMs": 1500,
-  "type": "FIGHTING",
   "names": {
     "English": "Cross Chop",
     "German": "Kreuzhieb",
@@ -14,9 +10,13 @@
     "Korean": "크로스촙",
     "Spanish": "Tajo Cruzado"
   },
+  "power": 50,
+  "energy": -50,
+  "durationMs": 1500,
+  "type": "FIGHTING",
   "combat": {
-    "energy": -35,
     "power": 55,
+    "energy": -35,
     "turns": 1,
     "buffs": null
   },

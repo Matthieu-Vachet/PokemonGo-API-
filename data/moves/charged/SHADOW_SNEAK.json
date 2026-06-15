@@ -1,10 +1,6 @@
 {
   "id": "SHADOW_SNEAK",
   "slug": "shadow-sneak",
-  "power": 50,
-  "energy": -33,
-  "durationMs": 3000,
-  "type": "GHOST",
   "names": {
     "English": "Shadow Sneak",
     "German": "Schattenstoß",
@@ -14,9 +10,13 @@
     "Korean": "야습",
     "Spanish": "Sombra Vil"
   },
+  "power": 50,
+  "energy": -33,
+  "durationMs": 3000,
+  "type": "GHOST",
   "combat": {
-    "energy": -50,
     "power": 75,
+    "energy": -50,
     "turns": 1,
     "buffs": null
   },

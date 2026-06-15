@@ -12,7 +12,7 @@ const {
   detailForKey,
   validateSourceData,
 } = require("../apps/checklist/server/engine");
-const { catalog } = require("../apps/checklist/server/workshop");
+const { assetAudit, catalog } = require("../apps/checklist/server/workshop");
 
 const app = createApp();
 
@@ -93,6 +93,8 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   const bulbasaur = data.pokemon.find((pokemon) => pokemon.key === "BULBASAUR");
   assert.equal(bulbasaur.data.assets.home.source, "pokemon-home");
   assert.ok(bulbasaur.data.assets.home.variants.length >= 1);
+  assert.equal(bulbasaur.data.assets.shuffle.source, "pokemon-shuffle");
+  assert.ok(bulbasaur.data.assets.shuffle.variants.length >= 1);
   const eevee = data.pokemon.find((pokemon) => pokemon.key === "EEVEE");
   const citySafari = eevee.data.assets.locationCards.find(
     (card) => card.id === "lc_CitySafari2023_barcelona_2023",
@@ -155,6 +157,16 @@ test("les types, PvP null et formes Max sont normalisés", () => {
   ]);
   assert.ok(data.moves.some((move) => move.kind === "max"));
   assert.ok(data.moves.some((move) => move.kind === "gmax"));
+  const bulbasaur = data.pokemon.find((pokemon) => pokemon.key === "BULBASAUR");
+  assert.deepEqual(bulbasaur.data.dynamaxForms, ["BULBASAUR_DYNAMAX"]);
+  const venusaur = data.pokemon.find((pokemon) => pokemon.key === "VENUSAUR");
+  assert.deepEqual(venusaur.data.gigantamaxForms, ["VENUSAUR_GIGANTAMAX"]);
+  const toxtricityAmped = data.pokemon.find(
+    (pokemon) => pokemon.key === "TOXTRICITY_AMPED",
+  );
+  assert.deepEqual(toxtricityAmped.data.dynamaxForms, [
+    "TOXTRICITY_AMPED_DYNAMAX",
+  ]);
   assert.ok(
     data.moves.some(
       (move) =>
@@ -209,9 +221,22 @@ test("la checklist calcule les scores, catégories et diagnostics d'assets", () 
   assert.equal(bulbasaur.assets.go, true);
   assert.equal(bulbasaur.assets.home, true);
   assert.ok(bulbasaur.assets.homeVariants >= 1);
+  assert.ok(bulbasaur.assets.shuffleVariants >= 1);
   assert.equal(typeof bulbasaur.assets.locationCards, "number");
   assert.equal(typeof bulbasaur.assets.duplicateUrls, "number");
   assert.equal(typeof bulbasaur.assets.incompletePairs, "number");
+});
+
+test("les formes séparées sont référencées sans données dupliquées", () => {
+  const data = collectAllDocuments();
+  assert.equal(buildChecklist().length, data.pokemon.length);
+  const venusaur = data.pokemon.find((pokemon) => pokemon.key === "VENUSAUR");
+  const mega = data.pokemon.find((pokemon) => pokemon.key === "VENUSAUR_MEGA");
+  assert.deepEqual(venusaur.data.megaEvolutions, ["VENUSAUR_MEGA"]);
+  assert.deepEqual(mega.sourceFiles, [
+    "data/pokemon-forms/mega/0003-venusaur-mega.json",
+  ]);
+  assert.equal(mega.data.formId, "VENUSAUR_MEGA");
 });
 
 test("l'assistant JSON couvre chaque problème détecté", () => {
@@ -279,6 +304,15 @@ test("l'atelier expose les icônes de types et valide les références", () => {
         issue.path === "quickMoves[0]" &&
         issue.expected === "identifiant présent dans data/moves",
     ),
+  );
+});
+
+test("la bibliothèque d'assets expose les icônes Pokémon Shuffle", async () => {
+  const audit = await assetAudit("1");
+  assert.ok(audit.totals.shuffleFiles >= 10000);
+  assert.ok(audit.shuffleAssets.length >= 1);
+  assert.ok(
+    audit.shuffleAssets.every((asset) => asset.url.includes("/pokemonShuffle/")),
   );
 });
 

@@ -1,10 +1,6 @@
 {
   "id": "ACID_SPRAY",
   "slug": "acid-spray",
-  "power": 20,
-  "energy": -50,
-  "durationMs": 3000,
-  "type": "POISON",
   "names": {
     "English": "Acid Spray",
     "German": "Säurespeier",
@@ -14,9 +10,13 @@
     "Korean": "애시드봄",
     "Spanish": "Bomba Ácida"
   },
+  "power": 20,
+  "energy": -50,
+  "durationMs": 3000,
+  "type": "POISON",
   "combat": {
-    "energy": -45,
     "power": 20,
+    "energy": -45,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

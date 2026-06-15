@@ -73,9 +73,9 @@
       "tierRank": "B",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 2,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 32.5,
         "cp": 2497
@@ -92,9 +92,9 @@
       "tierRank": "C",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 15,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 50,
         "cp": 3343
@@ -131,170 +131,130 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm1013.fUNREMARKABLE.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm1013.fUNREMARKABLE.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1013_000_uk_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1013_000_uk_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1013_000_uk_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1013_000_uk_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "genderless",
           "genderCode": "uk",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1013_000_uk_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1013_000_uk_n_00000000_f_r.png"
+          "view": "front"
+        }
+      ]
+    },
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "1013",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/1013.png",
+          "filename": "1013.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "1013_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/1013_a1.png",
+          "filename": "1013_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "1013_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/1013_a2.png",
+          "filename": "1013_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "1013_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/1013_b1.png",
+          "filename": "1013_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "1013_b1_f2874",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/1013_b1_f2874.png",
+          "filename": "1013_b1_f2874.png",
+          "codes": [
+            "b1",
+            "f2874"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "1013_f2874",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/1013_f2874.png",
+          "filename": "1013_f2874.png",
+          "codes": [
+            "f2874"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "1013_f2874_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/1013_f2874_a1.png",
+          "filename": "1013_f2874_a1.png",
+          "codes": [
+            "f2874",
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "1013_f2874_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/1013_f2874_a2.png",
+          "filename": "1013_f2874_a2.png",
+          "codes": [
+            "f2874",
+            "a2"
+          ],
+          "shiny": false
         }
       ]
     }
   },
-  "regionForms": {
-    "SINISTCHA_MASTERPIECE": {
-      "id": "SINISTCHA",
-      "slug": "sinistcha-masterpiece",
-      "formId": "SINISTCHA_MASTERPIECE",
-      "form": "normal",
-      "dexNr": 1013,
-      "generation": 9,
-      "region": {
-        "id": "PALDEA",
-        "slug": "paldea",
-        "generation": 9,
-        "names": {
-          "English": "Paldea",
-          "German": "Paldea",
-          "French": "Paldea",
-          "Italian": "Paldea",
-          "Japanese": "パルデア",
-          "Korean": "팔데아",
-          "Spanish": "Paldea"
-        }
-      },
-      "names": {
-        "English": "Sinistcha (Masterpiece Form)",
-        "German": "Fatalitcha (Edle Form)",
-        "French": "Théffroyable (Forme Exceptionnelle)",
-        "Italian": "Sinistcha (Forma Eccezionale)",
-        "Japanese": "ヤバソチャ (ケッサクのすがた)",
-        "Korean": "그우린차 (걸작의 모습)",
-        "Spanish": "Sinistcha (Forma Exquisita)"
-      },
-      "stats": {
-        "stamina": 174,
-        "attack": 225,
-        "defense": 191
-      },
-      "primaryType": "GRASS",
-      "secondaryType": "GHOST",
-      "pokemonClass": null,
-      "quickMoves": [
-        "ASTONISH_FAST",
-        "MAGICAL_LEAF_FAST"
-      ],
-      "cinematicMoves": [
-        "SHADOW_BALL",
-        "ENERGY_BALL",
-        "POLTERGEIST"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm1013.fMASTERPIECE.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm1013.fMASTERPIECE.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SINISTCHA"
-    },
-    "SINISTCHA_UNREMARKABLE": {
-      "id": "SINISTCHA",
-      "slug": "sinistcha-unremarkable",
-      "formId": "SINISTCHA_UNREMARKABLE",
-      "form": "normal",
-      "dexNr": 1013,
-      "generation": 9,
-      "region": {
-        "id": "PALDEA",
-        "slug": "paldea",
-        "generation": 9,
-        "names": {
-          "English": "Paldea",
-          "German": "Paldea",
-          "French": "Paldea",
-          "Italian": "Paldea",
-          "Japanese": "パルデア",
-          "Korean": "팔데아",
-          "Spanish": "Paldea"
-        }
-      },
-      "names": {
-        "English": "Sinistcha (Unremarkable Form)",
-        "German": "Fatalitcha (Simple Form)",
-        "French": "Théffroyable (Forme Médiocre)",
-        "Italian": "Sinistcha (Forma Dozzinale)",
-        "Japanese": "ヤバソチャ (ボンサクのすがた)",
-        "Korean": "그우린차 (범작의 모습)",
-        "Spanish": "Sinistcha (Forma Mediocre)"
-      },
-      "stats": {
-        "stamina": 174,
-        "attack": 225,
-        "defense": 191
-      },
-      "primaryType": "GRASS",
-      "secondaryType": "GHOST",
-      "pokemonClass": null,
-      "quickMoves": [
-        "ASTONISH_FAST",
-        "MAGICAL_LEAF_FAST"
-      ],
-      "cinematicMoves": [
-        "SHADOW_BALL",
-        "ENERGY_BALL",
-        "POLTERGEIST"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm1013.fUNREMARKABLE.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm1013.fUNREMARKABLE.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "SINISTCHA"
-    }
-  },
-  "evolutions": [],
-  "hasMegaEvolution": false,
-  "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
   "assetForms": [
     {
       "form": "MASTERPIECE",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm1013.fMASTERPIECE.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm1013.fMASTERPIECE.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm1013.fMASTERPIECE.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": "UNREMARKABLE",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm1013.fUNREMARKABLE.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm1013.fUNREMARKABLE.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm1013.fUNREMARKABLE.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": null,
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm1013.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm1013.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm1013.s.icon.png",
+      "costume": null,
+      "isFemale": false
     }
-  ]
+  ],
+  "regionForms": [
+    "SINISTCHA_MASTERPIECE",
+    "SINISTCHA_UNREMARKABLE"
+  ],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
 }

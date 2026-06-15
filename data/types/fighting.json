@@ -1,7 +1,6 @@
 {
   "id": "FIGHTING",
   "slug": "fighting",
-  "type": "Fighting",
   "names": {
     "English": "Fighting",
     "German": "Kampf",
@@ -11,17 +10,6 @@
     "Korean": "격투",
     "Spanish": "Lucha"
   },
-  "doubleDamageFrom": [
-    "Flying",
-    "Psychic",
-    "Fairy"
-  ],
-  "halfDamageFrom": [
-    "Rock",
-    "Bug",
-    "Dark"
-  ],
-  "noDamageFrom": [],
   "weatherBoost": {
     "id": "cloudy",
     "names": {
@@ -38,5 +26,17 @@
   "assets": {
     "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_1_fighting.png",
     "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_fighting.png"
-  }
+  },
+  "type": "Fighting",
+  "doubleDamageFrom": [
+    "Flying",
+    "Psychic",
+    "Fairy"
+  ],
+  "halfDamageFrom": [
+    "Rock",
+    "Bug",
+    "Dark"
+  ],
+  "noDamageFrom": []
 }

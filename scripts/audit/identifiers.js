@@ -1,6 +1,20 @@
+const fs = require("fs");
+const path = require("path");
 const { collectAllDocuments } = require("../../src/sync/source-reader");
 
 const data = collectAllDocuments();
+const rootDir = path.resolve(__dirname, "../..");
+
+function jsonFiles(directory) {
+  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const file = path.join(directory, entry.name);
+    return entry.isDirectory()
+      ? jsonFiles(file)
+      : entry.name.endsWith(".json")
+        ? [file]
+        : [];
+  });
+}
 
 function duplicates(items, field) {
   const values = new Map();
@@ -16,6 +30,19 @@ function duplicates(items, field) {
 }
 
 const pokemonKeys = new Set(data.pokemon.map((pokemon) => pokemon.key));
+const rawPokemonKeys = new Map();
+for (const file of [
+  ...jsonFiles(path.join(rootDir, "data", "pokemon")),
+  ...jsonFiles(path.join(rootDir, "data", "pokemon-forms")),
+]) {
+  const source = JSON.parse(fs.readFileSync(file, "utf8"));
+  const key = source.formId || source.id;
+  if (!rawPokemonKeys.has(key)) rawPokemonKeys.set(key, []);
+  rawPokemonKeys.get(key).push(path.relative(rootDir, file));
+}
+const duplicateSourcePokemonKeys = [...rawPokemonKeys]
+  .filter(([, files]) => files.length > 1)
+  .map(([value, files]) => ({ value, files }));
 const typeIds = new Set(data.types.map((type) => type.id));
 const futureEvolutionTargets = [];
 const invalidPokemonIdentity = [];
@@ -68,6 +95,7 @@ const result = {
   moves: data.moves.length,
   types: data.types.length,
   duplicatePokemonKeys: duplicates(data.pokemon, "key"),
+  duplicateSourcePokemonKeys,
   duplicatePokemonSlugs: duplicates(data.pokemon, "slug"),
   duplicateMoveIds: duplicates(data.moves, "id"),
   duplicateMoveSlugs: duplicates(data.moves, "slug"),
@@ -83,6 +111,7 @@ const result = {
 
 result.valid =
   result.duplicatePokemonKeys.length === 0 &&
+  result.duplicateSourcePokemonKeys.length === 0 &&
   result.duplicatePokemonSlugs.length === 0 &&
   result.duplicateMoveIds.length === 0 &&
   result.duplicateMoveSlugs.length === 0 &&

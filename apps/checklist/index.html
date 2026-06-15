@@ -2019,6 +2019,9 @@
         const locationCards = Array.isArray(d.assets?.locationCards)
           ? d.assets.locationCards
           : [];
+        const shuffleVariants = Array.isArray(d.assets?.shuffle?.variants)
+          ? d.assets.shuffle.variants
+          : [];
         const main = assetCard(
           "Pokémon GO",
           d.form || "normal",
@@ -2084,7 +2087,14 @@
         const locationGallery = locationCards.length
           ? locationCards.map(locationCard).join("")
           : '<div class="empty">Aucun background éligible.</div>';
-        return `<div class="section-grid">${info("Capacités de formes", kv("Méga disponible", d.hasMegaEvolution) + kv("Gigantamax disponible", d.hasGigantamaxEvolution) + kv("Formes régionales", Array.isArray(d.regionForms) ? d.regionForms.length : Object.keys(d.regionForms || {}).length) + kv("Méga / Primo", Array.isArray(d.megaEvolutions) ? d.megaEvolutions.length : Object.keys(d.megaEvolutions || {}).length) + kv("Backgrounds éligibles", locationCards.length))}</div><section class="asset-section"><h2>Aperçus principaux</h2><div class="asset-gallery">${megaPortrait}${main}${homeMain}</div></section><section class="asset-section"><h2>Backgrounds éligibles (${locationCards.length})</h2><div class="asset-gallery">${locationGallery}</div></section><section class="asset-section"><h2>Variantes Pokémon GO (${variants.length})</h2><div class="asset-gallery">${gallery}</div></section><section class="asset-section"><h2>Variantes Pokémon Home (${homeVariants.length})</h2><div class="asset-gallery">${homeGallery}</div></section>`;
+        const shuffleGallery = shuffleVariants.length
+          ? shuffleVariants
+              .map((asset) =>
+                `<article class="asset-card"><div class="asset-card-head"><strong>${esc(asset.id)}</strong><span>${esc(asset.codes?.join(" · ") || "standard")}${asset.shiny ? " · shiny" : ""}</span></div><div class="asset-pictures">${assetPicture("Shuffle", asset.image)}</div></article>`,
+              )
+              .join("")
+          : '<div class="empty">Aucun asset Pokémon Shuffle.</div>';
+        return `<div class="section-grid">${info("Capacités de formes", kv("Méga disponible", d.hasMegaEvolution) + kv("Gigantamax disponible", d.hasGigantamaxEvolution) + kv("Formes régionales / autres", d.regionForms?.length || 0) + kv("Méga / Primo", d.megaEvolutions?.length || 0) + kv("Dynamax", d.dynamaxForms?.length || 0) + kv("Gigamax", d.gigantamaxForms?.length || 0) + kv("Backgrounds éligibles", locationCards.length) + kv("Assets Shuffle", shuffleVariants.length))}</div><section class="asset-section"><h2>Aperçus principaux</h2><div class="asset-gallery">${megaPortrait}${main}${homeMain}</div></section><section class="asset-section"><h2>Pokémon Shuffle (${shuffleVariants.length})</h2><div class="asset-gallery">${shuffleGallery}</div></section><section class="asset-section"><h2>Backgrounds éligibles (${locationCards.length})</h2><div class="asset-gallery">${locationGallery}</div></section><section class="asset-section"><h2>Variantes Pokémon GO (${variants.length})</h2><div class="asset-gallery">${gallery}</div></section><section class="asset-section"><h2>Variantes Pokémon Home (${homeVariants.length})</h2><div class="asset-gallery">${homeGallery}</div></section>`;
       }
       function cpPanel(d) {
         const rows = Array.isArray(d.cpByLevel) ? d.cpByLevel : [];
@@ -2268,7 +2278,7 @@
       }
       function assistantPanel(e, sourceJson) {
         const patch = suggestedPatch(e);
-        return `<div class="section-grid">${info("Résumé qualité", kv("Score", `${e.quality.score}%`) + kv("Corrections proposées", `${e.issues.length} / ${e.issues.length}`) + kv("Champs absents", e.quality.missing) + kv("Valeurs invalides", e.quality.invalid) + kv("Catégories", e.issueCategories.map((category) => problemLabels[category] || category)))}${info("Diagnostic assets", kv("Pokémon GO", e.assets.go) + kv("GO shiny", e.assets.goShiny) + kv("Pokémon Home", e.assets.home) + kv("Home shiny", e.assets.homeShiny) + kv("Variantes GO / Home", `${e.assets.goVariants} / ${e.assets.homeVariants}`) + kv("URL dupliquées", e.assets.duplicateUrls) + kv("Paires normal/shiny incomplètes", e.assets.incompletePairs))}</div><div class="workspace-tools"><button class="action-btn primary" data-copy-patch>Copier le patch édité</button><button class="action-btn" data-download-patch>Télécharger le patch</button><button class="action-btn" data-download-source>Télécharger le JSON source</button></div><p class="meta">Le patch contient tous les problèmes détectés: clés absentes, valeurs nulles ou invalides, listes vides et références cassées. Les structures connues sont générées en entier. La checklist ne modifie aucun fichier source.</p><textarea data-patch>${esc(JSON.stringify(patch, null, 2))}</textarea><h2>JSON source</h2><pre>${esc(JSON.stringify(sourceJson, null, 2))}</pre>`;
+        return `<div class="section-grid">${info("Résumé qualité", kv("Score", `${e.quality.score}%`) + kv("Corrections proposées", `${e.issues.length} / ${e.issues.length}`) + kv("Champs absents", e.quality.missing) + kv("Valeurs invalides", e.quality.invalid) + kv("Catégories", e.issueCategories.map((category) => problemLabels[category] || category)))}${info("Diagnostic assets", kv("Pokémon GO", e.assets.go) + kv("GO shiny", e.assets.goShiny) + kv("Pokémon Home", e.assets.home) + kv("Home shiny", e.assets.homeShiny) + kv("Variantes GO / Home", `${e.assets.goVariants} / ${e.assets.homeVariants}`) + kv("Pokémon Shuffle", e.assets.shuffleVariants) + kv("URL dupliquées", e.assets.duplicateUrls) + kv("Paires normal/shiny incomplètes", e.assets.incompletePairs))}</div><div class="workspace-tools"><button class="action-btn primary" data-copy-patch>Copier le patch édité</button><button class="action-btn" data-download-patch>Télécharger le patch</button><button class="action-btn" data-download-source>Télécharger le JSON source</button></div><p class="meta">Le patch contient tous les problèmes détectés: clés absentes, valeurs nulles ou invalides, listes vides et références cassées. Les structures connues sont générées en entier. La checklist ne modifie aucun fichier source.</p><textarea data-patch>${esc(JSON.stringify(patch, null, 2))}</textarea><h2>JSON source</h2><pre>${esc(JSON.stringify(sourceJson, null, 2))}</pre>`;
       }
       function editorPanel(sourceJson) {
         return `<div class="workspace-tools"><button class="action-btn primary" data-editor-copy>Copier le JSON corrigé</button><button class="action-btn" data-editor-validate>Valider le brouillon</button><button class="action-btn" data-editor-diff>Prévisualiser le diff</button><button class="action-btn" data-editor-undo>Annuler la dernière saisie</button><button class="action-btn" data-editor-download>Télécharger</button></div><div class="status-box">Éditeur de brouillon uniquement. Aucun fichier source ne sera modifié.</div><div class="editor-grid"><div><h2>Brouillon modifiable</h2><textarea data-editor>${esc(JSON.stringify(sourceJson, null, 2))}</textarea></div><div><h2>Validation / diff</h2><div class="diff-box" data-editor-result>Utilise « Valider » ou « Prévisualiser le diff ».</div></div></div>`;
@@ -2514,7 +2524,7 @@
           state.activeEntry
             ? `${state.activeEntry.dexId} ${state.activeEntry.name}`
             : "Audit global",
-          `<div class="section-grid">${info("Audit global", kv("Images Pokémon Home", audit.totals.files) + kv("Images Pokémon GO", audit.totals.goFiles) + kv("Images Home utilisées", audit.totals.used) + kv("Images Home inutilisées", audit.totals.unused) + kv("URLs Home utilisées plusieurs fois", audit.totals.duplicated))}</div><p class="meta">Les noms Home sont décodés automatiquement: forme, sexe, normal/shiny, Gigantamax et vue avant/arrière. Toutes les propositions restent en lecture seule.</p><div class="asset-browser-head"><input type="search" data-asset-search placeholder="Pokémon, numéro, forme ou fichier"><select data-asset-source><option value="hd">Pokémon Home HD</option><option value="go">Pokémon GO</option></select><button class="action-btn" data-asset-all>${state.activeEntry ? "Toute la bibliothèque" : "Réinitialiser"}</button></div><div class="asset-proposals" data-asset-list></div><div class="asset-pagination"><button class="action-btn" data-asset-prev>Page précédente</button><strong data-asset-page></strong><button class="action-btn" data-asset-next>Page suivante</button></div>`,
+          `<div class="section-grid">${info("Audit global", kv("Images Pokémon Home", audit.totals.files) + kv("Images Pokémon GO", audit.totals.goFiles) + kv("Images Pokémon Shuffle", audit.totals.shuffleFiles) + kv("Images Home utilisées", audit.totals.used) + kv("Images Home inutilisées", audit.totals.unused) + kv("URLs Home utilisées plusieurs fois", audit.totals.duplicated))}</div><p class="meta">Les noms Home sont décodés automatiquement. Les codes Shuffle restent affichés tels qu'ils existent dans les noms de fichiers.</p><div class="asset-browser-head"><input type="search" data-asset-search placeholder="Pokémon, numéro, forme ou fichier"><select data-asset-source><option value="hd">Pokémon Home HD</option><option value="go">Pokémon GO</option><option value="shuffle">Pokémon Shuffle</option></select><button class="action-btn" data-asset-all>${state.activeEntry ? "Toute la bibliothèque" : "Réinitialiser"}</button></div><div class="asset-proposals" data-asset-list></div><div class="asset-pagination"><button class="action-btn" data-asset-prev>Page précédente</button><strong data-asset-page></strong><button class="action-btn" data-asset-next>Page suivante</button></div>`,
         );
         const content = el.workspaceContent;
         const listElement = content.querySelector("[data-asset-list]");
@@ -2525,7 +2535,13 @@
         const next = content.querySelector("[data-asset-next]");
         const renderAssets = () => {
           const query = search.value.trim().toLocaleLowerCase("fr");
-          const assets = (source.value === "hd" ? audit.proposals : audit.goAssets).filter(
+          const assets = (
+            source.value === "hd"
+              ? audit.proposals
+              : source.value === "shuffle"
+                ? audit.shuffleAssets
+                : audit.goAssets
+          ).filter(
             (asset) =>
               !query ||
               [
@@ -2559,10 +2575,13 @@
           pageLabel.textContent = `${assets.length.toLocaleString("fr")} asset(s) · page ${page} / ${pages}`;
           previous.disabled = page <= 1;
           next.disabled = page >= pages;
-          el.workspaceSubtitle.textContent =
+          el.workspaceSubtitle.textContent = `${assets.length.toLocaleString("fr")} asset(s) ${
             source.value === "hd"
-              ? `${assets.length.toLocaleString("fr")} asset(s) Pokémon Home HD`
-              : `${assets.length.toLocaleString("fr")} asset(s) Pokémon GO`;
+              ? "Pokémon Home HD"
+              : source.value === "shuffle"
+                ? "Pokémon Shuffle"
+                : "Pokémon GO"
+          }`;
           listElement.querySelectorAll("[data-copy]").forEach((button) => {
             button.onclick = async () => {
               await navigator.clipboard.writeText(button.dataset.copy);

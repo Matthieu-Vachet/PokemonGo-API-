@@ -1,10 +1,6 @@
 {
   "id": "MIST_BALL",
   "slug": "mist-ball",
-  "power": 105,
-  "energy": -100,
-  "durationMs": 2000,
-  "type": "PSYCHIC",
   "names": {
     "English": "Mist Ball",
     "German": "Nebelball",
@@ -14,9 +10,13 @@
     "Korean": "미스트볼",
     "Spanish": "Bola Neblina"
   },
+  "power": 105,
+  "energy": -100,
+  "durationMs": 2000,
+  "type": "PSYCHIC",
   "combat": {
-    "energy": -60,
     "power": 120,
+    "energy": -60,
     "turns": 1,
     "buffs": {
       "activationChance": 50,

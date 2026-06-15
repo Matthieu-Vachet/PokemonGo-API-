@@ -94,95 +94,96 @@
   "eliteCinematicMoves": [],
   "assets": {
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1008_000_uk_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1008_000_uk_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1008_000_uk_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1008_000_uk_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "genderless",
           "genderCode": "uk",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1008_000_uk_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1008_000_uk_n_00000000_f_r.png"
+          "view": "front"
         },
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1008_001_uk_n_00000000_f_n.png",
           "formIndex": "001",
           "gender": "genderless",
           "genderCode": "uk",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_1008_001_uk_n_00000000_f_n.png"
+          "view": "front"
+        }
+      ]
+    },
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "1008",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/1008.png",
+          "filename": "1008.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "1008_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/1008_a1.png",
+          "filename": "1008_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "1008_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/1008_a2.png",
+          "filename": "1008_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "1008_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/1008_b1.png",
+          "filename": "1008_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "1008_b1_f2997",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/1008_b1_f2997.png",
+          "filename": "1008_b1_f2997.png",
+          "codes": [
+            "b1",
+            "f2997"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "1008_f2997",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/1008_f2997.png",
+          "filename": "1008_f2997.png",
+          "codes": [
+            "f2997"
+          ],
+          "shiny": false
         }
       ]
     }
   },
-  "regionForms": {
-    "MIRAIDON_ULTIMATE": {
-      "id": "MIRAIDON",
-      "slug": "miraidon-ultimate",
-      "formId": "MIRAIDON_ULTIMATE",
-      "form": "normal",
-      "dexNr": 1008,
-      "generation": 9,
-      "region": {
-        "id": "PALDEA",
-        "slug": "paldea",
-        "generation": 9,
-        "names": {
-          "English": "Paldea",
-          "German": "Paldea",
-          "French": "Paldea",
-          "Italian": "Paldea",
-          "Japanese": "パルデア",
-          "Korean": "팔데아",
-          "Spanish": "Paldea"
-        }
-      },
-      "names": {
-        "English": "Miraidon (Ultimate Mode)",
-        "German": "Miraidon (Kompletter Modus)",
-        "French": "Miraidon (Mode Ultime)",
-        "Italian": "Miraidon (Assetto Completo)",
-        "Japanese": "ミライドン (コンプリートモード)",
-        "Korean": "미라이돈 (컴플리트모드)",
-        "Spanish": "Miraidon (Modo Pleno)"
-      },
-      "stats": {
-        "stamina": 205,
-        "attack": 263,
-        "defense": 223
-      },
-      "primaryType": "ELECTRIC",
-      "secondaryType": "DRAGON",
-      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
-      "quickMoves": [
-        "THUNDER_SHOCK_FAST",
-        "DRAGON_BREATH_FAST"
-      ],
-      "cinematicMoves": [
-        "HYPER_BEAM",
-        "DRAGON_PULSE",
-        "THUNDER",
-        "OUTRAGE"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": null,
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "MIRAIDON"
-    }
-  },
+  "assetForms": [],
+  "regionForms": [
+    "MIRAIDON_ULTIMATE"
+  ],
   "evolutions": [],
   "hasMegaEvolution": false,
   "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
-  "assetForms": []
+  "hasGigantamaxEvolution": false
 }

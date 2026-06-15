@@ -1,10 +1,6 @@
 {
   "id": "UPPER_HAND",
   "slug": "upper-hand",
-  "power": 50,
-  "energy": -33,
-  "durationMs": 2000,
-  "type": "FIGHTING",
   "names": {
     "English": "Upper Hand",
     "German": "Schnellkonter",
@@ -14,9 +10,13 @@
     "Korean": "기선제압",
     "Spanish": "Palma Rauda"
   },
+  "power": 50,
+  "energy": -33,
+  "durationMs": 2000,
+  "type": "FIGHTING",
   "combat": {
-    "energy": -40,
     "power": 70,
+    "energy": -40,
     "turns": 1,
     "buffs": {
       "activationChance": 30,

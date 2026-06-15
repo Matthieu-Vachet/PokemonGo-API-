@@ -1,10 +1,6 @@
 {
   "id": "AEROBLAST",
   "slug": "aeroblast",
-  "power": 180,
-  "energy": -100,
-  "durationMs": 3500,
-  "type": "FLYING",
   "names": {
     "English": "Aeroblast",
     "German": "Luftstoß",
@@ -14,9 +10,13 @@
     "Korean": "에어로블라스트",
     "Spanish": "Aerochorro"
   },
+  "power": 180,
+  "energy": -100,
+  "durationMs": 3500,
+  "type": "FLYING",
   "combat": {
-    "energy": -75,
     "power": 170,
+    "energy": -75,
     "turns": 1,
     "buffs": {
       "activationChance": 12,

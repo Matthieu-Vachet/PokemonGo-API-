@@ -1,10 +1,6 @@
 {
   "id": "OCTAZOOKA",
   "slug": "octazooka",
-  "power": 55,
-  "energy": -50,
-  "durationMs": 2500,
-  "type": "WATER",
   "names": {
     "English": "Octazooka",
     "German": "Octazooka",
@@ -14,9 +10,13 @@
     "Korean": "대포무노포",
     "Spanish": "Pulpocañón"
   },
+  "power": 55,
+  "energy": -50,
+  "durationMs": 2500,
+  "type": "WATER",
   "combat": {
-    "energy": -50,
     "power": 50,
+    "energy": -50,
     "turns": 1,
     "buffs": {
       "activationChance": 50,

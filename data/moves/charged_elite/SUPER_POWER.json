@@ -1,10 +1,6 @@
 {
   "id": "SUPER_POWER",
   "slug": "super-power",
-  "power": 85,
-  "energy": -50,
-  "durationMs": 3000,
-  "type": "FIGHTING",
   "names": {
     "English": "Superpower",
     "German": "Kraftkoloss",
@@ -14,9 +10,13 @@
     "Korean": "엄청난힘",
     "Spanish": "Fuerza Bruta"
   },
+  "power": 85,
+  "energy": -50,
+  "durationMs": 3000,
+  "type": "FIGHTING",
   "combat": {
-    "energy": -40,
     "power": 85,
+    "energy": -40,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

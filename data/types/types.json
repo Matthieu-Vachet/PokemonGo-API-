@@ -2,7 +2,6 @@
   {
     "id": "NORMAL",
     "slug": "normal",
-    "type": "Normal",
     "names": {
       "English": "Normal",
       "German": "Normal",
@@ -12,13 +11,6 @@
       "Korean": "노말",
       "Spanish": "Normal"
     },
-    "doubleDamageFrom": [
-      "Fighting"
-    ],
-    "halfDamageFrom": [],
-    "noDamageFrom": [
-      "Ghost"
-    ],
     "weatherBoost": {
       "id": "partlyCloudy",
       "names": {
@@ -35,12 +27,19 @@
     "assets": {
       "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_0_normal.png",
       "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_normal.png"
-    }
+    },
+    "type": "Normal",
+    "doubleDamageFrom": [
+      "Fighting"
+    ],
+    "halfDamageFrom": [],
+    "noDamageFrom": [
+      "Ghost"
+    ]
   },
   {
     "id": "FIGHTING",
     "slug": "fighting",
-    "type": "Fighting",
     "names": {
       "English": "Fighting",
       "German": "Kampf",
@@ -50,17 +49,6 @@
       "Korean": "격투",
       "Spanish": "Lucha"
     },
-    "doubleDamageFrom": [
-      "Flying",
-      "Psychic",
-      "Fairy"
-    ],
-    "halfDamageFrom": [
-      "Rock",
-      "Bug",
-      "Dark"
-    ],
-    "noDamageFrom": [],
     "weatherBoost": {
       "id": "cloudy",
       "names": {
@@ -77,12 +65,23 @@
     "assets": {
       "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_1_fighting.png",
       "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_fighting.png"
-    }
+    },
+    "type": "Fighting",
+    "doubleDamageFrom": [
+      "Flying",
+      "Psychic",
+      "Fairy"
+    ],
+    "halfDamageFrom": [
+      "Rock",
+      "Bug",
+      "Dark"
+    ],
+    "noDamageFrom": []
   },
   {
     "id": "FLYING",
     "slug": "flying",
-    "type": "Flying",
     "names": {
       "English": "Flying",
       "German": "Flug",
@@ -92,19 +91,6 @@
       "Korean": "비행",
       "Spanish": "Volador"
     },
-    "doubleDamageFrom": [
-      "Rock",
-      "Electric",
-      "Ice"
-    ],
-    "halfDamageFrom": [
-      "Fighting",
-      "Bug",
-      "Grass"
-    ],
-    "noDamageFrom": [
-      "Ground"
-    ],
     "weatherBoost": {
       "id": "windy",
       "names": {
@@ -121,12 +107,25 @@
     "assets": {
       "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_2_flying.png",
       "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_flying.png"
-    }
+    },
+    "type": "Flying",
+    "doubleDamageFrom": [
+      "Rock",
+      "Electric",
+      "Ice"
+    ],
+    "halfDamageFrom": [
+      "Fighting",
+      "Bug",
+      "Grass"
+    ],
+    "noDamageFrom": [
+      "Ground"
+    ]
   },
   {
     "id": "POISON",
     "slug": "poison",
-    "type": "Poison",
     "names": {
       "English": "Poison",
       "German": "Gift",
@@ -136,18 +135,6 @@
       "Korean": "독",
       "Spanish": "Veneno"
     },
-    "doubleDamageFrom": [
-      "Ground",
-      "Psychic"
-    ],
-    "halfDamageFrom": [
-      "Fighting",
-      "Poison",
-      "Bug",
-      "Grass",
-      "Fairy"
-    ],
-    "noDamageFrom": [],
     "weatherBoost": {
       "id": "cloudy",
       "names": {
@@ -164,12 +151,24 @@
     "assets": {
       "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_3_poison.png",
       "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_poison.png"
-    }
+    },
+    "type": "Poison",
+    "doubleDamageFrom": [
+      "Ground",
+      "Psychic"
+    ],
+    "halfDamageFrom": [
+      "Fighting",
+      "Poison",
+      "Bug",
+      "Grass",
+      "Fairy"
+    ],
+    "noDamageFrom": []
   },
   {
     "id": "GROUND",
     "slug": "ground",
-    "type": "Ground",
     "names": {
       "English": "Ground",
       "German": "Boden",
@@ -179,18 +178,6 @@
       "Korean": "땅",
       "Spanish": "Tierra"
     },
-    "doubleDamageFrom": [
-      "Water",
-      "Grass",
-      "Ice"
-    ],
-    "halfDamageFrom": [
-      "Poison",
-      "Rock"
-    ],
-    "noDamageFrom": [
-      "Electric"
-    ],
     "weatherBoost": {
       "id": "sunny",
       "names": {
@@ -207,12 +194,24 @@
     "assets": {
       "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_4_ground.png",
       "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_ground.png"
-    }
+    },
+    "type": "Ground",
+    "doubleDamageFrom": [
+      "Water",
+      "Grass",
+      "Ice"
+    ],
+    "halfDamageFrom": [
+      "Poison",
+      "Rock"
+    ],
+    "noDamageFrom": [
+      "Electric"
+    ]
   },
   {
     "id": "ROCK",
     "slug": "rock",
-    "type": "Rock",
     "names": {
       "English": "Rock",
       "German": "Gestein",
@@ -222,20 +221,6 @@
       "Korean": "바위",
       "Spanish": "Roca"
     },
-    "doubleDamageFrom": [
-      "Fighting",
-      "Ground",
-      "Steel",
-      "Water",
-      "Grass"
-    ],
-    "halfDamageFrom": [
-      "Normal",
-      "Flying",
-      "Poison",
-      "Fire"
-    ],
-    "noDamageFrom": [],
     "weatherBoost": {
       "id": "partlyCloudy",
       "names": {
@@ -252,12 +237,26 @@
     "assets": {
       "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_5_rock.png",
       "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_rock.png"
-    }
+    },
+    "type": "Rock",
+    "doubleDamageFrom": [
+      "Fighting",
+      "Ground",
+      "Steel",
+      "Water",
+      "Grass"
+    ],
+    "halfDamageFrom": [
+      "Normal",
+      "Flying",
+      "Poison",
+      "Fire"
+    ],
+    "noDamageFrom": []
   },
   {
     "id": "BUG",
     "slug": "bug",
-    "type": "Bug",
     "names": {
       "English": "Bug",
       "German": "Käfer",
@@ -267,17 +266,6 @@
       "Korean": "벌레",
       "Spanish": "Bicho"
     },
-    "doubleDamageFrom": [
-      "Flying",
-      "Rock",
-      "Fire"
-    ],
-    "halfDamageFrom": [
-      "Fighting",
-      "Ground",
-      "Grass"
-    ],
-    "noDamageFrom": [],
     "weatherBoost": {
       "id": "rain",
       "names": {
@@ -294,12 +282,23 @@
     "assets": {
       "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_6_bug.png",
       "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_bug.png"
-    }
+    },
+    "type": "Bug",
+    "doubleDamageFrom": [
+      "Flying",
+      "Rock",
+      "Fire"
+    ],
+    "halfDamageFrom": [
+      "Fighting",
+      "Ground",
+      "Grass"
+    ],
+    "noDamageFrom": []
   },
   {
     "id": "GHOST",
     "slug": "ghost",
-    "type": "Ghost",
     "names": {
       "English": "Ghost",
       "German": "Geist",
@@ -309,18 +308,6 @@
       "Korean": "고스트",
       "Spanish": "Fantasma"
     },
-    "doubleDamageFrom": [
-      "Ghost",
-      "Dark"
-    ],
-    "halfDamageFrom": [
-      "Poison",
-      "Bug"
-    ],
-    "noDamageFrom": [
-      "Normal",
-      "Fighting"
-    ],
     "weatherBoost": {
       "id": "fog",
       "names": {
@@ -337,12 +324,24 @@
     "assets": {
       "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_7_ghost.png",
       "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_ghost.png"
-    }
+    },
+    "type": "Ghost",
+    "doubleDamageFrom": [
+      "Ghost",
+      "Dark"
+    ],
+    "halfDamageFrom": [
+      "Poison",
+      "Bug"
+    ],
+    "noDamageFrom": [
+      "Normal",
+      "Fighting"
+    ]
   },
   {
     "id": "STEEL",
     "slug": "steel",
-    "type": "Steel",
     "names": {
       "English": "Steel",
       "German": "Stahl",
@@ -352,6 +351,24 @@
       "Korean": "강철",
       "Spanish": "Acero"
     },
+    "weatherBoost": {
+      "id": "snow",
+      "names": {
+        "English": "Snow",
+        "German": "Schnee",
+        "French": "Neige",
+        "Italian": "Neve",
+        "Japanese": "雪",
+        "Korean": "눈",
+        "Spanish": "Nieve"
+      },
+      "assetName": "snow"
+    },
+    "assets": {
+      "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_8_steel.png",
+      "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_steel.png"
+    },
+    "type": "Steel",
     "doubleDamageFrom": [
       "Fighting",
       "Ground",
@@ -371,29 +388,11 @@
     ],
     "noDamageFrom": [
       "Poison"
-    ],
-    "weatherBoost": {
-      "id": "snow",
-      "names": {
-        "English": "Snow",
-        "German": "Schnee",
-        "French": "Neige",
-        "Italian": "Neve",
-        "Japanese": "雪",
-        "Korean": "눈",
-        "Spanish": "Nieve"
-      },
-      "assetName": "snow"
-    },
-    "assets": {
-      "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_8_steel.png",
-      "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_steel.png"
-    }
+    ]
   },
   {
     "id": "FIRE",
     "slug": "fire",
-    "type": "Fire",
     "names": {
       "English": "Fire",
       "German": "Feuer",
@@ -403,20 +402,6 @@
       "Korean": "불꽃",
       "Spanish": "Fuego"
     },
-    "doubleDamageFrom": [
-      "Ground",
-      "Rock",
-      "Water"
-    ],
-    "halfDamageFrom": [
-      "Bug",
-      "Steel",
-      "Fire",
-      "Grass",
-      "Ice",
-      "Fairy"
-    ],
-    "noDamageFrom": [],
     "weatherBoost": {
       "id": "sunny",
       "names": {
@@ -433,12 +418,26 @@
     "assets": {
       "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_9_fire.png",
       "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_fire.png"
-    }
+    },
+    "type": "Fire",
+    "doubleDamageFrom": [
+      "Ground",
+      "Rock",
+      "Water"
+    ],
+    "halfDamageFrom": [
+      "Bug",
+      "Steel",
+      "Fire",
+      "Grass",
+      "Ice",
+      "Fairy"
+    ],
+    "noDamageFrom": []
   },
   {
     "id": "WATER",
     "slug": "water",
-    "type": "Water",
     "names": {
       "English": "Water",
       "German": "Wasser",
@@ -448,17 +447,6 @@
       "Korean": "물",
       "Spanish": "Agua"
     },
-    "doubleDamageFrom": [
-      "Grass",
-      "Electric"
-    ],
-    "halfDamageFrom": [
-      "Steel",
-      "Fire",
-      "Water",
-      "Ice"
-    ],
-    "noDamageFrom": [],
     "weatherBoost": {
       "id": "rain",
       "names": {
@@ -475,12 +463,23 @@
     "assets": {
       "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_10_water.png",
       "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_water.png"
-    }
+    },
+    "type": "Water",
+    "doubleDamageFrom": [
+      "Grass",
+      "Electric"
+    ],
+    "halfDamageFrom": [
+      "Steel",
+      "Fire",
+      "Water",
+      "Ice"
+    ],
+    "noDamageFrom": []
   },
   {
     "id": "GRASS",
     "slug": "grass",
-    "type": "Grass",
     "names": {
       "English": "Grass",
       "German": "Pflanze",
@@ -490,20 +489,6 @@
       "Korean": "풀",
       "Spanish": "Planta"
     },
-    "doubleDamageFrom": [
-      "Flying",
-      "Poison",
-      "Bug",
-      "Fire",
-      "Ice"
-    ],
-    "halfDamageFrom": [
-      "Ground",
-      "Water",
-      "Grass",
-      "Electric"
-    ],
-    "noDamageFrom": [],
     "weatherBoost": {
       "id": "sunny",
       "names": {
@@ -520,12 +505,26 @@
     "assets": {
       "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_11_grass.png",
       "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_grass.png"
-    }
+    },
+    "type": "Grass",
+    "doubleDamageFrom": [
+      "Flying",
+      "Poison",
+      "Bug",
+      "Fire",
+      "Ice"
+    ],
+    "halfDamageFrom": [
+      "Ground",
+      "Water",
+      "Grass",
+      "Electric"
+    ],
+    "noDamageFrom": []
   },
   {
     "id": "ELECTRIC",
     "slug": "electric",
-    "type": "Electric",
     "names": {
       "English": "Electric",
       "German": "Elektro",
@@ -535,15 +534,6 @@
       "Korean": "전기",
       "Spanish": "Eléctrico"
     },
-    "doubleDamageFrom": [
-      "Ground"
-    ],
-    "halfDamageFrom": [
-      "Flying",
-      "Steel",
-      "Electric"
-    ],
-    "noDamageFrom": [],
     "weatherBoost": {
       "id": "rain",
       "names": {
@@ -560,12 +550,21 @@
     "assets": {
       "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_12_electric.png",
       "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_electric.png"
-    }
+    },
+    "type": "Electric",
+    "doubleDamageFrom": [
+      "Ground"
+    ],
+    "halfDamageFrom": [
+      "Flying",
+      "Steel",
+      "Electric"
+    ],
+    "noDamageFrom": []
   },
   {
     "id": "PSYCHIC",
     "slug": "psychic",
-    "type": "Psychic",
     "names": {
       "English": "Psychic",
       "German": "Psycho",
@@ -575,16 +574,6 @@
       "Korean": "에스퍼",
       "Spanish": "Psíquico"
     },
-    "doubleDamageFrom": [
-      "Bug",
-      "Ghost",
-      "Dark"
-    ],
-    "halfDamageFrom": [
-      "Fighting",
-      "Psychic"
-    ],
-    "noDamageFrom": [],
     "weatherBoost": {
       "id": "windy",
       "names": {
@@ -601,12 +590,22 @@
     "assets": {
       "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_13_psychic.png",
       "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_psychic.png"
-    }
+    },
+    "type": "Psychic",
+    "doubleDamageFrom": [
+      "Bug",
+      "Ghost",
+      "Dark"
+    ],
+    "halfDamageFrom": [
+      "Fighting",
+      "Psychic"
+    ],
+    "noDamageFrom": []
   },
   {
     "id": "ICE",
     "slug": "ice",
-    "type": "Ice",
     "names": {
       "English": "Ice",
       "German": "Eis",
@@ -616,16 +615,6 @@
       "Korean": "얼음",
       "Spanish": "Hielo"
     },
-    "doubleDamageFrom": [
-      "Fighting",
-      "Rock",
-      "Steel",
-      "Fire"
-    ],
-    "halfDamageFrom": [
-      "Ice"
-    ],
-    "noDamageFrom": [],
     "weatherBoost": {
       "id": "snow",
       "names": {
@@ -642,12 +631,22 @@
     "assets": {
       "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_14_ice.png",
       "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_ice.png"
-    }
+    },
+    "type": "Ice",
+    "doubleDamageFrom": [
+      "Fighting",
+      "Rock",
+      "Steel",
+      "Fire"
+    ],
+    "halfDamageFrom": [
+      "Ice"
+    ],
+    "noDamageFrom": []
   },
   {
     "id": "DRAGON",
     "slug": "dragon",
-    "type": "Dragon",
     "names": {
       "English": "Dragon",
       "German": "Drache",
@@ -657,18 +656,6 @@
       "Korean": "드래곤",
       "Spanish": "Dragón"
     },
-    "doubleDamageFrom": [
-      "Ice",
-      "Dragon",
-      "Fairy"
-    ],
-    "halfDamageFrom": [
-      "Fire",
-      "Water",
-      "Grass",
-      "Electric"
-    ],
-    "noDamageFrom": [],
     "weatherBoost": {
       "id": "windy",
       "names": {
@@ -685,12 +672,24 @@
     "assets": {
       "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_15_dragon.png",
       "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_dragon.png"
-    }
+    },
+    "type": "Dragon",
+    "doubleDamageFrom": [
+      "Ice",
+      "Dragon",
+      "Fairy"
+    ],
+    "halfDamageFrom": [
+      "Fire",
+      "Water",
+      "Grass",
+      "Electric"
+    ],
+    "noDamageFrom": []
   },
   {
     "id": "DARK",
     "slug": "dark",
-    "type": "Dark",
     "names": {
       "English": "Dark",
       "German": "Unlicht",
@@ -700,18 +699,6 @@
       "Korean": "악",
       "Spanish": "Siniestro"
     },
-    "doubleDamageFrom": [
-      "Fighting",
-      "Bug",
-      "Fairy"
-    ],
-    "halfDamageFrom": [
-      "Ghost",
-      "Dark"
-    ],
-    "noDamageFrom": [
-      "Psychic"
-    ],
     "weatherBoost": {
       "id": "fog",
       "names": {
@@ -728,12 +715,24 @@
     "assets": {
       "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_16_dark.png",
       "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_dark.png"
-    }
+    },
+    "type": "Dark",
+    "doubleDamageFrom": [
+      "Fighting",
+      "Bug",
+      "Fairy"
+    ],
+    "halfDamageFrom": [
+      "Ghost",
+      "Dark"
+    ],
+    "noDamageFrom": [
+      "Psychic"
+    ]
   },
   {
     "id": "FAIRY",
     "slug": "fairy",
-    "type": "Fairy",
     "names": {
       "English": "Fairy",
       "German": "Fee",
@@ -743,18 +742,6 @@
       "Korean": "페어리",
       "Spanish": "Hada"
     },
-    "doubleDamageFrom": [
-      "Poison",
-      "Steel"
-    ],
-    "halfDamageFrom": [
-      "Fighting",
-      "Bug",
-      "Dark"
-    ],
-    "noDamageFrom": [
-      "Dragon"
-    ],
     "weatherBoost": {
       "id": "cloudy",
       "names": {
@@ -771,6 +758,19 @@
     "assets": {
       "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_17_fairy.png",
       "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_fairy.png"
-    }
+    },
+    "type": "Fairy",
+    "doubleDamageFrom": [
+      "Poison",
+      "Steel"
+    ],
+    "halfDamageFrom": [
+      "Fighting",
+      "Bug",
+      "Dark"
+    ],
+    "noDamageFrom": [
+      "Dragon"
+    ]
   }
 ]

@@ -66,83 +66,9 @@
     "gigantamax": false,
     "apex": true
   },
-  "pvp": {
-    "littleCup": null,
-    "greatLeague": {
-      "tierRank": "B",
-      "rank1": {
-        "ivs": {
-          "attack": 0,
-          "defense": 13,
-          "stamina": 15
-        },
-        "level": 14.5,
-        "cp": 1500
-      },
-      "bestMovesets": {
-        "fast": "INCINERATE_FAST",
-        "charged": [
-          "BRAVE_BIRD",
-          "SACRED_FIRE"
-        ]
-      }
-    },
-    "ultraLeague": {
-      "tierRank": "B",
-      "rank1": {
-        "ivs": {
-          "attack": 1,
-          "defense": 15,
-          "stamina": 14
-        },
-        "level": 24,
-        "cp": 2497
-      },
-      "bestMovesets": {
-        "fast": "INCINERATE_FAST",
-        "charged": [
-          "BRAVE_BIRD",
-          "SACRED_FIRE"
-        ]
-      }
-    },
-    "masterLeague": {
-      "tierRank": "A",
-      "rank1": {
-        "ivs": {
-          "attack": 15,
-          "defense": 15,
-          "stamina": 15
-        },
-        "level": 50,
-        "cp": 4367
-      },
-      "bestMovesets": {
-        "fast": "INCINERATE_FAST",
-        "charged": [
-          "BRAVE_BIRD",
-          "SACRED_FIRE"
-        ]
-      }
-    }
-  },
   "shadow": {
     "released": true,
-    "firstReleaseDate": "2021-06-17",
-    "purificationCost": {
-      "stardust": 20000,
-      "candy": 20
-    },
-    "catchCp": {
-      "normal": {
-        "min": 768,
-        "max": 870
-      },
-      "weatherBoosted": {
-        "min": 1310,
-        "max": 1435
-      }
-    },
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO",
     "variants": [
       {
         "name": "Ho-Oh",
@@ -158,8 +84,8 @@
           }
         },
         "purificationCost": {
-          "stardust": 20000,
-          "candy": 20
+          "candy": 20,
+          "stardust": 20000
         },
         "releaseDate": "2021-06-17",
         "releaseDateText": "June 17, 2021"
@@ -178,14 +104,88 @@
           }
         },
         "purificationCost": {
-          "stardust": 5000,
-          "candy": 5
+          "candy": 5,
+          "stardust": 5000
         },
         "releaseDate": "2022-02-26",
         "releaseDateText": "February 26, 2022"
       }
     ],
-    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+    "firstReleaseDate": "2021-06-17",
+    "purificationCost": {
+      "candy": 20,
+      "stardust": 20000
+    },
+    "catchCp": {
+      "normal": {
+        "min": 768,
+        "max": 870
+      },
+      "weatherBoosted": {
+        "min": 1310,
+        "max": 1435
+      }
+    }
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 0,
+          "defense": 13
+        },
+        "level": 14.5,
+        "cp": 1500
+      },
+      "bestMovesets": {
+        "fast": "INCINERATE_FAST",
+        "charged": [
+          "BRAVE_BIRD",
+          "SACRED_FIRE"
+        ]
+      }
+    },
+    "ultraLeague": {
+      "tierRank": "B",
+      "rank1": {
+        "ivs": {
+          "stamina": 14,
+          "attack": 1,
+          "defense": 15
+        },
+        "level": 24,
+        "cp": 2497
+      },
+      "bestMovesets": {
+        "fast": "INCINERATE_FAST",
+        "charged": [
+          "BRAVE_BIRD",
+          "SACRED_FIRE"
+        ]
+      }
+    },
+    "masterLeague": {
+      "tierRank": "A",
+      "rank1": {
+        "ivs": {
+          "stamina": 15,
+          "attack": 15,
+          "defense": 15
+        },
+        "level": 50,
+        "cp": 4367
+      },
+      "bestMovesets": {
+        "fast": "INCINERATE_FAST",
+        "charged": [
+          "BRAVE_BIRD",
+          "SACRED_FIRE"
+        ]
+      }
+    }
   },
   "stats": {
     "stamina": 214,
@@ -215,121 +215,128 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm250.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm250.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0250_000_uk_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0250_000_uk_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0250_000_uk_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0250_000_uk_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "genderless",
           "genderCode": "uk",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0250_000_uk_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0250_000_uk_n_00000000_f_r.png"
+          "view": "front"
         }
       ]
     },
     "locationCards": [
       {
         "id": "sb_GoTour2026_gold",
-        "name": "GO Tour 2026 Gold",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_gold.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "special",
+        "name": "GO Tour 2026 Gold",
         "date": "February 23rd - February 27th 2026",
         "eligibleForms": [
           "Ho-Oh"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2026_gold.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       }
-    ]
-  },
-  "regionForms": {
-    "HO_OH_S": {
-      "id": "HO_OH",
-      "slug": "ho_oh-s",
-      "formId": "HO_OH_S",
-      "form": "normal",
-      "dexNr": 250,
-      "generation": 2,
-      "region": {
-        "id": "JOHTO",
-        "slug": "johto",
-        "generation": 2,
-        "names": {
-          "English": "Johto",
-          "German": "Johto",
-          "French": "Johto",
-          "Italian": "Johto",
-          "Japanese": "ジョウト",
-          "Korean": "성도",
-          "Spanish": "Johto"
+    ],
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "250",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/250.png",
+          "filename": "250.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "250_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/250_a1.png",
+          "filename": "250_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "250_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/250_a1_s.png",
+          "filename": "250_a1_s.png",
+          "codes": [
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "250_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/250_a2.png",
+          "filename": "250_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "250_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/250_a2_s.png",
+          "filename": "250_a2_s.png",
+          "codes": [
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "250_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/250_b1.png",
+          "filename": "250_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "250_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/250_s.png",
+          "filename": "250_s.png",
+          "codes": [
+            "s"
+          ],
+          "shiny": true
         }
-      },
-      "names": {
-        "English": "Ho-Oh",
-        "German": "Ho-Oh",
-        "French": "Ho-Oh",
-        "Italian": "Ho-Oh",
-        "Japanese": "ホウオウ",
-        "Korean": "칠색조",
-        "Spanish": "Ho-Oh"
-      },
-      "stats": {
-        "stamina": 214,
-        "attack": 239,
-        "defense": 244
-      },
-      "primaryType": "FIRE",
-      "secondaryType": "FLYING",
-      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
-      "quickMoves": [
-        "EXTRASENSORY_FAST",
-        "STEEL_WING_FAST",
-        "HIDDEN_POWER_FAST",
-        "INCINERATE_FAST"
-      ],
-      "cinematicMoves": [
-        "BRAVE_BIRD",
-        "FIRE_BLAST",
-        "SOLAR_BEAM"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [
-        "EARTHQUAKE",
-        "SACRED_FIRE"
-      ],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm250.fS.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm250.fS.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "HO_OH"
+      ]
     }
   },
-  "evolutions": [],
-  "hasMegaEvolution": false,
-  "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
   "assetForms": [
     {
       "form": "S",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm250.fS.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm250.fS.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm250.fS.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": null,
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm250.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm250.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm250.s.icon.png",
+      "costume": null,
+      "isFemale": false
     }
-  ]
+  ],
+  "regionForms": [
+    "HO_OH_S"
+  ],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "dynamaxForms": [
+    "HO_OH_DYNAMAX"
+  ],
+  "hasGigantamaxEvolution": false
 }

@@ -1,10 +1,6 @@
 {
   "id": "DRILL_RUN",
   "slug": "drill-run",
-  "power": 85,
-  "energy": -50,
-  "durationMs": 3000,
-  "type": "GROUND",
   "names": {
     "English": "Drill Run",
     "German": "Schlagbohrer",
@@ -14,9 +10,13 @@
     "Korean": "드릴라이너",
     "Spanish": "Taladradora"
   },
+  "power": 85,
+  "energy": -50,
+  "durationMs": 3000,
+  "type": "GROUND",
   "combat": {
-    "energy": -45,
     "power": 80,
+    "energy": -45,
     "turns": 1,
     "buffs": null
   },

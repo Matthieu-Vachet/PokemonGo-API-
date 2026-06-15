@@ -1,7 +1,6 @@
 {
   "id": "FAIRY",
   "slug": "fairy",
-  "type": "Fairy",
   "names": {
     "English": "Fairy",
     "German": "Fee",
@@ -11,18 +10,6 @@
     "Korean": "페어리",
     "Spanish": "Hada"
   },
-  "doubleDamageFrom": [
-    "Poison",
-    "Steel"
-  ],
-  "halfDamageFrom": [
-    "Fighting",
-    "Bug",
-    "Dark"
-  ],
-  "noDamageFrom": [
-    "Dragon"
-  ],
   "weatherBoost": {
     "id": "cloudy",
     "names": {
@@ -39,5 +26,18 @@
   "assets": {
     "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_17_fairy.png",
     "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_fairy.png"
-  }
+  },
+  "type": "Fairy",
+  "doubleDamageFrom": [
+    "Poison",
+    "Steel"
+  ],
+  "halfDamageFrom": [
+    "Fighting",
+    "Bug",
+    "Dark"
+  ],
+  "noDamageFrom": [
+    "Dragon"
+  ]
 }

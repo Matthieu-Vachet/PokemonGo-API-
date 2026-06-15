@@ -1,10 +1,6 @@
 {
   "id": "WILD_CHARGE",
   "slug": "wild-charge",
-  "power": 90,
-  "energy": -50,
-  "durationMs": 2500,
-  "type": "ELECTRIC",
   "names": {
     "English": "Wild Charge",
     "German": "Stromstoß",
@@ -14,9 +10,13 @@
     "Korean": "와일드볼트",
     "Spanish": "Voltio Cruel"
   },
+  "power": 90,
+  "energy": -50,
+  "durationMs": 2500,
+  "type": "ELECTRIC",
   "combat": {
-    "energy": -45,
     "power": 100,
+    "energy": -45,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

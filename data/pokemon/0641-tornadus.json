@@ -65,29 +65,9 @@
     "gigantamax": false,
     "apex": false
   },
-  "pvp": {
-    "littleCup": null,
-    "greatLeague": null,
-    "ultraLeague": null,
-    "masterLeague": null
-  },
   "shadow": {
     "released": true,
-    "firstReleaseDate": "2025-09-16",
-    "purificationCost": {
-      "stardust": 20000,
-      "candy": 20
-    },
-    "catchCp": {
-      "normal": {
-        "min": 657,
-        "max": 754
-      },
-      "weatherBoosted": {
-        "min": 1125,
-        "max": 1242
-      }
-    },
+    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO",
     "variants": [
       {
         "name": "Tornadus",
@@ -103,14 +83,34 @@
           }
         },
         "purificationCost": {
-          "stardust": 20000,
-          "candy": 20
+          "candy": 20,
+          "stardust": 20000
         },
         "releaseDate": "2025-09-16",
         "releaseDateText": "September 16, 2025"
       }
     ],
-    "source": "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO"
+    "firstReleaseDate": "2025-09-16",
+    "purificationCost": {
+      "candy": 20,
+      "stardust": 20000
+    },
+    "catchCp": {
+      "normal": {
+        "min": 657,
+        "max": 754
+      },
+      "weatherBoosted": {
+        "min": 1125,
+        "max": 1242
+      }
+    }
+  },
+  "pvp": {
+    "littleCup": null,
+    "greatLeague": null,
+    "ultraLeague": null,
+    "masterLeague": null
   },
   "stats": {
     "stamina": 188,
@@ -136,190 +136,210 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm641.fINCARNATE.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm641.fINCARNATE.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0641_000_mo_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0641_000_mo_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0641_000_mo_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0641_000_mo_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "male-only",
           "genderCode": "mo",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0641_000_mo_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0641_000_mo_n_00000000_f_r.png"
+          "view": "front"
         },
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0641_001_mo_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0641_001_mo_n_00000000_f_r.png",
           "formIndex": "001",
           "gender": "male-only",
           "genderCode": "mo",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0641_001_mo_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0641_001_mo_n_00000000_f_r.png"
+          "view": "front"
         }
       ]
     },
     "locationCards": [
       {
         "id": "sb_GoTour2025_black",
-        "name": "GO Tour Unova Black",
+        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_black.png",
+        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml",
         "type": "special",
+        "name": "GO Tour Unova Black",
         "date": "March 1st - 2nd 2025",
         "eligibleForms": [
           "Tornadus (Therian Forme)"
-        ],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/sb_GoTour2025_black.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
+        ]
       }
-    ]
-  },
-  "regionForms": {
-    "TORNADUS_INCARNATE": {
-      "id": "TORNADUS",
-      "slug": "tornadus-incarnate",
-      "formId": "TORNADUS_INCARNATE",
-      "form": "normal",
-      "dexNr": 641,
-      "generation": 5,
-      "region": {
-        "id": "UNOVA",
-        "slug": "unova",
-        "generation": 5,
-        "names": {
-          "English": "Unova",
-          "German": "Einall",
-          "French": "Unys",
-          "Italian": "Unima",
-          "Japanese": "イッシュ",
-          "Korean": "하나",
-          "Spanish": "Teselia"
+    ],
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "641",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/641.png",
+          "filename": "641.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "641_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/641_a1.png",
+          "filename": "641_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "641_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/641_a2.png",
+          "filename": "641_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "641_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/641_b1.png",
+          "filename": "641_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "641_b1_f141",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/641_b1_f141.png",
+          "filename": "641_b1_f141.png",
+          "codes": [
+            "b1",
+            "f141"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "641_f140_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/641_f140_a1_s.png",
+          "filename": "641_f140_a1_s.png",
+          "codes": [
+            "f140",
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "641_f140_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/641_f140_a2_s.png",
+          "filename": "641_f140_a2_s.png",
+          "codes": [
+            "f140",
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "641_f140_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/641_f140_s.png",
+          "filename": "641_f140_s.png",
+          "codes": [
+            "f140",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "641_f141",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/641_f141.png",
+          "filename": "641_f141.png",
+          "codes": [
+            "f141"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "641_f141_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/641_f141_a1.png",
+          "filename": "641_f141_a1.png",
+          "codes": [
+            "f141",
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "641_f141_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/641_f141_a1_s.png",
+          "filename": "641_f141_a1_s.png",
+          "codes": [
+            "f141",
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "641_f141_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/641_f141_a2.png",
+          "filename": "641_f141_a2.png",
+          "codes": [
+            "f141",
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "641_f141_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/641_f141_a2_s.png",
+          "filename": "641_f141_a2_s.png",
+          "codes": [
+            "f141",
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "641_f141_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/641_f141_s.png",
+          "filename": "641_f141_s.png",
+          "codes": [
+            "f141",
+            "s"
+          ],
+          "shiny": true
         }
-      },
-      "names": {
-        "English": "Tornadus (Incarnate Forme)",
-        "German": "Boreos (Inkarnationsform)",
-        "French": "Boréas (Forme Avatar)",
-        "Italian": "Tornadus (Forma Incarnazione)",
-        "Japanese": "トルネロス (けしんフォルム)",
-        "Korean": "토네로스 (화신폼)",
-        "Spanish": "Tornadus (Forma Avatar)"
-      },
-      "stats": {
-        "stamina": 188,
-        "attack": 266,
-        "defense": 164
-      },
-      "primaryType": "FLYING",
-      "secondaryType": null,
-      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
-      "quickMoves": [
-        "BITE_FAST",
-        "AIR_SLASH_FAST"
-      ],
-      "cinematicMoves": [
-        "GRASS_KNOT",
-        "DARK_PULSE",
-        "HYPER_BEAM",
-        "HURRICANE"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm641.fINCARNATE.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm641.fINCARNATE.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "TORNADUS"
-    },
-    "TORNADUS_THERIAN": {
-      "id": "TORNADUS",
-      "slug": "tornadus-therian",
-      "formId": "TORNADUS_THERIAN",
-      "form": "normal",
-      "dexNr": 641,
-      "generation": 5,
-      "region": {
-        "id": "UNOVA",
-        "slug": "unova",
-        "generation": 5,
-        "names": {
-          "English": "Unova",
-          "German": "Einall",
-          "French": "Unys",
-          "Italian": "Unima",
-          "Japanese": "イッシュ",
-          "Korean": "하나",
-          "Spanish": "Teselia"
-        }
-      },
-      "names": {
-        "English": "Tornadus (Therian Forme)",
-        "German": "Boreos (Tiergeistform)",
-        "French": "Boréas (Forme Totémique)",
-        "Italian": "Tornadus (Forma Totem)",
-        "Japanese": "トルネロス (れいじゅうフォルム)",
-        "Korean": "토네로스 (영물폼)",
-        "Spanish": "Tornadus (Forma Tótem)"
-      },
-      "stats": {
-        "stamina": 188,
-        "attack": 238,
-        "defense": 189
-      },
-      "primaryType": "FLYING",
-      "secondaryType": null,
-      "pokemonClass": "POKEMON_CLASS_LEGENDARY",
-      "quickMoves": [
-        "ASTONISH_FAST",
-        "GUST_FAST"
-      ],
-      "cinematicMoves": [
-        "HEAT_WAVE",
-        "PSYCHIC",
-        "FOCUS_BLAST",
-        "HURRICANE"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [
-        "BLEAKWIND_STORM"
-      ],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm641.fTHERIAN.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm641.fTHERIAN.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "TORNADUS"
+      ]
     }
   },
-  "evolutions": [],
-  "hasMegaEvolution": false,
-  "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
   "assetForms": [
     {
       "form": "INCARNATE",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm641.fINCARNATE.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm641.fINCARNATE.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm641.fINCARNATE.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": "THERIAN",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm641.fTHERIAN.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm641.fTHERIAN.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm641.fTHERIAN.s.icon.png",
+      "costume": null,
+      "isFemale": false
     }
-  ]
+  ],
+  "regionForms": [
+    "TORNADUS_INCARNATE",
+    "TORNADUS_THERIAN"
+  ],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
 }

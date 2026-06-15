@@ -1,10 +1,6 @@
 {
   "id": "OVERHEAT",
   "slug": "overheat",
-  "power": 160,
-  "energy": -100,
-  "durationMs": 4000,
-  "type": "FIRE",
   "names": {
     "English": "Overheat",
     "German": "Hitzekoller",
@@ -14,9 +10,13 @@
     "Korean": "오버히트",
     "Spanish": "Sofoco"
   },
+  "power": 160,
+  "energy": -100,
+  "durationMs": 4000,
+  "type": "FIRE",
   "combat": {
-    "energy": -55,
     "power": 130,
+    "energy": -55,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

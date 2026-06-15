@@ -1,10 +1,6 @@
 {
   "id": "HYDRO_PUMP",
   "slug": "hydro-pump",
-  "power": 135,
-  "energy": -100,
-  "durationMs": 3500,
-  "type": "WATER",
   "names": {
     "English": "Hydro Pump",
     "German": "Hydropumpe",
@@ -14,9 +10,13 @@
     "Korean": "하이드로펌프",
     "Spanish": "Hidrobomba"
   },
+  "power": 135,
+  "energy": -100,
+  "durationMs": 3500,
+  "type": "WATER",
   "combat": {
-    "energy": -75,
     "power": 130,
+    "energy": -75,
     "turns": 1,
     "buffs": null
   },

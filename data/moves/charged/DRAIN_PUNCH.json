@@ -1,10 +1,6 @@
 {
   "id": "DRAIN_PUNCH",
   "slug": "drain-punch",
-  "power": 50,
-  "energy": -33,
-  "durationMs": 2500,
-  "type": "FIGHTING",
   "names": {
     "English": "Drain Punch",
     "German": "Ableithieb",
@@ -14,9 +10,13 @@
     "Korean": "드레인펀치",
     "Spanish": "Puño Drenaje"
   },
+  "power": 50,
+  "energy": -33,
+  "durationMs": 2500,
+  "type": "FIGHTING",
   "combat": {
-    "energy": -40,
     "power": 40,
+    "energy": -40,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

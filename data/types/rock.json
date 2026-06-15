@@ -1,7 +1,6 @@
 {
   "id": "ROCK",
   "slug": "rock",
-  "type": "Rock",
   "names": {
     "English": "Rock",
     "German": "Gestein",
@@ -11,20 +10,6 @@
     "Korean": "바위",
     "Spanish": "Roca"
   },
-  "doubleDamageFrom": [
-    "Fighting",
-    "Ground",
-    "Steel",
-    "Water",
-    "Grass"
-  ],
-  "halfDamageFrom": [
-    "Normal",
-    "Flying",
-    "Poison",
-    "Fire"
-  ],
-  "noDamageFrom": [],
   "weatherBoost": {
     "id": "partlyCloudy",
     "names": {
@@ -41,5 +26,20 @@
   "assets": {
     "icon": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types/ico_5_rock.png",
     "background": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/TypeBackgrounds/details_type_bg_rock.png"
-  }
+  },
+  "type": "Rock",
+  "doubleDamageFrom": [
+    "Fighting",
+    "Ground",
+    "Steel",
+    "Water",
+    "Grass"
+  ],
+  "halfDamageFrom": [
+    "Normal",
+    "Flying",
+    "Poison",
+    "Fire"
+  ],
+  "noDamageFrom": []
 }

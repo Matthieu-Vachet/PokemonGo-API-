@@ -1,10 +1,6 @@
 {
   "id": "LEAF_STORM",
   "slug": "leaf-storm",
-  "power": 130,
-  "energy": -100,
-  "durationMs": 2500,
-  "type": "GRASS",
   "names": {
     "English": "Leaf Storm",
     "German": "Blättersturm",
@@ -14,9 +10,13 @@
     "Korean": "리프스톰",
     "Spanish": "Lluevehojas"
   },
+  "power": 130,
+  "energy": -100,
+  "durationMs": 2500,
+  "type": "GRASS",
   "combat": {
-    "energy": -55,
     "power": 130,
+    "energy": -55,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

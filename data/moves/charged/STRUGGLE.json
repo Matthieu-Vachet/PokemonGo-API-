@@ -1,10 +1,6 @@
 {
   "id": "STRUGGLE",
   "slug": "struggle",
-  "power": 35,
-  "energy": 0,
-  "durationMs": 2000,
-  "type": "NORMAL",
   "names": {
     "English": "Struggle",
     "German": "Verzweifler",
@@ -14,9 +10,13 @@
     "Korean": "발버둥",
     "Spanish": "Combate"
   },
+  "power": 35,
+  "energy": 0,
+  "durationMs": 2000,
+  "type": "NORMAL",
   "combat": {
-    "energy": -100,
     "power": 35,
+    "energy": -100,
     "turns": 1,
     "buffs": null
   }

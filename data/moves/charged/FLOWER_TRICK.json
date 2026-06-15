@@ -1,10 +1,6 @@
 {
   "id": "FLOWER_TRICK",
   "slug": "flower-trick",
-  "power": 75,
-  "energy": -33,
-  "durationMs": 3000,
-  "type": "GRASS",
   "names": {
     "English": "Flower Trick",
     "German": "Blumentrick",
@@ -14,9 +10,13 @@
     "Korean": "트릭플라워",
     "Spanish": "Truco Floral"
   },
+  "power": 75,
+  "energy": -33,
+  "durationMs": 3000,
+  "type": "GRASS",
   "combat": {
-    "energy": -35,
     "power": 30,
+    "energy": -35,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

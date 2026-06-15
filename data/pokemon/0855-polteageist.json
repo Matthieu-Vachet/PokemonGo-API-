@@ -71,9 +71,9 @@
       "tierRank": "C",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 2,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 18,
         "cp": 1495
@@ -90,9 +90,9 @@
       "tierRank": "B",
       "rank1": {
         "ivs": {
+          "stamina": 14,
           "attack": 1,
-          "defense": 15,
-          "stamina": 14
+          "defense": 15
         },
         "level": 30.5,
         "cp": 2495
@@ -109,9 +109,9 @@
       "tierRank": "C",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 15,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 50,
         "cp": 3458
@@ -149,172 +149,130 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm855.fPHONY.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm855.fPHONY.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0855_000_uk_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0855_000_uk_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0855_000_uk_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0855_000_uk_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "genderless",
           "genderCode": "uk",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0855_000_uk_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0855_000_uk_n_00000000_f_r.png"
+          "view": "front"
+        }
+      ]
+    },
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "855",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/855.png",
+          "filename": "855.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "855_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/855_a1.png",
+          "filename": "855_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "855_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/855_a2.png",
+          "filename": "855_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "855_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/855_b1.png",
+          "filename": "855_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "855_b1_f2481",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/855_b1_f2481.png",
+          "filename": "855_b1_f2481.png",
+          "codes": [
+            "b1",
+            "f2481"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "855_f2481",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/855_f2481.png",
+          "filename": "855_f2481.png",
+          "codes": [
+            "f2481"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "855_f2481_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/855_f2481_a1.png",
+          "filename": "855_f2481_a1.png",
+          "codes": [
+            "f2481",
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "855_f2481_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/855_f2481_a2.png",
+          "filename": "855_f2481_a2.png",
+          "codes": [
+            "f2481",
+            "a2"
+          ],
+          "shiny": false
         }
       ]
     }
   },
-  "regionForms": {
-    "POLTEAGEIST_ANTIQUE": {
-      "id": "POLTEAGEIST",
-      "slug": "polteageist-antique",
-      "formId": "POLTEAGEIST_ANTIQUE",
-      "form": "normal",
-      "dexNr": 855,
-      "generation": 8,
-      "region": {
-        "id": "GALAR",
-        "slug": "galar",
-        "generation": 8,
-        "names": {
-          "English": "Galar",
-          "German": "Galar",
-          "French": "Galar",
-          "Italian": "Galar",
-          "Japanese": "ガラル",
-          "Korean": "가라르",
-          "Spanish": "Galar"
-        }
-      },
-      "names": {
-        "English": "Polteageist (Antique Form)",
-        "German": "Mortipot (Originalform)",
-        "French": "Polthégeist (Forme Authentique)",
-        "Italian": "Polteageist (Forma Autentica)",
-        "Japanese": "ポットデス (しんさくフォルム)",
-        "Korean": "포트데스 (진작폼)",
-        "Spanish": "Polteageist (Forma Genuina)"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 248,
-        "defense": 189
-      },
-      "primaryType": "GHOST",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "ASTONISH_FAST",
-        "SUCKER_PUNCH_FAST",
-        "HEX_FAST"
-      ],
-      "cinematicMoves": [
-        "SHADOW_BALL",
-        "DARK_PULSE",
-        "PSYCHIC"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm855.fANTIQUE.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm855.fANTIQUE.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "POLTEAGEIST"
-    },
-    "POLTEAGEIST_PHONY": {
-      "id": "POLTEAGEIST",
-      "slug": "polteageist-phony",
-      "formId": "POLTEAGEIST_PHONY",
-      "form": "normal",
-      "dexNr": 855,
-      "generation": 8,
-      "region": {
-        "id": "GALAR",
-        "slug": "galar",
-        "generation": 8,
-        "names": {
-          "English": "Galar",
-          "German": "Galar",
-          "French": "Galar",
-          "Italian": "Galar",
-          "Japanese": "ガラル",
-          "Korean": "가라르",
-          "Spanish": "Galar"
-        }
-      },
-      "names": {
-        "English": "Polteageist (Phony Form)",
-        "German": "Mortipot (Fälschungsform)",
-        "French": "Polthégeist (Forme Contrefaçon)",
-        "Italian": "Polteageist (Forma Contraffatta)",
-        "Japanese": "ポットデス (がんさくフォルム)",
-        "Korean": "포트데스 (위작폼)",
-        "Spanish": "Polteageist (Forma Falsificada)"
-      },
-      "stats": {
-        "stamina": 155,
-        "attack": 248,
-        "defense": 189
-      },
-      "primaryType": "GHOST",
-      "secondaryType": null,
-      "pokemonClass": null,
-      "quickMoves": [
-        "ASTONISH_FAST",
-        "SUCKER_PUNCH_FAST",
-        "HEX_FAST"
-      ],
-      "cinematicMoves": [
-        "SHADOW_BALL",
-        "DARK_PULSE",
-        "PSYCHIC"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm855.fPHONY.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm855.fPHONY.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "POLTEAGEIST"
-    }
-  },
-  "evolutions": [],
-  "hasMegaEvolution": false,
-  "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
   "assetForms": [
     {
       "form": "ANTIQUE",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm855.fANTIQUE.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm855.fANTIQUE.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm855.fANTIQUE.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": "PHONY",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm855.fPHONY.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm855.fPHONY.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm855.fPHONY.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": null,
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm855.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm855.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm855.s.icon.png",
+      "costume": null,
+      "isFemale": false
     }
-  ]
+  ],
+  "regionForms": [
+    "POLTEAGEIST_ANTIQUE",
+    "POLTEAGEIST_PHONY"
+  ],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
 }

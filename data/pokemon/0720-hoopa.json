@@ -72,9 +72,9 @@
       "tierRank": "C",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 0,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 16.5,
         "cp": 1497
@@ -91,9 +91,9 @@
       "tierRank": "C",
       "rank1": {
         "ivs": {
+          "stamina": 14,
           "attack": 1,
-          "defense": 15,
-          "stamina": 14
+          "defense": 15
         },
         "level": 27.5,
         "cp": 2499
@@ -110,9 +110,9 @@
       "tierRank": "C",
       "rank1": {
         "ivs": {
+          "stamina": 15,
           "attack": 15,
-          "defense": 15,
-          "stamina": 15
+          "defense": 15
         },
         "level": 50,
         "cp": 3797
@@ -149,173 +149,213 @@
     "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm720.fCONFINED.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm720.fCONFINED.s.icon.png",
     "home": {
-      "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0720_000_uk_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0720_000_uk_n_00000000_f_r.png",
+      "source": "pokemon-home",
       "variants": [
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0720_000_uk_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0720_000_uk_n_00000000_f_r.png",
           "formIndex": "000",
           "gender": "genderless",
           "genderCode": "uk",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0720_000_uk_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0720_000_uk_n_00000000_f_r.png"
+          "view": "front"
         },
         {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0720_001_uk_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0720_001_uk_n_00000000_f_r.png",
           "formIndex": "001",
           "gender": "genderless",
           "genderCode": "uk",
-          "gigantamax": false,
           "detail": "00000000",
-          "view": "front",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0720_001_uk_n_00000000_f_n.png",
-          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0720_001_uk_n_00000000_f_r.png"
+          "view": "front"
+        }
+      ]
+    },
+    "shuffle": {
+      "source": "pokemon-shuffle",
+      "variants": [
+        {
+          "id": "720",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/720.png",
+          "filename": "720.png",
+          "codes": [],
+          "shiny": false
+        },
+        {
+          "id": "720_UNBOUND_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/720_UNBOUND_a1.png",
+          "filename": "720_UNBOUND_a1.png",
+          "codes": [
+            "UNBOUND",
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "720_UNBOUND_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/720_UNBOUND_a2.png",
+          "filename": "720_UNBOUND_a2.png",
+          "codes": [
+            "UNBOUND",
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "720_UNBOUND_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/720_UNBOUND_b1.png",
+          "filename": "720_UNBOUND_b1.png",
+          "codes": [
+            "UNBOUND",
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "720_Unbound_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/720_Unbound_a1_s.png",
+          "filename": "720_Unbound_a1_s.png",
+          "codes": [
+            "Unbound",
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "720_Unbound_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/720_Unbound_a2_s.png",
+          "filename": "720_Unbound_a2_s.png",
+          "codes": [
+            "Unbound",
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "720_a1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/720_a1.png",
+          "filename": "720_a1.png",
+          "codes": [
+            "a1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "720_a1_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/720_a1_s.png",
+          "filename": "720_a1_s.png",
+          "codes": [
+            "a1",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "720_a2",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/720_a2.png",
+          "filename": "720_a2.png",
+          "codes": [
+            "a2"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "720_a2_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/720_a2_s.png",
+          "filename": "720_a2_s.png",
+          "codes": [
+            "a2",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "720_b1",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/720_b1.png",
+          "filename": "720_b1.png",
+          "codes": [
+            "b1"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "720_f2651",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/720_f2651.png",
+          "filename": "720_f2651.png",
+          "codes": [
+            "f2651"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "720_f2651_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/720_f2651_s.png",
+          "filename": "720_f2651_s.png",
+          "codes": [
+            "f2651",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "720_f2652",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/720_f2652.png",
+          "filename": "720_f2652.png",
+          "codes": [
+            "f2652"
+          ],
+          "shiny": false
+        },
+        {
+          "id": "720_f2652_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/720_f2652_s.png",
+          "filename": "720_f2652_s.png",
+          "codes": [
+            "f2652",
+            "s"
+          ],
+          "shiny": true
+        },
+        {
+          "id": "720_s",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/720_s.png",
+          "filename": "720_s.png",
+          "codes": [
+            "s"
+          ],
+          "shiny": true
         }
       ]
     }
   },
-  "regionForms": {
-    "HOOPA_CONFINED": {
-      "id": "HOOPA",
-      "slug": "hoopa-confined",
-      "formId": "HOOPA_CONFINED",
-      "form": "normal",
-      "dexNr": 720,
-      "generation": 6,
-      "region": {
-        "id": "KALOS",
-        "slug": "kalos",
-        "generation": 6,
-        "names": {
-          "English": "Kalos",
-          "German": "Kalos",
-          "French": "Kalos",
-          "Italian": "Kalos",
-          "Japanese": "カロス",
-          "Korean": "칼로스",
-          "Spanish": "Kalos"
-        }
-      },
-      "names": {
-        "English": "Hoopa (Hoopa Confined)",
-        "German": "Hoopa (Gebanntes Hoopa)",
-        "French": "Hoopa (Hoopa Enchaîné)",
-        "Italian": "Hoopa (Hoopa Vincolato)",
-        "Japanese": "フーパ (いましめられしフーパ)",
-        "Korean": "후파 (굴레에 빠진 후파)",
-        "Spanish": "Hoopa (Hoopa Contenido)"
-      },
-      "stats": {
-        "stamina": 173,
-        "attack": 261,
-        "defense": 187
-      },
-      "primaryType": "PSYCHIC",
-      "secondaryType": "GHOST",
-      "pokemonClass": "POKEMON_CLASS_MYTHIC",
-      "quickMoves": [
-        "CONFUSION_FAST",
-        "ASTONISH_FAST"
-      ],
-      "cinematicMoves": [
-        "SHADOW_BALL",
-        "PSYBEAM",
-        "PSYCHIC"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm720.fCONFINED.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm720.fCONFINED.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "HOOPA"
-    },
-    "HOOPA_UNBOUND": {
-      "id": "HOOPA",
-      "slug": "hoopa-unbound",
-      "formId": "HOOPA_UNBOUND",
-      "form": "normal",
-      "dexNr": 720,
-      "generation": 6,
-      "region": {
-        "id": "KALOS",
-        "slug": "kalos",
-        "generation": 6,
-        "names": {
-          "English": "Kalos",
-          "German": "Kalos",
-          "French": "Kalos",
-          "Italian": "Kalos",
-          "Japanese": "カロス",
-          "Korean": "칼로스",
-          "Spanish": "Kalos"
-        }
-      },
-      "names": {
-        "English": "Hoopa (Hoopa Unbound)",
-        "German": "Hoopa (Entfesseltes Hoopa)",
-        "French": "Hoopa (Hoopa Déchaîné)",
-        "Italian": "Hoopa (Hoopa Libero)",
-        "Japanese": "フーパ (ときはなたれしフーパ)",
-        "Korean": "후파 (굴레를 벗어난 후파)",
-        "Spanish": "Hoopa (Hoopa Desatado)"
-      },
-      "stats": {
-        "stamina": 173,
-        "attack": 311,
-        "defense": 191
-      },
-      "primaryType": "PSYCHIC",
-      "secondaryType": "DARK",
-      "pokemonClass": "POKEMON_CLASS_MYTHIC",
-      "quickMoves": [
-        "CONFUSION_FAST",
-        "ASTONISH_FAST"
-      ],
-      "cinematicMoves": [
-        "SHADOW_BALL",
-        "DARK_PULSE",
-        "PSYCHIC"
-      ],
-      "eliteQuickMoves": [],
-      "eliteCinematicMoves": [],
-      "assets": {
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm720.fUNBOUND.icon.png",
-        "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm720.fUNBOUND.s.icon.png"
-      },
-      "regionForms": [],
-      "evolutions": [],
-      "hasMegaEvolution": false,
-      "megaEvolutions": [],
-      "hasGigantamaxEvolution": false,
-      "baseFormId": "HOOPA"
-    }
-  },
-  "evolutions": [],
-  "hasMegaEvolution": false,
-  "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
   "assetForms": [
     {
       "form": "CONFINED",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm720.fCONFINED.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm720.fCONFINED.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm720.fCONFINED.s.icon.png",
+      "costume": null,
+      "isFemale": false
     },
     {
       "form": "UNBOUND",
-      "costume": null,
-      "isFemale": false,
       "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm720.fUNBOUND.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm720.fUNBOUND.s.icon.png"
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm720.fUNBOUND.s.icon.png",
+      "costume": null,
+      "isFemale": false
     }
-  ]
+  ],
+  "regionForms": [
+    "HOOPA_CONFINED",
+    "HOOPA_UNBOUND"
+  ],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "hasGigantamaxEvolution": false
 }

@@ -1,10 +1,6 @@
 {
   "id": "TORCH_SONG",
   "slug": "torch-song",
-  "power": 100,
-  "energy": -50,
-  "durationMs": 3500,
-  "type": "FIRE",
   "names": {
     "English": "Torch Song",
     "German": "Loderlied",
@@ -14,9 +10,13 @@
     "Korean": "플레어송",
     "Spanish": "Canto Ardiente"
   },
+  "power": 100,
+  "energy": -50,
+  "durationMs": 3500,
+  "type": "FIRE",
   "combat": {
-    "energy": -45,
     "power": 70,
+    "energy": -45,
     "turns": 1,
     "buffs": {
       "activationChance": 100,

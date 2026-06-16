@@ -1031,7 +1031,7 @@
       .rule-field.full {
         grid-column: 1 / -1;
       }
-      .rule-field label {
+      .rule-field > label {
         font-weight: 800;
       }
       .rule-field input,
@@ -1040,21 +1040,43 @@
         width: 100%;
       }
       .rule-checks {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 8px;
         margin-top: 2px;
       }
-      .rule-checks label {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 8px 10px;
+      .rule-check-option,
+      .rule-inline-toggle {
+        display: grid;
+        grid-template-columns: 20px minmax(0, 1fr);
+        align-items: start;
+        gap: 10px;
+        padding: 10px 12px;
         border: 1px solid var(--line);
         border-radius: 12px;
         background: var(--surface-soft);
+      }
+      .rule-check-option {
+        min-height: 52px;
+      }
+      .rule-check-option input,
+      .rule-inline-toggle input {
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        accent-color: var(--green);
+      }
+      .rule-check-option span,
+      .rule-inline-toggle span {
+        min-width: 0;
+        color: var(--ink);
         font-size: 0.72rem;
         font-weight: 700;
+        line-height: 1.3;
+        overflow-wrap: anywhere;
+      }
+      .rule-inline-toggle {
+        min-height: auto;
       }
       .rule-help {
         margin: 6px 0 0;
@@ -1445,6 +1467,13 @@
         .rule-layout,
         .rule-form-grid {
           grid-template-columns: 1fr;
+        }
+        .rule-checks {
+          grid-template-columns: 1fr;
+        }
+        .rule-check-option,
+        .rule-inline-toggle {
+          padding: 10px;
         }
         .workspace-content {
           padding: 10px;
@@ -2827,7 +2856,7 @@
         showWorkspace(
           "Règles checklist",
           `${state.customRules.length} règle(s) perso · les vérifications natives restent actives`,
-          `${notice?.text ? `<div class="status-box ${notice.type || ""}">${esc(notice.text)}</div>` : ""}<div class="rule-layout"><section class="rule-editor"><h2>${draft.id ? "Modifier la règle" : "Nouvelle règle"}</h2><div class="rule-form-grid"><input type="hidden" data-rule-id value="${esc(draft.id)}"><div class="rule-field"><label>Nom</label><input data-rule-name placeholder="Ex: Descriptions multilingues" value="${esc(draft.name)}"></div><div class="rule-field"><label>Mode</label><select data-rule-mode><option value="path" ${draft.mode === "path" ? "selected" : ""}>Chemin + type</option><option value="template" ${modeIsTemplate ? "selected" : ""}>Modèle complet</option></select></div><div class="rule-field full"><label>Appliquer à</label><div class="rule-checks">${checklistKinds.map((kind) => `<label><input type="checkbox" data-rule-kind value="${kind}" ${draft.appliesTo.includes(kind) ? "checked" : ""}> ${esc(checklistKindLabels[kind] || kind)}</label>`).join("")}</div></div><div class="rule-field"><label>Règle active</label><label class="check-label"><input type="checkbox" data-rule-enabled ${draft.enabled ? "checked" : ""}> Vérifier cette règle dans la checklist</label></div><div class="rule-field"><label>Valeur non vide</label><label class="check-label"><input type="checkbox" data-rule-non-empty ${draft.enforceNonEmpty ? "checked" : ""}> Signaler aussi les chaînes / objets / tableaux vides</label></div>${modeIsTemplate ? "" : `<div class="rule-field"><label>Chemin de clé</label><input data-rule-path placeholder="Ex: description.fr" value="${esc(draft.path)}"></div><div class="rule-field"><label>Type attendu</label><select data-rule-type>${Object.entries(ruleTypeLabels).map(([value, label]) => `<option value="${value}" ${draft.expectedType === value ? "selected" : ""}>${esc(label)}</option>`).join("")}</select></div>`}<div class="rule-field full"><label>Modèle attendu</label><textarea data-rule-template placeholder='{\n  "description": {\n    "fr": "",\n    "en": ""\n  }\n}'>${esc(draft.templateSource)}</textarea><p class="rule-help">Tu peux coller un objet JSON complet, ou un bloc souple du style <code>description: { fr: "", en: "" }</code>. En mode “Chemin + type”, ce champ sert juste d’aide visuelle.</p></div></div><div class="workspace-tools"><button class="action-btn primary" data-rule-preview>Prévisualiser</button><button class="action-btn" data-rule-save>Enregistrer</button><button class="action-btn" data-rule-reset>${draft.id ? "Revenir à la règle" : "Réinitialiser"}</button><button class="action-btn" data-rule-new>Nouvelle règle</button><button class="action-btn" data-rule-reload>Recharger</button></div><div class="rule-preview">${previewHtml}</div></section><section class="rule-list"><h2>Règles enregistrées</h2><div class="rule-stack">${rulesHtml}</div></section></div>`,
+          `${notice?.text ? `<div class="status-box ${notice.type || ""}">${esc(notice.text)}</div>` : ""}<div class="rule-layout"><section class="rule-editor"><h2>${draft.id ? "Modifier la règle" : "Nouvelle règle"}</h2><div class="rule-form-grid"><input type="hidden" data-rule-id value="${esc(draft.id)}"><div class="rule-field"><label>Nom</label><input data-rule-name placeholder="Ex: Descriptions multilingues" value="${esc(draft.name)}"></div><div class="rule-field"><label>Mode</label><select data-rule-mode><option value="path" ${draft.mode === "path" ? "selected" : ""}>Chemin + type</option><option value="template" ${modeIsTemplate ? "selected" : ""}>Modèle complet</option></select></div><div class="rule-field full"><label>Appliquer à</label><div class="rule-checks">${checklistKinds.map((kind) => `<label class="rule-check-option"><input type="checkbox" data-rule-kind value="${kind}" ${draft.appliesTo.includes(kind) ? "checked" : ""}><span>${esc(checklistKindLabels[kind] || kind)}</span></label>`).join("")}</div></div><div class="rule-field"><label>Règle active</label><label class="rule-inline-toggle"><input type="checkbox" data-rule-enabled ${draft.enabled ? "checked" : ""}><span>Vérifier cette règle dans la checklist</span></label></div><div class="rule-field"><label>Valeur non vide</label><label class="rule-inline-toggle"><input type="checkbox" data-rule-non-empty ${draft.enforceNonEmpty ? "checked" : ""}><span>Signaler aussi les chaînes / objets / tableaux vides</span></label></div>${modeIsTemplate ? "" : `<div class="rule-field"><label>Chemin de clé</label><input data-rule-path placeholder="Ex: description.fr" value="${esc(draft.path)}"></div><div class="rule-field"><label>Type attendu</label><select data-rule-type>${Object.entries(ruleTypeLabels).map(([value, label]) => `<option value="${value}" ${draft.expectedType === value ? "selected" : ""}>${esc(label)}</option>`).join("")}</select></div>`}<div class="rule-field full"><label>Modèle attendu</label><textarea data-rule-template placeholder='{\n  "description": {\n    "fr": "",\n    "en": ""\n  }\n}'>${esc(draft.templateSource)}</textarea><p class="rule-help">Tu peux coller un objet JSON complet, ou un bloc souple du style <code>description: { fr: "", en: "" }</code>. En mode “Chemin + type”, ce champ sert juste d’aide visuelle.</p></div></div><div class="workspace-tools"><button class="action-btn primary" data-rule-preview>Prévisualiser</button><button class="action-btn" data-rule-save>Enregistrer</button><button class="action-btn" data-rule-reset>${draft.id ? "Revenir à la règle" : "Réinitialiser"}</button><button class="action-btn" data-rule-new>Nouvelle règle</button><button class="action-btn" data-rule-reload>Recharger</button></div><div class="rule-preview">${previewHtml}</div></section><section class="rule-list"><h2>Règles enregistrées</h2><div class="rule-stack">${rulesHtml}</div></section></div>`,
         );
         const content = el.workspaceContent;
         content.querySelector("[data-rule-mode]").onchange = () => {

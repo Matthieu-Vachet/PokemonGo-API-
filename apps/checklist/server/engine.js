@@ -712,11 +712,15 @@ function createValidator() {
       value,
       "regionForms",
       `${prefix}regionForms`,
-      actualType(value.regionForms) === "object" ? "object" : "array",
+      "array",
     );
     if (actualType(regionForms) === "object") {
-      for (const [id, formData] of Object.entries(regionForms))
-        pokemon(formData, "form", `${prefix}regionForms.${id}`, true);
+      add(
+        `${prefix}regionForms`,
+        "invalid",
+        "tableau de formId, les donnees vivent dans data/pokemon-forms",
+        "objet imbrique",
+      );
     } else if (Array.isArray(regionForms)) {
       regionForms.forEach((formId, index) =>
         field(regionForms, index, `${prefix}regionForms[${index}]`, "string", {
@@ -728,12 +732,12 @@ function createValidator() {
       value,
       "megaEvolutions",
       `${prefix}megaEvolutions`,
-      actualType(value.megaEvolutions) === "object" ? "object" : "array",
+      "array",
     );
     if (
       value.hasMegaEvolution === true &&
-      actualType(megas) === "object" &&
-      Object.keys(megas).length === 0
+      Array.isArray(megas) &&
+      megas.length === 0
     ) {
       add(
         `${prefix}megaEvolutions`,
@@ -742,15 +746,20 @@ function createValidator() {
         "vide",
       );
     }
-    if (actualType(megas) === "object")
-      for (const [id, megaData] of Object.entries(megas))
-        mega(megaData, `${prefix}megaEvolutions.${id}`);
-    else if (Array.isArray(megas))
+    if (actualType(megas) === "object") {
+      add(
+        `${prefix}megaEvolutions`,
+        "invalid",
+        "tableau de formId, les donnees Mega vivent dans data/pokemon-forms/mega",
+        "objet imbrique",
+      );
+    } else if (Array.isArray(megas)) {
       megas.forEach((formId, index) =>
         field(megas, index, `${prefix}megaEvolutions[${index}]`, "string", {
           nonEmpty: true,
         }),
       );
+    }
     const assetForms = field(
       value,
       "assetForms",
@@ -1332,16 +1341,6 @@ function detailForKey(key) {
     if (parent) data = mergeInheritedForm(parent, data);
   }
 
-  if (kind === "mega" && relativeFile.startsWith("data/pokemon/")) {
-    const mega =
-      data.megaEvolutions?.[requestedFormId] ||
-      Object.values(data.megaEvolutions || {}).find(
-        (candidate) =>
-          candidate.formId === requestedFormId || candidate.id === requestedFormId,
-      ) ||
-      Object.values(data.megaEvolutions || {})[0];
-    data = mega ? { ...mega, dexId: data.dexId, regionId: data.regionId } : data;
-  }
   data = resolveRegionReference(data);
   const moveCatalog = buildMoveCatalog();
   return {

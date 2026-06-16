@@ -225,6 +225,11 @@ watchers concurrents sur les memes sources.
 `/api-docs`, `/swagger` et `/health` sont dirigees vers cette fonction par `vercel.json`.
 La checklist reste disponible a la racine.
 
+La checklist expose aussi `/api/source-watch-v3`, protegee par `CHECKLIST_PASSWORD`.
+Cette route lit `data/source-watch/sources.json`, verifie les depots GitHub et sites
+declares, puis renvoie leur signature courante pour afficher les nouveautés dans
+l'onglet "Veille sources".
+
 Configurer dans Vercel les variables `MONGODB_URI`, `NODE_ENV=production` et
 `API_PUBLIC_URL`. Atlas doit accepter les connexions sortantes de Vercel ; sur un cluster
 standard, cela implique generalement une autorisation reseau adaptee ou une solution

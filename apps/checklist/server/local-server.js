@@ -2,6 +2,7 @@ const express = require("express");
 const os = require("os");
 const path = require("path");
 const { buildChecklist, detailForKey } = require("./engine");
+const { sourceWatch } = require("./source-watch");
 const workshop = require("./workshop");
 
 const app = express();
@@ -56,6 +57,7 @@ app.get("/api/notes-v3", route(() => workshop.notes()));
 app.post("/api/notes-v3", route((request) => workshop.saveNote(request.body)));
 app.get("/api/image-reviews-v3", route(() => workshop.imageReviews()));
 app.post("/api/image-reviews-v3", route((request) => workshop.saveImageReview(request.body)));
+app.get("/api/source-watch-v3", route(() => sourceWatch()));
 app.get("/api/git-history-v3", route((request) => workshop.gitHistory(request.query.file)));
 app.post("/api/open-file-v3", route((request) => workshop.openFile(request.body.file)));
 

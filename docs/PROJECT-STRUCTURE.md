@@ -43,6 +43,11 @@ Pokémon complètes conservent uniquement `regionId`; l'API et la checklist reco
 la région traduite et la génération. Les sept météos vivent dans `data/weather/`,
 référencent leurs types boostés et exposent les icônes de `asset/weather/`.
 
+Les sources externes surveillées par la checklist vivent dans
+`data/source-watch/sources.json`. La route `/api/source-watch-v3` lit cette liste,
+vérifie les signatures distantes et laisse le navigateur signaler les nouveautés déjà
+vues ou non vues.
+
 Le script `scripts/import/shadow-pokemon.js` synchronise depuis Bulbapedia les
 sorties Shadow déjà effectives, les coûts de purification, les Catch CP et les
 dates. Il ignore les dates futures et ne crée aucun asset Shadow.

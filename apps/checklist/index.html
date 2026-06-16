@@ -427,18 +427,43 @@
         text-shadow: 0 1px 2px #0005;
       }
       .chip.weather-chip {
+        min-width: 0;
+        max-width: 100%;
+        gap: 4px;
+        overflow: hidden;
         color: var(--ink);
         background: color-mix(in srgb, #d8f4ff 76%, var(--surface));
+      }
+      .chip.weather-chip.card-weather {
+        grid-column: 1 / -1;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        padding: 5px 6px;
+        white-space: normal;
       }
       .weather-part {
         display: inline-flex;
         align-items: center;
+        justify-content: center;
+        min-width: 0;
         gap: 4px;
         white-space: nowrap;
+      }
+      .card-weather .weather-part {
+        flex: 1 1 86px;
+        padding: 3px 5px;
+        border-radius: 999px;
+        background: #ffffff4d;
+      }
+      .weather-label {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .weather-icon {
         width: 22px;
         height: 22px;
+        flex: none;
         object-fit: contain;
       }
       .type-part {
@@ -919,6 +944,46 @@
       .status-box { padding: 11px; margin: 9px 0; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); font-size: .75rem; }
       .status-box.good { border-color: #87d5ad; background: #edfbf4; }
       .status-box.bad { border-color: #f0acac; background: #fff0f0; }
+      .source-watch-notice {
+        display: none;
+        margin-bottom: 12px;
+        padding: 11px;
+        border: 1px solid #8edcff;
+        border-radius: 13px;
+        color: var(--ink);
+        background: color-mix(in srgb, #d9f6ff 74%, var(--surface));
+        font-size: .73rem;
+        font-weight: 750;
+      }
+      .source-watch-notice.active {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .source-list {
+        display: grid;
+        gap: 8px;
+      }
+      .source-item {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--surface);
+        font-size: .72rem;
+      }
+      .source-item.changed {
+        border-color: #8edcff;
+        box-shadow: 0 0 0 2px #2de2e61f;
+      }
+      .source-item strong,
+      .source-item span {
+        overflow-wrap: anywhere;
+      }
       .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 9px; }
       .move-card { border: 1px solid var(--line); border-radius: 14px; padding: 10px; background: var(--surface); }
       .type-icon { width: 24px; height: 24px; object-fit: contain; vertical-align: middle; margin-right: 5px; }
@@ -1152,6 +1217,14 @@
           grid-column: 1 / -1;
           min-height: 34px;
         }
+        .weather-icon {
+          width: 18px;
+          height: 18px;
+        }
+        .card-weather .weather-part {
+          flex-basis: 78px;
+          font-size: 0.62rem;
+        }
         .type-separator { display: none; }
         .card-actions .detail-btn {
           grid-column: 1 / -1;
@@ -1264,6 +1337,7 @@
           <a href="/swagger" id="swaggerLink" target="_blank">API interactive</a>
           <a href="/api-docs.json" id="openApiLink" target="_blank">OpenAPI</a>
           <a href="/health" id="healthLink" target="_blank"><span class="api-dot" id="apiDot"></span><span id="apiState">État API</span></a>
+          <button id="openSourceWatch">Veille sources</button>
           <button id="openNotes">Notes</button>
           <button id="openTools">Outils</button>
           <button id="themeToggle">Mode nuit</button>
@@ -1296,8 +1370,10 @@
           </section>
           <section class="quality-panel">
             <h2>Atelier rapide</h2>
+            <div class="source-watch-notice" id="sourceWatchNotice"></div>
             <div class="action-grid">
               <button class="action-btn primary" id="nextEntry">Prochaine fiche</button>
+              <button class="action-btn" id="quickSourceWatch">Veille sources</button>
               <button class="action-btn" id="quickReview">Vérification images</button>
               <button class="action-btn" id="openExports">Exports & partage</button>
               <button class="action-btn" id="openHistory">Historique</button>
@@ -1445,6 +1521,7 @@
         selected: new Set(),
         catalog: null,
         daily: [],
+        sourceWatch: null,
       };
       const ids = [
         "done",
@@ -1458,6 +1535,7 @@
         "footerIssues",
         "nextEntry",
         "quickReview",
+        "quickSourceWatch",
         "openExports",
         "openHistory",
         "openMoves",
@@ -1465,6 +1543,8 @@
         "openStickers",
         "openCompare",
         "openBatch",
+        "openSourceWatch",
+        "sourceWatchNotice",
         "openNotes",
         "openTools",
         "themeToggle",
@@ -1596,7 +1676,7 @@
           .map((id) => {
             const weather = weatherInfo(id);
             const label = weather?.names?.French || weather?.names?.English || id;
-            return `<span class="weather-part">${weather?.assets?.icon ? `<img class="weather-icon" src="${esc(weather.assets.icon)}" alt="">` : ""}${esc(label)}</span>`;
+            return `<span class="weather-part">${weather?.assets?.icon ? `<img class="weather-icon" src="${esc(weather.assets.icon)}" alt="">` : ""}<span class="weather-label">${esc(label)}</span></span>`;
           })
           .join('<span class="type-separator">/</span>');
       const color = (e) => typeColors[typeName(e.primaryType)] || "#8293a5";
@@ -1703,8 +1783,96 @@
         try { return JSON.parse(localStorage.getItem(key) || "[]"); }
         catch { return []; }
       };
+      const localObject = (key) => {
+        try { return JSON.parse(localStorage.getItem(key) || "{}"); }
+        catch { return {}; }
+      };
       const prependLocal = (key, value, limit = 500) =>
         localStorage.setItem(key, JSON.stringify([value, ...localList(key)].slice(0, limit)));
+      const sourceSeenKey = "pokedex-v3-source-watch-seen";
+      function sourceSeen() {
+        return localObject(sourceSeenKey);
+      }
+      function changedSources() {
+        const seen = sourceSeen();
+        return (state.sourceWatch?.sources || []).filter(
+          (source) =>
+            source.status === "ok" &&
+            source.signature &&
+            seen[source.id] &&
+            seen[source.id] !== source.signature,
+        );
+      }
+      function updateSourceWatchNotice() {
+        const changes = changedSources();
+        if (!el.sourceWatchNotice) return;
+        if (!changes.length) {
+          el.sourceWatchNotice.classList.remove("active");
+          el.sourceWatchNotice.innerHTML = "";
+          return;
+        }
+        el.sourceWatchNotice.classList.add("active");
+        el.sourceWatchNotice.innerHTML = `<span>${changes.length} source(s) ont du nouveau: ${changes.map((source) => esc(source.name)).join(", ")}</span><button class="action-btn" id="openSourceWatchNotice">Voir</button>`;
+        document.getElementById("openSourceWatchNotice").onclick = openSourceWatch;
+      }
+      async function refreshSourceWatch(renderPanel = false) {
+        try {
+          state.sourceWatch = (await apiFetch("/api/source-watch-v3")).data;
+          const seen = sourceSeen();
+          let changed = false;
+          for (const source of state.sourceWatch.sources || []) {
+            if (source.status === "ok" && source.signature && !seen[source.id]) {
+              seen[source.id] = source.signature;
+              changed = true;
+            }
+          }
+          if (changed) localStorage.setItem(sourceSeenKey, JSON.stringify(seen));
+          updateSourceWatchNotice();
+          if (renderPanel) renderSourceWatchPanel();
+        } catch (error) {
+          if (renderPanel)
+            showWorkspace("Veille sources", "Impossible de vérifier les sources", `<div class="status-box bad">${esc(error.message)}</div>`);
+        }
+      }
+      function markSourceWatchSeen() {
+        const seen = sourceSeen();
+        for (const source of state.sourceWatch?.sources || [])
+          if (source.status === "ok" && source.signature) seen[source.id] = source.signature;
+        localStorage.setItem(sourceSeenKey, JSON.stringify(seen));
+        updateSourceWatchNotice();
+        renderSourceWatchPanel();
+      }
+      function renderSourceWatchPanel() {
+        const watch = state.sourceWatch;
+        const seen = sourceSeen();
+        const sources = watch?.sources || [];
+        const rows = sources.map((source) => {
+          const changed =
+            source.status === "ok" &&
+            source.signature &&
+            seen[source.id] &&
+            seen[source.id] !== source.signature;
+          const status =
+            source.status === "ok"
+              ? changed
+                ? "Nouveau"
+                : "À jour"
+              : `Erreur: ${source.message || source.status}`;
+          const date = source.updatedAt ? new Date(source.updatedAt).toLocaleString("fr") : "Date inconnue";
+          return `<article class="source-item ${changed ? "changed" : ""}"><div><strong>${esc(source.name)}</strong><br><span class="meta">${esc(source.category)} · ${esc(status)} · ${esc(date)}</span><br><span>${esc(source.message || source.description || "")}</span></div><a class="action-btn" href="${esc(source.remoteUrl || source.url)}" target="_blank" rel="noopener">Ouvrir</a></article>`;
+        }).join("");
+        showWorkspace(
+          "Veille sources",
+          watch?.checkedAt ? `Dernière vérification: ${new Date(watch.checkedAt).toLocaleString("fr")}` : "Sources externes",
+          `<div class="status-box">La checklist compare ces signatures avec ce que ce navigateur a déjà vu. Utilise ce panneau pour repérer les changements PokeMiners, Game Master et Shuffle sans fouiller partout.</div><div class="workspace-tools"><button class="action-btn primary" data-source-refresh>Vérifier maintenant</button><button class="action-btn" data-source-seen>Marquer comme vu</button></div><div class="source-list">${rows || '<div class="empty">Aucune source configurée.</div>'}</div>`,
+        );
+        el.workspaceContent.querySelector("[data-source-refresh]").onclick = () => refreshSourceWatch(true);
+        el.workspaceContent.querySelector("[data-source-seen]").onclick = markSourceWatchSeen;
+      }
+      async function openSourceWatch() {
+        showWorkspace("Veille sources", "Vérification en cours…", '<div class="status-box">Je vérifie les dépôts et le site configurés.</div>');
+        await refreshSourceWatch(true);
+      }
       function trackQualityChanges(entries) {
         let previous = {};
         try {
@@ -1856,7 +2024,7 @@
           .join("");
         const selected = state.selected.has(e.key);
         const weather = weatherBadge(e.weatherBoost);
-        return `<article class="poke-card ${done ? "done" : ""} ${selected ? "selected" : ""}" style="--type:${color(e)};--type-bg:url('${esc(typeBackground(e.primaryType))}')"><div class="type-strip"></div><div class="card-score score-ring" style="--score:${e.quality.score}"><span>${e.quality.score}%</span></div><div class="card-main">${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)} · Gén. ${esc(e.generation || "?")}</div><div class="chips"><span class="chip type-chip">${typeBadge || "Type ?"}</span>${weather ? `<span class="chip weather-chip">${weather}</span>` : ""}<span class="chip">${e.quickMoveCount} rapide(s)</span><span class="chip">${e.chargedMoveCount} chargée(s)</span>${e.complete ? '<span class="chip good">JSON complet</span>' : `<span class="chip problem">${e.issues.length} problème(s)</span>`}${categories}${manual ? '<span class="chip good wide">Vérifiée manuellement</span>' : ""}</div></div></div><div class="card-actions"><label class="check-label"><input type="checkbox" data-check="${esc(e.key)}" ${done ? "checked" : ""} ${e.complete ? "disabled" : ""}> Fait</label><button class="select-btn ${selected ? "active" : ""}" data-select="${esc(e.key)}">${selected ? "Dans le lot" : "Ajouter au lot"}</button><button class="detail-btn" data-detail="${esc(e.key)}">Voir la fiche</button></div></article>`;
+        return `<article class="poke-card ${done ? "done" : ""} ${selected ? "selected" : ""}" style="--type:${color(e)};--type-bg:url('${esc(typeBackground(e.primaryType))}')"><div class="type-strip"></div><div class="card-score score-ring" style="--score:${e.quality.score}"><span>${e.quality.score}%</span></div><div class="card-main">${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)} · Gén. ${esc(e.generation || "?")}</div><div class="chips"><span class="chip type-chip">${typeBadge || "Type ?"}</span>${weather ? `<span class="chip weather-chip card-weather">${weather}</span>` : ""}<span class="chip">${e.quickMoveCount} rapide(s)</span><span class="chip">${e.chargedMoveCount} chargée(s)</span>${e.complete ? '<span class="chip good">JSON complet</span>' : `<span class="chip problem">${e.issues.length} problème(s)</span>`}${categories}${manual ? '<span class="chip good wide">Vérifiée manuellement</span>' : ""}</div></div></div><div class="card-actions"><label class="check-label"><input type="checkbox" data-check="${esc(e.key)}" ${done ? "checked" : ""} ${e.complete ? "disabled" : ""}> Fait</label><button class="select-btn ${selected ? "active" : ""}" data-select="${esc(e.key)}">${selected ? "Dans le lot" : "Ajouter au lot"}</button><button class="detail-btn" data-detail="${esc(e.key)}">Voir la fiche</button></div></article>`;
       }
       function updateStats() {
         const done = state.entries.filter(isDone).length,
@@ -2683,8 +2851,8 @@
           (signatures[signature] ||= []).push(entry);
         }
         const suspicious = Object.values(signatures).filter((group) => group.length >= 4 && group.some((entry) => entry.stats)).sort((a, b) => b.length - a.length);
-        showWorkspace("Boîte à outils", `${state.selected.size} sélectionnée(s)`, `<div class="workspace-tools"><button class="action-btn" data-tool="moves">Catalogue attaques</button><button class="action-btn" data-tool="assets">Assets Home & GO</button><button class="action-btn" data-tool="stickers">Stickers</button><button class="action-btn" data-tool="compare">Comparer</button><button class="action-btn" data-tool="batch">Corrections groupées</button><button class="action-btn" data-tool="notes">Notes & revues</button><button class="action-btn" data-tool="single">Mode une tâche</button></div><h2>Évolution quotidienne</h2><div class="history-list">${state.daily.slice().reverse().map((day) => `<div class="history-item"><strong>${day.date}</strong> · qualité ${day.average}% · ${day.complete} complètes · ${day.issues.toLocaleString("fr")} problèmes</div>`).join("")}</div><h2>Données identiques suspectes</h2><div class="history-list">${suspicious.slice(0, 20).map((group) => `<div class="history-item"><strong>${group.length} fiches identiques</strong><br>${esc(group.slice(0, 8).map((entry) => entry.name).join(", "))}</div>`).join("") || '<div class="empty">Aucun groupe suspect important.</div>'}</div>`);
-        const actions = { moves: openMoves, assets: openAssets, stickers: openStickers, compare: openCompare, batch: openBatch, notes: openNotes, single: () => { document.body.classList.toggle("single-task"); el.workspace.close(); render(); } };
+        showWorkspace("Boîte à outils", `${state.selected.size} sélectionnée(s)`, `<div class="workspace-tools"><button class="action-btn" data-tool="moves">Catalogue attaques</button><button class="action-btn" data-tool="assets">Assets Home & GO</button><button class="action-btn" data-tool="stickers">Stickers</button><button class="action-btn" data-tool="watch">Veille sources</button><button class="action-btn" data-tool="compare">Comparer</button><button class="action-btn" data-tool="batch">Corrections groupées</button><button class="action-btn" data-tool="notes">Notes & revues</button><button class="action-btn" data-tool="single">Mode une tâche</button></div><h2>Évolution quotidienne</h2><div class="history-list">${state.daily.slice().reverse().map((day) => `<div class="history-item"><strong>${day.date}</strong> · qualité ${day.average}% · ${day.complete} complètes · ${day.issues.toLocaleString("fr")} problèmes</div>`).join("")}</div><h2>Données identiques suspectes</h2><div class="history-list">${suspicious.slice(0, 20).map((group) => `<div class="history-item"><strong>${group.length} fiches identiques</strong><br>${esc(group.slice(0, 8).map((entry) => entry.name).join(", "))}</div>`).join("") || '<div class="empty">Aucun groupe suspect important.</div>'}</div>`);
+        const actions = { moves: openMoves, assets: openAssets, stickers: openStickers, watch: openSourceWatch, compare: openCompare, batch: openBatch, notes: openNotes, single: () => { document.body.classList.toggle("single-task"); el.workspace.close(); render(); } };
         el.workspaceContent.querySelectorAll("[data-tool]").forEach((button) => button.onclick = actions[button.dataset.tool]);
       }
       function renderDetail(e, d) {
@@ -2925,6 +3093,7 @@
           el.elementalType.value = typeColors[selectedType] ? selectedType : "all";
           restoreFilters();
           render();
+          refreshSourceWatch(false);
         } catch (error) {
           el.entries.innerHTML = `<div class="empty">${esc(error.message)}</div>`;
           el.resultCount.textContent = "Accès protégé";
@@ -3017,6 +3186,8 @@
       el.openStickers.onclick = openStickers;
       el.openCompare.onclick = openCompare;
       el.openBatch.onclick = openBatch;
+      el.openSourceWatch.onclick = openSourceWatch;
+      el.quickSourceWatch.onclick = openSourceWatch;
       el.openNotes.onclick = openNotes;
       el.openTools.onclick = openTools;
       el.closeWorkspace.onclick = () => el.workspace.close();

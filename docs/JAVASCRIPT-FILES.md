@@ -12,6 +12,7 @@ imports, aux migrations, aux audits ou à la synchronisation.
 | `api/rest.js` | Expose l'API comme fonction serverless Vercel. |
 | `api/checklist-v3.js` | Expose les données de la checklist déployée. |
 | `api/detail-v3.js` | Expose le détail d'une fiche dans la checklist déployée. |
+| `api/source-watch-v3.js` | Expose la veille des sources externes dans la checklist. |
 
 ## Scripts D'import
 
@@ -69,6 +70,8 @@ Les commandes sans suffixe `:write` simulent généralement le résultat. Les co
 - `src/docs/*.js` génère OpenAPI, Swagger et Redoc.
 - `src/lib/*.js` contient les fonctions techniques réutilisables.
 - `apps/checklist/server/*.js` alimente la checklist locale et ses outils.
+- `apps/checklist/server/source-watch.js` vérifie les dépôts GitHub et sites déclarés
+  dans `data/source-watch/sources.json`.
 
 ## Commandes Sûres
 

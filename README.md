@@ -276,6 +276,7 @@ Vercel sert la checklist a la racine du domaine et expose les fonctions serverle
 - `/api/checklist-v3`
 - `/api/detail-v3`
 - `/api/catalog-v3`, `/api/assets-v3`, `/api/validate-v3` et `/api/url-audit-v3`
+- `/api/source-watch-v3` pour la veille PokeMiners / Game Master / assets externes
 - `/api/v1` pour l'API REST MongoDB
 - `/api-docs` pour la documentation moderne
 - `/swagger` pour la console interactive

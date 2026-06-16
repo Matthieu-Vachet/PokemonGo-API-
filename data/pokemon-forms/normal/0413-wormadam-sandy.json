@@ -20,10 +20,7 @@
     "height": 0.5,
     "weight": 6.5
   },
-  "weatherBoost": [
-    "rain",
-    "sunny"
-  ],
+  "weatherBoost": ["rain", "sunny"],
   "buddyDistance": 1,
   "catchRate": 20,
   "fleeRate": 0,
@@ -68,10 +65,7 @@
       },
       "bestMovesets": {
         "fast": "SUCKER_PUNCH_FAST",
-        "charged": [
-          "BUG_BUZZ",
-          "BULLDOZE"
-        ]
+        "charged": ["BUG_BUZZ", "BULLDOZE"]
       }
     },
     "ultraLeague": {
@@ -87,10 +81,7 @@
       },
       "bestMovesets": {
         "fast": "SUCKER_PUNCH_FAST",
-        "charged": [
-          "BULLDOZE",
-          "BUG_BUZZ"
-        ]
+        "charged": ["BULLDOZE", "BUG_BUZZ"]
       }
     },
     "masterLeague": null
@@ -103,129 +94,140 @@
   "primaryType": "BUG",
   "secondaryType": "GROUND",
   "pokemonClass": null,
-  "quickMoves": [
-    "CONFUSION_FAST",
-    "BUG_BITE_FAST",
-    "SUCKER_PUNCH_FAST"
-  ],
-  "cinematicMoves": [
-    "PSYBEAM",
-    "BULLDOZE",
-    "BUG_BUZZ"
-  ],
+  "quickMoves": ["CONFUSION_FAST", "BUG_BITE_FAST", "SUCKER_PUNCH_FAST"],
+  "cinematicMoves": ["PSYBEAM", "BULLDOZE", "BUG_BUZZ"],
   "eliteQuickMoves": [],
   "eliteCinematicMoves": [],
   "assets": {
+    "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm413.fWORMADAM_SANDY.icon.png",
+    "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm413.fWORMADAM_SANDY.s.icon.png",
+
+    "home": {
+      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0413_001_fo_n_00000000_f_n.png",
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0413_001_fo_n_00000000_f_r.png",
+      "source": "pokemon-home",
+      "variants": [
+        {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0413_000_fo_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0413_000_fo_n_00000000_f_r.png",
+          "formIndex": "000",
+          "gender": "female-only",
+          "genderCode": "fo",
+          "detail": "00000000",
+          "view": "front"
+        },
+        {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0413_001_fo_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0413_001_fo_n_00000000_f_r.png",
+          "formIndex": "001",
+          "gender": "female-only",
+          "genderCode": "fo",
+          "detail": "00000000",
+          "view": "front"
+        },
+        {
+          "gigantamax": false,
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0413_002_fo_n_00000000_f_n.png",
+          "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd/poke_capture_0413_002_fo_n_00000000_f_r.png",
+          "formIndex": "002",
+          "gender": "female-only",
+          "genderCode": "fo",
+          "detail": "00000000",
+          "view": "front"
+        }
+      ]
+    },
     "shuffle": {
       "source": "pokemon-shuffle",
       "variants": [
         {
-          "id": "0413_wormadam_sandy_chromatique",
+          "id": "0413_wormadam_normal_chromatique",
           "form": "normal",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/0413_wormadam_sandy_chromatique.png",
-          "filename": "0413_wormadam_sandy_chromatique.png",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/0413_wormadam_normal_chromatique.png",
+          "filename": "0413_wormadam_normal_chromatique.png",
           "state": "normal",
-          "codes": [
-            "wormadam",
-            "sandy",
-            "chromatique"
-          ],
-          "tags": [
-            "wormadam",
-            "sandy"
-          ],
+          "codes": ["wormadam", "normal", "chromatique"],
+          "tags": ["wormadam", "normal"],
           "shiny": true
         },
         {
-          "id": "0413_wormadam_sandy_purified_chromatique",
+          "id": "0413_wormadam_normal",
           "form": "normal",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/0413_wormadam_sandy_purified_chromatique.png",
-          "filename": "0413_wormadam_sandy_purified_chromatique.png",
-          "state": "purified",
-          "codes": [
-            "wormadam",
-            "sandy",
-            "purified",
-            "chromatique"
-          ],
-          "tags": [
-            "wormadam",
-            "sandy"
-          ],
-          "shiny": true
-        },
-        {
-          "id": "0413_wormadam_sandy_purified",
-          "form": "normal",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/0413_wormadam_sandy_purified.png",
-          "filename": "0413_wormadam_sandy_purified.png",
-          "state": "purified",
-          "codes": [
-            "wormadam",
-            "sandy",
-            "purified"
-          ],
-          "tags": [
-            "wormadam",
-            "sandy"
-          ],
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/0413_wormadam_normal.png",
+          "filename": "0413_wormadam_normal.png",
+          "state": "normal",
+          "codes": ["wormadam", "normal"],
+          "tags": ["wormadam", "normal"],
           "shiny": false
         },
         {
-          "id": "0413_wormadam_sandy_shadow_chromatique",
+          "id": "0413_wormadam_purified_chromatique",
           "form": "normal",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/0413_wormadam_sandy_shadow_chromatique.png",
-          "filename": "0413_wormadam_sandy_shadow_chromatique.png",
-          "state": "shadow",
-          "codes": [
-            "wormadam",
-            "sandy",
-            "shadow",
-            "chromatique"
-          ],
-          "tags": [
-            "wormadam",
-            "sandy"
-          ],
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/0413_wormadam_purified_chromatique.png",
+          "filename": "0413_wormadam_purified_chromatique.png",
+          "state": "purified",
+          "codes": ["wormadam", "purified", "chromatique"],
+          "tags": ["wormadam"],
           "shiny": true
         },
         {
-          "id": "0413_wormadam_sandy_shadow",
+          "id": "0413_wormadam_purified",
           "form": "normal",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/0413_wormadam_sandy_shadow.png",
-          "filename": "0413_wormadam_sandy_shadow.png",
-          "state": "shadow",
-          "codes": [
-            "wormadam",
-            "sandy",
-            "shadow"
-          ],
-          "tags": [
-            "wormadam",
-            "sandy"
-          ],
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/0413_wormadam_purified.png",
+          "filename": "0413_wormadam_purified.png",
+          "state": "purified",
+          "codes": ["wormadam", "purified"],
+          "tags": ["wormadam"],
           "shiny": false
         },
         {
-          "id": "0413_wormadam_sandy",
+          "id": "0413_wormadam_shadow_chromatique",
           "form": "normal",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/0413_wormadam_sandy.png",
-          "filename": "0413_wormadam_sandy.png",
-          "state": "normal",
-          "codes": [
-            "wormadam",
-            "sandy"
-          ],
-          "tags": [
-            "wormadam",
-            "sandy"
-          ],
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/0413_wormadam_shadow_chromatique.png",
+          "filename": "0413_wormadam_shadow_chromatique.png",
+          "state": "shadow",
+          "codes": ["wormadam", "shadow", "chromatique"],
+          "tags": ["wormadam"],
+          "shiny": true
+        },
+        {
+          "id": "0413_wormadam_shadow",
+          "form": "normal",
+          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/0413_wormadam_shadow.png",
+          "filename": "0413_wormadam_shadow.png",
+          "state": "shadow",
+          "codes": ["wormadam", "shadow"],
+          "tags": ["wormadam"],
           "shiny": false
         }
       ]
     }
   },
-  "assetForms": [],
+  "assetForms": [
+    {
+      "form": "WORMADAM_PLANT",
+      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm413.fWORMADAM_PLANT.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm413.fWORMADAM_PLANT.s.icon.png",
+      "costume": null,
+      "isFemale": false
+    },
+    {
+      "form": "WORMADAM_SANDY",
+      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm413.fWORMADAM_SANDY.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm413.fWORMADAM_SANDY.s.icon.png",
+      "costume": null,
+      "isFemale": false
+    },
+    {
+      "form": "WORMADAM_TRASH",
+      "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm413.fWORMADAM_TRASH.icon.png",
+      "shinyImage": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Pokemon/pm413.fWORMADAM_TRASH.s.icon.png",
+      "costume": null,
+      "isFemale": false
+    }
+  ],
   "regionForms": [],
   "evolutions": [],
   "hasMegaEvolution": false,

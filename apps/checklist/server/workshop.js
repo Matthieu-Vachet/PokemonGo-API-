@@ -2,6 +2,13 @@ const childProcess = require("child_process");
 const fs = require("fs");
 const path = require("path");
 const { detailForKey, validateSourceData } = require("./engine");
+const {
+  deleteCustomRule,
+  listCustomRules,
+  previewCustomRule,
+  saveCustomRule,
+  toggleCustomRule,
+} = require("./custom-rules");
 
 const rootDir = process.cwd();
 const notesFile = path.join(rootDir, ".checklist-notes.json");
@@ -35,6 +42,10 @@ function writeJson(file, data) {
 
 function validate(data, relativeFile, kind) {
   return validateSourceData(data, relativeFile, kind);
+}
+
+function customRules() {
+  return listCustomRules();
 }
 
 function parseAsset(filename) {
@@ -352,11 +363,16 @@ module.exports = {
   assetAudit,
   auditUrls,
   catalog,
+  customRules,
+  deleteCustomRule,
   gitHistory,
   imageReviews,
   notes,
   openFile,
+  previewCustomRule,
   saveImageReview,
+  saveCustomRule,
   saveNote,
+  toggleCustomRule,
   validate,
 };

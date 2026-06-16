@@ -1,6 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 const { buildCpByLevel } = require("../../../src/lib/pokemon-cp");
+const {
+  applyCustomRules,
+  enabledCustomRules,
+} = require("./custom-rules");
 
 const rootDir = process.cwd();
 const pokemonDir = path.join(rootDir, "data", "pokemon");
@@ -64,8 +68,8 @@ function actualType(value) {
 function createValidator() {
   const issues = [];
 
-  function add(pathName, issue, expected, actual) {
-    issues.push({ path: pathName, issue, expected, actual });
+  function add(pathName, issue, expected, actual, extras = {}) {
+    issues.push({ path: pathName, issue, expected, actual, ...extras });
   }
 
   function field(object, key, pathName, type, options = {}) {
@@ -784,10 +788,10 @@ function createValidator() {
     }
   }
 
-  return { issues, pokemon, mega, maxForm };
+  return { add, issues, pokemon, mega, maxForm };
 }
 
-function validateSourceData(data, relativeFile = "", kindHint = "") {
+function validateSourceData(data, relativeFile = "", kindHint = "", options = {}) {
   const validator = createValidator();
   const kind =
     relativeFile.startsWith("data/pokemon/") ? "pokemon" :
@@ -804,6 +808,12 @@ function validateSourceData(data, relativeFile = "", kindHint = "") {
   else if (kind === "dynamax" || kind === "gigantamax")
     validator.maxForm(data, "");
   else validator.pokemon(data, "single", "", kind === "form");
+  applyCustomRules(
+    data,
+    kind,
+    validator.add,
+    options.customRules || enabledCustomRules(),
+  );
   for (const issue of validator.issues)
     issue.path = issue.path.replace(/^\./, "");
   const moveIds = new Set(buildMoveCatalog().keys());
@@ -908,8 +918,11 @@ function mergeInheritedForm(parent, form) {
   };
 }
 
-function issueCategory(pathName) {
-  const path = String(pathName || "").toLowerCase();
+function issueCategory(input) {
+  if (input && typeof input === "object" && input.category) return input.category;
+  const path = String(
+    input && typeof input === "object" ? input.path : input || "",
+  ).toLowerCase();
   if (path.includes("asset") || path.includes("image")) return "assets";
   if (path.includes("pvp")) return "pvp";
   if (path.includes("move")) return "moves";
@@ -931,7 +944,7 @@ function issueCategory(pathName) {
 }
 
 function qualitySummary(issues) {
-  const categories = [...new Set(issues.map((issue) => issueCategory(issue.path)))];
+  const categories = [...new Set(issues.map((issue) => issueCategory(issue)))];
   const missing = issues.filter((issue) => issue.issue === "missing").length;
   const invalid = issues.length - missing;
   const score = Math.max(0, Math.round(100 - missing * 3 - invalid * 5));
@@ -966,6 +979,7 @@ function setPatchValue(target, pathName, value) {
 }
 
 function suggestedValue(issue, kind = "pokemon") {
+  if (issue.suggested !== undefined) return structuredClone(issue.suggested);
   const pvpLeague = {
     tierRank: "",
     rank1: {
@@ -1185,6 +1199,7 @@ function referenceIssues(data, moveIds, formIds) {
 }
 
 function buildChecklist() {
+  const customRules = enabledCustomRules();
   const sources = [];
   for (const file of fs
     .readdirSync(pokemonDir)
@@ -1239,6 +1254,7 @@ function buildChecklist() {
     else if (kind === "dynamax" || kind === "gigantamax")
       validator.maxForm(data, "");
     else validator.pokemon(data, profile, "", kind === "form");
+    applyCustomRules(data, kind, validator.add, customRules);
     for (const issue of validator.issues)
       issue.path = issue.path.replace(/^\./, "");
     validator.issues.push(...referenceIssues(data, moveIds, formIds));

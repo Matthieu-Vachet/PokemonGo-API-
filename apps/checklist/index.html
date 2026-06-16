@@ -1000,6 +1000,120 @@
       .source-item span {
         overflow-wrap: anywhere;
       }
+      .rule-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+        gap: 12px;
+        align-items: start;
+      }
+      .rule-editor,
+      .rule-list {
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 12px;
+        background: var(--surface);
+      }
+      .rule-editor h2,
+      .rule-list h2 {
+        margin: 0 0 10px;
+        font-size: 0.9rem;
+      }
+      .rule-form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+      .rule-field {
+        display: grid;
+        gap: 6px;
+        font-size: 0.72rem;
+      }
+      .rule-field.full {
+        grid-column: 1 / -1;
+      }
+      .rule-field label {
+        font-weight: 800;
+      }
+      .rule-field input,
+      .rule-field select,
+      .rule-field textarea {
+        width: 100%;
+      }
+      .rule-checks {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 2px;
+      }
+      .rule-checks label {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 10px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--surface-soft);
+        font-size: 0.72rem;
+        font-weight: 700;
+      }
+      .rule-help {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 0.7rem;
+      }
+      .rule-preview {
+        margin-top: 12px;
+      }
+      .rule-card {
+        display: grid;
+        gap: 8px;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--surface-soft);
+      }
+      .rule-card.disabled {
+        opacity: 0.72;
+      }
+      .rule-card-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        align-items: start;
+      }
+      .rule-card-head strong,
+      .rule-card code {
+        overflow-wrap: anywhere;
+      }
+      .rule-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .rule-tag {
+        padding: 4px 8px;
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--blue) 12%, var(--surface));
+        font-size: 0.66rem;
+        font-weight: 800;
+      }
+      .rule-tag.dim {
+        background: color-mix(in srgb, var(--surface-soft) 84%, var(--line));
+      }
+      .rule-stack {
+        display: grid;
+        gap: 8px;
+      }
+      .rule-inline-code {
+        margin: 0;
+        padding: 10px;
+        border-radius: 12px;
+        color: #d9e4ff;
+        background: #07152d;
+        font: 0.69rem/1.45 ui-monospace, monospace;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
       .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 9px; }
       .move-card { border: 1px solid var(--line); border-radius: 14px; padding: 10px; background: var(--surface); }
       .type-icon { width: 24px; height: 24px; object-fit: contain; vertical-align: middle; margin-right: 5px; }
@@ -1327,7 +1441,9 @@
         .quick-images,
         .quick-actions,
         .editor-grid,
-        .compare-grid {
+        .compare-grid,
+        .rule-layout,
+        .rule-form-grid {
           grid-template-columns: 1fr;
         }
         .workspace-content {
@@ -1397,6 +1513,7 @@
               <button class="action-btn primary" id="nextEntry">Prochaine fiche</button>
               <button class="action-btn" id="quickSourceWatch">Veille sources</button>
               <button class="action-btn" id="quickReview">Vérification assets</button>
+              <button class="action-btn" id="openRuleManager">Règles checklist</button>
               <button class="action-btn" id="openExports">Exports & partage</button>
               <button class="action-btn" id="openHistory">Historique</button>
               <button class="action-btn" id="openMoves">Catalogue attaques</button>
@@ -1460,6 +1577,7 @@
             <option value="stats">Statistiques & PC</option>
             <option value="size">Taille & poids</option>
             <option value="gameplay">Capture & disponibilité</option>
+            <option value="custom">Règles perso</option>
             <option value="structure">Structure</option>
           </select>
           <select id="generation">
@@ -1540,6 +1658,7 @@
     <script>
       const state = {
         entries: [],
+        customRules: [],
         progress: {},
         assetChecks: {},
         limit: 60,
@@ -1567,6 +1686,7 @@
         "nextEntry",
         "quickReview",
         "quickSourceWatch",
+        "openRuleManager",
         "openExports",
         "openHistory",
         "openMoves",
@@ -1658,6 +1778,7 @@
         stats: "Statistiques & PC",
         size: "Taille & poids",
         gameplay: "Capture & disponibilité",
+        custom: "Règles perso",
         structure: "Structure",
       };
       const typeColors = {
@@ -1690,7 +1811,30 @@
       const problemColors = {
         assets: "#3987d7", pvp: "#9a55a8", moves: "#ef6c35",
         forms: "#52a447", translations: "#e15b85", stats: "#1685ff",
-        size: "#c99a48", gameplay: "#14b86e", structure: "#8293a5",
+        size: "#c99a48", gameplay: "#14b86e", custom: "#7c5cff",
+        structure: "#8293a5",
+      };
+      const checklistKinds = [
+        "pokemon",
+        "form",
+        "mega",
+        "dynamax",
+        "gigantamax",
+      ];
+      const checklistKindLabels = {
+        pokemon: "Pokémon",
+        form: "Formes",
+        mega: "Méga / Primo",
+        dynamax: "Dynamax",
+        gigantamax: "Gigantamax",
+      };
+      const ruleTypeLabels = {
+        presence: "Présence seulement",
+        string: "String",
+        number: "Number",
+        boolean: "Boolean",
+        object: "Objet",
+        array: "Tableau",
       };
       const esc = (v) =>
         String(v ?? "").replace(
@@ -1839,6 +1983,58 @@
       }
       function saveAssetChecks() {
         localStorage.setItem(assetChecksKey, JSON.stringify(state.assetChecks));
+      }
+      function ruleDefaults(rule = {}) {
+        return {
+          id: rule.id || "",
+          name: rule.name || "",
+          enabled: rule.enabled !== false,
+          appliesTo:
+            Array.isArray(rule.appliesTo) && rule.appliesTo.length
+              ? [...rule.appliesTo]
+              : ["pokemon"],
+          mode: rule.mode || "path",
+          path: rule.path || "",
+          expectedType: rule.expectedType || "presence",
+          enforceNonEmpty: Boolean(rule.enforceNonEmpty),
+          templateSource:
+            rule.templateSource ||
+            JSON.stringify(
+              rule.template || {
+                description: { fr: "", en: "" },
+              },
+              null,
+              2,
+            ),
+        };
+      }
+      function ruleModeLabel(mode) {
+        return mode === "template" ? "Modèle JSON" : "Chemin + type";
+      }
+      function ruleAppliesToLabel(rule) {
+        return (rule.appliesTo || [])
+          .map((kind) => checklistKindLabels[kind] || kind)
+          .join(" · ");
+      }
+      function collectRuleForm() {
+        const content = el.workspaceContent;
+        if (!content.querySelector("[data-rule-name]")) return null;
+        return {
+          id: content.querySelector("[data-rule-id]")?.value || "",
+          name: content.querySelector("[data-rule-name]")?.value || "",
+          enabled: content.querySelector("[data-rule-enabled]")?.checked ?? true,
+          appliesTo: [...content.querySelectorAll("[data-rule-kind]:checked")].map(
+            (input) => input.value,
+          ),
+          mode: content.querySelector("[data-rule-mode]")?.value || "path",
+          path: content.querySelector("[data-rule-path]")?.value || "",
+          expectedType:
+            content.querySelector("[data-rule-type]")?.value || "presence",
+          enforceNonEmpty:
+            content.querySelector("[data-rule-non-empty]")?.checked ?? false,
+          templateSource:
+            content.querySelector("[data-rule-template]")?.value || "",
+        };
       }
       function recordHistory(action, entry, details = "") {
         state.history.unshift({
@@ -2442,12 +2638,13 @@
           ? e.issues
               .map(
                 (i) =>
-                  `<div class="issue"><div><div class="issue-path">${esc(i.path)}</div><div class="issue-desc">${esc(i.issue)} · attendu ${esc(i.expected)} · actuel ${esc(i.actual)}</div></div><button class="copy" data-copy="${esc(i.path)}">Copier</button></div>`,
+                  `<div class="issue"><div><div class="issue-path">${esc(i.path)}</div><div class="issue-desc">${esc(i.issue)}${i.ruleName ? ` · règle ${esc(i.ruleName)}` : ""} · attendu ${esc(i.expected)} · actuel ${esc(i.actual)}</div></div><button class="copy" data-copy="${esc(i.path)}">Copier</button></div>`,
               )
               .join("")
           : '<div class="empty">Aucun problème détecté.</div>';
       }
       function suggestedValue(issue, entry) {
+        if (issue.suggested !== undefined) return structuredClone(issue.suggested);
         const pvpLeague = {
           tierRank: "",
           rank1: {
@@ -2604,6 +2801,150 @@
         link.download = filename;
         link.click();
         setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+      }
+      async function openCustomRules(
+        editingId = "",
+        draftInput = null,
+        previewRule = null,
+        notice = null,
+      ) {
+        const current =
+          state.customRules.find((rule) => rule.id === editingId) || null;
+        const draft = ruleDefaults(draftInput || current || {});
+        const preview = previewRule || null;
+        const modeIsTemplate = draft.mode === "template";
+        const rulesHtml = state.customRules.length
+          ? state.customRules
+              .map((rule) => {
+                const snippet = JSON.stringify(rule.template, null, 2);
+                return `<article class="rule-card ${rule.enabled ? "" : "disabled"}"><div class="rule-card-head"><div><strong>${esc(rule.name)}</strong><div class="meta">${esc(ruleModeLabel(rule.mode))} · ${esc(ruleAppliesToLabel(rule) || "Toutes les fiches")}</div></div><div class="rule-tags"><span class="rule-tag">${rule.enabled ? "Active" : "Désactivée"}</span>${rule.enforceNonEmpty ? '<span class="rule-tag dim">Non vide</span>' : ""}</div></div><code>${esc(rule.mode === "path" ? `${rule.path} · ${ruleTypeLabels[rule.expectedType] || rule.expectedType}` : snippet.slice(0, 160) + (snippet.length > 160 ? "…" : ""))}</code><div class="workspace-tools"><button class="action-btn primary" data-rule-edit="${esc(rule.id)}">Modifier</button><button class="action-btn" data-rule-toggle="${esc(rule.id)}">${rule.enabled ? "Désactiver" : "Activer"}</button><button class="action-btn" data-rule-delete="${esc(rule.id)}">Supprimer</button></div></article>`;
+              })
+              .join("")
+          : '<div class="empty">Aucune règle perso enregistrée pour le moment.</div>';
+        const previewHtml = preview
+          ? `<div class="status-box good">Aperçu prêt · ${esc(ruleModeLabel(preview.mode))} · ${esc(ruleAppliesToLabel(preview) || "Toutes les fiches")}</div><pre class="rule-inline-code">${esc(JSON.stringify(preview.template, null, 2))}</pre>`
+          : '<div class="status-box">Aperçu optionnel. Utilise “Prévisualiser” pour voir exactement ce que la checklist va contrôler.</div>';
+        showWorkspace(
+          "Règles checklist",
+          `${state.customRules.length} règle(s) perso · les vérifications natives restent actives`,
+          `${notice?.text ? `<div class="status-box ${notice.type || ""}">${esc(notice.text)}</div>` : ""}<div class="rule-layout"><section class="rule-editor"><h2>${draft.id ? "Modifier la règle" : "Nouvelle règle"}</h2><div class="rule-form-grid"><input type="hidden" data-rule-id value="${esc(draft.id)}"><div class="rule-field"><label>Nom</label><input data-rule-name placeholder="Ex: Descriptions multilingues" value="${esc(draft.name)}"></div><div class="rule-field"><label>Mode</label><select data-rule-mode><option value="path" ${draft.mode === "path" ? "selected" : ""}>Chemin + type</option><option value="template" ${modeIsTemplate ? "selected" : ""}>Modèle complet</option></select></div><div class="rule-field full"><label>Appliquer à</label><div class="rule-checks">${checklistKinds.map((kind) => `<label><input type="checkbox" data-rule-kind value="${kind}" ${draft.appliesTo.includes(kind) ? "checked" : ""}> ${esc(checklistKindLabels[kind] || kind)}</label>`).join("")}</div></div><div class="rule-field"><label>Règle active</label><label class="check-label"><input type="checkbox" data-rule-enabled ${draft.enabled ? "checked" : ""}> Vérifier cette règle dans la checklist</label></div><div class="rule-field"><label>Valeur non vide</label><label class="check-label"><input type="checkbox" data-rule-non-empty ${draft.enforceNonEmpty ? "checked" : ""}> Signaler aussi les chaînes / objets / tableaux vides</label></div>${modeIsTemplate ? "" : `<div class="rule-field"><label>Chemin de clé</label><input data-rule-path placeholder="Ex: description.fr" value="${esc(draft.path)}"></div><div class="rule-field"><label>Type attendu</label><select data-rule-type>${Object.entries(ruleTypeLabels).map(([value, label]) => `<option value="${value}" ${draft.expectedType === value ? "selected" : ""}>${esc(label)}</option>`).join("")}</select></div>`}<div class="rule-field full"><label>Modèle attendu</label><textarea data-rule-template placeholder='{\n  "description": {\n    "fr": "",\n    "en": ""\n  }\n}'>${esc(draft.templateSource)}</textarea><p class="rule-help">Tu peux coller un objet JSON complet, ou un bloc souple du style <code>description: { fr: "", en: "" }</code>. En mode “Chemin + type”, ce champ sert juste d’aide visuelle.</p></div></div><div class="workspace-tools"><button class="action-btn primary" data-rule-preview>Prévisualiser</button><button class="action-btn" data-rule-save>Enregistrer</button><button class="action-btn" data-rule-reset>${draft.id ? "Revenir à la règle" : "Réinitialiser"}</button><button class="action-btn" data-rule-new>Nouvelle règle</button><button class="action-btn" data-rule-reload>Recharger</button></div><div class="rule-preview">${previewHtml}</div></section><section class="rule-list"><h2>Règles enregistrées</h2><div class="rule-stack">${rulesHtml}</div></section></div>`,
+        );
+        const content = el.workspaceContent;
+        content.querySelector("[data-rule-mode]").onchange = () => {
+          const payload = collectRuleForm() || draft;
+          openCustomRules(
+            draft.id,
+            { ...payload, templateSource: payload.templateSource || draft.templateSource },
+            null,
+          );
+        };
+        content.querySelector("[data-rule-new]").onclick = () =>
+          openCustomRules("", ruleDefaults(), null);
+        content.querySelector("[data-rule-reset]").onclick = () =>
+          openCustomRules(
+            current?.id || "",
+            current ? ruleDefaults(current) : ruleDefaults(),
+            null,
+          );
+        content.querySelector("[data-rule-reload]").onclick = async () => {
+          await load();
+          openCustomRules(editingId);
+        };
+        content.querySelector("[data-rule-preview]").onclick = async () => {
+          try {
+            const payload = collectRuleForm();
+            const response = await apiFetch("/api/custom-rules-v3/preview", {
+              method: "POST",
+              body: JSON.stringify(payload),
+            });
+            openCustomRules(
+              response.data.id,
+              response.data,
+              response.data,
+              { type: "good", text: "Aperçu mis à jour." },
+            );
+          } catch (error) {
+            openCustomRules(
+              editingId,
+              collectRuleForm() || draft,
+              preview,
+              { type: "bad", text: error.message },
+            );
+          }
+        };
+        content.querySelector("[data-rule-save]").onclick = async () => {
+          try {
+            const payload = collectRuleForm();
+            const response = await apiFetch("/api/custom-rules-v3", {
+              method: "POST",
+              body: JSON.stringify(payload),
+            });
+            await load();
+            openCustomRules(
+              response.data.id,
+              response.data,
+              response.data,
+              { type: "good", text: "Règle enregistrée et appliquée à la checklist." },
+            );
+          } catch (error) {
+            openCustomRules(
+              editingId,
+              collectRuleForm() || draft,
+              preview,
+              { type: "bad", text: error.message },
+            );
+          }
+        };
+        content.querySelectorAll("[data-rule-edit]").forEach((button) => {
+          button.onclick = () => openCustomRules(button.dataset.ruleEdit);
+        });
+        content.querySelectorAll("[data-rule-toggle]").forEach((button) => {
+          button.onclick = async () => {
+            const rule = state.customRules.find(
+              (item) => item.id === button.dataset.ruleToggle,
+            );
+            if (!rule) return;
+            await apiFetch("/api/custom-rules-v3/toggle", {
+              method: "POST",
+              body: JSON.stringify({
+                id: rule.id,
+                enabled: !rule.enabled,
+              }),
+            });
+            await load();
+            openCustomRules(
+              rule.id,
+              null,
+              null,
+              {
+                type: "good",
+                text: !rule.enabled
+                  ? "Règle réactivée."
+                  : "Règle désactivée sans toucher aux vérifications natives.",
+              },
+            );
+          };
+        });
+        content.querySelectorAll("[data-rule-delete]").forEach((button) => {
+          button.onclick = async () => {
+            const rule = state.customRules.find(
+              (item) => item.id === button.dataset.ruleDelete,
+            );
+            if (!rule) return;
+            if (!confirm(`Supprimer la règle « ${rule.name} » ?`)) return;
+            await apiFetch("/api/custom-rules-v3/delete", {
+              method: "POST",
+              body: JSON.stringify({ id: rule.id }),
+            });
+            await load();
+            openCustomRules(
+              "",
+              ruleDefaults(),
+              null,
+              { type: "good", text: "Règle supprimée." },
+            );
+          };
+        });
       }
       function exportRows() {
         return filtered().map((entry) => ({
@@ -2972,8 +3313,8 @@
           (signatures[signature] ||= []).push(entry);
         }
         const suspicious = Object.values(signatures).filter((group) => group.length >= 4 && group.some((entry) => entry.stats)).sort((a, b) => b.length - a.length);
-        showWorkspace("Boîte à outils", `${state.selected.size} sélectionnée(s)`, `<div class="workspace-tools"><button class="action-btn" data-tool="moves">Catalogue attaques</button><button class="action-btn" data-tool="assets">Assets Home & GO</button><button class="action-btn" data-tool="stickers">Stickers</button><button class="action-btn" data-tool="watch">Veille sources</button><button class="action-btn" data-tool="compare">Comparer</button><button class="action-btn" data-tool="batch">Corrections groupées</button><button class="action-btn" data-tool="notes">Notes & revues</button><button class="action-btn" data-tool="single">Mode une tâche</button></div><h2>Évolution quotidienne</h2><div class="history-list">${state.daily.slice().reverse().map((day) => `<div class="history-item"><strong>${day.date}</strong> · qualité ${day.average}% · ${day.complete} complètes · ${day.issues.toLocaleString("fr")} problèmes</div>`).join("")}</div><h2>Données identiques suspectes</h2><div class="history-list">${suspicious.slice(0, 20).map((group) => `<div class="history-item"><strong>${group.length} fiches identiques</strong><br>${esc(group.slice(0, 8).map((entry) => entry.name).join(", "))}</div>`).join("") || '<div class="empty">Aucun groupe suspect important.</div>'}</div>`);
-        const actions = { moves: openMoves, assets: openAssets, stickers: openStickers, watch: openSourceWatch, compare: openCompare, batch: openBatch, notes: openNotes, single: () => { document.body.classList.toggle("single-task"); el.workspace.close(); render(); } };
+        showWorkspace("Boîte à outils", `${state.selected.size} sélectionnée(s)`, `<div class="workspace-tools"><button class="action-btn" data-tool="moves">Catalogue attaques</button><button class="action-btn" data-tool="assets">Assets Home & GO</button><button class="action-btn" data-tool="stickers">Stickers</button><button class="action-btn" data-tool="watch">Veille sources</button><button class="action-btn" data-tool="rules">Règles checklist</button><button class="action-btn" data-tool="compare">Comparer</button><button class="action-btn" data-tool="batch">Corrections groupées</button><button class="action-btn" data-tool="notes">Notes & revues</button><button class="action-btn" data-tool="single">Mode une tâche</button></div><h2>Évolution quotidienne</h2><div class="history-list">${state.daily.slice().reverse().map((day) => `<div class="history-item"><strong>${day.date}</strong> · qualité ${day.average}% · ${day.complete} complètes · ${day.issues.toLocaleString("fr")} problèmes</div>`).join("")}</div><h2>Données identiques suspectes</h2><div class="history-list">${suspicious.slice(0, 20).map((group) => `<div class="history-item"><strong>${group.length} fiches identiques</strong><br>${esc(group.slice(0, 8).map((entry) => entry.name).join(", "))}</div>`).join("") || '<div class="empty">Aucun groupe suspect important.</div>'}</div>`);
+        const actions = { moves: openMoves, assets: openAssets, stickers: openStickers, watch: openSourceWatch, rules: openCustomRules, compare: openCompare, batch: openBatch, notes: openNotes, single: () => { document.body.classList.toggle("single-task"); el.workspace.close(); render(); } };
         el.workspaceContent.querySelectorAll("[data-tool]").forEach((button) => button.onclick = actions[button.dataset.tool]);
       }
       function renderDetail(e, d) {
@@ -3306,6 +3647,7 @@
         state.quickIndex = 0;
         renderQuickReview();
       };
+      el.openRuleManager.onclick = openCustomRules;
       el.openExports.onclick = openExportTools;
       el.openHistory.onclick = openHistory;
       el.openMoves.onclick = openMoves;

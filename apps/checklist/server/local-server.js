@@ -15,7 +15,10 @@ app.use(express.static(path.resolve(__dirname, "..")));
 
 app.get("/api/checklist-v3", (_request, response) => {
   try {
-    response.json({ entries: buildChecklist() });
+    response.json({
+      entries: buildChecklist(),
+      customRules: workshop.customRules(),
+    });
   } catch (error) {
     response.status(500).json({ error: error.message });
   }
@@ -53,6 +56,19 @@ app.post("/api/validate-v3", route((request) =>
 app.get("/api/assets-v3", route((request) => workshop.assetAudit(request.query.dexId)));
 app.get("/api/url-audit-v3", route((request) => workshop.auditUrls(request.query.key)));
 app.get("/api/catalog-v3", route(() => workshop.catalog()));
+app.get("/api/custom-rules-v3", route(() => workshop.customRules()));
+app.post("/api/custom-rules-v3/preview", route((request) =>
+  workshop.previewCustomRule(request.body),
+));
+app.post("/api/custom-rules-v3", route((request) =>
+  workshop.saveCustomRule(request.body),
+));
+app.post("/api/custom-rules-v3/toggle", route((request) =>
+  workshop.toggleCustomRule(request.body),
+));
+app.post("/api/custom-rules-v3/delete", route((request) =>
+  workshop.deleteCustomRule(request.body),
+));
 app.get("/api/notes-v3", route(() => workshop.notes()));
 app.post("/api/notes-v3", route((request) => workshop.saveNote(request.body)));
 app.get("/api/image-reviews-v3", route(() => workshop.imageReviews()));

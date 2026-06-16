@@ -154,7 +154,7 @@
       }
       .stats {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
         gap: 10px;
       }
       .stat {
@@ -184,6 +184,8 @@
       .stat:nth-child(2)::after { background: linear-gradient(90deg, var(--blue), var(--cyan)); }
       .stat:nth-child(3)::after { background: linear-gradient(90deg, var(--orange), var(--yellow)); }
       .stat:nth-child(4)::after { background: linear-gradient(90deg, #9a55a8, #e15b85); }
+      .stat:nth-child(5)::after { background: linear-gradient(90deg, #14b86e, #00b8d9); }
+      .stat:nth-child(6)::after { background: linear-gradient(90deg, #e15b85, #9a55a8); }
       .stat strong {
         display: block;
         font-size: clamp(1.35rem, 3vw, 2rem);
@@ -321,6 +323,9 @@
         opacity: 0.72;
         border-color: #72bd94;
       }
+      .poke-card.asset-checked {
+        border-color: #5fc6a3;
+      }
       .type-strip {
         height: 8px;
         background: linear-gradient(90deg, var(--type, #8ba2c2), color-mix(in srgb, var(--type, #8ba2c2) 38%, white));
@@ -419,6 +424,10 @@
         color: #167648;
         background: #dff5e9;
       }
+      .chip.asset-pending {
+        color: #8a4f05;
+        background: #fff1d8;
+      }
       .chip.type-chip {
         flex-wrap: wrap;
         color: #fff;
@@ -480,7 +489,7 @@
       }
       .card-actions {
         display: grid;
-        grid-template-columns: minmax(88px, auto) minmax(105px, auto) 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 7px;
         padding: 0 12px 12px;
       }
@@ -503,6 +512,10 @@
       .check-label {
         padding: 0 11px;
       }
+      .check-label.asset-check {
+        border-color: #9dd9c7;
+        background: color-mix(in srgb, #e8fff7 70%, var(--surface));
+      }
       .check-label input {
         width: 20px;
         height: 20px;
@@ -513,6 +526,9 @@
         border-color: transparent;
         background: linear-gradient(135deg, var(--type, var(--blue)), color-mix(in srgb, var(--type, var(--blue)) 48%, var(--cyan)));
         box-shadow: 0 8px 20px color-mix(in srgb, var(--type, var(--blue)) 30%, transparent);
+      }
+      .card-actions .detail-btn {
+        grid-column: 1 / -1;
       }
       .more {
         width: 100%;
@@ -1359,6 +1375,12 @@
           <div class="stat">
             <strong id="total">-</strong><span>fiches analysées</span>
           </div>
+          <div class="stat">
+            <strong id="assetChecked">-</strong><span>assets vérifiés</span>
+          </div>
+          <div class="stat">
+            <strong id="assetTodo">-</strong><span>assets à vérifier</span>
+          </div>
         </div>
         <div class="xp"><div id="xp"></div></div>
         <div class="quality-board">
@@ -1374,7 +1396,7 @@
             <div class="action-grid">
               <button class="action-btn primary" id="nextEntry">Prochaine fiche</button>
               <button class="action-btn" id="quickSourceWatch">Veille sources</button>
-              <button class="action-btn" id="quickReview">Vérification images</button>
+              <button class="action-btn" id="quickReview">Vérification assets</button>
               <button class="action-btn" id="openExports">Exports & partage</button>
               <button class="action-btn" id="openHistory">Historique</button>
               <button class="action-btn" id="openMoves">Catalogue attaques</button>
@@ -1418,9 +1440,15 @@
             <option value="all">Toutes les formes</option>
           </select>
           <select id="status">
-            <option value="todo">À compléter</option>
             <option value="all">Tous les statuts</option>
+            <option value="todo">À compléter</option>
             <option value="done">Terminées</option>
+          </select>
+          <select id="assetStatus">
+            <option value="todo">Assets à vérifier</option>
+            <option value="all">Tous les assets</option>
+            <option value="checked">Assets vérifiés</option>
+            <option value="with-assets">Avec assets associés</option>
           </select>
           <select id="problem">
             <option value="all">Tous les problèmes</option>
@@ -1513,6 +1541,7 @@
       const state = {
         entries: [],
         progress: {},
+        assetChecks: {},
         limit: 60,
         detailData: null,
         activeEntry: null,
@@ -1528,6 +1557,8 @@
         "todo",
         "issues",
         "total",
+        "assetChecked",
+        "assetTodo",
         "xp",
         "qualityBars",
         "generationBars",
@@ -1565,6 +1596,7 @@
         "profile",
         "form",
         "status",
+        "assetStatus",
         "problem",
         "generation",
         "sort",
@@ -1596,6 +1628,18 @@
       const el = Object.fromEntries(
         ids.map((id) => [id, document.getElementById(id)]),
       );
+      const filterIds = [
+        "search",
+        "kind",
+        "elementalType",
+        "profile",
+        "form",
+        "status",
+        "assetStatus",
+        "problem",
+        "generation",
+        "sort",
+      ];
       const profileLabels = {
         base: "Base",
         intermediate: "Intermédiaire",
@@ -1681,6 +1725,24 @@
           .join('<span class="type-separator">/</span>');
       const color = (e) => typeColors[typeName(e.primaryType)] || "#8293a5";
       const isDone = (e) => e.complete || Boolean(state.progress[e.key]);
+      const assetChecksKey = "pokedex-v3-asset-checks";
+      const isAssetChecked = (e) => Boolean(state.assetChecks[e.key]);
+      const associatedAssetCount = (e) => {
+        const assets = e.assets || {};
+        return [
+          e.image,
+          e.shinyImage,
+          assets.go,
+          assets.goShiny,
+          assets.home,
+          assets.homeShiny,
+        ].filter(Boolean).length +
+          Number(assets.goVariants || 0) +
+          Number(assets.homeVariants || 0) +
+          Number(assets.locationCards || 0) +
+          Number(assets.shuffleVariants || 0);
+      };
+      const hasAssociatedAssets = (e) => associatedAssetCount(e) > 0;
       const accessKey = "pokedex-v3-access";
       function applyTheme(theme, persist = true) {
         const selected = theme === "dark" ? "dark" : "light";
@@ -1761,12 +1823,22 @@
         } catch {
           state.history = [];
         }
+        try {
+          state.assetChecks = JSON.parse(
+            localStorage.getItem(assetChecksKey) || "{}",
+          );
+        } catch {
+          state.assetChecks = {};
+        }
       }
       function saveProgress() {
         localStorage.setItem(
           "pokedex-v3-progress",
           JSON.stringify(state.progress),
         );
+      }
+      function saveAssetChecks() {
+        localStorage.setItem(assetChecksKey, JSON.stringify(state.assetChecks));
       }
       function recordHistory(action, entry, details = "") {
         state.history.unshift({
@@ -1917,6 +1989,7 @@
             profile: el.profile.value,
             form: el.form.value,
             status: el.status.value,
+            assetStatus: el.assetStatus.value,
             problem: el.problem.value,
             generation: el.generation.value,
             sort: el.sort.value,
@@ -1927,19 +2000,14 @@
         try {
           const f = JSON.parse(localStorage.getItem("pokedex-v3-filters"));
           const shared = Object.fromEntries(new URLSearchParams(location.search));
-          for (const k of [
-            "search",
-            "kind",
-            "elementalType",
-            "profile",
-            "status",
-            "problem",
-            "generation",
-            "sort",
-          ])
+          for (const k of filterIds)
             if (f?.[k] !== undefined) el[k].value = f[k];
           for (const [key, value] of Object.entries(shared))
             if (el[key] && value) el[key].value = value;
+          if (f?.assetStatus === undefined) {
+            el.assetStatus.value = "todo";
+            if (el.status.value === "todo") el.status.value = "all";
+          }
           if (["dynamax", "gigantamax"].includes(el.kind.value))
             el.status.value = "all";
           if (f?.shiny) document.body.classList.add("shiny");
@@ -1953,6 +2021,7 @@
         const q = query.replace(/[a-z]+:[^\s]+/g, "").trim();
         const list = state.entries.filter((e) => {
           const done = isDone(e);
+          const assetsChecked = isAssetChecked(e);
           return (
             (!q ||
               [e.name, e.dexId, e.file, e.form].some((v) =>
@@ -1983,7 +2052,13 @@
             (el.generation.value === "all" ||
               String(e.generation) === el.generation.value) &&
             (el.status.value === "all" ||
-              (el.status.value === "done" ? done : !done))
+              (el.status.value === "done" ? done : !done)) &&
+            (el.assetStatus.value === "all" ||
+              (el.assetStatus.value === "checked"
+                ? assetsChecked
+                : el.assetStatus.value === "with-assets"
+                  ? hasAssociatedAssets(e)
+                  : !assetsChecked))
           );
         });
         return list.sort((a, b) =>
@@ -2005,6 +2080,7 @@
       }
       function card(e) {
         const done = isDone(e),
+          assetsChecked = isAssetChecked(e),
           manual = Boolean(state.progress[e.key]),
           img = e.image
             ? `<div class="portrait"><img class="normal" src="${esc(e.image)}" alt="${esc(e.name)}" loading="lazy">${e.shinyImage ? `<img class="shiny" src="${esc(e.shinyImage)}" alt="${esc(e.name)} shiny" loading="lazy">` : ""}</div>`
@@ -2024,17 +2100,20 @@
           .join("");
         const selected = state.selected.has(e.key);
         const weather = weatherBadge(e.weatherBoost);
-        return `<article class="poke-card ${done ? "done" : ""} ${selected ? "selected" : ""}" style="--type:${color(e)};--type-bg:url('${esc(typeBackground(e.primaryType))}')"><div class="type-strip"></div><div class="card-score score-ring" style="--score:${e.quality.score}"><span>${e.quality.score}%</span></div><div class="card-main">${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)} · Gén. ${esc(e.generation || "?")}</div><div class="chips"><span class="chip type-chip">${typeBadge || "Type ?"}</span>${weather ? `<span class="chip weather-chip card-weather">${weather}</span>` : ""}<span class="chip">${e.quickMoveCount} rapide(s)</span><span class="chip">${e.chargedMoveCount} chargée(s)</span>${e.complete ? '<span class="chip good">JSON complet</span>' : `<span class="chip problem">${e.issues.length} problème(s)</span>`}${categories}${manual ? '<span class="chip good wide">Vérifiée manuellement</span>' : ""}</div></div></div><div class="card-actions"><label class="check-label"><input type="checkbox" data-check="${esc(e.key)}" ${done ? "checked" : ""} ${e.complete ? "disabled" : ""}> Fait</label><button class="select-btn ${selected ? "active" : ""}" data-select="${esc(e.key)}">${selected ? "Dans le lot" : "Ajouter au lot"}</button><button class="detail-btn" data-detail="${esc(e.key)}">Voir la fiche</button></div></article>`;
+        return `<article class="poke-card ${done ? "done" : ""} ${selected ? "selected" : ""} ${assetsChecked ? "asset-checked" : ""}" style="--type:${color(e)};--type-bg:url('${esc(typeBackground(e.primaryType))}')"><div class="type-strip"></div><div class="card-score score-ring" style="--score:${e.quality.score}"><span>${e.quality.score}%</span></div><div class="card-main">${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)} · Gén. ${esc(e.generation || "?")}</div><div class="chips"><span class="chip type-chip">${typeBadge || "Type ?"}</span>${weather ? `<span class="chip weather-chip card-weather">${weather}</span>` : ""}<span class="chip">${e.quickMoveCount} rapide(s)</span><span class="chip">${e.chargedMoveCount} chargée(s)</span>${e.complete ? '<span class="chip good">JSON complet</span>' : `<span class="chip problem">${e.issues.length} problème(s)</span>`}${assetsChecked ? '<span class="chip good">Assets OK</span>' : '<span class="chip asset-pending">Assets à vérifier</span>'}${categories}${manual ? '<span class="chip good wide">Vérifiée manuellement</span>' : ""}</div></div></div><div class="card-actions"><label class="check-label"><input type="checkbox" data-check="${esc(e.key)}" ${done ? "checked" : ""} ${e.complete ? "disabled" : ""}> Fait</label><label class="check-label asset-check"><input type="checkbox" data-asset-check="${esc(e.key)}" ${assetsChecked ? "checked" : ""}> Assets OK</label><button class="select-btn ${selected ? "active" : ""}" data-select="${esc(e.key)}">${selected ? "Dans le lot" : "Ajouter au lot"}</button><button class="detail-btn" data-detail="${esc(e.key)}">Voir la fiche</button></div></article>`;
       }
       function updateStats() {
         const done = state.entries.filter(isDone).length,
-          total = state.entries.length;
+          total = state.entries.length,
+          assetsChecked = state.entries.filter(isAssetChecked).length;
         el.done.textContent = done;
         el.todo.textContent = total - done;
         el.issues.textContent = state.entries
           .reduce((n, e) => n + e.issues.length, 0)
           .toLocaleString("fr");
         el.total.textContent = total;
+        el.assetChecked.textContent = assetsChecked;
+        el.assetTodo.textContent = total - assetsChecked;
         el.footerProgress.textContent = `${done} / ${total}`;
         el.footerIssues.textContent = state.entries
           .reduce((n, e) => n + e.issues.length, 0)
@@ -2083,7 +2162,7 @@
       function render() {
         const list = filtered(),
           shown = document.body.classList.contains("single-task")
-            ? list.filter((entry) => !isDone(entry)).slice(0, 1)
+            ? list.slice(0, 1)
             : list.slice(0, state.limit);
         el.entries.innerHTML = shown.length
           ? shown.map(card).join("")
@@ -2105,6 +2184,13 @@
           .forEach((box) =>
             box.addEventListener("change", () =>
               setProgress(box.dataset.check, box.checked),
+            ),
+          );
+        el.entries
+          .querySelectorAll("[data-asset-check]")
+          .forEach((box) =>
+            box.addEventListener("change", () =>
+              setAssetChecked(box.dataset.assetCheck, box.checked),
             ),
           );
         el.entries.querySelectorAll("img").forEach((image) => {
@@ -2138,6 +2224,23 @@
         recordHistory(checked ? "Fiche cochée" : "Fiche décochée", entry);
         saveProgress();
         render();
+      }
+      function setAssetChecked(key, checked, options = {}) {
+        const { skipHistory = false, rerender = true } = options;
+        const entry = state.entries.find((item) => item.key === key);
+        if (checked) state.assetChecks[key] = true;
+        else delete state.assetChecks[key];
+        if (!skipHistory)
+          recordHistory(
+            checked ? "Assets vérifiés" : "Assets à revérifier",
+            entry,
+            checked ? "Validation manuelle des assets de la fiche." : "",
+          );
+        saveAssetChecks();
+        if (!rerender) return;
+        render();
+        if (el.detail.open && state.activeEntry?.key === key && state.detailData)
+          renderDetail(entry, state.detailData);
       }
       const value = (v, fallback = "—") =>
         v === undefined || v === null
@@ -2511,6 +2614,8 @@
           generation: entry.generation,
           score: entry.quality.score,
           issues: entry.issues.length,
+          assetsChecked: isAssetChecked(entry),
+          assetCount: associatedAssetCount(entry),
           categories: entry.issueCategories.join("|"),
           file: entry.file,
         }));
@@ -2540,9 +2645,14 @@
         });
         el.workspaceContent.querySelector("[data-share]").onclick = async () => {
           const params = new URLSearchParams();
-          for (const id of ["search", "kind", "elementalType", "profile", "status", "problem", "generation", "sort"])
-            if (el[id].value && !["all", "todo", "dex"].includes(el[id].value))
-              params.set(id, el[id].value);
+          for (const id of filterIds) {
+            if (!el[id].value) continue;
+            if (id === "sort" && el[id].value === "dex") continue;
+            if (id === "status" && el[id].value === "all") continue;
+            if (id === "assetStatus" && el[id].value === "todo") continue;
+            if (!["search", "sort"].includes(id) && el[id].value === "all") continue;
+            params.set(id, el[id].value);
+          }
           const url = `${location.origin}${location.pathname}${params.size ? `?${params}` : ""}`;
           await navigator.clipboard.writeText(url);
           el.workspaceSubtitle.textContent = "Lien filtré copié.";
@@ -2550,7 +2660,7 @@
         el.workspaceContent.querySelector("[data-save-view]").onclick = () => {
           const name = `Vue ${new Date().toLocaleDateString("fr")}`;
           const views = JSON.parse(localStorage.getItem("pokedex-v3-views") || "[]");
-          views.unshift({ name, filters: Object.fromEntries(["search", "kind", "elementalType", "profile", "status", "problem", "generation", "sort"].map((id) => [id, el[id].value])) });
+          views.unshift({ name, filters: Object.fromEntries(filterIds.map((id) => [id, el[id].value])) });
           localStorage.setItem("pokedex-v3-views", JSON.stringify(views.slice(0, 10)));
           el.workspaceSubtitle.textContent = `${name} enregistrée.`;
         };
@@ -2577,29 +2687,31 @@
         };
       }
       function quickCandidates() {
-        return filtered().filter((entry) => entry.image || entry.shinyImage);
+        return filtered().filter(
+          (entry) => hasAssociatedAssets(entry) && !isAssetChecked(entry),
+        );
       }
       function renderQuickReview() {
         const candidates = quickCandidates();
-        if (!candidates.length) return showWorkspace("Vérification images", "", '<div class="empty">Aucune image dans cette sélection.</div>');
+        if (!candidates.length) return showWorkspace("Vérification assets", "", '<div class="empty">Aucun asset en attente dans cette sélection.</div>');
         state.quickIndex = Math.min(state.quickIndex, candidates.length - 1);
         const entry = candidates[state.quickIndex];
         showWorkspace(
-          "Vérification images",
+          "Vérification assets",
           `${state.quickIndex + 1} / ${candidates.length} · ${entry.dexId} ${entry.name}`,
-          `<div class="status-box">« Images validées » et « Signaler un problème » enregistrent désormais une revue persistante dans l’outil Notes & revues. Elles ne modifient jamais le JSON.</div><div class="quick-stage"><div class="quick-images">${assetPicture("Normal", entry.image)}${assetPicture("Shiny", entry.shinyImage)}</div><div class="quick-actions"><button class="action-btn primary" data-quick="valid">Images validées</button><button class="action-btn" data-quick="issue">Signaler un problème</button><button class="action-btn" data-quick="next">Suivante</button></div></div>`,
+          `<div class="status-box">Cette revue sert de mémo visuel sur cet appareil. Utilise la fiche complète pour contrôler les variantes, backgrounds et autres assets, puis valide la carte ici si tout est bon.</div><div class="quick-stage"><div class="quick-images">${assetPicture("Normal", entry.image)}${assetPicture("Shiny", entry.shinyImage)}</div><div class="quick-actions"><button class="action-btn primary" data-quick="valid">Assets validés</button><button class="action-btn" data-quick="issue">Signaler un problème</button><button class="action-btn" data-quick="next">Suivante</button></div></div>`,
         );
         el.workspaceContent.querySelectorAll("[data-quick]").forEach((button) => {
           button.onclick = async () => {
             if (button.dataset.quick !== "next") {
-              recordHistory(button.dataset.quick === "valid" ? "Images validées" : "Problème d’image signalé", entry);
+              recordHistory(button.dataset.quick === "valid" ? "Assets validés" : "Problème d’asset signalé", entry);
               const review = {
                 id: `${Date.now()}`,
                 date: new Date().toISOString(),
                 status: button.dataset.quick,
                 key: entry.key,
                 name: entry.name,
-                details: button.dataset.quick === "issue" ? "À vérifier manuellement" : "",
+                details: button.dataset.quick === "issue" ? "À vérifier manuellement" : "Validation manuelle des assets",
               };
               try {
                 await apiFetch("/api/image-reviews-v3", {
@@ -2609,8 +2721,17 @@
               } catch {
                 prependLocal("pokedex-v3-image-reviews", review, 2000);
               }
+              if (button.dataset.quick === "valid")
+                setAssetChecked(entry.key, true, {
+                  skipHistory: true,
+                  rerender: false,
+                });
             }
-            state.quickIndex = (state.quickIndex + 1) % candidates.length;
+            state.quickIndex =
+              button.dataset.quick === "valid"
+                ? state.quickIndex
+                : (state.quickIndex + 1) % candidates.length;
+            render();
             renderQuickReview();
           };
         });
@@ -2660,7 +2781,7 @@
           notes = remote[0].data;
           reviews = remote[1].data;
         } catch {}
-        showWorkspace("Notes & revues", `${notes.length} note(s) · ${reviews.length} revue(s) d’image`, `<textarea data-note placeholder="Écrire une note générale ou liée à la fiche ouverte…"></textarea><div class="workspace-tools"><button class="action-btn primary" data-save-note>Enregistrer la note</button></div><div class="note-list">${[...reviews.slice(0, 30).map((item) => `<div class="note"><strong>${item.status === "valid" ? "Images validées" : "Problème d’image"}</strong> · ${esc(item.name || "")}<br><span class="meta">${new Date(item.date).toLocaleString("fr")} · ${esc(item.details || "")}</span></div>`), ...notes.slice(0, 50).map((item) => `<div class="note"><strong>${esc(item.name || "Note générale")}</strong><br>${esc(item.text)}<br><span class="meta">${new Date(item.date).toLocaleString("fr")}</span></div>`)].join("") || '<div class="empty">Aucune note.</div>'}</div>`);
+        showWorkspace("Notes & revues", `${notes.length} note(s) · ${reviews.length} revue(s) d’assets`, `<textarea data-note placeholder="Écrire une note générale ou liée à la fiche ouverte…"></textarea><div class="workspace-tools"><button class="action-btn primary" data-save-note>Enregistrer la note</button></div><div class="note-list">${[...reviews.slice(0, 30).map((item) => `<div class="note"><strong>${item.status === "valid" ? "Assets validés" : "Problème d’asset"}</strong> · ${esc(item.name || "")}<br><span class="meta">${new Date(item.date).toLocaleString("fr")} · ${esc(item.details || "")}</span></div>`), ...notes.slice(0, 50).map((item) => `<div class="note"><strong>${esc(item.name || "Note générale")}</strong><br>${esc(item.text)}<br><span class="meta">${new Date(item.date).toLocaleString("fr")}</span></div>`)].join("") || '<div class="empty">Aucune note.</div>'}</div>`);
         el.workspaceContent.querySelector("[data-save-note]").onclick = async () => {
           const text = el.workspaceContent.querySelector("[data-note]").value.trim();
           if (!text) return;
@@ -2886,7 +3007,7 @@
               `<button class="tab ${i === 0 ? "active" : ""}" data-tab="${id}">${label}</button>`,
           )
           .join("");
-        el.panels.innerHTML = `<div class="workspace-tools"><button class="action-btn" data-active-assets>Assets proposés</button><button class="action-btn" data-audit-urls>Vérifier les URLs</button><button class="action-btn" data-git-history>Historique Git</button><button class="action-btn" data-open-file>Afficher le fichier source</button><button class="action-btn" data-add-note>Ajouter une note</button></div><div class="panel active" data-panel="overview">${overview(d)}</div><div class="panel" data-panel="cp">${cpPanel(d)}</div><div class="panel" data-panel="issues">${issuesPanel(e)}</div><div class="panel" data-panel="moves"><h2>Attaques rapides</h2>${objectCards("rapide", d.moveDetails?.quickMoves)}<h2>Attaques chargées</h2>${objectCards("chargée", d.moveDetails?.cinematicMoves)}<h2>Attaques rapides élite</h2>${objectCards("rapide élite", d.moveDetails?.eliteQuickMoves)}<h2>Attaques chargées élite</h2>${objectCards("chargée élite", d.moveDetails?.eliteCinematicMoves)}<h2>Attaques Max / G-Max</h2>${objectCards("Max / G-Max", d.moveDetails?.maxMoves)}</div><div class="panel" data-panel="pvp">${
+        el.panels.innerHTML = `<div class="workspace-tools"><button class="action-btn primary" data-toggle-asset-check>${isAssetChecked(e) ? "Assets vérifiés" : "Marquer assets OK"}</button><button class="action-btn" data-active-assets>Assets proposés</button><button class="action-btn" data-audit-urls>Vérifier les URLs</button><button class="action-btn" data-git-history>Historique Git</button><button class="action-btn" data-open-file>Afficher le fichier source</button><button class="action-btn" data-add-note>Ajouter une note</button></div><div class="panel active" data-panel="overview">${overview(d)}</div><div class="panel" data-panel="cp">${cpPanel(d)}</div><div class="panel" data-panel="issues">${issuesPanel(e)}</div><div class="panel" data-panel="moves"><h2>Attaques rapides</h2>${objectCards("rapide", d.moveDetails?.quickMoves)}<h2>Attaques chargées</h2>${objectCards("chargée", d.moveDetails?.cinematicMoves)}<h2>Attaques rapides élite</h2>${objectCards("rapide élite", d.moveDetails?.eliteQuickMoves)}<h2>Attaques chargées élite</h2>${objectCards("chargée élite", d.moveDetails?.eliteCinematicMoves)}<h2>Attaques Max / G-Max</h2>${objectCards("Max / G-Max", d.moveDetails?.maxMoves)}</div><div class="panel" data-panel="pvp">${
           d.pvp
             ? `<div class="section-grid">${Object.entries(d.pvp)
                 .map(([league, v]) =>
@@ -3001,6 +3122,9 @@
             }
           };
         }
+        el.panels.querySelector("[data-toggle-asset-check]").onclick = () => {
+          setAssetChecked(e.key, !isAssetChecked(e));
+        };
         el.panels.querySelector("[data-active-assets]").onclick = openAssets;
         el.panels.querySelector("[data-audit-urls]").onclick = async () => {
           showWorkspace("Vérification des URLs", e.name, '<div class="empty">Vérification en cours…</div>');
@@ -3128,17 +3252,21 @@
       applyTheme(document.documentElement.dataset.theme, false);
       restoreFilters();
       configureApiLinks();
-      ["search", "kind", "elementalType", "profile", "form", "status", "problem", "generation", "sort"].forEach((id) =>
-        el[id].addEventListener("input", () => {
-          if (
-            id === "kind" &&
-            ["dynamax", "gigantamax"].includes(el.kind.value)
-          )
-            el.status.value = "all";
-          state.limit = 60;
-          render();
-        }),
-      );
+      const onFiltersChanged = (id) => {
+        if (
+          id === "kind" &&
+          ["dynamax", "gigantamax"].includes(el.kind.value)
+        )
+          el.status.value = "all";
+        state.limit = 60;
+        render();
+      };
+      el.search.addEventListener("input", () => onFiltersChanged("search"));
+      filterIds
+        .filter((id) => id !== "search")
+        .forEach((id) =>
+          el[id].addEventListener("change", () => onFiltersChanged(id)),
+        );
       el.more.onclick = () => {
         state.limit += 60;
         render();
@@ -3164,15 +3292,14 @@
         ])
           el[id].value = "all";
         el.search.value = "";
-        el.status.value = "todo";
+        el.status.value = "all";
+        el.assetStatus.value = "todo";
         el.sort.value = "dex";
         state.limit = 60;
         render();
       };
       el.nextEntry.onclick = () => {
-        const next = state.entries
-          .filter((entry) => !isDone(entry))
-          .sort((a, b) => b.quality.priority - a.quality.priority)[0];
+        const next = filtered()[0];
         if (next) openDetail(next.key);
       };
       el.quickReview.onclick = () => {

@@ -24,6 +24,20 @@ app.get("/api/checklist-v3", (_request, response) => {
   }
 });
 
+app.post("/api/checklist-v3", (request, response) => {
+  try {
+    const customRules = Array.isArray(request.body?.customRules)
+      ? request.body.customRules
+      : [];
+    response.json({
+      entries: buildChecklist(customRules),
+      customRules,
+    });
+  } catch (error) {
+    response.status(error.status || 500).json({ error: error.message });
+  }
+});
+
 app.get("/api/detail-v3", (request, response) => {
   try {
     const data = detailForKey(String(request.query.key || ""));

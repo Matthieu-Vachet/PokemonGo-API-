@@ -1899,6 +1899,7 @@
       const color = (e) => typeColors[typeName(e.primaryType)] || "#8293a5";
       const isDone = (e) => e.complete || Boolean(state.progress[e.key]);
       const assetChecksKey = "pokedex-v3-asset-checks";
+      const customRulesKey = "pokedex-v3-custom-rules";
       const isAssetChecked = (e) => Boolean(state.assetChecks[e.key]);
       const associatedAssetCount = (e) => {
         const assets = e.assets || {};
@@ -2003,6 +2004,7 @@
         } catch {
           state.assetChecks = {};
         }
+        loadCustomRules();
       }
       function saveProgress() {
         localStorage.setItem(
@@ -2012,6 +2014,19 @@
       }
       function saveAssetChecks() {
         localStorage.setItem(assetChecksKey, JSON.stringify(state.assetChecks));
+      }
+      function loadCustomRules() {
+        try {
+          const parsed = JSON.parse(
+            localStorage.getItem(customRulesKey) || "[]",
+          );
+          state.customRules = Array.isArray(parsed) ? parsed : [];
+        } catch {
+          state.customRules = [];
+        }
+      }
+      function saveCustomRules() {
+        localStorage.setItem(customRulesKey, JSON.stringify(state.customRules));
       }
       function ruleDefaults(rule = {}) {
         return {
@@ -2822,7 +2837,7 @@
         el.workspaceTitle.textContent = title;
         el.workspaceSubtitle.textContent = subtitle || "";
         el.workspaceContent.innerHTML = content;
-        el.workspace.showModal();
+        if (!el.workspace.open) el.workspace.showModal();
       }
       function downloadText(filename, text, type = "text/plain") {
         const link = document.createElement("a");
@@ -2855,7 +2870,7 @@
           : '<div class="status-box">Aperçu optionnel. Utilise “Prévisualiser” pour voir exactement ce que la checklist va contrôler.</div>';
         showWorkspace(
           "Règles checklist",
-          `${state.customRules.length} règle(s) perso · les vérifications natives restent actives`,
+          `${state.customRules.length} règle(s) perso · enregistrées dans ce navigateur · les vérifications natives restent actives`,
           `${notice?.text ? `<div class="status-box ${notice.type || ""}">${esc(notice.text)}</div>` : ""}<div class="rule-layout"><section class="rule-editor"><h2>${draft.id ? "Modifier la règle" : "Nouvelle règle"}</h2><div class="rule-form-grid"><input type="hidden" data-rule-id value="${esc(draft.id)}"><div class="rule-field"><label>Nom</label><input data-rule-name placeholder="Ex: Descriptions multilingues" value="${esc(draft.name)}"></div><div class="rule-field"><label>Mode</label><select data-rule-mode><option value="path" ${draft.mode === "path" ? "selected" : ""}>Chemin + type</option><option value="template" ${modeIsTemplate ? "selected" : ""}>Modèle complet</option></select></div><div class="rule-field full"><label>Appliquer à</label><div class="rule-checks">${checklistKinds.map((kind) => `<label class="rule-check-option"><input type="checkbox" data-rule-kind value="${kind}" ${draft.appliesTo.includes(kind) ? "checked" : ""}><span>${esc(checklistKindLabels[kind] || kind)}</span></label>`).join("")}</div></div><div class="rule-field"><label>Règle active</label><label class="rule-inline-toggle"><input type="checkbox" data-rule-enabled ${draft.enabled ? "checked" : ""}><span>Vérifier cette règle dans la checklist</span></label></div><div class="rule-field"><label>Valeur non vide</label><label class="rule-inline-toggle"><input type="checkbox" data-rule-non-empty ${draft.enforceNonEmpty ? "checked" : ""}><span>Signaler aussi les chaînes / objets / tableaux vides</span></label></div>${modeIsTemplate ? "" : `<div class="rule-field"><label>Chemin de clé</label><input data-rule-path placeholder="Ex: description.fr" value="${esc(draft.path)}"></div><div class="rule-field"><label>Type attendu</label><select data-rule-type>${Object.entries(ruleTypeLabels).map(([value, label]) => `<option value="${value}" ${draft.expectedType === value ? "selected" : ""}>${esc(label)}</option>`).join("")}</select></div>`}<div class="rule-field full"><label>Modèle attendu</label><textarea data-rule-template placeholder='{\n  "description": {\n    "fr": "",\n    "en": ""\n  }\n}'>${esc(draft.templateSource)}</textarea><p class="rule-help">Tu peux coller un objet JSON complet, ou un bloc souple du style <code>description: { fr: "", en: "" }</code>. En mode “Chemin + type”, ce champ sert juste d’aide visuelle.</p></div></div><div class="workspace-tools"><button class="action-btn primary" data-rule-preview>Prévisualiser</button><button class="action-btn" data-rule-save>Enregistrer</button><button class="action-btn" data-rule-reset>${draft.id ? "Revenir à la règle" : "Réinitialiser"}</button><button class="action-btn" data-rule-new>Nouvelle règle</button><button class="action-btn" data-rule-reload>Recharger</button></div><div class="rule-preview">${previewHtml}</div></section><section class="rule-list"><h2>Règles enregistrées</h2><div class="rule-stack">${rulesHtml}</div></section></div>`,
         );
         const content = el.workspaceContent;
@@ -2876,6 +2891,7 @@
             null,
           );
         content.querySelector("[data-rule-reload]").onclick = async () => {
+          loadCustomRules();
           await load();
           openCustomRules(editingId);
         };
@@ -2904,10 +2920,18 @@
         content.querySelector("[data-rule-save]").onclick = async () => {
           try {
             const payload = collectRuleForm();
-            const response = await apiFetch("/api/custom-rules-v3", {
+            const response = await apiFetch("/api/custom-rules-v3/preview", {
               method: "POST",
               body: JSON.stringify(payload),
             });
+            const nextRules = [...state.customRules];
+            const index = nextRules.findIndex(
+              (rule) => rule.id === response.data.id,
+            );
+            if (index >= 0) nextRules[index] = response.data;
+            else nextRules.unshift(response.data);
+            state.customRules = nextRules;
+            saveCustomRules();
             await load();
             openCustomRules(
               response.data.id,
@@ -2933,13 +2957,16 @@
               (item) => item.id === button.dataset.ruleToggle,
             );
             if (!rule) return;
-            await apiFetch("/api/custom-rules-v3/toggle", {
-              method: "POST",
-              body: JSON.stringify({
-                id: rule.id,
-                enabled: !rule.enabled,
-              }),
-            });
+            state.customRules = state.customRules.map((item) =>
+              item.id === rule.id
+                ? {
+                    ...item,
+                    enabled: !rule.enabled,
+                    updatedAt: new Date().toISOString(),
+                  }
+                : item,
+            );
+            saveCustomRules();
             await load();
             openCustomRules(
               rule.id,
@@ -2961,10 +2988,10 @@
             );
             if (!rule) return;
             if (!confirm(`Supprimer la règle « ${rule.name} » ?`)) return;
-            await apiFetch("/api/custom-rules-v3/delete", {
-              method: "POST",
-              body: JSON.stringify({ id: rule.id }),
-            });
+            state.customRules = state.customRules.filter(
+              (item) => item.id !== rule.id,
+            );
+            saveCustomRules();
             await load();
             openCustomRules(
               "",
@@ -3514,7 +3541,7 @@
         const e = state.entries.find((x) => x.key === key);
         if (!e) return;
         state.activeEntry = e;
-        el.detail.showModal();
+        if (!el.detail.open) el.detail.showModal();
         el.detailHead.innerHTML =
           '<div></div><div class="name">Chargement…</div>';
         el.panels.innerHTML = "";
@@ -3539,11 +3566,27 @@
       async function load() {
         el.refresh.disabled = true;
         try {
+          const localRules = Array.isArray(state.customRules)
+            ? [...state.customRules]
+            : [];
           const [x, catalog] = await Promise.all([
-            apiFetch("/api/checklist-v3"),
+            localRules.length
+              ? apiFetch("/api/checklist-v3", {
+                  method: "POST",
+                  body: JSON.stringify({ customRules: localRules }),
+                })
+              : apiFetch("/api/checklist-v3"),
             state.catalog ? Promise.resolve({ data: state.catalog }) : apiFetch("/api/catalog-v3"),
           ]);
-          Object.assign(state, x);
+          state.entries = Array.isArray(x.entries) ? x.entries : [];
+          state.customRules = localRules.length
+            ? Array.isArray(x.customRules)
+              ? x.customRules
+              : localRules
+            : Array.isArray(x.customRules)
+              ? x.customRules
+              : [];
+          if (!localRules.length && state.customRules.length) saveCustomRules();
           state.catalog = catalog.data;
           trackQualityChanges(state.entries);
           let selected = el.form.value;

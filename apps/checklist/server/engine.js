@@ -1198,8 +1198,10 @@ function referenceIssues(data, moveIds, formIds) {
   return issues;
 }
 
-function buildChecklist() {
-  const customRules = enabledCustomRules();
+function buildChecklist(customRulesOverride = null) {
+  const customRules = Array.isArray(customRulesOverride)
+    ? customRulesOverride.filter((rule) => rule?.enabled !== false)
+    : enabledCustomRules();
   const sources = [];
   for (const file of fs
     .readdirSync(pokemonDir)

@@ -11,6 +11,7 @@ const { createOpenApi } = require("./docs/openapi");
 const { redocPage } = require("./docs/redoc-page");
 const { swaggerPage } = require("./docs/swagger-page");
 const { cacheMiddleware } = require("./lib/cache");
+const { readOnlyPublic } = require("./middleware/admin-auth");
 const { errorHandler, notFound } = require("./middleware/errors");
 const { requestId } = require("./middleware/request-id");
 const api = require("./routes");
@@ -95,7 +96,7 @@ function createApp() {
       },
     }),
   );
-  app.use(env.apiBasePath, cacheMiddleware(), api);
+  app.use(env.apiBasePath, readOnlyPublic, cacheMiddleware(), api);
   app.use(notFound);
   app.use(errorHandler);
   return app;

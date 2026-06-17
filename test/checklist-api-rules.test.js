@@ -50,7 +50,7 @@ test("GET /api/checklist-v3 renvoie la checklist publique et le catalogue", asyn
   assert.equal(response.body.data.viewer.admin, false);
 });
 
-test("POST /api/checklist-v3 bootstrap applique des règles perso envoyées par le client", async () => {
+test("POST /api/checklist-v3 bootstrap refuse les règles perso publiques", async () => {
   const customRule = previewCustomRule({
     name: "Descriptions",
     appliesTo: ["pokemon"],
@@ -69,12 +69,7 @@ test("POST /api/checklist-v3 bootstrap applique des règles perso envoyées par 
 
   await checklistHandler(request, response);
 
-  assert.equal(response.statusCode, 200);
-  assert.equal(response.body.data.customRules.length, 1);
-  const bulbasaur = response.body.data.entries.find(
-    (entry) => entry.file === "data/pokemon/0001-bulbasaur.json",
-  );
-  assert.ok(bulbasaur.issues.some((issue) => issue.path === "description"));
+  assert.equal(response.statusCode, 401);
 });
 
 test("POST /api/checklist-v3 preview-rule exige un accès admin", async () => {

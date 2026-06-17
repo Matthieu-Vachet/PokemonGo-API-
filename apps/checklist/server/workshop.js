@@ -350,6 +350,22 @@ function gitHistory(relativeFile) {
     });
 }
 
+function repoHistory() {
+  return childProcess
+    .execFileSync(
+      "git",
+      ["log", "-12", "--date=short", "--pretty=format:%h|%ad|%s"],
+      { cwd: rootDir, encoding: "utf8" },
+    )
+    .trim()
+    .split("\n")
+    .filter(Boolean)
+    .map((line) => {
+      const [hash, date, ...subject] = line.split("|");
+      return { hash, date, subject: subject.join("|") };
+    });
+}
+
 function openFile(relativeFile) {
   const file = path.resolve(rootDir, relativeFile);
   if (!file.startsWith(path.join(rootDir, "data")) || !fs.existsSync(file))
@@ -370,6 +386,7 @@ module.exports = {
   notes,
   openFile,
   previewCustomRule,
+  repoHistory,
   saveImageReview,
   saveCustomRule,
   saveNote,

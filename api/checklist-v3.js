@@ -19,6 +19,7 @@ function actionFrom(request) {
 }
 
 function payloadRules(request) {
+  if (!isAdminRequest(request)) return null;
   return Array.isArray(request.body?.customRules) ? request.body.customRules : null;
 }
 
@@ -47,26 +48,47 @@ function bootstrapResponse(request) {
   };
 }
 
+function publicDetail(detail) {
+  if (!detail || typeof detail !== "object") return detail;
+  const { sourceData, ...safeDetail } = detail;
+  return safeDetail;
+}
+
+function publicAssetAudit(audit) {
+  return {
+    totals: audit.totals,
+    goAssets: audit.goAssets,
+    shuffleAssets: audit.shuffleAssets,
+  };
+}
+
 async function handleGet(request, response, action) {
   if (action === "bootstrap")
     return send(response, bootstrapResponse(request));
   if (action === "detail") {
     const data = detailForKey(String(request.query?.key || ""));
     if (!data) return response.status(404).json({ error: "Fiche introuvable." });
+    const admin = isAdminRequest(request);
     return send(response, {
-      viewer: { admin: isAdminRequest(request) },
-      detail: data,
+      viewer: { admin },
+      detail: admin ? data : publicDetail(data),
     });
   }
   if (action === "catalog")
     return send(response, workshop.catalog());
-  if (action === "assets")
-    return send(response, await workshop.assetAudit(request.query?.dexId || ""));
+  if (action === "assets") {
+    const audit = await workshop.assetAudit(request.query?.dexId || "");
+    return send(response, isAdminRequest(request) ? audit : publicAssetAudit(audit));
+  }
   if (action === "session")
     return send(response, { authenticated: isAdminRequest(request) });
   if (action === "source-watch") {
     if (!requireAdmin(request, response)) return null;
     return send(response, await sourceWatch());
+  }
+  if (action === "history") {
+    if (!requireAdmin(request, response)) return null;
+    return send(response, workshop.repoHistory());
   }
   if (action === "url-audit") {
     if (!requireAdmin(request, response)) return null;
@@ -76,8 +98,11 @@ async function handleGet(request, response, action) {
 }
 
 async function handlePost(request, response, action) {
-  if (action === "bootstrap")
+  if (action === "bootstrap") {
+    if (Array.isArray(request.body?.customRules) && !requireAdmin(request, response))
+      return null;
     return send(response, bootstrapResponse(request));
+  }
   if (action === "login") {
     if (!isValidAdminPassword(request.body?.password || ""))
       return response.status(401).json({ error: "Mot de passe administrateur incorrect." });

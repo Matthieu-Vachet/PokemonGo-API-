@@ -223,17 +223,19 @@ watchers concurrents sur les memes sources.
 
 `api/rest.js` expose l'application Express comme Vercel Function. Les routes `/api/v1`,
 `/api-docs`, `/swagger` et `/health` sont dirigees vers cette fonction par `vercel.json`.
-La checklist reste disponible a la racine.
+Le nouveau front Next.js sert `/`, `/checklist`, `/assets` et `/admin`.
 
-La checklist expose aussi `/api/source-watch-v3`, protegee par `CHECKLIST_PASSWORD`.
-Cette route lit `data/source-watch/sources.json`, verifie les depots GitHub et sites
-declares, puis renvoie leur signature courante pour afficher les nouveautés dans
-l'onglet "Veille sources".
+La checklist expose aussi `/api/checklist-v3`, qui regroupe le bootstrap public, le
+détail d'une fiche, les audits d'assets, la veille des sources et les outils admin.
+L'action `source-watch` lit `data/source-watch/sources.json`, verifie les depots GitHub
+et sites declares, puis renvoie leur signature courante pour afficher les nouveautés
+dans l'onglet "Veille sources".
 
 Configurer dans Vercel les variables `MONGODB_URI`, `NODE_ENV=production` et
-`API_PUBLIC_URL`. Atlas doit accepter les connexions sortantes de Vercel ; sur un cluster
-standard, cela implique generalement une autorisation reseau adaptee ou une solution
-d'adresse sortante fixe.
+`API_PUBLIC_URL`. Configurer aussi `ADMIN_DASHBOARD_PASSWORD` pour proteger le dashboard
+admin, ou `CHECKLIST_PASSWORD` si tu veux conserver l'ancien secret. Atlas doit accepter
+les connexions sortantes de Vercel ; sur un cluster standard, cela implique generalement
+une autorisation reseau adaptee ou une solution d'adresse sortante fixe.
 
 Le workflow `.github/workflows/sync-mongodb.yml` synchronise automatiquement Atlas quand
 les JSON de `data/` changent sur `main`. Ajouter `MONGODB_URI` dans les secrets GitHub

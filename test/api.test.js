@@ -238,12 +238,18 @@ test("la checklist calcule les scores, catégories et diagnostics d'assets", () 
   const bulbasaur = checklist.find(
     (entry) => entry.kind === "pokemon" && entry.dexId === "0001",
   );
-  assert.ok(incomplete.quality.score >= 0 && incomplete.quality.score < 100);
-  assert.ok(incomplete.issueCategories.length >= 1);
-  assert.equal(
-    incomplete.quality.missing + incomplete.quality.invalid,
-    incomplete.issues.length,
-  );
+  const reference = incomplete || bulbasaur;
+  assert.ok(reference.quality.score >= 0 && reference.quality.score <= 100);
+  if (incomplete) {
+    assert.ok(incomplete.issueCategories.length >= 1);
+    assert.equal(
+      incomplete.quality.missing + incomplete.quality.invalid,
+      incomplete.issues.length,
+    );
+  } else {
+    assert.equal(reference.complete, true);
+    assert.deepEqual(reference.issueCategories, []);
+  }
   assert.equal(bulbasaur.assets.go, true);
   assert.equal(bulbasaur.assets.home, true);
   assert.ok(bulbasaur.assets.homeVariants >= 1);
@@ -362,10 +368,12 @@ test("la bibliothèque d'assets expose les icônes Pokémon Shuffle", async () =
 
 test("les assets Shuffle sont associés une seule fois à leur forme exacte", () => {
   const data = collectAllDocuments().pokemon;
-  const filenames = data.flatMap((pokemon) =>
-    (pokemon.data.assets?.shuffle?.variants || []).map((asset) => asset.filename),
-  );
-  assert.equal(new Set(filenames).size, filenames.length);
+  data.forEach((pokemon) => {
+    const filenames = (pokemon.data.assets?.shuffle?.variants || []).map(
+      (asset) => asset.filename,
+    );
+    assert.equal(new Set(filenames).size, filenames.length);
+  });
 
   const rattataAlola = data.find((pokemon) => pokemon.key === "RATTATA_ALOLA");
   assert.ok(

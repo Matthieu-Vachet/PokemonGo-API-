@@ -10,9 +10,12 @@ imports, aux migrations, aux audits ou à la synchronisation.
 | --- | --- |
 | `app.js` | Démarre le serveur Express local. |
 | `api/rest.js` | Expose l'API comme fonction serverless Vercel. |
-| `api/checklist-v3.js` | Expose les données de la checklist déployée. |
-| `api/detail-v3.js` | Expose le détail d'une fiche dans la checklist déployée. |
-| `api/source-watch-v3.js` | Expose la veille des sources externes dans la checklist. |
+| `api/checklist-v3.js` | Regroupe la checklist publique, les détails de fiche, les audits d'assets, la veille des sources et les actions admin protégées. |
+| `api/blocked.js` | Bloque les accès directs aux sources internes quand le site est déployé sur Vercel. |
+| `app/*.js` | Pages Next.js du front public et du dashboard admin. |
+| `components/**/*.jsx` | Composants UI réutilisables, documentés dans Storybook. |
+| `src/lib/checklist-auth.js` | Gère le mot de passe admin, le cookie de session signé et les vérifications d'accès. |
+| `src/lib/site-dashboard.js` | Prépare les statistiques et aperçus affichés par le nouveau front Next.js. |
 
 ## Scripts D'import
 

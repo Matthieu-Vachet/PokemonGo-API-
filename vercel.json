@@ -1,82 +1,21 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": null,
+  "framework": "nextjs",
   "functions": {
+    "api/rest.js": {
+      "maxDuration": 60
+    },
     "api/checklist-v3.js": {
       "includeFiles": "data/**",
       "maxDuration": 60
     },
-    "api/custom-rules-v3.js": {
-      "includeFiles": "data/**",
-      "maxDuration": 60
-    },
-    "api/custom-rules-v3/index.js": {
-      "includeFiles": "data/**",
-      "maxDuration": 60
-    },
-    "api/custom-rules-v3/preview.js": {
-      "includeFiles": "data/**",
-      "maxDuration": 60
-    },
-    "api/custom-rules-v3/toggle.js": {
-      "includeFiles": "data/**",
-      "maxDuration": 60
-    },
-    "api/custom-rules-v3/delete.js": {
-      "includeFiles": "data/**",
-      "maxDuration": 60
-    },
-    "api/detail-v3.js": {
-      "includeFiles": "data/**",
-      "maxDuration": 60
-    },
-    "api/catalog-v3.js": {
-      "includeFiles": "data/**",
-      "maxDuration": 60
-    },
-    "api/assets-v3.js": {
-      "includeFiles": "data/**",
-      "maxDuration": 60
-    },
-    "api/validate-v3.js": {
-      "includeFiles": "data/**",
-      "maxDuration": 60
-    },
-    "api/url-audit-v3.js": {
-      "includeFiles": "data/**",
-      "maxDuration": 60
-    },
-    "api/source-watch-v3.js": {
-      "includeFiles": "data/source-watch/**",
-      "maxDuration": 60
-    },
-    "api/rest.js": {
-      "maxDuration": 60
+    "api/blocked.js": {
+      "maxDuration": 10
     }
   },
   "routes": [
-    { "src": "^/(?:data|config|docs|src|test)(?:/.*)?$", "dest": "/api/blocked" },
-    { "src": "^/apps/checklist/server(?:/.*)?$", "dest": "/api/blocked" },
+    { "src": "^/(?:data|config|docs|src|test|apps)(?:/.*)?$", "dest": "/api/blocked" },
     { "handle": "filesystem" },
-    { "src": "^/(api/v1(?:/.*)?|api-docs(?:/.*)?|api-docs\\.json|swagger(?:/.*)?|health)$", "dest": "/api/rest" },
-    { "src": "^/$", "dest": "/apps/checklist/index.html" },
-    { "src": "^/manifest\\.json$", "dest": "/apps/checklist/manifest.json" },
-    { "src": "^/icon\\.svg$", "dest": "/apps/checklist/icon.svg" },
-    { "src": "^/sw\\.js$", "dest": "/apps/checklist/sw.js" }
-  ],
-  "headers": [
-    {
-      "source": "/sw.js",
-      "headers": [
-        { "key": "Service-Worker-Allowed", "value": "/" },
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
-      ]
-    },
-    {
-      "source": "/apps/checklist/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
-      ]
-    }
+    { "src": "^/(api/v1(?:/.*)?|api-docs(?:/.*)?|api-docs\\.json|swagger(?:/.*)?|health)$", "dest": "/api/rest" }
   ]
 }

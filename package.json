@@ -2,10 +2,15 @@
   "name": "pokemon-go-api",
   "version": "1.0.0",
   "description": "API REST publique et multilingue pour Pokemon GO",
-  "main": "app.js",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
+    "start": "next start",
+    "dev": "next dev",
+    "build": "next build",
+    "api:start": "node src/server.js",
+    "api:dev": "nodemon src/server.js",
+    "storybook": "HOME=$PWD/.storybook-home STORYBOOK_DISABLE_TELEMETRY=1 storybook dev -p 6006 --ci",
+    "build-storybook": "HOME=$PWD/.storybook-home STORYBOOK_DISABLE_TELEMETRY=1 storybook build",
     "sync": "node scripts/sync/run.js",
     "sync:watch": "node scripts/sync/watch.js",
     "sync:dry": "node scripts/sync/run.js --dry-run",
@@ -52,7 +57,7 @@
     "import:pokemon-shuffle": "node scripts/import/pokemon-shuffle.js",
     "import:pokemon-shuffle:write": "node scripts/import/pokemon-shuffle.js --write",
     "test": "node --test",
-    "check": "npm run sync:dry && npm test",
+    "check": "npm run sync:dry && npm test && npm run build && npm run build-storybook",
     "checklist": "node apps/checklist/server/local-server.js"
   },
   "keywords": [
@@ -77,11 +82,22 @@
     "helmet": "^8.2.0",
     "mongoose": "^9.6.3",
     "morgan": "^1.11.0",
+    "next": "^15.5.19",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "swagger-jsdoc": "^6.3.0",
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@babel/preset-env": "^7.29.7",
+    "@babel/preset-react": "^7.29.7",
+    "@storybook/addon-a11y": "^8.6.14",
+    "@storybook/addon-essentials": "^8.6.14",
+    "@storybook/react-webpack5": "^8.6.14",
+    "babel-loader": "^9.2.1",
     "nodemon": "^3.1.14",
+    "storybook": "^8.6.14",
     "supertest": "^7.2.2"
   }
 }

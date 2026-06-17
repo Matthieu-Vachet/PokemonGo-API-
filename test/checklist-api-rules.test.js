@@ -1,7 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const checklistHandler = require("../api/checklist-v3");
-const previewHandler = require("../api/custom-rules-v3/preview");
 const { previewCustomRule } = require("../apps/checklist/server/custom-rules");
 
 function createResponse() {
@@ -35,28 +34,23 @@ test.after(() => {
   else process.env.CHECKLIST_PASSWORD = originalPassword;
 });
 
-test("l'API de prévisualisation normalise une règle template", () => {
+test("GET /api/checklist-v3 renvoie la checklist publique et le catalogue", async () => {
   const request = {
-    method: "POST",
-    headers: { "x-checklist-password": "test-checklist" },
-    body: {
-      name: "Descriptions",
-      appliesTo: ["pokemon"],
-      templateSource: 'description: { fr: "", en: "" }',
-    },
+    method: "GET",
+    headers: {},
+    query: {},
   };
   const response = createResponse();
 
-  previewHandler(request, response);
+  await checklistHandler(request, response);
 
   assert.equal(response.statusCode, 200);
-  assert.equal(response.body.data.mode, "template");
-  assert.deepEqual(response.body.data.template, {
-    description: { fr: "", en: "" },
-  });
+  assert.ok(Array.isArray(response.body.data.entries));
+  assert.equal(typeof response.body.data.catalog.types, "number");
+  assert.equal(response.body.data.viewer.admin, false);
 });
 
-test("POST /api/checklist-v3 applique des règles perso envoyées par le client", () => {
+test("POST /api/checklist-v3 bootstrap applique des règles perso envoyées par le client", async () => {
   const customRule = previewCustomRule({
     name: "Descriptions",
     appliesTo: ["pokemon"],
@@ -64,24 +58,58 @@ test("POST /api/checklist-v3 applique des règles perso envoyées par le client"
   });
   const request = {
     method: "POST",
-    headers: { "x-checklist-password": "test-checklist" },
+    headers: {},
     body: {
+      action: "bootstrap",
       customRules: [customRule],
     },
+    query: {},
   };
   const response = createResponse();
 
-  checklistHandler(request, response);
+  await checklistHandler(request, response);
 
   assert.equal(response.statusCode, 200);
-  assert.equal(response.body.customRules.length, 1);
-  const bulbasaur = response.body.entries.find(
+  assert.equal(response.body.data.customRules.length, 1);
+  const bulbasaur = response.body.data.entries.find(
     (entry) => entry.file === "data/pokemon/0001-bulbasaur.json",
   );
-  assert.ok(bulbasaur);
-  assert.ok(
-    bulbasaur.issues.some(
-      (issue) => issue.path === "description" && issue.category === "custom",
-    ),
+  assert.ok(bulbasaur.issues.some((issue) => issue.path === "description"));
+});
+
+test("POST /api/checklist-v3 preview-rule exige un accès admin", async () => {
+  const request = {
+    method: "POST",
+    headers: {},
+    body: {
+      action: "preview-rule",
+      name: "Descriptions",
+      appliesTo: ["pokemon"],
+      templateSource: 'description: { fr: "", en: "" }',
+    },
+    query: {},
+  };
+  const response = createResponse();
+
+  await checklistHandler(request, response);
+
+  assert.equal(response.statusCode, 401);
+});
+
+test("POST /api/checklist-v3 login ouvre une session admin", async () => {
+  const response = createResponse();
+
+  await checklistHandler(
+    {
+      method: "POST",
+      headers: {},
+      body: { action: "login", password: "test-checklist" },
+      query: {},
+    },
+    response,
   );
+
+  assert.equal(response.statusCode, 200);
+  assert.match(response.headers["set-cookie"], /pokedex_admin_session=/);
+  assert.equal(response.body.data.authenticated, true);
 });

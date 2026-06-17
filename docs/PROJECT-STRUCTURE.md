@@ -8,6 +8,9 @@ leurs responsabilites.
 
 | Dossier | Responsabilite |
 | --- | --- |
+| `app/` | Nouveau front public Next.js et pages du dashboard admin. |
+| `components/` | Bibliotheque de composants partagee entre pages et Storybook. |
+| `.storybook/` | Configuration de la documentation UI Storybook. |
 | `data/` | Fiches JSON Pokemon, formes et catalogues centraux. |
 | `src/` | Coeur de l'API REST Express et synchronisation MongoDB. |
 | `api/` | Points d'entree serverless necessaires au deploiement Vercel. |
@@ -44,9 +47,9 @@ la région traduite et la génération. Les sept météos vivent dans `data/weat
 référencent leurs types boostés et exposent les icônes de `asset/weather/`.
 
 Les sources externes surveillées par la checklist vivent dans
-`data/source-watch/sources.json`. La route `/api/source-watch-v3` lit cette liste,
-vérifie les signatures distantes et laisse le navigateur signaler les nouveautés déjà
-vues ou non vues.
+`data/source-watch/sources.json`. L'action `source-watch` de `/api/checklist-v3`
+lit cette liste, vérifie les signatures distantes et laisse le navigateur signaler les
+nouveautés déjà vues ou non vues.
 
 Le script `scripts/import/shadow-pokemon.js` synchronise depuis Bulbapedia les
 sorties Shadow déjà effectives, les coûts de purification, les Catch CP et les
@@ -75,10 +78,11 @@ Les fiches principales ne dupliquent plus les données de formes. `regionForms` 
 
 ## Checklists
 
-- `apps/checklist/` contient l'interface statique actuelle.
-- `apps/checklist/server/` contient le serveur local, l'authentification et le moteur.
-- `api/checklist-v3.js` et `api/detail-v3.js` conservent les URL historiques utilisees
-  par la checklist deployee sur Vercel.
+- `app/` contient le nouveau front Next.js public et l'espace admin.
+- `components/` contient les cartes, modales et panneaux reutilises par le nouveau front.
+- `apps/checklist/` conserve l'ancienne interface statique et le moteur metier partage.
+- `apps/checklist/server/` contient le serveur local legacy, l'atelier d'audit et le moteur.
+- `api/checklist-v3.js` regroupe les actions serverless exposees sur Vercel.
 
 ## Commandes
 

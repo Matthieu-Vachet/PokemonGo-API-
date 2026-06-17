@@ -262,7 +262,7 @@ les references invalides.
 
 ## Deploiement Vercel
 
-La checklist est prete pour un deploiement Vercel sans serveur local permanent.
+La nouvelle checklist Next.js est prete pour un deploiement Vercel sans serveur local permanent.
 
 Les commandes pour gerer `main`, `develop`, les branches `feature` et les rebases sans
 GitKraken sont documentees dans [docs/GIT-WORKFLOW.md](docs/GIT-WORKFLOW.md).
@@ -271,28 +271,39 @@ GitKraken sont documentees dans [docs/GIT-WORKFLOW.md](docs/GIT-WORKFLOW.md).
 2. Conserver les reglages de build automatiques.
 3. Deployer le projet.
 
-Vercel sert la checklist a la racine du domaine et expose les fonctions serverless:
+Vercel sert le nouveau front public a la racine du domaine et expose un petit nombre de
+fonctions serverless pour rester compatible avec le plan Hobby:
 
 - `/api/checklist-v3`
-- `/api/detail-v3`
-- `/api/catalog-v3`, `/api/assets-v3`, `/api/validate-v3` et `/api/url-audit-v3`
-- `/api/source-watch-v3` pour la veille PokeMiners / Game Master / assets externes
+- `GET /api/checklist-v3?action=detail`
+- `GET /api/checklist-v3?action=catalog`
+- `GET /api/checklist-v3?action=assets`
+- `GET /api/checklist-v3?action=source-watch`
+- `GET /api/checklist-v3?action=url-audit`
+- `POST /api/checklist-v3` avec `action=login`, `logout`, `preview-rule` ou `validate`
 - `/api/v1` pour l'API REST MongoDB
 - `/api-docs` pour la documentation moderne
 - `/swagger` pour la console interactive
+- `/checklist`, `/assets` et `/admin` pour les vues Next.js
 
 Configurer `MONGODB_URI`, `NODE_ENV=production` et `API_PUBLIC_URL` dans les variables
 d'environnement Vercel. Les pushes GitHub redeploient automatiquement le projet lorsque
 l'integration GitHub est active.
 
-Les API exigent la variable d'environnement Vercel `CHECKLIST_PASSWORD`. Le navigateur
-demande ce mot de passe et le conserve localement. Les acces directs aux donnees JSON,
-aux sources et au moteur interne de la checklist sont bloques.
+Configurer aussi `ADMIN_DASHBOARD_PASSWORD` pour l'espace admin. Par compatibilite, la
+checklist accepte encore `CHECKLIST_PASSWORD` si tu veux reutiliser l'ancien secret.
+Les outils sensibles ne sont plus exposes par des routes publiques separees: ils passent
+tous par `/api/checklist-v3` et exigent soit une session admin, soit le header
+`x-checklist-password`. Les acces directs aux donnees JSON, aux sources et au moteur
+interne de la checklist sont bloques.
 
 La progression manuelle est stockee dans `localStorage`. Elle reste disponible sur le
 meme navigateur, mais n'est pas synchronisee automatiquement entre plusieurs appareils.
 
 Les outils d'import et d'extraction manuels vivent dans `scripts/import/`.
+
+Storybook documente les composants UI partages. Utiliser `npm run storybook` en local et
+`npm run build-storybook` dans les verifications avant push.
 
 ## Ajouter Un Pokemon
 

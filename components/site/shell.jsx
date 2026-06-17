@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
 import { ApiStatusPill } from "./api-status-pill";
+import { uiAssets } from "./ui-assets";
 
 const links = [
   { href: "/checklist", label: "Pokédex" },
@@ -13,12 +14,12 @@ const links = [
 function PokeballMark({ small = false }) {
   return (
     <span
-      className={`relative shrink-0 rounded-full border-2 border-zinc-950 bg-[linear-gradient(#ff4f5e_0_48%,#202633_49%_53%,#f8fafc_54%_100%)] shadow-[0_0_0_5px_rgba(255,255,255,0.06)] ${
+      className={`relative grid shrink-0 place-items-center overflow-hidden rounded-full border border-white/10 bg-white shadow-[0_0_0_5px_rgba(255,255,255,0.06)] ${
         small ? "h-8 w-8" : "h-10 w-10"
       }`}
       aria-hidden="true"
     >
-      <span className="absolute inset-[29%] rounded-full border-[3px] border-slate-800 bg-white" />
+      <img className="h-4/5 w-4/5 object-contain" src={uiAssets.icons.pokedex} alt="" />
     </span>
   );
 }
@@ -28,7 +29,8 @@ export { PokeballMark };
 export function SiteShell({ children }) {
   return (
     <div className="min-h-screen text-slate-100">
-      <header className="sticky top-0 z-30 grid gap-3 border-b border-white/10 bg-zinc-950/85 px-3 py-3 backdrop-blur-xl lg:grid-cols-[minmax(230px,auto)_1fr_auto] lg:items-center lg:px-6">
+      <header className="sticky top-0 z-30 border-b border-white/10 bg-zinc-950/86 px-3 py-3 shadow-[0_18px_80px_rgba(0,0,0,.22)] backdrop-blur-xl lg:px-6">
+        <div className="mx-auto grid max-w-[1680px] gap-3 lg:grid-cols-[minmax(245px,auto)_1fr_auto] lg:items-center">
         <Link href="/" className="flex min-w-0 items-center gap-3" aria-label="Accueil">
           <PokeballMark />
           <span className="min-w-0">
@@ -40,12 +42,12 @@ export function SiteShell({ children }) {
             </small>
           </span>
         </Link>
-        <nav className="flex gap-1 overflow-x-auto lg:justify-center" aria-label="Navigation principale">
+        <nav className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:flex lg:justify-center" aria-label="Navigation principale">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="whitespace-nowrap rounded-lg border border-transparent px-3 py-2 text-sm font-bold text-slate-300 transition hover:border-white/10 hover:bg-white/[0.06] hover:text-white"
+              className="rounded-2xl border border-white/10 bg-white/[0.035] px-3 py-2 text-center text-sm font-bold text-slate-300 transition hover:border-cyan-200/35 hover:bg-cyan-400/10 hover:text-white lg:border-transparent lg:bg-transparent"
             >
               {link.label}
             </Link>
@@ -54,6 +56,7 @@ export function SiteShell({ children }) {
         <div className="flex flex-wrap items-center gap-2 lg:justify-end">
           <ApiStatusPill />
           <ThemeToggle />
+        </div>
         </div>
       </header>
       {children}

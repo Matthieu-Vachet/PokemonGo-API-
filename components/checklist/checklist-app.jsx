@@ -63,6 +63,7 @@ export function ChecklistApp({ mode = "public" }) {
   const [search, setSearch] = useState("");
   const [generation, setGeneration] = useState("all");
   const [kind, setKind] = useState("all");
+  const [formFilter, setFormFilter] = useState("all");
   const [status, setStatus] = useState("all");
   const [visibleCount, setVisibleCount] = useState(pageSize);
   const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -80,6 +81,40 @@ export function ChecklistApp({ mode = "public" }) {
       ),
     [entries],
   );
+
+  const formOptions = useMemo(() => {
+    const labels = {
+      alola: "Alola",
+      galar: "Galar",
+      hisui: "Hisui",
+      paldea: "Paldea",
+      mega: "Méga",
+      primal: "Primo",
+      dynamax: "Dynamax",
+      gigantamax: "Gigantamax",
+      shadow: "Shadow",
+      purified: "Purifié",
+      event: "Event",
+    };
+    const available = new Set();
+    for (const entry of entries) {
+      const text = [
+        entry.form,
+        entry.kind,
+        entry.profile,
+        entry.file,
+        entry.slug,
+        entry.name,
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      for (const id of Object.keys(labels)) {
+        if (text.includes(id)) available.add(id);
+      }
+    }
+    return [...available].sort().map((id) => ({ id, label: labels[id] || id }));
+  }, [entries]);
 
   const filtered = useMemo(() => {
     const needle = search.trim().toLowerCase();
@@ -101,12 +136,26 @@ export function ChecklistApp({ mode = "public" }) {
       const generationOk =
         generation === "all" || String(entry.generation || "") === generation;
       const kindOk = kind === "all" || entry.kind === kind;
+      const formOk =
+        formFilter === "all" ||
+        [
+          entry.form,
+          entry.kind,
+          entry.profile,
+          entry.file,
+          entry.slug,
+          entry.name,
+        ]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase()
+          .includes(formFilter);
       const statusOk =
         status === "all" ||
         (status === "complete" ? entry.complete : !entry.complete);
-      return searchOk && generationOk && kindOk && statusOk;
+      return searchOk && generationOk && kindOk && formOk && statusOk;
     });
-  }, [entries, generation, kind, search, status]);
+  }, [entries, formFilter, generation, kind, search, status]);
 
   const visible = filtered.slice(0, visibleCount);
   const selected = selectedIndex >= 0 ? filtered[selectedIndex] : null;
@@ -202,7 +251,7 @@ export function ChecklistApp({ mode = "public" }) {
             </div>
           </section>
 
-          <section className="mb-5 grid gap-2 rounded-lg border border-white/10 bg-white/[0.055] p-3 lg:grid-cols-[minmax(260px,1.2fr)_repeat(3,minmax(150px,.55fr))]">
+          <section className="mb-5 grid gap-2 rounded-[2rem] border border-white/10 bg-white/[0.055] p-3 shadow-[0_22px_90px_rgba(0,0,0,.2)] lg:grid-cols-[minmax(260px,1.2fr)_repeat(4,minmax(150px,.55fr))]">
             <input
               className={fieldClass}
               placeholder="Pokémon, numéro, forme, type, fichier..."
@@ -221,10 +270,16 @@ export function ChecklistApp({ mode = "public" }) {
                 <option key={value} value={value}>{familyLabel(value)}</option>
               ))}
             </select>
+            <select className={fieldClass} value={formFilter} onChange={(event) => resetFilters(event.target.value, setFormFilter)}>
+              <option value="all">Toutes formes</option>
+              {formOptions.map((option) => (
+                <option key={option.id} value={option.id}>{option.label}</option>
+              ))}
+            </select>
             <select className={fieldClass} value={status} onChange={(event) => resetFilters(event.target.value, setStatus)}>
               <option value="all">Tous statuts</option>
               <option value="complete">JSON complet</option>
-              <option value="todo">À corriger</option>
+              <option value="todo">JSON incomplet</option>
             </select>
           </section>
 

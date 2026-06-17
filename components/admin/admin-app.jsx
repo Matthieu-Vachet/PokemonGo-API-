@@ -142,22 +142,26 @@ function HistoryList({ history = [] }) {
   );
 }
 
-function CatalogPanel({ catalog = {} }) {
+function CatalogPanel({ catalog = {}, search = "" }) {
   const [tab, setTab] = useState("moves");
+  const data = catalog || {};
   const labels = {
     moves: "Attaques",
     types: "Types",
     weather: "Météo",
     stickers: "Stickers",
   };
-  const items =
+  const rawItems =
     tab === "moves"
-      ? catalog.moves || []
+      ? data.moves || []
       : tab === "stickers"
-        ? catalog.stickers || []
+        ? data.stickers || []
         : tab === "weather"
-          ? catalog.weather || []
-          : catalog.types || [];
+          ? data.weather || []
+          : data.types || [];
+  const items = rawItems.filter((item) =>
+    JSON.stringify(item).toLowerCase().includes(search.trim().toLowerCase()),
+  );
 
   return (
     <Panel
@@ -281,6 +285,9 @@ function SourceRows({ sourceWatch }) {
   }
   return (
     <div className="space-y-3">
+      <p className="rounded-2xl border border-cyan-300/15 bg-cyan-400/10 p-4 text-sm font-bold leading-6 text-cyan-100">
+        La veille interroge les sources configurées et affiche leur dernier état connu. Si une source expose un nouveau commit, tag ou statut différent, elle remonte ici au prochain contrôle.
+      </p>
       {(sourceWatch?.sources || []).length ? (
         sourceWatch.sources.map((source) => (
           <a
@@ -329,6 +336,7 @@ export function AdminApp() {
   const [compareA, setCompareA] = useState("");
   const [compareB, setCompareB] = useState("");
   const [bulkOnlyIssues, setBulkOnlyIssues] = useState(true);
+  const [assetTab, setAssetTab] = useState("all");
 
   useEffect(() => {
     setAssetChecks(localJson(assetChecksKey, {}));
@@ -393,6 +401,25 @@ export function AdminApp() {
   const compareRight = entries.find((entry) => entry.key === compareB);
   const bulkEntries = filtered.filter((entry) => !bulkOnlyIssues || entry.issues.length).slice(0, 80);
   const unchecked = entries.filter((entry) => !assetChecks[entry.key]);
+  const assetItems = useMemo(() => {
+    const lists = [
+      ...(assetTab === "all" || assetTab === "proposals"
+        ? (assetAudit?.proposals || []).map((item) => ({ ...item, group: "Propositions HD", image: item.url }))
+        : []),
+      ...(assetTab === "all" || assetTab === "go"
+        ? (assetAudit?.goAssets || []).map((item) => ({ ...item, group: "Assets liés GO", image: item.url }))
+        : []),
+      ...(assetTab === "all" || assetTab === "shuffle"
+        ? (assetAudit?.shuffleAssets || []).map((item) => ({ ...item, group: "Shuffle", image: item.url }))
+        : []),
+      ...(assetTab === "all" || assetTab === "unused"
+        ? (assetAudit?.unused || []).map((item) => ({ ...item, group: "HD non utilisés", image: item.url }))
+        : []),
+    ];
+    const needle = search.trim().toLowerCase();
+    if (!needle) return lists;
+    return lists.filter((item) => JSON.stringify(item).toLowerCase().includes(needle));
+  }, [assetAudit, assetTab, search]);
   const exportPayload = {
     generatedAt: new Date().toISOString(),
     filters: { search },
@@ -553,10 +580,10 @@ export function AdminApp() {
                 </button>
               </div>
             </div>
-            <nav className="mt-4 flex gap-2 overflow-x-auto pb-1 lg:hidden">
+            <nav className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:hidden">
               {navItems.map(([id, label, Icon]) => (
                 <button
-                  className={`inline-flex shrink-0 items-center gap-2 rounded-full border px-4 py-2 text-sm font-black ${
+                  className={`inline-flex items-center justify-center gap-2 rounded-2xl border px-3 py-2 text-sm font-black ${
                     active === id
                       ? "border-cyan-200/50 bg-cyan-400/20 text-cyan-50"
                       : "border-white/10 bg-white/[0.055] text-slate-300"
@@ -568,7 +595,7 @@ export function AdminApp() {
                   <Icon size={16} /> {label}
                 </button>
               ))}
-              <button className="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/10 bg-white/[0.055] px-4 py-2 text-sm font-black text-slate-300" type="button" onClick={logout}>
+              <button className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.055] px-3 py-2 text-sm font-black text-slate-300" type="button" onClick={logout}>
                 <LogOut size={16} /> Sortir
               </button>
             </nav>
@@ -656,15 +683,40 @@ export function AdminApp() {
                     <MetricCard label="Utilisés" value={assetAudit?.totals?.used || 0} accent="green" />
                     <MetricCard label="Doublons" value={assetAudit?.totals?.duplicated || 0} accent="amber" />
                   </div>
+                  <p className="mb-4 rounded-2xl border border-white/10 bg-slate-950/35 p-4 text-sm font-bold leading-6 text-slate-300">
+                    Cette page sert à contrôler les images réellement liées aux fiches et les propositions HD. La recherche globale filtre aussi cette liste.
+                  </p>
+                  <div className="mb-4 flex flex-wrap gap-2">
+                    {[
+                      ["all", "Tout"],
+                      ["proposals", "Propositions HD"],
+                      ["go", "Liés GO"],
+                      ["shuffle", "Shuffle"],
+                      ["unused", "HD non utilisés"],
+                    ].map(([id, label]) => (
+                      <button
+                        className={`rounded-full border px-4 py-2 text-xs font-black ${
+                          assetTab === id
+                            ? "border-cyan-200/50 bg-cyan-400/20 text-cyan-50"
+                            : "border-white/10 bg-white/[0.055] text-slate-300"
+                        }`}
+                        key={id}
+                        type="button"
+                        onClick={() => setAssetTab(id)}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-4">
-                    {(assetAudit?.shuffleAssets || []).slice(0, 60).map((asset) => (
-                      <article className="overflow-hidden rounded-3xl border border-white/10 bg-slate-950/40" key={asset.filename}>
+                    {assetItems.slice(0, 120).map((asset, index) => (
+                      <article className="overflow-hidden rounded-3xl border border-white/10 bg-slate-950/40" key={`${asset.group}-${asset.filename || asset.url}-${index}`}>
                         <div className="grid aspect-square place-items-center bg-white/[0.04] p-3">
-                          <img className="max-h-full object-contain" src={asset.url} alt={asset.filename} />
+                          <img className="max-h-full object-contain" src={asset.image || asset.url} alt={asset.filename || asset.label || "asset"} />
                         </div>
                         <div className="border-t border-white/10 p-3">
-                          <strong className="block truncate text-xs font-black text-white">{asset.filename}</strong>
-                          <span className="mt-1 block truncate text-xs font-bold text-slate-400">{asset.label}</span>
+                          <strong className="block truncate text-xs font-black text-white">{asset.filename || asset.label}</strong>
+                          <span className="mt-1 block truncate text-xs font-bold text-slate-400">{asset.group} · {asset.label || asset.details || asset.form || "standard"}</span>
                         </div>
                       </article>
                     ))}
@@ -690,10 +742,13 @@ export function AdminApp() {
               </Panel>
             ) : null}
 
-            {active === "catalogs" ? <CatalogPanel catalog={catalog} /> : null}
+            {active === "catalogs" ? <CatalogPanel catalog={catalog} search={search} /> : null}
 
             {active === "compare" ? (
               <Panel title="Comparaison de fiches" eyebrow="contrôle">
+                <p className="mb-4 rounded-2xl border border-white/10 bg-slate-950/35 p-4 text-sm font-bold leading-6 text-slate-300">
+                  Compare deux fiches côte à côte pour vérifier rapidement les assets, types, problèmes JSON et informations visibles avant une correction.
+                </p>
                 <div className="mb-5 grid gap-3 md:grid-cols-2">
                   <select className={fieldClass} value={compareA} onChange={(event) => setCompareA(event.target.value)}>
                     <option value="">Fiche gauche</option>
@@ -741,6 +796,9 @@ export function AdminApp() {
                   </label>
                 }
               >
+                <p className="mb-4 rounded-2xl border border-white/10 bg-slate-950/35 p-4 text-sm font-bold leading-6 text-slate-300">
+                  Génère un brouillon JSON à partir des problèmes détectés. Ce panneau ne modifie pas les fichiers: il sert à préparer des corrections groupées.
+                </p>
                 <textarea className={`${fieldClass} min-h-[520px] resize-y font-mono text-xs leading-6`} readOnly value={JSON.stringify(Object.fromEntries(bulkEntries.map((entry) => [entry.key, entry.suggestedPatch])), null, 2)} />
               </Panel>
             ) : null}
@@ -754,6 +812,9 @@ export function AdminApp() {
                   </button>
                 }
               >
+                <p className="mb-4 rounded-2xl border border-white/10 bg-slate-950/35 p-4 text-sm font-bold leading-6 text-slate-300">
+                  Exporte les fiches correspondant à la recherche globale en cours. Pratique pour partager un lot réduit ou conserver un état de contrôle.
+                </p>
                 <textarea className={`${fieldClass} min-h-[520px] resize-y font-mono text-xs leading-6`} readOnly value={JSON.stringify(exportPayload, null, 2)} />
               </Panel>
             ) : null}
@@ -858,17 +919,37 @@ export function AdminApp() {
         onAssetAudit={async () => {
           const response = await fetch(`/api/checklist-v3?action=assets&dexId=${encodeURIComponent(selected.dexId)}`);
           const payload = await response.json();
+          const groups = [
+            ["Propositions HD", payload.data?.proposals || []],
+            ["Assets liés GO", payload.data?.goAssets || []],
+            ["Shuffle", payload.data?.shuffleAssets || []],
+          ];
           setExtraPanel(
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {(payload.data?.shuffleAssets || []).slice(0, 24).map((asset) => (
-                <article className="overflow-hidden rounded-2xl border border-white/10 bg-slate-950/40" key={asset.filename}>
-                  <div className="grid aspect-square place-items-center p-3">
-                    <img className="max-h-full object-contain" src={asset.url} alt={asset.filename} />
+            <div className="space-y-4">
+              {groups.map(([label, items]) => (
+                <section key={label}>
+                  <div className="mb-2 flex items-center justify-between">
+                    <strong className="text-white">{label}</strong>
+                    <span className="rounded-full bg-white/10 px-2 py-1 text-xs font-black text-slate-300">{items.length}</span>
                   </div>
-                  <div className="border-t border-white/10 p-2">
-                    <strong className="block truncate text-xs text-white">{asset.filename}</strong>
-                  </div>
-                </article>
+                  {items.length ? (
+                    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                      {items.slice(0, 24).map((asset, index) => (
+                        <article className="overflow-hidden rounded-2xl border border-white/10 bg-slate-950/40" key={`${label}-${asset.filename || asset.url}-${index}`}>
+                          <div className="grid aspect-square place-items-center p-3">
+                            <img className="max-h-full object-contain" src={asset.url} alt={asset.filename || asset.label || label} />
+                          </div>
+                          <div className="border-t border-white/10 p-2">
+                            <strong className="block truncate text-xs text-white">{asset.filename || asset.label}</strong>
+                            <span className="mt-1 block truncate text-xs text-slate-400">{asset.details || asset.form || asset.state || "standard"}</span>
+                          </div>
+                        </article>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="rounded-2xl border border-dashed border-white/15 p-3 text-sm font-bold text-slate-400">Aucun résultat.</p>
+                  )}
+                </section>
               ))}
             </div>,
           );

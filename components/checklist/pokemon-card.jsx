@@ -84,11 +84,11 @@ function TypeBadge({ type, catalog }) {
 function WeatherBadge({ weatherId, catalog }) {
   const item = catalogItem(catalog, weatherId);
   return (
-    <span className="inline-flex min-h-8 items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/10 px-3 text-xs font-black text-slate-100">
+    <span className="inline-flex min-h-8 min-w-0 max-w-full items-center justify-center gap-2 overflow-hidden rounded-lg border border-white/10 bg-white/10 px-3 text-xs font-black text-slate-100">
       {item?.assets?.icon ? (
-        <img className="h-5 w-5 object-contain" src={item.assets.icon} alt="" />
+        <img className="h-5 w-5 shrink-0 object-contain" src={item.assets.icon} alt="" />
       ) : null}
-      {item?.names?.French || weatherId}
+      <span className="truncate">{item?.names?.French || weatherId}</span>
     </span>
   );
 }
@@ -212,7 +212,7 @@ export function PokemonCard({
         ) : null}
         {onOpen ? (
           <button
-            className="min-h-11 rounded-lg bg-gradient-to-r from-rose-500 to-amber-300 px-4 font-black text-zinc-950"
+            className="min-h-11 rounded-2xl bg-gradient-to-r from-cyan-400 via-sky-500 to-emerald-400 px-4 font-black text-white shadow-[0_16px_45px_rgba(14,165,233,.25)] transition hover:scale-[1.01]"
             type="button"
             onClick={() => onOpen(entry)}
           >

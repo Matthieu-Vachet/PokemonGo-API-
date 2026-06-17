@@ -9,12 +9,12 @@ const tabLabels = {
   pvp: "PvP",
   shadow: "Shadow",
   assets: "Assets",
-  issues: "Checklist",
   json: "JSON",
 };
 
 function valueOrDash(value, suffix = "") {
   if (value === null || value === undefined || value === "") return "-";
+  if (typeof value === "object") return JSON.stringify(value);
   return `${value}${suffix}`;
 }
 
@@ -60,25 +60,72 @@ function EmptyInline({ children }) {
   );
 }
 
+function moveArray(moves) {
+  if (!moves) return [];
+  if (Array.isArray(moves)) return moves;
+  if (typeof moves === "object") return Object.values(moves);
+  return [];
+}
+
+function moveName(move, allMoves = {}) {
+  if (!move) return "-";
+  if (typeof move === "string") {
+    const found = Object.values(allMoves)
+      .flatMap(moveArray)
+      .find((item) => item.id === move);
+    return found?.names?.French || found?.names?.English || move;
+  }
+  return move.names?.French || move.names?.English || move.id || "-";
+}
+
+function formatRange(range) {
+  if (!range || typeof range !== "object") return "-";
+  if (range.min === undefined && range.max === undefined) return "-";
+  return `${range.min ?? "?"} - ${range.max ?? "?"}`;
+}
+
+function formatDate(value) {
+  if (!value) return "-";
+  return String(value);
+}
+
 function MoveList({ title, moves }) {
-  const list = Object.values(moves || {});
+  const list = moveArray(moves);
   return (
     <Section title={title}>
       {list.length ? (
-        <div className="overflow-hidden rounded-2xl border border-white/10">
+        <div className="grid gap-3">
           {list.map((move) => (
             <div
-              className="grid grid-cols-[1fr_auto_auto_auto] items-center gap-3 border-b border-white/10 bg-slate-950/35 px-4 py-3 text-sm last:border-b-0"
+              className="rounded-2xl border border-white/10 bg-slate-950/35 p-4 text-sm"
               key={move.id}
             >
-              <strong className="min-w-0 truncate font-black text-white">
-                {move.names?.French || move.names?.English || move.id}
-              </strong>
-              <span className="rounded-full bg-white/10 px-3 py-1 font-bold text-slate-200">
-                {move.type || "-"}
-              </span>
-              <span className="font-black text-cyan-200">{valueOrDash(move.power)}</span>
-              <span className="font-black text-emerald-200">{valueOrDash(move.energy)}</span>
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <span className="min-w-0">
+                  <strong className="block break-words font-black text-white">
+                    {moveName(move)}
+                  </strong>
+                  <small className="mt-1 block font-mono text-xs text-slate-500">{move.id}</small>
+                </span>
+                <span className="rounded-full bg-white/10 px-3 py-1 font-bold text-slate-200">
+                  {move.type || "-"}
+                </span>
+              </div>
+              <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+                {[
+                  ["Puissance", move.power],
+                  ["Énergie", move.energy ?? move.combat?.energy],
+                  ["Durée", move.durationMs ? `${move.durationMs} ms` : undefined],
+                  ["Tours PvP", move.combat?.turns],
+                  ["Puissance PvP", move.combat?.power],
+                  ["Buffs", move.combat?.buffs ? JSON.stringify(move.combat.buffs) : "-"],
+                ].map(([label, value]) => (
+                  <span className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2" key={label}>
+                    <small className="block text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">{label}</small>
+                    <strong className="mt-1 block break-words text-white">{valueOrDash(value)}</strong>
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>
@@ -90,51 +137,82 @@ function MoveList({ title, moves }) {
 }
 
 function AssetGallery({ entry, payload }) {
+  const [preview, setPreview] = useState(null);
   const assets = [];
-  const add = (label, url, meta = "") => {
-    if (url) assets.push({ label, url, meta });
+  const add = (group, label, url, meta = "") => {
+    if (url) assets.push({ group, label, url, meta });
   };
 
-  add("Pokémon GO", payload.assets?.image || entry.image);
-  add("Pokémon GO shiny", payload.assets?.shinyImage || entry.shinyImage, "shiny");
-  add("Portrait", payload.assets?.portrait, "méga / primo");
-  add("Home", payload.assets?.home?.image);
-  add("Home shiny", payload.assets?.home?.shinyImage, "shiny");
+  add("Pokémon GO", "Image principale", payload.assets?.image || entry.image);
+  add("Pokémon GO", "Image shiny", payload.assets?.shinyImage || entry.shinyImage, "shiny");
+  add("Portraits", "Portrait", payload.assets?.portrait, "méga / primo");
+  add("Pokémon Home", "Home", payload.assets?.home?.image);
+  add("Pokémon Home", "Home shiny", payload.assets?.home?.shinyImage, "shiny");
 
   for (const [index, asset] of (payload.assetForms || []).entries()) {
-    add(`Variante ${index + 1}`, asset.image, asset.form || asset.costume || "");
-    add(`Variante shiny ${index + 1}`, asset.shinyImage, "shiny");
+    add("Variantes GO", `Variante ${index + 1}`, asset.image, asset.form || asset.costume || "");
+    add("Variantes GO", `Variante shiny ${index + 1}`, asset.shinyImage, "shiny");
   }
   for (const [index, asset] of (payload.assets?.home?.variants || []).entries()) {
-    add(`Home ${index + 1}`, asset.image || asset.shinyImage, asset.detail || asset.view || "");
+    add("Variantes Home", `Home ${index + 1}`, asset.image || asset.shinyImage, asset.detail || asset.view || "");
   }
   for (const [index, asset] of (payload.assets?.shuffle?.variants || []).entries()) {
-    add(`Shuffle ${index + 1}`, asset.image, asset.tags?.join(" · ") || asset.state || "");
+    add("Pokémon Shuffle", `Shuffle ${index + 1}`, asset.image, asset.tags?.join(" · ") || asset.state || "");
   }
   for (const [index, asset] of (payload.assets?.locationCards || []).entries()) {
-    add(`Background ${index + 1}`, asset.image, asset.name || asset.date || "");
+    add("Backgrounds", `Background ${index + 1}`, asset.image, asset.name || asset.date || "");
   }
+  const groups = [...assets.reduce((map, asset) => {
+    if (!map.has(asset.group)) map.set(asset.group, []);
+    map.get(asset.group).push(asset);
+    return map;
+  }, new Map()).entries()];
 
   return (
     <Section title="Galerie liée à la fiche">
       {assets.length ? (
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-          {assets.map((asset, index) => (
-            <article
-              className="overflow-hidden rounded-3xl border border-white/10 bg-slate-950/45"
-              key={`${asset.url}-${index}`}
-            >
-              <div className="flex aspect-square items-center justify-center bg-[radial-gradient(circle_at_30%_15%,rgba(125,211,252,.2),transparent_38%),rgba(255,255,255,.04)] p-4">
-                <img className="max-h-full object-contain drop-shadow-2xl" src={asset.url} alt={asset.label} />
+        <div className="space-y-5">
+          {groups.map(([group, groupAssets]) => (
+            <div key={group}>
+              <div className="mb-3 flex items-center justify-between gap-3">
+                <h4 className="font-black text-white">{group}</h4>
+                <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs font-black text-slate-300">{groupAssets.length}</span>
               </div>
-              <div className="border-t border-white/10 p-3">
-                <strong className="block truncate text-sm font-black text-white">{asset.label}</strong>
-                <span className="mt-1 block truncate text-xs font-bold text-slate-400">
-                  {asset.meta || "standard"}
-                </span>
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                {groupAssets.map((asset, index) => (
+                  <button
+                    className="overflow-hidden rounded-3xl border border-white/10 bg-slate-950/45 text-left transition hover:border-cyan-200/40 hover:bg-cyan-400/10"
+                    key={`${asset.url}-${index}`}
+                    type="button"
+                    onClick={() => setPreview(asset)}
+                  >
+                    <div className="flex aspect-square items-center justify-center bg-[radial-gradient(circle_at_30%_15%,rgba(125,211,252,.2),transparent_38%),rgba(255,255,255,.04)] p-4">
+                      <img className="max-h-full object-contain drop-shadow-2xl" src={asset.url} alt={asset.label} />
+                    </div>
+                    <div className="border-t border-white/10 p-3">
+                      <strong className="block truncate text-sm font-black text-white">{asset.label}</strong>
+                      <span className="mt-1 block truncate text-xs font-bold text-slate-400">
+                        {asset.meta || "standard"}
+                      </span>
+                    </div>
+                  </button>
+                ))}
               </div>
-            </article>
+            </div>
           ))}
+          {preview ? (
+            <div className="fixed inset-0 z-[70] grid place-items-center bg-slate-950/86 p-4 backdrop-blur-md" role="presentation" onClick={() => setPreview(null)}>
+              <div className="w-full max-w-5xl overflow-hidden rounded-[2rem] border border-white/10 bg-[#07111f]" onClick={(event) => event.stopPropagation()}>
+                <div className="flex items-center justify-between gap-3 border-b border-white/10 p-4">
+                  <strong className="truncate text-xl font-black text-white">{preview.label}</strong>
+                  <button className="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-2xl" type="button" onClick={() => setPreview(null)}>×</button>
+                </div>
+                <div className="grid max-h-[78dvh] place-items-center overflow-auto p-5">
+                  <img className="max-h-[70dvh] object-contain" src={preview.url} alt={preview.label} />
+                </div>
+              </div>
+            </div>
+          ) : null}
         </div>
       ) : (
         <EmptyInline>Aucun asset lié à cette fiche.</EmptyInline>
@@ -165,6 +243,65 @@ function IssuesPanel({ entry }) {
       ) : (
         <EmptyInline>Aucun problème détecté.</EmptyInline>
       )}
+    </Section>
+  );
+}
+
+function PvpPanel({ pvp, moveDetails }) {
+  const labels = {
+    littleCup: "Little Cup",
+    greatLeague: "Great League",
+    ultraLeague: "Ultra League",
+    masterLeague: "Master League",
+  };
+  const leagues = Object.entries(labels);
+  return (
+    <Section title="Ligues PvP">
+      <div className="grid gap-3 lg:grid-cols-2">
+        {leagues.map(([key, label]) => {
+          const value = pvp?.[key];
+          if (!value) {
+            return (
+              <article className="rounded-2xl border border-white/10 bg-white/[0.035] p-4" key={key}>
+                <strong className="block font-black text-white">{label}</strong>
+                <span className="mt-2 block text-sm font-bold text-slate-500">Aucune donnée PvP renseignée.</span>
+              </article>
+            );
+          }
+          const rank = value.rank1 || {};
+          const ivs = rank.ivs || {};
+          const moves = value.bestMovesets || {};
+          return (
+            <article className="rounded-2xl border border-cyan-300/15 bg-cyan-400/10 p-4" key={key}>
+              <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+                <strong className="text-lg font-black text-white">{label}</strong>
+                <span className="rounded-full bg-slate-950/45 px-3 py-1 text-xs font-black text-cyan-100">
+                  {value.tierRank || "Non classé"}
+                </span>
+              </div>
+              <div className="grid gap-2 sm:grid-cols-3">
+                {[
+                  ["Niveau", rank.level],
+                  ["PC", rank.cp],
+                  ["IV", `${ivs.attack ?? "?"}/${ivs.defense ?? "?"}/${ivs.stamina ?? "?"}`],
+                ].map(([name, data]) => (
+                  <span className="rounded-xl border border-white/10 bg-slate-950/35 px-3 py-2" key={name}>
+                    <small className="block text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">{name}</small>
+                    <strong className="mt-1 block text-white">{valueOrDash(data)}</strong>
+                  </span>
+                ))}
+              </div>
+              <div className="mt-3 rounded-xl border border-white/10 bg-slate-950/35 p-3">
+                <small className="block text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">Meilleur moveset</small>
+                <strong className="mt-1 block break-words text-white">
+                  {moveName(moves.fast, moveDetails)}
+                  {(moves.charged || []).length ? ` + ${(moves.charged || []).map((id) => moveName(id, moveDetails)).join(" / ")}` : ""}
+                </strong>
+              </div>
+            </article>
+          );
+        })}
+      </div>
     </Section>
   );
 }
@@ -236,10 +373,9 @@ export function DetailModal({
         "pvp",
         payload.shadow || entry?.availability?.shadow ? "shadow" : null,
         "assets",
-        "issues",
-        mode === "admin" ? "json" : null,
+        "json",
       ].filter(Boolean),
-    [entry, mode, payload],
+    [entry, payload],
   );
 
   useEffect(() => {
@@ -308,10 +444,10 @@ export function DetailModal({
             </button>
           </div>
 
-          <nav className="mt-4 flex gap-2 overflow-x-auto pb-2" aria-label="Onglets de fiche">
+          <nav className="mt-4 flex flex-wrap gap-2 pb-2" aria-label="Onglets de fiche">
             {tabs.map((tab) => (
               <button
-                className={`shrink-0 rounded-full border px-4 py-2 text-sm font-black transition ${
+                className={`rounded-full border px-4 py-2 text-sm font-black transition ${
                   activeTab === tab
                     ? "border-cyan-200/50 bg-gradient-to-r from-cyan-400 to-blue-500 text-white shadow-[0_12px_35px_rgba(14,165,233,.25)]"
                     : "border-white/10 bg-white/[0.055] text-slate-200 hover:bg-white/10"
@@ -399,7 +535,9 @@ export function DetailModal({
                       {cpByLevel.map((row) => (
                         <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3" key={row.level}>
                           <span className="font-bold text-slate-300">Niv. {row.level}</span>
-                          <strong className="font-black text-white">{row.cp}</strong>
+                          <strong className="font-black text-white">
+                            {row.cp ?? `${row.minCp ?? "?"} - ${row.maxCp ?? "?"}`}
+                          </strong>
                         </div>
                       ))}
                     </div>
@@ -412,21 +550,16 @@ export function DetailModal({
 
             {activeTab === "moves" ? (
               <>
-                <MoveList title="Attaques rapides" moves={moveDetails.fast} />
-                <MoveList title="Attaques chargées" moves={moveDetails.charged} />
-                <MoveList title="Attaques elite" moves={moveDetails.elite} />
+                <MoveList title="Attaques rapides" moves={moveDetails.quickMoves} />
+                <MoveList title="Attaques chargées" moves={moveDetails.cinematicMoves} />
+                <MoveList title="Attaques elite rapides" moves={moveDetails.eliteQuickMoves} />
+                <MoveList title="Attaques elite chargées" moves={moveDetails.eliteCinematicMoves} />
+                <MoveList title="Attaques Max / GMax" moves={moveDetails.maxMoves} />
               </>
             ) : null}
 
             {activeTab === "pvp" ? (
-              <Section title="Ligues PvP">
-                <DataGrid
-                  items={Object.entries(pvp).map(([key, value]) => ({
-                    label: key,
-                    value: value ? JSON.stringify(value) : "-",
-                  }))}
-                />
-              </Section>
+              <PvpPanel pvp={pvp} moveDetails={moveDetails} />
             ) : null}
 
             {activeTab === "shadow" ? (
@@ -436,16 +569,23 @@ export function DetailModal({
                     { label: "Shadow", value: availability.shadow ? "Oui" : "Non" },
                     { label: "Purification", value: valueOrDash(payload.shadow?.purificationCost?.stardust, " poussières") },
                     { label: "Bonbons", value: valueOrDash(payload.shadow?.purificationCost?.candy) },
-                    { label: "Sortie", value: valueOrDash(payload.shadow?.releaseDate) },
-                    { label: "Catch CP", value: valueOrDash(payload.shadow?.catchCp) },
+                    { label: "Sortie", value: formatDate(payload.shadow?.firstReleaseDate || payload.shadow?.releaseDate) },
+                    { label: "Catch CP normal", value: formatRange(payload.shadow?.catchCp?.normal) },
+                    { label: "Catch CP météo", value: formatRange(payload.shadow?.catchCp?.weatherBoosted) },
                   ]}
                 />
               </Section>
             ) : null}
 
             {activeTab === "assets" ? <AssetGallery entry={entry} payload={payload} /> : null}
-            {activeTab === "issues" ? <IssuesPanel entry={entry} /> : null}
-            {activeTab === "json" && mode === "admin" ? <JsonBlock payload={payload.sourceData || payload} /> : null}
+            {activeTab === "json" ? (
+              <div className="space-y-4">
+                <IssuesPanel entry={entry} />
+                <Section title="JSON source">
+                  <JsonBlock payload={payload.sourceData || payload} />
+                </Section>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>

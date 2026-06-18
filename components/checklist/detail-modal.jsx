@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { typeColors, typeIcon, typeName } from "../site/pokemon-style";
+import { uiAssets } from "../site/ui-assets";
 
 const tabLabels = {
   overview: "Aperçu",
@@ -37,18 +39,61 @@ function DataGrid({ items }) {
     <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
       {items.map((item) => (
         <div
-          className="rounded-2xl border border-white/10 bg-slate-950/45 p-4 text-left"
+          className="grid grid-cols-[2.45rem_minmax(0,1fr)] gap-3 rounded-2xl border border-white/10 bg-slate-950/45 p-4 text-left"
           key={item.label}
         >
-          <span className="block text-xs font-bold uppercase tracking-[0.16em] text-slate-400">
-            {item.label}
+          <span className="grid h-10 w-10 place-items-center rounded-2xl border border-white/10 bg-white/[0.06]">
+            {item.icon ? (
+              <img className="h-6 w-6 object-contain" src={item.icon} alt="" />
+            ) : (
+              <span className="h-3 w-3 rounded-full bg-cyan-300" />
+            )}
           </span>
-          <strong className="mt-2 block break-words text-base font-black text-white">
-            {item.value}
-          </strong>
+          <span className="min-w-0">
+            <span className="block text-xs font-bold uppercase tracking-[0.16em] text-slate-400">
+              {item.label}
+            </span>
+            <strong className="mt-2 block break-words text-base font-black text-white">
+              {item.value}
+            </strong>
+          </span>
         </div>
       ))}
     </div>
+  );
+}
+
+const languageLabels = {
+  English: "Anglais",
+  German: "Allemand",
+  French: "Français",
+  Italian: "Italien",
+  Japanese: "Japonais",
+  Korean: "Coréen",
+  Spanish: "Espagnol",
+};
+
+function TranslationGrid({ names = {} }) {
+  const entries = Object.entries(names || {}).filter(([, value]) => value);
+  if (!entries.length) return null;
+  return (
+    <Section title="Noms traduits" eyebrow="localisation">
+      <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
+        {entries.map(([language, value]) => (
+          <div className="grid grid-cols-[2.2rem_minmax(0,1fr)] gap-3 rounded-2xl border border-white/10 bg-slate-950/45 p-3" key={language}>
+            <span className="grid h-9 w-9 place-items-center rounded-xl border border-white/10 bg-white/[0.06] text-xs font-black text-cyan-100">
+              {language.slice(0, 2).toUpperCase()}
+            </span>
+            <span className="min-w-0">
+              <span className="block text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
+                {languageLabels[language] || language}
+              </span>
+              <strong className="mt-1 block break-words text-white">{value}</strong>
+            </span>
+          </div>
+        ))}
+      </div>
+    </Section>
   );
 }
 
@@ -65,6 +110,12 @@ function moveArray(moves) {
   if (Array.isArray(moves)) return moves;
   if (typeof moves === "object") return Object.values(moves);
   return [];
+}
+
+function moveCollection(details, key, fallback) {
+  const detailed = details?.[key];
+  const detailedList = moveArray(detailed).filter(Boolean);
+  return detailedList.length ? detailed : fallback;
 }
 
 function moveName(move, allMoves = {}) {
@@ -89,8 +140,25 @@ function formatDate(value) {
   return String(value);
 }
 
-function MoveList({ title, moves }) {
-  const list = moveArray(moves);
+function MoveTypePill({ type, typeCatalog }) {
+  if (!type) return null;
+  return (
+    <span
+      className="inline-flex min-w-0 items-center gap-2 rounded-full px-3 py-1 text-xs font-black text-white"
+      style={{ background: `color-mix(in srgb, ${typeColors[type] || "#64748b"} 55%, rgba(255,255,255,.12))` }}
+    >
+      {typeIcon(type, typeCatalog) ? (
+        <img className="h-4 w-4 shrink-0 object-contain" src={typeIcon(type, typeCatalog)} alt="" />
+      ) : null}
+      <span className="truncate">{typeName(type, typeCatalog)}</span>
+    </span>
+  );
+}
+
+function MoveList({ title, moves, typeCatalog = [] }) {
+  const list = moveArray(moves).filter(Boolean).map((move) =>
+    typeof move === "string" ? { id: move } : move,
+  );
   return (
     <Section title={title}>
       {list.length ? (
@@ -98,7 +166,7 @@ function MoveList({ title, moves }) {
           {list.map((move) => (
             <div
               className="rounded-2xl border border-white/10 bg-slate-950/35 p-4 text-sm"
-              key={move.id}
+              key={move.id || move.slug || moveName(move)}
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <span className="min-w-0">
@@ -107,9 +175,7 @@ function MoveList({ title, moves }) {
                   </strong>
                   <small className="mt-1 block font-mono text-xs text-slate-500">{move.id}</small>
                 </span>
-                <span className="rounded-full bg-white/10 px-3 py-1 font-bold text-slate-200">
-                  {move.type || "-"}
-                </span>
+                <MoveTypePill type={move.type} typeCatalog={typeCatalog} />
               </div>
               <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
                 {[
@@ -361,6 +427,8 @@ export function DetailModal({
   extraPanel,
   onPrevious,
   onNext,
+  typeCatalog = [],
+  weatherCatalog = [],
 }) {
   const [activeTab, setActiveTab] = useState("overview");
   const payload = detail?.detail || detail || {};
@@ -393,6 +461,14 @@ export function DetailModal({
   const cpByLevel = payload.cpByLevel || [];
   const captureRewards = payload.captureRewards || {};
   const secondMove = payload.secondChargeMoveCost || {};
+  const names = payload.names || payload.sourceData?.names || {};
+  const region = payload.region || {};
+  const weatherNames = (payload.weatherBoost || entry.weatherBoost || [])
+    .map((weatherId) => {
+      const item = (weatherCatalog || []).find((weather) => weather.id === weatherId || weather.slug === weatherId);
+      return item?.names?.French || weatherId;
+    })
+    .filter(Boolean);
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-slate-950/75 p-0 backdrop-blur-md sm:items-center sm:p-6" role="presentation" onClick={onClose}>
@@ -479,18 +555,35 @@ export function DetailModal({
                     extraPanel={extraPanel}
                   />
                 ) : null}
+                <TranslationGrid names={names} />
+                <Section title="Identifiants">
+                  <DataGrid
+                    items={[
+                      { label: "ID", value: valueOrDash(payload.id), icon: uiAssets.icons.tag },
+                      { label: "Form ID", value: valueOrDash(payload.formId), icon: uiAssets.icons.tag },
+                      { label: "Slug", value: valueOrDash(payload.slug), icon: uiAssets.icons.search },
+                      { label: "Région", value: region.names?.French || payload.regionId || "-", icon: uiAssets.icons.pokedex },
+                      { label: "Génération", value: valueOrDash(payload.generation || entry.generation), icon: uiAssets.icons.pokemon },
+                      { label: "Classe", value: valueOrDash(payload.pokemonClass), icon: uiAssets.icons.tag },
+                      { label: "Forme", value: valueOrDash(payload.form || entry.form), icon: uiAssets.icons.pokemon },
+                      { label: "Fichier", value: valueOrDash(entry.file), icon: uiAssets.icons.copy },
+                    ]}
+                  />
+                </Section>
                 <Section title="Identité et capture">
                   <DataGrid
                     items={[
-                      { label: "Types", value: [entry.primaryType, entry.secondaryType].filter(Boolean).join(" / ") || "-" },
-                      { label: "Boost météo", value: (payload.weatherBoost || entry.weatherBoost || []).join(", ") || "-" },
-                      { label: "Taille", value: valueOrDash(size.height, " m") },
-                      { label: "Poids", value: valueOrDash(size.weight, " kg") },
-                      { label: "Distance buddy", value: valueOrDash(payload.buddyDistance, " km") },
-                      { label: "Taux capture", value: valueOrDash(payload.catchRate, "%") },
-                      { label: "Taux fuite", value: valueOrDash(payload.fleeRate, "%") },
-                      { label: "Récompenses", value: `${valueOrDash(captureRewards.candy)} bonbons / ${valueOrDash(captureRewards.stardust)} poussières` },
-                      { label: "2e attaque", value: `${valueOrDash(secondMove.candy)} bonbons / ${valueOrDash(secondMove.stardust)} poussières` },
+                      { label: "Types", value: [entry.primaryType, entry.secondaryType].filter(Boolean).map((type) => typeName(type, typeCatalog)).join(" / ") || "-", icon: uiAssets.icons.tag },
+                      { label: "Boost météo", value: weatherNames.join(", ") || "-", icon: uiAssets.icons.speedometer },
+                      { label: "Taille", value: valueOrDash(size.height, " m"), icon: uiAssets.icons.height },
+                      { label: "Poids", value: valueOrDash(size.weight, " kg"), icon: uiAssets.icons.weight },
+                      { label: "Distance buddy", value: valueOrDash(payload.buddyDistance, " km"), icon: uiAssets.icons.pokemon },
+                      { label: "Taux capture", value: valueOrDash(payload.catchRate, "%"), icon: uiAssets.icons.pokedex },
+                      { label: "Taux fuite", value: valueOrDash(payload.fleeRate, "%"), icon: uiAssets.icons.speedometer },
+                      { label: "Énergie méga", value: valueOrDash(payload.megaEnergyReward), icon: uiAssets.icons.mega },
+                      { label: "Coût méga", value: valueOrDash(payload.energyCost), icon: uiAssets.icons.mega },
+                      { label: "Récompenses", value: `${valueOrDash(captureRewards.candy)} bonbons / ${valueOrDash(captureRewards.stardust)} poussières`, icon: uiAssets.icons.tag },
+                      { label: "2e attaque", value: `${valueOrDash(secondMove.candy)} bonbons / ${valueOrDash(secondMove.stardust)} poussières`, icon: uiAssets.icons.combat },
                     ]}
                   />
                 </Section>
@@ -518,14 +611,14 @@ export function DetailModal({
                 <Section title="Statistiques">
                   <DataGrid
                     items={[
-                      { label: "Attaque", value: valueOrDash(stats.attack) },
-                      { label: "Défense", value: valueOrDash(stats.defense) },
-                      { label: "Endurance", value: valueOrDash(stats.stamina) },
-                      { label: "PC 50", value: valueOrDash(maxCp.maxLevel50) },
-                      { label: "PC 40", value: valueOrDash(maxCp.maxLevel40) },
-                      { label: "Raid 20", value: valueOrDash(maxCp.raidLevel20) },
-                      { label: "Météo 25", value: valueOrDash(maxCp.weatherBoostLevel25) },
-                      { label: "Recherche 15", value: valueOrDash(maxCp.researchLevel15) },
+                      { label: "Attaque", value: valueOrDash(stats.attack), icon: uiAssets.icons.combat },
+                      { label: "Défense", value: valueOrDash(stats.defense), icon: uiAssets.icons.shield || uiAssets.icons.pokedex },
+                      { label: "Endurance", value: valueOrDash(stats.stamina), icon: uiAssets.icons.speedometer },
+                      { label: "PC 50", value: valueOrDash(maxCp.maxLevel50), icon: uiAssets.icons.mega },
+                      { label: "PC 40", value: valueOrDash(maxCp.maxLevel40), icon: uiAssets.icons.mega },
+                      { label: "Raid 20", value: valueOrDash(maxCp.raidLevel20), icon: uiAssets.icons.raid },
+                      { label: "Météo 25", value: valueOrDash(maxCp.weatherBoostLevel25), icon: uiAssets.icons.speedometer },
+                      { label: "Recherche 15", value: valueOrDash(maxCp.researchLevel15), icon: uiAssets.icons.search },
                     ]}
                   />
                 </Section>
@@ -536,7 +629,7 @@ export function DetailModal({
                         <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3" key={row.level}>
                           <span className="font-bold text-slate-300">Niv. {row.level}</span>
                           <strong className="font-black text-white">
-                            {row.cp ?? `${row.minCp ?? "?"} - ${row.maxCp ?? "?"}`}
+                            {row.cp ?? `${row.minCp ?? "?"} - ${row.maxCp ?? "?"} PC`}
                           </strong>
                         </div>
                       ))}
@@ -550,11 +643,11 @@ export function DetailModal({
 
             {activeTab === "moves" ? (
               <>
-                <MoveList title="Attaques rapides" moves={moveDetails.quickMoves} />
-                <MoveList title="Attaques chargées" moves={moveDetails.cinematicMoves} />
-                <MoveList title="Attaques elite rapides" moves={moveDetails.eliteQuickMoves} />
-                <MoveList title="Attaques elite chargées" moves={moveDetails.eliteCinematicMoves} />
-                <MoveList title="Attaques Max / GMax" moves={moveDetails.maxMoves} />
+                <MoveList title="Attaques rapides" moves={moveCollection(moveDetails, "quickMoves", payload.quickMoves)} typeCatalog={typeCatalog} />
+                <MoveList title="Attaques chargées" moves={moveCollection(moveDetails, "cinematicMoves", payload.cinematicMoves)} typeCatalog={typeCatalog} />
+                <MoveList title="Attaques elite rapides" moves={moveCollection(moveDetails, "eliteQuickMoves", payload.eliteQuickMoves)} typeCatalog={typeCatalog} />
+                <MoveList title="Attaques elite chargées" moves={moveCollection(moveDetails, "eliteCinematicMoves", payload.eliteCinematicMoves)} typeCatalog={typeCatalog} />
+                <MoveList title="Attaques Max / GMax" moves={moveCollection(moveDetails, "maxMoves", payload.maxBattle?.moves)} typeCatalog={typeCatalog} />
               </>
             ) : null}
 
@@ -566,12 +659,12 @@ export function DetailModal({
               <Section title="Shadow / Purification">
                 <DataGrid
                   items={[
-                    { label: "Shadow", value: availability.shadow ? "Oui" : "Non" },
-                    { label: "Purification", value: valueOrDash(payload.shadow?.purificationCost?.stardust, " poussières") },
-                    { label: "Bonbons", value: valueOrDash(payload.shadow?.purificationCost?.candy) },
-                    { label: "Sortie", value: formatDate(payload.shadow?.firstReleaseDate || payload.shadow?.releaseDate) },
-                    { label: "Catch CP normal", value: formatRange(payload.shadow?.catchCp?.normal) },
-                    { label: "Catch CP météo", value: formatRange(payload.shadow?.catchCp?.weatherBoosted) },
+                    { label: "Shadow", value: availability.shadow ? "Oui" : "Non", icon: uiAssets.icons.shadow },
+                    { label: "Purification", value: valueOrDash(payload.shadow?.purificationCost?.stardust, " poussières"), icon: uiAssets.icons.purified },
+                    { label: "Bonbons", value: valueOrDash(payload.shadow?.purificationCost?.candy), icon: uiAssets.icons.tag },
+                    { label: "Sortie", value: formatDate(payload.shadow?.firstReleaseDate || payload.shadow?.releaseDate), icon: uiAssets.icons.radar },
+                    { label: "Catch CP normal", value: formatRange(payload.shadow?.catchCp?.normal), icon: uiAssets.icons.pokedex },
+                    { label: "Catch CP météo", value: formatRange(payload.shadow?.catchCp?.weatherBoosted), icon: uiAssets.icons.speedometer },
                   ]}
                 />
               </Section>

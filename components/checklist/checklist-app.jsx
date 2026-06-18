@@ -314,6 +314,8 @@ export function ChecklistApp({ mode = "public" }) {
         entry={selected}
         detail={detail || (detailError ? { detail: { error: detailError } } : null)}
         mode={mode}
+        typeCatalog={catalog.types}
+        weatherCatalog={catalog.weather}
         onPrevious={() => shiftDetail(-1)}
         onNext={() => shiftDetail(1)}
         onClose={() => {

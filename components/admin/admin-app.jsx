@@ -26,6 +26,7 @@ import {
 import { DetailModal } from "../checklist/detail-modal";
 import { PokemonCard } from "../checklist/pokemon-card";
 import { MetricCard } from "../site/metric-card";
+import { typeColors, typeIcon, typeName } from "../site/pokemon-style";
 import { LoginCard } from "./login-card";
 
 const assetChecksKey = "pokedex-v4-asset-checks";
@@ -117,6 +118,39 @@ function BarList({ items, labelKey = "id", valueKey = "count" }) {
   );
 }
 
+function CompletionList({ items }) {
+  return (
+    <div className="space-y-3">
+      {items.length ? (
+        items.map((item) => {
+          const percent = item.percent ?? Math.round((item.complete / Math.max(item.count, 1)) * 100);
+          return (
+            <div className="grid grid-cols-[5.5rem_1fr_4.6rem] items-center gap-3 text-sm" key={item.generation || item.id}>
+              <span className="truncate font-bold text-slate-300">
+                {item.generation ? `Gén. ${item.generation}` : item.id}
+              </span>
+              <span className="h-3 overflow-hidden rounded-full bg-white/10">
+                <i
+                  className="block h-full rounded-full bg-gradient-to-r from-emerald-300 via-cyan-400 to-sky-500"
+                  style={{ width: `${Math.min(100, percent)}%` }}
+                />
+              </span>
+              <strong className="text-right font-black text-white">{percent}%</strong>
+              <span className="col-start-2 text-xs font-bold text-slate-500">
+                {item.complete || 0}/{item.count || 0} fiches complètes
+              </span>
+            </div>
+          );
+        })
+      ) : (
+        <p className="rounded-2xl border border-dashed border-white/15 p-4 text-sm font-bold text-slate-400">
+          Aucune donnée à afficher.
+        </p>
+      )}
+    </div>
+  );
+}
+
 function HistoryList({ history = [] }) {
   return (
     <div className="space-y-3">
@@ -190,14 +224,20 @@ function CatalogPanel({ catalog = {}, search = "" }) {
         <div className="overflow-hidden rounded-3xl border border-white/10">
           {items.slice(0, 180).map((item) => (
             <div
-              className="grid grid-cols-[1fr_auto_auto_auto] items-center gap-3 border-b border-white/10 bg-slate-950/35 px-4 py-3 text-sm last:border-b-0"
+              className="grid gap-3 border-b border-white/10 bg-slate-950/35 px-4 py-3 text-sm last:border-b-0 sm:grid-cols-[1fr_auto_auto_auto] sm:items-center"
               key={item.id}
             >
               <strong className="min-w-0 truncate font-black text-white">
                 {item.names?.French || item.names?.English || item.id}
               </strong>
-              <span className="rounded-full bg-white/10 px-3 py-1 font-bold text-slate-300">
-                {item.type || item.kind || "-"}
+              <span
+                className="inline-flex w-fit items-center gap-2 rounded-full px-3 py-1 font-bold text-white"
+                style={{ background: `color-mix(in srgb, ${typeColors[item.type] || "#64748b"} 52%, rgba(255,255,255,.12))` }}
+              >
+                {typeIcon(item.type, data.types) ? (
+                  <img className="h-4 w-4 object-contain" src={typeIcon(item.type, data.types)} alt="" />
+                ) : null}
+                {typeName(item.type, data.types)}
               </span>
               <span className="font-black text-cyan-200">{item.category || item.moveType || "-"}</span>
               <span className="font-black text-emerald-200">{item.power ?? "-"}</span>
@@ -205,28 +245,47 @@ function CatalogPanel({ catalog = {}, search = "" }) {
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {items.slice(0, 180).map((item) => {
             const image = item.assets?.background || item.assets?.icon || item.image;
+            const label = item.names?.French || item.name || item.id;
+            const boosted = Array.isArray(item.boostedTypes) ? item.boostedTypes : [];
             return (
               <article
                 className="overflow-hidden rounded-3xl border border-white/10 bg-slate-950/40"
-                key={item.id}
+                key={item.id || item.filename || label}
               >
-                <div className="grid aspect-[4/3] place-items-center bg-white/[0.04] p-4">
+                <div
+                  className="grid aspect-[4/3] place-items-center bg-white/[0.04] p-4"
+                  style={{
+                    backgroundImage: item.assets?.background
+                      ? `linear-gradient(135deg, rgba(2,6,23,.45), rgba(2,6,23,.7)), url("${item.assets.background}")`
+                      : undefined,
+                    backgroundSize: "cover",
+                  }}
+                >
                   {image ? (
-                    <img className="max-h-full object-contain drop-shadow-2xl" src={image} alt={item.names?.French || item.id} />
+                    <img className="max-h-full object-contain drop-shadow-2xl" src={item.assets?.icon || item.image || image} alt={label} />
                   ) : (
                     <span className="h-10 w-10 rounded-full bg-white/10" />
                   )}
                 </div>
                 <div className="border-t border-white/10 p-3">
                   <strong className="block truncate text-sm font-black text-white">
-                    {item.names?.French || item.id}
+                    {label}
                   </strong>
                   <span className="mt-1 block truncate text-xs font-bold text-slate-400">
                     {item.category || item.id}
                   </span>
+                  {boosted.length ? (
+                    <div className="mt-2 flex flex-wrap gap-1">
+                      {boosted.map((type) => (
+                        <span className="rounded-full bg-white/10 px-2 py-1 text-[10px] font-black text-slate-200" key={type}>
+                          {typeName(type, data.types)}
+                        </span>
+                      ))}
+                    </div>
+                  ) : null}
                 </div>
               </article>
             );
@@ -640,8 +699,8 @@ export function AdminApp() {
                 </section>
 
                 <section className="grid gap-5 xl:grid-cols-2">
-                  <Panel title="Complétion par génération">
-                    <BarList items={(summary.generations || []).map((item) => ({ id: `Gén. ${item.generation}`, count: item.count }))} />
+                  <Panel title="Complétion JSON par génération">
+                    <CompletionList items={summary.generations || []} />
                   </Panel>
                   <Panel title="Problèmes par catégorie">
                     <BarList items={summary.categories || []} />
@@ -891,6 +950,8 @@ export function AdminApp() {
         entry={selected}
         detail={detail}
         mode="admin"
+        typeCatalog={catalog?.types}
+        weatherCatalog={catalog?.weather}
         extraPanel={extraPanel}
         onPrevious={() => shiftDetail(-1)}
         onNext={() => shiftDetail(1)}

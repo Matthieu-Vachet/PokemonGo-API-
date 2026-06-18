@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { ChevronDown, Search, X } from "lucide-react";
 import { MetricCard } from "../site/metric-card";
 import { uiAssets } from "../site/ui-assets";
+import { typeColors, typeIcon, typeName } from "../site/pokemon-style";
 
 const tabs = [
   ["all", "Tout"],
@@ -81,6 +82,7 @@ function makeSearch(item) {
 function tagsFor(item) {
   const text = makeSearch(item);
   const tags = new Set((item.tags || []).map(lower));
+  if (["types", "weather"].includes(item.collection)) return [item.collection];
   for (const token of [
     "shadow",
     "purified",
@@ -97,7 +99,7 @@ function tagsFor(item) {
     if (text.includes(token)) tags.add(token);
   }
   if (item.shiny || text.includes("shiny") || text.includes("chromatique")) tags.add("shiny");
-  if (!tags.has("shiny")) tags.add("normal");
+  if (["go", "shuffle"].includes(item.collection) && !tags.has("shiny")) tags.add("normal");
   if (text.includes("quick") || text.includes("fast") || text.includes("rapide")) tags.add("fast");
   if (text.includes("cinematic") || text.includes("charged") || text.includes("charg")) tags.add("charged");
   if (text.includes("elite")) tags.add("elite");
@@ -226,8 +228,9 @@ function AssetTile({ item, onPreview }) {
   );
 }
 
-function MoveCard({ move }) {
+function MoveCard({ move, typeCatalog = [] }) {
   const [open, setOpen] = useState(false);
+  const type = move.type || move.raw?.type;
   return (
     <article className="overflow-hidden rounded-[1.45rem] border border-white/10 bg-slate-950/45">
       <button
@@ -239,7 +242,15 @@ function MoveCard({ move }) {
           <strong className="block truncate font-black text-white">{moveTitle(move)}</strong>
           <small className="mt-1 block truncate text-xs font-bold text-slate-400">{move.id}</small>
         </span>
-        <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-black text-cyan-100">{move.type || "-"}</span>
+        <span
+          className="inline-flex min-w-0 items-center gap-2 rounded-full px-3 py-1 text-xs font-black text-white"
+          style={{ background: `color-mix(in srgb, ${typeColors[type] || "#64748b"} 52%, rgba(255,255,255,.12))` }}
+        >
+          {typeIcon(type, typeCatalog) ? (
+            <img className="h-4 w-4 shrink-0 object-contain" src={typeIcon(type, typeCatalog)} alt="" />
+          ) : null}
+          <span className="truncate">{typeName(type, typeCatalog)}</span>
+        </span>
         <span className="inline-flex items-center justify-end gap-2 text-xs font-black text-slate-300">
           {move.power ?? "-"} puissance <ChevronDown className={open ? "rotate-180 transition" : "transition"} size={15} />
         </span>
@@ -253,7 +264,7 @@ function MoveCard({ move }) {
             ["Tours PvP", move.combat?.turns ?? "-"],
             ["Puissance PvP", move.combat?.power ?? "-"],
             ["Buffs", move.combat?.buffs ? JSON.stringify(move.combat.buffs) : "-"],
-            ["Type", move.type || "-"],
+            ["Type", typeName(type, typeCatalog)],
             ["Slug", move.slug || "-"],
           ].map(([label, value]) => (
             <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-3" key={label}>
@@ -319,7 +330,7 @@ export function AssetsApp() {
 
   const collections = useMemo(() => buildCollections(catalog, audit), [audit, catalog]);
   const baseItems = useMemo(() => {
-    const items = search.trim() ? collectionItems(collections, "all") : collectionItems(collections, tab);
+    const items = collectionItems(collections, tab);
     const needle = search.trim().toLowerCase();
     return items.filter((item) => {
       const searchOk = !needle || item.searchText.includes(needle);
@@ -328,7 +339,7 @@ export function AssetsApp() {
     });
   }, [collections, search, subfilter, tab]);
   const subfilters = useMemo(
-    () => availableSubfilters(search.trim() ? collectionItems(collections, "all") : collectionItems(collections, tab)),
+    () => availableSubfilters(collectionItems(collections, tab)),
     [collections, search, tab],
   );
   const grouped = useMemo(() => {
@@ -405,8 +416,9 @@ export function AssetsApp() {
                 />
               </label>
             </div>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {subfilters.map((id) => (
+            {subfilters.length > 1 ? (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {subfilters.map((id) => (
                 <button
                   className={`rounded-full border px-4 py-2 text-xs font-black transition ${
                     subfilter === id
@@ -419,9 +431,10 @@ export function AssetsApp() {
                 >
                   {filterLabels[id] || id}
                 </button>
-              ))}
-            </div>
-            {search.trim() ? (
+                ))}
+              </div>
+            ) : null}
+            {search.trim() && tab === "all" ? (
               <p className="mt-3 rounded-2xl border border-cyan-300/15 bg-cyan-400/10 px-4 py-3 text-sm font-bold text-cyan-100">
                 Recherche globale active: les résultats de toutes les bibliothèques sont regroupés sur cette page.
               </p>
@@ -436,7 +449,7 @@ export function AssetsApp() {
                   {collection === "moves" ? (
                     <div className="grid gap-3">
                       {items.slice(0, 260).map((move) => (
-                        <MoveCard move={move.raw || move} key={move.id} />
+                        <MoveCard move={move.raw || move} typeCatalog={catalog?.types || []} key={move.id} />
                       ))}
                     </div>
                   ) : (

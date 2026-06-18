@@ -49,9 +49,7 @@ function bootstrapResponse(request) {
 }
 
 function publicDetail(detail) {
-  if (!detail || typeof detail !== "object") return detail;
-  const { sourceData, ...safeDetail } = detail;
-  return safeDetail;
+  return detail;
 }
 
 function publicAssetAudit(audit) {

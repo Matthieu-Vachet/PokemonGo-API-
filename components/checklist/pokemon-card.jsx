@@ -97,7 +97,7 @@ export function PokemonCard({
       <div className="grid grid-cols-[86px_minmax(0,1fr)_58px] items-center gap-3 max-[520px]:grid-cols-[74px_minmax(0,1fr)]">
         <div className="grid h-[86px] w-[86px] place-items-center overflow-hidden rounded-full border-[5px] border-white/75 bg-[linear-gradient(#fff_0_48%,#1f2937_49%_52%,#ff4f5e_53%_100%)] max-[520px]:h-[74px] max-[520px]:w-[74px]">
           {entry.image ? (
-            <img className="h-[82%] w-[82%] object-contain drop-shadow-lg" src={entry.image} alt={entry.name} />
+            <img className="h-[91%] w-[91%] object-contain drop-shadow-lg" src={entry.image} alt={entry.name} />
           ) : (
             <span className="h-6 w-6 rounded-full bg-slate-900" />
           )}

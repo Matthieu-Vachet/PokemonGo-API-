@@ -223,10 +223,10 @@ export function ChecklistApp({ mode = "public" }) {
       ) : (
         <>
           <section className="mb-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-            <MetricCard label="Fiches analysées" value={summary?.total || 0} />
-            <MetricCard label="Terminées" value={summary?.complete || 0} accent="green" />
-            <MetricCard label="Problèmes" value={summary?.issues || 0} accent="amber" />
-            <MetricCard label="Résultats" value={filtered.length} accent="violet" />
+            <MetricCard label="Fiches analysées" value={summary?.total || 0} icon={uiAssets.icons.fiche} />
+            <MetricCard label="Terminées" value={summary?.complete || 0} accent="green" icon={uiAssets.icons.bookSpells} />
+            <MetricCard label="Problèmes" value={summary?.issues || 0} accent="amber" icon={uiAssets.icons.problem} />
+            <MetricCard label="Résultats" value={filtered.length} accent="violet" icon={uiAssets.icons.result} />
           </section>
 
           <section className="mb-5 grid gap-3 rounded-lg border border-white/10 bg-white/[0.055] p-4 md:grid-cols-4">

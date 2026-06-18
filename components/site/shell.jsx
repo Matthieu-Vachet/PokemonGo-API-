@@ -23,7 +23,7 @@ function PokeballMark({ small = false }) {
       }`}
       aria-hidden="true"
     >
-      <img className="h-4/5 w-4/5 object-contain" src={uiAssets.icons.pokedex} alt="" />
+      <img className="h-4/5 w-4/5 object-contain" src={uiAssets.icons.goLogo} alt="" />
     </span>
   );
 }

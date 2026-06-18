@@ -1,0 +1,3789 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#07152d" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Pokédex Checklist" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
+    <title>Pokédex Checklist</title>
+    <script>
+      document.documentElement.dataset.theme =
+        localStorage.getItem("pokedex-v3-theme") ||
+        (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    </script>
+    <style>
+      :root {
+        color-scheme: light;
+        --red: #ff3d5a;
+        --red-dark: #07152d;
+        --yellow: #ffca28;
+        --blue: #1685ff;
+        --cyan: #2de2e6;
+        --ink: #102b49;
+        --muted: #587089;
+        --paper: #f5f8fc;
+        --card: #fff;
+        --line: #dce8f4;
+        --green: #14b86e;
+        --orange: #ed8b24;
+        --shadow: 0 14px 34px #07152d18;
+        --body-bg: #eef4fa;
+        --surface: #fff;
+        --surface-soft: #f7f9fc;
+        --surface-glass: #ffffffed;
+        --control-border: #c8d2e1;
+        --safe-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      html[data-theme="dark"] {
+        color-scheme: dark;
+        --ink: #eaf4ff;
+        --muted: #9db3ca;
+        --paper: #101d30;
+        --card: #112238;
+        --line: #29415c;
+        --shadow: 0 16px 38px #0008;
+        --body-bg: #081321;
+        --surface: #112238;
+        --surface-soft: #172b43;
+        --surface-glass: #102238ed;
+        --control-border: #36506d;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, ui-rounded, system-ui, sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 10% 0%, #1685ff18, transparent 32rem),
+          radial-gradient(circle at 90% 8%, #2de2e612, transparent 28rem),
+          var(--body-bg);
+        transition: color .2s, background-color .2s;
+      }
+      body::before {
+        position: fixed;
+        z-index: -1;
+        inset: 0;
+        content: "";
+        background-image:
+          linear-gradient(#1685ff08 1px, transparent 1px),
+          linear-gradient(90deg, #1685ff08 1px, transparent 1px);
+        background-size: 52px 52px;
+        mask-image: linear-gradient(#0008, transparent 75%);
+        pointer-events: none;
+      }
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+      button {
+        cursor: pointer;
+      }
+      .top-shell {
+        position: relative;
+        padding: 27px max(16px, calc((100% - 1400px) / 2));
+        color: #fff;
+        background:
+          radial-gradient(circle at 15% 10%, #1685ff55, transparent 24rem),
+          radial-gradient(circle at 85% 20%, #2de2e62e, transparent 22rem),
+          linear-gradient(120deg, #07152d 15%, #0b2e53 72%, #06485a);
+        border-bottom: 1px solid #7bcaff33;
+        box-shadow: 0 16px 42px #07152d35;
+        overflow: hidden;
+      }
+      .top-shell::after {
+        content: "";
+        position: absolute; inset: 0;
+        background-image:
+          linear-gradient(#7bcaff12 1px, transparent 1px),
+          linear-gradient(90deg, #7bcaff12 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: linear-gradient(90deg, #000, transparent);
+        pointer-events: none;
+      }
+      .brand {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+      }
+      .brand-logo {
+        width: 58px;
+        height: 58px;
+        flex: none;
+        border-radius: 15px;
+        box-shadow: 0 0 0 4px #1685ff55, 0 0 28px #2de2e688;
+      }
+      .header-row { display: flex; gap: 14px; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
+      .header-links { display: flex; flex-wrap: wrap; gap: 7px; justify-content: flex-end; }
+      .header-links a, .header-links button { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 8px 13px; border: 1px solid #8fc8ff55; border-radius: 999px; color: #fff; background: #ffffff12; text-decoration: none; text-align: center; line-height: 1.15; font-size: .72rem; font-weight: 800; }
+      .header-links a:hover, .header-links button:hover {
+        border-color: #8fefffaa;
+        background: #2de2e622;
+        box-shadow: 0 7px 20px #00183255;
+      }
+      .api-dot { display: inline-block; width: 8px; height: 8px; margin-right: 5px; border-radius: 50%; background: var(--orange); }
+      .api-dot.online { background: var(--green); box-shadow: 0 0 10px #14b86e; }
+      h1 {
+        margin: 0;
+        font-size: clamp(1.45rem, 4vw, 2.3rem);
+        letter-spacing: -0.04em;
+      }
+      .subtitle {
+        margin: 3px 0 0;
+        color: #8fc8ff;
+        font-size: 0.9rem;
+      }
+      .dashboard {
+        width: min(1400px, calc(100% - 28px));
+        margin: 22px auto 14px;
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        gap: 10px;
+      }
+      .stat {
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        background: linear-gradient(145deg, var(--surface), var(--surface-soft));
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        position: relative;
+      }
+      .stat::before {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        right: -30px;
+        top: -35px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #2de2e624, transparent 70%);
+        content: "";
+      }
+      .stat::after {
+        background: linear-gradient(90deg, var(--blue), var(--cyan));
+        bottom: 0; content: ""; height: 2px; left: 14px; position: absolute; width: 34px;
+      }
+      .stat:nth-child(1)::after { background: linear-gradient(90deg, var(--green), #77e6a8); }
+      .stat:nth-child(2)::after { background: linear-gradient(90deg, var(--blue), var(--cyan)); }
+      .stat:nth-child(3)::after { background: linear-gradient(90deg, var(--orange), var(--yellow)); }
+      .stat:nth-child(4)::after { background: linear-gradient(90deg, #9a55a8, #e15b85); }
+      .stat:nth-child(5)::after { background: linear-gradient(90deg, #14b86e, #00b8d9); }
+      .stat:nth-child(6)::after { background: linear-gradient(90deg, #e15b85, #9a55a8); }
+      .stat strong {
+        display: block;
+        font-size: clamp(1.35rem, 3vw, 2rem);
+      }
+      .stat span {
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+      .xp {
+        height: 13px;
+        margin-top: 12px;
+        padding: 2px;
+        border: 1px solid #bac6d7;
+        border-radius: 999px;
+        background: var(--surface);
+      }
+      .xp div {
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--blue), var(--cyan));
+        transition: 0.25s;
+        box-shadow: 0 0 14px #2de2e688;
+      }
+      .toolbar-wrap {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        padding: 8px 0;
+        background: color-mix(in srgb, var(--body-bg) 90%, transparent);
+        backdrop-filter: blur(12px);
+      }
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        width: min(1400px, calc(100% - 28px));
+        margin: auto;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--surface-glass);
+        box-shadow: var(--shadow);
+      }
+      input,
+      select,
+      .tool-btn {
+        min-height: 44px;
+        border: 1px solid var(--control-border);
+        border-radius: 11px;
+        padding: 9px 11px;
+        color: var(--ink);
+        background: var(--surface);
+      }
+      input[type="search"] {
+        flex: 1;
+        min-width: 230px;
+      }
+      .tool-btn {
+        font-weight: 750;
+      }
+      .tool-btn:hover,
+      .action-btn:hover,
+      .more:hover,
+      .select-btn:hover,
+      .check-label:hover {
+        border-color: #55b9e7;
+        box-shadow: 0 7px 18px #1685ff20;
+      }
+      .tool-btn.active {
+        color: #fff;
+        border-color: transparent;
+        background: linear-gradient(135deg, var(--blue), #00b8d9);
+        box-shadow: 0 8px 22px #1685ff35;
+      }
+      .results {
+        width: min(1400px, calc(100% - 28px));
+        margin: 14px auto 100px;
+      }
+      .result-head {
+        display: flex;
+        gap: 12px;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 2px;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+        gap: 12px;
+      }
+      .poke-card {
+        position: relative;
+        min-width: 0;
+        border: 1px solid var(--line);
+        border-radius: 19px;
+        background:
+          linear-gradient(145deg, color-mix(in srgb, var(--type, var(--blue)) 13%, var(--card)), var(--card) 56%);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        transition:
+          transform 0.15s,
+          border-color 0.15s;
+      }
+      .poke-card::before,
+      .detail-head::before {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background-image: var(--type-bg, none);
+        background-position: center;
+        background-size: cover;
+        opacity: 0.28;
+        pointer-events: none;
+      }
+      .poke-card::after {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background: linear-gradient(105deg, color-mix(in srgb, var(--card) 93%, transparent) 18%, color-mix(in srgb, var(--card) 68%, transparent) 66%, transparent);
+        pointer-events: none;
+      }
+      .poke-card > *,
+      .detail-head > * {
+        position: relative;
+        z-index: 1;
+      }
+      .poke-card > * { z-index: 2; }
+      .poke-card:hover {
+        transform: translateY(-2px);
+        border-color: var(--type, #8ba2c2);
+      }
+      .poke-card.done {
+        opacity: 0.72;
+        border-color: #72bd94;
+      }
+      .poke-card.asset-checked {
+        border-color: #5fc6a3;
+      }
+      .type-strip {
+        height: 8px;
+        background: linear-gradient(90deg, var(--type, #8ba2c2), color-mix(in srgb, var(--type, #8ba2c2) 38%, white));
+        box-shadow: 0 2px 12px color-mix(in srgb, var(--type, #8ba2c2) 50%, transparent);
+      }
+      .card-main {
+        display: grid;
+        grid-template-columns: 92px minmax(0, 1fr);
+        gap: 13px;
+        padding: 12px;
+      }
+      .portrait {
+        position: relative;
+        flex: none;
+        width: 92px;
+        height: 92px;
+        aspect-ratio: 1;
+        border: 2px solid color-mix(in srgb, var(--type, #ccd7e6) 42%, var(--line));
+        border-radius: 999px;
+        background: linear-gradient(#fff 48%, #263248 49% 53%, #f14f50 54%);
+        overflow: hidden;
+      }
+      .portrait::after {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        left: 50%;
+        top: 50%;
+        translate: -50% -50%;
+        border: 4px solid #263248;
+        border-radius: 50%;
+        background: #fff;
+      }
+      .portrait img {
+        position: absolute;
+        z-index: 1;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        padding: 3px;
+        object-fit: contain;
+        filter: drop-shadow(0 6px 6px #0005);
+      }
+      body.shiny .portrait img.normal,
+      .portrait img.shiny {
+        opacity: 0;
+      }
+      body.shiny .portrait img.shiny {
+        opacity: 1;
+      }
+      .dex {
+        color: var(--muted);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+      .name {
+        margin: 1px 0 4px;
+        font-size: 1rem;
+        font-weight: 850;
+        overflow-wrap: anywhere;
+      }
+      .meta {
+        color: var(--muted);
+        font-size: 0.74rem;
+        line-height: 1.35;
+      }
+      .chips {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 5px;
+        margin-top: 7px;
+      }
+      .chip {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        min-height: 29px;
+        padding: 4px 7px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        color: #58667d;
+        background: color-mix(in srgb, var(--surface-soft) 86%, var(--type, var(--blue)));
+        font-size: 0.65rem;
+        font-weight: 750;
+        line-height: 1.1;
+        text-align: center;
+      }
+      .chip.problem {
+        color: #9b5313;
+        background: #fff0db;
+      }
+      .chip.good {
+        color: #167648;
+        background: #dff5e9;
+      }
+      .chip.asset-pending {
+        color: #8a4f05;
+        background: #fff1d8;
+      }
+      .chip.type-chip {
+        flex-wrap: wrap;
+        color: #fff;
+        border-color: transparent;
+        background: linear-gradient(135deg, var(--type, var(--blue)), color-mix(in srgb, var(--type, var(--blue)) 65%, #07152d));
+        text-shadow: 0 1px 2px #0005;
+      }
+      .chip.weather-chip {
+        min-width: 0;
+        max-width: 100%;
+        gap: 4px;
+        overflow: hidden;
+        color: var(--ink);
+        background: color-mix(in srgb, #d8f4ff 76%, var(--surface));
+      }
+      .chip.weather-chip.card-weather {
+        grid-column: 1 / -1;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        padding: 5px 6px;
+        white-space: normal;
+      }
+      .weather-part {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+        gap: 4px;
+        white-space: nowrap;
+      }
+      .card-weather .weather-part {
+        flex: 1 1 86px;
+        padding: 3px 5px;
+        border-radius: 999px;
+        background: #ffffff4d;
+      }
+      .weather-label {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .weather-icon {
+        width: 22px;
+        height: 22px;
+        flex: none;
+        object-fit: contain;
+      }
+      .type-part {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        min-width: 0;
+        white-space: nowrap;
+      }
+      .type-separator { opacity: .72; }
+      .chip.wide {
+        grid-column: 1 / -1;
+      }
+      .card-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+        padding: 0 12px 12px;
+      }
+      .select-btn { min-height: 44px; border: 1px solid var(--control-border); border-radius: 11px; color: var(--ink); background: var(--surface-soft); font-size: .72rem; font-weight: 800; }
+      .select-btn.active { color: #fff; border-color: transparent; background: #566f91; }
+      .poke-card.selected { outline: 3px solid #1685ff66; border-color: var(--blue); }
+      .check-label,
+      .detail-btn {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        border: 1px solid var(--control-border);
+        border-radius: 11px;
+        background: var(--surface-soft);
+        font-size: 0.76rem;
+        font-weight: 800;
+      }
+      .check-label {
+        padding: 0 11px;
+      }
+      .check-label.asset-check {
+        border-color: #9dd9c7;
+        background: color-mix(in srgb, #e8fff7 70%, var(--surface));
+      }
+      .check-label input {
+        width: 20px;
+        height: 20px;
+        accent-color: var(--green);
+      }
+      .detail-btn {
+        color: #fff;
+        border-color: transparent;
+        background: linear-gradient(135deg, var(--type, var(--blue)), color-mix(in srgb, var(--type, var(--blue)) 48%, var(--cyan)));
+        box-shadow: 0 8px 20px color-mix(in srgb, var(--type, var(--blue)) 30%, transparent);
+      }
+      .card-actions .detail-btn {
+        grid-column: 1 / -1;
+      }
+      .more {
+        width: 100%;
+        min-height: 48px;
+        margin-top: 14px;
+        border: 1px solid var(--control-border);
+        border-radius: 13px;
+        color: var(--ink);
+        background: var(--surface);
+        font-weight: 800;
+      }
+      .empty {
+        padding: 50px 15px;
+        color: var(--muted);
+        text-align: center;
+      }
+      dialog {
+        width: min(880px, 100%);
+        max-height: min(900px, 100dvh);
+        margin: auto 0 0 auto;
+        padding: 0;
+        border: 0;
+        border-radius: 24px 0 0 0;
+        color: var(--ink);
+        background: var(--paper);
+        box-shadow: -15px 0 40px #10192c50;
+      }
+      dialog::backdrop {
+        background: #10192c99;
+        backdrop-filter: blur(3px);
+      }
+      .detail-head {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 124px minmax(0, 1fr) auto;
+        gap: 13px;
+        align-items: center;
+        padding: 15px;
+        color: #fff;
+        background:
+          radial-gradient(circle at 85% 10%, #2de2e644, transparent 18rem),
+          linear-gradient(140deg, var(--type, var(--blue)), #07152d);
+      }
+      .detail-head .portrait {
+        width: 116px;
+        height: 116px;
+        box-shadow: 0 12px 28px #00112666, 0 0 0 4px #ffffff20;
+      }
+      .detail-head .dex,
+      .detail-head .meta {
+        color: #ffffffcc;
+      }
+      .close {
+        width: 44px;
+        height: 44px;
+        border: 1px solid #ffffff66;
+        border-radius: 50%;
+        color: #fff;
+        background: #ffffff24;
+        font-size: 1.5rem;
+      }
+      .detail-body {
+        padding: 14px 14px calc(20px + var(--safe-bottom));
+        background:
+          radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--type, var(--blue)) 14%, transparent), transparent 26rem),
+          var(--paper);
+      }
+      .detail-tabs {
+        display: flex;
+        gap: 7px;
+        overflow: auto;
+        padding-bottom: 10px;
+        scrollbar-width: none;
+      }
+      .detail-navigation {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+        margin-bottom: 9px;
+      }
+      .tab {
+        min-height: 42px;
+        padding: 8px 12px;
+        border: 1px solid var(--control-border);
+        border-radius: 999px;
+        white-space: nowrap;
+        color: var(--ink);
+        background: var(--surface);
+        font-weight: 800;
+      }
+      .tab.active {
+        color: #fff;
+        border-color: transparent;
+        background: linear-gradient(135deg, var(--type, var(--blue)), color-mix(in srgb, var(--type, var(--blue)) 38%, var(--cyan)));
+        box-shadow: 0 8px 18px color-mix(in srgb, var(--type, var(--blue)) 25%, transparent);
+      }
+      .panel {
+        display: none;
+      }
+      .panel.active {
+        display: block;
+      }
+      .section-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 9px;
+      }
+      .info {
+        padding: 11px;
+        border: 1px solid var(--line);
+        border-top: 3px solid color-mix(in srgb, var(--type, var(--blue)) 72%, var(--cyan));
+        border-radius: 13px;
+        background: var(--surface);
+        box-shadow: 0 7px 18px #07152d0d;
+      }
+      .info h3 {
+        margin: 0 0 8px;
+        font-size: 0.82rem;
+      }
+      .kv {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 5px 0;
+        border-bottom: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.75rem;
+      }
+      .kv:last-child {
+        border: 0;
+      }
+      .kv strong {
+        color: var(--ink);
+        text-align: right;
+        overflow-wrap: anywhere;
+      }
+      .asset-section {
+        margin-top: 12px;
+      }
+      .asset-section h2 {
+        margin: 0 0 10px;
+        font-size: 1rem;
+      }
+      .asset-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 10px;
+      }
+      .asset-card {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--surface);
+      }
+      .asset-card-head {
+        padding: 9px 10px;
+        border-bottom: 1px solid var(--line);
+      }
+      .asset-card-head strong {
+        display: block;
+        font-size: 0.78rem;
+        overflow-wrap: anywhere;
+      }
+      .asset-card-head span {
+        color: var(--muted);
+        font-size: 0.68rem;
+      }
+      .asset-pictures {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1px;
+        background: var(--line);
+      }
+      .asset-picture {
+        display: grid;
+        justify-items: center;
+        gap: 5px;
+        min-width: 0;
+        padding: 9px;
+        color: var(--ink);
+        background: var(--surface-soft);
+        text-decoration: none;
+      }
+      .asset-picture img {
+        width: 100%;
+        max-width: 128px;
+        aspect-ratio: 1;
+        object-fit: contain;
+      }
+      .asset-picture span {
+        color: var(--muted);
+        font-size: 0.68rem;
+        font-weight: 800;
+      }
+      .asset-links {
+        display: grid;
+        gap: 5px;
+        padding: 8px 10px;
+      }
+      .asset-links a {
+        color: var(--blue);
+        font-size: 0.68rem;
+        font-weight: 700;
+        overflow-wrap: anywhere;
+      }
+      .cp-summary {
+        margin-bottom: 10px;
+      }
+      .cp-table-wrap {
+        overflow: auto;
+        max-height: 62dvh;
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        background: var(--surface);
+      }
+      .cp-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.76rem;
+      }
+      .cp-table th,
+      .cp-table td {
+        padding: 8px 10px;
+        border-bottom: 1px solid var(--line);
+        text-align: right;
+        white-space: nowrap;
+      }
+      .cp-table th:first-child,
+      .cp-table td:first-child {
+        text-align: left;
+      }
+      .cp-table thead {
+        position: sticky;
+        z-index: 2;
+        top: 0;
+        color: #fff;
+        background: var(--blue);
+      }
+      .cp-table tr.cp-landmark {
+        background: #fff5d9;
+        font-weight: 800;
+      }
+      .cp-label {
+        display: inline-block;
+        margin-left: 6px;
+        padding: 2px 5px;
+        border-radius: 999px;
+        color: #fff;
+        background: var(--red);
+        font-size: 0.58rem;
+        vertical-align: middle;
+      }
+      .cp-match {
+        color: #278443;
+      }
+      .cp-mismatch {
+        color: var(--red);
+      }
+      .issue {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px;
+        padding: 9px;
+        margin-bottom: 6px;
+        border: 1px solid #f1c590;
+        border-radius: 10px;
+        background: #fff7e9;
+      }
+      .issue-path {
+        font:
+          700 0.72rem ui-monospace,
+          monospace;
+        overflow-wrap: anywhere;
+      }
+      .issue-desc {
+        margin-top: 3px;
+        color: #8a6339;
+        font-size: 0.7rem;
+      }
+      .copy {
+        min-height: 38px;
+        border: 1px solid #d7b27e;
+        border-radius: 8px;
+        background: #fff;
+        font-size: 0.7rem;
+        font-weight: 800;
+      }
+      pre {
+        max-height: 55dvh;
+        margin: 0;
+        padding: 12px;
+        border-radius: 12px;
+        color: #d9e4ff;
+        background: #07152d;
+        overflow: auto;
+        font:
+          0.72rem/1.55 ui-monospace,
+          monospace;
+      }
+      .mobile-nav {
+        display: none;
+      }
+      .quality-board {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.6fr);
+        gap: 12px;
+        margin-top: 14px;
+      }
+      .quality-panel {
+        border: 1px solid var(--line);
+        border-radius: 17px;
+        padding: 14px;
+        background:
+          linear-gradient(150deg, color-mix(in srgb, var(--surface-glass) 94%, var(--cyan)), var(--surface-glass));
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(12px);
+      }
+      .quality-panel h2 {
+        margin: 0 0 11px;
+        font-size: 0.95rem;
+      }
+      .quality-bars {
+        display: grid;
+        gap: 8px;
+      }
+      .quality-row {
+        display: grid;
+        grid-template-columns: minmax(92px, 0.35fr) minmax(100px, 1fr) auto;
+        gap: 8px;
+        align-items: center;
+        color: var(--muted);
+        font-size: 0.72rem;
+        border: 0;
+        background: transparent;
+        padding: 2px 0;
+        text-align: left;
+        width: 100%;
+      }
+      .quality-track {
+        height: 8px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--surface-soft) 82%, var(--line));
+      }
+      .quality-track div {
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--bar, var(--blue)), color-mix(in srgb, var(--bar, var(--cyan)) 42%, var(--cyan)));
+        box-shadow: 0 0 10px color-mix(in srgb, var(--bar, var(--cyan)) 45%, transparent);
+      }
+      .action-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+      .action-btn {
+        min-height: 46px;
+        border: 1px solid var(--control-border);
+        border-radius: 12px;
+        color: var(--ink);
+        background: var(--surface-soft);
+        font-size: 0.72rem;
+        font-weight: 850;
+      }
+      .action-btn.primary {
+        color: #fff;
+        border-color: transparent;
+        background: linear-gradient(135deg, var(--blue), #00b8d9);
+        box-shadow: 0 8px 20px #1685ff30;
+      }
+      .score-ring {
+        display: grid;
+        flex: none;
+        place-items: center;
+        width: 50px;
+        height: 50px;
+        aspect-ratio: 1;
+        border-radius: 999px;
+        color: var(--ink);
+        background: conic-gradient(var(--type, var(--blue)) calc(var(--score) * 1%), color-mix(in srgb, var(--surface-soft) 80%, var(--line)) 0);
+        font-size: 0.68rem;
+        font-weight: 900;
+        position: relative;
+      }
+      .score-ring::before {
+        position: absolute;
+        inset: 5px;
+        border-radius: 999px;
+        background: var(--surface);
+        content: "";
+      }
+      .score-ring span {
+        position: relative;
+      }
+      .card-score {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        z-index: 2;
+      }
+      .workspace {
+        width: min(1100px, 100%);
+      }
+      .workspace-content {
+        padding: 15px;
+      }
+      .workspace-tools {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+      .workspace textarea {
+        width: 100%;
+        min-height: 240px;
+        resize: vertical;
+        border: 1px solid #cbd8e7;
+        border-radius: 13px;
+        padding: 12px;
+        color: #d9e4ff;
+        background: #07152d;
+        font: 0.72rem/1.55 ui-monospace, monospace;
+      }
+      .editor-grid, .compare-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .editor-grid textarea { min-height: 55dvh; }
+      .diff-box { white-space: pre-wrap; overflow-wrap: anywhere; min-height: 140px; padding: 12px; border-radius: 12px; color: #d9e4ff; background: #07152d; font: .72rem/1.5 ui-monospace, monospace; }
+      .status-box { padding: 11px; margin: 9px 0; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); font-size: .75rem; }
+      .status-box.good { border-color: #87d5ad; background: #edfbf4; }
+      .status-box.bad { border-color: #f0acac; background: #fff0f0; }
+      .source-watch-notice {
+        display: none;
+        margin-bottom: 12px;
+        padding: 11px;
+        border: 1px solid #8edcff;
+        border-radius: 13px;
+        color: var(--ink);
+        background: color-mix(in srgb, #d9f6ff 74%, var(--surface));
+        font-size: .73rem;
+        font-weight: 750;
+      }
+      .source-watch-notice.active {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .source-list {
+        display: grid;
+        gap: 8px;
+      }
+      .source-item {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--surface);
+        font-size: .72rem;
+      }
+      .source-item.changed {
+        border-color: #8edcff;
+        box-shadow: 0 0 0 2px #2de2e61f;
+      }
+      .source-item strong,
+      .source-item span {
+        overflow-wrap: anywhere;
+      }
+      .rule-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+        gap: 12px;
+        align-items: start;
+      }
+      .rule-editor,
+      .rule-list {
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 12px;
+        background: var(--surface);
+      }
+      .rule-editor h2,
+      .rule-list h2 {
+        margin: 0 0 10px;
+        font-size: 0.9rem;
+      }
+      .rule-form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+      .rule-field {
+        display: grid;
+        gap: 6px;
+        font-size: 0.72rem;
+      }
+      .rule-field.full {
+        grid-column: 1 / -1;
+      }
+      .rule-field > label {
+        font-weight: 800;
+      }
+      .rule-field input,
+      .rule-field select,
+      .rule-field textarea {
+        width: 100%;
+      }
+      .rule-checks {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 2px;
+      }
+      .rule-check-option,
+      .rule-inline-toggle {
+        display: grid;
+        grid-template-columns: 20px minmax(0, 1fr);
+        align-items: start;
+        gap: 10px;
+        padding: 10px 12px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--surface-soft);
+      }
+      .rule-check-option {
+        min-height: 52px;
+      }
+      .rule-check-option input,
+      .rule-inline-toggle input {
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        accent-color: var(--green);
+      }
+      .rule-check-option span,
+      .rule-inline-toggle span {
+        min-width: 0;
+        color: var(--ink);
+        font-size: 0.72rem;
+        font-weight: 700;
+        line-height: 1.3;
+        overflow-wrap: anywhere;
+      }
+      .rule-inline-toggle {
+        min-height: auto;
+      }
+      .rule-help {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 0.7rem;
+      }
+      .rule-preview {
+        margin-top: 12px;
+      }
+      .rule-card {
+        display: grid;
+        gap: 8px;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--surface-soft);
+      }
+      .rule-card.disabled {
+        opacity: 0.72;
+      }
+      .rule-card-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        align-items: start;
+      }
+      .rule-card-head strong,
+      .rule-card code {
+        overflow-wrap: anywhere;
+      }
+      .rule-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .rule-tag {
+        padding: 4px 8px;
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--blue) 12%, var(--surface));
+        font-size: 0.66rem;
+        font-weight: 800;
+      }
+      .rule-tag.dim {
+        background: color-mix(in srgb, var(--surface-soft) 84%, var(--line));
+      }
+      .rule-stack {
+        display: grid;
+        gap: 8px;
+      }
+      .rule-inline-code {
+        margin: 0;
+        padding: 10px;
+        border-radius: 12px;
+        color: #d9e4ff;
+        background: #07152d;
+        font: 0.69rem/1.45 ui-monospace, monospace;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+      .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 9px; }
+      .move-card { border: 1px solid var(--line); border-radius: 14px; padding: 10px; background: var(--surface); }
+      .type-icon { width: 24px; height: 24px; object-fit: contain; vertical-align: middle; margin-right: 5px; }
+      .chip .type-icon { width: 18px; height: 18px; margin: 0; }
+      .note-list { display: grid; gap: 7px; margin-top: 12px; }
+      .note { padding: 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); white-space: pre-wrap; }
+      .asset-proposals { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
+      .asset-proposal { padding: 8px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); font-size: .68rem; overflow-wrap: anywhere; }
+      .asset-proposal img { width: 100%; aspect-ratio: 1; object-fit: contain; }
+      .asset-browser-head { display: grid; grid-template-columns: minmax(190px, 1fr) repeat(2, auto); gap: 8px; margin: 12px 0; }
+      .asset-browser-head input, .asset-browser-head select { width: 100%; }
+      .asset-pagination { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; margin: 14px 0; }
+      .single-task .dashboard, .single-task .toolbar-wrap, .single-task .result-head, .single-task .more { display: none; }
+      .single-task .grid { grid-template-columns: minmax(0, 560px); justify-content: center; }
+      .quick-stage {
+        display: grid;
+        gap: 12px;
+        text-align: center;
+      }
+      .quick-images {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+      .quick-images .asset-picture {
+        min-height: 210px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+      }
+      .quick-images .asset-picture img {
+        max-width: 210px;
+      }
+      .quick-actions {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+      .history-list {
+        display: grid;
+        gap: 7px;
+      }
+      .history-item {
+        border: 1px solid var(--line);
+        border-radius: 11px;
+        padding: 9px;
+        background: var(--surface);
+        font-size: 0.72rem;
+      }
+      .sticker-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 10px;
+        margin-top: 12px;
+      }
+      .sticker-card {
+        display: grid;
+        gap: 7px;
+        min-width: 0;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        color: var(--ink);
+        background: var(--surface);
+        text-decoration: none;
+      }
+      .sticker-card img {
+        width: 100%;
+        height: 120px;
+        object-fit: contain;
+      }
+      .sticker-card span {
+        overflow-wrap: anywhere;
+        color: var(--muted);
+        font-size: .65rem;
+        text-align: center;
+      }
+      .poke-card.asset-broken {
+        border-color: var(--red);
+        box-shadow: 0 0 0 2px #ff3d5a24, var(--shadow);
+      }
+      .site-footer {
+        position: relative;
+        margin-top: 70px;
+        padding: 34px max(16px, calc((100% - 1400px) / 2)) calc(34px + var(--safe-bottom));
+        color: #dbeeff;
+        border-top: 1px solid #52cfee44;
+        background:
+          radial-gradient(circle at 12% 20%, #1685ff3b, transparent 22rem),
+          radial-gradient(circle at 88% 80%, #2de2e628, transparent 24rem),
+          linear-gradient(130deg, #07152d, #0a3151 70%, #07505d);
+        box-shadow: 0 -18px 46px #07152d22;
+        overflow: hidden;
+      }
+      .site-footer::before {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background-image:
+          linear-gradient(#7bcaff0d 1px, transparent 1px),
+          linear-gradient(90deg, #7bcaff0d 1px, transparent 1px);
+        background-size: 38px 38px;
+        pointer-events: none;
+      }
+      .footer-grid {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(230px, 1.2fr) repeat(2, minmax(180px, .8fr));
+        gap: 24px;
+      }
+      .footer-brand {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      .footer-brand img {
+        width: 48px;
+        height: 48px;
+        border-radius: 13px;
+        box-shadow: 0 0 0 3px #1685ff55, 0 0 22px #2de2e655;
+      }
+      .footer-grid h2, .footer-grid h3 { margin: 0 0 8px; color: #fff; }
+      .footer-grid h2 { font-size: 1.1rem; }
+      .footer-grid h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; }
+      .footer-grid p { margin: 0; color: #a9c9df; font-size: .74rem; line-height: 1.55; }
+      .footer-links { display: grid; gap: 7px; }
+      .footer-links a {
+        color: #dbeeff;
+        font-size: .75rem;
+        font-weight: 750;
+        text-decoration: none;
+      }
+      .footer-links a:hover { color: var(--cyan); }
+      .footer-progress {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 10px;
+      }
+      .footer-progress span {
+        padding: 8px;
+        border: 1px solid #8fc8ff35;
+        border-radius: 10px;
+        background: #ffffff0b;
+        color: #a9c9df;
+        font-size: .66rem;
+      }
+      .footer-progress strong { display: block; color: #fff; font-size: .92rem; }
+      .footer-bottom {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 25px;
+        padding-top: 16px;
+        border-top: 1px solid #8fc8ff2b;
+        color: #88a9c1;
+        font-size: .68rem;
+      }
+      html[data-theme="dark"] .chip.problem,
+      html[data-theme="dark"] .issue {
+        color: #ffd7a5;
+        border-color: #845822;
+        background: #3a2817;
+      }
+      html[data-theme="dark"] .chip.good,
+      html[data-theme="dark"] .status-box.good {
+        color: #a8f3cd;
+        border-color: #276a4a;
+        background: #173929;
+      }
+      html[data-theme="dark"] .status-box.bad {
+        color: #ffc4c4;
+        border-color: #7e3e48;
+        background: #3b2028;
+      }
+      html[data-theme="dark"] .issue-desc { color: #d9a86e; }
+      html[data-theme="dark"] .copy { color: var(--ink); background: var(--surface-soft); }
+      html[data-theme="dark"] .cp-table tr.cp-landmark { color: #ffe8a3; background: #3a311c; }
+      html[data-theme="dark"] .mobile-nav { background: #102238f2; }
+      html[data-theme="dark"] .poke-card::before { opacity: .36; }
+      html[data-theme="dark"] .poke-card::after {
+        background: linear-gradient(105deg, color-mix(in srgb, var(--card) 91%, transparent) 18%, color-mix(in srgb, var(--card) 58%, transparent) 70%, transparent);
+      }
+      @media (max-width: 760px) {
+        .top-shell {
+          padding-top: 18px;
+          padding-bottom: 18px;
+        }
+        .brand-logo {
+          width: 48px;
+          height: 48px;
+        }
+        .header-row { display: grid; align-items: start; }
+        .header-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: none; width: 100%; }
+        .header-links a, .header-links button { display: flex; align-items: center; justify-content: center; min-height: 40px; padding: 6px 5px; font-size: .62rem; text-align: center; }
+        .dashboard {
+          margin-top: 14px;
+        }
+        .stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .quality-board {
+          grid-template-columns: 1fr;
+        }
+        .toolbar-wrap {
+          position: static;
+        }
+        .toolbar {
+          display: none;
+        }
+        .toolbar.open {
+          display: flex;
+        }
+        .toolbar > * {
+          flex: 1 1 100%;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .card-actions {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .card-main {
+          grid-template-columns: 86px minmax(0, 1fr);
+        }
+        .card-main .portrait {
+          width: 86px;
+          height: 86px;
+        }
+        .chip.type-chip {
+          grid-column: 1 / -1;
+          min-height: 34px;
+        }
+        .weather-icon {
+          width: 18px;
+          height: 18px;
+        }
+        .card-weather .weather-part {
+          flex-basis: 78px;
+          font-size: 0.62rem;
+        }
+        .type-separator { display: none; }
+        .card-actions .detail-btn {
+          grid-column: 1 / -1;
+        }
+        .asset-browser-head {
+          grid-template-columns: 1fr;
+        }
+        .result-head {
+          display: grid;
+          grid-template-columns: auto minmax(0, 1fr);
+          gap: 8px;
+          margin-top: 7px;
+          font-size: 0.72rem;
+        }
+        .result-head span:last-child {
+          text-align: right;
+        }
+        .results {
+          margin-bottom: calc(90px + var(--safe-bottom));
+        }
+        .site-footer {
+          margin-top: 35px;
+          padding-bottom: calc(95px + var(--safe-bottom));
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        .footer-bottom {
+          display: grid;
+        }
+        .mobile-nav {
+          position: fixed;
+          z-index: 20;
+          left: 10px;
+          right: 10px;
+          bottom: calc(8px + var(--safe-bottom));
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          gap: 5px;
+          padding: 6px;
+          border: 1px solid #c7d2e1;
+          border-radius: 17px;
+          background: color-mix(in srgb, var(--surface) 95%, transparent);
+          box-shadow: 0 10px 35px #17233b40;
+          backdrop-filter: blur(12px);
+        }
+        .mobile-nav button {
+          min-height: 48px;
+          border: 0;
+          border-radius: 12px;
+          color: var(--ink);
+          background: transparent;
+          font-size: 0.68rem;
+          font-weight: 800;
+        }
+        .mobile-nav button.active {
+          color: #fff;
+          background: linear-gradient(135deg, var(--blue), #00b8d9);
+          box-shadow: 0 8px 20px #1685ff35;
+        }
+        dialog {
+          width: 100%;
+          max-height: 94dvh;
+          border-radius: 23px 23px 0 0;
+        }
+        .detail-head {
+          grid-template-columns: 92px minmax(0, 1fr) auto;
+          padding: 11px;
+        }
+        .detail-head .portrait {
+          width: 86px;
+          height: 86px;
+        }
+        .detail-body {
+          padding: 10px 10px calc(14px + var(--safe-bottom));
+        }
+        .section-grid {
+          grid-template-columns: 1fr;
+        }
+        .asset-gallery {
+          grid-template-columns: 1fr;
+        }
+        .quick-images,
+        .quick-actions,
+        .editor-grid,
+        .compare-grid,
+        .rule-layout,
+        .rule-form-grid {
+          grid-template-columns: 1fr;
+        }
+        .rule-checks {
+          grid-template-columns: 1fr;
+        }
+        .rule-check-option,
+        .rule-inline-toggle {
+          padding: 10px;
+        }
+        .workspace-content {
+          padding: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top-shell" id="top">
+      <div class="header-row">
+        <div class="brand">
+          <img class="brand-logo" src="/icon.svg" alt="" />
+          <div>
+            <h1>Pokédex Checklist</h1>
+            <p class="subtitle">
+              Inspecter les données, corriger les fiches, cocher l’avancement.
+            </p>
+          </div>
+        </div>
+        <nav class="header-links">
+          <a href="/api-docs" id="docLink" target="_blank">Documentation</a>
+          <a href="/swagger" id="swaggerLink" target="_blank">API interactive</a>
+          <a href="/api-docs.json" id="openApiLink" target="_blank">OpenAPI</a>
+          <a href="/health" id="healthLink" target="_blank"><span class="api-dot" id="apiDot"></span><span id="apiState">État API</span></a>
+          <button id="openSourceWatch">Veille sources</button>
+          <button id="openNotes">Notes</button>
+          <button id="openTools">Outils</button>
+          <button id="themeToggle">Mode nuit</button>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="dashboard">
+        <div class="stats">
+          <div class="stat">
+            <strong id="done">-</strong><span>terminées</span>
+          </div>
+          <div class="stat">
+            <strong id="todo">-</strong><span>à compléter</span>
+          </div>
+          <div class="stat">
+            <strong id="issues">-</strong><span>problèmes</span>
+          </div>
+          <div class="stat">
+            <strong id="total">-</strong><span>fiches analysées</span>
+          </div>
+          <div class="stat">
+            <strong id="assetChecked">-</strong><span>assets vérifiés</span>
+          </div>
+          <div class="stat">
+            <strong id="assetTodo">-</strong><span>assets à vérifier</span>
+          </div>
+        </div>
+        <div class="xp"><div id="xp"></div></div>
+        <div class="quality-board">
+          <section class="quality-panel">
+            <h2>Problèmes détectés par catégorie</h2>
+            <div class="quality-bars" id="qualityBars"></div>
+            <h2 style="margin-top:16px">Complétion par génération</h2>
+            <div class="quality-bars" id="generationBars"></div>
+          </section>
+          <section class="quality-panel">
+            <h2>Atelier rapide</h2>
+            <div class="source-watch-notice" id="sourceWatchNotice"></div>
+            <div class="action-grid">
+              <button class="action-btn primary" id="nextEntry">Prochaine fiche</button>
+              <button class="action-btn" id="quickSourceWatch">Veille sources</button>
+              <button class="action-btn" id="quickReview">Vérification assets</button>
+              <button class="action-btn" id="openRuleManager">Règles checklist</button>
+              <button class="action-btn" id="openExports">Exports & partage</button>
+              <button class="action-btn" id="openHistory">Historique</button>
+              <button class="action-btn" id="openMoves">Catalogue attaques</button>
+              <button class="action-btn" id="openAssets">Bibliothèque assets</button>
+              <button class="action-btn" id="openStickers">Stickers</button>
+              <button class="action-btn" id="openCompare">Comparer deux fiches</button>
+              <button class="action-btn" id="openBatch">Corrections groupées</button>
+            </div>
+          </section>
+        </div>
+      </section>
+      <div class="toolbar-wrap">
+        <section class="toolbar" id="toolbar">
+          <input
+            id="search"
+            type="search"
+            placeholder="Nom ou commande: score:&lt;50, generation:1, missing:pvp"
+          />
+          <select id="kind">
+            <option value="all">Toutes les fiches</option>
+            <option value="pokemon">Pokémon</option>
+            <option value="form">Formes</option>
+            <option value="mega">Méga / Primo</option>
+            <option value="dynamax">Dynamax</option>
+            <option value="gigantamax">Gigantamax</option>
+          </select>
+          <select id="elementalType">
+            <option value="all">Tous les types élémentaires</option>
+          </select>
+          <select id="profile">
+            <option value="all">Tous les profils</option>
+            <option value="base">Base</option>
+            <option value="intermediate">Intermédiaire</option>
+            <option value="final">Final</option>
+            <option value="single">Sans évolution</option>
+            <option value="mega">Méga / Primo</option>
+            <option value="dynamax">Dynamax</option>
+            <option value="gigantamax">Gigantamax</option>
+          </select>
+          <select id="form">
+            <option value="all">Toutes les formes</option>
+          </select>
+          <select id="status">
+            <option value="all">Tous les statuts</option>
+            <option value="todo">À compléter</option>
+            <option value="done">Terminées</option>
+          </select>
+          <select id="assetStatus">
+            <option value="todo">Assets à vérifier</option>
+            <option value="all">Tous les assets</option>
+            <option value="checked">Assets vérifiés</option>
+            <option value="with-assets">Avec assets associés</option>
+          </select>
+          <select id="problem">
+            <option value="all">Tous les problèmes</option>
+            <option value="assets">Assets</option>
+            <option value="pvp">PvP</option>
+            <option value="moves">Attaques</option>
+            <option value="forms">Formes & évolutions</option>
+            <option value="translations">Traductions</option>
+            <option value="stats">Statistiques & PC</option>
+            <option value="size">Taille & poids</option>
+            <option value="gameplay">Capture & disponibilité</option>
+            <option value="custom">Règles perso</option>
+            <option value="structure">Structure</option>
+          </select>
+          <select id="generation">
+            <option value="all">Toutes les générations</option>
+          </select>
+          <select id="sort">
+            <option value="dex">N° Pokédex</option>
+            <option value="priority">Plus rapides à terminer</option>
+            <option value="score-desc">Meilleur score</option>
+            <option value="score-asc">Score le plus faible</option>
+            <option value="issues-desc">Plus de problèmes</option>
+            <option value="issues-asc">Moins de problèmes</option>
+            <option value="name">Nom</option>
+          </select>
+          <button class="tool-btn" id="shiny">Mode shiny</button
+          ><button class="tool-btn" id="refresh">Actualiser</button
+          ><button class="tool-btn" id="resetFilters">Réinitialiser filtres</button
+          ><button class="tool-btn" id="changeAccess">Changer accès</button>
+        </section>
+      </div>
+      <section class="results">
+        <div class="result-head">
+          <span id="resultCount">-</span
+          ><span>Toucher une fiche pour afficher ses données</span>
+        </div>
+        <div class="grid" id="entries"></div>
+        <button class="more" id="more" hidden>Afficher plus</button>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <section class="footer-brand">
+          <img src="/icon.svg" alt="" />
+          <div>
+            <h2>Pokédex Checklist</h2>
+            <p>Atelier de contrôle qualité pour corriger les données Pokémon GO une seule fois, proprement et sans modifier les sources automatiquement.</p>
+            <div class="footer-progress"><span><strong id="footerProgress">-</strong>fiches terminées</span><span><strong id="footerIssues">-</strong>problèmes détectés</span></div>
+          </div>
+        </section>
+        <section>
+          <h3>Accès rapides</h3>
+          <div class="footer-links">
+            <a href="/api-docs" id="footerDocLink" target="_blank">Documentation API</a>
+            <a href="/swagger" id="footerSwaggerLink" target="_blank">API interactive</a>
+            <a href="/api-docs.json" id="footerOpenApiLink" target="_blank">Spécification OpenAPI</a>
+            <a href="/health" id="footerHealthLink" target="_blank">État de l’API</a>
+          </div>
+        </section>
+        <section>
+          <h3>Raccourcis utiles</h3>
+          <p><strong>J / K</strong> fiche suivante / précédente<br><strong>N</strong> notes · <strong>A</strong> assets<br><strong>D</strong> thème jour / nuit · <strong>T</strong> mode une tâche</p>
+        </section>
+      </div>
+      <div class="footer-bottom"><span>Pokémon GO Assets API · Checklist studio</span><span>Lecture seule des fichiers source · Patches à copier manuellement</span></div>
+    </footer>
+    <nav class="mobile-nav">
+      <button id="mobileFilters">Filtres</button
+      ><button id="mobileShiny">Shiny</button
+      ><button id="mobileRefresh">Actualiser</button
+      ><button id="mobileTools">Outils</button
+      ><button id="mobileTheme">Thème</button
+      ><button id="mobileTop">Haut</button>
+    </nav>
+    <dialog id="detail">
+      <header class="detail-head" id="detailHead"></header>
+      <div class="detail-body">
+        <div class="detail-navigation"><button class="action-btn" id="prevDetail">Fiche précédente</button><button class="action-btn primary" id="nextDetail">Fiche suivante</button></div>
+        <nav class="detail-tabs" id="tabs"></nav>
+        <section id="panels"></section>
+      </div>
+    </dialog>
+    <dialog class="workspace" id="workspace">
+      <header class="detail-head">
+        <div></div><div><div class="name" id="workspaceTitle">Outils</div><div class="meta" id="workspaceSubtitle"></div></div><button class="close" id="closeWorkspace">×</button>
+      </header>
+      <div class="workspace-content" id="workspaceContent"></div>
+    </dialog>
+    <script>
+      const state = {
+        entries: [],
+        customRules: [],
+        progress: {},
+        assetChecks: {},
+        limit: 60,
+        detailData: null,
+        activeEntry: null,
+        history: [],
+        quickIndex: 0,
+        selected: new Set(),
+        catalog: null,
+        daily: [],
+        sourceWatch: null,
+      };
+      const ids = [
+        "done",
+        "todo",
+        "issues",
+        "total",
+        "assetChecked",
+        "assetTodo",
+        "xp",
+        "qualityBars",
+        "generationBars",
+        "footerProgress",
+        "footerIssues",
+        "nextEntry",
+        "quickReview",
+        "quickSourceWatch",
+        "openRuleManager",
+        "openExports",
+        "openHistory",
+        "openMoves",
+        "openAssets",
+        "openStickers",
+        "openCompare",
+        "openBatch",
+        "openSourceWatch",
+        "sourceWatchNotice",
+        "openNotes",
+        "openTools",
+        "themeToggle",
+        "apiDot",
+        "apiState",
+        "docLink",
+        "swaggerLink",
+        "openApiLink",
+        "healthLink",
+        "footerDocLink",
+        "footerSwaggerLink",
+        "footerOpenApiLink",
+        "footerHealthLink",
+        "toolbar",
+        "search",
+        "kind",
+        "elementalType",
+        "profile",
+        "form",
+        "status",
+        "assetStatus",
+        "problem",
+        "generation",
+        "sort",
+        "shiny",
+        "refresh",
+        "resetFilters",
+        "changeAccess",
+        "entries",
+        "resultCount",
+        "more",
+        "mobileFilters",
+        "mobileShiny",
+        "mobileRefresh",
+        "mobileTools",
+        "mobileTheme",
+        "mobileTop",
+        "detail",
+        "detailHead",
+        "prevDetail",
+        "nextDetail",
+        "tabs",
+        "panels",
+        "workspace",
+        "workspaceTitle",
+        "workspaceSubtitle",
+        "workspaceContent",
+        "closeWorkspace",
+      ];
+      const el = Object.fromEntries(
+        ids.map((id) => [id, document.getElementById(id)]),
+      );
+      const filterIds = [
+        "search",
+        "kind",
+        "elementalType",
+        "profile",
+        "form",
+        "status",
+        "assetStatus",
+        "problem",
+        "generation",
+        "sort",
+      ];
+      const profileLabels = {
+        base: "Base",
+        intermediate: "Intermédiaire",
+        final: "Final",
+        single: "Sans évolution",
+        mega: "Méga / Primo",
+        dynamax: "Dynamax",
+        gigantamax: "Gigantamax",
+      };
+      const problemLabels = {
+        assets: "Assets",
+        pvp: "PvP",
+        moves: "Attaques",
+        forms: "Formes & évolutions",
+        translations: "Traductions",
+        stats: "Statistiques & PC",
+        size: "Taille & poids",
+        gameplay: "Capture & disponibilité",
+        custom: "Règles perso",
+        structure: "Structure",
+      };
+      const typeColors = {
+        NORMAL: "#9ca3af",
+        FIRE: "#ef6c35",
+        WATER: "#3987d7",
+        GRASS: "#52a447",
+        ELECTRIC: "#e7b928",
+        ICE: "#65bfd0",
+        FIGHTING: "#bd493d",
+        POISON: "#9a55a8",
+        GROUND: "#c99a48",
+        FLYING: "#7b9bd1",
+        PSYCHIC: "#e15b85",
+        BUG: "#91a93b",
+        ROCK: "#a58d53",
+        GHOST: "#695b9b",
+        DRAGON: "#6156b6",
+        DARK: "#63574f",
+        STEEL: "#8293a5",
+        FAIRY: "#d97cab",
+      };
+      const typeLabels = {
+        NORMAL: "Normal", FIRE: "Feu", WATER: "Eau", GRASS: "Plante",
+        ELECTRIC: "Électrik", ICE: "Glace", FIGHTING: "Combat",
+        POISON: "Poison", GROUND: "Sol", FLYING: "Vol", PSYCHIC: "Psy",
+        BUG: "Insecte", ROCK: "Roche", GHOST: "Spectre", DRAGON: "Dragon",
+        DARK: "Ténèbres", STEEL: "Acier", FAIRY: "Fée",
+      };
+      const problemColors = {
+        assets: "#3987d7", pvp: "#9a55a8", moves: "#ef6c35",
+        forms: "#52a447", translations: "#e15b85", stats: "#1685ff",
+        size: "#c99a48", gameplay: "#14b86e", custom: "#7c5cff",
+        structure: "#8293a5",
+      };
+      const checklistKinds = [
+        "pokemon",
+        "form",
+        "mega",
+        "dynamax",
+        "gigantamax",
+      ];
+      const checklistKindLabels = {
+        pokemon: "Pokémon",
+        form: "Formes",
+        mega: "Méga / Primo",
+        dynamax: "Dynamax",
+        gigantamax: "Gigantamax",
+      };
+      const ruleTypeLabels = {
+        presence: "Présence seulement",
+        string: "String",
+        number: "Number",
+        boolean: "Boolean",
+        object: "Objet",
+        array: "Tableau",
+      };
+      const esc = (v) =>
+        String(v ?? "").replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#039;",
+            })[c],
+        );
+      const typeName = (t) => String(t || "").replace("POKEMON_TYPE_", "");
+      const typeIcon = (t) => {
+        const id = typeof t === "string" ? t : t?.type;
+        return state.catalog?.types?.find((type) => type.id === typeName(id))?.assets?.icon || "";
+      };
+      const typeBackground = (t) => {
+        const id = typeof t === "string" ? t : t?.type;
+        return state.catalog?.types?.find((type) => type.id === typeName(id))?.assets?.background || "";
+      };
+      const weatherInfo = (id) =>
+        state.catalog?.weather?.find((weather) => weather.id === id);
+      const weatherBadge = (ids) =>
+        [...new Set((ids || []).filter(Boolean))]
+          .map((id) => {
+            const weather = weatherInfo(id);
+            const label = weather?.names?.French || weather?.names?.English || id;
+            return `<span class="weather-part">${weather?.assets?.icon ? `<img class="weather-icon" src="${esc(weather.assets.icon)}" alt="">` : ""}<span class="weather-label">${esc(label)}</span></span>`;
+          })
+          .join('<span class="type-separator">/</span>');
+      const color = (e) => typeColors[typeName(e.primaryType)] || "#8293a5";
+      const isDone = (e) => e.complete || Boolean(state.progress[e.key]);
+      const assetChecksKey = "pokedex-v3-asset-checks";
+      const customRulesKey = "pokedex-v3-custom-rules";
+      const isAssetChecked = (e) => Boolean(state.assetChecks[e.key]);
+      const associatedAssetCount = (e) => {
+        const assets = e.assets || {};
+        return [
+          e.image,
+          e.shinyImage,
+          assets.go,
+          assets.goShiny,
+          assets.home,
+          assets.homeShiny,
+        ].filter(Boolean).length +
+          Number(assets.goVariants || 0) +
+          Number(assets.homeVariants || 0) +
+          Number(assets.locationCards || 0) +
+          Number(assets.shuffleVariants || 0);
+      };
+      const hasAssociatedAssets = (e) => associatedAssetCount(e) > 0;
+      const accessKey = "pokedex-v3-access";
+      function applyTheme(theme, persist = true) {
+        const selected = theme === "dark" ? "dark" : "light";
+        document.documentElement.dataset.theme = selected;
+        if (persist) localStorage.setItem("pokedex-v3-theme", selected);
+        const dark = selected === "dark";
+        if (el.themeToggle) el.themeToggle.textContent = dark ? "Mode jour" : "Mode nuit";
+        if (el.mobileTheme) {
+          el.mobileTheme.textContent = dark ? "Jour" : "Nuit";
+          el.mobileTheme.classList.toggle("active", dark);
+        }
+        document.querySelector('meta[name="theme-color"]').content =
+          dark ? "#07152d" : "#0b2e53";
+      }
+      function toggleTheme() {
+        applyTheme(
+          document.documentElement.dataset.theme === "dark" ? "light" : "dark",
+        );
+      }
+      function requestPassword(force = false) {
+        let password = force ? "" : localStorage.getItem(accessKey) || "";
+        if (
+          !force &&
+          ["localhost", "127.0.0.1"].includes(location.hostname)
+        )
+          return password;
+        if (!password)
+          password =
+            prompt("Mot de passe de la checklist Pokémon GO :") || "";
+        password = password.trim();
+        if (password) localStorage.setItem(accessKey, password);
+        return password;
+      }
+      async function apiFetch(url, options = {}) {
+        let password = requestPassword();
+        let response = await fetch(url, {
+          ...options,
+          headers: {
+            "content-type": "application/json",
+            "x-checklist-password": password,
+            ...(options.headers || {}),
+          },
+        });
+        if (response.status === 401) {
+          localStorage.removeItem(accessKey);
+          password = requestPassword(true);
+          if (!password) throw new Error("Accès annulé.");
+          response = await fetch(url, {
+            ...options,
+            headers: {
+              "content-type": "application/json",
+              "x-checklist-password": password,
+              ...(options.headers || {}),
+            },
+          });
+        }
+        const payload = await response.json();
+        if (!response.ok)
+          throw new Error(
+            response.status === 401
+              ? "Mot de passe incorrect. Utilise le bouton Changer accès."
+              : payload.error || `Erreur HTTP ${response.status}`,
+          );
+        return payload;
+      }
+      function loadProgress() {
+        try {
+          state.progress = JSON.parse(
+            localStorage.getItem("pokedex-v3-progress") || "{}",
+          );
+        } catch {
+          state.progress = {};
+        }
+        try {
+          state.history = JSON.parse(
+            localStorage.getItem("pokedex-v3-history") || "[]",
+          );
+        } catch {
+          state.history = [];
+        }
+        try {
+          state.assetChecks = JSON.parse(
+            localStorage.getItem(assetChecksKey) || "{}",
+          );
+        } catch {
+          state.assetChecks = {};
+        }
+        loadCustomRules();
+      }
+      function saveProgress() {
+        localStorage.setItem(
+          "pokedex-v3-progress",
+          JSON.stringify(state.progress),
+        );
+      }
+      function saveAssetChecks() {
+        localStorage.setItem(assetChecksKey, JSON.stringify(state.assetChecks));
+      }
+      function loadCustomRules() {
+        try {
+          const parsed = JSON.parse(
+            localStorage.getItem(customRulesKey) || "[]",
+          );
+          state.customRules = Array.isArray(parsed) ? parsed : [];
+        } catch {
+          state.customRules = [];
+        }
+      }
+      function saveCustomRules() {
+        localStorage.setItem(customRulesKey, JSON.stringify(state.customRules));
+      }
+      function ruleDefaults(rule = {}) {
+        return {
+          id: rule.id || "",
+          name: rule.name || "",
+          enabled: rule.enabled !== false,
+          appliesTo:
+            Array.isArray(rule.appliesTo) && rule.appliesTo.length
+              ? [...rule.appliesTo]
+              : ["pokemon"],
+          mode: rule.mode || "path",
+          path: rule.path || "",
+          expectedType: rule.expectedType || "presence",
+          enforceNonEmpty: Boolean(rule.enforceNonEmpty),
+          templateSource:
+            rule.templateSource ||
+            JSON.stringify(
+              rule.template || {
+                description: { fr: "", en: "" },
+              },
+              null,
+              2,
+            ),
+        };
+      }
+      function ruleModeLabel(mode) {
+        return mode === "template" ? "Modèle JSON" : "Chemin + type";
+      }
+      function ruleAppliesToLabel(rule) {
+        return (rule.appliesTo || [])
+          .map((kind) => checklistKindLabels[kind] || kind)
+          .join(" · ");
+      }
+      function collectRuleForm() {
+        const content = el.workspaceContent;
+        if (!content.querySelector("[data-rule-name]")) return null;
+        return {
+          id: content.querySelector("[data-rule-id]")?.value || "",
+          name: content.querySelector("[data-rule-name]")?.value || "",
+          enabled: content.querySelector("[data-rule-enabled]")?.checked ?? true,
+          appliesTo: [...content.querySelectorAll("[data-rule-kind]:checked")].map(
+            (input) => input.value,
+          ),
+          mode: content.querySelector("[data-rule-mode]")?.value || "path",
+          path: content.querySelector("[data-rule-path]")?.value || "",
+          expectedType:
+            content.querySelector("[data-rule-type]")?.value || "presence",
+          enforceNonEmpty:
+            content.querySelector("[data-rule-non-empty]")?.checked ?? false,
+          templateSource:
+            content.querySelector("[data-rule-template]")?.value || "",
+        };
+      }
+      function recordHistory(action, entry, details = "") {
+        state.history.unshift({
+          date: new Date().toISOString(),
+          action,
+          key: entry?.key || null,
+          name: entry?.name || null,
+          details,
+        });
+        state.history = state.history.slice(0, 150);
+        localStorage.setItem("pokedex-v3-history", JSON.stringify(state.history));
+      }
+      const localList = (key) => {
+        try { return JSON.parse(localStorage.getItem(key) || "[]"); }
+        catch { return []; }
+      };
+      const localObject = (key) => {
+        try { return JSON.parse(localStorage.getItem(key) || "{}"); }
+        catch { return {}; }
+      };
+      const prependLocal = (key, value, limit = 500) =>
+        localStorage.setItem(key, JSON.stringify([value, ...localList(key)].slice(0, limit)));
+      const sourceSeenKey = "pokedex-v3-source-watch-seen";
+      function sourceSeen() {
+        return localObject(sourceSeenKey);
+      }
+      function changedSources() {
+        const seen = sourceSeen();
+        return (state.sourceWatch?.sources || []).filter(
+          (source) =>
+            source.status === "ok" &&
+            source.signature &&
+            seen[source.id] &&
+            seen[source.id] !== source.signature,
+        );
+      }
+      function updateSourceWatchNotice() {
+        const changes = changedSources();
+        if (!el.sourceWatchNotice) return;
+        if (!changes.length) {
+          el.sourceWatchNotice.classList.remove("active");
+          el.sourceWatchNotice.innerHTML = "";
+          return;
+        }
+        el.sourceWatchNotice.classList.add("active");
+        el.sourceWatchNotice.innerHTML = `<span>${changes.length} source(s) ont du nouveau: ${changes.map((source) => esc(source.name)).join(", ")}</span><button class="action-btn" id="openSourceWatchNotice">Voir</button>`;
+        document.getElementById("openSourceWatchNotice").onclick = openSourceWatch;
+      }
+      async function refreshSourceWatch(renderPanel = false) {
+        try {
+          state.sourceWatch = (await apiFetch("/api/source-watch-v3")).data;
+          const seen = sourceSeen();
+          let changed = false;
+          for (const source of state.sourceWatch.sources || []) {
+            if (source.status === "ok" && source.signature && !seen[source.id]) {
+              seen[source.id] = source.signature;
+              changed = true;
+            }
+          }
+          if (changed) localStorage.setItem(sourceSeenKey, JSON.stringify(seen));
+          updateSourceWatchNotice();
+          if (renderPanel) renderSourceWatchPanel();
+        } catch (error) {
+          if (renderPanel)
+            showWorkspace("Veille sources", "Impossible de vérifier les sources", `<div class="status-box bad">${esc(error.message)}</div>`);
+        }
+      }
+      function markSourceWatchSeen() {
+        const seen = sourceSeen();
+        for (const source of state.sourceWatch?.sources || [])
+          if (source.status === "ok" && source.signature) seen[source.id] = source.signature;
+        localStorage.setItem(sourceSeenKey, JSON.stringify(seen));
+        updateSourceWatchNotice();
+        renderSourceWatchPanel();
+      }
+      function renderSourceWatchPanel() {
+        const watch = state.sourceWatch;
+        const seen = sourceSeen();
+        const sources = watch?.sources || [];
+        const rows = sources.map((source) => {
+          const changed =
+            source.status === "ok" &&
+            source.signature &&
+            seen[source.id] &&
+            seen[source.id] !== source.signature;
+          const status =
+            source.status === "ok"
+              ? changed
+                ? "Nouveau"
+                : "À jour"
+              : `Erreur: ${source.message || source.status}`;
+          const date = source.updatedAt ? new Date(source.updatedAt).toLocaleString("fr") : "Date inconnue";
+          return `<article class="source-item ${changed ? "changed" : ""}"><div><strong>${esc(source.name)}</strong><br><span class="meta">${esc(source.category)} · ${esc(status)} · ${esc(date)}</span><br><span>${esc(source.message || source.description || "")}</span></div><a class="action-btn" href="${esc(source.remoteUrl || source.url)}" target="_blank" rel="noopener">Ouvrir</a></article>`;
+        }).join("");
+        showWorkspace(
+          "Veille sources",
+          watch?.checkedAt ? `Dernière vérification: ${new Date(watch.checkedAt).toLocaleString("fr")}` : "Sources externes",
+          `<div class="status-box">La checklist compare ces signatures avec ce que ce navigateur a déjà vu. Utilise ce panneau pour repérer les changements PokeMiners, Game Master et Shuffle sans fouiller partout.</div><div class="workspace-tools"><button class="action-btn primary" data-source-refresh>Vérifier maintenant</button><button class="action-btn" data-source-seen>Marquer comme vu</button></div><div class="source-list">${rows || '<div class="empty">Aucune source configurée.</div>'}</div>`,
+        );
+        el.workspaceContent.querySelector("[data-source-refresh]").onclick = () => refreshSourceWatch(true);
+        el.workspaceContent.querySelector("[data-source-seen]").onclick = markSourceWatchSeen;
+      }
+      async function openSourceWatch() {
+        showWorkspace("Veille sources", "Vérification en cours…", '<div class="status-box">Je vérifie les dépôts et le site configurés.</div>');
+        await refreshSourceWatch(true);
+      }
+      function trackQualityChanges(entries) {
+        let previous = {};
+        try {
+          previous = JSON.parse(
+            localStorage.getItem("pokedex-v3-quality-snapshot") || "{}",
+          );
+        } catch {}
+        for (const entry of entries) {
+          const old = previous[entry.key];
+          if (old?.complete && !entry.complete)
+            recordHistory("Régression détectée", entry, "La fiche complète a de nouveaux problèmes.");
+          else if (old && entry.quality.score < old.score)
+            recordHistory("Score qualité en baisse", entry, `${old.score}% → ${entry.quality.score}%`);
+          else if (old && entry.quality.score > old.score)
+            recordHistory("Score qualité amélioré", entry, `${old.score}% → ${entry.quality.score}%`);
+        }
+        localStorage.setItem(
+          "pokedex-v3-quality-snapshot",
+          JSON.stringify(Object.fromEntries(entries.map((entry) => [entry.key, { score: entry.quality.score, complete: entry.complete }]))),
+        );
+        const today = new Date().toISOString().slice(0, 10);
+        const daily = JSON.parse(localStorage.getItem("pokedex-v3-daily") || "[]");
+        const snapshot = {
+          date: today,
+          average: Math.round(entries.reduce((sum, entry) => sum + entry.quality.score, 0) / Math.max(1, entries.length)),
+          complete: entries.filter((entry) => entry.complete).length,
+          issues: entries.reduce((sum, entry) => sum + entry.issues.length, 0),
+        };
+        const index = daily.findIndex((item) => item.date === today);
+        if (index >= 0) daily[index] = snapshot;
+        else daily.push(snapshot);
+        state.daily = daily.slice(-90);
+        localStorage.setItem("pokedex-v3-daily", JSON.stringify(state.daily));
+      }
+      const saveFilters = () =>
+        localStorage.setItem(
+          "pokedex-v3-filters",
+          JSON.stringify({
+            search: el.search.value,
+            kind: el.kind.value,
+            elementalType: el.elementalType.value,
+            profile: el.profile.value,
+            form: el.form.value,
+            status: el.status.value,
+            assetStatus: el.assetStatus.value,
+            problem: el.problem.value,
+            generation: el.generation.value,
+            sort: el.sort.value,
+            shiny: document.body.classList.contains("shiny"),
+          }),
+        );
+      function restoreFilters() {
+        try {
+          const f = JSON.parse(localStorage.getItem("pokedex-v3-filters"));
+          const shared = Object.fromEntries(new URLSearchParams(location.search));
+          for (const k of filterIds)
+            if (f?.[k] !== undefined) el[k].value = f[k];
+          for (const [key, value] of Object.entries(shared))
+            if (el[key] && value) el[key].value = value;
+          if (f?.assetStatus === undefined) {
+            el.assetStatus.value = "todo";
+            if (el.status.value === "todo") el.status.value = "all";
+          }
+          if (["dynamax", "gigantamax"].includes(el.kind.value))
+            el.status.value = "all";
+          if (f?.shiny) document.body.classList.add("shiny");
+        } catch {}
+      }
+      function filtered() {
+        const query = el.search.value.trim().toLocaleLowerCase("fr");
+        const commands = Object.fromEntries(
+          [...query.matchAll(/([a-z]+):([^\s]+)/g)].map((match) => [match[1], match[2]]),
+        );
+        const q = query.replace(/[a-z]+:[^\s]+/g, "").trim();
+        const list = state.entries.filter((e) => {
+          const done = isDone(e);
+          const assetsChecked = isAssetChecked(e);
+          return (
+            (!q ||
+              [e.name, e.dexId, e.file, e.form].some((v) =>
+                String(v || "")
+                  .toLocaleLowerCase("fr")
+                  .includes(q),
+              ) ||
+              e.issues.some((issue) =>
+                String(issue.path || "").toLocaleLowerCase("fr").includes(q),
+              )) &&
+            (!commands.score ||
+              (commands.score.startsWith("<") && e.quality.score < Number(commands.score.slice(1))) ||
+              (commands.score.startsWith(">") && e.quality.score > Number(commands.score.slice(1))) ||
+              e.quality.score === Number(commands.score)) &&
+            (!commands.generation || String(e.generation) === commands.generation) &&
+            (!commands.missing || e.issues.some((issue) => issue.issue === "missing" && issue.path.toLowerCase().includes(commands.missing))) &&
+            (!commands.type || [e.primaryType, e.secondaryType].some((type) => typeName(type).toLowerCase() === commands.type)) &&
+            (!commands.form || String(e.form).toLowerCase().includes(commands.form)) &&
+            (el.kind.value === "all" || e.kind === el.kind.value) &&
+            (el.elementalType.value === "all" ||
+              [e.primaryType, e.secondaryType].some(
+                (type) => typeName(type) === el.elementalType.value,
+              )) &&
+            (el.profile.value === "all" || e.profile === el.profile.value) &&
+            (el.form.value === "all" || e.form === el.form.value) &&
+            (el.problem.value === "all" ||
+              e.issueCategories?.includes(el.problem.value)) &&
+            (el.generation.value === "all" ||
+              String(e.generation) === el.generation.value) &&
+            (el.status.value === "all" ||
+              (el.status.value === "done" ? done : !done)) &&
+            (el.assetStatus.value === "all" ||
+              (el.assetStatus.value === "checked"
+                ? assetsChecked
+                : el.assetStatus.value === "with-assets"
+                  ? hasAssociatedAssets(e)
+                  : !assetsChecked))
+          );
+        });
+        return list.sort((a, b) =>
+          el.sort.value === "priority"
+            ? b.quality.priority - a.quality.priority
+            : el.sort.value === "score-desc"
+              ? b.quality.score - a.quality.score
+              : el.sort.value === "score-asc"
+                ? a.quality.score - b.quality.score
+                : el.sort.value === "issues-desc"
+            ? b.issues.length - a.issues.length
+            : el.sort.value === "issues-asc"
+              ? a.issues.length - b.issues.length
+              : el.sort.value === "name"
+                ? a.name.localeCompare(b.name, "fr")
+                : a.dexId.localeCompare(b.dexId) ||
+                  a.name.localeCompare(b.name, "fr"),
+        );
+      }
+      function card(e) {
+        const done = isDone(e),
+          assetsChecked = isAssetChecked(e),
+          manual = Boolean(state.progress[e.key]),
+          img = e.image
+            ? `<div class="portrait"><img class="normal" src="${esc(e.image)}" alt="${esc(e.name)}" loading="lazy">${e.shinyImage ? `<img class="shiny" src="${esc(e.shinyImage)}" alt="${esc(e.name)} shiny" loading="lazy">` : ""}</div>`
+            : '<div class="portrait"></div>';
+        const types = [e.primaryType, e.secondaryType]
+          .map(typeName)
+          .filter(Boolean);
+        const typeBadge = types
+          .map(
+            (type) =>
+              `<span class="type-part">${typeIcon(type) ? `<img class="type-icon" src="${esc(typeIcon(type))}" alt="">` : ""}${esc(typeLabels[type] || type)}</span>`,
+          )
+          .join('<span class="type-separator">/</span>');
+        const categories = (e.issueCategories || [])
+          .slice(0, 2)
+          .map((category, index, list) => `<span class="chip problem ${list.length === 1 ? "wide" : ""}">${esc(problemLabels[category] || category)}</span>`)
+          .join("");
+        const selected = state.selected.has(e.key);
+        const weather = weatherBadge(e.weatherBoost);
+        return `<article class="poke-card ${done ? "done" : ""} ${selected ? "selected" : ""} ${assetsChecked ? "asset-checked" : ""}" style="--type:${color(e)};--type-bg:url('${esc(typeBackground(e.primaryType))}')"><div class="type-strip"></div><div class="card-score score-ring" style="--score:${e.quality.score}"><span>${e.quality.score}%</span></div><div class="card-main">${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)} · Gén. ${esc(e.generation || "?")}</div><div class="chips"><span class="chip type-chip">${typeBadge || "Type ?"}</span>${weather ? `<span class="chip weather-chip card-weather">${weather}</span>` : ""}<span class="chip">${e.quickMoveCount} rapide(s)</span><span class="chip">${e.chargedMoveCount} chargée(s)</span>${e.complete ? '<span class="chip good">JSON complet</span>' : `<span class="chip problem">${e.issues.length} problème(s)</span>`}${assetsChecked ? '<span class="chip good">Assets OK</span>' : '<span class="chip asset-pending">Assets à vérifier</span>'}${categories}${manual ? '<span class="chip good wide">Vérifiée manuellement</span>' : ""}</div></div></div><div class="card-actions"><label class="check-label"><input type="checkbox" data-check="${esc(e.key)}" ${done ? "checked" : ""} ${e.complete ? "disabled" : ""}> Fait</label><label class="check-label asset-check"><input type="checkbox" data-asset-check="${esc(e.key)}" ${assetsChecked ? "checked" : ""}> Assets OK</label><button class="select-btn ${selected ? "active" : ""}" data-select="${esc(e.key)}">${selected ? "Dans le lot" : "Ajouter au lot"}</button><button class="detail-btn" data-detail="${esc(e.key)}">Voir la fiche</button></div></article>`;
+      }
+      function updateStats() {
+        const done = state.entries.filter(isDone).length,
+          total = state.entries.length,
+          assetsChecked = state.entries.filter(isAssetChecked).length;
+        el.done.textContent = done;
+        el.todo.textContent = total - done;
+        el.issues.textContent = state.entries
+          .reduce((n, e) => n + e.issues.length, 0)
+          .toLocaleString("fr");
+        el.total.textContent = total;
+        el.assetChecked.textContent = assetsChecked;
+        el.assetTodo.textContent = total - assetsChecked;
+        el.footerProgress.textContent = `${done} / ${total}`;
+        el.footerIssues.textContent = state.entries
+          .reduce((n, e) => n + e.issues.length, 0)
+          .toLocaleString("fr");
+        el.xp.style.width = `${total ? (done / total) * 100 : 0}%`;
+        const categoryCounts = {};
+        for (const entry of state.entries)
+          for (const category of entry.issueCategories || [])
+            categoryCounts[category] = (categoryCounts[category] || 0) + 1;
+        const max = Math.max(1, ...Object.values(categoryCounts));
+        el.qualityBars.innerHTML = Object.entries(categoryCounts)
+          .sort((a, b) => b[1] - a[1])
+          .map(([category, count]) => `<button class="quality-row" data-quality="${esc(category)}" style="--bar:${problemColors[category] || "var(--blue)"}"><span>${esc(problemLabels[category] || category)}</span><span class="quality-track"><div style="width:${(count / max) * 100}%"></div></span><strong>${count}</strong></button>`)
+          .join("");
+        el.qualityBars.querySelectorAll("[data-quality]").forEach((button) => {
+          button.onclick = () => {
+            el.problem.value = button.dataset.quality;
+            el.status.value = "todo";
+            render();
+            scrollTo({ top: el.toolbar.offsetTop, behavior: "smooth" });
+          };
+        });
+        const byGeneration = {};
+        for (const entry of state.entries) {
+          const key = entry.generation || "?";
+          byGeneration[key] ||= { total: 0, score: 0 };
+          byGeneration[key].total += 1;
+          byGeneration[key].score += entry.quality.score;
+        }
+        el.generationBars.innerHTML = Object.entries(byGeneration)
+          .sort((a, b) => Number(a[0]) - Number(b[0]))
+          .map(([generation, data]) => {
+            const score = Math.round(data.score / data.total);
+            const hue = (Number(generation) * 28 + 175) % 360;
+            return `<button class="quality-row" data-generation="${generation}" style="--bar:hsl(${hue} 70% 48%)"><span>Génération ${generation}</span><span class="quality-track"><div style="width:${score}%"></div></span><strong>${score}%</strong></button>`;
+          })
+          .join("");
+        el.generationBars.querySelectorAll("[data-generation]").forEach((button) => {
+          button.onclick = () => {
+            el.generation.value = button.dataset.generation;
+            render();
+            scrollTo({ top: el.toolbar.offsetTop, behavior: "smooth" });
+          };
+        });
+      }
+      function render() {
+        const list = filtered(),
+          shown = document.body.classList.contains("single-task")
+            ? list.slice(0, 1)
+            : list.slice(0, state.limit);
+        el.entries.innerHTML = shown.length
+          ? shown.map(card).join("")
+          : '<div class="empty">Aucune fiche ne correspond aux filtres.</div>';
+        el.resultCount.textContent = `${list.length} résultat${list.length > 1 ? "s" : ""}`;
+        el.more.hidden = shown.length >= list.length;
+        el.entries
+          .querySelectorAll("[data-select]")
+          .forEach((button) =>
+            button.addEventListener("click", () => {
+              if (state.selected.has(button.dataset.select))
+                state.selected.delete(button.dataset.select);
+              else state.selected.add(button.dataset.select);
+              render();
+            }),
+          );
+        el.entries
+          .querySelectorAll("[data-check]")
+          .forEach((box) =>
+            box.addEventListener("change", () =>
+              setProgress(box.dataset.check, box.checked),
+            ),
+          );
+        el.entries
+          .querySelectorAll("[data-asset-check]")
+          .forEach((box) =>
+            box.addEventListener("change", () =>
+              setAssetChecked(box.dataset.assetCheck, box.checked),
+            ),
+          );
+        el.entries.querySelectorAll("img").forEach((image) => {
+          image.addEventListener("error", () => {
+            image.closest(".poke-card")?.classList.add("asset-broken");
+            image.title = "Image inaccessible";
+            const card = image.closest(".poke-card");
+            const key = card?.querySelector("[data-detail]")?.dataset.detail;
+            const entry = state.entries.find((item) => item.key === key);
+            if (entry) {
+              const review = { id: `${Date.now()}`, date: new Date().toISOString(), status: "issue", key, name: entry.name, details: `Image inaccessible: ${image.src}` };
+              apiFetch("/api/image-reviews-v3", {
+                method: "POST",
+                body: JSON.stringify(review),
+              }).catch(() => prependLocal("pokedex-v3-image-reviews", review, 2000));
+            }
+          });
+        });
+        el.entries
+          .querySelectorAll("[data-detail]")
+          .forEach((btn) =>
+            btn.addEventListener("click", () => openDetail(btn.dataset.detail)),
+          );
+        updateStats();
+        saveFilters();
+      }
+      function setProgress(key, checked) {
+        const entry = state.entries.find((item) => item.key === key);
+        if (checked) state.progress[key] = true;
+        else delete state.progress[key];
+        recordHistory(checked ? "Fiche cochée" : "Fiche décochée", entry);
+        saveProgress();
+        render();
+      }
+      function setAssetChecked(key, checked, options = {}) {
+        const { skipHistory = false, rerender = true } = options;
+        const entry = state.entries.find((item) => item.key === key);
+        if (checked) state.assetChecks[key] = true;
+        else delete state.assetChecks[key];
+        if (!skipHistory)
+          recordHistory(
+            checked ? "Assets vérifiés" : "Assets à revérifier",
+            entry,
+            checked ? "Validation manuelle des assets de la fiche." : "",
+          );
+        saveAssetChecks();
+        if (!rerender) return;
+        render();
+        if (el.detail.open && state.activeEntry?.key === key && state.detailData)
+          renderDetail(entry, state.detailData);
+      }
+      const value = (v, fallback = "—") =>
+        v === undefined || v === null
+          ? fallback
+          : Array.isArray(v)
+            ? v.join(", ") || "[]"
+            : typeof v === "object"
+              ? Object.keys(v).length + " entrée(s)"
+              : String(v);
+      const kv = (label, v) =>
+        `<div class="kv"><span>${esc(label)}</span><strong>${esc(value(v))}</strong></div>`;
+      const info = (title, rows) =>
+        `<article class="info"><h3>${esc(title)}</h3>${rows}</article>`;
+      function overview(d) {
+        const maxForm = ["dynamax", "gigantamax"].includes(d.form);
+        const shadow = d.shadow;
+        const cpRows = maxForm
+          ? kv("Niveau 50", d.maxCp?.maxLevel50) +
+            kv("Niveau 40", d.maxCp?.maxLevel40) +
+            kv("Combat Max N.20", d.maxCp?.maxBattlesLevel20)
+          : kv("Niveau 50", d.maxCp?.maxLevel50) +
+            kv("Niveau 40", d.maxCp?.maxLevel40) +
+            kv("Raid N.20", d.maxCp?.raidLevel20) +
+            kv("Étude N.15", d.maxCp?.researchLevel15);
+        const shadowRows = shadow
+          ? kv("Première sortie", shadow.firstReleaseDate) +
+            kv("Purification", `${shadow.purificationCost?.stardust} poussières · ${shadow.purificationCost?.candy} bonbons`) +
+            kv("Catch CP", `${shadow.catchCp?.normal?.min} - ${shadow.catchCp?.normal?.max}`) +
+            kv("Catch CP météo", `${shadow.catchCp?.weatherBoosted?.min} - ${shadow.catchCp?.weatherBoosted?.max}`) +
+            kv("Variantes Shadow", shadow?.variants?.length)
+          : kv("Sorti", "Non");
+        const weather = weatherBadge(d.weatherBoost);
+        return `<div class="section-grid">${info("Identité", kv("ID", d.id) + kv("Form ID", d.formId) + kv("Slug", d.slug) + kv("Forme", d.form) + kv("Génération", d.generation) + kv("Région", d.region?.names?.French || d.region?.id))}${info("Statistiques", kv("Attaque", d.stats?.attack) + kv("Défense", d.stats?.defense) + kv("Endurance", d.stats?.stamina) + kv("Taille", d.size?.height ? d.size.height + " m" : null) + kv("Poids", d.size?.weight ? d.size.weight + " kg" : null))}${info("PC maximum", cpRows)}${info(
+          "Disponibilité",
+          Object.entries(d.availability || {})
+            .map(([k, v]) => kv(k, v ? "Oui" : "Non"))
+            .join(""),
+        )}${info("Capture", `${weather ? `<div class="chip weather-chip wide">${weather}</div>` : ""}` + kv("Distance copain", d.buddyDistance) + kv("Taux capture", d.catchRate) + kv("Taux fuite", d.fleeRate) + kv("Bonbons", d.captureRewards?.candy) + kv("Poussières", d.captureRewards?.stardust))}${info("Shadow / Obscur", shadowRows)}</div>`;
+      }
+      function objectCards(title, obj) {
+        const entries = Object.entries(obj || {});
+        return entries.length
+          ? `<div class="section-grid">${entries.map(([id, v]) => info(v.names?.French || v.names?.English || id, `${typeIcon(v.type) ? `<img class="type-icon" src="${esc(typeIcon(v.type))}" alt="">` : ""}` + kv("ID", id) + kv("Type", typeName(typeof v.type === "string" ? v.type : v.type?.type)) + kv("Puissance", v.power) + kv("Énergie", v.energy) + kv("PvP puissance", v.combat?.power) + kv("PvP énergie", v.combat?.energy))).join("")}</div>`
+          : `<div class="empty">Aucune donnée ${esc(title)}.</div>`;
+      }
+      function shadowPanel(d) {
+        const shadow = d.shadow;
+        const shuffleVariants = Array.isArray(d.assets?.shuffle?.variants)
+          ? d.assets.shuffle.variants.filter((asset) =>
+              ["shadow", "purified"].includes(asset.state),
+            )
+          : [];
+        if (!shadow && !shuffleVariants.length)
+          return '<div class="empty">Aucune version Shadow sortie pour ce Pokémon.</div>';
+        const variants = Array.isArray(shadow?.variants) ? shadow.variants : [];
+        const summary = shadow
+          ? info("Résumé Shadow", kv("Première sortie", shadow.firstReleaseDate) + kv("Coût de purification", `${shadow.purificationCost?.stardust} poussières · ${shadow.purificationCost?.candy} bonbons`) + kv("Catch CP", `${shadow.catchCp?.normal?.min} - ${shadow.catchCp?.normal?.max}`) + kv("Catch CP météo", `${shadow.catchCp?.weatherBoosted?.min} - ${shadow.catchCp?.weatherBoosted?.max}`) + kv("Variantes", variants.length))
+          : info("Résumé Shadow", kv("Sortie Pokémon GO", "Non renseignée") + kv("Assets Shuffle", shuffleVariants.length));
+        const assetGallery = shuffleVariants.length
+          ? shuffleVariants.map((asset) => `<article class="asset-card"><div class="asset-card-head"><strong>${esc(asset.state === "purified" ? "Purifié" : "Shadow")}</strong><span>${esc(asset.tags?.join(" · ") || asset.filename)}${asset.shiny ? " · chromatique" : ""}</span></div><div class="asset-pictures">${assetPicture(asset.state === "purified" ? "Purifié" : "Shadow", asset.image)}</div></article>`).join("")
+          : '<div class="empty">Aucun asset Shuffle Shadow ou purifié.</div>';
+        return `<div class="section-grid">${summary}</div>${shadow ? `<h2>Variantes Shadow Pokémon GO (${variants.length})</h2><div class="section-grid">${variants.map((variant) => info(`${variant.name} · ${variant.variant}`, kv("Date de sortie", variant.releaseDate) + kv("Date source", variant.releaseDateText) + kv("Purification", `${variant.purificationCost?.stardust} poussières · ${variant.purificationCost?.candy} bonbons`) + kv("Catch CP", `${variant.catchCp?.normal?.min} - ${variant.catchCp?.normal?.max}`) + kv("Catch CP météo", `${variant.catchCp?.weatherBoosted?.min} - ${variant.catchCp?.weatherBoosted?.max}`))).join("")}</div>` : ""}<h2>Assets Shuffle Shadow & purifiés (${shuffleVariants.length})</h2><div class="asset-gallery">${assetGallery}</div>`;
+      }
+      function assetPicture(label, url) {
+        return url
+          ? `<a class="asset-picture" href="${esc(url)}" target="_blank" rel="noopener"><img src="${esc(url)}" alt="${esc(label)}" loading="lazy"><span>${esc(label)}</span></a>`
+          : `<div class="asset-picture"><span>${esc(label)} indisponible</span></div>`;
+      }
+      function assetLinks(image, shinyImage) {
+        return `<div class="asset-links">${image ? `<a href="${esc(image)}" target="_blank" rel="noopener">Lien image normale</a>` : ""}${shinyImage ? `<a href="${esc(shinyImage)}" target="_blank" rel="noopener">Lien image shiny</a>` : ""}</div>`;
+      }
+      function assetCard(title, subtitle, image, shinyImage) {
+        return `<article class="asset-card"><div class="asset-card-head"><strong>${esc(title)}</strong><span>${esc(subtitle)}</span></div><div class="asset-pictures">${assetPicture("Normal", image)}${assetPicture("Shiny", shinyImage)}</div>${assetLinks(image, shinyImage)}</article>`;
+      }
+      function locationCard(asset) {
+        const forms = Array.isArray(asset.eligibleForms)
+          ? asset.eligibleForms.join(" · ")
+          : "";
+        return `<article class="asset-card"><div class="asset-card-head"><strong>${esc(asset.name)}</strong><span>${esc(asset.type === "special" ? "Background spécial" : "Background de lieu")} · ${esc(asset.date)}${forms ? ` · Forme : ${esc(forms)}` : ""}</span></div><div class="asset-pictures"><a class="asset-picture" href="${esc(asset.image)}" target="_blank" rel="noopener"><img src="${esc(asset.image)}" alt="${esc(asset.name)}" loading="lazy"><span>${esc(asset.id)}</span></a></div><div class="asset-links"><a href="${esc(asset.source)}" target="_blank" rel="noopener">Source et Pokémon éligibles</a></div></article>`;
+      }
+      function assetsPanel(d) {
+        const variants = Array.isArray(d.assetForms) ? d.assetForms : [];
+        const home = d.assets?.home || {};
+        const homeVariants = Array.isArray(home.variants) ? home.variants : [];
+        const locationCards = Array.isArray(d.assets?.locationCards)
+          ? d.assets.locationCards
+          : [];
+        const shuffleVariants = Array.isArray(d.assets?.shuffle?.variants)
+          ? d.assets.shuffle.variants
+          : [];
+        const main = assetCard(
+          "Pokémon GO",
+          d.form || "normal",
+          d.assets?.image,
+          d.assets?.shinyImage,
+        );
+        const homeMain = assetCard(
+          "Pokémon Home",
+          `${homeVariants.length} variante${homeVariants.length > 1 ? "s" : ""}`,
+          home.image,
+          home.shinyImage,
+        );
+        const megaPortrait = d.assets?.portrait || d.assets?.portraitShiny
+          ? assetCard(
+              "Portrait Méga / Primo",
+              d.form || "mega",
+              d.assets?.portrait,
+              d.assets?.portraitShiny,
+            )
+          : "";
+        const gallery = variants.length
+          ? variants
+              .map((asset, index) => {
+                const title =
+                  asset.costume ||
+                  asset.form ||
+                  `Variante ${index + 1}`;
+                const details = [
+                  asset.form && `Forme : ${asset.form}`,
+                  asset.costume && `Costume : ${asset.costume}`,
+                  asset.isFemale ? "Femelle" : null,
+                ]
+                  .filter(Boolean)
+                  .join(" · ");
+                return assetCard(
+                  title,
+                  details || "Variante visuelle",
+                  asset.image,
+                  asset.shinyImage,
+                );
+              })
+              .join("")
+          : '<div class="empty">Aucune variante visuelle.</div>';
+        const homeGallery = homeVariants.length
+          ? homeVariants
+              .map((asset) => {
+                const details = [
+                  `Forme ${asset.formIndex}`,
+                  asset.gender,
+                  asset.gigantamax ? "Gigantamax" : null,
+                  asset.view === "back" ? "Vue arrière" : "Vue avant",
+                  asset.detail !== "00000000" ? `Détail ${asset.detail}` : null,
+                ].filter(Boolean).join(" · ");
+                return assetCard(
+                  `Home ${asset.formIndex} · ${asset.genderCode}`,
+                  details,
+                  asset.image,
+                  asset.shinyImage,
+                );
+              })
+              .join("")
+          : '<div class="empty">Aucun asset Pokémon Home.</div>';
+        const locationGallery = locationCards.length
+          ? locationCards.map(locationCard).join("")
+          : '<div class="empty">Aucun background éligible.</div>';
+        const shuffleGallery = shuffleVariants.length
+          ? shuffleVariants
+              .map((asset) =>
+                `<article class="asset-card"><div class="asset-card-head"><strong>${esc(asset.id)}</strong><span>${esc(asset.state || "normal")} · ${esc(asset.tags?.join(" · ") || asset.codes?.join(" · ") || "standard")}${asset.shiny ? " · chromatique" : ""}</span></div><div class="asset-pictures">${assetPicture("Shuffle", asset.image)}</div></article>`,
+              )
+              .join("")
+          : '<div class="empty">Aucun asset Pokémon Shuffle.</div>';
+        return `<div class="section-grid">${info("Capacités de formes", kv("Méga disponible", d.hasMegaEvolution) + kv("Gigantamax disponible", d.hasGigantamaxEvolution) + kv("Formes régionales / autres", d.regionForms?.length || 0) + kv("Méga / Primo", d.megaEvolutions?.length || 0) + kv("Dynamax", d.dynamaxForms?.length || 0) + kv("Gigamax", d.gigantamaxForms?.length || 0) + kv("Backgrounds éligibles", locationCards.length) + kv("Assets Shuffle", shuffleVariants.length))}</div><section class="asset-section"><h2>Aperçus principaux</h2><div class="asset-gallery">${megaPortrait}${main}${homeMain}</div></section><section class="asset-section"><h2>Pokémon Shuffle (${shuffleVariants.length})</h2><div class="asset-gallery">${shuffleGallery}</div></section><section class="asset-section"><h2>Backgrounds éligibles (${locationCards.length})</h2><div class="asset-gallery">${locationGallery}</div></section><section class="asset-section"><h2>Variantes Pokémon GO (${variants.length})</h2><div class="asset-gallery">${gallery}</div></section><section class="asset-section"><h2>Variantes Pokémon Home (${homeVariants.length})</h2><div class="asset-gallery">${homeGallery}</div></section>`;
+      }
+      function cpPanel(d) {
+        const rows = Array.isArray(d.cpByLevel) ? d.cpByLevel : [];
+        if (!rows.length)
+          return '<div class="empty">Statistiques insuffisantes pour calculer les PC.</div>';
+        const landmarks = {
+          15: ["Étude", d.maxCp?.researchLevel15],
+          20: ["Raid", d.maxCp?.raidLevel20],
+          25: ["Météo", d.maxCp?.weatherBoostLevel25],
+          40: ["Niveau 40", d.maxCp?.maxLevel40],
+          50: ["Niveau 50", d.maxCp?.maxLevel50],
+        };
+        const checks = Object.entries(landmarks)
+          .map(([level, [label, expected]]) => {
+            const calculated = rows.find((row) => row.level === Number(level))
+              ?.maxCp;
+            const matches = expected === calculated;
+            return kv(
+              label,
+              expected === undefined
+                ? `${calculated} · absent du JSON`
+                : `${calculated} / JSON ${expected} ${matches ? "OK" : "différent"}`,
+            );
+          })
+          .join("");
+        const table = rows
+          .map((row) => {
+            const landmark = landmarks[row.level];
+            return `<tr class="${landmark ? "cp-landmark" : ""}"><td>Niveau ${row.level}${landmark ? `<span class="cp-label">${esc(landmark[0])}</span>` : ""}</td><td>${row.minCp.toLocaleString("fr")}</td><td>${row.maxCp.toLocaleString("fr")}</td></tr>`;
+          })
+          .join("");
+        return `<div class="section-grid cp-summary">${info("Formule PC", kv("Stats", `${d.stats.attack} ATQ · ${d.stats.defense} DEF · ${d.stats.stamina} END`) + kv("Minimum", "IV 0 / 0 / 0") + kv("Maximum", "IV 15 / 15 / 15"))}${info("Contrôle avec le JSON", checks)}</div><div class="cp-table-wrap"><table class="cp-table"><thead><tr><th>Niveau</th><th>PC min 0/0/0</th><th>PC max 15/15/15</th></tr></thead><tbody>${table}</tbody></table></div>`;
+      }
+      function issuesPanel(e) {
+        return e.issues.length
+          ? e.issues
+              .map(
+                (i) =>
+                  `<div class="issue"><div><div class="issue-path">${esc(i.path)}</div><div class="issue-desc">${esc(i.issue)}${i.ruleName ? ` · règle ${esc(i.ruleName)}` : ""} · attendu ${esc(i.expected)} · actuel ${esc(i.actual)}</div></div><button class="copy" data-copy="${esc(i.path)}">Copier</button></div>`,
+              )
+              .join("")
+          : '<div class="empty">Aucun problème détecté.</div>';
+      }
+      function suggestedValue(issue, entry) {
+        if (issue.suggested !== undefined) return structuredClone(issue.suggested);
+        const pvpLeague = {
+          tierRank: "",
+          rank1: {
+            ivs: { attack: null, defense: null, stamina: null },
+            level: null,
+            cp: null,
+          },
+          bestMovesets: { fast: "", charged: [""] },
+        };
+        const templates = {
+          size: { height: null, weight: null },
+          availability:
+            entry?.kind === "mega"
+              ? {
+                  released: false,
+                  shinyReleased: false,
+                  tradable: false,
+                  pokemonHomeTransfer: false,
+                }
+              : {
+                  released: false,
+                  shinyReleased: false,
+                  tradable: false,
+                  pokemonHomeTransfer: false,
+                  shadow: false,
+                  dynamax: false,
+                  gigantamax: false,
+                  apex: false,
+                },
+          maxCp: {
+            maxLevel50: null,
+            maxLevel40: null,
+            ...(entry?.kind === "dynamax" || entry?.kind === "gigantamax"
+              ? { maxBattlesLevel20: null }
+              : {
+                  weatherBoostLevel25: null,
+                  raidLevel20: null,
+                  researchLevel15: null,
+                }),
+          },
+          stats: { stamina: null, attack: null, defense: null },
+          captureRewards: { candy: null, stardust: null },
+          secondChargeMoveCost: { candy: null, stardust: null },
+          assets: { image: "", shinyImage: "" },
+          region: {
+            id: "",
+            slug: "",
+            generation: null,
+            names: {
+              English: "", German: "", French: "", Italian: "",
+              Japanese: "", Korean: "", Spanish: "",
+            },
+          },
+          names: {
+            English: "", German: "", French: "", Italian: "",
+            Japanese: "", Korean: "", Spanish: "",
+          },
+          maxBattle: { moves: [""] },
+          pvp: {
+            littleCup: null,
+            greatLeague: null,
+            ultraLeague: null,
+            masterLeague: null,
+          },
+          littleCup: pvpLeague,
+          greatLeague: pvpLeague,
+          ultraLeague: pvpLeague,
+          masterLeague: pvpLeague,
+          rank1: {
+            ivs: { attack: null, defense: null, stamina: null },
+            level: null,
+            cp: null,
+          },
+          ivs: { attack: null, defense: null, stamina: null },
+          bestMovesets: { fast: "", charged: [""] },
+          quickMoves: [""],
+          cinematicMoves: [""],
+          eliteQuickMoves: [],
+          eliteCinematicMoves: [],
+          evolutions: [
+            { targetFormId: "", candies: null, item: null, quests: [] },
+          ],
+          regionForms: issue.expected.includes("object") ? {} : [],
+          megaEvolutions: issue.expected.includes("object") ? {} : [],
+          assetForms: [],
+          weatherBoost: [""],
+          quests: [],
+          moves: [""],
+          charged: [""],
+        };
+        const field = issue.path
+          .replace(/\[\d+\]/g, "")
+          .split(".")
+          .filter(Boolean)
+          .at(-1);
+        if (Object.hasOwn(templates, field))
+          return structuredClone(templates[field]);
+        if (issue.expected.includes("array") || issue.expected.includes("tableau"))
+          return issue.expected.includes("au moins") ? [""] : [];
+        if (issue.expected.includes("boolean")) return false;
+        if (issue.expected.includes("number")) return null;
+        if (issue.expected.includes("string") || issue.expected.includes("identifiant"))
+          return "";
+        if (issue.expected.includes("object") || issue.expected.includes("objet"))
+          return {};
+        return null;
+      }
+      function pathParts(path) {
+        return String(path)
+          .replace(/\[(\d+)\]/g, ".$1")
+          .split(".")
+          .filter(Boolean)
+          .map((part) => (/^\d+$/.test(part) ? Number(part) : part));
+      }
+      function setNested(target, path, value) {
+        const parts = pathParts(path);
+        let cursor = target;
+        for (let index = 0; index < parts.length - 1; index += 1) {
+          const part = parts[index];
+          const next = parts[index + 1];
+          if (!cursor[part] || typeof cursor[part] !== "object")
+            cursor[part] = typeof next === "number" ? [] : {};
+          cursor = cursor[part];
+        }
+        cursor[parts.at(-1)] = value;
+      }
+      function suggestedPatch(e) {
+        if (e.suggestedPatch) return structuredClone(e.suggestedPatch);
+        const patch = {};
+        const issues = [...e.issues].sort(
+          (left, right) => pathParts(left.path).length - pathParts(right.path).length,
+        );
+        for (const issue of issues) {
+          setNested(patch, issue.path, suggestedValue(issue, e));
+        }
+        return patch;
+      }
+      function assistantPanel(e, sourceJson) {
+        const patch = suggestedPatch(e);
+        return `<div class="section-grid">${info("Résumé qualité", kv("Score", `${e.quality.score}%`) + kv("Corrections proposées", `${e.issues.length} / ${e.issues.length}`) + kv("Champs absents", e.quality.missing) + kv("Valeurs invalides", e.quality.invalid) + kv("Catégories", e.issueCategories.map((category) => problemLabels[category] || category)))}${info("Diagnostic assets", kv("Pokémon GO", e.assets.go) + kv("GO shiny", e.assets.goShiny) + kv("Pokémon Home", e.assets.home) + kv("Home shiny", e.assets.homeShiny) + kv("Variantes GO / Home", `${e.assets.goVariants} / ${e.assets.homeVariants}`) + kv("Pokémon Shuffle", e.assets.shuffleVariants) + kv("URL dupliquées", e.assets.duplicateUrls) + kv("Paires normal/shiny incomplètes", e.assets.incompletePairs))}</div><div class="workspace-tools"><button class="action-btn primary" data-copy-patch>Copier le patch édité</button><button class="action-btn" data-download-patch>Télécharger le patch</button><button class="action-btn" data-download-source>Télécharger le JSON source</button></div><p class="meta">Le patch contient tous les problèmes détectés: clés absentes, valeurs nulles ou invalides, listes vides et références cassées. Les structures connues sont générées en entier. La checklist ne modifie aucun fichier source.</p><textarea data-patch>${esc(JSON.stringify(patch, null, 2))}</textarea><h2>JSON source</h2><pre>${esc(JSON.stringify(sourceJson, null, 2))}</pre>`;
+      }
+      function editorPanel(sourceJson) {
+        return `<div class="workspace-tools"><button class="action-btn primary" data-editor-copy>Copier le JSON corrigé</button><button class="action-btn" data-editor-validate>Valider le brouillon</button><button class="action-btn" data-editor-diff>Prévisualiser le diff</button><button class="action-btn" data-editor-undo>Annuler la dernière saisie</button><button class="action-btn" data-editor-download>Télécharger</button></div><div class="status-box">Éditeur de brouillon uniquement. Aucun fichier source ne sera modifié.</div><div class="editor-grid"><div><h2>Brouillon modifiable</h2><textarea data-editor>${esc(JSON.stringify(sourceJson, null, 2))}</textarea></div><div><h2>Validation / diff</h2><div class="diff-box" data-editor-result>Utilise « Valider » ou « Prévisualiser le diff ».</div></div></div>`;
+      }
+      function showWorkspace(title, subtitle, content) {
+        el.workspaceTitle.textContent = title;
+        el.workspaceSubtitle.textContent = subtitle || "";
+        el.workspaceContent.innerHTML = content;
+        if (!el.workspace.open) el.workspace.showModal();
+      }
+      function downloadText(filename, text, type = "text/plain") {
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(new Blob([text], { type }));
+        link.download = filename;
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+      }
+      async function openCustomRules(
+        editingId = "",
+        draftInput = null,
+        previewRule = null,
+        notice = null,
+      ) {
+        const current =
+          state.customRules.find((rule) => rule.id === editingId) || null;
+        const draft = ruleDefaults(draftInput || current || {});
+        const preview = previewRule || null;
+        const modeIsTemplate = draft.mode === "template";
+        const rulesHtml = state.customRules.length
+          ? state.customRules
+              .map((rule) => {
+                const snippet = JSON.stringify(rule.template, null, 2);
+                return `<article class="rule-card ${rule.enabled ? "" : "disabled"}"><div class="rule-card-head"><div><strong>${esc(rule.name)}</strong><div class="meta">${esc(ruleModeLabel(rule.mode))} · ${esc(ruleAppliesToLabel(rule) || "Toutes les fiches")}</div></div><div class="rule-tags"><span class="rule-tag">${rule.enabled ? "Active" : "Désactivée"}</span>${rule.enforceNonEmpty ? '<span class="rule-tag dim">Non vide</span>' : ""}</div></div><code>${esc(rule.mode === "path" ? `${rule.path} · ${ruleTypeLabels[rule.expectedType] || rule.expectedType}` : snippet.slice(0, 160) + (snippet.length > 160 ? "…" : ""))}</code><div class="workspace-tools"><button class="action-btn primary" data-rule-edit="${esc(rule.id)}">Modifier</button><button class="action-btn" data-rule-toggle="${esc(rule.id)}">${rule.enabled ? "Désactiver" : "Activer"}</button><button class="action-btn" data-rule-delete="${esc(rule.id)}">Supprimer</button></div></article>`;
+              })
+              .join("")
+          : '<div class="empty">Aucune règle perso enregistrée pour le moment.</div>';
+        const previewHtml = preview
+          ? `<div class="status-box good">Aperçu prêt · ${esc(ruleModeLabel(preview.mode))} · ${esc(ruleAppliesToLabel(preview) || "Toutes les fiches")}</div><pre class="rule-inline-code">${esc(JSON.stringify(preview.template, null, 2))}</pre>`
+          : '<div class="status-box">Aperçu optionnel. Utilise “Prévisualiser” pour voir exactement ce que la checklist va contrôler.</div>';
+        showWorkspace(
+          "Règles checklist",
+          `${state.customRules.length} règle(s) perso · enregistrées dans ce navigateur · les vérifications natives restent actives`,
+          `${notice?.text ? `<div class="status-box ${notice.type || ""}">${esc(notice.text)}</div>` : ""}<div class="rule-layout"><section class="rule-editor"><h2>${draft.id ? "Modifier la règle" : "Nouvelle règle"}</h2><div class="rule-form-grid"><input type="hidden" data-rule-id value="${esc(draft.id)}"><div class="rule-field"><label>Nom</label><input data-rule-name placeholder="Ex: Descriptions multilingues" value="${esc(draft.name)}"></div><div class="rule-field"><label>Mode</label><select data-rule-mode><option value="path" ${draft.mode === "path" ? "selected" : ""}>Chemin + type</option><option value="template" ${modeIsTemplate ? "selected" : ""}>Modèle complet</option></select></div><div class="rule-field full"><label>Appliquer à</label><div class="rule-checks">${checklistKinds.map((kind) => `<label class="rule-check-option"><input type="checkbox" data-rule-kind value="${kind}" ${draft.appliesTo.includes(kind) ? "checked" : ""}><span>${esc(checklistKindLabels[kind] || kind)}</span></label>`).join("")}</div></div><div class="rule-field"><label>Règle active</label><label class="rule-inline-toggle"><input type="checkbox" data-rule-enabled ${draft.enabled ? "checked" : ""}><span>Vérifier cette règle dans la checklist</span></label></div><div class="rule-field"><label>Valeur non vide</label><label class="rule-inline-toggle"><input type="checkbox" data-rule-non-empty ${draft.enforceNonEmpty ? "checked" : ""}><span>Signaler aussi les chaînes / objets / tableaux vides</span></label></div>${modeIsTemplate ? "" : `<div class="rule-field"><label>Chemin de clé</label><input data-rule-path placeholder="Ex: description.fr" value="${esc(draft.path)}"></div><div class="rule-field"><label>Type attendu</label><select data-rule-type>${Object.entries(ruleTypeLabels).map(([value, label]) => `<option value="${value}" ${draft.expectedType === value ? "selected" : ""}>${esc(label)}</option>`).join("")}</select></div>`}<div class="rule-field full"><label>Modèle attendu</label><textarea data-rule-template placeholder='{\n  "description": {\n    "fr": "",\n    "en": ""\n  }\n}'>${esc(draft.templateSource)}</textarea><p class="rule-help">Tu peux coller un objet JSON complet, ou un bloc souple du style <code>description: { fr: "", en: "" }</code>. En mode “Chemin + type”, ce champ sert juste d’aide visuelle.</p></div></div><div class="workspace-tools"><button class="action-btn primary" data-rule-preview>Prévisualiser</button><button class="action-btn" data-rule-save>Enregistrer</button><button class="action-btn" data-rule-reset>${draft.id ? "Revenir à la règle" : "Réinitialiser"}</button><button class="action-btn" data-rule-new>Nouvelle règle</button><button class="action-btn" data-rule-reload>Recharger</button></div><div class="rule-preview">${previewHtml}</div></section><section class="rule-list"><h2>Règles enregistrées</h2><div class="rule-stack">${rulesHtml}</div></section></div>`,
+        );
+        const content = el.workspaceContent;
+        content.querySelector("[data-rule-mode]").onchange = () => {
+          const payload = collectRuleForm() || draft;
+          openCustomRules(
+            draft.id,
+            { ...payload, templateSource: payload.templateSource || draft.templateSource },
+            null,
+          );
+        };
+        content.querySelector("[data-rule-new]").onclick = () =>
+          openCustomRules("", ruleDefaults(), null);
+        content.querySelector("[data-rule-reset]").onclick = () =>
+          openCustomRules(
+            current?.id || "",
+            current ? ruleDefaults(current) : ruleDefaults(),
+            null,
+          );
+        content.querySelector("[data-rule-reload]").onclick = async () => {
+          loadCustomRules();
+          await load();
+          openCustomRules(editingId);
+        };
+        content.querySelector("[data-rule-preview]").onclick = async () => {
+          try {
+            const payload = collectRuleForm();
+            const response = await apiFetch("/api/custom-rules-v3/preview", {
+              method: "POST",
+              body: JSON.stringify(payload),
+            });
+            openCustomRules(
+              response.data.id,
+              response.data,
+              response.data,
+              { type: "good", text: "Aperçu mis à jour." },
+            );
+          } catch (error) {
+            openCustomRules(
+              editingId,
+              collectRuleForm() || draft,
+              preview,
+              { type: "bad", text: error.message },
+            );
+          }
+        };
+        content.querySelector("[data-rule-save]").onclick = async () => {
+          try {
+            const payload = collectRuleForm();
+            const response = await apiFetch("/api/custom-rules-v3/preview", {
+              method: "POST",
+              body: JSON.stringify(payload),
+            });
+            const nextRules = [...state.customRules];
+            const index = nextRules.findIndex(
+              (rule) => rule.id === response.data.id,
+            );
+            if (index >= 0) nextRules[index] = response.data;
+            else nextRules.unshift(response.data);
+            state.customRules = nextRules;
+            saveCustomRules();
+            await load();
+            openCustomRules(
+              response.data.id,
+              response.data,
+              response.data,
+              { type: "good", text: "Règle enregistrée et appliquée à la checklist." },
+            );
+          } catch (error) {
+            openCustomRules(
+              editingId,
+              collectRuleForm() || draft,
+              preview,
+              { type: "bad", text: error.message },
+            );
+          }
+        };
+        content.querySelectorAll("[data-rule-edit]").forEach((button) => {
+          button.onclick = () => openCustomRules(button.dataset.ruleEdit);
+        });
+        content.querySelectorAll("[data-rule-toggle]").forEach((button) => {
+          button.onclick = async () => {
+            const rule = state.customRules.find(
+              (item) => item.id === button.dataset.ruleToggle,
+            );
+            if (!rule) return;
+            state.customRules = state.customRules.map((item) =>
+              item.id === rule.id
+                ? {
+                    ...item,
+                    enabled: !rule.enabled,
+                    updatedAt: new Date().toISOString(),
+                  }
+                : item,
+            );
+            saveCustomRules();
+            await load();
+            openCustomRules(
+              rule.id,
+              null,
+              null,
+              {
+                type: "good",
+                text: !rule.enabled
+                  ? "Règle réactivée."
+                  : "Règle désactivée sans toucher aux vérifications natives.",
+              },
+            );
+          };
+        });
+        content.querySelectorAll("[data-rule-delete]").forEach((button) => {
+          button.onclick = async () => {
+            const rule = state.customRules.find(
+              (item) => item.id === button.dataset.ruleDelete,
+            );
+            if (!rule) return;
+            if (!confirm(`Supprimer la règle « ${rule.name} » ?`)) return;
+            state.customRules = state.customRules.filter(
+              (item) => item.id !== rule.id,
+            );
+            saveCustomRules();
+            await load();
+            openCustomRules(
+              "",
+              ruleDefaults(),
+              null,
+              { type: "good", text: "Règle supprimée." },
+            );
+          };
+        });
+      }
+      function exportRows() {
+        return filtered().map((entry) => ({
+          dexId: entry.dexId,
+          name: entry.name,
+          kind: entry.kind,
+          form: entry.form,
+          generation: entry.generation,
+          score: entry.quality.score,
+          issues: entry.issues.length,
+          assetsChecked: isAssetChecked(entry),
+          assetCount: associatedAssetCount(entry),
+          categories: entry.issueCategories.join("|"),
+          file: entry.file,
+        }));
+      }
+      function openExportTools() {
+        showWorkspace(
+          "Exports & partage",
+          `${filtered().length} fiches dans la sélection actuelle`,
+          `<div class="workspace-tools"><button class="action-btn primary" data-export="json">Exporter JSON</button><button class="action-btn" data-export="csv">Exporter CSV</button><button class="action-btn" data-export="markdown">Rapport Markdown</button><button class="action-btn" data-share>Copier le lien filtré</button><button class="action-btn" data-save-view>Enregistrer cette vue</button></div><textarea readonly>${esc(JSON.stringify(exportRows().slice(0, 30), null, 2))}</textarea>`,
+        );
+        el.workspaceContent.querySelectorAll("[data-export]").forEach((button) => {
+          button.onclick = () => {
+            const rows = exportRows();
+            if (button.dataset.export === "json")
+              downloadText("checklist-pokemon.json", JSON.stringify(rows, null, 2), "application/json");
+            if (button.dataset.export === "csv") {
+              const headers = Object.keys(rows[0] || {});
+              const csv = [headers, ...rows.map((row) => headers.map((key) => JSON.stringify(row[key] ?? "")))].map((row) => row.join(",")).join("\n");
+              downloadText("checklist-pokemon.csv", csv, "text/csv");
+            }
+            if (button.dataset.export === "markdown") {
+              const markdown = `# Rapport checklist Pokémon GO\n\nGénéré le ${new Date().toLocaleString("fr")}.\n\n## Résumé\n\n- Fiches: ${rows.length}\n- Problèmes: ${rows.reduce((sum, row) => sum + row.issues, 0)}\n\n## Fiches\n\n${filtered().map((entry) => `### ${entry.dexId} ${entry.name}\n\n- Score: ${entry.quality.score}%\n- Forme: ${entry.form}\n- Fichier: \`${entry.file}\`\n${entry.issues.slice(0, 30).map((issue) => `- [ ] \`${issue.path}\`: ${issue.issue}, attendu ${issue.expected}, actuel ${issue.actual}`).join("\n")}`).join("\n\n")}`;
+              downloadText("checklist-pokemon.md", markdown, "text/markdown");
+            }
+            recordHistory(`Export ${button.dataset.export}`, null, `${rows.length} fiches`);
+          };
+        });
+        el.workspaceContent.querySelector("[data-share]").onclick = async () => {
+          const params = new URLSearchParams();
+          for (const id of filterIds) {
+            if (!el[id].value) continue;
+            if (id === "sort" && el[id].value === "dex") continue;
+            if (id === "status" && el[id].value === "all") continue;
+            if (id === "assetStatus" && el[id].value === "todo") continue;
+            if (!["search", "sort"].includes(id) && el[id].value === "all") continue;
+            params.set(id, el[id].value);
+          }
+          const url = `${location.origin}${location.pathname}${params.size ? `?${params}` : ""}`;
+          await navigator.clipboard.writeText(url);
+          el.workspaceSubtitle.textContent = "Lien filtré copié.";
+        };
+        el.workspaceContent.querySelector("[data-save-view]").onclick = () => {
+          const name = `Vue ${new Date().toLocaleDateString("fr")}`;
+          const views = JSON.parse(localStorage.getItem("pokedex-v3-views") || "[]");
+          views.unshift({ name, filters: Object.fromEntries(filterIds.map((id) => [id, el[id].value])) });
+          localStorage.setItem("pokedex-v3-views", JSON.stringify(views.slice(0, 10)));
+          el.workspaceSubtitle.textContent = `${name} enregistrée.`;
+        };
+      }
+      function openHistory() {
+        const views = JSON.parse(localStorage.getItem("pokedex-v3-views") || "[]");
+        showWorkspace(
+          "Historique & vues",
+          `${state.history.length} actions mémorisées sur cet appareil`,
+          `<div class="workspace-tools">${views.map((view, index) => `<button class="action-btn" data-view="${index}">${esc(view.name)}</button>`).join("")}<button class="action-btn" data-clear-history>Effacer l’historique</button></div><div class="history-list">${state.history.length ? state.history.map((item) => `<div class="history-item"><strong>${esc(item.action)}</strong> · ${esc(item.name || item.details || "")}<br><span class="meta">${new Date(item.date).toLocaleString("fr")}</span></div>`).join("") : '<div class="empty">Aucune action mémorisée.</div>'}</div>`,
+        );
+        el.workspaceContent.querySelectorAll("[data-view]").forEach((button) => {
+          button.onclick = () => {
+            const view = views[Number(button.dataset.view)];
+            for (const [id, value] of Object.entries(view.filters)) if (el[id]) el[id].value = value;
+            el.workspace.close();
+            render();
+          };
+        });
+        el.workspaceContent.querySelector("[data-clear-history]").onclick = () => {
+          state.history = [];
+          localStorage.removeItem("pokedex-v3-history");
+          openHistory();
+        };
+      }
+      function quickCandidates() {
+        return filtered().filter(
+          (entry) => hasAssociatedAssets(entry) && !isAssetChecked(entry),
+        );
+      }
+      function renderQuickReview() {
+        const candidates = quickCandidates();
+        if (!candidates.length) return showWorkspace("Vérification assets", "", '<div class="empty">Aucun asset en attente dans cette sélection.</div>');
+        state.quickIndex = Math.min(state.quickIndex, candidates.length - 1);
+        const entry = candidates[state.quickIndex];
+        showWorkspace(
+          "Vérification assets",
+          `${state.quickIndex + 1} / ${candidates.length} · ${entry.dexId} ${entry.name}`,
+          `<div class="status-box">Cette revue sert de mémo visuel sur cet appareil. Utilise la fiche complète pour contrôler les variantes, backgrounds et autres assets, puis valide la carte ici si tout est bon.</div><div class="quick-stage"><div class="quick-images">${assetPicture("Normal", entry.image)}${assetPicture("Shiny", entry.shinyImage)}</div><div class="quick-actions"><button class="action-btn primary" data-quick="valid">Assets validés</button><button class="action-btn" data-quick="issue">Signaler un problème</button><button class="action-btn" data-quick="next">Suivante</button></div></div>`,
+        );
+        el.workspaceContent.querySelectorAll("[data-quick]").forEach((button) => {
+          button.onclick = async () => {
+            if (button.dataset.quick !== "next") {
+              recordHistory(button.dataset.quick === "valid" ? "Assets validés" : "Problème d’asset signalé", entry);
+              const review = {
+                id: `${Date.now()}`,
+                date: new Date().toISOString(),
+                status: button.dataset.quick,
+                key: entry.key,
+                name: entry.name,
+                details: button.dataset.quick === "issue" ? "À vérifier manuellement" : "Validation manuelle des assets",
+              };
+              try {
+                await apiFetch("/api/image-reviews-v3", {
+                  method: "POST",
+                  body: JSON.stringify(review),
+                });
+              } catch {
+                prependLocal("pokedex-v3-image-reviews", review, 2000);
+              }
+              if (button.dataset.quick === "valid")
+                setAssetChecked(entry.key, true, {
+                  skipHistory: true,
+                  rerender: false,
+                });
+            }
+            state.quickIndex =
+              button.dataset.quick === "valid"
+                ? state.quickIndex
+                : (state.quickIndex + 1) % candidates.length;
+            render();
+            renderQuickReview();
+          };
+        });
+      }
+      function compareCard(entry) {
+        if (!entry) return '<div class="empty">Fiche absente.</div>';
+        return info(
+          `${entry.dexId} ${entry.name}`,
+          kv("Fichier", entry.file) +
+            kv("Forme", entry.form) +
+            kv("Score", `${entry.quality.score}%`) +
+            kv("Problèmes", entry.issues.length) +
+            kv("Type principal", typeName(entry.primaryType)) +
+            kv("Type secondaire", typeName(entry.secondaryType)) +
+            kv("Attaques", `${entry.quickMoveCount} rapides · ${entry.chargedMoveCount} chargées`) +
+            kv("PC N.50", entry.maxCp?.maxLevel50) +
+            kv("Assets Home", entry.assets.homeVariants),
+        );
+      }
+      function openCompare() {
+        const list = filtered().slice(0, 400);
+        const selected = [...state.selected];
+        const options = list.map((entry) => `<option value="${esc(entry.key)}">${esc(entry.dexId)} · ${esc(entry.name)} · ${esc(entry.form)}</option>`).join("");
+        showWorkspace("Comparaison", "Comparer deux Pokémon ou formes côte à côte", `<div class="workspace-tools"><select data-compare-a>${options}</select><select data-compare-b>${options}</select></div><div class="compare-grid" data-compare-result></div>`);
+        const a = el.workspaceContent.querySelector("[data-compare-a]");
+        const b = el.workspaceContent.querySelector("[data-compare-b]");
+        if (selected[0]) a.value = selected[0];
+        if (selected[1]) b.value = selected[1];
+        else b.selectedIndex = Math.min(1, b.options.length - 1);
+        const draw = () => {
+          el.workspaceContent.querySelector("[data-compare-result]").innerHTML =
+            compareCard(state.entries.find((entry) => entry.key === a.value)) +
+            compareCard(state.entries.find((entry) => entry.key === b.value));
+        };
+        a.onchange = draw;
+        b.onchange = draw;
+        draw();
+      }
+      async function openNotes() {
+        let notes = localList("pokedex-v3-notes");
+        let reviews = localList("pokedex-v3-image-reviews");
+        try {
+          const remote = await Promise.all([
+            apiFetch("/api/notes-v3"),
+            apiFetch("/api/image-reviews-v3"),
+          ]);
+          notes = remote[0].data;
+          reviews = remote[1].data;
+        } catch {}
+        showWorkspace("Notes & revues", `${notes.length} note(s) · ${reviews.length} revue(s) d’assets`, `<textarea data-note placeholder="Écrire une note générale ou liée à la fiche ouverte…"></textarea><div class="workspace-tools"><button class="action-btn primary" data-save-note>Enregistrer la note</button></div><div class="note-list">${[...reviews.slice(0, 30).map((item) => `<div class="note"><strong>${item.status === "valid" ? "Assets validés" : "Problème d’asset"}</strong> · ${esc(item.name || "")}<br><span class="meta">${new Date(item.date).toLocaleString("fr")} · ${esc(item.details || "")}</span></div>`), ...notes.slice(0, 50).map((item) => `<div class="note"><strong>${esc(item.name || "Note générale")}</strong><br>${esc(item.text)}<br><span class="meta">${new Date(item.date).toLocaleString("fr")}</span></div>`)].join("") || '<div class="empty">Aucune note.</div>'}</div>`);
+        el.workspaceContent.querySelector("[data-save-note]").onclick = async () => {
+          const text = el.workspaceContent.querySelector("[data-note]").value.trim();
+          if (!text) return;
+          const note = { id: `${Date.now()}`, date: new Date().toISOString(), text, key: state.activeEntry?.key, name: state.activeEntry?.name };
+          try {
+            await apiFetch("/api/notes-v3", {
+              method: "POST",
+              body: JSON.stringify(note),
+            });
+          } catch {
+            prependLocal("pokedex-v3-notes", note);
+          }
+          openNotes();
+        };
+      }
+      async function openMoves() {
+        if (!state.catalog) state.catalog = (await apiFetch("/api/catalog-v3")).data;
+        const renderMoves = (query = "") => {
+          const q = query.toLowerCase();
+          const moves = state.catalog.moves.filter((move) => !q || [move.id, move.slug, move.type, ...Object.values(move.names || {})].some((value) => String(value).toLowerCase().includes(q)));
+          const typeAssets = Object.fromEntries(state.catalog.types.map((type) => [type.id, type.assets?.icon]));
+          const typeWeather = Object.fromEntries(state.catalog.types.map((type) => [type.id, type.weatherBoost]));
+          el.workspaceContent.querySelector("[data-move-list]").innerHTML = moves.slice(0, 250).map((move) => `<article class="move-card"><h3>${typeAssets[move.type] ? `<img class="type-icon" src="${esc(typeAssets[move.type])}" alt="">` : ""}${esc(move.names?.French || move.names?.English || move.id)}</h3>${typeWeather[move.type] ? `<div class="chip weather-chip wide">${weatherBadge([typeWeather[move.type]])}</div>` : ""}${kv("ID", move.id)}${kv("Type", move.type)}${kv("Puissance", move.power)}${kv("Énergie", move.energy)}${kv("Durée", `${move.durationMs} ms`)}${kv("PvP", `${move.combat?.power ?? "—"} puissance · ${move.combat?.energy ?? "—"} énergie`)}</article>`).join("");
+          el.workspaceSubtitle.textContent = `${moves.length} attaque(s) trouvée(s)`;
+        };
+        showWorkspace("Catalogue des attaques", "Chargement…", `<input type="search" data-move-search placeholder="Rechercher une attaque, un ID ou un type"><div class="catalog-grid" data-move-list></div>`);
+        el.workspaceContent.querySelector("[data-move-search]").oninput = (event) => renderMoves(event.target.value);
+        renderMoves();
+      }
+      async function openStickers() {
+        if (!state.catalog) state.catalog = (await apiFetch("/api/catalog-v3")).data;
+        let page = 1;
+        const pageSize = 100;
+        const categories = [...new Set((state.catalog.stickers || []).map((sticker) => sticker.category))].sort();
+        const renderStickers = () => {
+          const query = el.workspaceContent.querySelector("[data-sticker-search]").value.trim().toLowerCase();
+          const category = el.workspaceContent.querySelector("[data-sticker-category]").value;
+          const stickers = (state.catalog.stickers || []).filter((sticker) =>
+            (!query || [sticker.id, sticker.filename, sticker.category].some((value) => String(value).toLowerCase().includes(query))) &&
+            (!category || sticker.category === category)
+          );
+          const pages = Math.max(1, Math.ceil(stickers.length / pageSize));
+          page = Math.min(page, pages);
+          el.workspaceContent.querySelector("[data-sticker-list]").innerHTML = stickers
+            .slice((page - 1) * pageSize, page * pageSize)
+            .map((sticker) => `<a class="sticker-card" href="${esc(sticker.image)}" target="_blank" rel="noopener"><img src="${esc(sticker.image)}" alt="${esc(sticker.id)}" loading="lazy"><span>${esc(sticker.filename)}</span></a>`)
+            .join("") || '<div class="empty">Aucun sticker trouvé.</div>';
+          el.workspaceContent.querySelector("[data-sticker-page]").textContent = `Page ${page} / ${pages}`;
+          el.workspaceSubtitle.textContent = `${stickers.length.toLocaleString("fr")} sticker(s)`;
+        };
+        showWorkspace("Catalogue des stickers", `${(state.catalog.stickers || []).length.toLocaleString("fr")} stickers disponibles dans l’API`, `<div class="asset-browser-head"><input type="search" data-sticker-search placeholder="Rechercher un sticker"><select data-sticker-category><option value="">Toutes les catégories</option>${categories.map((category) => `<option value="${esc(category)}">${esc(category)}</option>`).join("")}</select></div><div class="sticker-grid" data-sticker-list></div><div class="asset-pagination"><button class="action-btn" data-sticker-prev>Page précédente</button><strong data-sticker-page></strong><button class="action-btn" data-sticker-next>Page suivante</button></div>`);
+        el.workspaceContent.querySelector("[data-sticker-search]").oninput = () => { page = 1; renderStickers(); };
+        el.workspaceContent.querySelector("[data-sticker-category]").onchange = () => { page = 1; renderStickers(); };
+        el.workspaceContent.querySelector("[data-sticker-prev]").onclick = () => { page = Math.max(1, page - 1); renderStickers(); };
+        el.workspaceContent.querySelector("[data-sticker-next]").onclick = () => { page += 1; renderStickers(); };
+        renderStickers();
+      }
+      async function openAssets() {
+        let audit = (
+          await apiFetch(
+            `/api/assets-v3${state.activeEntry ? `?dexId=${encodeURIComponent(state.activeEntry.dexId)}` : ""}`,
+          )
+        ).data;
+        let page = 1;
+        const pageSize = 80;
+        showWorkspace(
+          "Bibliothèque des assets",
+          state.activeEntry
+            ? `${state.activeEntry.dexId} ${state.activeEntry.name}`
+            : "Audit global",
+          `<div class="section-grid">${info("Audit global", kv("Images Pokémon Home", audit.totals.files) + kv("Images Pokémon GO", audit.totals.goFiles) + kv("Images Pokémon Shuffle", audit.totals.shuffleFiles) + kv("Images Home utilisées", audit.totals.used) + kv("Images Home inutilisées", audit.totals.unused) + kv("URLs Home utilisées plusieurs fois", audit.totals.duplicated))}</div><p class="meta">Les noms Home sont décodés automatiquement. Les codes Shuffle restent affichés tels qu'ils existent dans les noms de fichiers.</p><div class="asset-browser-head"><input type="search" data-asset-search placeholder="Pokémon, numéro, forme ou fichier"><select data-asset-source><option value="hd">Pokémon Home HD</option><option value="go">Pokémon GO</option><option value="shuffle">Pokémon Shuffle</option></select><button class="action-btn" data-asset-all>${state.activeEntry ? "Toute la bibliothèque" : "Réinitialiser"}</button></div><div class="asset-proposals" data-asset-list></div><div class="asset-pagination"><button class="action-btn" data-asset-prev>Page précédente</button><strong data-asset-page></strong><button class="action-btn" data-asset-next>Page suivante</button></div>`,
+        );
+        const content = el.workspaceContent;
+        const listElement = content.querySelector("[data-asset-list]");
+        const search = content.querySelector("[data-asset-search]");
+        const source = content.querySelector("[data-asset-source]");
+        const pageLabel = content.querySelector("[data-asset-page]");
+        const previous = content.querySelector("[data-asset-prev]");
+        const next = content.querySelector("[data-asset-next]");
+        const renderAssets = () => {
+          const query = search.value.trim().toLocaleLowerCase("fr");
+          const assets = (
+            source.value === "hd"
+              ? audit.proposals
+              : source.value === "shuffle"
+                ? audit.shuffleAssets
+                : audit.goAssets
+          ).filter(
+            (asset) =>
+              !query ||
+              [
+                asset.dexId,
+                asset.filename,
+                asset.name,
+                asset.form,
+                asset.formIndex,
+                asset.gender,
+                asset.label,
+                asset.details,
+                asset.file,
+              ].some((value) =>
+                String(value || "").toLocaleLowerCase("fr").includes(query),
+              ),
+          );
+          const pages = Math.max(1, Math.ceil(assets.length / pageSize));
+          page = Math.min(page, pages);
+          const shown = assets.slice((page - 1) * pageSize, page * pageSize);
+          listElement.innerHTML =
+            shown
+              .map((asset) => {
+                const details =
+                  source.value === "hd"
+                    ? `N° ${asset.dexId} · forme ${asset.formIndex} · ${asset.gender} · ${asset.shiny ? "shiny" : "normal"} · ${asset.view}${asset.gigantamax ? " · Gigantamax" : ""}`
+                    : `N° ${asset.dexId} · ${asset.name} · ${asset.form} · ${asset.label}${asset.details ? ` · ${asset.details}` : ""}`;
+                return `<article class="asset-proposal"><img src="${esc(asset.url)}" loading="lazy" alt="${esc(asset.name || asset.filename || "")}"><strong>${esc(asset.filename)}</strong><br>${esc(details)}<br><button class="copy" data-copy="${esc(asset.url)}">Copier URL</button></article>`;
+              })
+              .join("") ||
+            '<div class="empty">Aucun asset ne correspond à cette recherche.</div>';
+          pageLabel.textContent = `${assets.length.toLocaleString("fr")} asset(s) · page ${page} / ${pages}`;
+          previous.disabled = page <= 1;
+          next.disabled = page >= pages;
+          el.workspaceSubtitle.textContent = `${assets.length.toLocaleString("fr")} asset(s) ${
+            source.value === "hd"
+              ? "Pokémon Home HD"
+              : source.value === "shuffle"
+                ? "Pokémon Shuffle"
+                : "Pokémon GO"
+          }`;
+          listElement.querySelectorAll("[data-copy]").forEach((button) => {
+            button.onclick = async () => {
+              await navigator.clipboard.writeText(button.dataset.copy);
+              button.textContent = "URL copiée";
+            };
+          });
+        };
+        search.oninput = () => {
+          page = 1;
+          renderAssets();
+        };
+        source.onchange = () => {
+          page = 1;
+          renderAssets();
+        };
+        previous.onclick = () => {
+          page -= 1;
+          renderAssets();
+          content.scrollTo({ top: 0, behavior: "smooth" });
+        };
+        next.onclick = () => {
+          page += 1;
+          renderAssets();
+          content.scrollTo({ top: 0, behavior: "smooth" });
+        };
+        content.querySelector("[data-asset-all]").onclick = async () => {
+          audit = (await apiFetch("/api/assets-v3")).data;
+          search.value = "";
+          page = 1;
+          renderAssets();
+        };
+        renderAssets();
+      }
+      function openBatch() {
+        const entries = state.entries.filter((entry) => state.selected.has(entry.key));
+        showWorkspace("Corrections groupées", `${entries.length} fiche(s) sélectionnée(s)`, `<div class="status-box">Cet outil génère uniquement un patch à copier ou télécharger. Aucun fichier source n’est modifié.</div><div class="workspace-tools"><input data-batch-path placeholder="Chemin commun, ex: availability.released"><input data-batch-value placeholder='Valeur JSON, ex: true ou ""'><button class="action-btn primary" data-build-batch>Générer</button><button class="action-btn" data-mark-batch>Marquer vérifiées</button><button class="action-btn" data-copy-batch>Copier</button><button class="action-btn" data-download-batch>Télécharger</button></div><textarea data-batch-output>${esc(JSON.stringify(Object.fromEntries(entries.map((entry) => [entry.key, suggestedPatch(entry)])), null, 2))}</textarea>`);
+        const output = el.workspaceContent.querySelector("[data-batch-output]");
+        el.workspaceContent.querySelector("[data-build-batch]").onclick = () => {
+          const path = el.workspaceContent.querySelector("[data-batch-path]").value.trim();
+          let value;
+          try { value = JSON.parse(el.workspaceContent.querySelector("[data-batch-value]").value); }
+          catch { value = el.workspaceContent.querySelector("[data-batch-value]").value; }
+          output.value = JSON.stringify(Object.fromEntries(entries.map((entry) => {
+            const patch = {};
+            if (path) setNested(patch, path, value);
+            return [entry.key, patch];
+          })), null, 2);
+        };
+        el.workspaceContent.querySelector("[data-mark-batch]").onclick = () => {
+          for (const entry of entries) state.progress[entry.key] = true;
+          saveProgress(); render(); el.workspaceSubtitle.textContent = `${entries.length} fiche(s) marquée(s) vérifiée(s).`;
+        };
+        el.workspaceContent.querySelector("[data-copy-batch]").onclick = async () => navigator.clipboard.writeText(output.value);
+        el.workspaceContent.querySelector("[data-download-batch]").onclick = () => downloadText("patch-groupe.json", output.value, "application/json");
+      }
+      function openTools() {
+        const signatures = {};
+        for (const entry of state.entries) {
+          const signature = JSON.stringify([entry.stats, entry.maxCp, entry.availability]);
+          (signatures[signature] ||= []).push(entry);
+        }
+        const suspicious = Object.values(signatures).filter((group) => group.length >= 4 && group.some((entry) => entry.stats)).sort((a, b) => b.length - a.length);
+        showWorkspace("Boîte à outils", `${state.selected.size} sélectionnée(s)`, `<div class="workspace-tools"><button class="action-btn" data-tool="moves">Catalogue attaques</button><button class="action-btn" data-tool="assets">Assets Home & GO</button><button class="action-btn" data-tool="stickers">Stickers</button><button class="action-btn" data-tool="watch">Veille sources</button><button class="action-btn" data-tool="rules">Règles checklist</button><button class="action-btn" data-tool="compare">Comparer</button><button class="action-btn" data-tool="batch">Corrections groupées</button><button class="action-btn" data-tool="notes">Notes & revues</button><button class="action-btn" data-tool="single">Mode une tâche</button></div><h2>Évolution quotidienne</h2><div class="history-list">${state.daily.slice().reverse().map((day) => `<div class="history-item"><strong>${day.date}</strong> · qualité ${day.average}% · ${day.complete} complètes · ${day.issues.toLocaleString("fr")} problèmes</div>`).join("")}</div><h2>Données identiques suspectes</h2><div class="history-list">${suspicious.slice(0, 20).map((group) => `<div class="history-item"><strong>${group.length} fiches identiques</strong><br>${esc(group.slice(0, 8).map((entry) => entry.name).join(", "))}</div>`).join("") || '<div class="empty">Aucun groupe suspect important.</div>'}</div>`);
+        const actions = { moves: openMoves, assets: openAssets, stickers: openStickers, watch: openSourceWatch, rules: openCustomRules, compare: openCompare, batch: openBatch, notes: openNotes, single: () => { document.body.classList.toggle("single-task"); el.workspace.close(); render(); } };
+        el.workspaceContent.querySelectorAll("[data-tool]").forEach((button) => button.onclick = actions[button.dataset.tool]);
+      }
+      function renderDetail(e, d) {
+        const sourceJson = { ...(d.sourceData || d) };
+        delete sourceJson.moveDetails;
+        delete sourceJson.cpByLevel;
+        delete sourceJson.sourceData;
+        const tabs = [
+          ["overview", "Aperçu"],
+          ["cp", "PC par niveau"],
+          ["issues", `Checklist (${e.issues.length})`],
+          ["moves", "Attaques"],
+          ["pvp", "PvP"],
+          ["shadow", "Shadow"],
+          ["evolutions", "Évolutions"],
+          ["forms", "Formes & assets"],
+          ["assistant", "Assistant JSON"],
+          ["editor", "Brouillon JSON"],
+          ["json", "JSON"],
+        ];
+        const img = e.image
+          ? `<div class="portrait"><img class="normal" src="${esc(e.image)}">${e.shinyImage ? `<img class="shiny" src="${esc(e.shinyImage)}">` : ""}</div>`
+          : "<div></div>";
+        el.detailHead.style.setProperty("--type", color(e));
+        el.detailHead.style.setProperty("--type-bg", `url('${typeBackground(e.primaryType)}')`);
+        el.detail.style.setProperty("--type", color(e));
+        el.detailHead.innerHTML = `${img}<div><div class="dex">N° ${esc(e.dexId)}</div><div class="name">${esc(e.name)}</div><div class="meta">${esc(profileLabels[e.profile] || e.profile)} · ${esc(e.form)}</div></div><button class="close" id="closeDetail">×</button>`;
+        el.tabs.innerHTML = tabs
+          .map(
+            ([id, label], i) =>
+              `<button class="tab ${i === 0 ? "active" : ""}" data-tab="${id}">${label}</button>`,
+          )
+          .join("");
+        el.panels.innerHTML = `<div class="workspace-tools"><button class="action-btn primary" data-toggle-asset-check>${isAssetChecked(e) ? "Assets vérifiés" : "Marquer assets OK"}</button><button class="action-btn" data-active-assets>Assets proposés</button><button class="action-btn" data-audit-urls>Vérifier les URLs</button><button class="action-btn" data-git-history>Historique Git</button><button class="action-btn" data-open-file>Afficher le fichier source</button><button class="action-btn" data-add-note>Ajouter une note</button></div><div class="panel active" data-panel="overview">${overview(d)}</div><div class="panel" data-panel="cp">${cpPanel(d)}</div><div class="panel" data-panel="issues">${issuesPanel(e)}</div><div class="panel" data-panel="moves"><h2>Attaques rapides</h2>${objectCards("rapide", d.moveDetails?.quickMoves)}<h2>Attaques chargées</h2>${objectCards("chargée", d.moveDetails?.cinematicMoves)}<h2>Attaques rapides élite</h2>${objectCards("rapide élite", d.moveDetails?.eliteQuickMoves)}<h2>Attaques chargées élite</h2>${objectCards("chargée élite", d.moveDetails?.eliteCinematicMoves)}<h2>Attaques Max / G-Max</h2>${objectCards("Max / G-Max", d.moveDetails?.maxMoves)}</div><div class="panel" data-panel="pvp">${
+          d.pvp
+            ? `<div class="section-grid">${Object.entries(d.pvp)
+                .map(([league, v]) =>
+                  v === null
+                    ? info(league, kv("Statut", "Aucune donnée PvP"))
+                    : info(
+                        league,
+                        kv("Tier", v.tierRank) +
+                          kv("Niveau rang 1", v.rank1?.level) +
+                          kv("PC rang 1", v.rank1?.cp) +
+                          kv("Rapide", v.bestMovesets?.fast) +
+                          kv("Chargées", v.bestMovesets?.charged),
+                      ),
+                )
+                .join("")}</div>`
+            : '<div class="empty">Aucune donnée PvP.</div>'
+        }</div><div class="panel" data-panel="shadow">${shadowPanel(d)}</div><div class="panel" data-panel="evolutions">${d.evolutions?.length ? `<div class="section-grid">${d.evolutions.map((v) => info(v.targetFormId || v.id, kv("Bonbons", v.candies) + kv("Objet", v.item))).join("")}</div>` : '<div class="empty">Aucune évolution suivante.</div>'}</div><div class="panel" data-panel="forms">${assetsPanel(d)}</div><div class="panel" data-panel="assistant">${assistantPanel(e, sourceJson)}</div><div class="panel" data-panel="editor">${editorPanel(sourceJson)}</div><div class="panel" data-panel="json"><pre>${esc(JSON.stringify(sourceJson, null, 2))}</pre></div>`;
+        document.getElementById("closeDetail").onclick = () =>
+          el.detail.close();
+        el.tabs.querySelectorAll("[data-tab]").forEach(
+          (btn) =>
+            (btn.onclick = () => {
+              el.tabs
+                .querySelectorAll(".tab")
+                .forEach((x) => x.classList.toggle("active", x === btn));
+              el.panels
+                .querySelectorAll(".panel")
+                .forEach((x) =>
+                  x.classList.toggle(
+                    "active",
+                    x.dataset.panel === btn.dataset.tab,
+                  ),
+                );
+            }),
+        );
+        el.panels.querySelectorAll("[data-copy]").forEach(
+          (btn) =>
+            (btn.onclick = async () => {
+              await navigator.clipboard.writeText(btn.dataset.copy);
+              btn.textContent = "Copié";
+            }),
+        );
+        const copyPatch = el.panels.querySelector("[data-copy-patch]");
+        if (copyPatch)
+          copyPatch.onclick = async () => {
+            await navigator.clipboard.writeText(
+              el.panels.querySelector("[data-patch]").value,
+            );
+            copyPatch.textContent = "Patch copié";
+            recordHistory("Patch JSON copié", e);
+          };
+        const downloadPatch = el.panels.querySelector("[data-download-patch]");
+        if (downloadPatch)
+          downloadPatch.onclick = () => {
+            downloadText(
+              `${e.dexId}-${e.form}-patch.json`,
+              el.panels.querySelector("[data-patch]").value,
+              "application/json",
+            );
+            recordHistory("Patch JSON téléchargé", e);
+          };
+        const downloadSource = el.panels.querySelector("[data-download-source]");
+        if (downloadSource)
+          downloadSource.onclick = () => {
+            downloadText(`${e.dexId}-${e.form}.json`, JSON.stringify(sourceJson, null, 2), "application/json");
+            recordHistory("JSON téléchargé", e);
+          };
+        const editor = el.panels.querySelector("[data-editor]");
+        if (editor) {
+          const original = JSON.stringify(sourceJson, null, 2);
+          let drafts = [original];
+          editor.oninput = () => {
+            if (drafts.at(-1) !== editor.value) drafts.push(editor.value);
+            drafts = drafts.slice(-30);
+          };
+          const editorResult = el.panels.querySelector("[data-editor-result]");
+          el.panels.querySelector("[data-editor-copy]").onclick = async () => {
+            await navigator.clipboard.writeText(editor.value);
+            editorResult.textContent = "JSON corrigé copié. Aucun fichier source n’a été modifié.";
+          };
+          el.panels.querySelector("[data-editor-download]").onclick = () =>
+            downloadText(`${e.dexId}-${e.form}-corrige.json`, editor.value, "application/json");
+          el.panels.querySelector("[data-editor-undo]").onclick = () => {
+            if (drafts.length > 1) drafts.pop();
+            editor.value = drafts.at(-1) || original;
+            editorResult.textContent = "Dernière modification du brouillon annulée.";
+          };
+          el.panels.querySelector("[data-editor-diff]").onclick = () => {
+            const before = original.split("\n");
+            const after = editor.value.split("\n");
+            const lines = [];
+            for (let index = 0; index < Math.max(before.length, after.length); index += 1) {
+              if (before[index] === after[index]) continue;
+              if (before[index] !== undefined) lines.push(`- ${before[index]}`);
+              if (after[index] !== undefined) lines.push(`+ ${after[index]}`);
+            }
+            editorResult.textContent = lines.join("\n") || "Aucune différence avec le JSON source.";
+          };
+          el.panels.querySelector("[data-editor-validate]").onclick = async () => {
+            try {
+              const data = JSON.parse(editor.value);
+              const result = await apiFetch("/api/validate-v3", {
+                method: "POST",
+                body: JSON.stringify({ data, file: e.file, kind: e.kind }),
+              });
+              const issues = result.data || [];
+              editorResult.textContent = issues.length
+                ? `${issues.length} problème(s):\n${issues.slice(0, 80).map((issue) => `${issue.path} · ${issue.issue} · attendu ${issue.expected} · actuel ${issue.actual}`).join("\n")}`
+                : "JSON valide: aucun problème détecté.";
+            } catch (error) {
+              editorResult.textContent = `Validation impossible: ${error.message}`;
+            }
+          };
+        }
+        el.panels.querySelector("[data-toggle-asset-check]").onclick = () => {
+          setAssetChecked(e.key, !isAssetChecked(e));
+        };
+        el.panels.querySelector("[data-active-assets]").onclick = openAssets;
+        el.panels.querySelector("[data-audit-urls]").onclick = async () => {
+          showWorkspace("Vérification des URLs", e.name, '<div class="empty">Vérification en cours…</div>');
+          const results = (await apiFetch(`/api/url-audit-v3?key=${encodeURIComponent(e.key)}`)).data;
+          el.workspaceContent.innerHTML = `<div class="history-list">${results.map((result) => `<div class="history-item"><strong>${result.ok ? "Accessible" : "Inaccessible"} · HTTP ${result.status || "erreur"}</strong><br><span class="meta">${esc(result.url)}</span></div>`).join("") || '<div class="empty">Aucune URL image dans le JSON source.</div>'}</div>`;
+        };
+        el.panels.querySelector("[data-add-note]").onclick = openNotes;
+        el.panels.querySelector("[data-open-file]").onclick = async () => {
+          await apiFetch("/api/open-file-v3", { method: "POST", body: JSON.stringify({ file: e.file }) });
+        };
+        el.panels.querySelector("[data-git-history]").onclick = async () => {
+          const history = (await apiFetch(`/api/git-history-v3?file=${encodeURIComponent(e.file)}`)).data;
+          showWorkspace("Historique Git", e.file, `<div class="history-list">${history.map((item) => `<div class="history-item"><strong>${esc(item.hash)} · ${esc(item.date)}</strong><br>${esc(item.subject)}</div>`).join("") || '<div class="empty">Aucun commit trouvé.</div>'}</div>`);
+        };
+      }
+      async function openDetail(key) {
+        const e = state.entries.find((x) => x.key === key);
+        if (!e) return;
+        state.activeEntry = e;
+        if (!el.detail.open) el.detail.showModal();
+        el.detailHead.innerHTML =
+          '<div></div><div class="name">Chargement…</div>';
+        el.panels.innerHTML = "";
+        try {
+          const x = await apiFetch(
+            `/api/detail-v3?key=${encodeURIComponent(key)}`,
+          );
+          state.detailData = x.data || {};
+          recordHistory("Fiche consultée", e);
+          renderDetail(e, state.detailData);
+        } catch (error) {
+          el.panels.innerHTML = `<div class="empty">${esc(error.message)}</div>`;
+        }
+      }
+      function navigateDetail(direction) {
+        const list = filtered();
+        const index = list.findIndex((entry) => entry.key === state.activeEntry?.key);
+        if (!list.length) return;
+        const next = list[(Math.max(0, index) + direction + list.length) % list.length];
+        openDetail(next.key);
+      }
+      async function load() {
+        el.refresh.disabled = true;
+        try {
+          const localRules = Array.isArray(state.customRules)
+            ? [...state.customRules]
+            : [];
+          const [x, catalog] = await Promise.all([
+            localRules.length
+              ? apiFetch("/api/checklist-v3", {
+                  method: "POST",
+                  body: JSON.stringify({ customRules: localRules }),
+                })
+              : apiFetch("/api/checklist-v3"),
+            state.catalog ? Promise.resolve({ data: state.catalog }) : apiFetch("/api/catalog-v3"),
+          ]);
+          state.entries = Array.isArray(x.entries) ? x.entries : [];
+          state.customRules = localRules.length
+            ? Array.isArray(x.customRules)
+              ? x.customRules
+              : localRules
+            : Array.isArray(x.customRules)
+              ? x.customRules
+              : [];
+          if (!localRules.length && state.customRules.length) saveCustomRules();
+          state.catalog = catalog.data;
+          trackQualityChanges(state.entries);
+          let selected = el.form.value;
+          try {
+            selected =
+              JSON.parse(localStorage.getItem("pokedex-v3-filters"))?.form ||
+              selected;
+          } catch {}
+          const forms = [
+            ...new Set(state.entries.map((e) => e.form).filter(Boolean)),
+          ].sort();
+          el.form.innerHTML =
+            '<option value="all">Toutes les formes</option>' +
+            forms
+              .map((f) => `<option value="${esc(f)}">${esc(f)}</option>`)
+              .join("");
+          el.form.value = forms.includes(selected) ? selected : "all";
+          const generations = [
+            ...new Set(state.entries.map((e) => e.generation).filter(Boolean)),
+          ].sort((a, b) => a - b);
+          el.generation.innerHTML =
+            '<option value="all">Toutes les générations</option>' +
+            generations
+              .map((generation) => `<option value="${generation}">Génération ${generation}</option>`)
+              .join("");
+          const selectedType = el.elementalType.value;
+          el.elementalType.innerHTML =
+            '<option value="all">Tous les types élémentaires</option>' +
+            Object.keys(typeColors)
+              .sort((left, right) =>
+                (typeLabels[left] || left).localeCompare(
+                  typeLabels[right] || right,
+                  "fr",
+                ),
+              )
+              .map(
+                (type) =>
+                  `<option value="${type}">${esc(typeLabels[type] || type)}</option>`,
+              )
+              .join("");
+          el.elementalType.value = typeColors[selectedType] ? selectedType : "all";
+          restoreFilters();
+          render();
+          refreshSourceWatch(false);
+        } catch (error) {
+          el.entries.innerHTML = `<div class="empty">${esc(error.message)}</div>`;
+          el.resultCount.textContent = "Accès protégé";
+        } finally {
+          el.refresh.disabled = false;
+        }
+      }
+      function configureApiLinks() {
+        const base = ["localhost", "127.0.0.1"].includes(location.hostname)
+          ? `http://${location.hostname}:3000`
+          : location.origin;
+        for (const [element, path] of [
+          [el.docLink, "/api-docs"],
+          [el.swaggerLink, "/swagger"],
+          [el.openApiLink, "/api-docs.json"],
+          [el.healthLink, "/health"],
+          [el.footerDocLink, "/api-docs"],
+          [el.footerSwaggerLink, "/swagger"],
+          [el.footerOpenApiLink, "/api-docs.json"],
+          [el.footerHealthLink, "/health"],
+        ])
+          element.href = `${base}${path}`;
+        fetch(`${base}/health`)
+          .then((response) => response.json())
+          .then((health) => {
+            el.apiDot.classList.add("online");
+            el.apiState.textContent = health.data?.database === "connected" ? "API + DB connectées" : "API en ligne";
+          })
+          .catch(() => { el.apiState.textContent = "API hors ligne"; });
+      }
+      loadProgress();
+      applyTheme(document.documentElement.dataset.theme, false);
+      restoreFilters();
+      configureApiLinks();
+      const onFiltersChanged = (id) => {
+        if (
+          id === "kind" &&
+          ["dynamax", "gigantamax"].includes(el.kind.value)
+        )
+          el.status.value = "all";
+        state.limit = 60;
+        render();
+      };
+      el.search.addEventListener("input", () => onFiltersChanged("search"));
+      filterIds
+        .filter((id) => id !== "search")
+        .forEach((id) =>
+          el[id].addEventListener("change", () => onFiltersChanged(id)),
+        );
+      el.more.onclick = () => {
+        state.limit += 60;
+        render();
+      };
+      el.shiny.onclick = () => {
+        document.body.classList.toggle("shiny");
+        el.shiny.classList.toggle(
+          "active",
+          document.body.classList.contains("shiny"),
+        );
+        saveFilters();
+      };
+      el.themeToggle.onclick = toggleTheme;
+      el.refresh.onclick = load;
+      el.resetFilters.onclick = () => {
+        for (const id of [
+          "kind",
+          "elementalType",
+          "profile",
+          "form",
+          "problem",
+          "generation",
+        ])
+          el[id].value = "all";
+        el.search.value = "";
+        el.status.value = "all";
+        el.assetStatus.value = "todo";
+        el.sort.value = "dex";
+        state.limit = 60;
+        render();
+      };
+      el.nextEntry.onclick = () => {
+        const next = filtered()[0];
+        if (next) openDetail(next.key);
+      };
+      el.quickReview.onclick = () => {
+        state.quickIndex = 0;
+        renderQuickReview();
+      };
+      el.openRuleManager.onclick = openCustomRules;
+      el.openExports.onclick = openExportTools;
+      el.openHistory.onclick = openHistory;
+      el.openMoves.onclick = openMoves;
+      el.openAssets.onclick = openAssets;
+      el.openStickers.onclick = openStickers;
+      el.openCompare.onclick = openCompare;
+      el.openBatch.onclick = openBatch;
+      el.openSourceWatch.onclick = openSourceWatch;
+      el.quickSourceWatch.onclick = openSourceWatch;
+      el.openNotes.onclick = openNotes;
+      el.openTools.onclick = openTools;
+      el.closeWorkspace.onclick = () => el.workspace.close();
+      el.prevDetail.onclick = () => navigateDetail(-1);
+      el.nextDetail.onclick = () => navigateDetail(1);
+      el.changeAccess.onclick = () => {
+        const password = (
+          prompt("Nouveau mot de passe de la checklist Pokémon GO :") || ""
+        ).trim();
+        if (!password) return;
+        localStorage.removeItem(accessKey);
+        localStorage.setItem(accessKey, password);
+        load();
+      };
+      el.mobileFilters.onclick = () => {
+        el.toolbar.classList.toggle("open");
+        el.mobileFilters.classList.toggle(
+          "active",
+          el.toolbar.classList.contains("open"),
+        );
+      };
+      el.mobileShiny.onclick = () => el.shiny.click();
+      el.mobileRefresh.onclick = load;
+      el.mobileTools.onclick = openTools;
+      el.mobileTheme.onclick = toggleTheme;
+      el.mobileTop.onclick = () => scrollTo({ top: 0, behavior: "smooth" });
+      el.detail.addEventListener("click", (e) => {
+        if (e.target === el.detail) el.detail.close();
+      });
+      el.workspace.addEventListener("click", (e) => {
+        if (e.target === el.workspace) el.workspace.close();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (["INPUT", "TEXTAREA", "SELECT"].includes(event.target.tagName)) return;
+        if (event.key === "Escape") {
+          if (el.workspace.open) el.workspace.close();
+          else if (el.detail.open) el.detail.close();
+        }
+        if (event.key.toLowerCase() === "j") navigateDetail(1);
+        if (event.key.toLowerCase() === "k") navigateDetail(-1);
+        if (event.key.toLowerCase() === "n") openNotes();
+        if (event.key.toLowerCase() === "a") openAssets();
+        if (event.key.toLowerCase() === "d") toggleTheme();
+        if (event.key.toLowerCase() === "t") {
+          document.body.classList.toggle("single-task");
+          render();
+        }
+        if (event.key === "Enter" && !el.detail.open && !el.workspace.open) {
+          const next = filtered()[0];
+          if (next) openDetail(next.key);
+        }
+      });
+      if ("serviceWorker" in navigator)
+        navigator.serviceWorker.register("/sw.js");
+      load();
+    </script>
+  </body>
+</html>

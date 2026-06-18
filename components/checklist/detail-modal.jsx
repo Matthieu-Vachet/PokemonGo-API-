@@ -20,15 +20,22 @@ function valueOrDash(value, suffix = "") {
   return `${value}${suffix}`;
 }
 
-function Section({ title, eyebrow, children }) {
+function Section({ title, eyebrow, icon, children }) {
   return (
-    <section className="rounded-3xl border border-white/10 bg-white/[0.055] p-4 shadow-[0_20px_70px_rgba(0,0,0,.22)] sm:p-5">
+    <section className="rounded-3xl border border-white/10 bg-white/[0.075] p-4 shadow-[0_20px_70px_rgba(0,0,0,.2)] backdrop-blur sm:p-5">
       {eyebrow ? (
         <p className="mb-1 text-xs font-black uppercase tracking-[0.24em] text-cyan-200/70">
           {eyebrow}
         </p>
       ) : null}
-      <h3 className="mb-4 text-lg font-black tracking-tight text-white sm:text-xl">{title}</h3>
+      <h3 className="mb-4 flex items-center gap-3 text-lg font-black tracking-tight text-white sm:text-xl">
+        {icon ? (
+          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl border border-white/10 bg-slate-950/35 p-2">
+            <img className="max-h-full object-contain" src={icon} alt="" />
+          </span>
+        ) : null}
+        <span>{title}</span>
+      </h3>
       {children}
     </section>
   );
@@ -37,8 +44,8 @@ function Section({ title, eyebrow, children }) {
 function typePanelBackground(type, typeCatalog = []) {
   const background = typeBackground(type, typeCatalog);
   return background
-    ? `linear-gradient(135deg, rgba(2,6,23,.82), rgba(8,13,25,.74)), url("${background}")`
-    : "linear-gradient(135deg, rgba(15,23,42,.8), rgba(2,6,23,.72))";
+    ? `linear-gradient(135deg, rgba(2,6,23,.68), rgba(8,13,25,.52)), url("${background}")`
+    : "linear-gradient(135deg, rgba(15,23,42,.7), rgba(2,6,23,.58))";
 }
 
 function DataGrid({ items }) {
@@ -84,12 +91,12 @@ function TranslationGrid({ names = {} }) {
   const entries = Object.entries(names || {}).filter(([, value]) => value);
   if (!entries.length) return null;
   return (
-    <Section title="Noms traduits" eyebrow="localisation">
+    <Section title="Noms traduits" eyebrow="localisation" icon={uiAssets.icons.pokeball}>
       <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
         {entries.map(([language, value]) => (
           <div className="grid grid-cols-[2.2rem_minmax(0,1fr)] gap-3 rounded-2xl border border-white/10 bg-slate-950/45 p-3" key={language}>
-            <span className="grid h-9 w-9 place-items-center rounded-xl border border-white/10 bg-white/[0.06] text-xs font-black text-cyan-100">
-              {language.slice(0, 2).toUpperCase()}
+            <span className="grid h-9 w-9 place-items-center rounded-xl border border-white/10 bg-white/[0.06] p-1.5 text-xs font-black text-cyan-100">
+              <img className="max-h-full object-contain" src={uiAssets.icons.pokeball} alt="" />
             </span>
             <span className="min-w-0">
               <span className="block text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
@@ -200,12 +207,12 @@ const availabilityLabels = {
   apex: "Apex",
 };
 
-function MoveList({ title, moves, typeCatalog = [] }) {
+function MoveList({ title, moves, typeCatalog = [], icon }) {
   const list = moveArray(moves).filter(Boolean).map((move) =>
     typeof move === "string" ? { id: move } : move,
   );
   return (
-    <Section title={title}>
+    <Section title={title} icon={icon}>
       {list.length ? (
         <div className="grid gap-3">
           {list.map((move) => (
@@ -281,7 +288,7 @@ function AssetGallery({ entry, payload }) {
   }, new Map()).entries()];
 
   return (
-    <Section title="Galerie liée à la fiche">
+    <Section title="Galerie liée à la fiche" icon={uiAssets.icons.result}>
       {assets.length ? (
         <div className="space-y-5">
           {groups.map(([group, groupAssets]) => (
@@ -335,7 +342,7 @@ function AssetGallery({ entry, payload }) {
 
 function IssuesPanel({ entry }) {
   return (
-    <Section title="Contrôles de fiche">
+    <Section title="Contrôles de fiche" icon={uiAssets.icons.problem}>
       {(entry.issues || []).length ? (
         <div className="space-y-3">
           {entry.issues.map((issue) => (
@@ -374,7 +381,7 @@ function PvpPanel({ pvp, moveDetails }) {
   };
   const leagues = Object.entries(labels);
   return (
-    <Section title="Ligues PvP">
+    <Section title="Ligues PvP" icon={uiAssets.icons.battle}>
       <div className="grid gap-3 lg:grid-cols-2">
         {leagues.map(([key, label]) => {
           const value = pvp?.[key];
@@ -440,7 +447,7 @@ function JsonBlock({ payload }) {
 
 function AdminActions({ entry, onCopyPatch, onAuditUrls, onAssetAudit, extraPanel }) {
   return (
-    <Section title="Outils admin" eyebrow="privé">
+    <Section title="Outils admin" eyebrow="privé" icon={uiAssets.icons.radar}>
       <div className="flex flex-wrap gap-3">
         <button
           className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm font-black text-white transition hover:border-cyan-200/50 hover:bg-cyan-400/15"
@@ -533,7 +540,7 @@ export function DetailModal({
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-slate-950/75 p-0 backdrop-blur-md sm:items-center sm:p-6" role="presentation" onClick={onClose}>
       <div
-        className="max-h-[96dvh] w-full max-w-6xl overflow-hidden rounded-t-[2rem] border border-white/10 bg-[#08111f] text-white shadow-[0_30px_120px_rgba(0,0,0,.65)] sm:max-h-[92dvh] sm:rounded-[2rem]"
+        className="max-h-[96dvh] w-full max-w-6xl overflow-hidden rounded-t-[2rem] border border-white/10 bg-[#0d1a2b] text-white shadow-[0_30px_120px_rgba(0,0,0,.65)] sm:max-h-[92dvh] sm:rounded-[2rem]"
         role="dialog"
         aria-modal="true"
         onClick={(event) => event.stopPropagation()}
@@ -541,14 +548,14 @@ export function DetailModal({
         <div
           className="relative overflow-hidden border-b border-white/10 bg-cover bg-center px-4 py-5 sm:px-6 sm:py-6"
           style={{
-            backgroundImage: `${typePanelBackground(mainType, typeCatalog)}, radial-gradient(circle_at_8%_0%,rgba(168,85,247,.38),transparent_36%), radial-gradient(circle_at_92%_15%,rgba(45,212,191,.28),transparent_34%)`,
+            backgroundImage: `${typePanelBackground(mainType, typeCatalog)}, radial-gradient(circle_at_8%_0%,${typeColors[mainType] || "#38bdf8"}66,transparent_36%), radial-gradient(circle_at_92%_15%,rgba(45,212,191,.32),transparent_34%)`,
           }}
         >
           <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] [background-size:34px_34px]" />
           <div className="relative flex items-center gap-4 pr-14">
             <div className="grid h-24 w-24 shrink-0 place-items-center rounded-full border-4 border-white/80 bg-white shadow-[0_18px_60px_rgba(0,0,0,.32)] sm:h-28 sm:w-28">
               {entry.image ? (
-                <img className="max-h-20 object-contain sm:max-h-24" src={entry.image} alt={entry.name} />
+                <img className="max-h-[5.7rem] object-contain sm:max-h-[6.7rem]" src={entry.image} alt={entry.name} />
               ) : (
                 <span className="h-10 w-10 rounded-full border-[10px] border-slate-900/20" />
               )}
@@ -575,7 +582,12 @@ export function DetailModal({
           </div>
         </div>
 
-        <div className="max-h-[calc(96dvh-150px)] overflow-auto p-4 sm:max-h-[calc(92dvh-165px)] sm:p-6">
+        <div
+          className="max-h-[calc(96dvh-150px)] overflow-auto p-4 sm:max-h-[calc(92dvh-165px)] sm:p-6"
+          style={{
+            backgroundImage: `radial-gradient(circle at 8% 0%, ${typeColors[mainType] || "#38bdf8"}2f, transparent 30%), radial-gradient(circle at 92% 10%, rgba(34,211,238,.14), transparent 28%)`,
+          }}
+        >
           <div className="grid grid-cols-2 gap-3">
             <button className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-black transition hover:bg-white/10" type="button" onClick={onPrevious}>
               Fiche précédente
@@ -621,7 +633,7 @@ export function DetailModal({
                   />
                 ) : null}
                 <TranslationGrid names={names} />
-                <Section title="Identifiants">
+                <Section title="Identifiants" icon={uiAssets.icons.tag}>
                   <DataGrid
                     items={[
                       { label: "ID", value: valueOrDash(payload.id), icon: uiAssets.icons.tag },
@@ -635,7 +647,7 @@ export function DetailModal({
                     ]}
                   />
                 </Section>
-                <Section title="Identité et capture">
+                <Section title="Identité et capture" icon={uiAssets.icons.pokedexKanto}>
                   <DataGrid
                     items={[
                       { label: "Types", value: [entry.primaryType, entry.secondaryType].filter(Boolean).map((type) => typeName(type, typeCatalog)).join(" / ") || "-", icon: uiAssets.icons.type },
@@ -652,7 +664,7 @@ export function DetailModal({
                     ]}
                   />
                 </Section>
-                <Section title="Disponibilité">
+                <Section title="Disponibilité" icon={uiAssets.icons.shiny}>
                   <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
                     {Object.entries(availability).map(([key, value]) => (
                       <span
@@ -674,27 +686,27 @@ export function DetailModal({
 
             {activeTab === "cp" ? (
               <>
-                <Section title="Statistiques de base">
+                <Section title="Statistiques de base" icon={uiAssets.icons.swords}>
                   <DataGrid
                     items={[
-                      { label: "Attaque", value: valueOrDash(stats.attack), icon: uiAssets.icons.attack },
-                      { label: "Défense", value: valueOrDash(stats.defense), icon: uiAssets.icons.attack },
-                      { label: "Endurance", value: valueOrDash(stats.stamina), icon: uiAssets.icons.attack },
+                      { label: "Attaque", value: valueOrDash(stats.attack), icon: uiAssets.icons.swords },
+                      { label: "Défense", value: valueOrDash(stats.defense), icon: uiAssets.icons.shieldAlt },
+                      { label: "Endurance", value: valueOrDash(stats.stamina), icon: uiAssets.icons.up },
                     ]}
                   />
                 </Section>
-                <Section title="PC max et rencontres">
+                <Section title="PC max et rencontres" icon={uiAssets.icons.maxPc}>
                   <DataGrid
                     items={[
-                      { label: "PC 50", value: valueOrDash(maxCp.maxLevel50), icon: uiAssets.icons.combat },
-                      { label: "PC 40", value: valueOrDash(maxCp.maxLevel40), icon: uiAssets.icons.combat },
-                      { label: "Raid 20", value: valueOrDash(maxCp.raidLevel20), icon: uiAssets.icons.combat },
-                      { label: "Météo 25", value: valueOrDash(maxCp.weatherBoostLevel25), icon: uiAssets.icons.combat },
-                      { label: "Recherche 15", value: valueOrDash(maxCp.researchLevel15), icon: uiAssets.icons.combat },
+                      { label: "PC 50", value: valueOrDash(maxCp.maxLevel50), icon: uiAssets.icons.maxPc },
+                      { label: "PC 40", value: valueOrDash(maxCp.maxLevel40), icon: uiAssets.icons.maxPc },
+                      { label: "Raid 20", value: valueOrDash(maxCp.raidLevel20), icon: uiAssets.icons.maxPc },
+                      { label: "Météo 25", value: valueOrDash(maxCp.weatherBoostLevel25), icon: uiAssets.icons.maxPc },
+                      { label: "Recherche 15", value: valueOrDash(maxCp.researchLevel15), icon: uiAssets.icons.maxPc },
                     ]}
                   />
                 </Section>
-                <Section title="PC par niveau">
+                <Section title="PC par niveau" icon={uiAssets.icons.maxPc}>
                   {cpByLevel.length ? (
                     <div className="grid max-h-[48dvh] gap-2 overflow-auto pr-1 sm:grid-cols-2 lg:grid-cols-4">
                       {cpByLevel.map((row) => (
@@ -715,11 +727,11 @@ export function DetailModal({
 
             {activeTab === "moves" ? (
               <>
-                <MoveList title="Attaques rapides" moves={moveCollection(moveDetails, "quickMoves", payload.quickMoves)} typeCatalog={typeCatalog} />
-                <MoveList title="Attaques chargées" moves={moveCollection(moveDetails, "cinematicMoves", payload.cinematicMoves)} typeCatalog={typeCatalog} />
-                <MoveList title="Attaques elite rapides" moves={moveCollection(moveDetails, "eliteQuickMoves", payload.eliteQuickMoves)} typeCatalog={typeCatalog} />
-                <MoveList title="Attaques elite chargées" moves={moveCollection(moveDetails, "eliteCinematicMoves", payload.eliteCinematicMoves)} typeCatalog={typeCatalog} />
-                <MoveList title="Attaques Max / GMax" moves={moveCollection(moveDetails, "maxMoves", payload.maxBattle?.moves)} typeCatalog={typeCatalog} />
+                <MoveList title="Attaques rapides" moves={moveCollection(moveDetails, "quickMoves", payload.quickMoves)} typeCatalog={typeCatalog} icon={uiAssets.icons.maxPc} />
+                <MoveList title="Attaques chargées" moves={moveCollection(moveDetails, "cinematicMoves", payload.cinematicMoves)} typeCatalog={typeCatalog} icon={uiAssets.icons.attackMove} />
+                <MoveList title="Attaques elite rapides" moves={moveCollection(moveDetails, "eliteQuickMoves", payload.eliteQuickMoves)} typeCatalog={typeCatalog} icon={uiAssets.icons.maxPc} />
+                <MoveList title="Attaques elite chargées" moves={moveCollection(moveDetails, "eliteCinematicMoves", payload.eliteCinematicMoves)} typeCatalog={typeCatalog} icon={uiAssets.icons.attackMove} />
+                <MoveList title="Attaques Max / GMax" moves={moveCollection(moveDetails, "maxMoves", payload.maxBattle?.moves)} typeCatalog={typeCatalog} icon={uiAssets.icons.breadBadge} />
               </>
             ) : null}
 
@@ -728,7 +740,7 @@ export function DetailModal({
             ) : null}
 
             {activeTab === "shadow" ? (
-              <Section title="Shadow / Purification">
+              <Section title="Shadow / Purification" icon={uiAssets.icons.shadow}>
                 <DataGrid
                   items={[
                     { label: "Shadow", value: availability.shadow ? "Oui" : "Non", icon: uiAssets.icons.shadow },
@@ -749,7 +761,7 @@ export function DetailModal({
             {activeTab === "json" ? (
               <div className="space-y-4">
                 <IssuesPanel entry={entry} />
-                <Section title="JSON source">
+                <Section title="JSON source" icon={uiAssets.icons.copy}>
                   <JsonBlock payload={payload.sourceData || payload} />
                 </Section>
               </div>

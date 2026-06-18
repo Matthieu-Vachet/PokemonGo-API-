@@ -28,6 +28,7 @@ import { DetailModal } from "../checklist/detail-modal";
 import { PokemonCard } from "../checklist/pokemon-card";
 import { MetricCard } from "../site/metric-card";
 import { typeBackground, typeColors, typeIcon, typeName } from "../site/pokemon-style";
+import { uiAssets } from "../site/ui-assets";
 import { LoginCard } from "./login-card";
 
 const assetChecksKey = "pokedex-v4-asset-checks";
@@ -785,10 +786,10 @@ export function AdminApp() {
             {!bootstrap.loading && !bootstrap.error && active === "overview" ? (
               <>
                 <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-                  <MetricCard label="Fiches analysées" value={summary.total || 0} />
-                  <MetricCard label="Terminées" value={summary.complete || 0} accent="green" />
-                  <MetricCard label="Problèmes" value={summary.issues || 0} accent="amber" />
-                  <MetricCard label="Assets vérifiés" value={Object.keys(assetChecks).length} accent="violet" />
+                  <MetricCard label="Fiches analysées" value={summary.total || 0} icon={uiAssets.icons.fiche} />
+                  <MetricCard label="Terminées" value={summary.complete || 0} accent="green" icon={uiAssets.icons.bookSpells} />
+                  <MetricCard label="Problèmes" value={summary.issues || 0} accent="amber" icon={uiAssets.icons.problem} />
+                  <MetricCard label="Assets vérifiés" value={Object.keys(assetChecks).length} accent="violet" icon={uiAssets.icons.result} />
                 </section>
 
                 <section className="grid gap-3 lg:grid-cols-3">
@@ -848,10 +849,10 @@ export function AdminApp() {
               <section className="grid gap-5 xl:grid-cols-[1.4fr_.9fr]">
                 <Panel title="Vérification d’assets" eyebrow="bibliothèque">
                   <div className="mb-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-                    <MetricCard label="GO" value={assetAudit?.totals?.goFiles || 0} />
-                    <MetricCard label="Shuffle" value={assetAudit?.totals?.shuffleFiles || 0} accent="violet" />
-                    <MetricCard label="Utilisés" value={assetAudit?.totals?.used || 0} accent="green" />
-                    <MetricCard label="Doublons" value={assetAudit?.totals?.duplicated || 0} accent="amber" />
+                    <MetricCard label="GO" value={assetAudit?.totals?.goFiles || 0} icon={uiAssets.icons.goLogo} />
+                    <MetricCard label="Shuffle" value={assetAudit?.totals?.shuffleFiles || 0} accent="violet" icon={uiAssets.icons.pikachuShuffle} />
+                    <MetricCard label="Utilisés" value={assetAudit?.totals?.used || 0} accent="green" icon={uiAssets.icons.bookSpells} />
+                    <MetricCard label="Doublons" value={assetAudit?.totals?.duplicated || 0} accent="amber" icon={uiAssets.icons.problem} />
                   </div>
                   <p className="mb-4 rounded-2xl border border-white/10 bg-slate-950/35 p-4 text-sm font-bold leading-6 text-slate-300">
                     Cette page sert à contrôler les images réellement liées aux fiches et les propositions HD. La recherche globale filtre aussi cette liste.

@@ -138,24 +138,24 @@ export default function HomePage() {
           <aside className="rounded-[2rem] border border-white/10 bg-black/30 p-5 backdrop-blur-xl">
             <img
               className="mx-auto mb-5 max-h-28 object-contain drop-shadow-[0_14px_40px_rgba(255,255,255,.18)]"
-              src={uiAssets.logo}
+              src={uiAssets.icons.goLogo}
               alt="Pokémon GO"
             />
             <div className="grid gap-3 sm:grid-cols-2">
-              <MetricCard label="Complétion JSON" value={`${completion}%`} accent="green" />
-              <MetricCard label="JSON incomplets" value={incomplete} accent="amber" />
-              <MetricCard label="Attaques" value={dashboard.catalog.moves} accent="violet" />
-              <MetricCard label="Assets indexés" value={dashboard.catalog.stickers + dashboard.catalog.types + dashboard.catalog.weather} />
+              <MetricCard label="Complétion JSON" value={`${completion}%`} accent="green" icon={uiAssets.icons.bookSpells} />
+              <MetricCard label="JSON incomplets" value={incomplete} accent="amber" icon={uiAssets.icons.problem} />
+              <MetricCard label="Attaques" value={dashboard.catalog.moves} accent="violet" icon={uiAssets.icons.swords} />
+              <MetricCard label="Assets indexés" value={dashboard.catalog.stickers + dashboard.catalog.types + dashboard.catalog.weather} icon={uiAssets.icons.result} />
             </div>
           </aside>
         </div>
       </section>
 
       <section className="mb-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        <MetricCard label="Fiches analysées" value={dashboard.summary.total} />
-        <MetricCard label="Terminées" value={dashboard.summary.complete} accent="green" />
-        <MetricCard label="JSON incomplets" value={incomplete} accent="amber" />
-        <MetricCard label="Problèmes détectés" value={dashboard.summary.issues} accent="violet" />
+        <MetricCard label="Fiches analysées" value={dashboard.summary.total} icon={uiAssets.icons.fiche} />
+        <MetricCard label="Terminées" value={dashboard.summary.complete} accent="green" icon={uiAssets.icons.bookSpells} />
+        <MetricCard label="JSON incomplets" value={incomplete} accent="amber" icon={uiAssets.icons.problem} />
+        <MetricCard label="Problèmes détectés" value={dashboard.summary.issues} accent="violet" icon={uiAssets.icons.problem} />
       </section>
 
       <section className="mb-5 grid gap-4 xl:grid-cols-[1.1fr_.9fr_.9fr]">
@@ -242,10 +242,12 @@ export default function HomePage() {
               </span>
             </div>
             <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
-              <span className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">Dernier commit applicatif</span>
-              <strong className="mt-2 block text-white">{repoFreshness?.subject || "Indisponible sur cet environnement"}</strong>
-              <span className="mt-1 block font-mono text-xs text-cyan-200/75">
-                {repoFreshness?.hash || "-"} · {repoFreshness?.date || "-"}
+              <span className="text-xs font-black uppercase tracking-[0.12em] text-slate-500">Version applicative</span>
+              <strong className="mt-2 block break-words text-base leading-snug text-white">
+                {repoFreshness?.subject || "Commit non exposé au runtime"}
+              </strong>
+              <span className="mt-1 block break-words font-mono text-xs text-cyan-200/75">
+                {repoFreshness ? `${repoFreshness.hash} · ${repoFreshness.date}` : "Vérifiable côté dépôt GitHub"}
               </span>
             </div>
             <Link className={`${ctaClass} border border-white/10 bg-white/10 text-white hover:bg-white/15`} href="/health">

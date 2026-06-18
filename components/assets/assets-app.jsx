@@ -361,10 +361,10 @@ export function AssetsApp() {
       ) : (
         <>
           <section className="mb-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-            <MetricCard label="Images Pokémon GO" value={audit?.totals?.goFiles || 0} />
-            <MetricCard label="Images Shuffle" value={audit?.totals?.shuffleFiles || 0} accent="violet" />
-            <MetricCard label="Attaques" value={catalog?.moves?.length || 0} accent="green" />
-            <MetricCard label="Stickers" value={catalog?.stickers?.length || 0} accent="amber" />
+            <MetricCard label="Images Pokémon GO" value={audit?.totals?.goFiles || 0} icon={uiAssets.icons.goLogo} />
+            <MetricCard label="Images Shuffle" value={audit?.totals?.shuffleFiles || 0} accent="violet" icon={uiAssets.icons.pikachuShuffle} />
+            <MetricCard label="Attaques" value={catalog?.moves?.length || 0} accent="green" icon={uiAssets.icons.swords} />
+            <MetricCard label="Stickers" value={catalog?.stickers?.length || 0} accent="amber" icon={uiAssets.icons.marshadowSticker} />
           </section>
 
           <section className="mb-5 rounded-[2rem] border border-white/10 bg-white/[0.055] p-3 shadow-[0_22px_90px_rgba(0,0,0,.2)]">

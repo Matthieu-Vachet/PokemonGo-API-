@@ -1,4 +1,5 @@
 import { catalogItem, typeBackground, typeColors, typeIcon, typeName } from "../site/pokemon-style";
+import { uiAssets } from "../site/ui-assets";
 
 function hasAssets(entry) {
   const assets = entry.assets || {};
@@ -44,6 +45,15 @@ function WeatherBadge({ weatherId, catalog }) {
         <img className="h-5 w-5 shrink-0 object-contain" src={item.assets.icon} alt="" />
       ) : null}
       <span className="truncate">{item?.names?.French || weatherId}</span>
+    </span>
+  );
+}
+
+function MiniInfo({ children, icon }) {
+  return (
+    <span className="inline-flex min-h-8 items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/10 px-3 text-xs font-black text-slate-200">
+      {icon ? <img className="h-4 w-4 shrink-0 object-contain" src={icon} alt="" /> : null}
+      <span className="truncate">{children}</span>
     </span>
   );
 }
@@ -122,16 +132,16 @@ export function PokemonCard({
         {weather.slice(0, 2).map((weatherId) => (
           <WeatherBadge key={weatherId} weatherId={weatherId} catalog={weatherCatalog} />
         ))}
-        <span className="inline-flex min-h-8 items-center justify-center rounded-lg border border-white/10 bg-white/10 px-3 text-xs font-black text-slate-200">
+        <MiniInfo icon={uiAssets.icons.attack}>
           {entry.quickMoveCount || 0} rapide(s)
-        </span>
-        <span className="inline-flex min-h-8 items-center justify-center rounded-lg border border-white/10 bg-white/10 px-3 text-xs font-black text-slate-200">
+        </MiniInfo>
+        <MiniInfo icon={uiAssets.icons.attack}>
           {entry.chargedMoveCount || 0} chargée(s)
-        </span>
+        </MiniInfo>
         {entry.maxMoveCount ? (
-          <span className="inline-flex min-h-8 items-center justify-center rounded-lg border border-white/10 bg-white/10 px-3 text-xs font-black text-slate-200">
+          <MiniInfo icon={uiAssets.icons.attack}>
             {entry.maxMoveCount} Max
-          </span>
+          </MiniInfo>
         ) : null}
         <span
           className={`inline-flex min-h-8 items-center justify-center rounded-lg border px-3 text-xs font-black ${

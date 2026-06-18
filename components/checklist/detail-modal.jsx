@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { typeColors, typeIcon, typeName } from "../site/pokemon-style";
-import { uiAssets } from "../site/ui-assets";
+import { typeBackground, typeColors, typeIcon, typeName } from "../site/pokemon-style";
+import { candyIconForDex, uiAssets } from "../site/ui-assets";
 
 const tabLabels = {
   overview: "Aperçu",
@@ -32,6 +32,13 @@ function Section({ title, eyebrow, children }) {
       {children}
     </section>
   );
+}
+
+function typePanelBackground(type, typeCatalog = []) {
+  const background = typeBackground(type, typeCatalog);
+  return background
+    ? `linear-gradient(135deg, rgba(2,6,23,.82), rgba(8,13,25,.74)), url("${background}")`
+    : "linear-gradient(135deg, rgba(15,23,42,.8), rgba(2,6,23,.72))";
 }
 
 function DataGrid({ items }) {
@@ -155,6 +162,44 @@ function MoveTypePill({ type, typeCatalog }) {
   );
 }
 
+function formatBuffValue(value) {
+  if (value === null || value === undefined) return "-";
+  if (typeof value === "number" && value > 0) return `+${value}`;
+  return String(value);
+}
+
+function BuffGrid({ buffs }) {
+  if (!buffs || typeof buffs !== "object") return null;
+  const rows = [
+    ["Chance", buffs.activationChance !== undefined ? `${buffs.activationChance}%` : "-"],
+    ["Attaque lanceur", formatBuffValue(buffs.attackerAttackStatsChange)],
+    ["Défense lanceur", formatBuffValue(buffs.attackerDefenseStatsChange)],
+    ["Attaque cible", formatBuffValue(buffs.targetAttackStatsChange)],
+    ["Défense cible", formatBuffValue(buffs.targetDefenseStatsChange)],
+  ];
+  return (
+    <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+      {rows.map(([label, value]) => (
+        <span className="rounded-xl border border-white/10 bg-slate-950/45 px-3 py-2" key={label}>
+          <small className="block text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">{label}</small>
+          <strong className="mt-1 block text-white">{value}</strong>
+        </span>
+      ))}
+    </div>
+  );
+}
+
+const availabilityLabels = {
+  released: "Sorti",
+  shinyReleased: "Shiny",
+  tradable: "Échange",
+  pokemonHomeTransfer: "Home",
+  shadow: "Shadow",
+  dynamax: "Dyna",
+  gigantamax: "GMax",
+  apex: "Apex",
+};
+
 function MoveList({ title, moves, typeCatalog = [] }) {
   const list = moveArray(moves).filter(Boolean).map((move) =>
     typeof move === "string" ? { id: move } : move,
@@ -165,7 +210,8 @@ function MoveList({ title, moves, typeCatalog = [] }) {
         <div className="grid gap-3">
           {list.map((move) => (
             <div
-              className="rounded-2xl border border-white/10 bg-slate-950/35 p-4 text-sm"
+              className="overflow-hidden rounded-2xl border border-white/10 bg-cover bg-center p-4 text-sm"
+              style={{ backgroundImage: typePanelBackground(move.type, typeCatalog) }}
               key={move.id || move.slug || moveName(move)}
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
@@ -184,7 +230,6 @@ function MoveList({ title, moves, typeCatalog = [] }) {
                   ["Durée", move.durationMs ? `${move.durationMs} ms` : undefined],
                   ["Tours PvP", move.combat?.turns],
                   ["Puissance PvP", move.combat?.power],
-                  ["Buffs", move.combat?.buffs ? JSON.stringify(move.combat.buffs) : "-"],
                 ].map(([label, value]) => (
                   <span className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2" key={label}>
                     <small className="block text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">{label}</small>
@@ -192,6 +237,7 @@ function MoveList({ title, moves, typeCatalog = [] }) {
                   </span>
                 ))}
               </div>
+              <BuffGrid buffs={move.combat?.buffs} />
             </div>
           ))}
         </div>
@@ -320,6 +366,12 @@ function PvpPanel({ pvp, moveDetails }) {
     ultraLeague: "Ultra League",
     masterLeague: "Master League",
   };
+  const icons = {
+    littleCup: uiAssets.icons.littleLeague,
+    greatLeague: uiAssets.icons.greatLeague,
+    ultraLeague: uiAssets.icons.ultraLeague,
+    masterLeague: uiAssets.icons.masterLeague,
+  };
   const leagues = Object.entries(labels);
   return (
     <Section title="Ligues PvP">
@@ -329,7 +381,10 @@ function PvpPanel({ pvp, moveDetails }) {
           if (!value) {
             return (
               <article className="rounded-2xl border border-white/10 bg-white/[0.035] p-4" key={key}>
-                <strong className="block font-black text-white">{label}</strong>
+                <div className="flex items-center gap-3">
+                  <img className="h-10 w-10 object-contain" src={icons[key]} alt="" />
+                  <strong className="block font-black text-white">{label}</strong>
+                </div>
                 <span className="mt-2 block text-sm font-bold text-slate-500">Aucune donnée PvP renseignée.</span>
               </article>
             );
@@ -340,7 +395,10 @@ function PvpPanel({ pvp, moveDetails }) {
           return (
             <article className="rounded-2xl border border-cyan-300/15 bg-cyan-400/10 p-4" key={key}>
               <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-                <strong className="text-lg font-black text-white">{label}</strong>
+                <span className="inline-flex min-w-0 items-center gap-3">
+                  <img className="h-12 w-12 shrink-0 object-contain" src={icons[key]} alt="" />
+                  <strong className="text-lg font-black text-white">{label}</strong>
+                </span>
                 <span className="rounded-full bg-slate-950/45 px-3 py-1 text-xs font-black text-cyan-100">
                   {value.tierRank || "Non classé"}
                 </span>
@@ -469,6 +527,8 @@ export function DetailModal({
       return item?.names?.French || weatherId;
     })
     .filter(Boolean);
+  const mainType = entry.primaryType || payload.primaryType || "NORMAL";
+  const candyIcon = candyIconForDex(entry.dexId || payload.dexId);
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-slate-950/75 p-0 backdrop-blur-md sm:items-center sm:p-6" role="presentation" onClick={onClose}>
@@ -478,7 +538,12 @@ export function DetailModal({
         aria-modal="true"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="relative overflow-hidden border-b border-white/10 bg-[radial-gradient(circle_at_8%_0%,rgba(168,85,247,.44),transparent_36%),radial-gradient(circle_at_92%_15%,rgba(45,212,191,.36),transparent_34%),linear-gradient(135deg,rgba(59,130,246,.25),rgba(15,23,42,.86))] px-4 py-5 sm:px-6 sm:py-6">
+        <div
+          className="relative overflow-hidden border-b border-white/10 bg-cover bg-center px-4 py-5 sm:px-6 sm:py-6"
+          style={{
+            backgroundImage: `${typePanelBackground(mainType, typeCatalog)}, radial-gradient(circle_at_8%_0%,rgba(168,85,247,.38),transparent_36%), radial-gradient(circle_at_92%_15%,rgba(45,212,191,.28),transparent_34%)`,
+          }}
+        >
           <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] [background-size:34px_34px]" />
           <div className="relative flex items-center gap-4 pr-14">
             <div className="grid h-24 w-24 shrink-0 place-items-center rounded-full border-4 border-white/80 bg-white shadow-[0_18px_60px_rgba(0,0,0,.32)] sm:h-28 sm:w-28">
@@ -573,32 +638,33 @@ export function DetailModal({
                 <Section title="Identité et capture">
                   <DataGrid
                     items={[
-                      { label: "Types", value: [entry.primaryType, entry.secondaryType].filter(Boolean).map((type) => typeName(type, typeCatalog)).join(" / ") || "-", icon: uiAssets.icons.tag },
-                      { label: "Boost météo", value: weatherNames.join(", ") || "-", icon: uiAssets.icons.speedometer },
+                      { label: "Types", value: [entry.primaryType, entry.secondaryType].filter(Boolean).map((type) => typeName(type, typeCatalog)).join(" / ") || "-", icon: uiAssets.icons.type },
+                      { label: "Boost météo", value: weatherNames.join(", ") || "-", icon: uiAssets.icons.weatherBoost },
                       { label: "Taille", value: valueOrDash(size.height, " m"), icon: uiAssets.icons.height },
                       { label: "Poids", value: valueOrDash(size.weight, " kg"), icon: uiAssets.icons.weight },
-                      { label: "Distance buddy", value: valueOrDash(payload.buddyDistance, " km"), icon: uiAssets.icons.pokemon },
-                      { label: "Taux capture", value: valueOrDash(payload.catchRate, "%"), icon: uiAssets.icons.pokedex },
-                      { label: "Taux fuite", value: valueOrDash(payload.fleeRate, "%"), icon: uiAssets.icons.speedometer },
-                      { label: "Énergie méga", value: valueOrDash(payload.megaEnergyReward), icon: uiAssets.icons.mega },
-                      { label: "Coût méga", value: valueOrDash(payload.energyCost), icon: uiAssets.icons.mega },
-                      { label: "Récompenses", value: `${valueOrDash(captureRewards.candy)} bonbons / ${valueOrDash(captureRewards.stardust)} poussières`, icon: uiAssets.icons.tag },
-                      { label: "2e attaque", value: `${valueOrDash(secondMove.candy)} bonbons / ${valueOrDash(secondMove.stardust)} poussières`, icon: uiAssets.icons.combat },
+                      { label: "Distance buddy", value: valueOrDash(payload.buddyDistance, " km"), icon: uiAssets.icons.buddy },
+                      { label: "Taux capture", value: valueOrDash(payload.catchRate, "%"), icon: uiAssets.icons.grass },
+                      { label: "Taux fuite", value: valueOrDash(payload.fleeRate, "%"), icon: uiAssets.icons.grass },
+                      { label: "Énergie méga", value: valueOrDash(payload.megaEnergyReward), icon: uiAssets.icons.megaEnergy },
+                      { label: "Coût méga", value: valueOrDash(payload.energyCost), icon: uiAssets.icons.megaEnergy },
+                      { label: "Récompenses", value: `${valueOrDash(captureRewards.candy)} bonbons / ${valueOrDash(captureRewards.stardust)} poussières`, icon: uiAssets.icons.stardust },
+                      { label: "2e attaque", value: `${valueOrDash(secondMove.candy)} bonbons / ${valueOrDash(secondMove.stardust)} poussières`, icon: uiAssets.icons.attack },
                     ]}
                   />
                 </Section>
                 <Section title="Disponibilité">
-                  <div className="flex flex-wrap gap-2">
+                  <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
                     {Object.entries(availability).map(([key, value]) => (
                       <span
-                        className={`rounded-full border px-3 py-2 text-xs font-black uppercase tracking-[0.12em] ${
+                        className={`inline-flex min-h-9 items-center justify-between gap-2 rounded-2xl border px-3 py-2 text-xs font-black ${
                           value
                             ? "border-emerald-300/35 bg-emerald-400/15 text-emerald-100"
                             : "border-white/10 bg-white/[0.045] text-slate-400"
                         }`}
                         key={key}
                       >
-                        {key}
+                        <span className="truncate">{availabilityLabels[key] || key}</span>
+                        <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${value ? "bg-emerald-300" : "bg-slate-600"}`} />
                       </span>
                     ))}
                   </div>
@@ -608,17 +674,23 @@ export function DetailModal({
 
             {activeTab === "cp" ? (
               <>
-                <Section title="Statistiques">
+                <Section title="Statistiques de base">
                   <DataGrid
                     items={[
-                      { label: "Attaque", value: valueOrDash(stats.attack), icon: uiAssets.icons.combat },
-                      { label: "Défense", value: valueOrDash(stats.defense), icon: uiAssets.icons.shield || uiAssets.icons.pokedex },
-                      { label: "Endurance", value: valueOrDash(stats.stamina), icon: uiAssets.icons.speedometer },
-                      { label: "PC 50", value: valueOrDash(maxCp.maxLevel50), icon: uiAssets.icons.mega },
-                      { label: "PC 40", value: valueOrDash(maxCp.maxLevel40), icon: uiAssets.icons.mega },
-                      { label: "Raid 20", value: valueOrDash(maxCp.raidLevel20), icon: uiAssets.icons.raid },
-                      { label: "Météo 25", value: valueOrDash(maxCp.weatherBoostLevel25), icon: uiAssets.icons.speedometer },
-                      { label: "Recherche 15", value: valueOrDash(maxCp.researchLevel15), icon: uiAssets.icons.search },
+                      { label: "Attaque", value: valueOrDash(stats.attack), icon: uiAssets.icons.attack },
+                      { label: "Défense", value: valueOrDash(stats.defense), icon: uiAssets.icons.attack },
+                      { label: "Endurance", value: valueOrDash(stats.stamina), icon: uiAssets.icons.attack },
+                    ]}
+                  />
+                </Section>
+                <Section title="PC max et rencontres">
+                  <DataGrid
+                    items={[
+                      { label: "PC 50", value: valueOrDash(maxCp.maxLevel50), icon: uiAssets.icons.combat },
+                      { label: "PC 40", value: valueOrDash(maxCp.maxLevel40), icon: uiAssets.icons.combat },
+                      { label: "Raid 20", value: valueOrDash(maxCp.raidLevel20), icon: uiAssets.icons.combat },
+                      { label: "Météo 25", value: valueOrDash(maxCp.weatherBoostLevel25), icon: uiAssets.icons.combat },
+                      { label: "Recherche 15", value: valueOrDash(maxCp.researchLevel15), icon: uiAssets.icons.combat },
                     ]}
                   />
                 </Section>
@@ -661,10 +733,13 @@ export function DetailModal({
                   items={[
                     { label: "Shadow", value: availability.shadow ? "Oui" : "Non", icon: uiAssets.icons.shadow },
                     { label: "Purification", value: valueOrDash(payload.shadow?.purificationCost?.stardust, " poussières"), icon: uiAssets.icons.purified },
-                    { label: "Bonbons", value: valueOrDash(payload.shadow?.purificationCost?.candy), icon: uiAssets.icons.tag },
+                    { label: "Bonbons", value: valueOrDash(payload.shadow?.purificationCost?.candy), icon: candyIcon || uiAssets.icons.candy },
                     { label: "Sortie", value: formatDate(payload.shadow?.firstReleaseDate || payload.shadow?.releaseDate), icon: uiAssets.icons.radar },
-                    { label: "Catch CP normal", value: formatRange(payload.shadow?.catchCp?.normal), icon: uiAssets.icons.pokedex },
-                    { label: "Catch CP météo", value: formatRange(payload.shadow?.catchCp?.weatherBoosted), icon: uiAssets.icons.speedometer },
+                    {
+                      label: "Catch CP",
+                      value: `Normal ${formatRange(payload.shadow?.catchCp?.normal)} / Météo ${formatRange(payload.shadow?.catchCp?.weatherBoosted)}`,
+                      icon: uiAssets.icons.cp,
+                    },
                   ]}
                 />
               </Section>

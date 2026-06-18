@@ -6,6 +6,7 @@ import { BookOpen, Code2, LayoutDashboard, ScrollText } from "lucide-react";
 import { MetricCard } from "../site/metric-card";
 import { PokemonCard } from "./pokemon-card";
 import { DetailModal } from "./detail-modal";
+import { uiAssets } from "../site/ui-assets";
 
 const pageSize = 120;
 const buttonClass =
@@ -251,36 +252,66 @@ export function ChecklistApp({ mode = "public" }) {
             </div>
           </section>
 
-          <section className="mb-5 grid gap-2 rounded-[2rem] border border-white/10 bg-white/[0.055] p-3 shadow-[0_22px_90px_rgba(0,0,0,.2)] lg:grid-cols-[minmax(260px,1.2fr)_repeat(4,minmax(150px,.55fr))]">
-            <input
-              className={fieldClass}
-              placeholder="Pokémon, numéro, forme, type, fichier..."
-              value={search}
-              onChange={(event) => resetFilters(event.target.value, setSearch)}
-            />
-            <select className={fieldClass} value={generation} onChange={(event) => resetFilters(event.target.value, setGeneration)}>
-              <option value="all">Toutes générations</option>
+          <section className="mb-5 rounded-[2rem] border border-white/10 bg-white/[0.055] p-3 shadow-[0_22px_90px_rgba(0,0,0,.2)]">
+            <div className="grid gap-2 lg:grid-cols-[minmax(260px,1.2fr)_repeat(3,minmax(150px,.55fr))]">
+              <input
+                className={fieldClass}
+                placeholder="Pokémon, numéro, forme, type, fichier..."
+                value={search}
+                onChange={(event) => resetFilters(event.target.value, setSearch)}
+              />
+              <select className={fieldClass} value={kind} onChange={(event) => resetFilters(event.target.value, setKind)}>
+                <option value="all">Toutes familles</option>
+                {[...new Set(entries.map((entry) => entry.kind))].sort().map((value) => (
+                  <option key={value} value={value}>{familyLabel(value)}</option>
+                ))}
+              </select>
+              <select className={fieldClass} value={formFilter} onChange={(event) => resetFilters(event.target.value, setFormFilter)}>
+                <option value="all">Toutes formes</option>
+                {formOptions.map((option) => (
+                  <option key={option.id} value={option.id}>{option.label}</option>
+                ))}
+              </select>
+              <select className={fieldClass} value={status} onChange={(event) => resetFilters(event.target.value, setStatus)}>
+                <option value="all">Tous statuts</option>
+                <option value="complete">JSON complet</option>
+                <option value="todo">JSON incomplet</option>
+              </select>
+            </div>
+            <div className="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-10">
+              <button
+                className={`min-h-20 rounded-2xl border px-2 py-2 text-xs font-black transition ${
+                  generation === "all"
+                    ? "border-cyan-200/50 bg-cyan-400/20 text-white"
+                    : "border-white/10 bg-white/[0.045] text-slate-300 hover:bg-white/10"
+                }`}
+                type="button"
+                onClick={() => resetFilters("all", setGeneration)}
+              >
+                Toutes
+              </button>
               {generations.map((value) => (
-                <option key={value} value={value}>Génération {value}</option>
+                <button
+                  className={`overflow-hidden rounded-2xl border text-xs font-black transition ${
+                    String(value) === generation
+                      ? "border-cyan-200/60 bg-cyan-400/20 text-white shadow-[0_12px_35px_rgba(14,165,233,.18)]"
+                      : "border-white/10 bg-white/[0.045] text-slate-300 hover:bg-white/10"
+                  }`}
+                  key={value}
+                  type="button"
+                  onClick={() => resetFilters(String(value), setGeneration)}
+                >
+                  <span className="grid h-14 place-items-center bg-slate-950/35 p-1">
+                    {uiAssets.generations[value] ? (
+                      <img className="max-h-full object-contain" src={uiAssets.generations[value]} alt="" />
+                    ) : (
+                      <span className="h-8 w-8 rounded-full bg-white/10" />
+                    )}
+                  </span>
+                  <span className="block px-2 py-2">Gén. {value}</span>
+                </button>
               ))}
-            </select>
-            <select className={fieldClass} value={kind} onChange={(event) => resetFilters(event.target.value, setKind)}>
-              <option value="all">Toutes familles</option>
-              {[...new Set(entries.map((entry) => entry.kind))].sort().map((value) => (
-                <option key={value} value={value}>{familyLabel(value)}</option>
-              ))}
-            </select>
-            <select className={fieldClass} value={formFilter} onChange={(event) => resetFilters(event.target.value, setFormFilter)}>
-              <option value="all">Toutes formes</option>
-              {formOptions.map((option) => (
-                <option key={option.id} value={option.id}>{option.label}</option>
-              ))}
-            </select>
-            <select className={fieldClass} value={status} onChange={(event) => resetFilters(event.target.value, setStatus)}>
-              <option value="all">Tous statuts</option>
-              <option value="complete">JSON complet</option>
-              <option value="todo">JSON incomplet</option>
-            </select>
+            </div>
           </section>
 
           <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">

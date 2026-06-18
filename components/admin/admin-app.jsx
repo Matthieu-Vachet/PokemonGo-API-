@@ -176,8 +176,9 @@ function HistoryList({ history = [] }) {
   );
 }
 
-function CatalogPanel({ catalog = {}, search = "" }) {
+function CatalogPanel({ catalog = {} }) {
   const [tab, setTab] = useState("moves");
+  const [catalogSearch, setCatalogSearch] = useState("");
   const data = catalog || {};
   const labels = {
     moves: "Attaques",
@@ -194,7 +195,7 @@ function CatalogPanel({ catalog = {}, search = "" }) {
           ? data.weather || []
           : data.types || [];
   const items = rawItems.filter((item) =>
-    JSON.stringify(item).toLowerCase().includes(search.trim().toLowerCase()),
+    JSON.stringify(item).toLowerCase().includes(catalogSearch.trim().toLowerCase()),
   );
 
   return (
@@ -212,7 +213,10 @@ function CatalogPanel({ catalog = {}, search = "" }) {
               }`}
               key={value}
               type="button"
-              onClick={() => setTab(value)}
+              onClick={() => {
+                setTab(value);
+                setCatalogSearch("");
+              }}
             >
               {label}
             </button>
@@ -220,8 +224,19 @@ function CatalogPanel({ catalog = {}, search = "" }) {
         </div>
       }
     >
+      <label className="mb-4 block">
+        <span className="mb-2 block text-xs font-black uppercase tracking-[0.18em] text-slate-500">
+          Recherche dans {labels[tab]}
+        </span>
+        <input
+          className={fieldClass}
+          value={catalogSearch}
+          placeholder={`Chercher dans ${labels[tab].toLowerCase()}...`}
+          onChange={(event) => setCatalogSearch(event.target.value)}
+        />
+      </label>
       {tab === "moves" ? (
-        <div className="overflow-hidden rounded-3xl border border-white/10">
+        <div className="overflow-hidden rounded-3xl border border-white/10" key="moves">
           {items.slice(0, 180).map((item) => (
             <div
               className="grid gap-3 border-b border-white/10 bg-slate-950/35 px-4 py-3 text-sm last:border-b-0 sm:grid-cols-[1fr_auto_auto_auto] sm:items-center"
@@ -245,7 +260,7 @@ function CatalogPanel({ catalog = {}, search = "" }) {
           ))}
         </div>
       ) : (
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" key={tab}>
           {items.slice(0, 180).map((item) => {
             const image = item.assets?.background || item.assets?.icon || item.image;
             const label = item.names?.French || item.name || item.id;
@@ -275,7 +290,7 @@ function CatalogPanel({ catalog = {}, search = "" }) {
                     {label}
                   </strong>
                   <span className="mt-1 block truncate text-xs font-bold text-slate-400">
-                    {item.category || item.id}
+                    {tab === "weather" ? "Météo" : tab === "stickers" ? item.filename || "Sticker" : item.category || item.id}
                   </span>
                   {boosted.length ? (
                     <div className="mt-2 flex flex-wrap gap-1">
@@ -292,6 +307,11 @@ function CatalogPanel({ catalog = {}, search = "" }) {
           })}
         </div>
       )}
+      {!items.length ? (
+        <p className="mt-4 rounded-2xl border border-dashed border-white/15 p-4 text-sm font-bold text-slate-400">
+          Aucun résultat dans {labels[tab]}.
+        </p>
+      ) : null}
     </Panel>
   );
 }
@@ -801,7 +821,7 @@ export function AdminApp() {
               </Panel>
             ) : null}
 
-            {active === "catalogs" ? <CatalogPanel catalog={catalog} search={search} /> : null}
+            {active === "catalogs" ? <CatalogPanel catalog={catalog} /> : null}
 
             {active === "compare" ? (
               <Panel title="Comparaison de fiches" eyebrow="contrôle">

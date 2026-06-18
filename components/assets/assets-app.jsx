@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { ChevronDown, Search, X } from "lucide-react";
 import { MetricCard } from "../site/metric-card";
 import { uiAssets } from "../site/ui-assets";
-import { typeColors, typeIcon, typeName } from "../site/pokemon-style";
+import { typeBackground, typeColors, typeIcon, typeName } from "../site/pokemon-style";
 
 const tabs = [
   ["all", "Tout"],
@@ -228,11 +228,48 @@ function AssetTile({ item, onPreview }) {
   );
 }
 
+function typePanelBackground(type, typeCatalog = []) {
+  const background = typeBackground(type, typeCatalog);
+  return background
+    ? `linear-gradient(135deg, rgba(2,6,23,.84), rgba(15,23,42,.72)), url("${background}")`
+    : "linear-gradient(135deg, rgba(15,23,42,.84), rgba(2,6,23,.74))";
+}
+
+function formatBuffValue(value) {
+  if (value === null || value === undefined) return "-";
+  if (typeof value === "number" && value > 0) return `+${value}`;
+  return String(value);
+}
+
+function BuffGrid({ buffs }) {
+  if (!buffs || typeof buffs !== "object") return null;
+  const rows = [
+    ["Chance", buffs.activationChance !== undefined ? `${buffs.activationChance}%` : "-"],
+    ["Atk lanceur", formatBuffValue(buffs.attackerAttackStatsChange)],
+    ["Def lanceur", formatBuffValue(buffs.attackerDefenseStatsChange)],
+    ["Atk cible", formatBuffValue(buffs.targetAttackStatsChange)],
+    ["Def cible", formatBuffValue(buffs.targetDefenseStatsChange)],
+  ];
+  return (
+    <div className="grid gap-2 border-t border-white/10 p-4 text-sm sm:grid-cols-2 lg:grid-cols-5">
+      {rows.map(([label, value]) => (
+        <div className="rounded-2xl border border-white/10 bg-slate-950/45 p-3" key={label}>
+          <span className="block text-xs font-black uppercase tracking-[0.16em] text-slate-500">{label}</span>
+          <strong className="mt-1 block break-words text-white">{value}</strong>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function MoveCard({ move, typeCatalog = [] }) {
   const [open, setOpen] = useState(false);
   const type = move.type || move.raw?.type;
   return (
-    <article className="overflow-hidden rounded-[1.45rem] border border-white/10 bg-slate-950/45">
+    <article
+      className="overflow-hidden rounded-[1.45rem] border border-white/10 bg-cover bg-center"
+      style={{ backgroundImage: typePanelBackground(type, typeCatalog) }}
+    >
       <button
         className="grid w-full gap-3 p-4 text-left sm:grid-cols-[minmax(0,1fr)_auto_auto]"
         type="button"
@@ -256,23 +293,25 @@ function MoveCard({ move, typeCatalog = [] }) {
         </span>
       </button>
       {open ? (
-        <div className="grid gap-3 border-t border-white/10 p-4 text-sm sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            ["Catégorie", move.category || move.kind || move.moveType || "-"],
-            ["Énergie", move.energy ?? move.combat?.energy ?? "-"],
-            ["Durée", move.durationMs ? `${move.durationMs} ms` : "-"],
-            ["Tours PvP", move.combat?.turns ?? "-"],
-            ["Puissance PvP", move.combat?.power ?? "-"],
-            ["Buffs", move.combat?.buffs ? JSON.stringify(move.combat.buffs) : "-"],
-            ["Type", typeName(type, typeCatalog)],
-            ["Slug", move.slug || "-"],
-          ].map(([label, value]) => (
-            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-3" key={label}>
-              <span className="block text-xs font-black uppercase tracking-[0.16em] text-slate-500">{label}</span>
-              <strong className="mt-1 block break-words text-white">{value}</strong>
-            </div>
-          ))}
-        </div>
+        <>
+          <div className="grid gap-3 border-t border-white/10 p-4 text-sm sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              ["Catégorie", move.category || move.kind || move.moveType || "-"],
+              ["Énergie", move.energy ?? move.combat?.energy ?? "-"],
+              ["Durée", move.durationMs ? `${move.durationMs} ms` : "-"],
+              ["Tours PvP", move.combat?.turns ?? "-"],
+              ["Puissance PvP", move.combat?.power ?? "-"],
+              ["Type", typeName(type, typeCatalog)],
+              ["Slug", move.slug || "-"],
+            ].map(([label, value]) => (
+              <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-3" key={label}>
+                <span className="block text-xs font-black uppercase tracking-[0.16em] text-slate-500">{label}</span>
+                <strong className="mt-1 block break-words text-white">{value}</strong>
+              </div>
+            ))}
+          </div>
+          <BuffGrid buffs={move.combat?.buffs} />
+        </>
       ) : null}
     </article>
   );

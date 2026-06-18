@@ -1,4 +1,6 @@
 const childProcess = require("child_process");
+const fs = require("fs");
+const path = require("path");
 const { buildChecklist } = require("../../apps/checklist/server/engine");
 const { catalog } = require("../../apps/checklist/server/workshop");
 
@@ -72,6 +74,55 @@ function repoFreshness() {
   }
 }
 
+const reportLabels = {
+  "forms-enrichment-report.json": "Formes Pokémon",
+  "mega-enrichment-report.json": "Méga et Primo",
+  "pokemon-shuffle-import-report.json": "Assets Shuffle",
+  "pokemon-enrichment-report.json": "Fiches Pokémon",
+  "dynamax-pokemon-import-report.json": "Dynamax et Gigantamax",
+  "visual-assets-import-report.json": "Assets visuels",
+  "location-cards-import-report.json": "Location Cards",
+  "shadow-pokemon-import-report.json": "Pokémon Shadow",
+};
+
+function reportFreshness() {
+  const dataDir = path.join(process.cwd(), "data");
+  try {
+    const reports = fs
+      .readdirSync(dataDir)
+      .filter((file) => file.endsWith("-report.json"))
+      .map((file) => {
+        try {
+          const payload = JSON.parse(fs.readFileSync(path.join(dataDir, file), "utf8"));
+          const generatedAt = payload.generatedAt || payload.updatedAt || null;
+          const timestamp = generatedAt ? Date.parse(generatedAt) : 0;
+          return {
+            file,
+            generatedAt,
+            timestamp: Number.isFinite(timestamp) ? timestamp : 0,
+            label: reportLabels[file] || file.replace(/-report\.json$/, "").replace(/-/g, " "),
+          };
+        } catch {
+          return null;
+        }
+      })
+      .filter((item) => item?.generatedAt)
+      .sort((left, right) => right.timestamp - left.timestamp);
+
+    if (!reports.length) return null;
+    const latest = reports[0];
+    return {
+      subject: latest.label,
+      date: latest.generatedAt.slice(0, 10),
+      iso: latest.generatedAt,
+      source: latest.file,
+      count: reports.length,
+    };
+  } catch {
+    return null;
+  }
+}
+
 function loadSiteDashboard() {
   const entries = buildChecklist();
   const dataCatalog = catalog();
@@ -87,7 +138,10 @@ function loadSiteDashboard() {
     summary: summarizeChecklist(entries),
     featured,
     needsAttention,
-    freshness: repoFreshness(),
+    freshness: {
+      repo: repoFreshness(),
+      data: reportFreshness(),
+    },
     catalog: {
       types: dataCatalog.types.length,
       weather: dataCatalog.weather.length,

@@ -98,6 +98,45 @@ export function SiteShell({ children }) {
         </div>
       </header>
       {children}
+      <footer className="border-t border-white/10 bg-zinc-950/88 px-4 py-8 backdrop-blur-xl lg:px-6">
+        <div className="mx-auto grid max-w-[1680px] gap-6 md:grid-cols-[1.1fr_.9fr_.9fr]">
+          <div>
+            <Link href="/" className="inline-flex items-center gap-3" aria-label="Accueil Pokémon GO API">
+              <PokeballMark small />
+              <span>
+                <strong className="block text-sm font-black text-white">Pokémon GO API</strong>
+                <small className="block text-xs font-bold text-slate-400">Données, assets et contrôle qualité.</small>
+              </span>
+            </Link>
+            <p className="mt-3 max-w-md text-sm font-bold leading-6 text-slate-400">
+              Un accès public en lecture pour explorer les données, et un dashboard protégé pour maintenir le dataset.
+            </p>
+          </div>
+          <nav className="grid gap-2 text-sm font-bold text-slate-300" aria-label="Liens utiles footer">
+            <span className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">Explorer</span>
+            {links.slice(0, 4).map((link) => (
+              <Link className="w-fit transition hover:text-cyan-200" href={link.href} key={link.href}>
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <div className="space-y-3">
+            <span className="block text-xs font-black uppercase tracking-[0.18em] text-slate-500">État API</span>
+            <ApiStatusPill />
+            <div className="flex flex-wrap gap-2 text-xs font-black text-slate-300">
+              <Link className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-2 hover:bg-white/10" href="/health">
+                Health
+              </Link>
+              <Link className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-2 hover:bg-white/10" href="/api-docs.json">
+                OpenAPI JSON
+              </Link>
+              <Link className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-2 hover:bg-white/10" href="/admin">
+                Admin
+              </Link>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

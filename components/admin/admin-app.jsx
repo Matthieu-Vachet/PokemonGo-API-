@@ -6,6 +6,7 @@ import {
   BarChart3,
   BookOpen,
   Boxes,
+  ChevronDown,
   ClipboardCheck,
   Copy,
   ExternalLink,
@@ -26,7 +27,7 @@ import {
 import { DetailModal } from "../checklist/detail-modal";
 import { PokemonCard } from "../checklist/pokemon-card";
 import { MetricCard } from "../site/metric-card";
-import { typeColors, typeIcon, typeName } from "../site/pokemon-style";
+import { typeBackground, typeColors, typeIcon, typeName } from "../site/pokemon-style";
 import { LoginCard } from "./login-card";
 
 const assetChecksKey = "pokedex-v4-asset-checks";
@@ -176,6 +177,114 @@ function HistoryList({ history = [] }) {
   );
 }
 
+function moveTitle(move) {
+  return move.names?.French || move.names?.English || move.name || move.id;
+}
+
+function typePanelBackground(type, typeCatalog = []) {
+  const background = typeBackground(type, typeCatalog);
+  return background
+    ? `linear-gradient(135deg, rgba(2,6,23,.86), rgba(15,23,42,.76)), url("${background}")`
+    : "linear-gradient(135deg, rgba(15,23,42,.86), rgba(2,6,23,.78))";
+}
+
+function formatBuffValue(value) {
+  if (value === null || value === undefined) return "-";
+  if (typeof value === "number" && value > 0) return `+${value}`;
+  return String(value);
+}
+
+function AdminMoveCard({ move, typeCatalog = [] }) {
+  const [open, setOpen] = useState(false);
+  const type = move.type;
+  const rows = [
+    ["Puissance arène/raid", move.power ?? "-"],
+    ["Énergie arène/raid", move.energy ?? "-"],
+    ["Durée", move.durationMs ? `${move.durationMs} ms` : "-"],
+    ["Puissance PvP", move.combat?.power ?? "-"],
+    ["Énergie PvP", move.combat?.energy ?? "-"],
+    ["Tours PvP", move.combat?.turns ?? "-"],
+    ["Catégorie", move.category || move.kind || move.moveType || "-"],
+    ["Slug", move.slug || "-"],
+  ];
+  const buffs = move.combat?.buffs;
+  const buffRows = buffs
+    ? [
+        ["Chance", buffs.activationChance !== undefined ? `${buffs.activationChance}%` : "-"],
+        ["Atk lanceur", formatBuffValue(buffs.attackerAttackStatsChange)],
+        ["Def lanceur", formatBuffValue(buffs.attackerDefenseStatsChange)],
+        ["Atk cible", formatBuffValue(buffs.targetAttackStatsChange)],
+        ["Def cible", formatBuffValue(buffs.targetDefenseStatsChange)],
+      ]
+    : [];
+
+  return (
+    <article
+      className="overflow-hidden rounded-3xl border border-white/10 bg-cover bg-center"
+      style={{ backgroundImage: typePanelBackground(type, typeCatalog) }}
+    >
+      <button
+        className="grid w-full gap-3 p-4 text-left sm:grid-cols-[minmax(0,1fr)_auto_auto]"
+        type="button"
+        onClick={() => setOpen((value) => !value)}
+      >
+        <span className="min-w-0">
+          <strong className="block truncate text-base font-black text-white">{moveTitle(move)}</strong>
+          <small className="mt-1 block truncate font-mono text-xs font-bold text-slate-400">{move.id}</small>
+        </span>
+        <span
+          className="inline-flex w-fit items-center gap-2 rounded-full px-3 py-1 text-xs font-black text-white"
+          style={{ background: `color-mix(in srgb, ${typeColors[type] || "#64748b"} 52%, rgba(255,255,255,.12))` }}
+        >
+          {typeIcon(type, typeCatalog) ? (
+            <img className="h-4 w-4 shrink-0 object-contain" src={typeIcon(type, typeCatalog)} alt="" />
+          ) : null}
+          {typeName(type, typeCatalog)}
+        </span>
+        <span className="inline-flex items-center justify-end gap-2 text-xs font-black text-cyan-100">
+          {move.power ?? "-"} puissance <ChevronDown className={open ? "rotate-180 transition" : "transition"} size={15} />
+        </span>
+      </button>
+      {open ? (
+        <div className="border-t border-white/10 p-4">
+          <div className="grid gap-3 text-sm sm:grid-cols-2 xl:grid-cols-4">
+            {rows.map(([label, value]) => (
+              <div className="rounded-2xl border border-white/10 bg-slate-950/45 p-3" key={label}>
+                <span className="block text-xs font-black uppercase tracking-[0.16em] text-slate-500">{label}</span>
+                <strong className="mt-1 block break-words text-white">{value}</strong>
+              </div>
+            ))}
+          </div>
+          <div className="mt-3 rounded-2xl border border-white/10 bg-slate-950/35 p-3">
+            <span className="block text-xs font-black uppercase tracking-[0.16em] text-slate-500">Traductions</span>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {Object.entries(move.names || {}).map(([lang, value]) => (
+                <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs font-bold text-slate-200" key={lang}>
+                  {lang}: {value}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="mt-3 rounded-2xl border border-white/10 bg-slate-950/35 p-3">
+            <span className="block text-xs font-black uppercase tracking-[0.16em] text-slate-500">Buffs PvP</span>
+            {buffRows.length ? (
+              <div className="mt-2 grid gap-2 sm:grid-cols-2 xl:grid-cols-5">
+                {buffRows.map(([label, value]) => (
+                  <span className="rounded-xl bg-white/[0.06] px-3 py-2 text-sm font-bold text-white" key={label}>
+                    {label}: {value}
+                  </span>
+                ))}
+              </div>
+            ) : (
+              <p className="mt-2 text-sm font-bold text-slate-400">Aucun buff PvP renseigné.</p>
+            )}
+          </div>
+        </div>
+      ) : null}
+    </article>
+  );
+}
+
 function CatalogPanel({ catalog = {} }) {
   const [tab, setTab] = useState("moves");
   const [catalogSearch, setCatalogSearch] = useState("");
@@ -236,39 +345,21 @@ function CatalogPanel({ catalog = {} }) {
         />
       </label>
       {tab === "moves" ? (
-        <div className="overflow-hidden rounded-3xl border border-white/10" key="moves">
-          {items.slice(0, 180).map((item) => (
-            <div
-              className="grid gap-3 border-b border-white/10 bg-slate-950/35 px-4 py-3 text-sm last:border-b-0 sm:grid-cols-[1fr_auto_auto_auto] sm:items-center"
-              key={item.id}
-            >
-              <strong className="min-w-0 truncate font-black text-white">
-                {item.names?.French || item.names?.English || item.id}
-              </strong>
-              <span
-                className="inline-flex w-fit items-center gap-2 rounded-full px-3 py-1 font-bold text-white"
-                style={{ background: `color-mix(in srgb, ${typeColors[item.type] || "#64748b"} 52%, rgba(255,255,255,.12))` }}
-              >
-                {typeIcon(item.type, data.types) ? (
-                  <img className="h-4 w-4 object-contain" src={typeIcon(item.type, data.types)} alt="" />
-                ) : null}
-                {typeName(item.type, data.types)}
-              </span>
-              <span className="font-black text-cyan-200">{item.category || item.moveType || "-"}</span>
-              <span className="font-black text-emerald-200">{item.power ?? "-"}</span>
-            </div>
+        <div className="grid gap-3" key="moves">
+          {items.slice(0, 180).map((item, index) => (
+            <AdminMoveCard move={item} typeCatalog={data.types || []} key={`${item.id || item.slug}-${index}`} />
           ))}
         </div>
       ) : (
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" key={tab}>
-          {items.slice(0, 180).map((item) => {
+          {items.slice(0, 180).map((item, index) => {
             const image = item.assets?.background || item.assets?.icon || item.image;
             const label = item.names?.French || item.name || item.id;
             const boosted = Array.isArray(item.boostedTypes) ? item.boostedTypes : [];
             return (
               <article
                 className="overflow-hidden rounded-3xl border border-white/10 bg-slate-950/40"
-                key={item.id || item.filename || label}
+                key={`${tab}-${item.id || item.filename || label}-${index}`}
               >
                 <div
                   className="grid aspect-[4/3] place-items-center bg-white/[0.04] p-4"

@@ -205,7 +205,7 @@ export function ChecklistApp({ mode = "public" }) {
           <Link className={buttonClass} href="/api-docs"><ScrollText size={16} /> Documentation</Link>
           <Link className={buttonClass} href="/swagger"><Code2 size={16} /> API interactive</Link>
           <Link className={buttonClass} href="/api-docs.json"><BookOpen size={16} /> OpenAPI</Link>
-          <Link className={`${buttonClass} bg-gradient-to-r from-rose-500 to-amber-300 text-zinc-950`} href="/admin">
+          <Link className={`${buttonClass} border-cyan-200/30 bg-cyan-400/15 text-cyan-50 hover:bg-cyan-400/20`} href="/admin">
             <LayoutDashboard size={16} /> Dashboard admin
           </Link>
         </div>
@@ -329,7 +329,7 @@ export function ChecklistApp({ mode = "public" }) {
           {visible.length < filtered.length ? (
             <div className="mt-6 flex justify-center">
               <button
-                className="min-h-11 rounded-lg bg-gradient-to-r from-rose-500 to-amber-300 px-4 font-black text-zinc-950"
+                className="min-h-11 rounded-2xl border border-cyan-200/30 bg-cyan-400/15 px-4 font-black text-cyan-50 transition hover:bg-cyan-400/20"
                 type="button"
                 onClick={() => setVisibleCount((count) => count + pageSize)}
               >

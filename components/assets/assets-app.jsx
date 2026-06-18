@@ -18,28 +18,6 @@ const tabs = [
 
 const tabLabels = Object.fromEntries(tabs);
 
-const filterLabels = {
-  all: "Tous",
-  normal: "Normal",
-  shiny: "Shiny",
-  shadow: "Shadow",
-  purified: "Purifié",
-  mega: "Méga",
-  primal: "Primo",
-  dynamax: "Dynamax",
-  gigantamax: "Gigantamax",
-  event: "Event",
-  alola: "Alola",
-  galar: "Galar",
-  hisui: "Hisui",
-  paldea: "Paldea",
-  fast: "Rapides",
-  charged: "Chargées",
-  elite: "Elite",
-  max: "Max",
-  gmax: "GMax",
-};
-
 const fieldClass =
   "min-h-12 w-full rounded-2xl border border-white/10 bg-slate-950/45 px-4 text-sm font-bold text-slate-100 outline-none placeholder:text-slate-500 focus:border-cyan-300/60 focus:ring-4 focus:ring-cyan-400/10";
 
@@ -167,32 +145,6 @@ function buildCollections(catalog, audit) {
 function collectionItems(collections, tab) {
   if (tab === "all") return Object.values(collections).flat();
   return collections[tab] || [];
-}
-
-function availableSubfilters(items) {
-  const order = [
-    "all",
-    "normal",
-    "shiny",
-    "shadow",
-    "purified",
-    "mega",
-    "primal",
-    "dynamax",
-    "gigantamax",
-    "event",
-    "alola",
-    "galar",
-    "hisui",
-    "paldea",
-    "fast",
-    "charged",
-    "elite",
-    "max",
-    "gmax",
-  ];
-  const present = new Set(items.flatMap((item) => item.tags || []));
-  return order.filter((key) => key === "all" || present.has(key));
 }
 
 function GroupTitle({ label, count }) {
@@ -343,7 +295,6 @@ export function AssetsApp() {
   const [catalog, setCatalog] = useState(null);
   const [audit, setAudit] = useState(null);
   const [tab, setTab] = useState("all");
-  const [subfilter, setSubfilter] = useState("all");
   const [search, setSearch] = useState("");
   const [preview, setPreview] = useState(null);
   const [error, setError] = useState("");
@@ -371,16 +322,8 @@ export function AssetsApp() {
   const baseItems = useMemo(() => {
     const items = collectionItems(collections, tab);
     const needle = search.trim().toLowerCase();
-    return items.filter((item) => {
-      const searchOk = !needle || item.searchText.includes(needle);
-      const filterOk = subfilter === "all" || (item.tags || []).includes(subfilter);
-      return searchOk && filterOk;
-    });
-  }, [collections, search, subfilter, tab]);
-  const subfilters = useMemo(
-    () => availableSubfilters(collectionItems(collections, tab)),
-    [collections, search, tab],
-  );
+    return items.filter((item) => !needle || item.searchText.includes(needle));
+  }, [collections, search, tab]);
   const grouped = useMemo(() => {
     const map = new Map();
     for (const item of baseItems) {
@@ -435,12 +378,11 @@ export function AssetsApp() {
                         : "border-white/10 bg-white/[0.05] text-slate-300 hover:bg-white/10"
                     }`}
                     key={id}
-                    type="button"
-                    onClick={() => {
-                      setTab(id);
-                      setSubfilter("all");
-                    }}
-                  >
+                  type="button"
+                  onClick={() => {
+                    setTab(id);
+                  }}
+                >
                     {label}
                   </button>
                 ))}
@@ -455,24 +397,6 @@ export function AssetsApp() {
                 />
               </label>
             </div>
-            {subfilters.length > 1 ? (
-              <div className="mt-3 flex flex-wrap gap-2">
-                {subfilters.map((id) => (
-                <button
-                  className={`rounded-full border px-4 py-2 text-xs font-black transition ${
-                    subfilter === id
-                      ? "border-emerald-200/50 bg-emerald-400/20 text-emerald-50"
-                      : "border-white/10 bg-white/[0.045] text-slate-300 hover:bg-white/10"
-                  }`}
-                  key={id}
-                  type="button"
-                  onClick={() => setSubfilter(id)}
-                >
-                  {filterLabels[id] || id}
-                </button>
-                ))}
-              </div>
-            ) : null}
             {search.trim() && tab === "all" ? (
               <p className="mt-3 rounded-2xl border border-cyan-300/15 bg-cyan-400/10 px-4 py-3 text-sm font-bold text-cyan-100">
                 Recherche globale active: les résultats de toutes les bibliothèques sont regroupés sur cette page.
@@ -487,8 +411,8 @@ export function AssetsApp() {
                   <GroupTitle label={tabLabels[collection]} count={items.length} />
                   {collection === "moves" ? (
                     <div className="grid gap-3">
-                      {items.slice(0, 260).map((move) => (
-                        <MoveCard move={move.raw || move} typeCatalog={catalog?.types || []} key={move.id} />
+                      {items.slice(0, 260).map((move, index) => (
+                        <MoveCard move={move.raw || move} typeCatalog={catalog?.types || []} key={`${move.id || move.slug}-${index}`} />
                       ))}
                     </div>
                   ) : (

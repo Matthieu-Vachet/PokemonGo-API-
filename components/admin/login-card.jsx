@@ -24,7 +24,7 @@ export function LoginCard({ password, error, loading, onPasswordChange, onSubmit
           onChange={(event) => onPasswordChange(event.target.value)}
         />
         <button
-          className="min-h-11 rounded-lg bg-gradient-to-r from-rose-500 to-amber-300 px-4 font-black text-zinc-950 disabled:opacity-60"
+          className="min-h-11 rounded-lg border border-cyan-200/30 bg-cyan-400/15 px-4 font-black text-cyan-50 transition hover:bg-cyan-400/20 disabled:opacity-60"
           type="submit"
           disabled={loading}
         >

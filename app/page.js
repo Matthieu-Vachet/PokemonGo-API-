@@ -50,13 +50,13 @@ function ProgressList({ title, items, valueLabel = "percent" }) {
 function FeatureCard({ href, icon, title, text, accent = "cyan" }) {
   const accentClass =
     accent === "emerald"
-      ? "from-emerald-400/24 to-cyan-400/10 text-emerald-100"
+      ? "border-emerald-300/18 bg-emerald-400/10 text-emerald-100"
       : accent === "amber"
-        ? "from-amber-300/24 to-rose-400/10 text-amber-100"
-        : "from-cyan-400/24 to-blue-500/10 text-cyan-100";
+        ? "border-sky-300/18 bg-sky-400/10 text-sky-100"
+        : "border-cyan-300/18 bg-cyan-400/10 text-cyan-100";
   return (
     <Link
-      className={`group rounded-[2rem] border border-white/10 bg-gradient-to-br ${accentClass} p-5 shadow-[0_20px_80px_rgba(0,0,0,.22)] transition hover:-translate-y-1 hover:border-white/20`}
+      className={`group rounded-[2rem] border ${accentClass} p-5 shadow-[0_20px_80px_rgba(0,0,0,.22)] transition hover:-translate-y-1 hover:border-white/20`}
       href={href}
     >
       <div className="mb-5 grid h-14 w-14 place-items-center rounded-2xl border border-white/10 bg-slate-950/35">
@@ -71,8 +71,22 @@ function FeatureCard({ href, icon, title, text, accent = "cyan" }) {
   );
 }
 
+function formatFreshDate(freshness) {
+  if (!freshness?.iso && !freshness?.date) return "Indisponible";
+  try {
+    return new Intl.DateTimeFormat("fr-FR", {
+      dateStyle: "long",
+      timeStyle: freshness.iso ? "short" : undefined,
+    }).format(new Date(freshness.iso || `${freshness.date}T00:00:00`));
+  } catch {
+    return freshness.date || "Indisponible";
+  }
+}
+
 export default function HomePage() {
   const dashboard = loadSiteDashboard();
+  const dataFreshness = dashboard.freshness?.data;
+  const repoFreshness = dashboard.freshness?.repo;
   const completion = Math.round(
     (dashboard.summary.complete / Math.max(dashboard.summary.total, 1)) * 100,
   );
@@ -111,7 +125,7 @@ export default function HomePage() {
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
-                className={`${ctaClass} bg-gradient-to-r from-cyan-400 via-sky-500 to-emerald-400 text-white shadow-[0_18px_55px_rgba(14,165,233,.36)] hover:scale-[1.01]`}
+                className={`${ctaClass} border border-cyan-200/30 bg-cyan-400/18 text-cyan-50 shadow-[0_18px_55px_rgba(14,165,233,.24)] hover:bg-cyan-400/25`}
                 href="/checklist"
               >
                 <Database size={18} /> Ouvrir le Pokédex
@@ -214,14 +228,24 @@ export default function HomePage() {
         <aside className={glassCard}>
           <h2 className="text-xl font-black">Fraîcheur des données</h2>
           <p className="mt-2 text-sm font-bold leading-6 text-slate-300">
-            La checklist lit les JSON du dépôt et expose l’état de l’API en direct.
+            La checklist lit les JSON du dépôt et expose la dernière mise à jour connue du dataset.
           </p>
           <div className="mt-5 grid gap-3">
             <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
-              <span className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">Dernier commit</span>
-              <strong className="mt-2 block text-white">{dashboard.freshness?.subject || "Indisponible"}</strong>
+              <span className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">Dernière mise à jour data</span>
+              <strong className="mt-2 block text-white">{dataFreshness?.subject || "Dataset local"}</strong>
+              <span className="mt-1 block text-sm font-bold text-cyan-100">
+                {formatFreshDate(dataFreshness)}
+              </span>
+              <span className="mt-1 block font-mono text-xs text-slate-400">
+                {dataFreshness?.source || "Rapport indisponible"}
+              </span>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+              <span className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">Dernier commit applicatif</span>
+              <strong className="mt-2 block text-white">{repoFreshness?.subject || "Indisponible sur cet environnement"}</strong>
               <span className="mt-1 block font-mono text-xs text-cyan-200/75">
-                {dashboard.freshness?.hash || "-"} · {dashboard.freshness?.date || "-"}
+                {repoFreshness?.hash || "-"} · {repoFreshness?.date || "-"}
               </span>
             </div>
             <Link className={`${ctaClass} border border-white/10 bg-white/10 text-white hover:bg-white/15`} href="/health">

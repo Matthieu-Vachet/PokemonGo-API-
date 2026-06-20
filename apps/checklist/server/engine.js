@@ -1,16 +1,21 @@
 const fs = require("fs");
 const path = require("path");
+const {
+  dataPath,
+  isInsideData,
+  relativeToApp,
+  resolveDataFile,
+} = require("../../../src/lib/data-repository");
 const { buildCpByLevel } = require("../../../src/lib/pokemon-cp");
 const {
   applyCustomRules,
   enabledCustomRules,
 } = require("./custom-rules");
 
-const rootDir = process.cwd();
-const pokemonDir = path.join(rootDir, "data", "pokemon");
-const formsDir = path.join(rootDir, "data", "pokemon-forms");
-const movesDir = path.join(rootDir, "data", "moves");
-const generationsDir = path.join(rootDir, "data", "generations");
+const pokemonDir = dataPath("pokemon");
+const formsDir = dataPath("pokemon-forms");
+const movesDir = dataPath("moves");
+const generationsDir = dataPath("generations");
 const languages = [
   "English",
   "German",
@@ -1278,7 +1283,7 @@ function buildChecklist(customRulesOverride = null) {
       path.basename(file);
     const quality = qualitySummary(validator.issues);
     return {
-      key: `${kind}:${path.relative(rootDir, file)}${
+      key: `${kind}:${relativeToApp(file)}${
         kind === "mega" ? `#${data.formId || data.id}` : ""
       }`,
       kind,
@@ -1287,7 +1292,7 @@ function buildChecklist(customRulesOverride = null) {
       dexId: data.dexId || path.basename(file).slice(0, 4),
       generation: displayData.generation || null,
       form: data.form || "normal",
-      file: path.relative(rootDir, file),
+      file: relativeToApp(file),
       image: displayData.assets?.portrait || displayData.assets?.image || null,
       shinyImage:
         displayData.assets?.portraitShiny || displayData.assets?.shinyImage || null,
@@ -1337,8 +1342,8 @@ function detailForKey(key) {
   const separator = key.indexOf(":");
   const kind = key.slice(0, separator);
   const [relativeFile, requestedFormId] = key.slice(separator + 1).split("#");
-  const file = path.resolve(rootDir, relativeFile);
-  if (!file.startsWith(rootDir) || !fs.existsSync(file)) return null;
+  const file = resolveDataFile(relativeFile);
+  if (!isInsideData(file) || !fs.existsSync(file)) return null;
   const sourceData = readJson(file);
   let data = sourceData;
 

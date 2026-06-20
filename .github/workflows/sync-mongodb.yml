@@ -2,14 +2,18 @@ name: Synchroniser MongoDB Atlas
 
 on:
   workflow_dispatch:
+  repository_dispatch:
+    types:
+      - pokemon-go-data-updated
   push:
     branches:
       - main
     paths:
-      - "data/**/*.json"
       - "src/sync/**"
       - "src/models/**"
       - "scripts/sync/run.js"
+      - "scripts/data/ensure-data.js"
+      - "package*.json"
 
 concurrency:
   group: mongodb-sync-production
@@ -33,3 +37,4 @@ jobs:
         env:
           NODE_ENV: production
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          POKEMON_GO_DATA_TOKEN: ${{ secrets.POKEMON_GO_DATA_TOKEN }}

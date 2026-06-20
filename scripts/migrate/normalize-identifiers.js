@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
+const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const rootDir = path.resolve(__dirname, "../..");
 const write = process.argv.includes("--write");
 
 function jsonFiles(directory) {
@@ -83,7 +83,7 @@ function normalizePokemon(data, parent = null) {
   return normalized;
 }
 
-const pokemonDirectory = path.join(rootDir, "data", "pokemon");
+const pokemonDirectory = dataPath("pokemon");
 const pokemonFiles = jsonFiles(pokemonDirectory);
 const parents = new Map();
 for (const file of pokemonFiles) {
@@ -111,7 +111,7 @@ for (const file of pokemonFiles) {
   if (JSON.stringify(before) !== JSON.stringify(after)) transformed.push({ file, data: after });
 }
 
-for (const file of jsonFiles(path.join(rootDir, "data", "pokemon-forms"))) {
+for (const file of jsonFiles(dataPath("pokemon-forms"))) {
   const before = read(file);
   const parent =
     parents.get(before.baseFormId) ||
@@ -120,7 +120,7 @@ for (const file of jsonFiles(path.join(rootDir, "data", "pokemon-forms"))) {
     parents.get(before.dexId);
   report.formFiles += 1;
   if (!parent) {
-    report.errors.push(`${path.relative(rootDir, file)}: parent introuvable`);
+    report.errors.push(`${relativeToApp(file)}: parent introuvable`);
     continue;
   }
   const after = normalizePokemon(
@@ -137,7 +137,7 @@ for (const file of jsonFiles(path.join(rootDir, "data", "pokemon-forms"))) {
   if (JSON.stringify(before) !== JSON.stringify(after)) transformed.push({ file, data: after });
 }
 
-for (const file of jsonFiles(path.join(rootDir, "data", "moves"))) {
+for (const file of jsonFiles(dataPath("moves"))) {
   const before = read(file);
   const canonicalSlug = slug(before.slug || before.id);
   const after = { ...before, slug: canonicalSlug };
@@ -148,7 +148,7 @@ for (const file of jsonFiles(path.join(rootDir, "data", "moves"))) {
   if (JSON.stringify(before) !== JSON.stringify(after)) transformed.push({ file, data: after });
 }
 
-const typeFile = path.join(rootDir, "data", "types", "types.json");
+const typeFile = dataPath("types", "types.json");
 const beforeTypes = read(typeFile);
 const afterTypes = beforeTypes.map((type) => ({
   ...type,

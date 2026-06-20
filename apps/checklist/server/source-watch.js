@@ -1,8 +1,7 @@
 const fs = require("fs");
-const path = require("path");
+const { dataPath } = require("../../../src/lib/data-repository");
 
-const rootDir = process.cwd();
-const sourcesFile = path.join(rootDir, "data", "source-watch", "sources.json");
+const sourcesFile = dataPath("source-watch", "sources.json");
 const userAgent = "PokemonGo-API-checklist-source-watch";
 
 function readSources() {

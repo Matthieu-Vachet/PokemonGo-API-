@@ -1,6 +1,7 @@
 const path = require("path");
 const chokidar = require("chokidar");
 const { connectDatabase, disconnectDatabase } = require("../../src/config/database");
+const { dataRoot } = require("../../src/lib/data-repository");
 const { syncAll } = require("../../src/sync/sync-service");
 
 let timer;
@@ -35,12 +36,12 @@ function schedule() {
 async function main() {
   await connectDatabase();
   await runSync();
-  const watcher = chokidar.watch(path.join(process.cwd(), "data"), {
+  const watcher = chokidar.watch(dataRoot, {
     ignoreInitial: true,
     awaitWriteFinish: true,
   });
   watcher.on("add", schedule).on("change", schedule).on("unlink", schedule);
-  console.log("[sync:watch] surveillance de data/");
+  console.log(`[sync:watch] surveillance de ${dataRoot}`);
 }
 
 async function shutdown() {

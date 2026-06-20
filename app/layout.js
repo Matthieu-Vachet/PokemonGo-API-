@@ -4,7 +4,7 @@ import { SiteShell } from "../components/site/shell";
 export const metadata = {
   title: "Pokémon GO API Studio",
   description:
-    "Checklist publique, bibliothèques d’assets et dashboard administrateur sécurisé pour Pokémon GO API.",
+    "Checklist publique read-only, bibliothèques d’assets et API Pokémon GO.",
 };
 
 export default function RootLayout({ children }) {

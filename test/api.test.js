@@ -1,7 +1,9 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
+const fs = require("fs");
 const request = require("supertest");
 const { createApp } = require("../src/app");
+const { dataPath } = require("../src/lib/data-repository");
 const { normalizeLeague } = require("../src/lib/pvp");
 const { buildPokemonFilter } = require("../src/services/pokemon-service");
 const { presentPokemon } = require("../src/services/pokemon-presenter");
@@ -15,6 +17,12 @@ const {
 const { assetAudit, catalog } = require("../apps/checklist/server/workshop");
 
 const app = createApp();
+
+function readDataJson(relativePath) {
+  return JSON.parse(
+    fs.readFileSync(dataPath(...String(relativePath).split("/")), "utf8"),
+  );
+}
 
 test("GET / présente l'API", async () => {
   const response = await request(app).get("/").expect(200);
@@ -272,10 +280,10 @@ test("les formes séparées sont référencées sans données dupliquées", () =
 });
 
 test("les régions et générations sont centralisées dans leurs catalogues", () => {
-  const bulbasaur = require("../data/pokemon/0001-bulbasaur.json");
-  const rattataAlola = require("../data/pokemon-forms/alola/0019-rattata-alola.json");
-  const venusaurMega = require("../data/pokemon-forms/mega/0003-venusaur-mega.json");
-  const bulbasaurDynamax = require("../data/pokemon-forms/dynamax/0001-bulbasaur-dynamax.json");
+  const bulbasaur = readDataJson("pokemon/0001-bulbasaur.json");
+  const rattataAlola = readDataJson("pokemon-forms/alola/0019-rattata-alola.json");
+  const venusaurMega = readDataJson("pokemon-forms/mega/0003-venusaur-mega.json");
+  const bulbasaurDynamax = readDataJson("pokemon-forms/dynamax/0001-bulbasaur-dynamax.json");
 
   assert.equal(bulbasaur.regionId, "KANTO");
   assert.equal(bulbasaur.region, undefined);
@@ -398,7 +406,7 @@ test("les assets Shuffle sont associés une seule fois à leur forme exacte", ()
 });
 
 test("une forme Pokémon Home peut déclarer une liste de variantes vide", () => {
-  const unownA = require("../data/pokemon-forms/normal/0201-unown-a.json");
+  const unownA = readDataJson("pokemon-forms/normal/0201-unown-a.json");
   const issues = validateSourceData(
     unownA,
     "data/pokemon-forms/normal/0201-unown-a.json",
@@ -408,8 +416,8 @@ test("une forme Pokémon Home peut déclarer une liste de variantes vide", () =>
 });
 
 test("assets peut être null uniquement pour une forme non sortie", () => {
-  const unreleased = require("../data/pokemon-forms/normal/0327-spinda-10.json");
-  const released = require("../data/pokemon-forms/normal/0327-spinda-00.json");
+  const unreleased = readDataJson("pokemon-forms/normal/0327-spinda-10.json");
+  const released = readDataJson("pokemon-forms/normal/0327-spinda-00.json");
   const unreleasedIssues = validateSourceData(
     unreleased,
     "data/pokemon-forms/normal/0327-spinda-10.json",
@@ -426,7 +434,7 @@ test("assets peut être null uniquement pour une forme non sortie", () => {
 
 test("un asset Shuffle ne remplace pas les images GO d'une fiche sortie", () => {
   const released = structuredClone(
-    require("../data/pokemon-forms/normal/0201-unown-a.json"),
+    readDataJson("pokemon-forms/normal/0201-unown-a.json"),
   );
   released.assets = { shuffle: released.assets.shuffle };
   const issues = validateSourceData(
@@ -441,31 +449,31 @@ test("un asset Shuffle ne remplace pas les images GO d'une fiche sortie", () => 
 test("la checklist exige les champs propres à chaque famille Pokémon", () => {
   const cases = [
     {
-      source: require("../data/pokemon/0001-bulbasaur.json"),
+      source: readDataJson("pokemon/0001-bulbasaur.json"),
       file: "data/pokemon/0001-bulbasaur.json",
       kind: "pokemon",
       removed: "size",
     },
     {
-      source: require("../data/pokemon-forms/alola/0019-rattata-alola.json"),
+      source: readDataJson("pokemon-forms/alola/0019-rattata-alola.json"),
       file: "data/pokemon-forms/alola/0019-rattata-alola.json",
       kind: "form",
       removed: "baseFormId",
     },
     {
-      source: require("../data/pokemon-forms/mega/0003-venusaur-mega.json"),
+      source: readDataJson("pokemon-forms/mega/0003-venusaur-mega.json"),
       file: "data/pokemon-forms/mega/0003-venusaur-mega.json",
       kind: "mega",
       removed: "dexId",
     },
     {
-      source: require("../data/pokemon-forms/dynamax/0001-bulbasaur-dynamax.json"),
+      source: readDataJson("pokemon-forms/dynamax/0001-bulbasaur-dynamax.json"),
       file: "data/pokemon-forms/dynamax/0001-bulbasaur-dynamax.json",
       kind: "dynamax",
       removed: "assets",
     },
     {
-      source: require("../data/pokemon-forms/dynamax/0001-bulbasaur-dynamax.json"),
+      source: readDataJson("pokemon-forms/dynamax/0001-bulbasaur-dynamax.json"),
       file: "data/pokemon-forms/dynamax/0001-bulbasaur-dynamax.json",
       kind: "dynamax",
       removed: "evolutions",

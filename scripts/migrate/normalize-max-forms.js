@@ -1,9 +1,9 @@
 const fs = require("fs");
 const path = require("path");
+const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const rootDir = path.resolve(__dirname, "../..");
 const write = process.argv.includes("--write");
-const pokemonDir = path.join(rootDir, "data", "pokemon");
+const pokemonDir = dataPath("pokemon");
 const forms = ["dynamax", "gigantamax"];
 
 function read(file) {
@@ -85,16 +85,16 @@ function normalize(form, parent) {
 const report = { mode: write ? "write" : "dry-run", files: [], errors: [] };
 
 for (const folder of forms) {
-  const directory = path.join(rootDir, "data", "pokemon-forms", folder);
+  const directory = dataPath("pokemon-forms", folder);
   if (!fs.existsSync(directory)) continue;
   for (const name of fs.readdirSync(directory).filter((file) => file.endsWith(".json"))) {
     const file = path.join(directory, name);
     try {
       const data = normalize(read(file), parentFor(read(file)));
-      report.files.push(path.relative(rootDir, file));
+      report.files.push(relativeToApp(file));
       if (write) fs.writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`);
     } catch (error) {
-      report.errors.push(`${path.relative(rootDir, file)}: ${error.message}`);
+      report.errors.push(`${relativeToApp(file)}: ${error.message}`);
     }
   }
 }

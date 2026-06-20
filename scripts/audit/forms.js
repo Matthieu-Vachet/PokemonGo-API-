@@ -1,9 +1,9 @@
 const fs = require("fs");
 const path = require("path");
+const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const rootDir = path.resolve(__dirname, "../..");
-const pokemonDir = path.join(rootDir, "data", "pokemon");
-const formsDir = path.join(rootDir, "data", "pokemon-forms");
+const pokemonDir = dataPath("pokemon");
+const formsDir = dataPath("pokemon-forms");
 
 function read(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
@@ -23,7 +23,7 @@ function files(directory) {
 const formIds = new Map(
   files(formsDir).map((file) => {
     const form = read(file);
-    return [form.formId, path.relative(rootDir, file)];
+    return [form.formId, relativeToApp(file)];
   }),
 );
 const missingReferences = [];
@@ -38,13 +38,13 @@ for (const file of files(pokemonDir)) {
   ]) {
     const value = pokemon[field] || [];
     if (!Array.isArray(value)) {
-      embeddedForms.push({ file: path.relative(rootDir, file), field });
+      embeddedForms.push({ file: relativeToApp(file), field });
       continue;
     }
     for (const formId of value)
       if (!formIds.has(formId))
         missingReferences.push({
-          file: path.relative(rootDir, file),
+          file: relativeToApp(file),
           field,
           formId,
         });
@@ -68,7 +68,7 @@ for (const source of sources.filter((item) =>
     source.data.form === "dynamax" ? "dynamaxForms" : "gigantamaxForms";
   if (!parent || !parent.data[field]?.includes(source.data.formId))
     missingReferences.push({
-      file: parent ? path.relative(rootDir, parent.file) : null,
+      file: parent ? relativeToApp(parent.file) : null,
       field,
       formId: source.data.formId,
       expectedParent: source.data.baseFormId,

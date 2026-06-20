@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { BookOpen, Code2, LayoutDashboard, ScrollText } from "lucide-react";
+import { BookOpen, Code2, ScrollText } from "lucide-react";
 import { MetricCard } from "../site/metric-card";
 import { PokemonCard } from "./pokemon-card";
 import { DetailModal } from "./detail-modal";
@@ -205,9 +205,6 @@ export function ChecklistApp({ mode = "public" }) {
           <Link className={buttonClass} href="/api-docs"><ScrollText size={16} /> Documentation</Link>
           <Link className={buttonClass} href="/swagger"><Code2 size={16} /> API interactive</Link>
           <Link className={buttonClass} href="/api-docs.json"><BookOpen size={16} /> OpenAPI</Link>
-          <Link className={`${buttonClass} border-cyan-200/30 bg-cyan-400/15 text-cyan-50 hover:bg-cyan-400/20`} href="/admin">
-            <LayoutDashboard size={16} /> Dashboard admin
-          </Link>
         </div>
       </section>
 

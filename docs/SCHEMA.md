@@ -1,54 +1,48 @@
 # Pokemon GO API - Schema
 
 Ce document decrit le format de reference des fichiers JSON Pokemon.
-Le modele actuel est base sur `0001-bulbasaur.json`, `0002-ivysaur.json` et
+Ces fichiers vivent dans le depot prive `PokemonGo-Data`. Le modele actuel est base sur
+`0001-bulbasaur.json`, `0002-ivysaur.json` et
 `0003-venusaur.json`. Ces trois fiches couvrent les profils de base, intermediaire et final,
 ainsi que les Mega-Evolutions, Gigantamax, attaques Elite et formes visuelles.
 
 ## Organisation
 
 ```text
-PokemonGo-API-/
-├── app.js
-├── data/
-│   ├── pokemon/
-│   │   ├── 0001-bulbasaur.json
-│   │   ├── 0002-ivysaur.json
-│   │   └── 0003-venusaur.json
-│   ├── pokemon-forms/
-│   │   ├── alola/
-│   │   ├── galar/
-│   │   ├── hisui/
-│   │   ├── paldea/
-│   │   ├── dynamax/
-│   │   ├── gigantamax/
-│   │   ├── mega/
-│   │   ├── mega-x/
-│   │   └── mega-y/
-│   ├── moves/
-│   │   ├── fast/
-│   │   ├── charged/
-│   │   ├── fast_elite/
-│   │   ├── charged_elite/
-│   │   ├── max/
-│   │   └── gmax/
-│   └── types/
-├── locales/
-│   ├── en/
-│   └── fr/
-└── assets/
-    └── images/
+PokemonGo-Data/
+├── pokemon/
+│   ├── 0001-bulbasaur.json
+│   ├── 0002-ivysaur.json
+│   └── 0003-venusaur.json
+├── pokemon-forms/
+│   ├── alola/
+│   ├── galar/
+│   ├── hisui/
+│   ├── paldea/
+│   ├── dynamax/
+│   ├── gigantamax/
+│   ├── mega/
+│   ├── mega-x/
+│   └── mega-y/
+├── moves/
+│   ├── fast/
+│   ├── charged/
+│   ├── fast_elite/
+│   ├── charged_elite/
+│   ├── max/
+│   └── gmax/
+└── types/
 ```
 
 ## Regles Generales
 
-Chaque Pokemon est stocke dans `data/pokemon/[dexId]-[slug].json`.
+Chaque Pokemon est stocke dans `PokemonGo-Data/pokemon/[dexId]-[slug].json`.
 
 Exemple:
 
 ```text
-data/pokemon/0001-bulbasaur.json
-data/pokemon/0002-ivysaur.json
+PokemonGo-Data/pokemon/0001-bulbasaur.json
+PokemonGo-Data/pokemon/0002-ivysaur.json
 ```
 
 Les identifiants techniques issus du Game Master restent en majuscules:

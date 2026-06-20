@@ -1,7 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const checklistHandler = require("../api/checklist-v3");
-const { previewCustomRule } = require("../apps/checklist/server/custom-rules");
 
 function createResponse() {
   return {
@@ -23,17 +22,6 @@ function createResponse() {
   };
 }
 
-const originalPassword = process.env.CHECKLIST_PASSWORD;
-
-test.before(() => {
-  process.env.CHECKLIST_PASSWORD = "test-checklist";
-});
-
-test.after(() => {
-  if (originalPassword === undefined) delete process.env.CHECKLIST_PASSWORD;
-  else process.env.CHECKLIST_PASSWORD = originalPassword;
-});
-
 test("GET /api/checklist-v3 renvoie la checklist publique et le catalogue", async () => {
   const request = {
     method: "GET",
@@ -50,18 +38,13 @@ test("GET /api/checklist-v3 renvoie la checklist publique et le catalogue", asyn
   assert.equal(response.body.data.viewer.admin, false);
 });
 
-test("POST /api/checklist-v3 bootstrap refuse les règles perso publiques", async () => {
-  const customRule = previewCustomRule({
-    name: "Descriptions",
-    appliesTo: ["pokemon"],
-    templateSource: 'description: { fr: "", en: "" }',
-  });
+test("POST /api/checklist-v3 bootstrap ignore les règles perso publiques", async () => {
   const request = {
     method: "POST",
     headers: {},
     body: {
       action: "bootstrap",
-      customRules: [customRule],
+      customRules: [{ enabled: true, name: "Descriptions" }],
     },
     query: {},
   };
@@ -69,10 +52,11 @@ test("POST /api/checklist-v3 bootstrap refuse les règles perso publiques", asyn
 
   await checklistHandler(request, response);
 
-  assert.equal(response.statusCode, 401);
+  assert.equal(response.statusCode, 200);
+  assert.deepEqual(response.body.data.customRules, []);
 });
 
-test("POST /api/checklist-v3 preview-rule exige un accès admin", async () => {
+test("POST /api/checklist-v3 preview-rule est migré hors API publique", async () => {
   const request = {
     method: "POST",
     headers: {},
@@ -88,10 +72,11 @@ test("POST /api/checklist-v3 preview-rule exige un accès admin", async () => {
 
   await checklistHandler(request, response);
 
-  assert.equal(response.statusCode, 401);
+  assert.equal(response.statusCode, 410);
+  assert.match(response.body.error, /read-only/);
 });
 
-test("POST /api/checklist-v3 login ouvre une session admin", async () => {
+test("POST /api/checklist-v3 login est désactivé en read-only", async () => {
   const response = createResponse();
 
   await checklistHandler(
@@ -104,7 +89,7 @@ test("POST /api/checklist-v3 login ouvre une session admin", async () => {
     response,
   );
 
-  assert.equal(response.statusCode, 200);
-  assert.match(response.headers["set-cookie"], /pokedex_admin_session=/);
-  assert.equal(response.body.data.authenticated, true);
+  assert.equal(response.statusCode, 410);
+  assert.equal(response.headers["set-cookie"], undefined);
+  assert.match(response.body.error, /dashboard_Admin/);
 });

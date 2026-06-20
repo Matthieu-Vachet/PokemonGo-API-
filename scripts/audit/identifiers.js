@@ -1,9 +1,9 @@
 const fs = require("fs");
 const path = require("path");
+const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 const { collectAllDocuments } = require("../../src/sync/source-reader");
 
 const data = collectAllDocuments();
-const rootDir = path.resolve(__dirname, "../..");
 
 function jsonFiles(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -32,13 +32,13 @@ function duplicates(items, field) {
 const pokemonKeys = new Set(data.pokemon.map((pokemon) => pokemon.key));
 const rawPokemonKeys = new Map();
 for (const file of [
-  ...jsonFiles(path.join(rootDir, "data", "pokemon")),
-  ...jsonFiles(path.join(rootDir, "data", "pokemon-forms")),
+  ...jsonFiles(dataPath("pokemon")),
+  ...jsonFiles(dataPath("pokemon-forms")),
 ]) {
   const source = JSON.parse(fs.readFileSync(file, "utf8"));
   const key = source.formId || source.id;
   if (!rawPokemonKeys.has(key)) rawPokemonKeys.set(key, []);
-  rawPokemonKeys.get(key).push(path.relative(rootDir, file));
+  rawPokemonKeys.get(key).push(relativeToApp(file));
 }
 const duplicateSourcePokemonKeys = [...rawPokemonKeys]
   .filter(([, files]) => files.length > 1)

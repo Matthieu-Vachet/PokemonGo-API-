@@ -1,11 +1,11 @@
 const fs = require("fs");
 const path = require("path");
+const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 const cheerio = require("cheerio");
 
-const rootDir = path.resolve(__dirname, "../..");
-const pokemonDir = path.join(rootDir, "data", "pokemon");
+const pokemonDir = dataPath("pokemon");
 const cardsDir = path.join(rootDir, "asset", "LocationCards");
-const reportFile = path.join(rootDir, "data", "location-cards-import-report.json");
+const reportFile = dataPath("location-cards-import-report.json");
 const source = "https://www.serebii.net/pokemongo/backgrounds.shtml";
 const imageBase =
   "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards";

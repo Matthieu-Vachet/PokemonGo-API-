@@ -1,24 +1,25 @@
 # Templates Pokemon GO API
 
 Ce fichier regroupe les templates a copier pour ajouter ou normaliser les donnees.
+Les fichiers sources vivent dans le depot prive `PokemonGo-Data`.
 Le format de reference est construit a partir de:
 
-- `data/pokemon/0001-bulbasaur.json`: Pokemon de base avec evolution.
-- `data/pokemon/0002-ivysaur.json`: Pokemon intermediaire avec evolution.
-- `data/pokemon/0003-venusaur.json`: Pokemon final avec Mega-Evolution et Gigantamax.
+- `PokemonGo-Data/pokemon/0001-bulbasaur.json`: Pokemon de base avec evolution.
+- `PokemonGo-Data/pokemon/0002-ivysaur.json`: Pokemon intermediaire avec evolution.
+- `PokemonGo-Data/pokemon/0003-venusaur.json`: Pokemon final avec Mega-Evolution et Gigantamax.
 
 ## Pokemon
 
 Nom du fichier:
 
 ```text
-data/pokemon/[dexId]-[slug].json
+PokemonGo-Data/pokemon/[dexId]-[slug].json
 ```
 
 Exemple:
 
 ```text
-data/pokemon/0001-bulbasaur.json
+PokemonGo-Data/pokemon/0001-bulbasaur.json
 ```
 
 Template complet:

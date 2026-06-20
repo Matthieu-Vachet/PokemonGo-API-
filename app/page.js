@@ -121,7 +121,7 @@ export default function HomePage() {
             </h1>
             <p className="mt-5 max-w-2xl text-base font-bold leading-7 text-slate-200 sm:text-lg">
               Fiches Pokémon, formes, assets, météo, attaques, PvP et statistiques de complétion.
-              Les données restent visibles en public, les outils de modification restent protégés côté admin.
+              Le site devient une vitrine read-only : consultation rapide, API publique et dataset séparé dans PokemonGo-Data.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link

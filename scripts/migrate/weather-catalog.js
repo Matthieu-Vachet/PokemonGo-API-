@@ -1,11 +1,11 @@
 const fs = require("fs");
 const path = require("path");
+const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const rootDir = path.resolve(__dirname, "../..");
 const write = process.argv.includes("--write");
-const typesDir = path.join(rootDir, "data", "types");
+const typesDir = dataPath("types");
 const typesIndex = path.join(typesDir, "types.json");
-const weatherDir = path.join(rootDir, "data", "weather");
+const weatherDir = dataPath("weather");
 const weatherIndex = path.join(weatherDir, "weather.json");
 const remoteBase =
   "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/weather";
@@ -65,7 +65,7 @@ for (const type of types) {
   };
   const file = path.join(typesDir, `${type.slug}.json`);
   if (!same(read(file), next)) {
-    changed.push(path.relative(rootDir, file));
+    changed.push(relativeToApp(file));
     if (write) writeJson(file, next);
   }
 }
@@ -75,19 +75,19 @@ const nextTypes = types.map((type) => ({
   weatherBoost: type.weatherBoost?.id || type.weatherBoost,
 }));
 if (!same(types, nextTypes)) {
-  changed.push(path.relative(rootDir, typesIndex));
+  changed.push(relativeToApp(typesIndex));
   if (write) writeJson(typesIndex, nextTypes);
 }
 
 for (const entry of weather) {
   const file = path.join(weatherDir, `${entry.slug}.json`);
   if (!same(read(file), entry)) {
-    changed.push(path.relative(rootDir, file));
+    changed.push(relativeToApp(file));
     if (write) writeJson(file, entry);
   }
 }
 if (!same(read(weatherIndex), weather)) {
-  changed.push(path.relative(rootDir, weatherIndex));
+  changed.push(relativeToApp(weatherIndex));
   if (write) writeJson(weatherIndex, weather);
 }
 

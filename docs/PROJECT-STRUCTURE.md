@@ -1,17 +1,18 @@
 # Structure Du Projet
 
-Le depot separe les donnees sources, l'API publique, les checklists et les outils de
-maintenance. Cette organisation permet de faire evoluer chaque partie sans melanger
-leurs responsabilites.
+Le depot `PokemonGo-API-` contient l'API publique, le site visiteur, la checklist
+read-only et les outils de maintenance. Les donnees sources vivent dans le depot separe
+`PokemonGo-Data`, afin de garder les JSON prives et de publier uniquement le service de
+lecture.
 
 ## Dossiers Principaux
 
 | Dossier | Responsabilite |
 | --- | --- |
-| `app/` | Nouveau front public Next.js et pages du dashboard admin. |
+| `app/` | Front public Next.js. `/admin` redirige vers `/` en attendant `dashboard_Admin`. |
 | `components/` | Bibliotheque de composants partagee entre pages et Storybook. |
 | `.storybook/` | Configuration de la documentation UI Storybook. |
-| `data/` | Fiches JSON Pokemon, formes et catalogues centraux. |
+| `.data/PokemonGo-Data/` | Clone local ignore du depot de donnees, cree par `npm run ensure:data` si besoin. |
 | `src/` | Coeur de l'API REST Express et synchronisation MongoDB. |
 | `api/` | Points d'entree serverless necessaires au deploiement Vercel. |
 | `apps/checklist/` | Interface, moteur et serveur de la checklist. |
@@ -25,11 +26,16 @@ leurs responsabilites.
 
 ## Donnees Protegees
 
-Les dossiers `data/` et `config/` contiennent des fichiers JSON. Les outils lisent ces
-sources, mais la synchronisation vers MongoDB ne les modifie jamais. Le catalogue
-d'attaques central est dans `data/moves/`, avec les categories classiques, Elite, Max et
+Le dossier `config/` reste dans ce depot car il décrit les index Atlas Search. Les JSON
+metier vivent dans `PokemonGo-Data`. Les outils les trouvent via `POKEMON_GO_DATA_DIR`,
+le clone local `.data/PokemonGo-Data/`, le depot voisin `../PokemonGo-Data` ou, en
+dernier recours historique, un ancien dossier `data/`.
+
+La synchronisation vers MongoDB ne modifie jamais ces sources. Le catalogue d'attaques
+central est dans `PokemonGo-Data/moves/`, avec les categories classiques, Elite, Max et
 G-Max. Les formes Dynamax et Gigantamax minimales vivent dans
-`data/pokemon-forms/dynamax/` et `data/pokemon-forms/gigantamax/`.
+`PokemonGo-Data/pokemon-forms/dynamax/` et
+`PokemonGo-Data/pokemon-forms/gigantamax/`.
 
 Les images de backgrounds de lieu et spéciaux sont rangées dans
 `asset/LocationCards/`. Le script `scripts/import/location-cards.js` associe ces
@@ -37,19 +43,20 @@ fichiers aux Pokémon éligibles depuis Serebii et conserve leurs dates et forme
 
 Les portraits Méga/Primo vivent dans `asset/MegaPortraits/`, les fonds de types dans
 `asset/TypeBackgrounds/` et les stickers distants dans le catalogue
-`data/stickers/stickers.json`. Le script `scripts/import/visual-assets.js` associe ces
-ressources aux données. Chaque type possède un fichier dans `data/types/<slug>.json`;
-`data/types/types.json` reste un index compatible avec les anciens outils.
+`PokemonGo-Data/stickers/stickers.json`. Le script `scripts/import/visual-assets.js`
+associe ces ressources aux données. Chaque type possède un fichier dans
+`PokemonGo-Data/types/<slug>.json`; `PokemonGo-Data/types/types.json` reste un index
+compatible avec les anciens outils.
 
-Les régions et générations sont centralisées dans `data/generations/`. Les fiches
+Les régions et générations sont centralisées dans `PokemonGo-Data/generations/`. Les fiches
 Pokémon complètes conservent uniquement `regionId`; l'API et la checklist recomposent
-la région traduite et la génération. Les sept météos vivent dans `data/weather/`,
+la région traduite et la génération. Les sept météos vivent dans `PokemonGo-Data/weather/`,
 référencent leurs types boostés et exposent les icônes de `asset/weather/`.
 
 Les sources externes surveillées par la checklist vivent dans
-`data/source-watch/sources.json`. L'action `source-watch` de `/api/checklist-v3`
-lit cette liste, vérifie les signatures distantes et laisse le navigateur signaler les
-nouveautés déjà vues ou non vues.
+`PokemonGo-Data/source-watch/sources.json`. Dans ce depot public read-only, l'action
+`source-watch` de `/api/checklist-v3` est désactivée et sera déplacée dans
+`dashboard_Admin`.
 
 Le script `scripts/import/shadow-pokemon.js` synchronise depuis Bulbapedia les
 sorties Shadow déjà effectives, les coûts de purification, les Catch CP et les
@@ -65,7 +72,8 @@ Méga dans sa fiche Méga et une forme régionale dans sa fiche régionale. Les 
 Shadow et purifiées restent regroupées sur la fiche de leur forme.
 
 Les fiches principales ne dupliquent plus les données de formes. `regionForms` et
-`megaEvolutions` contiennent uniquement des références vers `data/pokemon-forms/`.
+`megaEvolutions` contiennent uniquement des références vers
+`PokemonGo-Data/pokemon-forms/`.
 
 ## API
 
@@ -78,11 +86,11 @@ Les fiches principales ne dupliquent plus les données de formes. `regionForms` 
 
 ## Checklists
 
-- `app/` contient le nouveau front Next.js public et l'espace admin.
+- `app/` contient le front Next.js public.
 - `components/` contient les cartes, modales et panneaux reutilises par le nouveau front.
 - `apps/checklist/` conserve l'ancienne interface statique et le moteur metier partage.
 - `apps/checklist/server/` contient le serveur local legacy, l'atelier d'audit et le moteur.
-- `api/checklist-v3.js` regroupe les actions serverless exposees sur Vercel.
+- `api/checklist-v3.js` regroupe les actions serverless publiques exposees sur Vercel.
 
 ## Commandes
 

@@ -10,11 +10,12 @@ imports, aux migrations, aux audits ou à la synchronisation.
 | --- | --- |
 | `app.js` | Démarre le serveur Express local. |
 | `api/rest.js` | Expose l'API comme fonction serverless Vercel. |
-| `api/checklist-v3.js` | Regroupe la checklist publique, les détails de fiche, les audits d'assets, la veille des sources et les actions admin protégées. |
+| `api/checklist-v3.js` | Regroupe la checklist publique read-only, les détails de fiche, les catalogues et les audits d'assets. |
 | `api/blocked.js` | Bloque les accès directs aux sources internes quand le site est déployé sur Vercel. |
-| `app/*.js` | Pages Next.js du front public et du dashboard admin. |
+| `app/*.js` | Pages Next.js du front public. `/admin` redirige vers `/` en attendant `dashboard_Admin`. |
 | `components/**/*.jsx` | Composants UI réutilisables, documentés dans Storybook. |
-| `src/lib/checklist-auth.js` | Gère le mot de passe admin, le cookie de session signé et les vérifications d'accès. |
+| `src/lib/data-repository.js` | Résout le depot `PokemonGo-Data` depuis l'environnement, `.data/` ou le dossier voisin. |
+| `src/lib/checklist-auth.js` | Ancien support d'auth checklist conservé pour compatibilité locale, non utilisé par l'API publique read-only. |
 | `src/lib/site-dashboard.js` | Prépare les statistiques et aperçus affichés par le nouveau front Next.js. |
 
 ## Scripts D'import
@@ -32,7 +33,7 @@ imports, aux migrations, aux audits ou à la synchronisation.
 | `scripts/import/enrich-pokemon.js` | Enrichit les Pokémon normaux ou, avec `--forms`, les formes régionales depuis le Game Master et PvPoke. |
 
 Les commandes sans suffixe `:write` simulent généralement le résultat. Les commandes
-`:write` modifient les fichiers JSON.
+`:write` modifient les fichiers JSON dans le depot `PokemonGo-Data`.
 
 ## Scripts De Migration
 
@@ -60,6 +61,7 @@ Les commandes sans suffixe `:write` simulent généralement le résultat. Les co
 | `scripts/audit/weather.js` | Vérifie les références météo, types boostés et icônes. |
 | `scripts/sync/run.js` | Synchronise les JSON vers MongoDB, ou simule avec `--dry-run`. |
 | `scripts/sync/watch.js` | Relance la synchronisation lors des modifications locales. |
+| `scripts/data/ensure-data.js` | Trouve ou clone `PokemonGo-Data` avant les tests, builds et synchronisations. |
 
 ## Code Du Serveur
 
@@ -74,7 +76,8 @@ Les commandes sans suffixe `:write` simulent généralement le résultat. Les co
 - `src/lib/*.js` contient les fonctions techniques réutilisables.
 - `apps/checklist/server/*.js` alimente la checklist locale et ses outils.
 - `apps/checklist/server/source-watch.js` vérifie les dépôts GitHub et sites déclarés
-  dans `data/source-watch/sources.json`.
+  dans `PokemonGo-Data/source-watch/sources.json`; l'action publique Vercel est
+  désactivée dans ce depot read-only.
 
 ## Commandes Sûres
 

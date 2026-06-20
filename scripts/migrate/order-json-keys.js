@@ -1,8 +1,8 @@
 const assert = require("node:assert/strict");
 const fs = require("fs");
 const path = require("path");
+const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const rootDir = path.resolve(__dirname, "../..");
 const write = process.argv.includes("--write");
 const directories = [
   "data/pokemon",
@@ -36,14 +36,14 @@ const keys = [
 const rank = new Map(keys.map((key, index) => [key, index]));
 
 function files(directory) {
-  const absolute = path.join(rootDir, directory);
+  const absolute = dataPathFromRelative(directory);
   if (!fs.existsSync(absolute)) return [];
   return fs.readdirSync(absolute, { withFileTypes: true }).flatMap((entry) => {
     const relative = path.join(directory, entry.name);
     return entry.isDirectory()
       ? files(relative)
       : entry.name.endsWith(".json")
-        ? [path.join(rootDir, relative)]
+        ? [dataPathFromRelative(relative)]
         : [];
   });
 }
@@ -72,7 +72,7 @@ for (const file of directories.flatMap(files).sort()) {
   assert.deepStrictEqual(next, source, `Une valeur a changé dans ${file}`);
   const output = `${JSON.stringify(next, null, 2)}\n`;
   if (output === sourceText) continue;
-  changed.push(path.relative(rootDir, file));
+  changed.push(relativeToApp(file));
   if (write) fs.writeFileSync(file, output);
 }
 

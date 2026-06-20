@@ -1,8 +1,12 @@
 const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
+const {
+  dataPath,
+  dataPathFromRelative,
+  relativeToApp,
+} = require("../lib/data-repository");
 
-const rootDir = process.cwd();
 const copySuffix = / \d+\.json$/;
 
 function listJsonFiles(directory) {
@@ -23,7 +27,7 @@ function readJson(file) {
 }
 
 function relative(file) {
-  return path.relative(rootDir, file);
+  return relativeToApp(file);
 }
 
 function hash(value) {
@@ -249,8 +253,8 @@ function resolveRegionReference(data, regions, parent = {}) {
 }
 
 function collectPokemonDocuments(generations = collectGenerationDocuments()) {
-  const pokemonDir = path.join(rootDir, "data", "pokemon");
-  const formsDir = path.join(rootDir, "data", "pokemon-forms");
+  const pokemonDir = dataPath("pokemon");
+  const formsDir = dataPath("pokemon-forms");
   const documents = new Map();
   const parents = new Map();
   const regions = new Map(generations.map((entry) => [entry.id, entry.data]));
@@ -306,7 +310,7 @@ function collectMoveDocuments() {
   const documents = new Map();
 
   for (const [directory, kind, elite] of directories) {
-    for (const file of listJsonFiles(path.join(rootDir, directory))) {
+    for (const file of listJsonFiles(dataPathFromRelative(directory))) {
       const data = readJson(file);
       const existing = documents.get(data.id);
       const sourceFiles = [...(existing?.sourceFiles || []), relative(file)];
@@ -348,7 +352,7 @@ function collectMoveDocuments() {
 }
 
 function collectTypeDocuments() {
-  const directory = path.join(rootDir, "data", "types");
+  const directory = dataPath("types");
   const files = listJsonFiles(directory).filter(
     (file) => path.basename(file) !== "types.json",
   );
@@ -371,7 +375,7 @@ function collectTypeDocuments() {
 }
 
 function collectWeatherDocuments() {
-  const directory = path.join(rootDir, "data", "weather");
+  const directory = dataPath("weather");
   const files = listJsonFiles(directory).filter(
     (file) => path.basename(file) !== "weather.json",
   );
@@ -397,7 +401,7 @@ function collectWeatherDocuments() {
 }
 
 function collectGenerationDocuments() {
-  return listJsonFiles(path.join(rootDir, "data", "generations")).map((file) => {
+  return listJsonFiles(dataPath("generations")).map((file) => {
     const data = readJson(file);
     return {
       id: data.id,

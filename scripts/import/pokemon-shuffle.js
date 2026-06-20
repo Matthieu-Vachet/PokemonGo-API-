@@ -1,11 +1,11 @@
 const fs = require("fs");
 const path = require("path");
+const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const rootDir = path.resolve(__dirname, "../..");
 const sourceDir = path.join(rootDir, "asset", "pokemonShuffle");
-const pokemonDir = path.join(rootDir, "data", "pokemon");
-const formsDir = path.join(rootDir, "data", "pokemon-forms");
-const reportFile = path.join(rootDir, "data", "pokemon-shuffle-import-report.json");
+const pokemonDir = dataPath("pokemon");
+const formsDir = dataPath("pokemon-forms");
+const reportFile = dataPath("pokemon-shuffle-import-report.json");
 const remoteBase =
   "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle";
 const write = process.argv.includes("--write");
@@ -179,7 +179,7 @@ const records = [...files(pokemonDir), ...files(formsDir)].map((file) => {
   const data = read(file);
   return {
     file,
-    relative: path.relative(rootDir, file),
+    relative: relativeToApp(file),
     data,
     isBase: file.startsWith(`${pokemonDir}${path.sep}`),
     aliases: [],

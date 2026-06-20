@@ -1,11 +1,11 @@
 const express = require("express");
 const fs = require("fs");
-const path = require("path");
 const { ApiError } = require("../lib/api-error");
+const { dataPath } = require("../lib/data-repository");
 const { pagination, paginatedResponse } = require("../lib/http");
 
 const router = express.Router();
-const catalogFile = path.resolve(process.cwd(), "data", "stickers", "stickers.json");
+const catalogFile = dataPath("stickers", "stickers.json");
 
 function stickers() {
   return JSON.parse(fs.readFileSync(catalogFile, "utf8"));

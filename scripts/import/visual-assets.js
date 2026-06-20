@@ -1,16 +1,16 @@
 const fs = require("fs");
 const path = require("path");
+const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const rootDir = path.resolve(__dirname, "../..");
-const pokemonDir = path.join(rootDir, "data", "pokemon");
-const megaFormsDir = path.join(rootDir, "data", "pokemon-forms", "mega");
-const typesDir = path.join(rootDir, "data", "types");
+const pokemonDir = dataPath("pokemon");
+const megaFormsDir = dataPath("pokemon-forms", "mega");
+const typesDir = dataPath("types");
 const typesIndex = path.join(typesDir, "types.json");
 const portraitsDir = path.join(rootDir, "asset", "MegaPortraits");
 const typeBackgroundsDir = path.join(rootDir, "asset", "TypeBackgrounds");
 const stickersDir = path.join(rootDir, "asset", "Stickers");
-const stickersCatalog = path.join(rootDir, "data", "stickers", "stickers.json");
-const reportFile = path.join(rootDir, "data", "visual-assets-import-report.json");
+const stickersCatalog = dataPath("stickers", "stickers.json");
+const reportFile = dataPath("visual-assets-import-report.json");
 const remoteBase =
   "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main";
 const treeSource =
@@ -122,7 +122,7 @@ async function main() {
       }
     }
     if (!changed) continue;
-    pokemonChanges.push(path.relative(rootDir, file));
+    pokemonChanges.push(relativeToApp(file));
     if (write) writeJson(file, pokemon);
   }
 
@@ -139,7 +139,7 @@ async function main() {
       const nextAssets = { ...(mega.assets || {}), ...assets };
       if (same(mega.assets, nextAssets)) continue;
       mega.assets = nextAssets;
-      megaFormChanges.push(path.relative(rootDir, file));
+      megaFormChanges.push(relativeToApp(file));
       if (write) writeJson(file, mega);
     }
   }
@@ -154,13 +154,13 @@ async function main() {
     const next = { ...type, assets: { ...(type.assets || {}), background } };
     const file = path.join(typesDir, `${type.slug}.json`);
     if (!fs.existsSync(file) || !same(read(file), next)) {
-      typeChanges.push(path.relative(rootDir, file));
+      typeChanges.push(relativeToApp(file));
       if (write) writeJson(file, next);
     }
     return next;
   });
   if (!same(types, nextTypes)) {
-    typeChanges.push(path.relative(rootDir, typesIndex));
+    typeChanges.push(relativeToApp(typesIndex));
     if (write) writeJson(typesIndex, nextTypes);
   }
 

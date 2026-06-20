@@ -1,12 +1,12 @@
 const fs = require("fs");
 const path = require("path");
+const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const rootDir = path.resolve(__dirname, "../..");
-const pokemonDir = path.join(rootDir, "data", "pokemon");
-const formsDir = path.join(rootDir, "data", "pokemon-forms");
-const typesFile = path.join(rootDir, "data", "types", "types.json");
-const pokemonReportFile = path.join(rootDir, "data", "pokemon-enrichment-report.json");
-const formsReportFile = path.join(rootDir, "data", "forms-enrichment-report.json");
+const pokemonDir = dataPath("pokemon");
+const formsDir = dataPath("pokemon-forms");
+const typesFile = dataPath("types", "types.json");
+const pokemonReportFile = dataPath("pokemon-enrichment-report.json");
+const formsReportFile = dataPath("forms-enrichment-report.json");
 const enrichableFormKinds = new Set([
   "normal",
   "alola",
@@ -130,7 +130,7 @@ function moveCatalog() {
     "charged",
     "fast_elite",
     "charged_elite",
-  ].map((directory) => path.join(rootDir, "data", "moves", directory));
+  ].map((directory) => dataPath("moves", directory));
   const ids = new Set();
   for (const directory of directories) {
     for (const file of fs.readdirSync(directory).filter((entry) => entry.endsWith(".json"))) {

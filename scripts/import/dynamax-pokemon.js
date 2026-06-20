@@ -1,15 +1,15 @@
 const fs = require("fs");
 const path = require("path");
+const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const rootDir = path.resolve(__dirname, "../..");
-const pokemonDir = path.join(rootDir, "data", "pokemon");
-const dynamaxDir = path.join(rootDir, "data", "pokemon-forms", "dynamax");
+const pokemonDir = dataPath("pokemon");
+const dynamaxDir = dataPath("pokemon-forms", "dynamax");
 const fastMoveDirectories = [
-  path.join(rootDir, "data", "moves", "fast"),
-  path.join(rootDir, "data", "moves", "fast_elite"),
+  dataPath("moves", "fast"),
+  dataPath("moves", "fast_elite"),
 ];
-const maxMoveDir = path.join(rootDir, "data", "moves", "max");
-const reportFile = path.join(rootDir, "data", "dynamax-pokemon-import-report.json");
+const maxMoveDir = dataPath("moves", "max");
+const reportFile = dataPath("dynamax-pokemon-import-report.json");
 const source = "https://www.margxt.fr/pokemon-go-liste-des-pokemon-dynamax/";
 const asOf = "2026-06-14";
 
@@ -224,7 +224,7 @@ async function main() {
       names: await moveNames(slug),
       combat: null,
     };
-    moveChanges.push(path.relative(rootDir, file));
+    moveChanges.push(relativeToApp(file));
     if (write) writeJson(file, move);
   }
 
@@ -237,7 +237,7 @@ async function main() {
     if (dynamax) dynamaxEnabled.push(pokemon.formId);
     else dynamaxDisabled.push(pokemon.formId);
     pokemon.availability = { ...(pokemon.availability || {}), dynamax };
-    pokemonChanges.push(path.relative(rootDir, file));
+    pokemonChanges.push(relativeToApp(file));
     if (write) writeJson(file, pokemon);
   }
 
@@ -282,16 +282,16 @@ async function main() {
     }
     const previous = fs.existsSync(file) ? read(file) : null;
     if (!same(previous, form)) {
-      formChanges.push(path.relative(rootDir, file));
+      formChanges.push(relativeToApp(file));
       if (write) writeJson(file, form);
     }
   }
 
   const obsoleteForms = files(dynamaxDir)
     .filter((file) => !expectedFiles.has(path.resolve(file)))
-    .map((file) => path.relative(rootDir, file));
+    .map((file) => relativeToApp(file));
   if (write) {
-    for (const file of obsoleteForms) fs.unlinkSync(path.join(rootDir, file));
+    for (const file of obsoleteForms) fs.unlinkSync(dataPathFromRelative(file));
   }
 
   const report = {

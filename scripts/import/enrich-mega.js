@@ -1,10 +1,10 @@
 const fs = require("fs");
 const path = require("path");
+const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const rootDir = path.resolve(__dirname, "../..");
-const formsDir = path.join(rootDir, "data", "pokemon-forms");
-const pokemonDir = path.join(rootDir, "data", "pokemon");
-const reportFile = path.join(rootDir, "data", "mega-enrichment-report.json");
+const formsDir = dataPath("pokemon-forms");
+const pokemonDir = dataPath("pokemon");
+const reportFile = dataPath("mega-enrichment-report.json");
 const write = process.argv.includes("--write");
 const megaKinds = new Set(["mega", "mega-x", "mega-y", "primal"]);
 const sources = {
@@ -141,7 +141,7 @@ async function main() {
     };
     const next = ordered(form, enrichment);
     if (JSON.stringify(next) !== JSON.stringify(form)) {
-      report.changed.push(path.relative(rootDir, file));
+      report.changed.push(relativeToApp(file));
       if (write) writeJson(file, next);
     }
     (isReleased ? report.released : report.unreleased).push(form.formId);

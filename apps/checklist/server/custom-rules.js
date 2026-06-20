@@ -1,9 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
+const { dataPath } = require("../../../src/lib/data-repository");
 
-const rootDir = process.cwd();
-const rulesDir = path.join(rootDir, "data", "checklist");
+const rulesDir = dataPath("checklist");
 const rulesFile = path.join(rulesDir, "custom-rules.json");
 const allowedKinds = [
   "pokemon",

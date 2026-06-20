@@ -6,7 +6,10 @@
       "maxDuration": 60
     },
     "api/checklist-v3.js": {
-      "includeFiles": "data/**",
+      "includeFiles": [
+        ".data/PokemonGo-Data/**",
+        "data/**"
+      ],
       "maxDuration": 60
     },
     "api/blocked.js": {

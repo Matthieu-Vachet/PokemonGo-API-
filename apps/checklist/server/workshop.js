@@ -1,6 +1,15 @@
 const childProcess = require("child_process");
 const fs = require("fs");
 const path = require("path");
+const {
+  appRoot,
+  dataPath,
+  dataRoot,
+  isInsideData,
+  relativeToApp,
+  relativeToData,
+  resolveDataFile,
+} = require("../../../src/lib/data-repository");
 const { detailForKey, validateSourceData } = require("./engine");
 const {
   deleteCustomRule,
@@ -10,15 +19,15 @@ const {
   toggleCustomRule,
 } = require("./custom-rules");
 
-const rootDir = process.cwd();
+const rootDir = appRoot;
 const notesFile = path.join(rootDir, ".checklist-notes.json");
 const reviewsFile = path.join(rootDir, ".checklist-image-reviews.json");
 const hdDir = path.join(rootDir, "asset", "HD");
 const shuffleDir = path.join(rootDir, "asset", "pokemonShuffle");
-const typesFile = path.join(rootDir, "data", "types", "types.json");
-const weatherFile = path.join(rootDir, "data", "weather", "weather.json");
-const stickersFile = path.join(rootDir, "data", "stickers", "stickers.json");
-const movesDir = path.join(rootDir, "data", "moves");
+const typesFile = dataPath("types", "types.json");
+const weatherFile = dataPath("weather", "weather.json");
+const stickersFile = dataPath("stickers", "stickers.json");
+const movesDir = dataPath("moves");
 const remoteHd =
   "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd";
 const remoteShuffle =
@@ -93,12 +102,12 @@ async function allHdAssets() {
 function usedAssetUrls() {
   const urls = [];
   for (const file of [
-    ...listFiles(path.join(rootDir, "data", "pokemon")),
-    ...listFiles(path.join(rootDir, "data", "pokemon-forms")),
+    ...listFiles(dataPath("pokemon")),
+    ...listFiles(dataPath("pokemon-forms")),
   ]) {
     const text = fs.readFileSync(file, "utf8");
     for (const match of text.matchAll(/https?:[^"\\]+poke_capture_[^"\\]+\.png/g))
-      urls.push({ url: match[0], file: path.relative(rootDir, file) });
+      urls.push({ url: match[0], file: relativeToApp(file) });
   }
   return urls;
 }
@@ -116,12 +125,12 @@ function allGoAssets() {
       details,
       url,
       filename: path.basename(url),
-      file: path.relative(rootDir, file),
+      file: relativeToApp(file),
     });
   };
   for (const file of [
-    ...listFiles(path.join(rootDir, "data", "pokemon")),
-    ...listFiles(path.join(rootDir, "data", "pokemon-forms")),
+    ...listFiles(dataPath("pokemon")),
+    ...listFiles(dataPath("pokemon-forms")),
   ]) {
     const data = readJson(file, {});
     add(data, file, "Image principale", data.assets?.image);
@@ -335,11 +344,14 @@ function saveImageReview(review) {
 
 function gitHistory(relativeFile) {
   if (!relativeFile) return [];
+  const dataFile = resolveDataFile(relativeFile);
+  const cwd = isInsideData(dataFile) ? dataRoot : rootDir;
+  const target = isInsideData(dataFile) ? relativeToData(dataFile) : relativeFile;
   return childProcess
     .execFileSync(
       "git",
-      ["log", "-8", "--date=short", "--pretty=format:%h|%ad|%s", "--", relativeFile],
-      { cwd: rootDir, encoding: "utf8" },
+      ["log", "-8", "--date=short", "--pretty=format:%h|%ad|%s", "--", target],
+      { cwd, encoding: "utf8" },
     )
     .trim()
     .split("\n")
@@ -367,8 +379,8 @@ function repoHistory() {
 }
 
 function openFile(relativeFile) {
-  const file = path.resolve(rootDir, relativeFile);
-  if (!file.startsWith(path.join(rootDir, "data")) || !fs.existsSync(file))
+  const file = resolveDataFile(relativeFile);
+  if (!isInsideData(file) || !fs.existsSync(file))
     throw new Error("Fichier non autorisé.");
   if (process.platform === "darwin")
     childProcess.spawn("open", ["-R", file], { detached: true, stdio: "ignore" }).unref();

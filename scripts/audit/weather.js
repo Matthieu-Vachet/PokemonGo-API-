@@ -1,9 +1,9 @@
 const fs = require("fs");
 const path = require("path");
+const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 const { collectAllDocuments, listJsonFiles } = require("../../src/sync/source-reader");
 
-const rootDir = path.resolve(__dirname, "../..");
-const weatherDir = path.join(rootDir, "data", "weather");
+const weatherDir = dataPath("weather");
 const weather = listJsonFiles(weatherDir)
   .filter((file) => path.basename(file) !== "weather.json")
   .map((file) => JSON.parse(fs.readFileSync(file, "utf8")));

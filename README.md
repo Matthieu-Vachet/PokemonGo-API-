@@ -1,18 +1,19 @@
 # Pokemon GO API
 
-API REST publique, multilingue et versionnee pour Pokemon GO, alimentee par une base de
-donnees JSON structuree. Elle est pensee pour servir durablement un Pokedex, un bot
+API REST publique, multilingue et versionnee pour Pokemon GO, alimentee par un depot
+de donnees JSON separe. Elle est pensee pour servir durablement un Pokedex, un bot
 Discord, un site, une application mobile, des outils PvP, Raid et collection.
 
 Le backend de production vit dans `src/`. Les checklists restent des outils independants
-pour enrichir les fiches, tandis que MongoDB Atlas fournit les recherches, filtres et
+pour consulter les fiches, tandis que MongoDB Atlas fournit les recherches, filtres et
 classements rapides de l'API. La synchronisation ne modifie jamais les JSON sources.
+Les donnees sources vivent maintenant dans le depot prive `PokemonGo-Data`.
 
 Documentation detaillee de l'API : [docs/API.md](docs/API.md)
 
 ## Points Forts
 
-- Donnees Pokemon stockees en JSON, un fichier par espece ou forme.
+- Donnees Pokemon stockees dans `PokemonGo-Data`, un fichier JSON par espece ou forme.
 - Schema enrichi inspire du Game Master Pokemon GO.
 - Noms multilingues inclus directement dans les objets.
 - Stats, CP max, couts, disponibilite, PvP, movesets et evolutions.
@@ -49,29 +50,6 @@ PokemonGo-API-/
 │   ├── import/
 │   ├── migrate/
 │   └── sync/
-├── data/
-│   ├── moves/
-│   │   ├── fast/
-│   │   ├── charged/
-│   │   ├── fast_elite/
-│   │   ├── charged_elite/
-│   │   ├── max/
-│   │   └── gmax/
-│   ├── pokemon/
-│   │   ├── 0001-bulbasaur.json
-│   │   ├── 0002-ivysaur.json
-│   │   └── 0003-venusaur.json
-│   ├── pokemon-forms/
-│   │   ├── alola/
-│   │   ├── galar/
-│   │   ├── hisui/
-│   │   ├── paldea/
-│   │   ├── dynamax/
-│   │   ├── gigantamax/
-│   │   ├── mega/
-│   │   ├── mega-x/
-│   │   └── mega-y/
-│   └── types/
 ├── config/                    # Configuration Atlas Search
 ├── docs/
 │   ├── API.md
@@ -83,6 +61,10 @@ PokemonGo-API-/
 ├── test/
 └── package.json
 ```
+
+Le depot `PokemonGo-Data` doit etre disponible a cote du projet, ou configure via
+`POKEMON_GO_DATA_DIR`. En production Vercel, `npm run ensure:data` peut cloner le depot
+dans `.data/PokemonGo-Data`.
 
 Le rôle détaillé de chaque dossier est expliqué dans
 [docs/PROJECT-STRUCTURE.md](docs/PROJECT-STRUCTURE.md).
@@ -97,6 +79,7 @@ cp .env.example .env
 Renseigner ensuite `MONGODB_URI` dans `.env`, puis synchroniser les donnees :
 
 ```bash
+npm run ensure:data
 npm run sync
 ```
 
@@ -128,7 +111,7 @@ http://localhost:3000/swagger
 
 ## Exemple De Donnee
 
-Les fichiers Pokemon vivent dans `data/pokemon/`.
+Les fichiers Pokemon vivent dans `PokemonGo-Data/pokemon/`.
 
 ```json
 {
@@ -162,13 +145,13 @@ Les templates de creation sont disponibles dans [docs/TEMPLATES.md](docs/TEMPLAT
 Chaque fichier suit le nommage:
 
 ```text
-data/pokemon/[dexId]-[slug].json
+PokemonGo-Data/pokemon/[dexId]-[slug].json
 ```
 
 Exemple:
 
 ```text
-data/pokemon/0001-bulbasaur.json
+PokemonGo-Data/pokemon/0001-bulbasaur.json
 ```
 
 Les grandes sections du JSON sont:
@@ -190,7 +173,7 @@ Les references principales du schema sont:
 - `0001-bulbasaur.json`: profil de base.
 - `0002-ivysaur.json`: profil intermediaire.
 - `0003-venusaur.json`: profil final avec Mega-Evolution et Gigantamax.
-- `data/pokemon-forms/dynamax/0001-bulbasaur-dynamax.json`: forme Max qui herite de Bulbasaur.
+- `PokemonGo-Data/pokemon-forms/dynamax/0001-bulbasaur-dynamax.json`: forme Max qui herite de Bulbasaur.
 
 ## Scripts
 
@@ -271,31 +254,27 @@ GitKraken sont documentees dans [docs/GIT-WORKFLOW.md](docs/GIT-WORKFLOW.md).
 2. Conserver les reglages de build automatiques.
 3. Deployer le projet.
 
-Vercel sert le nouveau front public a la racine du domaine et expose un petit nombre de
+Vercel sert le front public read-only a la racine du domaine et expose un petit nombre de
 fonctions serverless pour rester compatible avec le plan Hobby:
 
 - `/api/checklist-v3`
 - `GET /api/checklist-v3?action=detail`
 - `GET /api/checklist-v3?action=catalog`
 - `GET /api/checklist-v3?action=assets`
-- `GET /api/checklist-v3?action=source-watch`
-- `GET /api/checklist-v3?action=url-audit`
-- `POST /api/checklist-v3` avec `action=login`, `logout`, `preview-rule` ou `validate`
 - `/api/v1` pour l'API REST MongoDB
 - `/api-docs` pour la documentation moderne
 - `/swagger` pour la console interactive
-- `/checklist`, `/assets` et `/admin` pour les vues Next.js
+- `/checklist` et `/assets` pour les vues Next.js
+- `/admin` redirige vers `/` en attendant le futur depot `dashboard_Admin`
 
-Configurer `MONGODB_URI`, `NODE_ENV=production` et `API_PUBLIC_URL` dans les variables
-d'environnement Vercel. Les pushes GitHub redeploient automatiquement le projet lorsque
-l'integration GitHub est active.
+Configurer `MONGODB_URI`, `NODE_ENV=production`, `API_PUBLIC_URL` et
+`POKEMON_GO_DATA_TOKEN` dans les variables d'environnement Vercel. Le token doit pouvoir
+lire le depot prive `PokemonGo-Data`. Les pushes GitHub redeploient automatiquement le
+projet lorsque l'integration GitHub est active.
 
-Configurer aussi `ADMIN_DASHBOARD_PASSWORD` pour l'espace admin. Par compatibilite, la
-checklist accepte encore `CHECKLIST_PASSWORD` si tu veux reutiliser l'ancien secret.
-Les outils sensibles ne sont plus exposes par des routes publiques separees: ils passent
-tous par `/api/checklist-v3` et exigent soit une session admin, soit le header
-`x-checklist-password`. Les acces directs aux donnees JSON, aux sources et au moteur
-interne de la checklist sont bloques.
+Les outils sensibles de modification, validation, veille et correction sont retires de
+ce depot public. Ils renvoient une reponse `410 Gone` depuis `/api/checklist-v3` et
+seront migrés dans `dashboard_Admin`.
 
 La progression manuelle est stockee dans `localStorage`. Elle reste disponible sur le
 meme navigateur, mais n'est pas synchronisee automatiquement entre plusieurs appareils.
@@ -307,7 +286,7 @@ Storybook documente les composants UI partages. Utiliser `npm run storybook` en 
 
 ## Ajouter Un Pokemon
 
-1. Creer un fichier dans `data/pokemon/`.
+1. Creer un fichier dans `PokemonGo-Data/pokemon/`.
 2. Utiliser le template Pokemon dans [docs/TEMPLATES.md](docs/TEMPLATES.md).
 3. Renseigner les identifiants techniques en majuscules.
 4. Garder le slug en anglais, en minuscules et avec des tirets.
@@ -324,16 +303,16 @@ Storybook documente les composants UI partages. Utiliser `npm run storybook` en 
 - Images Pokémon Home via `assets.home`; `npm run migrate:home-assets:write` les régénère depuis `asset/HD`.
 - Traductions principales dans les objets `names`.
 - `regionForms`, `megaEvolutions`, `dynamaxForms` et `gigantamaxForms` sont des listes de références `formId`.
-- Les données complètes de chaque forme vivent uniquement dans `data/pokemon-forms/`.
-- `regionId` référence `data/generations/`; l'API recompose la région traduite et la génération.
-- `weatherBoost` référence les identifiants du catalogue `data/weather/`.
+- Les données complètes de chaque forme vivent uniquement dans `PokemonGo-Data/pokemon-forms/`.
+- `regionId` référence `PokemonGo-Data/generations/`; l'API recompose la région traduite et la génération.
+- `weatherBoost` référence les identifiants du catalogue `PokemonGo-Data/weather/`.
 - Les icônes Pokémon Shuffle vivent dans `assets.shuffle` sur leur fiche exacte
   (normale, régionale, Méga, Dynamax ou Gigantamax) et sont importées avec
   `npm run import:pokemon-shuffle:write`. Les fichiers sans fiche compatible restent
-  dans la galerie globale et dans `data/pokemon-shuffle-import-report.json`.
+  dans la galerie globale et dans `PokemonGo-Data/pokemon-shuffle-import-report.json`.
 - Les quatre champs d'attaques des Pokemon sont des tableaux d'identifiants.
-- Les details des attaques vivent uniquement dans `data/moves/`, y compris `max/` et `gmax/`.
-- `primaryType`, `secondaryType` et `type` d'attaque utilisent les identifiants courts de `data/types/`, par exemple `"GRASS"`.
+- Les details des attaques vivent uniquement dans `PokemonGo-Data/moves/`, y compris `max/` et `gmax/`.
+- `primaryType`, `secondaryType` et `type` d'attaque utilisent les identifiants courts de `PokemonGo-Data/types/`, par exemple `"GRASS"`.
 - `pvp` peut valoir `null`; sinon les ligues `littleCup`, `greatLeague`, `ultraLeague` et `masterLeague` peuvent chacune valoir `null`.
 - `megaEnergyReward` peut valoir `null` lorsqu'il n'y a pas d'energie Mega a gagner.
 - Les evolutions pointent vers `targetFormId`; la cible peut ne pas encore exister si tu ajoutes les fiches au fur et a mesure.

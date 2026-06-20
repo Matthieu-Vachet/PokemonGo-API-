@@ -1,9 +1,9 @@
 const fs = require("fs");
 const path = require("path");
+const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const rootDir = path.resolve(__dirname, "../..");
-const pokemonDir = path.join(rootDir, "data", "pokemon");
-const formsDir = path.join(rootDir, "data", "pokemon-forms");
+const pokemonDir = dataPath("pokemon");
+const formsDir = dataPath("pokemon-forms");
 const write = process.argv.includes("--write");
 
 function read(file) {
@@ -84,9 +84,9 @@ for (const filename of fs
           folder,
           `${pokemon.dexId}-${slug(complete.slug || formId)}.json`,
         );
-      if (!existing) created.push(path.relative(rootDir, formFile));
+      if (!existing) created.push(relativeToApp(formFile));
       else if (JSON.stringify(existing.form) !== JSON.stringify(complete))
-        updated.push(path.relative(rootDir, formFile));
+        updated.push(relativeToApp(formFile));
       if (write) writeJson(formFile, complete);
       dedicatedByFormId.set(formId, { file: formFile, form: complete });
     }
@@ -94,7 +94,7 @@ for (const filename of fs
     changed = true;
   }
   if (!changed) continue;
-  pokemonChanged.push(path.relative(rootDir, file));
+  pokemonChanged.push(relativeToApp(file));
   if (write) writeJson(file, pokemon);
 }
 
@@ -129,7 +129,7 @@ for (const [key, references] of maxReferences) {
   const next = [...new Set(references)].sort();
   if (JSON.stringify(parent[field]) === JSON.stringify(next)) continue;
   parent[field] = next;
-  maxReferenceChanges.push(path.relative(rootDir, file));
+  maxReferenceChanges.push(relativeToApp(file));
   if (write) writeJson(file, parent);
 }
 

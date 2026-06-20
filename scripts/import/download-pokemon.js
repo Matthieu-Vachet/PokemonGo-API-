@@ -1,13 +1,13 @@
 const axios = require("axios");
 const fs = require("fs");
 const path = require("path");
+const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
 // ==============================
 // CONFIG
 // ==============================
 
 const MAX_POKEMON = 1025;
-const rootDir = path.resolve(__dirname, "../..");
 
 // ==============================
 // FORMAT ID
@@ -63,7 +63,7 @@ async function downloadPokemon(id) {
     // SAVE PATH
     // ==============================
 
-    const pokemonDir = path.join(rootDir, "data", "pokemon");
+    const pokemonDir = dataPath("pokemon");
     const filePath = path.join(pokemonDir, filename);
 
     // Ensure directory exists

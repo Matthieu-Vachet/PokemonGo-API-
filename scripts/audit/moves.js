@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
+const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const rootDir = path.resolve(__dirname, "../..");
 const sourceDirectories = ["data/pokemon", "data/pokemon-forms"];
 const moveFields = {
   quickMoves: "fast",
@@ -15,13 +15,13 @@ function readJson(file) {
 }
 
 function jsonFiles(directory) {
-  const absolute = path.join(rootDir, directory);
+  const absolute = dataPathFromRelative(directory);
   return fs.readdirSync(absolute, { withFileTypes: true }).flatMap((entry) => {
     const relative = path.join(directory, entry.name);
     return entry.isDirectory()
       ? jsonFiles(relative)
       : entry.name.endsWith(".json")
-        ? [path.join(rootDir, relative)]
+        ? [dataPathFromRelative(relative)]
         : [];
   });
 }
@@ -110,7 +110,7 @@ function inspect(value, location) {
 
 const sourceFiles = sourceDirectories.flatMap(jsonFiles);
 for (const file of sourceFiles)
-  inspect(readJson(file), path.relative(rootDir, file));
+  inspect(readJson(file), relativeToApp(file));
 
 const result = {
   sourceFiles: sourceFiles.length,

@@ -2,16 +2,17 @@
 
 ## Sources De Vérité
 
-- `data/pokemon/` contient uniquement les fiches principales.
-- `data/pokemon-forms/` contient les données complètes de chaque forme.
+- Le depot prive `PokemonGo-Data` contient les JSON sources.
+- `PokemonGo-Data/pokemon/` contient uniquement les fiches principales.
+- `PokemonGo-Data/pokemon-forms/` contient les données complètes de chaque forme.
 - `regionForms`, `megaEvolutions`, `dynamaxForms` et `gigantamaxForms` sont des
   listes de références `formId`.
-- `data/moves/`, `data/types/`, `data/generations/` et `data/weather/` sont les
+- `PokemonGo-Data/moves/`, `PokemonGo-Data/types/`, `PokemonGo-Data/generations/` et `PokemonGo-Data/weather/` sont les
   catalogues centraux.
 - Les fiches complètes utilisent `regionId`; ne jamais recopier l'objet région ni
   la génération. Les formes Méga et Max héritent ces informations de leur base.
-- `weatherBoost` et `data/types/*/weatherBoost` utilisent les identifiants de
-  `data/weather/`.
+- `weatherBoost` et `PokemonGo-Data/types/*/weatherBoost` utilisent les identifiants de
+  `PokemonGo-Data/weather/`.
 
 Ne jamais recopier les données complètes d'une forme dans une fiche principale.
 
@@ -51,7 +52,7 @@ Toujours contrôler le mode sans `:write` avant l'écriture. L'importeur Shuffle
 chaque fichier à une seule fiche exacte, utilise `chromatique` pour le shiny et classe
 les suffixes `shadow`, `purified`, `dynamax` et `gigantamax`. Les fichiers sans fiche
 compatible restent dans la galerie et sont listés dans
-`data/pokemon-shuffle-import-report.json`.
+`PokemonGo-Data/pokemon-shuffle-import-report.json`.
 
 ## Évolution Du Schéma
 

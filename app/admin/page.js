@@ -1,9 +1,9 @@
-import { AdminApp } from "../../components/admin/admin-app";
+import { redirect } from "next/navigation";
 
 export const metadata = {
-  title: "Dashboard admin | Pokémon GO API Studio",
+  title: "Admin migré | Pokémon GO API Studio",
 };
 
 export default function AdminPage() {
-  return <AdminApp />;
+  redirect("/");
 }

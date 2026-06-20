@@ -1,9 +1,9 @@
 const fs = require("fs");
 const path = require("path");
+const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const rootDir = path.resolve(__dirname, "../..");
 const sourceDir = path.join(rootDir, "asset", "HD");
-const pokemonDir = path.join(rootDir, "data", "pokemon");
+const pokemonDir = dataPath("pokemon");
 const write = process.argv.includes("--write");
 const remoteBase =
   "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd";

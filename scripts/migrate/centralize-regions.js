@@ -1,18 +1,18 @@
 const fs = require("fs");
 const path = require("path");
+const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const rootDir = path.resolve(__dirname, "../..");
 const write = process.argv.includes("--write");
 const sourceDirectories = ["data/pokemon", "data/pokemon-forms"];
 
 function files(directory) {
-  const absolute = path.join(rootDir, directory);
+  const absolute = dataPathFromRelative(directory);
   return fs.readdirSync(absolute, { withFileTypes: true }).flatMap((entry) => {
     const relative = path.join(directory, entry.name);
     return entry.isDirectory()
       ? files(relative)
       : entry.name.endsWith(".json")
-        ? [path.join(rootDir, relative)]
+        ? [dataPathFromRelative(relative)]
         : [];
   });
 }

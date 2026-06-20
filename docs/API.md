@@ -1,9 +1,9 @@
 # Pokemon GO API REST
 
 L'API publique est separee de la checklist et vit dans `src/`.
-Les fichiers sous `data/` restent la source de verite et ne sont jamais modifies par la
-synchronisation. Les details des attaques vivent dans `data/moves/`; les Pokemon ne
-conservent que leurs identifiants.
+Les fichiers du depot prive `PokemonGo-Data` restent la source de verite et ne sont
+jamais modifies par la synchronisation. Les details des attaques vivent dans
+`PokemonGo-Data/moves/`; les Pokemon ne conservent que leurs identifiants.
 
 ## Architecture
 
@@ -46,6 +46,7 @@ Configurer au minimum :
 ```dotenv
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/pokemon-go-api
 API_PUBLIC_URL=http://localhost:3000
+POKEMON_GO_DATA_DIR=../PokemonGo-Data
 ```
 
 ## Synchronisation
@@ -211,6 +212,7 @@ Processus recommande :
 
 ```bash
 npm ci
+npm run ensure:data
 npm run sync
 npm start
 ```
@@ -223,23 +225,24 @@ watchers concurrents sur les memes sources.
 
 `api/rest.js` expose l'application Express comme Vercel Function. Les routes `/api/v1`,
 `/api-docs`, `/swagger` et `/health` sont dirigees vers cette fonction par `vercel.json`.
-Le nouveau front Next.js sert `/`, `/checklist`, `/assets` et `/admin`.
+Le front Next.js sert `/`, `/checklist` et `/assets`. `/admin` redirige vers `/` en
+attendant le futur depot `dashboard_Admin`.
 
 La checklist expose aussi `/api/checklist-v3`, qui regroupe le bootstrap public, le
-détail d'une fiche, les audits d'assets, la veille des sources et les outils admin.
-L'action `source-watch` lit `data/source-watch/sources.json`, verifie les depots GitHub
-et sites declares, puis renvoie leur signature courante pour afficher les nouveautés
-dans l'onglet "Veille sources".
+détail d'une fiche, les catalogues et les audits d'assets en lecture seule. Les actions
+admin historiques (`login`, `validate`, `preview-rule`, `source-watch`, `url-audit`) sont
+désactivées ici et renvoient `410 Gone`.
 
 Configurer dans Vercel les variables `MONGODB_URI`, `NODE_ENV=production` et
-`API_PUBLIC_URL`. Configurer aussi `ADMIN_DASHBOARD_PASSWORD` pour proteger le dashboard
-admin, ou `CHECKLIST_PASSWORD` si tu veux conserver l'ancien secret. Atlas doit accepter
-les connexions sortantes de Vercel ; sur un cluster standard, cela implique generalement
-une autorisation reseau adaptee ou une solution d'adresse sortante fixe.
+`API_PUBLIC_URL`. Comme `PokemonGo-Data` est prive, ajouter aussi
+`POKEMON_GO_DATA_TOKEN` avec un token GitHub ayant le droit de lire ce depot. Atlas doit
+accepter les connexions sortantes de Vercel ; sur un cluster standard, cela implique
+generalement une autorisation reseau adaptee ou une solution d'adresse sortante fixe.
 
-Le workflow `.github/workflows/sync-mongodb.yml` synchronise automatiquement Atlas quand
-les JSON de `data/` changent sur `main`. Ajouter `MONGODB_URI` dans les secrets GitHub
-Actions du depot.
+Le workflow `.github/workflows/sync-mongodb.yml` synchronise automatiquement Atlas sur
+push `main`, execution manuelle ou evenement `repository_dispatch` envoyé par
+`PokemonGo-Data`. Ajouter `MONGODB_URI` et `POKEMON_GO_DATA_TOKEN` dans les secrets
+GitHub Actions du depot API.
 
 `npm run sync:watch` ne doit pas tourner sur Vercel : une Function n'est pas un processus
 permanent. Utiliser le workflow GitHub Actions ou un Cron Vercel pour les synchronisations.

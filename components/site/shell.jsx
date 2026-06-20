@@ -12,7 +12,6 @@ const links = [
   { href: "/assets", label: "Bibliothèques" },
   { href: "/api-docs", label: "Documentation" },
   { href: "/swagger", label: "API interactive" },
-  { href: "/admin", label: "Dashboard" },
 ];
 
 function PokeballMark({ small = false }) {
@@ -109,7 +108,7 @@ export function SiteShell({ children }) {
               </span>
             </Link>
             <p className="mt-3 max-w-md text-sm font-bold leading-6 text-slate-400">
-              Un accès public en lecture pour explorer les données, et un dashboard protégé pour maintenir le dataset.
+              Un accès public en lecture seule pour explorer les données, les assets et les statistiques.
             </p>
           </div>
           <nav className="grid gap-2 text-sm font-bold text-slate-300" aria-label="Liens utiles footer">
@@ -129,9 +128,6 @@ export function SiteShell({ children }) {
               </Link>
               <Link className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-2 hover:bg-white/10" href="/api-docs.json">
                 OpenAPI JSON
-              </Link>
-              <Link className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-2 hover:bg-white/10" href="/admin">
-                Admin
               </Link>
             </div>
           </div>

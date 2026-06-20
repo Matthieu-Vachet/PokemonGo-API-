@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const { buildChecklist } = require("../../apps/checklist/server/engine");
 const { catalog } = require("../../apps/checklist/server/workshop");
+const { dataRoot } = require("./data-repository");
 
 const categoryLabels = {
   assets: "Assets",
@@ -86,14 +87,13 @@ const reportLabels = {
 };
 
 function reportFreshness() {
-  const dataDir = path.join(process.cwd(), "data");
   try {
     const reports = fs
-      .readdirSync(dataDir)
+      .readdirSync(dataRoot)
       .filter((file) => file.endsWith("-report.json"))
       .map((file) => {
         try {
-          const payload = JSON.parse(fs.readFileSync(path.join(dataDir, file), "utf8"));
+          const payload = JSON.parse(fs.readFileSync(path.join(dataRoot, file), "utf8"));
           const generatedAt = payload.generatedAt || payload.updatedAt || null;
           const timestamp = generatedAt ? Date.parse(generatedAt) : 0;
           return {

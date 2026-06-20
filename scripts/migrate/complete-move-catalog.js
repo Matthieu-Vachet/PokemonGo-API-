@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
+const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const rootDir = path.resolve(__dirname, "../..");
 const write = process.argv.includes("--write");
 const sourceDirectories = ["data/pokemon", "data/pokemon-forms"];
 const moveFields = {
@@ -16,13 +16,13 @@ function readJson(file) {
 }
 
 function jsonFiles(directory) {
-  const absolute = path.join(rootDir, directory);
+  const absolute = dataPathFromRelative(directory);
   return fs.readdirSync(absolute, { withFileTypes: true }).flatMap((entry) => {
     const relative = path.join(directory, entry.name);
     return entry.isDirectory()
       ? jsonFiles(relative)
       : entry.name.endsWith(".json")
-        ? [path.join(rootDir, relative)]
+        ? [dataPathFromRelative(relative)]
         : [];
   });
 }
@@ -36,7 +36,7 @@ function collect(value, location) {
     const category = moveFields[key];
     if (category && child && !Array.isArray(child) && typeof child === "object") {
       for (const [id, move] of Object.entries(child)) {
-        const target = path.join(rootDir, "data", "moves", category, `${id}.json`);
+        const target = dataPath("moves", category, `${id}.json`);
         if (fs.existsSync(target)) continue;
         const catalogKey = `${category}:${id}`;
         const existing = missing.get(catalogKey);
@@ -50,13 +50,13 @@ function collect(value, location) {
 }
 
 for (const file of sourceDirectories.flatMap(jsonFiles))
-  collect(readJson(file), path.relative(rootDir, file));
+  collect(readJson(file), relativeToApp(file));
 
 const result = {
   mode: write ? "write" : "dry-run",
   missingCatalogEntries: missing.size,
   conflicts,
-  files: [...missing.values()].map(({ target }) => path.relative(rootDir, target)),
+  files: [...missing.values()].map(({ target }) => relativeToApp(target)),
 };
 
 if (conflicts.length) {

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { ApiStatusPill } from "./api-status-pill";
@@ -31,9 +32,20 @@ export { PokeballMark };
 
 export function SiteShell({ children }) {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname() || "/";
+
+  function isActive(href) {
+    return href === "/" ? pathname === "/" : pathname.startsWith(href);
+  }
 
   return (
     <div className="min-h-screen text-slate-100">
+      <a
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-2xl focus:bg-cyan-300 focus:px-4 focus:py-3 focus:text-sm focus:font-black focus:text-slate-950"
+        href="#contenu-principal"
+      >
+        Aller au contenu principal
+      </a>
       <header className="sticky top-0 z-30 border-b border-white/10 bg-zinc-950/86 px-3 py-3 shadow-[0_18px_80px_rgba(0,0,0,.22)] backdrop-blur-xl lg:px-6">
         <div className="mx-auto max-w-[1680px]">
           <div className="grid grid-cols-[1fr_auto] items-center gap-3 lg:grid-cols-[minmax(245px,auto)_1fr_auto]">
@@ -53,7 +65,12 @@ export function SiteShell({ children }) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="rounded-2xl border border-transparent bg-transparent px-3 py-2 text-center text-sm font-bold text-slate-300 transition hover:border-cyan-200/35 hover:bg-cyan-400/10 hover:text-white"
+                  aria-current={isActive(link.href) ? "page" : undefined}
+                  className={`rounded-2xl border px-3 py-2 text-center text-sm font-bold transition ${
+                    isActive(link.href)
+                      ? "border-cyan-200/45 bg-cyan-400/15 text-white"
+                      : "border-transparent bg-transparent text-slate-300 hover:border-cyan-200/35 hover:bg-cyan-400/10 hover:text-white"
+                  }`}
                 >
                   {link.label}
                 </Link>
@@ -69,8 +86,9 @@ export function SiteShell({ children }) {
               onClick={() => setOpen((value) => !value)}
               aria-expanded={open}
               aria-controls="mobile-site-nav"
+              aria-label={open ? "Fermer le menu de navigation" : "Ouvrir le menu de navigation"}
             >
-              {open ? <X size={18} /> : <Menu size={18} />}
+              {open ? <X aria-hidden="true" size={18} /> : <Menu aria-hidden="true" size={18} />}
               Menu
             </button>
           </div>
@@ -81,7 +99,12 @@ export function SiteShell({ children }) {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3 text-sm font-black text-slate-200"
+                    aria-current={isActive(link.href) ? "page" : undefined}
+                    className={`rounded-2xl border px-4 py-3 text-sm font-black ${
+                      isActive(link.href)
+                        ? "border-cyan-200/45 bg-cyan-400/15 text-white"
+                        : "border-white/10 bg-white/[0.045] text-slate-200"
+                    }`}
                     onClick={() => setOpen(false)}
                   >
                     {link.label}
@@ -96,7 +119,9 @@ export function SiteShell({ children }) {
           ) : null}
         </div>
       </header>
-      {children}
+      <div id="contenu-principal" tabIndex={-1}>
+        {children}
+      </div>
       <footer className="border-t border-white/10 bg-zinc-950/88 px-4 py-8 backdrop-blur-xl lg:px-6">
         <div className="mx-auto grid max-w-[1680px] gap-6 md:grid-cols-[1.1fr_.9fr_.9fr]">
           <div>

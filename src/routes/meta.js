@@ -1,7 +1,6 @@
 const express = require("express");
-const { Move, Pokemon, SyncRun, Weather } = require("../models");
+const { Move, Pokemon, Weather } = require("../models");
 const { asyncHandler } = require("../lib/async-handler");
-const { adminOnly } = require("../middleware/admin-auth");
 
 const router = express.Router();
 
@@ -22,14 +21,6 @@ router.get(
     response.json({
       data: { forms, kinds, regions, generations, types, weather, leagues, moveTypes },
     });
-  }),
-);
-
-router.get(
-  "/sync",
-  adminOnly,
-  asyncHandler(async (_request, response) => {
-    response.json({ data: await SyncRun.findOne().sort({ startedAt: -1 }).lean() });
   }),
 );
 

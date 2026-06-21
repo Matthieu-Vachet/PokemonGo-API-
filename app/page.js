@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   Activity,
   ArrowRight,
@@ -13,6 +14,8 @@ import { PokemonCard } from "../components/checklist/pokemon-card";
 import { uiAssets } from "../components/site/ui-assets";
 
 const { loadSiteDashboard } = require("../src/lib/site-dashboard");
+
+export const revalidate = 3600;
 
 const ctaClass =
   "inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl px-5 text-sm font-black transition";
@@ -32,7 +35,14 @@ function ProgressList({ title, items, valueLabel = "percent" }) {
               <span className="truncate font-bold text-slate-300">
                 {item.label || item.id || `Gén. ${item.generation}`}
               </span>
-              <span className="h-3 overflow-hidden rounded-full bg-white/10">
+              <span
+                className="h-3 overflow-hidden rounded-full bg-white/10"
+                role="meter"
+                aria-label={`Progression ${item.label || item.id || `génération ${item.generation}`}`}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-valuenow={Math.min(100, percent)}
+              >
                 <i
                   className="block h-full rounded-full bg-gradient-to-r from-emerald-300 via-cyan-400 to-sky-500"
                   style={{ width: `${Math.min(100, percent)}%` }}
@@ -136,10 +146,13 @@ export default function HomePage() {
             </div>
           </div>
           <aside className="rounded-[2rem] border border-white/10 bg-black/30 p-5 backdrop-blur-xl">
-            <img
+            <Image
               className="mx-auto mb-5 max-h-28 object-contain drop-shadow-[0_14px_40px_rgba(255,255,255,.18)]"
               src={uiAssets.icons.goLogo}
               alt="Pokémon GO"
+              width={240}
+              height={120}
+              priority
             />
             <div className="grid gap-3 sm:grid-cols-2">
               <MetricCard label="Complétion JSON" value={`${completion}%`} accent="green" icon={uiAssets.icons.bookSpells} />
@@ -183,14 +196,14 @@ export default function HomePage() {
         />
         <FeatureCard
           href="/swagger"
-          icon={<FileJson size={30} />}
+          icon={<FileJson aria-hidden="true" size={30} />}
           title="API interactive"
           text="Tester les endpoints publics directement depuis le navigateur."
         />
         <FeatureCard
           href="/api-docs"
           accent="amber"
-          icon={<BookOpen size={30} />}
+          icon={<BookOpen aria-hidden="true" size={30} />}
           title="Documentation"
           text="Routes, modèles JSON, catalogues et OpenAPI pour intégrer l’API proprement."
         />
@@ -212,7 +225,7 @@ export default function HomePage() {
           <div className="grid gap-3 lg:grid-cols-2">
             {dashboard.needsAttention.length ? (
               dashboard.needsAttention.slice(0, 4).map((entry) => (
-                <PokemonCard key={entry.key} entry={entry} compact />
+                <PokemonCard key={entry.key} entry={entry} />
               ))
             ) : (
               <div className="rounded-[2rem] border border-emerald-300/20 bg-emerald-400/10 p-5 text-emerald-100 lg:col-span-2">

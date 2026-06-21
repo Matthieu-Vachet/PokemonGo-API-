@@ -59,7 +59,7 @@ function familyLabel(kind) {
   }[kind] || kind;
 }
 
-export function ChecklistApp({ mode = "public" }) {
+export function ChecklistApp() {
   const data = useChecklistData();
   const [search, setSearch] = useState("");
   const [generation, setGeneration] = useState("all");
@@ -341,7 +341,6 @@ export function ChecklistApp({ mode = "public" }) {
         open={Boolean(selected)}
         entry={selected}
         detail={detail || (detailError ? { detail: { error: detailError } } : null)}
-        mode={mode}
         typeCatalog={catalog.types}
         weatherCatalog={catalog.weather}
         onPrevious={() => shiftDetail(-1)}

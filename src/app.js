@@ -11,8 +11,8 @@ const { createOpenApi } = require("./docs/openapi");
 const { redocPage } = require("./docs/redoc-page");
 const { swaggerPage } = require("./docs/swagger-page");
 const { cacheMiddleware } = require("./lib/cache");
-const { readOnlyPublic } = require("./middleware/admin-auth");
 const { errorHandler, notFound } = require("./middleware/errors");
+const { publicReadOnly } = require("./middleware/read-only");
 const { requestId } = require("./middleware/request-id");
 const api = require("./routes");
 
@@ -27,7 +27,13 @@ function createApp() {
       contentSecurityPolicy: {
         directives: {
           defaultSrc: ["'self'"],
+          baseUri: ["'self'"],
+          connectSrc: ["'self'", "https:"],
+          fontSrc: ["'self'", "data:"],
+          formAction: ["'self'"],
+          frameAncestors: ["'none'"],
           imgSrc: ["'self'", "data:", "https:"],
+          objectSrc: ["'none'"],
           scriptSrc: [
             "'self'",
             "'unsafe-inline'",
@@ -37,6 +43,7 @@ function createApp() {
           styleSrc: ["'self'", "'unsafe-inline'", "https:"],
         },
       },
+      referrerPolicy: { policy: "strict-origin-when-cross-origin" },
     }),
   );
   app.use(
@@ -96,7 +103,7 @@ function createApp() {
       },
     }),
   );
-  app.use(env.apiBasePath, readOnlyPublic, cacheMiddleware(), api);
+  app.use(env.apiBasePath, publicReadOnly, cacheMiddleware(), api);
   app.use(notFound);
   app.use(errorHandler);
   return app;

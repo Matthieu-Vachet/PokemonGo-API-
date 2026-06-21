@@ -62,10 +62,6 @@ export function PokemonCard({
   entry,
   onOpen,
   actionLabel = "Voir la fiche",
-  compact = false,
-  admin = false,
-  assetChecked = false,
-  onAssetChecked,
   typeCatalog = [],
   weatherCatalog = [],
 }) {
@@ -80,7 +76,7 @@ export function PokemonCard({
     <article
       className={`relative isolate min-h-[292px] overflow-hidden rounded-[1.65rem] border p-4 shadow-[0_18px_50px_rgba(0,0,0,0.24)] ${
         entry.complete ? "border-emerald-300/25" : "border-amber-300/30"
-      } ${assetChecked ? "ring-2 ring-emerald-300/50" : ""}`}
+      }`}
       style={{
         borderColor: `color-mix(in srgb, ${typeColors[mainType] || "#7aa7ff"} 42%, rgba(255,255,255,.12))`,
         backgroundImage: `${
@@ -164,17 +160,6 @@ export function PokemonCard({
       </div>
 
       <div className="mt-4 grid gap-2">
-        {admin ? (
-          <label className="flex min-h-10 items-center gap-2 rounded-xl border border-white/10 bg-white/10 px-3 text-sm font-black text-white">
-            <input
-              className="h-5 w-5 accent-emerald-400"
-              type="checkbox"
-              checked={assetChecked}
-              onChange={(event) => onAssetChecked?.(entry.key, event.target.checked)}
-            />
-            <span>Assets OK</span>
-          </label>
-        ) : null}
         {onOpen ? (
           <button
             className="min-h-12 rounded-2xl bg-gradient-to-r from-cyan-400 via-sky-500 to-emerald-400 px-4 font-black text-white shadow-[0_16px_45px_rgba(14,165,233,.25)] transition hover:scale-[1.01]"

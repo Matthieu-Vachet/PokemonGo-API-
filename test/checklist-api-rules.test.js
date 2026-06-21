@@ -35,10 +35,10 @@ test("GET /api/checklist-v3 renvoie la checklist publique et le catalogue", asyn
   assert.equal(response.statusCode, 200);
   assert.ok(Array.isArray(response.body.data.entries));
   assert.equal(typeof response.body.data.catalog.types, "number");
-  assert.equal(response.body.data.viewer.admin, false);
+  assert.deepEqual(response.body.data.customRules, []);
 });
 
-test("POST /api/checklist-v3 bootstrap ignore les règles perso publiques", async () => {
+test("POST /api/checklist-v3 bootstrap est refusé par l'API publique", async () => {
   const request = {
     method: "POST",
     headers: {},
@@ -52,11 +52,12 @@ test("POST /api/checklist-v3 bootstrap ignore les règles perso publiques", asyn
 
   await checklistHandler(request, response);
 
-  assert.equal(response.statusCode, 200);
-  assert.deepEqual(response.body.data.customRules, []);
+  assert.equal(response.statusCode, 405);
+  assert.equal(response.headers.allow, "GET, HEAD, OPTIONS");
+  assert.match(response.body.error, /Méthode non autorisée/);
 });
 
-test("POST /api/checklist-v3 preview-rule est migré hors API publique", async () => {
+test("POST /api/checklist-v3 preview-rule est refusé par l'API publique", async () => {
   const request = {
     method: "POST",
     headers: {},
@@ -72,8 +73,9 @@ test("POST /api/checklist-v3 preview-rule est migré hors API publique", async (
 
   await checklistHandler(request, response);
 
-  assert.equal(response.statusCode, 410);
-  assert.match(response.body.error, /read-only/);
+  assert.equal(response.statusCode, 405);
+  assert.equal(response.headers.allow, "GET, HEAD, OPTIONS");
+  assert.match(response.body.error, /Méthode non autorisée/);
 });
 
 test("POST /api/checklist-v3 login est désactivé en read-only", async () => {
@@ -89,7 +91,8 @@ test("POST /api/checklist-v3 login est désactivé en read-only", async () => {
     response,
   );
 
-  assert.equal(response.statusCode, 410);
+  assert.equal(response.statusCode, 405);
+  assert.equal(response.headers.allow, "GET, HEAD, OPTIONS");
   assert.equal(response.headers["set-cookie"], undefined);
-  assert.match(response.body.error, /dashboard_Admin/);
+  assert.match(response.body.error, /Méthode non autorisée/);
 });

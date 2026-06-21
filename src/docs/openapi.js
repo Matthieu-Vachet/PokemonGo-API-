@@ -172,7 +172,7 @@ function createOpenApi() {
       ["Shadow", "Sorties Obscures, coûts de purification, Catch CP et variantes."],
       ["Stickers", "Catalogue des stickers Pokémon GO disponibles comme assets."],
       ["Shuffle", "Icônes Pokémon Shuffle associées à leur fiche exacte."],
-      ["Métadonnées", "Filtres disponibles et synchronisation."],
+      ["Métadonnées", "Filtres publics disponibles pour explorer l'API."],
     ].map(([name, description]) => ({ name, description })),
     paths: {
       "/health": operation("System", "Vérifier la connexion MongoDB", {
@@ -428,7 +428,6 @@ function createOpenApi() {
         response: listResponse(),
       }),
       [`${api}/meta/filters`]: operation("Métadonnées", "Lister toutes les valeurs de filtre disponibles", { errors: false }),
-      [`${api}/meta/sync`]: operation("Métadonnées", "Afficher la dernière synchronisation MongoDB", { errors: false }),
     },
     components: {
       schemas: {
@@ -507,7 +506,7 @@ function createOpenApi() {
     { name: "Pokédex", tags: ["Pokémon", "Évolutions", "Méga", "Dynamax", "Gigantamax", "Shadow", "Assets", "Backgrounds", "Stickers", "Shuffle"] },
     { name: "Combat", tags: ["PvP", "Raid", "Attaques", "Types", "Statistiques", "Comparaison"] },
     { name: "Univers", tags: ["Régions", "Générations", "Collection"] },
-    { name: "Administration", tags: ["Métadonnées"] },
+    { name: "Métadonnées publiques", tags: ["Métadonnées"] },
   ];
 
   return specification;

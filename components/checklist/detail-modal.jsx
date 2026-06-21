@@ -445,51 +445,11 @@ function JsonBlock({ payload }) {
   );
 }
 
-function AdminActions({ entry, onCopyPatch, onAuditUrls, onAssetAudit, extraPanel }) {
-  return (
-    <Section title="Outils admin" eyebrow="privé" icon={uiAssets.icons.radar}>
-      <div className="flex flex-wrap gap-3">
-        <button
-          className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm font-black text-white transition hover:border-cyan-200/50 hover:bg-cyan-400/15"
-          type="button"
-          onClick={() => onCopyPatch?.(entry)}
-        >
-          Copier le brouillon JSON
-        </button>
-        <button
-          className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm font-black text-white transition hover:border-cyan-200/50 hover:bg-cyan-400/15"
-          type="button"
-          onClick={() => onAuditUrls?.(entry)}
-        >
-          Vérifier les URLs
-        </button>
-        <button
-          className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm font-black text-white transition hover:border-cyan-200/50 hover:bg-cyan-400/15"
-          type="button"
-          onClick={() => onAssetAudit?.(entry)}
-        >
-          Audit assets
-        </button>
-      </div>
-      {extraPanel ? (
-        <div className="mt-4 rounded-2xl border border-white/10 bg-slate-950/55 p-4 text-sm text-slate-200">
-          {extraPanel}
-        </div>
-      ) : null}
-    </Section>
-  );
-}
-
 export function DetailModal({
   open,
   entry,
   detail,
-  mode = "public",
   onClose,
-  onCopyPatch,
-  onAuditUrls,
-  onAssetAudit,
-  extraPanel,
   onPrevious,
   onNext,
   typeCatalog = [],
@@ -623,15 +583,6 @@ export function DetailModal({
           <div className="mt-4 space-y-4">
             {activeTab === "overview" ? (
               <>
-                {mode === "admin" ? (
-                  <AdminActions
-                    entry={entry}
-                    onCopyPatch={onCopyPatch}
-                    onAuditUrls={onAuditUrls}
-                    onAssetAudit={onAssetAudit}
-                    extraPanel={extraPanel}
-                  />
-                ) : null}
                 <TranslationGrid names={names} />
                 <Section title="Identifiants" icon={uiAssets.icons.tag}>
                   <DataGrid

@@ -12,10 +12,9 @@ imports, aux migrations, aux audits ou à la synchronisation.
 | `api/rest.js` | Expose l'API comme fonction serverless Vercel. |
 | `api/checklist-v3.js` | Regroupe la checklist publique read-only, les détails de fiche, les catalogues et les audits d'assets. |
 | `api/blocked.js` | Bloque les accès directs aux sources internes quand le site est déployé sur Vercel. |
-| `app/*.js` | Pages Next.js du front public. `/admin` redirige vers `/` en attendant `dashboard_Admin`. |
+| `app/*.js` | Pages Next.js du front public, métadonnées SEO, robots et sitemap. |
 | `components/**/*.jsx` | Composants UI réutilisables, documentés dans Storybook. |
 | `src/lib/data-repository.js` | Résout le depot `PokemonGo-Data` depuis l'environnement, `.data/` ou le dossier voisin. |
-| `src/lib/checklist-auth.js` | Ancien support d'auth checklist conservé pour compatibilité locale, non utilisé par l'API publique read-only. |
 | `src/lib/site-dashboard.js` | Prépare les statistiques et aperçus affichés par le nouveau front Next.js. |
 
 ## Scripts D'import

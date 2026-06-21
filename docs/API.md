@@ -225,13 +225,12 @@ watchers concurrents sur les memes sources.
 
 `api/rest.js` expose l'application Express comme Vercel Function. Les routes `/api/v1`,
 `/api-docs`, `/swagger` et `/health` sont dirigees vers cette fonction par `vercel.json`.
-Le front Next.js sert `/`, `/checklist` et `/assets`. `/admin` redirige vers `/` en
-attendant le futur depot `dashboard_Admin`.
+Le front Next.js sert `/`, `/checklist`, `/assets`, `/robots.txt` et `/sitemap.xml`.
 
 La checklist expose aussi `/api/checklist-v3`, qui regroupe le bootstrap public, le
 détail d'une fiche, les catalogues et les audits d'assets en lecture seule. Les actions
-admin historiques (`login`, `validate`, `preview-rule`, `source-watch`, `url-audit`) sont
-désactivées ici et renvoient `410 Gone`.
+historiques de correction (`source-watch`, `history`, `url-audit`) restent désactivées
+ici et renvoient `410 Gone`; les méthodes d'écriture renvoient `405 Method Not Allowed`.
 
 Configurer dans Vercel les variables `MONGODB_URI`, `NODE_ENV=production` et
 `API_PUBLIC_URL`. Comme `PokemonGo-Data` est prive, ajouter aussi

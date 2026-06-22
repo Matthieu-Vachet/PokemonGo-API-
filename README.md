@@ -10,6 +10,7 @@ classements rapides de l'API. La synchronisation ne modifie jamais les JSON sour
 Les donnees sources vivent maintenant dans le depot prive `PokemonGo-Data`.
 
 Documentation detaillee de l'API : [docs/API.md](docs/API.md)
+Import MongoDB depuis les JSON : [docs/MONGO-IMPORT.md](docs/MONGO-IMPORT.md)
 
 ## Points Forts
 

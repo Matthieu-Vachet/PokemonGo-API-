@@ -65,7 +65,6 @@ export function ChecklistApp() {
   const [generation, setGeneration] = useState("all");
   const [kind, setKind] = useState("all");
   const [formFilter, setFormFilter] = useState("all");
-  const [status, setStatus] = useState("all");
   const [visibleCount, setVisibleCount] = useState(pageSize);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [detail, setDetail] = useState(null);
@@ -151,12 +150,9 @@ export function ChecklistApp() {
           .join(" ")
           .toLowerCase()
           .includes(formFilter);
-      const statusOk =
-        status === "all" ||
-        (status === "complete" ? entry.complete : !entry.complete);
-      return searchOk && generationOk && kindOk && formOk && statusOk;
+      return searchOk && generationOk && kindOk && formOk;
     });
-  }, [entries, formFilter, generation, kind, search, status]);
+  }, [entries, formFilter, generation, kind, search]);
 
   const visible = filtered.slice(0, visibleCount);
   const selected = selectedIndex >= 0 ? filtered[selectedIndex] : null;
@@ -195,7 +191,7 @@ export function ChecklistApp() {
       <section className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <span className="text-xs font-black uppercase tracking-wide text-sky-300">
-            Pokédex checklist
+            Pokédex public
           </span>
           <h1 className="mt-2 max-w-4xl text-3xl font-black leading-none text-white md:text-5xl">
             Visualisation complète des données Pokémon GO
@@ -220,9 +216,9 @@ export function ChecklistApp() {
       ) : (
         <>
           <section className="mb-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-            <MetricCard label="Fiches analysées" value={summary?.total || 0} icon={uiAssets.icons.fiche} />
-            <MetricCard label="Terminées" value={summary?.complete || 0} accent="green" icon={uiAssets.icons.bookSpells} />
-            <MetricCard label="Problèmes" value={summary?.issues || 0} accent="amber" icon={uiAssets.icons.problem} />
+            <MetricCard label="Pokémon & formes" value={summary?.total || 0} icon={uiAssets.icons.fiche} />
+            <MetricCard label="Familles" value={summary?.kinds?.length || 0} accent="green" icon={uiAssets.icons.bookSpells} />
+            <MetricCard label="Générations" value={summary?.generations?.length || 0} accent="amber" icon={uiAssets.icons.pokedex} />
             <MetricCard label="Résultats" value={filtered.length} accent="violet" icon={uiAssets.icons.result} />
           </section>
 
@@ -250,7 +246,7 @@ export function ChecklistApp() {
           </section>
 
           <section className="mb-5 rounded-[2rem] border border-white/10 bg-white/[0.055] p-3 shadow-[0_22px_90px_rgba(0,0,0,.2)]">
-            <div className="grid gap-2 lg:grid-cols-[minmax(260px,1.2fr)_repeat(3,minmax(150px,.55fr))]">
+            <div className="grid gap-2 lg:grid-cols-[minmax(260px,1.2fr)_repeat(2,minmax(150px,.55fr))]">
               <input
                 className={fieldClass}
                 placeholder="Pokémon, numéro, forme, type, fichier..."
@@ -268,11 +264,6 @@ export function ChecklistApp() {
                 {formOptions.map((option) => (
                   <option key={option.id} value={option.id}>{option.label}</option>
                 ))}
-              </select>
-              <select className={fieldClass} value={status} onChange={(event) => resetFilters(event.target.value, setStatus)}>
-                <option value="all">Tous statuts</option>
-                <option value="complete">JSON complet</option>
-                <option value="todo">JSON incomplet</option>
               </select>
             </div>
             <div className="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-10">

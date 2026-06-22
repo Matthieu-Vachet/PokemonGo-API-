@@ -1,21 +1,3 @@
-import candyIndex from "../../public/ui/candy/index.json";
-
-const candyDexNumbers = candyIndex
-  .map((file) => Number(String(file).replace(".png", "")))
-  .filter(Number.isFinite)
-  .sort((left, right) => left - right);
-
-export function candyIconForDex(dexId) {
-  const dex = Number(String(dexId || "").replace(/^0+/, ""));
-  if (!Number.isFinite(dex)) return null;
-  let match = null;
-  for (const value of candyDexNumbers) {
-    if (value > dex) break;
-    match = value;
-  }
-  return match === null ? null : `/ui/candy/${match}.png`;
-}
-
 export const uiAssets = {
   logo: "/ui/pokemon-go-logo.png",
   logoWhite: "/ui/pokemon-go-logo-white.png",

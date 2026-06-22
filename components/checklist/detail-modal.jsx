@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { typeBackground, typeColors, typeIcon, typeName } from "../site/pokemon-style";
-import { candyIconForDex, uiAssets } from "../site/ui-assets";
+import { uiAssets } from "../site/ui-assets";
 
 const tabLabels = {
   overview: "Aperçu",
@@ -116,6 +116,27 @@ function EmptyInline({ children }) {
     <p className="rounded-2xl border border-dashed border-white/15 bg-white/[0.035] p-4 text-sm font-bold text-slate-300">
       {children}
     </p>
+  );
+}
+
+function CandyAmount({ value, icon, label = "bonbons" }) {
+  return (
+    <span className="inline-flex min-w-0 items-center gap-2 align-middle">
+      {icon ? <img className="h-5 w-5 shrink-0 object-contain" src={icon} alt="" /> : null}
+      <span>{valueOrDash(value)} {label}</span>
+    </span>
+  );
+}
+
+function RewardValue({ candy, stardust, candyIcon }) {
+  return (
+    <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
+      <CandyAmount value={candy} icon={candyIcon} />
+      <span className="inline-flex items-center gap-2">
+        <img className="h-5 w-5 shrink-0 object-contain" src={uiAssets.icons.stardust} alt="" />
+        <span>{valueOrDash(stardust)} poussières</span>
+      </span>
+    </span>
   );
 }
 
@@ -340,32 +361,6 @@ function AssetGallery({ entry, payload }) {
   );
 }
 
-function IssuesPanel({ entry }) {
-  return (
-    <Section title="Contrôles de fiche" icon={uiAssets.icons.problem}>
-      {(entry.issues || []).length ? (
-        <div className="space-y-3">
-          {entry.issues.map((issue) => (
-            <div
-              className="rounded-2xl border border-amber-300/30 bg-amber-500/10 p-4"
-              key={`${issue.path}-${issue.issue}`}
-            >
-              <strong className="block break-words font-mono text-sm text-amber-100">
-                {issue.path}
-              </strong>
-              <span className="mt-1 block text-sm font-bold text-amber-200/80">
-                {issue.issue} · attendu {issue.expected} · actuel {issue.actual}
-              </span>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <EmptyInline>Aucun problème détecté.</EmptyInline>
-      )}
-    </Section>
-  );
-}
-
 function PvpPanel({ pvp, moveDetails }) {
   const labels = {
     littleCup: "Little Cup",
@@ -495,7 +490,11 @@ export function DetailModal({
     })
     .filter(Boolean);
   const mainType = entry.primaryType || payload.primaryType || "NORMAL";
-  const candyIcon = candyIconForDex(entry.dexId || payload.dexId);
+  const candyIcon =
+    payload.assets?.candy?.image ||
+    payload.sourceData?.assets?.candy?.image ||
+    entry.assets?.candy?.image ||
+    null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-slate-950/75 p-0 backdrop-blur-md sm:items-center sm:p-6" role="presentation" onClick={onClose}>
@@ -610,8 +609,8 @@ export function DetailModal({
                       { label: "Taux fuite", value: valueOrDash(payload.fleeRate, "%"), icon: uiAssets.icons.grass },
                       { label: "Énergie méga", value: valueOrDash(payload.megaEnergyReward), icon: uiAssets.icons.megaEnergy },
                       { label: "Coût méga", value: valueOrDash(payload.energyCost), icon: uiAssets.icons.megaEnergy },
-                      { label: "Récompenses", value: `${valueOrDash(captureRewards.candy)} bonbons / ${valueOrDash(captureRewards.stardust)} poussières`, icon: uiAssets.icons.stardust },
-                      { label: "2e attaque", value: `${valueOrDash(secondMove.candy)} bonbons / ${valueOrDash(secondMove.stardust)} poussières`, icon: uiAssets.icons.attack },
+                      { label: "Récompenses", value: <RewardValue candy={captureRewards.candy} stardust={captureRewards.stardust} candyIcon={candyIcon} />, icon: candyIcon || uiAssets.icons.candy },
+                      { label: "2e attaque", value: <RewardValue candy={secondMove.candy} stardust={secondMove.stardust} candyIcon={candyIcon} />, icon: candyIcon || uiAssets.icons.candy },
                     ]}
                   />
                 </Section>
@@ -696,7 +695,7 @@ export function DetailModal({
                   items={[
                     { label: "Shadow", value: availability.shadow ? "Oui" : "Non", icon: uiAssets.icons.shadow },
                     { label: "Purification", value: valueOrDash(payload.shadow?.purificationCost?.stardust, " poussières"), icon: uiAssets.icons.purified },
-                    { label: "Bonbons", value: valueOrDash(payload.shadow?.purificationCost?.candy), icon: candyIcon || uiAssets.icons.candy },
+                    { label: "Bonbons", value: <CandyAmount value={payload.shadow?.purificationCost?.candy} icon={candyIcon} />, icon: candyIcon || uiAssets.icons.candy },
                     { label: "Sortie", value: formatDate(payload.shadow?.firstReleaseDate || payload.shadow?.releaseDate), icon: uiAssets.icons.radar },
                     {
                       label: "Catch CP",
@@ -711,7 +710,6 @@ export function DetailModal({
             {activeTab === "assets" ? <AssetGallery entry={entry} payload={payload} /> : null}
             {activeTab === "json" ? (
               <div className="space-y-4">
-                <IssuesPanel entry={entry} />
                 <Section title="JSON source" icon={uiAssets.icons.copy}>
                   <JsonBlock payload={payload.sourceData || payload} />
                 </Section>

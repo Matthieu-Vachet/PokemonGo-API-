@@ -6,7 +6,6 @@ import {
   BookOpen,
   Database,
   FileJson,
-  ShieldCheck,
   Sparkles,
 } from "lucide-react";
 import { MetricCard } from "../components/site/metric-card";
@@ -97,18 +96,12 @@ export default function HomePage() {
   const dashboard = loadSiteDashboard();
   const dataFreshness = dashboard.freshness?.data;
   const repoFreshness = dashboard.freshness?.repo;
-  const completion = Math.round(
-    (dashboard.summary.complete / Math.max(dashboard.summary.total, 1)) * 100,
-  );
-  const incomplete = dashboard.summary.total - dashboard.summary.complete;
-  const categories =
-    dashboard.summary.categories.length > 0
-      ? dashboard.summary.categories
-      : [
-          { id: "assets", label: "Assets", count: 0, percent: 100 },
-          { id: "moves", label: "Attaques", count: 0, percent: 100 },
-          { id: "forms", label: "Formes", count: 0, percent: 100 },
-        ];
+  const publicCatalogs = [
+    { id: "moves", label: "Attaques", count: dashboard.catalog.moves, percent: 100 },
+    { id: "types", label: "Types", count: dashboard.catalog.types, percent: 100 },
+    { id: "weather", label: "Météo", count: dashboard.catalog.weather, percent: 100 },
+    { id: "stickers", label: "Stickers", count: dashboard.catalog.stickers, percent: 100 },
+  ];
 
   return (
     <main className="mx-4 max-w-[1680px] py-6 pb-20 sm:mx-auto">
@@ -127,11 +120,11 @@ export default function HomePage() {
               API publique vivante
             </span>
             <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[0.95] tracking-tight text-white sm:text-6xl">
-              Toutes les données Pokémon GO dans un Pokédex clair, vérifiable et consultable.
+              Toutes les données Pokémon GO dans un Pokédex clair, public et consultable.
             </h1>
             <p className="mt-5 max-w-2xl text-base font-bold leading-7 text-slate-200 sm:text-lg">
-              Fiches Pokémon, formes, assets, météo, attaques, PvP et statistiques de complétion.
-              Le site devient une vitrine read-only : consultation rapide, API publique et dataset séparé dans PokemonGo-Data.
+              Fiches Pokémon, formes, assets, météo, attaques, PvP, stickers et OpenAPI.
+              Le site sert de vitrine read-only pour explorer le dataset et préparer une intégration propre.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
@@ -155,8 +148,8 @@ export default function HomePage() {
               priority
             />
             <div className="grid gap-3 sm:grid-cols-2">
-              <MetricCard label="Complétion JSON" value={`${completion}%`} accent="green" icon={uiAssets.icons.bookSpells} />
-              <MetricCard label="JSON incomplets" value={incomplete} accent="amber" icon={uiAssets.icons.problem} />
+              <MetricCard label="Fiches & formes" value={dashboard.summary.total} accent="green" icon={uiAssets.icons.bookSpells} />
+              <MetricCard label="Générations" value={dashboard.summary.generations.length} accent="amber" icon={uiAssets.icons.pokedex} />
               <MetricCard label="Attaques" value={dashboard.catalog.moves} accent="violet" icon={uiAssets.icons.swords} />
               <MetricCard label="Assets indexés" value={dashboard.catalog.stickers + dashboard.catalog.types + dashboard.catalog.weather} icon={uiAssets.icons.result} />
             </div>
@@ -165,19 +158,20 @@ export default function HomePage() {
       </section>
 
       <section className="mb-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        <MetricCard label="Fiches analysées" value={dashboard.summary.total} icon={uiAssets.icons.fiche} />
-        <MetricCard label="Terminées" value={dashboard.summary.complete} accent="green" icon={uiAssets.icons.bookSpells} />
-        <MetricCard label="JSON incomplets" value={incomplete} accent="amber" icon={uiAssets.icons.problem} />
-        <MetricCard label="Problèmes détectés" value={dashboard.summary.issues} accent="violet" icon={uiAssets.icons.problem} />
+        <MetricCard label="Pokémon & formes" value={dashboard.summary.total} icon={uiAssets.icons.fiche} />
+        <MetricCard label="Familles de données" value={dashboard.summary.kinds.length} accent="green" icon={uiAssets.icons.bookSpells} />
+        <MetricCard label="Catalogues publics" value={publicCatalogs.length} accent="amber" icon={uiAssets.icons.pokedex} />
+        <MetricCard label="Stickers" value={dashboard.catalog.stickers} accent="violet" icon={uiAssets.icons.result} />
       </section>
 
       <section className="mb-5 grid gap-4 xl:grid-cols-[1.1fr_.9fr_.9fr]">
         <ProgressList
-          title="Complétion par génération"
+          title="Répartition par génération"
           items={dashboard.summary.generations.map((item) => ({ ...item, label: `Génération ${item.generation}` }))}
+          valueLabel="count"
         />
-        <ProgressList title="Familles de fiches" items={dashboard.summary.kinds} />
-        <ProgressList title="Points à surveiller" items={categories.map((item) => ({ ...item, percent: item.count ? Math.min(100, item.count) : 100 }))} valueLabel="count" />
+        <ProgressList title="Familles de fiches" items={dashboard.summary.kinds} valueLabel="count" />
+        <ProgressList title="Catalogues API" items={publicCatalogs} valueLabel="count" />
       </section>
 
       <section className="mb-5 grid gap-4 lg:grid-cols-4">
@@ -185,7 +179,7 @@ export default function HomePage() {
           href="/checklist"
           icon={<img className="h-9 w-9 object-contain" src={uiAssets.icons.pokedex} alt="" />}
           title="Pokédex public"
-          text="Recherche par nom, numéro, génération, forme régionale et statut JSON."
+          text="Recherche par nom, numéro, génération, type, famille et forme régionale."
         />
         <FeatureCard
           href="/assets"
@@ -213,9 +207,9 @@ export default function HomePage() {
         <section className={glassCard}>
           <div className="mb-4 flex items-center justify-between gap-3">
             <div>
-              <h2 className="text-xl font-black">Fiches JSON incomplètes</h2>
+              <h2 className="text-xl font-black">Fiches à explorer</h2>
               <p className="mt-1 text-sm font-bold text-slate-400">
-                Les contrôles restent visibles pour repérer rapidement les fiches à reprendre.
+                Un aperçu des fiches les plus riches pour tester la navigation et les données exposées.
               </p>
             </div>
             <Link className="text-sm font-black text-cyan-200" href="/checklist">
@@ -223,16 +217,16 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="grid gap-3 lg:grid-cols-2">
-            {dashboard.needsAttention.length ? (
-              dashboard.needsAttention.slice(0, 4).map((entry) => (
+            {dashboard.featured.length ? (
+              dashboard.featured.slice(0, 4).map((entry) => (
                 <PokemonCard key={entry.key} entry={entry} />
               ))
             ) : (
-              <div className="rounded-[2rem] border border-emerald-300/20 bg-emerald-400/10 p-5 text-emerald-100 lg:col-span-2">
-                <ShieldCheck className="mb-3" size={24} />
-                <strong className="block text-lg font-black">Aucune fiche critique à afficher.</strong>
-                <span className="mt-1 block text-sm font-bold text-emerald-100/75">
-                  Les contrôles publics ne détectent pas de problème bloquant sur le dataset actuel.
+              <div className="rounded-[2rem] border border-cyan-300/20 bg-cyan-400/10 p-5 text-cyan-100 lg:col-span-2">
+                <Sparkles className="mb-3" size={24} />
+                <strong className="block text-lg font-black">Les fiches apparaîtront ici au chargement du dataset.</strong>
+                <span className="mt-1 block text-sm font-bold text-cyan-100/75">
+                  Le Pokédex complet reste disponible depuis la navigation principale.
                 </span>
               </div>
             )}

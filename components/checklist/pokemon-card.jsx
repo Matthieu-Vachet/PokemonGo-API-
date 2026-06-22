@@ -5,6 +5,7 @@ function hasAssets(entry) {
   const assets = entry.assets || {};
   return Boolean(
     assets.go ||
+      assets.candy ||
       assets.goShiny ||
       assets.home ||
       assets.homeShiny ||
@@ -65,35 +66,34 @@ export function PokemonCard({
   typeCatalog = [],
   weatherCatalog = [],
 }) {
-  const score = entry?.quality?.score ?? 0;
   const types = [entry.primaryType, entry.secondaryType].filter(Boolean);
   const weather = (entry.weatherBoost || []).filter(Boolean);
   const assetsPresent = hasAssets(entry);
   const mainType = entry.primaryType || "NORMAL";
   const background = typeBackground(mainType, typeCatalog);
+  const candyIcon = entry.assets?.candy?.image;
 
   return (
     <article
-      className={`relative isolate min-h-[292px] overflow-hidden rounded-[1.65rem] border p-4 shadow-[0_18px_50px_rgba(0,0,0,0.24)] ${
-        entry.complete ? "border-emerald-300/25" : "border-amber-300/30"
-      }`}
+      className="relative isolate min-h-[292px] overflow-hidden rounded-[1.65rem] border p-4 shadow-[0_18px_50px_rgba(0,0,0,0.24)]"
       style={{
         borderColor: `color-mix(in srgb, ${typeColors[mainType] || "#7aa7ff"} 42%, rgba(255,255,255,.12))`,
         backgroundImage: `${
-          background ? `linear-gradient(120deg, rgba(8,10,13,.88), rgba(24,28,36,.76)), url("${background}")` : "linear-gradient(120deg, rgba(8,10,13,.92), rgba(24,28,36,.84))"
+          background ? `linear-gradient(120deg, rgba(8,10,13,.58), rgba(24,28,36,.42)), url("${background}")` : "linear-gradient(120deg, rgba(8,10,13,.74), rgba(24,28,36,.6))"
         }`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(135deg,rgba(255,255,255,.16),transparent_38%),radial-gradient(circle_at_18%_0%,rgba(255,255,255,.22),transparent_30%)]" />
       <div
         className="absolute inset-x-[-20%] bottom-[-38%] -z-10 h-2/3 rounded-full blur-3xl"
-        style={{ background: `color-mix(in srgb, ${typeColors[mainType] || "#7aa7ff"} 45%, transparent)` }}
+        style={{ background: `color-mix(in srgb, ${typeColors[mainType] || "#7aa7ff"} 58%, transparent)` }}
       />
       <div className="grid grid-cols-[86px_minmax(0,1fr)_58px] items-center gap-3 max-[520px]:grid-cols-[74px_minmax(0,1fr)]">
-        <div className="grid h-[86px] w-[86px] place-items-center overflow-hidden rounded-full border-[5px] border-white/75 bg-[linear-gradient(#fff_0_48%,#1f2937_49%_52%,#ff4f5e_53%_100%)] max-[520px]:h-[74px] max-[520px]:w-[74px]">
+        <div className="grid h-[86px] w-[86px] place-items-center overflow-hidden rounded-full border-[5px] border-white/85 bg-[linear-gradient(#fff_0_48%,#1f2937_49%_52%,#ff4f5e_53%_100%)] shadow-[0_16px_42px_rgba(255,255,255,.16)] max-[520px]:h-[74px] max-[520px]:w-[74px]">
           {entry.image ? (
-            <img className="h-[91%] w-[91%] object-contain drop-shadow-lg" src={entry.image} alt={entry.name} />
+            <img className="h-[96%] w-[96%] object-contain drop-shadow-[0_12px_20px_rgba(0,0,0,.38)]" src={entry.image} alt={entry.name} />
           ) : (
             <span className="h-6 w-6 rounded-full bg-slate-900" />
           )}
@@ -108,13 +108,12 @@ export function PokemonCard({
             {entry.generation || "?"}
           </p>
         </div>
-        <div
-          className="grid h-[58px] w-[58px] place-items-center rounded-full text-sm font-black text-white max-[520px]:absolute max-[520px]:right-4 max-[520px]:top-4 max-[520px]:h-[54px] max-[520px]:w-[54px]"
-          style={{
-            background: `radial-gradient(circle at center, #08090d 54%, transparent 56%), conic-gradient(${typeColors[mainType] || "#7aa7ff"} ${score}%, rgba(255,255,255,.16) 0)`,
-          }}
-        >
-          {score}%
+        <div className="grid h-[58px] w-[58px] place-items-center rounded-full border border-white/15 bg-slate-950/50 p-2 text-sm font-black text-white shadow-[0_12px_34px_rgba(0,0,0,.24)] max-[520px]:absolute max-[520px]:right-4 max-[520px]:top-4 max-[520px]:h-[54px] max-[520px]:w-[54px]">
+          <img
+            className="max-h-full object-contain drop-shadow-[0_0_14px_rgba(255,255,255,.25)]"
+            src={candyIcon || uiAssets.icons.pokeball}
+            alt=""
+          />
         </div>
       </div>
 
@@ -140,22 +139,18 @@ export function PokemonCard({
           </MiniInfo>
         ) : null}
         <span
-          className={`inline-flex min-h-8 items-center justify-center rounded-lg border px-3 text-xs font-black ${
-            entry.complete
-              ? "border-emerald-300/30 bg-emerald-300/10 text-emerald-200"
-              : "border-amber-300/30 bg-amber-300/10 text-amber-200"
-          }`}
+          className="inline-flex min-h-8 items-center justify-center rounded-lg border border-cyan-300/30 bg-cyan-300/10 px-3 text-xs font-black text-cyan-100"
         >
-          {entry.complete ? "JSON complet" : `${entry.issues.length} problème(s)`}
+          Données publiques
         </span>
         <span
           className={`inline-flex min-h-8 items-center justify-center rounded-lg border px-3 text-xs font-black ${
             assetsPresent
               ? "border-emerald-300/30 bg-emerald-300/10 text-emerald-200"
-              : "border-amber-300/30 bg-amber-300/10 text-amber-200"
+              : "border-sky-300/30 bg-sky-300/10 text-sky-100"
           }`}
         >
-          {assetsPresent ? "Assets liés" : "Assets à vérifier"}
+          {assetsPresent ? "Assets disponibles" : "Images à venir"}
         </span>
       </div>
 

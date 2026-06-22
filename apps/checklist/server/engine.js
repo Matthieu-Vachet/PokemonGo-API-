@@ -1111,6 +1111,7 @@ function assetSummary(data) {
   const urls = [
     data.assets?.image,
     data.assets?.shinyImage,
+    data.assets?.candy?.image,
     home.image,
     home.shinyImage,
     ...goVariants.flatMap((asset) => [asset.image, asset.shinyImage]),
@@ -1120,6 +1121,7 @@ function assetSummary(data) {
   return {
     go: Boolean(data.assets?.image),
     goShiny: Boolean(data.assets?.shinyImage),
+    candy: data.assets?.candy || null,
     home: Boolean(home.image),
     homeShiny: Boolean(home.shinyImage),
     goVariants: goVariants.length,

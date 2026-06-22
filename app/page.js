@@ -9,7 +9,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { MetricCard } from "../components/site/metric-card";
-import { PokemonCard } from "../components/checklist/pokemon-card";
+import { FeaturedRandom } from "../components/site/featured-random";
 import { uiAssets } from "../components/site/ui-assets";
 
 const { loadSiteDashboard } = require("../src/lib/site-dashboard");
@@ -129,7 +129,7 @@ export default function HomePage() {
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
-                className={`${ctaClass} border border-white/40 bg-white text-slate-950 shadow-[0_18px_55px_rgba(255,255,255,.18)] hover:-translate-y-0.5`}
+                className={`${ctaClass} border border-cyan-100/35 bg-gradient-to-r from-sky-500 via-cyan-400 to-emerald-400 text-white shadow-[0_18px_55px_rgba(14,165,233,.24)] hover:-translate-y-0.5`}
                 href="/checklist"
               >
                 <Database size={18} /> Ouvrir le Pokédex
@@ -215,10 +215,10 @@ export default function HomePage() {
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <Link className={`${ctaClass} border border-white/35 bg-white text-slate-950`} href="/swagger">
+            <Link className={`${ctaClass} border border-cyan-100/35 bg-gradient-to-r from-sky-500 to-cyan-400 text-white shadow-[0_14px_44px_rgba(14,165,233,.22)]`} href="/swagger">
               Tester Swagger
             </Link>
-            <Link className={`${ctaClass} border border-white/15 bg-white/10 text-white`} href="/api/v1/candy">
+            <Link className={`${ctaClass} border border-emerald-100/25 bg-emerald-300/16 text-emerald-50`} href="/api/v1/candy">
               Voir Candy JSON
             </Link>
           </div>
@@ -239,25 +239,12 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="grid gap-3 lg:grid-cols-2">
-            {dashboard.featured.length ? (
-              dashboard.featured.slice(0, 4).map((entry) => (
-                <Link
-                  className="block transition hover:-translate-y-0.5"
-                  href={`/checklist?search=${encodeURIComponent(entry.dexId || entry.name || "")}`}
-                  key={entry.key}
-                >
-                  <PokemonCard entry={entry} />
-                </Link>
-              ))
-            ) : (
-              <div className="rounded-[2rem] border border-cyan-300/20 bg-cyan-400/10 p-5 text-cyan-100 lg:col-span-2">
-                <Sparkles className="mb-3" size={24} />
-                <strong className="block text-lg font-black">Les fiches apparaîtront ici au chargement du dataset.</strong>
-                <span className="mt-1 block text-sm font-bold text-cyan-100/75">
-                  Le Pokédex complet reste disponible depuis la navigation principale.
-                </span>
-              </div>
-            )}
+            <FeaturedRandom
+              entries={dashboard.featuredPool}
+              fallback={dashboard.featured}
+              typeCatalog={dashboard.catalog.typeCatalog}
+              weatherCatalog={dashboard.catalog.weatherCatalog}
+            />
           </div>
         </section>
         <aside className={glassCard}>

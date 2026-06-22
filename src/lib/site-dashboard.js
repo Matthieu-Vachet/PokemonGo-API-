@@ -168,7 +168,32 @@ function loadSiteDashboard() {
       stickerPreview: dataCatalog.stickers.slice(0, 12),
       weatherPreview: dataCatalog.weather.slice(0, 7),
       typePreview: dataCatalog.types.slice(0, 6),
+      typeCatalog: dataCatalog.types,
+      weatherCatalog: dataCatalog.weather,
     },
+    featuredPool: entries
+      .filter((entry) => entry.kind === "pokemon")
+      .map((entry) => ({
+        key: entry.key,
+        kind: entry.kind,
+        profile: entry.profile,
+        name: entry.name,
+        dexId: entry.dexId,
+        generation: entry.generation,
+        form: entry.form,
+        file: entry.file,
+        image: entry.image,
+        homeImage: entry.homeImage,
+        shuffleImage: entry.shuffleImage,
+        shinyImage: entry.shinyImage,
+        primaryType: entry.primaryType,
+        secondaryType: entry.secondaryType,
+        weatherBoost: entry.weatherBoost,
+        quickMoveCount: entry.quickMoveCount,
+        chargedMoveCount: entry.chargedMoveCount,
+        maxMoveCount: entry.maxMoveCount,
+        assets: entry.assets,
+      })),
   };
 }
 

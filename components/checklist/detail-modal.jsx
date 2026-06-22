@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { typeBackground, typeColors, typeIcon, typeName } from "../site/pokemon-style";
+import { preferredPokemonImage, typeBackground, typeColors, typeIcon, typeName } from "../site/pokemon-style";
 import { uiAssets } from "../site/ui-assets";
 
 const tabLabels = {
@@ -495,6 +495,19 @@ export function DetailModal({
     payload.sourceData?.assets?.candy?.image ||
     entry.assets?.candy?.image ||
     null;
+  const displayImage = preferredPokemonImage({
+    ...entry,
+    assets: payload.assets || entry.assets,
+    image: payload.assets?.portrait || payload.assets?.image || entry.image,
+    homeImage:
+      payload.assets?.home?.image ||
+      payload.assets?.home?.shinyImage ||
+      entry.homeImage,
+    shuffleImage:
+      payload.assets?.shuffle?.variants?.find((asset) => !asset?.shiny && asset?.image)?.image ||
+      payload.assets?.shuffle?.variants?.find((asset) => asset?.image)?.image ||
+      entry.shuffleImage,
+  });
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-slate-950/75 p-0 backdrop-blur-md sm:items-center sm:p-6" role="presentation" onClick={onClose}>
@@ -513,8 +526,8 @@ export function DetailModal({
           <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] [background-size:34px_34px]" />
           <div className="relative flex items-center gap-4 pr-14">
             <div className="grid h-24 w-24 shrink-0 place-items-center rounded-full border-4 border-white/80 bg-white shadow-[0_18px_60px_rgba(0,0,0,.32)] sm:h-28 sm:w-28">
-              {entry.image ? (
-                <img className="max-h-[5.7rem] object-contain sm:max-h-[6.7rem]" src={entry.image} alt={entry.name} />
+              {displayImage ? (
+                <img className="max-h-[6.8rem] object-contain sm:max-h-[8rem]" src={displayImage} alt={entry.name} />
               ) : (
                 <span className="h-10 w-10 rounded-full border-[10px] border-slate-900/20" />
               )}

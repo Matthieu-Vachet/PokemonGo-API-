@@ -1,4 +1,4 @@
-import { catalogItem, typeBackground, typeColors, typeIcon, typeName } from "../site/pokemon-style";
+import { catalogItem, pokemonVariantLabel, preferredPokemonImage, typeBackground, typeColors, typeIcon, typeName } from "../site/pokemon-style";
 import { uiAssets } from "../site/ui-assets";
 
 function hasAssets(entry) {
@@ -72,6 +72,8 @@ export function PokemonCard({
   const mainType = entry.primaryType || "NORMAL";
   const background = typeBackground(mainType, typeCatalog);
   const candyIcon = entry.assets?.candy?.image;
+  const displayImage = preferredPokemonImage(entry);
+  const variantLabel = pokemonVariantLabel(entry);
 
   return (
     <article
@@ -92,8 +94,8 @@ export function PokemonCard({
       />
       <div className="grid grid-cols-[86px_minmax(0,1fr)_58px] items-center gap-3 max-[520px]:grid-cols-[74px_minmax(0,1fr)]">
         <div className="grid h-[86px] w-[86px] place-items-center overflow-hidden rounded-full border-[5px] border-white/85 bg-[linear-gradient(#fff_0_48%,#1f2937_49%_52%,#ff4f5e_53%_100%)] shadow-[0_16px_42px_rgba(255,255,255,.16)] max-[520px]:h-[74px] max-[520px]:w-[74px]">
-          {entry.image ? (
-            <img className="h-[96%] w-[96%] object-contain drop-shadow-[0_12px_20px_rgba(0,0,0,.38)]" src={entry.image} alt={entry.name} />
+          {displayImage ? (
+            <img className="h-[105%] w-[105%] object-contain drop-shadow-[0_12px_20px_rgba(0,0,0,.38)]" src={displayImage} alt={entry.name} />
           ) : (
             <span className="h-6 w-6 rounded-full bg-slate-900" />
           )}
@@ -107,6 +109,9 @@ export function PokemonCard({
             {entry.profile || entry.kind} · {entry.form || "normal"} · Gén.{" "}
             {entry.generation || "?"}
           </p>
+          <span className="mt-2 inline-flex rounded-full border border-white/20 bg-white/15 px-2.5 py-1 text-[11px] font-black uppercase tracking-[0.12em] text-white">
+            {variantLabel}
+          </span>
         </div>
         <div className="grid h-[58px] w-[58px] place-items-center rounded-full border border-white/15 bg-slate-950/50 p-2 text-sm font-black text-white shadow-[0_12px_34px_rgba(0,0,0,.24)] max-[520px]:absolute max-[520px]:right-4 max-[520px]:top-4 max-[520px]:h-[54px] max-[520px]:w-[54px]">
           <img

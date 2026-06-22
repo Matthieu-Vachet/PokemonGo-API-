@@ -24,6 +24,7 @@ const notesFile = path.join(rootDir, ".checklist-notes.json");
 const reviewsFile = path.join(rootDir, ".checklist-image-reviews.json");
 const hdDir = path.join(rootDir, "asset", "HD");
 const shuffleDir = path.join(rootDir, "asset", "pokemonShuffle");
+const typesDir = dataPath("types");
 const typesFile = dataPath("types", "types.json");
 const weatherFile = dataPath("weather", "weather.json");
 const stickersFile = dataPath("stickers", "stickers.json");
@@ -290,9 +291,37 @@ function listFiles(directory) {
   });
 }
 
+function typeCatalog() {
+  const byId = new Map();
+  for (const item of readJson(typesFile, [])) {
+    const key = item.id || item.type || item.slug;
+    if (key) byId.set(String(key).toUpperCase(), item);
+  }
+  if (fs.existsSync(typesDir)) {
+    for (const file of listFiles(typesDir).filter((item) => path.basename(item) !== "types.json")) {
+      const item = readJson(file);
+      const key = item?.id || item?.type || item?.slug;
+      if (!key) continue;
+      const normalizedKey = String(key).toUpperCase();
+      byId.set(normalizedKey, {
+        ...(byId.get(normalizedKey) || {}),
+        ...item,
+        names: { ...(byId.get(normalizedKey)?.names || {}), ...(item.names || {}) },
+        assets: { ...(byId.get(normalizedKey)?.assets || {}), ...(item.assets || {}) },
+      });
+    }
+  }
+  return [...byId.values()].sort((left, right) =>
+    String(left.names?.French || left.id).localeCompare(
+      String(right.names?.French || right.id),
+      "fr",
+    ),
+  );
+}
+
 function catalog() {
   return {
-    types: readJson(typesFile, []),
+    types: typeCatalog(),
     weather: readJson(weatherFile, []),
     stickers: readJson(stickersFile, []),
     moves: listFiles(movesDir)

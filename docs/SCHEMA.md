@@ -450,6 +450,10 @@ forme et sont valides lorsqu'ils existent.
 | `assets.shinyImage` | string | Image chromatique principale. |
 | `assets.portrait` | string | Portrait dédié d'une Méga-Évolution ou Primo-Résurgence. |
 | `assets.portraitShiny` | string | Portrait chromatique dédié d'une Méga ou Primo. |
+| `assets.candy.familyId` | number | Famille de bonbon partagée par le Pokémon de base, ses évolutions et ses formes. |
+| `assets.candy.image` | string | Image publique du bonbon, servie depuis `PokemonGo-Assets-API`. |
+| `assets.candy.primaryColor` | object | Couleur principale RGBA issue de `PokemonCandyColorData.json`. |
+| `assets.candy.secondaryColor` | object | Couleur secondaire RGBA issue de `PokemonCandyColorData.json`. |
 | `assets.home.image` | string/null | Image principale issue de Pokémon Home. |
 | `assets.home.shinyImage` | string/null | Image chromatique principale issue de Pokémon Home. |
 | `assets.home.variants[]` | array | Toutes les variantes Home, identifiées par index de forme, genre, Gigantamax, détail et vue. |

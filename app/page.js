@@ -17,9 +17,9 @@ const { loadSiteDashboard } = require("../src/lib/site-dashboard");
 export const revalidate = 3600;
 
 const ctaClass =
-  "inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl px-5 text-sm font-black transition";
+  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-5 text-sm font-black transition";
 const glassCard =
-  "rounded-[2rem] border border-white/10 bg-white/[0.06] p-5 shadow-[0_26px_100px_rgba(0,0,0,.28)] backdrop-blur-xl";
+  "rounded-[2rem] border border-white/12 bg-white/[0.075] p-5 shadow-[0_26px_100px_rgba(0,0,0,.24)] backdrop-blur-xl";
 
 function ProgressList({ title, items, valueLabel = "percent" }) {
   return (
@@ -59,16 +59,16 @@ function ProgressList({ title, items, valueLabel = "percent" }) {
 function FeatureCard({ href, icon, title, text, accent = "cyan" }) {
   const accentClass =
     accent === "emerald"
-      ? "border-emerald-300/18 bg-emerald-400/10 text-emerald-100"
+      ? "border-emerald-300/22 bg-emerald-400/14 text-emerald-100"
       : accent === "amber"
-        ? "border-sky-300/18 bg-sky-400/10 text-sky-100"
-        : "border-cyan-300/18 bg-cyan-400/10 text-cyan-100";
+        ? "border-amber-300/22 bg-amber-400/14 text-amber-100"
+        : "border-cyan-300/22 bg-cyan-400/14 text-cyan-100";
   return (
     <Link
       className={`group rounded-[2rem] border ${accentClass} p-5 shadow-[0_20px_80px_rgba(0,0,0,.22)] transition hover:-translate-y-1 hover:border-white/20`}
       href={href}
     >
-      <div className="mb-5 grid h-14 w-14 place-items-center rounded-2xl border border-white/10 bg-slate-950/35">
+      <div className="mb-5 grid h-14 w-14 place-items-center rounded-2xl border border-white/35 bg-white/90 text-slate-950 shadow-[0_14px_38px_rgba(255,255,255,.12)]">
         {icon}
       </div>
       <strong className="block text-xl font-black text-white">{title}</strong>
@@ -100,15 +100,16 @@ export default function HomePage() {
     { id: "moves", label: "Attaques", count: dashboard.catalog.moves, percent: 100 },
     { id: "types", label: "Types", count: dashboard.catalog.types, percent: 100 },
     { id: "weather", label: "Météo", count: dashboard.catalog.weather, percent: 100 },
+    { id: "candy", label: "Candy", count: dashboard.catalog.candyFamilies, percent: 100 },
     { id: "stickers", label: "Stickers", count: dashboard.catalog.stickers, percent: 100 },
   ];
 
   return (
     <main className="mx-4 max-w-[1680px] py-6 pb-20 sm:mx-auto">
       <section
-        className="relative mb-5 overflow-hidden rounded-[2.4rem] border border-white/10 bg-slate-950 p-5 shadow-[0_40px_140px_rgba(0,0,0,.42)] sm:p-7 lg:p-8"
+        className="relative mb-5 overflow-hidden rounded-[2.4rem] border border-white/15 bg-slate-950 p-5 shadow-[0_40px_140px_rgba(0,0,0,.34)] sm:p-7 lg:p-8"
         style={{
-          backgroundImage: `linear-gradient(115deg, rgba(3,7,18,.94), rgba(8,47,73,.74), rgba(5,150,105,.28)), url("${uiAssets.backgrounds.park}")`,
+          backgroundImage: `radial-gradient(circle_at_76%_18%, rgba(250,204,21,.35), transparent 24%), linear-gradient(115deg, rgba(5,18,42,.88), rgba(14,165,233,.62), rgba(34,197,94,.45)), url("${uiAssets.backgrounds.park}")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -117,28 +118,28 @@ export default function HomePage() {
         <div className="relative grid gap-8 lg:grid-cols-[1.15fr_.85fr] lg:items-center">
           <div>
             <span className="inline-flex rounded-full border border-emerald-200/20 bg-emerald-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-emerald-100">
-              API publique vivante
+              API publique Pokémon GO
             </span>
             <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[0.95] tracking-tight text-white sm:text-6xl">
-              Toutes les données Pokémon GO dans un Pokédex clair, public et consultable.
+              Explore les données Pokémon GO dans une API claire, colorée et vérifiable.
             </h1>
             <p className="mt-5 max-w-2xl text-base font-bold leading-7 text-slate-200 sm:text-lg">
-              Fiches Pokémon, formes, assets, météo, attaques, PvP, stickers et OpenAPI.
-              Le site sert de vitrine read-only pour explorer le dataset et préparer une intégration propre.
+              Pokédex, formes, attaques, types, météo, bonbons, stickers, assets et OpenAPI.
+              Une vitrine publique pour consulter le dataset, tester les endpoints et intégrer les ressources sans fouiller dans les JSON.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
-                className={`${ctaClass} border border-cyan-200/30 bg-cyan-400/18 text-cyan-50 shadow-[0_18px_55px_rgba(14,165,233,.24)] hover:bg-cyan-400/25`}
+                className={`${ctaClass} border border-white/40 bg-white text-slate-950 shadow-[0_18px_55px_rgba(255,255,255,.18)] hover:-translate-y-0.5`}
                 href="/checklist"
               >
                 <Database size={18} /> Ouvrir le Pokédex
               </Link>
-              <Link className={`${ctaClass} border border-white/10 bg-white/10 text-white hover:bg-white/15`} href="/assets">
+              <Link className={`${ctaClass} border border-cyan-100/35 bg-cyan-300/20 text-white hover:-translate-y-0.5 hover:bg-cyan-300/28`} href="/assets">
                 <Sparkles size={18} /> Explorer les bibliothèques
               </Link>
             </div>
           </div>
-          <aside className="rounded-[2rem] border border-white/10 bg-black/30 p-5 backdrop-blur-xl">
+          <aside className="rounded-[2rem] border border-white/15 bg-slate-950/42 p-5 backdrop-blur-xl">
             <Image
               className="mx-auto mb-5 max-h-28 object-contain drop-shadow-[0_14px_40px_rgba(255,255,255,.18)]"
               src={uiAssets.icons.goLogo}
@@ -149,9 +150,9 @@ export default function HomePage() {
             />
             <div className="grid gap-3 sm:grid-cols-2">
               <MetricCard label="Fiches & formes" value={dashboard.summary.total} accent="green" icon={uiAssets.icons.bookSpells} />
-              <MetricCard label="Générations" value={dashboard.summary.generations.length} accent="amber" icon={uiAssets.icons.pokedex} />
+              <MetricCard label="Familles candy" value={dashboard.catalog.candyFamilies} accent="amber" icon={uiAssets.icons.candy} />
               <MetricCard label="Attaques" value={dashboard.catalog.moves} accent="violet" icon={uiAssets.icons.swords} />
-              <MetricCard label="Assets indexés" value={dashboard.catalog.stickers + dashboard.catalog.types + dashboard.catalog.weather} icon={uiAssets.icons.result} />
+              <MetricCard label="Catalogues" value={publicCatalogs.length} icon={uiAssets.icons.result} />
             </div>
           </aside>
         </div>
@@ -159,7 +160,7 @@ export default function HomePage() {
 
       <section className="mb-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         <MetricCard label="Pokémon & formes" value={dashboard.summary.total} icon={uiAssets.icons.fiche} />
-        <MetricCard label="Familles de données" value={dashboard.summary.kinds.length} accent="green" icon={uiAssets.icons.bookSpells} />
+        <MetricCard label="Familles candy" value={dashboard.catalog.candyFamilies} accent="green" icon={uiAssets.icons.candy} />
         <MetricCard label="Catalogues publics" value={publicCatalogs.length} accent="amber" icon={uiAssets.icons.pokedex} />
         <MetricCard label="Stickers" value={dashboard.catalog.stickers} accent="violet" icon={uiAssets.icons.result} />
       </section>
@@ -203,6 +204,27 @@ export default function HomePage() {
         />
       </section>
 
+      <section className="mb-5 rounded-[2rem] border border-emerald-200/15 bg-gradient-to-r from-emerald-400/16 via-cyan-400/12 to-sky-500/14 p-5 shadow-[0_24px_90px_rgba(14,165,233,.14)]">
+        <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+          <div>
+            <span className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100">Aller plus loin</span>
+            <h2 className="mt-2 text-2xl font-black text-white">Des données prêtes pour une vraie intégration.</h2>
+            <p className="mt-2 max-w-3xl text-sm font-bold leading-6 text-slate-200">
+              Combine le Pokédex, les catalogues type/météo/candy et Swagger pour tester une route,
+              copier la réponse JSON et brancher directement ton app.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Link className={`${ctaClass} border border-white/35 bg-white text-slate-950`} href="/swagger">
+              Tester Swagger
+            </Link>
+            <Link className={`${ctaClass} border border-white/15 bg-white/10 text-white`} href="/api/v1/candy">
+              Voir Candy JSON
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="grid gap-4 xl:grid-cols-[1.25fr_.75fr]">
         <section className={glassCard}>
           <div className="mb-4 flex items-center justify-between gap-3">
@@ -219,7 +241,13 @@ export default function HomePage() {
           <div className="grid gap-3 lg:grid-cols-2">
             {dashboard.featured.length ? (
               dashboard.featured.slice(0, 4).map((entry) => (
-                <PokemonCard key={entry.key} entry={entry} />
+                <Link
+                  className="block transition hover:-translate-y-0.5"
+                  href={`/checklist?search=${encodeURIComponent(entry.dexId || entry.name || "")}`}
+                  key={entry.key}
+                >
+                  <PokemonCard entry={entry} />
+                </Link>
               ))
             ) : (
               <div className="rounded-[2rem] border border-cyan-300/20 bg-cyan-400/10 p-5 text-cyan-100 lg:col-span-2">

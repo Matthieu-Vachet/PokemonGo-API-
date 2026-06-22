@@ -126,9 +126,25 @@ function reportFreshness() {
 function loadSiteDashboard() {
   const entries = buildChecklist();
   const dataCatalog = catalog();
-  const featured = [...entries]
-    .sort((left, right) => right.quality.score - left.quality.score)
-    .slice(0, 3);
+  const candyMap = new Map();
+  for (const entry of entries) {
+    const candy = entry.assets?.candy;
+    if (!candy || (candy.familyId === undefined && candy.familyId !== 0)) continue;
+    if (!candyMap.has(String(candy.familyId))) candyMap.set(String(candy.familyId), candy);
+  }
+  const showcaseDexIds = ["0001", "0004", "0007", "0025", "0133", "0150", "0448", "0658", "0906"];
+  const featured = showcaseDexIds
+    .map((dexId) => entries.find((entry) => entry.dexId === dexId && entry.kind === "pokemon"))
+    .filter(Boolean)
+    .slice(0, 4);
+  if (featured.length < 4) {
+    featured.push(
+      ...entries
+        .filter((entry) => entry.kind === "pokemon" && !featured.some((item) => item.key === entry.key))
+        .sort((left, right) => right.quality.score - left.quality.score)
+        .slice(0, 4 - featured.length),
+    );
+  }
   const needsAttention = [...entries]
     .filter((entry) => entry.issues.length > 0)
     .sort((left, right) => right.issues.length - left.issues.length)
@@ -147,6 +163,8 @@ function loadSiteDashboard() {
       weather: dataCatalog.weather.length,
       stickers: dataCatalog.stickers.length,
       moves: dataCatalog.moves.length,
+      candyFamilies: candyMap.size,
+      candyPreview: [...candyMap.values()].slice(0, 10),
       stickerPreview: dataCatalog.stickers.slice(0, 12),
       weatherPreview: dataCatalog.weather.slice(0, 7),
       typePreview: dataCatalog.types.slice(0, 6),

@@ -74,6 +74,12 @@ export function ChecklistApp() {
   const summary = data.payload?.summary;
   const catalog = data.catalog || {};
 
+  useEffect(() => {
+    const nextSearch = new URLSearchParams(window.location.search).get("search") || "";
+    setSearch(nextSearch);
+    setVisibleCount(pageSize);
+  }, []);
+
   const generations = useMemo(
     () =>
       [...new Set(entries.map((entry) => entry.generation).filter(Boolean))].sort(

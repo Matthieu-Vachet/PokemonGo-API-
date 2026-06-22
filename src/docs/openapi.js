@@ -24,6 +24,13 @@ const examples = {
     type: "FIRE",
     names: { English: "Blast Burn", French: "Rafale Feu" },
   },
+  candy: {
+    familyId: 1,
+    image: "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/candy/1.png",
+    primaryColor: { r: 128, g: 210, b: 118, a: 1 },
+    secondaryColor: { r: 52, g: 145, b: 80, a: 1 },
+    pokemon: [{ dexId: "0001", name: "Bulbizarre", form: "normal" }],
+  },
 };
 
 const errorResponse = {
@@ -161,6 +168,7 @@ function createOpenApi() {
       ["Attaques", "Attaques rapides, chargées et élite."],
       ["Types", "Types, faiblesses, résistances et Pokémon associés."],
       ["Météo", "Météos Pokémon GO, icônes et ressources boostées."],
+      ["Candy", "Couleurs et images de bonbons groupées par famille d'évolution."],
       ["Régions", "Régions et Pokémon associés."],
       ["Générations", "Générations et Pokémon associés."],
       ["Comparaison", "Comparaison de Pokémon."],
@@ -298,6 +306,25 @@ function createOpenApi() {
       [`${api}/weather/{identifier}/moves`]: detail("Météo", "Lister les attaques boostées par une météo via leur type", "sunny", {
         description: "Identifiant ou slug météo.",
         response: listResponse(examples.move),
+      }),
+      [`${api}/candy`]: operation("Candy", "Lister les bonbons par famille Pokémon", {
+        parameters: [
+          page,
+          limit,
+          parameter("q", "query", "bulbizarre", "Recherche par familyId, nom, slug ou numéro Pokédex."),
+          parameter("familyId", "query", 1, "Limiter à une famille précise.", { type: "integer" }),
+        ],
+        response: listResponse(examples.candy),
+      }),
+      [`${api}/candy/{familyId}`]: detail("Candy", "Afficher une famille de bonbon", 1, {
+        name: "familyId",
+        description: "FamilyId partagé par le Pokémon de base et ses évolutions.",
+        response: dataResponse(examples.candy),
+      }),
+      [`${api}/candy/{familyId}/pokemon`]: detail("Candy", "Lister les Pokémon associés à un bonbon", 1, {
+        name: "familyId",
+        description: "FamilyId partagé par le Pokémon de base et ses évolutions.",
+        response: listResponse(examples.pokemon),
       }),
       [`${api}/regions`]: operation("Régions", "Lister les régions", { response: dataResponse([{ id: "KANTO", generation: 1, names: { French: "Kanto" } }]) }),
       [`${api}/regions/{identifier}`]: detail("Régions", "Afficher une région", "KANTO", { description: "ID ou slug de région." }),
@@ -503,7 +530,7 @@ function createOpenApi() {
 
   specification["x-tagGroups"] = [
     { name: "Commencer", tags: ["System", "Recherche"] },
-    { name: "Pokédex", tags: ["Pokémon", "Évolutions", "Méga", "Dynamax", "Gigantamax", "Shadow", "Assets", "Backgrounds", "Stickers", "Shuffle"] },
+    { name: "Pokédex", tags: ["Pokémon", "Évolutions", "Méga", "Dynamax", "Gigantamax", "Shadow", "Assets", "Backgrounds", "Candy", "Stickers", "Shuffle"] },
     { name: "Combat", tags: ["PvP", "Raid", "Attaques", "Types", "Statistiques", "Comparaison"] },
     { name: "Univers", tags: ["Régions", "Générations", "Collection"] },
     { name: "Métadonnées publiques", tags: ["Métadonnées"] },

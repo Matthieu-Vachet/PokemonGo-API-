@@ -75,17 +75,17 @@ export function PokemonCard({
 
   return (
     <article
-      className="relative isolate min-h-[292px] overflow-hidden rounded-[1.65rem] border p-4 shadow-[0_18px_50px_rgba(0,0,0,0.24)]"
+      className="relative isolate min-h-[292px] overflow-hidden rounded-[1.65rem] border p-4 shadow-[0_18px_50px_rgba(0,0,0,0.2)] transition"
       style={{
-        borderColor: `color-mix(in srgb, ${typeColors[mainType] || "#7aa7ff"} 42%, rgba(255,255,255,.12))`,
+        borderColor: `color-mix(in srgb, ${typeColors[mainType] || "#7aa7ff"} 58%, rgba(255,255,255,.22))`,
         backgroundImage: `${
-          background ? `linear-gradient(120deg, rgba(8,10,13,.58), rgba(24,28,36,.42)), url("${background}")` : "linear-gradient(120deg, rgba(8,10,13,.74), rgba(24,28,36,.6))"
+          background ? `linear-gradient(120deg, rgba(255,255,255,.16), rgba(2,6,23,.34)), url("${background}")` : "linear-gradient(120deg, rgba(30,64,175,.42), rgba(5,150,105,.32))"
         }`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(135deg,rgba(255,255,255,.16),transparent_38%),radial-gradient(circle_at_18%_0%,rgba(255,255,255,.22),transparent_30%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(135deg,rgba(255,255,255,.22),transparent_38%),radial-gradient(circle_at_18%_0%,rgba(255,255,255,.28),transparent_30%),linear-gradient(to_bottom,rgba(2,6,23,.18),rgba(2,6,23,.42))]" />
       <div
         className="absolute inset-x-[-20%] bottom-[-38%] -z-10 h-2/3 rounded-full blur-3xl"
         style={{ background: `color-mix(in srgb, ${typeColors[mainType] || "#7aa7ff"} 58%, transparent)` }}
@@ -163,7 +163,11 @@ export function PokemonCard({
           >
             {actionLabel}
           </button>
-        ) : null}
+        ) : (
+          <span className="inline-flex min-h-11 items-center justify-center rounded-2xl border border-white/25 bg-white/16 px-4 text-sm font-black text-white shadow-[0_14px_34px_rgba(0,0,0,.18)]">
+            Explorer la fiche
+          </span>
+        )}
       </div>
     </article>
   );

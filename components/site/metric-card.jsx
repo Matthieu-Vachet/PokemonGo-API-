@@ -14,8 +14,8 @@ export function MetricCard({ label, value, accent = "blue", icon }) {
       }`}
     >
       {icon ? (
-        <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-white/10 bg-slate-950/35 p-2">
-          <img className="max-h-full object-contain" src={icon} alt="" />
+        <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-white/45 bg-white/90 p-2 shadow-[0_12px_32px_rgba(255,255,255,.12)]">
+          <img className="max-h-full object-contain drop-shadow-[0_4px_10px_rgba(15,23,42,.2)]" src={icon} alt="" />
         </span>
       ) : null}
       <span className="min-w-0">

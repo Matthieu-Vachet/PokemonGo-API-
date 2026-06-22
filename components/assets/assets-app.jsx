@@ -180,6 +180,124 @@ function AssetTile({ item, onPreview }) {
   );
 }
 
+function normalizeTypeId(value) {
+  return String(value || "")
+    .replace(/[^a-zA-Z]/g, "_")
+    .replace(/_+/g, "_")
+    .replace(/^_|_$/g, "")
+    .toUpperCase();
+}
+
+function TypePill({ type, value, catalog = [], tone = "neutral" }) {
+  const id = normalizeTypeId(type);
+  const color = typeColors[id] || "#7aa7ff";
+  const label =
+    value === undefined || value === null
+      ? typeName(id, catalog)
+      : `${typeName(id, catalog)} ×${Number(value).toLocaleString("fr-FR")}`;
+  return (
+    <span
+      className={`inline-flex min-h-9 min-w-0 items-center gap-2 rounded-full border px-3 text-xs font-black text-white ${
+        tone === "weak"
+          ? "border-rose-200/35 bg-rose-400/14"
+          : tone === "resist"
+            ? "border-emerald-200/35 bg-emerald-400/14"
+            : "border-white/10 bg-white/[0.07]"
+      }`}
+    >
+      {typeIcon(id, catalog) ? (
+        <img className="h-5 w-5 shrink-0 object-contain" src={typeIcon(id, catalog)} alt="" />
+      ) : (
+        <i className="h-4 w-4 shrink-0 rounded-full" style={{ background: color }} />
+      )}
+      <span className="truncate">{label}</span>
+    </span>
+  );
+}
+
+function TypeDetailCard({ item, typeCatalog = [] }) {
+  const raw = item.raw || item;
+  const id = normalizeTypeId(raw.id || raw.type || item.id);
+  const damageMultiplier = raw.damageMultiplier || item.damageMultiplier || {};
+  const multiplierEntries = Object.entries(damageMultiplier).sort(([left], [right]) =>
+    normalizeTypeId(left).localeCompare(normalizeTypeId(right)),
+  );
+  const weaknesses = raw.doubleDamageFrom || [];
+  const resistances = [...(raw.halfDamageFrom || []), ...(raw.noDamageFrom || [])];
+  const weatherId = raw.weatherBoost;
+  const background = raw.assets?.background || typeBackground(id, typeCatalog);
+
+  return (
+    <article
+      className="overflow-hidden rounded-[1.7rem] border border-white/10 bg-cover bg-center shadow-[0_18px_60px_rgba(0,0,0,.22)]"
+      style={{
+        backgroundImage: background
+          ? `linear-gradient(135deg, rgba(2,6,23,.72), rgba(15,23,42,.52)), url("${background}")`
+          : `linear-gradient(135deg, ${typeColors[id] || "#2563eb"}, rgba(15,23,42,.72))`,
+      }}
+    >
+      <div className="border-b border-white/10 p-4">
+        <div className="flex items-start gap-4">
+          <span className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl border border-white/35 bg-white/90 p-2 shadow-xl">
+            {raw.assets?.icon || typeIcon(id, typeCatalog) ? (
+              <img className="max-h-full object-contain" src={raw.assets?.icon || typeIcon(id, typeCatalog)} alt="" />
+            ) : (
+              <i className="h-8 w-8 rounded-full" style={{ background: typeColors[id] || "#7aa7ff" }} />
+            )}
+          </span>
+          <div className="min-w-0">
+            <span className="text-xs font-black uppercase tracking-[0.18em] text-cyan-100/80">Type</span>
+            <h3 className="mt-1 text-2xl font-black text-white">{typeName(id, typeCatalog)}</h3>
+            <p className="mt-1 break-all font-mono text-xs font-bold text-slate-300">{raw.id || raw.slug}</p>
+          </div>
+        </div>
+        {weatherId ? (
+          <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.08] p-3">
+            <span className="text-xs font-black uppercase tracking-[0.16em] text-slate-300">Boost météo</span>
+            <strong className="mt-1 block text-sm text-white">{weatherId}</strong>
+          </div>
+        ) : null}
+      </div>
+      <div className="grid gap-4 p-4 xl:grid-cols-2">
+        <section>
+          <h4 className="mb-2 text-xs font-black uppercase tracking-[0.16em] text-rose-100">Faiblesses</h4>
+          <div className="flex flex-wrap gap-2">
+            {weaknesses.length ? (
+              weaknesses.map((type) => <TypePill key={type} type={type} catalog={typeCatalog} tone="weak" />)
+            ) : (
+              <span className="text-sm font-bold text-slate-300">Aucune faiblesse renseignée.</span>
+            )}
+          </div>
+        </section>
+        <section>
+          <h4 className="mb-2 text-xs font-black uppercase tracking-[0.16em] text-emerald-100">Résistances / immunités</h4>
+          <div className="flex flex-wrap gap-2">
+            {resistances.length ? (
+              resistances.map((type) => <TypePill key={type} type={type} catalog={typeCatalog} tone="resist" />)
+            ) : (
+              <span className="text-sm font-bold text-slate-300">Aucune résistance renseignée.</span>
+            )}
+          </div>
+        </section>
+      </div>
+      <section className="border-t border-white/10 p-4">
+        <h4 className="mb-3 text-xs font-black uppercase tracking-[0.16em] text-cyan-100">
+          Multiplicateurs offensifs
+        </h4>
+        <div className="grid gap-2 sm:grid-cols-2 2xl:grid-cols-3">
+          {multiplierEntries.length ? (
+            multiplierEntries.map(([type, value]) => (
+              <TypePill key={type} type={type} value={value} catalog={typeCatalog} />
+            ))
+          ) : (
+            <span className="text-sm font-bold text-slate-300">damageMultiplier non renseigné sur ce JSON.</span>
+          )}
+        </div>
+      </section>
+    </article>
+  );
+}
+
 function typePanelBackground(type, typeCatalog = []) {
   const background = typeBackground(type, typeCatalog);
   return background
@@ -413,6 +531,16 @@ export function AssetsApp() {
                     <div className="grid gap-3">
                       {items.slice(0, 260).map((move, index) => (
                         <MoveCard move={move.raw || move} typeCatalog={catalog?.types || []} key={`${move.id || move.slug}-${index}`} />
+                      ))}
+                    </div>
+                  ) : collection === "types" ? (
+                    <div className="grid gap-4 lg:grid-cols-2">
+                      {items.slice(0, 260).map((item, index) => (
+                        <TypeDetailCard
+                          item={item}
+                          typeCatalog={catalog?.types || []}
+                          key={`${item.id || item.slug || item.title}-${index}`}
+                        />
                       ))}
                     </div>
                   ) : (

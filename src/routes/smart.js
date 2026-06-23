@@ -13,6 +13,7 @@ router.get(
     const allowed = [
       "released",
       "shinyReleased",
+      "shadowShinyReleased",
       "tradable",
       "pokemonHomeTransfer",
       "shadow",
@@ -65,6 +66,8 @@ router.get(
   asyncHandler(async (request, response) => {
     const filter = { "flags.released": true };
     if (request.query.shiny === "true") filter["flags.shinyReleased"] = true;
+    if (request.query.shadowShiny === "true")
+      filter["flags.shadowShinyReleased"] = true;
     if (request.query.shadow === "true") filter["flags.shadow"] = true;
     if (request.query.tradable === "true") filter["flags.tradable"] = true;
     const data = await Pokemon.find(filter)

@@ -219,6 +219,7 @@ function toPokemonDocument(data, sourceFiles, hint, parentKey = null) {
     flags: {
       released: availability.released,
       shinyReleased: availability.shinyReleased,
+      shadowShinyReleased: availability.shadowShinyReleased,
       tradable: availability.tradable,
       pokemonHomeTransfer: availability.pokemonHomeTransfer,
       shadow: availability.shadow,

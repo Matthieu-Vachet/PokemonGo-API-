@@ -87,6 +87,16 @@ const languageLabels = {
   Spanish: "Espagnol",
 };
 
+const languageFlags = {
+  English: "🇬🇧",
+  German: "🇩🇪",
+  French: "🇫🇷",
+  Italian: "🇮🇹",
+  Japanese: "🇯🇵",
+  Korean: "🇰🇷",
+  Spanish: "🇪🇸",
+};
+
 function TranslationGrid({ names = {} }) {
   const entries = Object.entries(names || {}).filter(([, value]) => value);
   if (!entries.length) return null;
@@ -96,7 +106,7 @@ function TranslationGrid({ names = {} }) {
         {entries.map(([language, value]) => (
           <div className="grid grid-cols-[2.2rem_minmax(0,1fr)] gap-3 rounded-2xl border border-white/10 bg-slate-950/45 p-3" key={language}>
             <span className="grid h-9 w-9 place-items-center rounded-xl border border-white/10 bg-white/[0.06] p-1.5 text-xs font-black text-cyan-100">
-              <img className="max-h-full object-contain" src={uiAssets.icons.pokeball} alt="" />
+              <span className="text-lg">{languageFlags[language] || "🏳️"}</span>
             </span>
             <span className="min-w-0">
               <span className="block text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
@@ -220,6 +230,7 @@ function BuffGrid({ buffs }) {
 const availabilityLabels = {
   released: "Sorti",
   shinyReleased: "Shiny",
+  shadowShinyReleased: "Shadow shiny",
   tradable: "Échange",
   pokemonHomeTransfer: "Home",
   shadow: "Shadow",
@@ -227,6 +238,54 @@ const availabilityLabels = {
   gigantamax: "GMax",
   apex: "Apex",
 };
+
+function ReleaseStatusGrid({ shinyAvailability, shadowShinyAvailability }) {
+  const items = [
+    ["Chromatique", shinyAvailability, uiAssets.icons.shiny],
+    ["Shadow chromatique", shadowShinyAvailability, uiAssets.icons.shadow],
+  ];
+  return (
+    <Section title="Sorties chromatiques" icon={uiAssets.icons.shiny}>
+      <div className="grid gap-3 lg:grid-cols-2">
+        {items.map(([label, record, icon]) => {
+          const released = Boolean(record?.released);
+          return (
+            <article
+              className={`rounded-2xl border p-4 ${
+                released
+                  ? "border-emerald-300/25 bg-emerald-400/10"
+                  : "border-white/10 bg-white/[0.045]"
+              }`}
+              key={label}
+            >
+              <div className="flex items-start gap-3">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl border border-white/10 bg-slate-950/40 p-2">
+                  <img className="max-h-full object-contain" src={icon} alt="" />
+                </span>
+                <span className="min-w-0">
+                  <strong className="block font-black text-white">{label}</strong>
+                  <span className={released ? "mt-1 block text-sm font-bold text-emerald-100" : "mt-1 block text-sm font-bold text-slate-400"}>
+                    {released ? "Disponible dans Pokémon GO" : "Pas encore disponible"}
+                  </span>
+                </span>
+              </div>
+              <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                <span className="rounded-xl border border-white/10 bg-slate-950/35 px-3 py-2">
+                  <small className="block text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">Date</small>
+                  <strong className="mt-1 block text-white">{formatDate(record?.releaseDate)}</strong>
+                </span>
+                <span className="rounded-xl border border-white/10 bg-slate-950/35 px-3 py-2">
+                  <small className="block text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">Évènement</small>
+                  <strong className="mt-1 block break-words text-white">{record?.event || "-"}</strong>
+                </span>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </Section>
+  );
+}
 
 function MoveList({ title, moves, typeCatalog = [], icon }) {
   const list = moveArray(moves).filter(Boolean).map((move) =>
@@ -476,6 +535,9 @@ export function DetailModal({
   const maxCp = payload.maxCp || entry.maxCp || {};
   const size = payload.size || {};
   const availability = payload.availability || entry.availability || {};
+  const shinyAvailability = payload.shinyAvailability || payload.sourceData?.shinyAvailability || null;
+  const shadowShinyAvailability =
+    payload.shadowShinyAvailability || payload.sourceData?.shadowShinyAvailability || null;
   const pvp = payload.pvp || {};
   const moveDetails = payload.moveDetails || {};
   const cpByLevel = payload.cpByLevel || [];
@@ -508,6 +570,11 @@ export function DetailModal({
       payload.assets?.shuffle?.variants?.find((asset) => asset?.image)?.image ||
       entry.shuffleImage,
   });
+  const shinyHeroImage =
+    payload.assets?.portraitShiny ||
+    payload.assets?.shinyImage ||
+    entry.shinyImage ||
+    null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-slate-950/75 p-0 backdrop-blur-md sm:items-center sm:p-6" role="presentation" onClick={onClose}>
@@ -524,6 +591,13 @@ export function DetailModal({
           }}
         >
           <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] [background-size:34px_34px]" />
+          {shinyHeroImage ? (
+            <img
+              className="pointer-events-none absolute -right-10 -top-10 h-52 w-52 rotate-6 object-contain opacity-20 blur-[0.4px] saturate-125 sm:h-72 sm:w-72"
+              src={shinyHeroImage}
+              alt=""
+            />
+          ) : null}
           <div className="relative flex items-center gap-4 pr-14">
             <div className="grid h-24 w-24 shrink-0 place-items-center rounded-full border-4 border-white/80 bg-white shadow-[0_18px_60px_rgba(0,0,0,.32)] sm:h-28 sm:w-28">
               {displayImage ? (
@@ -644,6 +718,10 @@ export function DetailModal({
                     ))}
                   </div>
                 </Section>
+                <ReleaseStatusGrid
+                  shinyAvailability={shinyAvailability}
+                  shadowShinyAvailability={shadowShinyAvailability}
+                />
               </>
             ) : null}
 

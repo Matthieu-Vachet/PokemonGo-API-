@@ -36,7 +36,7 @@ export function FeaturedRandom({ entries = [], fallback = [], typeCatalog = [], 
   return featured.map((entry) => (
     <Link
       className="block transition hover:-translate-y-0.5"
-      href={`/checklist?search=${encodeURIComponent(entry.dexId || entry.name || "")}`}
+      href={`/bibliotheque?search=${encodeURIComponent(entry.dexId || entry.name || "")}`}
       key={entry.key}
     >
       <PokemonCard entry={entry} typeCatalog={typeCatalog} weatherCatalog={weatherCatalog} />

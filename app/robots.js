@@ -4,7 +4,7 @@ export default function robots() {
   return {
     rules: {
       userAgent: "*",
-      allow: ["/", "/checklist", "/assets", "/api-docs", "/swagger", "/api/v1/"],
+      allow: ["/", "/bibliotheque", "/checklist", "/assets", "/api-docs", "/swagger", "/api/v1/"],
       disallow: [
         "/admin",
         "/api/checklist-v3?action=source-watch",

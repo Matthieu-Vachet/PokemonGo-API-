@@ -69,6 +69,7 @@ function buildPokemonFilter(query = {}) {
   for (const flag of [
     "released",
     "shinyReleased",
+    "shadowShinyReleased",
     "tradable",
     "pokemonHomeTransfer",
     "shadow",

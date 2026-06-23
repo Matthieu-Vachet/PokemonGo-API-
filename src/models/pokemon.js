@@ -45,6 +45,7 @@ const pokemonSchema = new mongoose.Schema(
     flags: {
       released: { type: Boolean, index: true },
       shinyReleased: { type: Boolean, index: true },
+      shadowShinyReleased: { type: Boolean, index: true },
       tradable: { type: Boolean, index: true },
       pokemonHomeTransfer: { type: Boolean, index: true },
       shadow: { type: Boolean, index: true },
@@ -73,6 +74,7 @@ pokemonSchema.index({ generation: 1, regionId: 1, types: 1 });
 pokemonSchema.index({ primaryType: 1, secondaryType: 1 });
 pokemonSchema.index({ moveIds: 1, form: 1 });
 pokemonSchema.index({ "flags.released": 1, "flags.shinyReleased": 1 });
+pokemonSchema.index({ "flags.shadow": 1, "flags.shadowShinyReleased": 1 });
 pokemonSchema.index({ searchTerms: "text" }, { default_language: "none" });
 
 module.exports =

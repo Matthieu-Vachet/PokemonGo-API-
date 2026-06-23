@@ -130,9 +130,9 @@ export default function HomePage() {
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 className={`${ctaClass} border border-cyan-100/35 bg-gradient-to-r from-sky-500 via-cyan-400 to-emerald-400 text-white shadow-[0_18px_55px_rgba(14,165,233,.24)] hover:-translate-y-0.5`}
-                href="/checklist"
+                href="/bibliotheque"
               >
-                <Database size={18} /> Ouvrir le Pokédex
+                <Database size={18} /> Ouvrir la bibliothèque
               </Link>
               <Link className={`${ctaClass} border border-cyan-100/35 bg-cyan-300/20 text-white hover:-translate-y-0.5 hover:bg-cyan-300/28`} href="/assets">
                 <Sparkles size={18} /> Explorer les bibliothèques
@@ -177,10 +177,10 @@ export default function HomePage() {
 
       <section className="mb-5 grid gap-4 lg:grid-cols-4">
         <FeatureCard
-          href="/checklist"
+          href="/bibliotheque"
           icon={<img className="h-9 w-9 object-contain" src={uiAssets.icons.pokedex} alt="" />}
-          title="Pokédex public"
-          text="Recherche par nom, numéro, génération, type, famille et forme régionale."
+          title="Bibliothèque API"
+          text="Recherche par nom, numéro, génération, type, famille, forme et disponibilité."
         />
         <FeatureCard
           href="/assets"
@@ -234,7 +234,7 @@ export default function HomePage() {
                 Un aperçu des fiches les plus riches pour tester la navigation et les données exposées.
               </p>
             </div>
-            <Link className="text-sm font-black text-cyan-200" href="/checklist">
+            <Link className="text-sm font-black text-cyan-200" href="/bibliotheque">
               Tout voir
             </Link>
           </div>
@@ -250,7 +250,7 @@ export default function HomePage() {
         <aside className={glassCard}>
           <h2 className="text-xl font-black">Fraîcheur des données</h2>
           <p className="mt-2 text-sm font-bold leading-6 text-slate-300">
-            La checklist lit les JSON du dépôt et expose la dernière mise à jour connue du dataset.
+            La bibliothèque lit les JSON du dépôt et expose la dernière mise à jour connue du dataset.
           </p>
           <div className="mt-5 grid gap-3">
             <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4">

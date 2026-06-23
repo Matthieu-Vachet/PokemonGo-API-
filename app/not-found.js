@@ -14,8 +14,8 @@ export default function NotFound() {
           <Link className="inline-flex min-h-11 items-center justify-center rounded-2xl bg-gradient-to-r from-sky-500 to-cyan-400 px-4 text-sm font-black text-white" href="/">
             Retour à l’accueil
           </Link>
-          <Link className="inline-flex min-h-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.075] px-4 text-sm font-black text-white" href="/checklist">
-            Ouvrir la checklist
+          <Link className="inline-flex min-h-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.075] px-4 text-sm font-black text-white" href="/bibliotheque">
+            Ouvrir la bibliothèque
           </Link>
         </div>
       </section>

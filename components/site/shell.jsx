@@ -9,7 +9,7 @@ import { ApiStatusPill } from "./api-status-pill";
 import { uiAssets } from "./ui-assets";
 
 const links = [
-  { href: "/checklist", label: "Pokédex" },
+  { href: "/bibliotheque", label: "Bibliothèque API" },
   { href: "/assets", label: "Bibliothèques" },
   { href: "/api-docs", label: "Documentation" },
   { href: "/swagger", label: "API interactive" },
@@ -56,7 +56,7 @@ export function SiteShell({ children }) {
                   Pokémon GO API
                 </strong>
                 <small className="block truncate text-xs font-semibold text-slate-400">
-                  Checklist, assets et données
+                  Bibliothèque API et données
                 </small>
               </span>
             </Link>

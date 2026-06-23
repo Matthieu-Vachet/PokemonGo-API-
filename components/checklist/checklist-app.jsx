@@ -9,6 +9,7 @@ import { DetailModal } from "./detail-modal";
 import { uiAssets } from "../site/ui-assets";
 
 const pageSize = 120;
+const libraryVersion = "1.0.0";
 const buttonClass =
   "inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.06] px-3 text-sm font-black text-slate-100 transition hover:border-white/20 hover:bg-white/10";
 const fieldClass =
@@ -197,10 +198,10 @@ export function ChecklistApp() {
       <section className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <span className="text-xs font-black uppercase tracking-wide text-sky-300">
-            Pokédex public
+            Bibliothèque API · v{libraryVersion}
           </span>
           <h1 className="mt-2 max-w-4xl text-3xl font-black leading-none text-white md:text-5xl">
-            Visualisation complète des données Pokémon GO
+            Bibliothèque API Pokémon GO
           </h1>
         </div>
         <div className="flex flex-wrap gap-2">

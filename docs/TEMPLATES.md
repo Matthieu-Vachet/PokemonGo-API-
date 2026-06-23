@@ -62,12 +62,27 @@ Template complet:
   "availability": {
     "released": false,
     "shinyReleased": false,
+    "shadowShinyReleased": false,
     "tradable": true,
     "pokemonHomeTransfer": true,
     "shadow": false,
     "dynamax": false,
     "gigantamax": false,
     "apex": false
+  },
+  "shinyAvailability": {
+    "released": false,
+    "releaseDate": null,
+    "event": null,
+    "source": "https://www.margxt.fr/guide-liste-des-pokemon-shiny-disponibles-dans-pokemon-go/",
+    "matchedName": null
+  },
+  "shadowShinyAvailability": {
+    "released": false,
+    "releaseDate": null,
+    "event": null,
+    "source": "https://www.margxt.fr/liste-des-pokemon-obscurs-et-chromatiques-shiny-dans-pokemon-go/",
+    "matchedName": null
   },
   "maxCp": {
     "maxLevel50": null,
@@ -260,8 +275,23 @@ A créer dans `data/pokemon-forms/`, puis ajouter son `formId` à la liste
     "availability": {
       "released": false,
       "shinyReleased": false,
+      "shadowShinyReleased": false,
       "tradable": true,
       "pokemonHomeTransfer": true
+    },
+    "shinyAvailability": {
+      "released": false,
+      "releaseDate": null,
+      "event": null,
+      "source": "https://www.margxt.fr/guide-liste-des-pokemon-shiny-disponibles-dans-pokemon-go/",
+      "matchedName": null
+    },
+    "shadowShinyAvailability": {
+      "released": false,
+      "releaseDate": null,
+      "event": null,
+      "source": "https://www.margxt.fr/liste-des-pokemon-obscurs-et-chromatiques-shiny-dans-pokemon-go/",
+      "matchedName": null
     },
     "maxCp": {
       "maxLevel50": null,

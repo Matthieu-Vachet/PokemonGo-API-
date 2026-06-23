@@ -1,8 +1,8 @@
 import { ChecklistApp } from "../../components/checklist/checklist-app";
 
 export const metadata = {
-  title: "Checklist publique | Pokémon GO API",
-  description: "Parcours read-only des fiches Pokémon GO, filtres de formes, générations et statuts JSON.",
+  title: "Bibliothèque API | Pokémon GO API",
+  description: "Bibliothèque read-only des fiches Pokémon GO, formes, assets, catalogues et données API.",
 };
 
 export default function ChecklistPage() {

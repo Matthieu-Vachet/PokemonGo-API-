@@ -4,7 +4,7 @@ import { SiteShell } from "../components/site/shell";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://pokemon-go-api.vercel.app";
 const siteName = "Pokémon GO API";
 const description =
-  "Pokédex Pokémon GO public en lecture seule, checklist JSON, bibliothèques d'assets et documentation OpenAPI.";
+  "Bibliothèque API Pokémon GO publique en lecture seule, catalogues JSON, assets et documentation OpenAPI.";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -19,7 +19,9 @@ export const metadata = {
     "Pokédex Pokémon GO",
     "assets Pokémon GO",
     "OpenAPI Pokémon GO",
-    "checklist JSON Pokémon GO",
+    "bibliothèque API Pokémon GO",
+    "shiny Pokémon GO",
+    "chromatique Pokémon GO",
   ],
   alternates: {
     canonical: "/",

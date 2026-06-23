@@ -153,6 +153,7 @@ Ces champs referencent les identifiants courts de `data/types/`.
   "availability": {
     "released": true,
     "shinyReleased": true,
+    "shadowShinyReleased": true,
     "tradable": true,
     "pokemonHomeTransfer": true,
     "shadow": true,
@@ -167,12 +168,35 @@ Ces champs referencent les identifiants courts de `data/types/`.
 | --- | --- |
 | `released` | Disponible dans Pokemon GO. |
 | `shinyReleased` | Version chromatique disponible. |
+| `shadowShinyReleased` | Version Obscure chromatique disponible. |
 | `tradable` | Pokemon echangeable. |
 | `pokemonHomeTransfer` | Transferable vers Pokemon HOME. |
 | `shadow` | Existe en version Obscure. |
 | `dynamax` | Compatible Dynamax. |
 | `gigantamax` | Compatible Gigamax. |
 | `apex` | Existe en version Apex. |
+
+Les dates et événements de sortie chromatique sont stockés hors de `availability`
+pour garder les booléens simples :
+
+```json
+{
+  "shinyAvailability": {
+    "released": true,
+    "releaseDate": "2018-03-25",
+    "event": "Community Day",
+    "source": "https://www.margxt.fr/guide-liste-des-pokemon-shiny-disponibles-dans-pokemon-go/",
+    "matchedName": "Bulbizarre"
+  },
+  "shadowShinyAvailability": {
+    "released": false,
+    "releaseDate": null,
+    "event": null,
+    "source": "https://www.margxt.fr/liste-des-pokemon-obscurs-et-chromatiques-shiny-dans-pokemon-go/",
+    "matchedName": null
+  }
+}
+```
 
 ### Shadow / Obscur
 

@@ -15,6 +15,24 @@ const examples = {
     names: { English: "Charizard", French: "Dracaufeu" },
     types: ["FIRE", "FLYING"],
     stats: { attack: 223, defense: 173, stamina: 186 },
+    availability: {
+      released: true,
+      shinyReleased: true,
+      shadowShinyReleased: true,
+      shadow: true,
+    },
+    shinyAvailability: {
+      released: true,
+      releaseDate: "2018-05-19",
+      event: "Community Day",
+      source: "https://www.margxt.fr/guide-liste-des-pokemon-shiny-disponibles-dans-pokemon-go/",
+    },
+    shadowShinyAvailability: {
+      released: true,
+      releaseDate: "2020-07-10",
+      event: "GO Fest Battle Challenge",
+      source: "https://www.margxt.fr/liste-des-pokemon-obscurs-et-chromatiques-shiny-dans-pokemon-go/",
+    },
   },
   move: {
     id: "BLAST_BURN",
@@ -215,7 +233,8 @@ function createOpenApi() {
         parameter("move", "query", "BLAST_BURN", "ID d'une attaque apprise."),
         parameter("pvpLeague", "query", "greatLeague", "Ligue PvP disponible."),
         parameter("released", "query", true, "Filtrer les Pokémon sortis.", { type: "boolean" }),
-        parameter("shinyReleased", "query", true, "Filtrer les shiny sortis.", { type: "boolean" }),
+        parameter("shinyReleased", "query", true, "Filtrer les chromatiques sortis.", { type: "boolean" }),
+        parameter("shadowShinyReleased", "query", true, "Filtrer les Obscurs chromatiques sortis.", { type: "boolean" }),
         parameter("shadow", "query", true, "Filtrer les formes obscures.", { type: "boolean" }),
         parameter("mega", "query", true, "Filtrer les Méga.", { type: "boolean" }),
         parameter("gigantamax", "query", true, "Filtrer les Gigantamax.", { type: "boolean" }),
@@ -369,7 +388,7 @@ function createOpenApi() {
       }),
       [`${api}/availability/{flag}`]: detail("Pokémon", "Lister selon une disponibilité", "shinyReleased", {
         name: "flag",
-        description: "released, shinyReleased, tradable, pokemonHomeTransfer, shadow, apex, dynamax, gigantamax ou mega.",
+        description: "released, shinyReleased, shadowShinyReleased, tradable, pokemonHomeTransfer, shadow, apex, dynamax, gigantamax ou mega.",
         response: listResponse(),
       }),
       [`${api}/assets/{identifier}`]: detail("Assets", "Afficher les images normales, shiny et variantes", "pikachu"),
@@ -440,6 +459,7 @@ function createOpenApi() {
         parameters: [
           parameter("shiny", "query", true, "Uniquement les shiny sortis.", { type: "boolean" }),
           parameter("shadow", "query", false, "Uniquement les formes obscures.", { type: "boolean" }),
+          parameter("shadowShiny", "query", true, "Uniquement les Obscurs chromatiques sortis.", { type: "boolean" }),
           parameter("tradable", "query", true, "Uniquement les Pokémon échangeables.", { type: "boolean" }),
         ],
         response: listResponse(),

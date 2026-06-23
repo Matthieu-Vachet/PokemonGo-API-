@@ -1,6 +1,6 @@
 # Pokemon GO API REST
 
-L'API publique est separee de la checklist et vit dans `src/`.
+L'API publique vit dans `src/` et reste separee des outils de controle du Dashboard Admin.
 Les fichiers du depot prive `PokemonGo-Data` restent la source de verite et ne sont
 jamais modifies par la synchronisation. Les details des attaques vivent dans
 `PokemonGo-Data/moves/`; les Pokemon ne conservent que leurs identifiants.
@@ -134,7 +134,7 @@ Filtres disponibles :
 
 - `q`, `generation`, `region`, `type`, `primaryType`, `secondaryType`
 - `form`, `kind`, `weather`, `move`, `pvpLeague`
-- `released`, `shinyReleased`, `tradable`, `pokemonHomeTransfer`
+- `released`, `shinyReleased`, `shadowShinyReleased`, `tradable`, `pokemonHomeTransfer`
 - `shadow`, `apex`, `dynamax`, `gigantamax`, `mega`
 - `buddyDistanceMin`, `buddyDistanceMax`
 - `catchRateMin`, `catchRateMax`, `fleeRateMin`, `fleeRateMax`
@@ -144,6 +144,11 @@ Filtres disponibles :
 Une fiche dont `availability.shadow` vaut `true` expose aussi `data.shadow` avec
 la première date de sortie, le coût de purification, les Catch CP normal et
 boosté par la météo, ainsi que les variantes régionales, Apex ou costumées.
+
+Toutes les fiches exposent aussi `data.shinyAvailability` et
+`data.shadowShinyAvailability`. Chaque bloc contient `released`, `releaseDate`,
+`event`, `source` et `matchedName`; les valeurs restent `null` quand la variante
+chromatique ou Obscure chromatique n'est pas encore sortie.
 
 ## Exemples
 
@@ -228,9 +233,10 @@ watchers concurrents sur les memes sources.
 
 `api/rest.js` expose l'application Express comme Vercel Function. Les routes `/api/v1`,
 `/api-docs`, `/swagger` et `/health` sont dirigees vers cette fonction par `vercel.json`.
-Le front Next.js sert `/`, `/checklist`, `/assets`, `/robots.txt` et `/sitemap.xml`.
+Le front Next.js sert `/`, `/bibliotheque`, `/checklist` pour compatibilite,
+`/assets`, `/robots.txt` et `/sitemap.xml`.
 
-La checklist expose aussi `/api/checklist-v3`, qui regroupe le bootstrap public, le
+La bibliothèque expose aussi `/api/checklist-v3`, qui regroupe le bootstrap public, le
 détail d'une fiche, les catalogues et les audits d'assets en lecture seule. Les actions
 historiques de correction (`source-watch`, `history`, `url-audit`) restent désactivées
 ici et renvoient `410 Gone`; les méthodes d'écriture renvoient `405 Method Not Allowed`.

@@ -2,7 +2,8 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://pokemon-go-api.verc
 
 const staticRoutes = [
   ["", "daily", 1],
-  ["/checklist", "daily", 0.9],
+  ["/bibliotheque", "daily", 0.95],
+  ["/checklist", "daily", 0.75],
   ["/assets", "weekly", 0.8],
   ["/api-docs", "monthly", 0.7],
   ["/swagger", "monthly", 0.6],

@@ -66,6 +66,7 @@ function repoFreshness() {
       .execFileSync("git", ["log", "-1", "--date=short", "--pretty=format:%h|%ad|%s"], {
         cwd: process.cwd(),
         encoding: "utf8",
+        stdio: ["ignore", "pipe", "ignore"],
       })
       .trim();
     const [hash, date, ...subject] = output.split("|");

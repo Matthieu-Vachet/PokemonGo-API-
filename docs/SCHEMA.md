@@ -177,19 +177,18 @@ Ces champs referencent les identifiants courts de `data/types/`.
 | `apex` | Existe en version Apex. |
 
 Les dates et événements de sortie chromatique sont stockés hors de `availability`
-pour garder les booléens simples :
+pour garder les booléens simples. La vérité de sortie reste uniquement dans
+`availability.shinyReleased` et `availability.shadowShinyReleased` :
 
 ```json
 {
   "shinyAvailability": {
-    "released": true,
     "releaseDate": "2018-03-25",
     "event": "Community Day",
     "source": "https://www.margxt.fr/guide-liste-des-pokemon-shiny-disponibles-dans-pokemon-go/",
     "matchedName": "Bulbizarre"
   },
   "shadowShinyAvailability": {
-    "released": false,
     "releaseDate": null,
     "event": null,
     "source": "https://www.margxt.fr/liste-des-pokemon-obscurs-et-chromatiques-shiny-dans-pokemon-go/",
@@ -206,7 +205,6 @@ Il ne contient aucun asset visuel tant qu'aucune collection d'images Shadow n'es
 ```json
 {
   "shadow": {
-    "released": true,
     "firstReleaseDate": "2019-07-22",
     "purificationCost": { "stardust": 3000, "candy": 3 },
     "catchCp": {
@@ -377,8 +375,8 @@ Une entree de `megaEvolutions` contient:
 - Identite: `id`, `slug`, `formId`, `form`, `dexNr`, `dexId`, `baseFormId` et `names`.
 - Gameplay: `size`, `catchRate`, `fleeRate`, `availability`.
 - Combat: `maxCp`, `stats`, `primaryType`, `secondaryType`.
-- Mega: `energyCost`.
-- Images: `assets.image`, `assets.shinyImage`.
+- Mega: `megaEnergyCost`.
+- Images légères: `assets.image`, `assets.shinyImage`, `assets.assetsRef`.
 
 `availability` d'une Mega contient `released`, `shinyReleased`, `tradable` et
 `pokemonHomeTransfer`.
@@ -470,16 +468,24 @@ forme et sont valides lorsqu'ils existent.
 
 | Champ | Type | Description |
 | --- | --- | --- |
-| `assets.image` | string | Image principale. |
-| `assets.shinyImage` | string | Image chromatique principale. |
-| `assets.portrait` | string | Portrait dédié d'une Méga-Évolution ou Primo-Résurgence. |
-| `assets.portraitShiny` | string | Portrait chromatique dédié d'une Méga ou Primo. |
+| `assets.image` | string/null | Image principale légère stockée dans la fiche Pokémon. |
+| `assets.shinyImage` | string/null | Image chromatique principale légère stockée dans la fiche Pokémon. |
 | `assets.candy.familyId` | number | Famille de bonbon partagée par le Pokémon de base, ses évolutions et ses formes. |
 | `assets.candy.image` | string | Image publique du bonbon, servie depuis `PokemonGo-Assets-API`. |
 | `assets.candy.primaryColor` | object | Couleur principale RGBA issue de `PokemonCandyColorData.json`. |
 | `assets.candy.secondaryColor` | object | Couleur secondaire RGBA issue de `PokemonCandyColorData.json`. |
+| `assets.assetsRef` | string/null | Chemin vers le fichier lourd `pokemon-assets/**/*.assets.json`. |
+
+Les assets lourds sont séparés dans `PokemonGo-Data/pokemon-assets` et dans la collection
+MongoDB `pokemonAssets`. Les routes de détail et le Dashboard hydratent automatiquement
+ces données à partir de `assets.assetsRef`.
+
+| Champ asset lourd | Type | Description |
+| --- | --- | --- |
 | `assets.home.image` | string/null | Image principale issue de Pokémon Home. |
 | `assets.home.shinyImage` | string/null | Image chromatique principale issue de Pokémon Home. |
+| `assets.portrait` | string/null | Portrait dédié d'une Méga-Évolution ou Primo-Résurgence. |
+| `assets.portraitShiny` | string/null | Portrait chromatique dédié d'une Méga ou Primo. |
 | `assets.home.variants[]` | array | Toutes les variantes Home, identifiées par index de forme, genre, Gigantamax, détail et vue. |
 | `assets.locationCards[]` | array | Backgrounds de lieu et spéciaux auxquels ce numéro Pokédex est éligible. |
 | `assets.locationCards[].date` | string | Période exacte indiquée par la source. |
@@ -492,10 +498,9 @@ forme et sont valides lorsqu'ils existent.
 | `assets.shuffle.variants[].tags` | string[] | Codes utiles sans l'état terminal ni `chromatique`. |
 | `assets.shuffle.variants[].shiny` | boolean | Vrai lorsque le fichier se termine par `chromatique`. |
 
-Un bloc `assets` peut ne contenir que `shuffle` sur une forme Max ou sur une fiche qui
-n'est pas encore sortie dans Pokémon GO. Une fiche normale, régionale, Méga ou Primo
-déjà sortie doit toujours conserver `assets.image` et `assets.shinyImage`. Les assets
-Shadow et purifiés sont conservés ensemble sur la fiche exacte de la forme concernée.
+Une fiche principale déjà sortie doit conserver `assets.image` et `assets.shinyImage`
+quand les URLs existent. Les visuels Home, portraits, Shuffle, location cards et
+`assetForms` appartiennent au fichier asset lourd et à la collection `pokemonAssets`.
 
 Les types vivent dans `data/types/<slug>.json`. Leur bloc `assets` contient `icon` et
 `background`. `data/types/types.json` reste un index complet compatible avec les anciens
@@ -598,13 +603,16 @@ Dynamax, Gigantamax, Mega et Mega X/Y.
   "eliteCinematicMoves": [],
   "assets": {
     "image": "",
-    "shinyImage": ""
+    "shinyImage": "",
+    "candy": null,
+    "assetsRef": "pokemon-assets/normal/0001-bulbasaur.assets.json"
   },
   "regionForms": [],
   "evolutions": [],
   "hasMegaEvolution": false,
   "megaEvolutions": [],
+  "dynamaxForms": [],
   "hasGigantamaxEvolution": false,
-  "assetForms": []
+  "gigantamaxForms": []
 }
 ```

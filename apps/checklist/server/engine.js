@@ -16,6 +16,7 @@ const pokemonDir = dataPath("pokemon");
 const formsDir = dataPath("pokemon-forms");
 const movesDir = dataPath("moves");
 const generationsDir = dataPath("generations");
+const assetsDir = dataPath("pokemon-assets");
 const languages = [
   "English",
   "German",
@@ -42,6 +43,37 @@ function listJsonFiles(directory) {
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
+}
+
+function readAssetRecord(data) {
+  const assetsRef = data?.assets?.assetsRef;
+  if (!assetsRef) return null;
+  const file = resolveDataFile(assetsRef);
+  if (!isInsideData(file) || !file.startsWith(assetsDir) || !fs.existsSync(file)) {
+    return null;
+  }
+  return readJson(file);
+}
+
+function hydrateSourceData(data) {
+  const record = readAssetRecord(data);
+  if (!record?.assets) return data;
+  return {
+    ...data,
+    assets: {
+      ...(data.assets || {}),
+      home: record.assets.home ?? null,
+      portrait: record.assets.portrait ?? null,
+      portraitShiny: record.assets.portraitShiny ?? null,
+      locationCards: Array.isArray(record.assets.locationCards)
+        ? record.assets.locationCards
+        : [],
+      shuffle: record.assets.shuffle ?? null,
+    },
+    assetForms: Array.isArray(record.assets.assetForms)
+      ? record.assets.assetForms
+      : [],
+  };
 }
 
 function buildMoveCatalog() {
@@ -280,10 +312,11 @@ function createValidator() {
           nonEmpty: true,
         });
     }
-    if (value.home !== undefined) homeAssets(value.home, `${pathName}.home`);
+    if (value.home !== undefined && value.home !== null)
+      homeAssets(value.home, `${pathName}.home`);
     if (value.locationCards !== undefined)
       locationCards(value.locationCards, `${pathName}.locationCards`);
-    if (value.shuffle !== undefined)
+    if (value.shuffle !== undefined && value.shuffle !== null)
       shuffleAssets(value.shuffle, `${pathName}.shuffle`);
   }
 
@@ -391,7 +424,6 @@ function createValidator() {
       add(pathName, "type", "objet de données Shadow", actualType(value));
       return;
     }
-    field(value, "released", `${pathName}.released`, "boolean");
     field(value, "firstReleaseDate", `${pathName}.firstReleaseDate`, "string", {
       nonEmpty: true,
     });
@@ -426,8 +458,10 @@ function createValidator() {
         const variantPath = `${pathName}.variants[${index}]`;
         for (const key of ["name", "variant", "releaseDate", "releaseDateText"])
           field(variant, key, `${variantPath}.${key}`, "string", { nonEmpty: true });
-        validateCost(variant.purificationCost, `${variantPath}.purificationCost`);
-        validateCatchCp(variant.catchCp, `${variantPath}.catchCp`);
+        if (variant.purificationCost !== undefined)
+          validateCost(variant.purificationCost, `${variantPath}.purificationCost`);
+        if (variant.catchCp !== undefined)
+          validateCatchCp(variant.catchCp, `${variantPath}.catchCp`);
       });
   }
 
@@ -444,8 +478,11 @@ function createValidator() {
     if (actualType(size) === "object")
       for (const key of ["height", "weight"])
         field(size, key, `${pathName}.size.${key}`, "number");
-    for (const key of ["catchRate", "fleeRate", "energyCost"])
+    for (const key of ["catchRate", "fleeRate"])
       field(value, key, `${pathName}.${key}`, "number");
+    field(value, "megaEnergyCost", `${pathName}.megaEnergyCost`, "number", {
+      nullable: true,
+    });
     const availability = field(
       value,
       "availability",
@@ -509,17 +546,26 @@ function createValidator() {
       const allowedMaxCp = new Set([
         "maxLevel50",
         "maxLevel40",
+        "weatherBoostLevel25",
+        "raidLevel20",
         "maxBattlesLevel20",
+        "researchLevel15",
       ]);
       for (const key of Object.keys(maxCp))
         if (!allowedMaxCp.has(key))
           add(
             `${prefix}maxCp.${key}`,
             "unexpected",
-            "uniquement maxLevel50, maxLevel40, maxBattlesLevel20",
+            "pattern maxCp complet",
             "champ en trop",
           );
-      for (const key of ["maxLevel50", "maxLevel40"])
+      for (const key of [
+        "maxLevel50",
+        "maxLevel40",
+        "weatherBoostLevel25",
+        "raidLevel20",
+        "researchLevel15",
+      ])
         field(maxCp, key, `${prefix}maxCp.${key}`, "number");
       field(
         maxCp,
@@ -602,6 +648,9 @@ function createValidator() {
     field(value, "megaEnergyReward", `${prefix}megaEnergyReward`, "number", {
       nullable: true,
     });
+    field(value, "megaEnergyCost", `${prefix}megaEnergyCost`, "number", {
+      nullable: true,
+    });
     for (const [blockName, keys] of [
       ["captureRewards", ["candy", "stardust"]],
       ["secondChargeMoveCost", ["candy", "stardust"]],
@@ -613,6 +662,7 @@ function createValidator() {
           "maxLevel40",
           "weatherBoostLevel25",
           "raidLevel20",
+          "maxBattlesLevel20",
           "researchLevel15",
         ],
       ],
@@ -620,7 +670,9 @@ function createValidator() {
       const block = field(value, blockName, `${prefix}${blockName}`, "object");
       if (actualType(block) === "object")
         for (const key of keys)
-          field(block, key, `${prefix}${blockName}.${key}`, "number");
+          field(block, key, `${prefix}${blockName}.${key}`, "number", {
+            nullable: blockName === "maxCp" && key === "maxBattlesLevel20",
+          });
     }
     const availability = field(
       value,
@@ -642,10 +694,11 @@ function createValidator() {
         field(availability, key, `${prefix}availability.${key}`, "boolean");
       }
     }
-    if (value.shadow !== undefined) shadow(value.shadow, `${prefix}shadow`);
-    if (value.availability?.shadow === true && value.shadow === undefined)
+    if (value.shadow !== undefined && value.shadow !== null)
+      shadow(value.shadow, `${prefix}shadow`);
+    if (value.availability?.shadow === true && (value.shadow === undefined || value.shadow === null))
       add(`${prefix}shadow`, "missing", "données Shadow", "absent");
-    if (value.availability?.shadow === false && value.shadow !== undefined)
+    if (value.availability?.shadow === false && value.shadow !== undefined && value.shadow !== null)
       add(`${prefix}shadow`, "unexpected", "absent si Shadow non sorti", "présent");
     pvp(value.pvp, `${prefix}pvp`);
     typeBlock(value.primaryType, `${prefix}primaryType`);
@@ -699,12 +752,15 @@ function createValidator() {
     );
     for (const referenceField of ["dynamaxForms", "gigantamaxForms"]) {
       if (value[referenceField] === undefined) continue;
+      const required =
+        (referenceField === "dynamaxForms" && value.availability?.dynamax === true) ||
+        (referenceField === "gigantamaxForms" && value.hasGigantamaxEvolution === true);
       const references = field(
         value,
         referenceField,
         `${prefix}${referenceField}`,
         "array",
-        { nonEmpty: true },
+        { nonEmpty: required },
       );
       if (Array.isArray(references))
         references.forEach((formId, index) =>
@@ -797,6 +853,7 @@ function createValidator() {
 }
 
 function validateSourceData(data, relativeFile = "", kindHint = "", options = {}) {
+  data = hydrateSourceData(data);
   const validator = createValidator();
   const kind =
     relativeFile.startsWith("data/pokemon/") ? "pokemon" :
@@ -1215,10 +1272,12 @@ function buildChecklist(customRulesOverride = null) {
     .filter((name) => name.endsWith(".json") && !copySuffix.test(name))
     .sort()
     .map((name) => path.join(pokemonDir, name))) {
-    sources.push({ file, kind: "pokemon", data: readJson(file) });
+    const sourceData = readJson(file);
+    sources.push({ file, kind: "pokemon", sourceData, data: hydrateSourceData(sourceData) });
   }
   for (const file of listJsonFiles(formsDir).sort()) {
-    const data = readJson(file);
+    const sourceData = readJson(file);
+    const data = hydrateSourceData(sourceData);
     const form = String(data.form || "");
     sources.push({
       file,
@@ -1227,6 +1286,7 @@ function buildChecklist(customRulesOverride = null) {
         : ["dynamax", "gigantamax"].includes(form)
           ? form
           : "form",
+      sourceData,
       data,
     });
   }
@@ -1365,13 +1425,13 @@ function detailForKey(key) {
   const file = resolveDataFile(relativeFile);
   if (!isInsideData(file) || !fs.existsSync(file)) return null;
   const sourceData = readJson(file);
-  let data = sourceData;
+  let data = hydrateSourceData(sourceData);
 
   if (relativeFile.startsWith("data/pokemon-forms/")) {
     const parent = fs
       .readdirSync(pokemonDir)
       .filter((name) => name.endsWith(".json") && !copySuffix.test(name))
-      .map((name) => readJson(path.join(pokemonDir, name)))
+      .map((name) => hydrateSourceData(readJson(path.join(pokemonDir, name))))
       .find(
         (candidate) =>
           candidate.id === data.baseFormId ||

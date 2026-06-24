@@ -31,6 +31,15 @@ Chaque document MongoDB conserve :
 - son hash et ses fichiers sources ;
 - des metadonnees de synchronisation.
 
+Depuis la refonte du modele Pokemon, MongoDB separe les donnees en deux collections :
+
+- `pokemons` contient le gameplay, les stats, les attaques, le PvP, les disponibilites, les images principales, les bonbons et `data.assets.assetsRef`.
+- `pokemonAssets` contient les assets lourds : Home, portraits, portraits shiny, location cards, Shuffle et variantes visuelles.
+
+Les routes publiques joignent automatiquement `pokemons.formId` avec `pokemonAssets.formId`
+sur les fiches de detail et les routes d'assets. La liste `/pokemon` reste legere pour
+garder des reponses rapides.
+
 Les schemas utilisent `strict: false`. Un nouveau champ JSON est donc conserve dans
 MongoDB sans imposer une modification du backend.
 
@@ -146,9 +155,10 @@ la première date de sortie, le coût de purification, les Catch CP normal et
 boosté par la météo, ainsi que les variantes régionales, Apex ou costumées.
 
 Toutes les fiches exposent aussi `data.shinyAvailability` et
-`data.shadowShinyAvailability`. Chaque bloc contient `released`, `releaseDate`,
-`event`, `source` et `matchedName`; les valeurs restent `null` quand la variante
-chromatique ou Obscure chromatique n'est pas encore sortie.
+`data.shadowShinyAvailability`. Chaque bloc contient `releaseDate`, `event`, `source`
+et `matchedName`; les valeurs restent `null` quand la variante chromatique ou Obscure
+chromatique n'est pas encore sortie. La verite unique pour l'etat de sortie reste
+`data.availability.shinyReleased` et `data.availability.shadowShinyReleased`.
 
 ## Exemples
 
@@ -236,10 +246,10 @@ watchers concurrents sur les memes sources.
 Le front Next.js sert `/`, `/bibliotheque`, `/checklist` pour compatibilite,
 `/assets`, `/robots.txt` et `/sitemap.xml`.
 
-La bibliothèque expose aussi `/api/checklist-v3`, qui regroupe le bootstrap public, le
-détail d'une fiche, les catalogues et les audits d'assets en lecture seule. Les actions
-historiques de correction (`source-watch`, `history`, `url-audit`) restent désactivées
-ici et renvoient `410 Gone`; les méthodes d'écriture renvoient `405 Method Not Allowed`.
+La bibliothèque publique n'expose pas le moteur de règles du Dashboard Admin. Les
+anciennes routes de checklist restent limitees a la compatibilite lecture seule quand
+elles existent ; les actions de correction, d'audit admin ou d'ecriture restent
+desactivees hors Dashboard.
 
 Configurer dans Vercel les variables `MONGODB_URI`, `NODE_ENV=production` et
 `API_PUBLIC_URL`. Comme `PokemonGo-Data` est prive, ajouter aussi

@@ -22,16 +22,21 @@ const examples = {
       shadow: true,
     },
     shinyAvailability: {
-      released: true,
       releaseDate: "2018-05-19",
       event: "Community Day",
       source: "https://www.margxt.fr/guide-liste-des-pokemon-shiny-disponibles-dans-pokemon-go/",
+      matchedName: "Dracaufeu",
     },
     shadowShinyAvailability: {
-      released: true,
       releaseDate: "2020-07-10",
       event: "GO Fest Battle Challenge",
       source: "https://www.margxt.fr/liste-des-pokemon-obscurs-et-chromatiques-shiny-dans-pokemon-go/",
+      matchedName: "Dracaufeu",
+    },
+    assets: {
+      image: "https://raw.githubusercontent.com/.../pokemon/0006.png",
+      shinyImage: "https://raw.githubusercontent.com/.../pokemon/0006-shiny.png",
+      assetsRef: "pokemon-assets/normal/0006-charizard.assets.json",
     },
   },
   move: {

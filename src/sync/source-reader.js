@@ -232,6 +232,7 @@ function toPokemonDocument(data, sourceFiles, hint, parentKey = null) {
     buddyDistance: data.buddyDistance,
     catchRate: data.catchRate,
     fleeRate: data.fleeRate,
+    megaEnergyCost: data.megaEnergyCost,
     sourceFiles: [...new Set(sourceFiles)],
     sourceHash: hash(normalizedData),
     data: normalizedData,
@@ -297,6 +298,26 @@ function collectPokemonDocuments(generations = collectGenerationDocuments()) {
     );
   }
   return [...documents.values()];
+}
+
+function collectPokemonAssetDocuments() {
+  return listJsonFiles(dataPath("pokemon-assets")).map((file) => {
+    const data = readJson(file);
+    return {
+      key: data.formId,
+      id: data.id,
+      formId: data.formId,
+      baseFormId: data.baseFormId,
+      form: data.form,
+      slug: data.slug,
+      dexNr: data.dexNr,
+      dexId: data.dexId,
+      sourceFile: relative(file),
+      sourceHash: hash(data),
+      assets: data.assets || {},
+      data,
+    };
+  });
 }
 
 function collectMoveDocuments() {
@@ -434,6 +455,7 @@ function collectAllDocuments() {
   const generations = collectGenerationDocuments();
   return {
     pokemon: collectPokemonDocuments(generations),
+    pokemonAssets: collectPokemonAssetDocuments(),
     moves: collectMoveDocuments(),
     types: collectTypeDocuments(),
     weather: collectWeatherDocuments(),
@@ -444,6 +466,7 @@ function collectAllDocuments() {
 
 module.exports = {
   collectAllDocuments,
+  collectPokemonAssetDocuments,
   collectWeatherDocuments,
   hash,
   listJsonFiles,

@@ -101,7 +101,11 @@ test("une route inconnue retourne une erreur structurée", async () => {
 
 test("les sources JSON sont lisibles et dédupliquées", () => {
   const data = collectAllDocuments();
+  const assetsByFormId = new Map(
+    data.pokemonAssets.map((asset) => [asset.formId, asset.assets]),
+  );
   assert.ok(data.pokemon.length >= 1000);
+  assert.equal(data.pokemonAssets.length, data.pokemon.length);
   assert.ok(data.moves.length >= 250);
   assert.equal(data.types.length, 18);
   assert.equal(data.weather.length, 7);
@@ -117,20 +121,22 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
     ),
   );
   const bulbasaur = data.pokemon.find((pokemon) => pokemon.key === "BULBASAUR");
+  const bulbasaurAssets = assetsByFormId.get("BULBASAUR");
   assert.equal(bulbasaur.generation, 1);
   assert.equal(bulbasaur.regionId, "KANTO");
   assert.equal(bulbasaur.data.region.names.French, "Kanto");
-  assert.equal(bulbasaur.data.assets.home.source, "pokemon-home");
-  assert.ok(bulbasaur.data.assets.home.variants.length >= 1);
-  assert.equal(bulbasaur.data.assets.shuffle.source, "pokemon-shuffle");
-  assert.ok(bulbasaur.data.assets.shuffle.variants.length >= 1);
+  assert.match(bulbasaur.data.assets.assetsRef, /pokemon-assets\/normal\/0001-bulbasaur\.assets\.json/);
+  assert.equal(bulbasaurAssets.home.source, "pokemon-home");
+  assert.ok(bulbasaurAssets.home.variants.length >= 1);
+  assert.equal(bulbasaurAssets.shuffle.source, "pokemon-shuffle");
+  assert.ok(bulbasaurAssets.shuffle.variants.length >= 1);
   assert.ok(
-    bulbasaur.data.assets.shuffle.variants.every(
+    bulbasaurAssets.shuffle.variants.every(
       (asset) => asset.form === "normal" && !asset.filename.includes("_dynamax"),
     ),
   );
   const eevee = data.pokemon.find((pokemon) => pokemon.key === "EEVEE");
-  const citySafari = eevee.data.assets.locationCards.find(
+  const citySafari = assetsByFormId.get(eevee.formId).locationCards.find(
     (card) => card.id === "lc_CitySafari2023_barcelona_2023",
   );
   assert.equal(citySafari.date, "October 13th - 14th 2023");
@@ -145,7 +151,7 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   assert.equal(helioptile.data.availability.shadow, true);
   const rookidee = data.pokemon.find((pokemon) => pokemon.key === "ROOKIDEE");
   assert.equal(rookidee.data.availability.shadow, false);
-  assert.equal(rookidee.data.shadow, undefined);
+  assert.equal(rookidee.data.shadow, null);
 });
 
 test("les types, PvP null et formes Max sont normalisés", () => {
@@ -170,10 +176,12 @@ test("les types, PvP null et formes Max sont normalisés", () => {
     "maxBattlesLevel20",
     "maxLevel40",
     "maxLevel50",
+    "raidLevel20",
+    "researchLevel15",
+    "weatherBoostLevel25",
   ]);
-  assert.equal(dynamax.maxCp.raidLevel20, undefined);
-  assert.deepEqual(dynamax.moveIds, []);
-  assert.deepEqual(dynamax.pvpLeagues, []);
+  assert.ok(dynamax.moveIds.includes("VINE_WHIP_FAST"));
+  assert.ok(dynamax.pvpLeagues.includes("greatLeague"));
   assert.equal(data.pokemon.filter((pokemon) => pokemon.kind === "dynamax").length, 127);
   assert.equal(data.moves.filter((move) => move.kind === "max").length, 18);
   assert.equal(toxtricity.baseFormId, "TOXTRICITY_AMPED");
@@ -188,6 +196,9 @@ test("les types, PvP null et formes Max sont normalisés", () => {
     "maxBattlesLevel20",
     "maxLevel40",
     "maxLevel50",
+    "raidLevel20",
+    "researchLevel15",
+    "weatherBoostLevel25",
   ]);
   assert.ok(data.moves.some((move) => move.kind === "max"));
   assert.ok(data.moves.some((move) => move.kind === "gmax"));
@@ -230,10 +241,10 @@ test("la checklist affiche les formes Max héritées sans dupliquer leur source"
   assert.equal(detail.sourceData.inherits, undefined);
   assert.equal(detail.sourceData.evolutions[0].targetFormId, "IVYSAUR_DYNAMAX");
   assert.deepEqual(detail.maxCp, detail.sourceData.maxCp);
-  assert.equal(detail.maxCp.raidLevel20, undefined);
-  assert.deepEqual(detail.quickMoves, []);
-  assert.deepEqual(detail.cinematicMoves, []);
-  assert.equal(detail.pvp, null);
+  assert.equal(typeof detail.maxCp.raidLevel20, "number");
+  assert.ok(detail.quickMoves.length >= 1);
+  assert.ok(detail.cinematicMoves.length >= 1);
+  assert.equal(typeof detail.pvp, "object");
   assert.deepEqual(
     Object.values(detail.moveDetails.maxMoves).map((move) => move.id),
     ["MAX_OVERGROWTH", "MAX_STRIKE"],
@@ -375,31 +386,31 @@ test("la bibliothèque d'assets expose les icônes Pokémon Shuffle", async () =
 });
 
 test("les assets Shuffle sont associés une seule fois à leur forme exacte", () => {
-  const data = collectAllDocuments().pokemon;
+  const data = collectAllDocuments().pokemonAssets;
   data.forEach((pokemon) => {
-    const filenames = (pokemon.data.assets?.shuffle?.variants || []).map(
+    const filenames = (pokemon.assets?.shuffle?.variants || []).map(
       (asset) => asset.filename,
     );
     assert.equal(new Set(filenames).size, filenames.length);
   });
 
-  const rattataAlola = data.find((pokemon) => pokemon.key === "RATTATA_ALOLA");
+  const rattataAlola = data.find((pokemon) => pokemon.formId === "RATTATA_ALOLA");
   assert.ok(
-    rattataAlola.data.assets.shuffle.variants.every((asset) =>
+    rattataAlola.assets.shuffle.variants.every((asset) =>
       asset.filename.includes("_rattata_alola"),
     ),
   );
-  const venusaurMega = data.find((pokemon) => pokemon.key === "VENUSAUR_MEGA");
+  const venusaurMega = data.find((pokemon) => pokemon.formId === "VENUSAUR_MEGA");
   assert.ok(
-    venusaurMega.data.assets.shuffle.variants.every(
+    venusaurMega.assets.shuffle.variants.every(
       (asset) => asset.form === "mega" && !asset.filename.endsWith("_dynamax.png"),
     ),
   );
   const bulbasaurDynamax = data.find(
-    (pokemon) => pokemon.key === "BULBASAUR_DYNAMAX",
+    (pokemon) => pokemon.formId === "BULBASAUR_DYNAMAX",
   );
   assert.ok(
-    bulbasaurDynamax.data.assets.shuffle.variants.every(
+    bulbasaurDynamax.assets.shuffle.variants.every(
       (asset) => asset.state === "dynamax",
     ),
   );

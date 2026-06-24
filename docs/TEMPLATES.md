@@ -71,14 +71,12 @@ Template complet:
     "apex": false
   },
   "shinyAvailability": {
-    "released": false,
     "releaseDate": null,
     "event": null,
     "source": "https://www.margxt.fr/guide-liste-des-pokemon-shiny-disponibles-dans-pokemon-go/",
     "matchedName": null
   },
   "shadowShinyAvailability": {
-    "released": false,
     "releaseDate": null,
     "event": null,
     "source": "https://www.margxt.fr/liste-des-pokemon-obscurs-et-chromatiques-shiny-dans-pokemon-go/",
@@ -112,17 +110,37 @@ Template complet:
   "assets": {
     "image": "",
     "shinyImage": "",
-    "locationCards": [
-      {
-        "id": "lc_CitySafari2023_barcelona_2023",
-        "name": "City Safari Barcelona",
-        "type": "location",
-        "date": "October 13th - 14th 2023",
-        "eligibleForms": ["Eevee (Explorer Hat)"],
-        "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards/lc_CitySafari2023_barcelona_2023.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
-      }
-    ],
+    "candy": null,
+    "assetsRef": "pokemon-assets/normal/0001-bulbasaur.assets.json"
+  },
+  "regionForms": [],
+  "evolutions": [],
+  "hasMegaEvolution": false,
+  "megaEvolutions": [],
+  "dynamaxForms": [],
+  "hasGigantamaxEvolution": false,
+  "gigantamaxForms": []
+}
+```
+
+## Template Asset Lourd
+
+A placer dans `PokemonGo-Data/pokemon-assets/<form>/[dexId]-[slug].assets.json`.
+
+```json
+{
+  "id": "BULBASAUR",
+  "formId": "BULBASAUR",
+  "baseFormId": "BULBASAUR",
+  "form": "normal",
+  "slug": "bulbasaur",
+  "dexNr": 1,
+  "dexId": "0001",
+  "assets": {
+    "home": null,
+    "portrait": null,
+    "portraitShiny": null,
+    "locationCards": [],
     "shuffle": {
       "source": "pokemon-shuffle",
       "variants": [
@@ -137,14 +155,9 @@ Template complet:
           "shiny": false
         }
       ]
-    }
-  },
-  "regionForms": [],
-  "evolutions": [],
-  "hasMegaEvolution": false,
-  "megaEvolutions": [],
-  "hasGigantamaxEvolution": false,
-  "assetForms": []
+    },
+    "assetForms": []
+  }
 }
 ```
 
@@ -280,14 +293,12 @@ A créer dans `data/pokemon-forms/`, puis ajouter son `formId` à la liste
       "pokemonHomeTransfer": true
     },
     "shinyAvailability": {
-      "released": false,
       "releaseDate": null,
       "event": null,
       "source": "https://www.margxt.fr/guide-liste-des-pokemon-shiny-disponibles-dans-pokemon-go/",
       "matchedName": null
     },
     "shadowShinyAvailability": {
-      "released": false,
       "releaseDate": null,
       "event": null,
       "source": "https://www.margxt.fr/liste-des-pokemon-obscurs-et-chromatiques-shiny-dans-pokemon-go/",
@@ -307,10 +318,12 @@ A créer dans `data/pokemon-forms/`, puis ajouter son `formId` à la liste
     },
     "primaryType": "",
     "secondaryType": null,
-    "energyCost": null,
+    "megaEnergyCost": null,
     "assets": {
       "image": "",
-      "shinyImage": ""
+      "shinyImage": "",
+      "candy": null,
+      "assetsRef": "pokemon-assets/mega/0003-venusaur-mega.assets.json"
     }
   }
 }
@@ -361,13 +374,15 @@ Pour une forme Dynamax, utiliser `"form": "dynamax"` et des references vers
 references vers `data/moves/gmax/`. Leur bloc `maxCp` contient uniquement
 `maxLevel50`, `maxLevel40` et `maxBattlesLevel20`.
 
-Le bloc `assets` est obligatoire sur chaque fiche Max et peut contenir uniquement
-`shuffle` lorsqu'aucune image Pokémon GO propre à cette forme n'existe. Une forme
+Le bloc `assets` de la fiche Max conserve seulement `image`, `shinyImage`, `candy` et
+`assetsRef`. Les assets Shuffle ou portraits vivent dans le fichier lourd référencé.
+Une forme
 Dynamax conserve également son tableau `evolutions`.
 
 ## Bloc Asset Form
 
-A ajouter dans `assetForms` pour les costumes, formes visuelles ou variantes femelles.
+A ajouter dans `pokemon-assets/**/*.assets.json -> assets.assetForms` pour les costumes,
+formes visuelles ou variantes femelles.
 
 ```json
 {

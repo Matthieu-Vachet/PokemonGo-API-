@@ -32,7 +32,8 @@ npm run sync:dry
 
 Cette commande lit tous les JSON et affiche les compteurs, mais ne se connecte pas a
 MongoDB. C'est le bon controle apres un ajout comme `damageMultiplier` dans les types
-ou `assets.candy` dans les fiches Pokemon.
+ou `assets.candy` dans les fiches Pokemon. Le dry-run doit aussi afficher
+`pokemonAssets`, genere depuis `PokemonGo-Data/pokemon-assets`.
 
 ## 3. Importer dans MongoDB
 
@@ -44,16 +45,22 @@ npm run sync
 
 Le sync fait des `upsert` par collection :
 
-- `pokemon` avec la cle unique `key`
+- `pokemons` avec la cle unique `key`
+- `pokemonAssets` avec la cle unique `formId`
 - `moves` avec la cle unique `id`
 - `types` avec la cle unique `id`
 - `weather`, `regions`, `generations`
 - `globalstats` pour les statistiques globales
 
-Chaque document garde aussi le JSON source complet dans le champ `data`. Donc un nouveau
-champ ajoute aux JSON, par exemple `types/*.json -> damageMultiplier` ou
-`pokemon/*.json -> assets.candy`, remonte automatiquement dans MongoDB si le fichier
-source change.
+Chaque document `pokemons` garde aussi le JSON source complet dans le champ `data`.
+Les assets lourds vivent dans `pokemonAssets.data.assets` et sont lies par
+`pokemons.formId == pokemonAssets.formId`. Donc un nouveau champ ajoute aux JSON,
+par exemple `types/*.json -> damageMultiplier`, `pokemon/*.json -> assets.candy` ou
+`pokemon-assets/**/*.assets.json -> assets.shuffle`, remonte automatiquement dans
+MongoDB si le fichier source change.
+
+Les routes de detail hydratent automatiquement la fiche en lisant `data.assets.assetsRef`.
+La liste des Pokemon reste volontairement plus legere.
 
 ## 4. Deploiement Vercel
 
@@ -72,6 +79,6 @@ Sur Vercel, verifie que les variables suivantes existent selon ton setup :
 
 ## 5. Reflexe de securite data
 
-Avant toute modification massive dans `PokemonGo-Data`, copie les JSON originaux dans
-`archive JSON/<date-heure>/`. C'est la sauvegarde locale qui permet de recuperer les
-donnees avant enrichissement ou migration.
+Avant toute modification massive dans `PokemonGo-Data`, lance le backup de refonte ou
+copie les JSON originaux dans `archive JSON/<date-heure>/`. C'est la sauvegarde locale
+qui permet de recuperer les donnees avant enrichissement ou migration.

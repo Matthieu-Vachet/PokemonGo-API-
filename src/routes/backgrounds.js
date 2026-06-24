@@ -1,5 +1,5 @@
 const express = require("express");
-const { Pokemon } = require("../models");
+const { Pokemon, PokemonAsset } = require("../models");
 const { asyncHandler } = require("../lib/async-handler");
 const { ApiError } = require("../lib/api-error");
 const { findPokemon } = require("../services/pokemon-service");
@@ -9,8 +9,8 @@ const router = express.Router();
 
 function backgroundFilter(query = {}) {
   const match = {};
-  if (query.type) match["data.assets.locationCards.type"] = String(query.type).toLowerCase();
-  if (query.date) match["data.assets.locationCards.date"] = {
+  if (query.type) match["assets.locationCards.type"] = String(query.type).toLowerCase();
+  if (query.date) match["assets.locationCards.date"] = {
     $regex: String(query.date),
     $options: "i",
   };
@@ -21,16 +21,16 @@ router.get(
   "/",
   asyncHandler(async (request, response) => {
     const filter = backgroundFilter(request.query);
-    const data = await Pokemon.aggregate([
-      { $match: { "data.assets.locationCards.0": { $exists: true }, ...filter } },
-      { $unwind: "$data.assets.locationCards" },
+    const data = await PokemonAsset.aggregate([
+      { $match: { "assets.locationCards.0": { $exists: true }, ...filter } },
+      { $unwind: "$assets.locationCards" },
       ...(request.query.type
-        ? [{ $match: { "data.assets.locationCards.type": String(request.query.type).toLowerCase() } }]
+        ? [{ $match: { "assets.locationCards.type": String(request.query.type).toLowerCase() } }]
         : []),
       ...(request.query.date
         ? [{
             $match: {
-              "data.assets.locationCards.date": {
+              "assets.locationCards.date": {
                 $regex: String(request.query.date),
                 $options: "i",
               },
@@ -39,9 +39,9 @@ router.get(
         : []),
       {
         $group: {
-          _id: "$data.assets.locationCards.id",
-          background: { $first: "$data.assets.locationCards" },
-          eligiblePokemon: { $addToSet: "$key" },
+          _id: "$assets.locationCards.id",
+          background: { $first: "$assets.locationCards" },
+          eligiblePokemon: { $addToSet: "$formId" },
         },
       },
       { $sort: { "background.type": 1, "background.name": 1 } },
@@ -63,7 +63,11 @@ router.get(
 router.get(
   "/:id/pokemon",
   asyncHandler(async (request, response) => {
-    const data = await Pokemon.find({ "data.assets.locationCards.id": request.params.id })
+    const assets = await PokemonAsset.find({ "assets.locationCards.id": request.params.id })
+      .select("formId")
+      .lean();
+    const formIds = assets.map((asset) => asset.formId);
+    const data = await Pokemon.find({ formId: { $in: formIds } })
       .sort({ dexNr: 1, form: 1 })
       .lean();
     if (!data.length)

@@ -1,4 +1,4 @@
-const { Pokemon } = require("../models");
+const { Pokemon, PokemonAsset } = require("../models");
 const { ApiError } = require("../lib/api-error");
 const { boolean, csv, pagination, sortFromQuery } = require("../lib/http");
 const {
@@ -109,6 +109,43 @@ function listProjection(includeData) {
       };
 }
 
+function mergeAssetData(data = {}, assetDocument = null) {
+  const heavyAssets = assetDocument?.assets || assetDocument?.data?.assets || {};
+  return {
+    ...data,
+    assets: {
+      ...(data.assets || {}),
+      home: heavyAssets.home ?? null,
+      portrait: heavyAssets.portrait ?? null,
+      portraitShiny: heavyAssets.portraitShiny ?? null,
+      locationCards: Array.isArray(heavyAssets.locationCards)
+        ? heavyAssets.locationCards
+        : [],
+      shuffle: heavyAssets.shuffle ?? null,
+    },
+    assetForms: Array.isArray(heavyAssets.assetForms) ? heavyAssets.assetForms : [],
+  };
+}
+
+function attachPokemonAssets(document, assetDocument = null) {
+  if (!document) return document;
+  return {
+    ...document,
+    data: mergeAssetData(document.data, assetDocument),
+  };
+}
+
+async function findPokemonAsset(formId) {
+  if (!formId) return null;
+  return PokemonAsset.findOne({ formId }).lean();
+}
+
+async function hydratePokemonAssets(document) {
+  if (!document) return document;
+  const assetDocument = await findPokemonAsset(document.formId);
+  return attachPokemonAssets(document, assetDocument);
+}
+
 async function listPokemon(query) {
   const { page, limit, skip } = pagination(query);
   const filter = buildPokemonFilter(query);
@@ -150,10 +187,11 @@ async function findPokemon(identifier, query = {}) {
   if (!documents.length) {
     throw new ApiError(404, `Pokémon introuvable : ${identifier}`, "POKEMON_NOT_FOUND");
   }
-  if (documents.length === 1 || query.form) return presentPokemon(documents[0]);
-  return presentPokemon(
-    documents.find((document) => document.form === "normal") || documents[0],
-  );
+  const selected =
+    documents.length === 1 || query.form
+      ? documents[0]
+      : documents.find((document) => document.form === "normal") || documents[0];
+  return presentPokemon(await hydratePokemonAssets(selected));
 }
 
 async function findAllForms(identifier) {
@@ -173,9 +211,12 @@ async function findAllForms(identifier) {
 
 module.exports = {
   SORT_FIELDS,
+  attachPokemonAssets,
   buildPokemonFilter,
   findAllForms,
   findPokemon,
+  findPokemonAsset,
   identifierFilter,
   listPokemon,
+  mergeAssetData,
 };

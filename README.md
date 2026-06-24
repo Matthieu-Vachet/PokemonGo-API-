@@ -300,14 +300,15 @@ Storybook documente les composants UI partages. Utiliser `npm run storybook` en 
 - `[]` pour une liste vide.
 - Identifiants techniques Pokemon GO en majuscules.
 - Slugs publics en anglais et en minuscules.
-- Images Pokémon GO via `assets.image`, `assets.shinyImage` et `assetForms`.
-- Images Pokémon Home via `assets.home`; `npm run migrate:home-assets:write` les régénère depuis `asset/HD`.
+- Images Pokémon GO principales via `assets.image` et `assets.shinyImage`.
+- Assets lourds via `assets.assetsRef` vers `PokemonGo-Data/pokemon-assets/**/*.assets.json`
+  : Pokémon Home, portraits, Shuffle, location cards et `assetForms`.
 - Traductions principales dans les objets `names`.
 - `regionForms`, `megaEvolutions`, `dynamaxForms` et `gigantamaxForms` sont des listes de références `formId`.
 - Les données complètes de chaque forme vivent uniquement dans `PokemonGo-Data/pokemon-forms/`.
 - `regionId` référence `PokemonGo-Data/generations/`; l'API recompose la région traduite et la génération.
 - `weatherBoost` référence les identifiants du catalogue `PokemonGo-Data/weather/`.
-- Les icônes Pokémon Shuffle vivent dans `assets.shuffle` sur leur fiche exacte
+- Les icônes Pokémon Shuffle vivent dans le fichier `.assets.json` de leur fiche exacte
   (normale, régionale, Méga, Dynamax ou Gigantamax) et sont importées avec
   `npm run import:pokemon-shuffle:write`. Les fichiers sans fiche compatible restent
   dans la galerie globale et dans `PokemonGo-Data/pokemon-shuffle-import-report.json`.
@@ -318,7 +319,8 @@ Storybook documente les composants UI partages. Utiliser `npm run storybook` en 
 - `megaEnergyReward` peut valoir `null` lorsqu'il n'y a pas d'energie Mega a gagner.
 - Les evolutions pointent vers `targetFormId`; la cible peut ne pas encore exister si tu ajoutes les fiches au fur et a mesure.
 - Les formes Dynamax et Gigantamax utilisent `baseFormId`, leur propre `slug`, leur propre bloc `maxCp` (`maxLevel50`, `maxLevel40`, `maxBattlesLevel20`) et `maxBattle`.
-- `hasGigantamaxEvolution: true` implique un asset avec `form: "gigantamax"` dans `assetForms`.
+- `hasGigantamaxEvolution: true` implique un asset avec `form: "gigantamax"` dans
+  `pokemon-assets/**/*.assets.json -> assets.assetForms`.
 
 ## Roadmap Possible
 

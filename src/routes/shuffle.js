@@ -1,5 +1,5 @@
 const express = require("express");
-const { Pokemon } = require("../models");
+const { PokemonAsset } = require("../models");
 const { asyncHandler } = require("../lib/async-handler");
 const { pagination, paginatedResponse, boolean } = require("../lib/http");
 const { findPokemon } = require("../services/pokemon-service");
@@ -8,12 +8,12 @@ const router = express.Router();
 
 function variantFilter(query = {}) {
   const filter = {};
-  if (query.state) filter["data.assets.shuffle.variants.state"] = String(query.state).toLowerCase();
-  if (query.form) filter["data.assets.shuffle.variants.form"] = String(query.form).toLowerCase();
+  if (query.state) filter["assets.shuffle.variants.state"] = String(query.state).toLowerCase();
+  if (query.form) filter["assets.shuffle.variants.form"] = String(query.form).toLowerCase();
   const shiny = boolean(query.shiny);
-  if (shiny !== undefined) filter["data.assets.shuffle.variants.shiny"] = shiny;
+  if (shiny !== undefined) filter["assets.shuffle.variants.shiny"] = shiny;
   if (query.q)
-    filter["data.assets.shuffle.variants.filename"] = {
+    filter["assets.shuffle.variants.filename"] = {
       $regex: String(query.q),
       $options: "i",
     };
@@ -25,10 +25,19 @@ router.get(
   asyncHandler(async (request, response) => {
     const { page, limit, skip } = pagination(request.query);
     const filter = variantFilter(request.query);
-    const [result] = await Pokemon.aggregate([
-      { $match: { "data.assets.shuffle.variants.0": { $exists: true } } },
-      { $unwind: "$data.assets.shuffle.variants" },
+    const [result] = await PokemonAsset.aggregate([
+      { $match: { "assets.shuffle.variants.0": { $exists: true } } },
+      { $unwind: "$assets.shuffle.variants" },
       ...(Object.keys(filter).length ? [{ $match: filter }] : []),
+      {
+        $lookup: {
+          from: "pokemons",
+          localField: "formId",
+          foreignField: "formId",
+          as: "pokemonDocument",
+        },
+      },
+      { $unwind: { path: "$pokemonDocument", preserveNullAndEmptyArrays: true } },
       {
         $project: {
           _id: 0,
@@ -39,9 +48,12 @@ router.get(
             dexNr: "$dexNr",
             dexId: "$dexId",
             form: "$form",
-            names: "$names",
+            names: "$pokemonDocument.names",
+            types: "$pokemonDocument.types",
+            primaryType: "$pokemonDocument.primaryType",
+            secondaryType: "$pokemonDocument.secondaryType",
           },
-          asset: "$data.assets.shuffle.variants",
+          asset: "$assets.shuffle.variants",
         },
       },
       { $sort: { "pokemon.dexNr": 1, "asset.filename": 1 } },

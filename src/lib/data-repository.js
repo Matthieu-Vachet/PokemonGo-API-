@@ -9,6 +9,7 @@ function hasDataShape(directory) {
     directory &&
     fs.existsSync(path.join(directory, "pokemon")) &&
     fs.existsSync(path.join(directory, "pokemon-forms")) &&
+    fs.existsSync(path.join(directory, "pokemon-assets")) &&
     fs.existsSync(path.join(directory, "moves"))
   );
 }

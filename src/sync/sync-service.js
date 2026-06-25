@@ -13,6 +13,21 @@ const { env } = require("../config/env");
 const { clearCache } = require("../lib/cache");
 const { collectAllDocuments } = require("./source-reader");
 
+const pokemonHeavyAssetPaths = {
+  "data.assetForms": "",
+  "data.assets.home": "",
+  "data.assets.portrait": "",
+  "data.assets.portraitShiny": "",
+  "data.assets.locationCards": "",
+  "data.assets.shuffle": "",
+  assetForms: "",
+  "assets.home": "",
+  "assets.portrait": "",
+  "assets.portraitShiny": "",
+  "assets.locationCards": "",
+  "assets.shuffle": "",
+};
+
 function sortObject(value) {
   if (Array.isArray(value)) return value.map(sortObject);
   if (!value || typeof value !== "object") return value;
@@ -82,6 +97,15 @@ async function writeCollection(Model, documents, uniqueField) {
   };
 }
 
+async function cleanupPokemonHeavyAssets() {
+  await Pokemon.updateMany(
+    {},
+    {
+      $unset: pokemonHeavyAssetPaths,
+    },
+  );
+}
+
 function buildGlobalStats(data) {
   const countBy = (documents, getter) => {
     const counts = {};
@@ -144,6 +168,7 @@ async function syncAll({ dryRun = false } = {}) {
       writeCollection(Region, data.regions, "id"),
       writeCollection(Generation, data.generations, "id"),
     ]);
+    await cleanupPokemonHeavyAssets();
     const changes = { pokemon, pokemonAssets, moves, types, weather, regions, generations };
     await GlobalStat.findOneAndUpdate(
       { key: "global" },

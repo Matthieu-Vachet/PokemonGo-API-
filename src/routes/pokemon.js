@@ -5,6 +5,8 @@ const { paginatedResponse } = require("../lib/http");
 const {
   findAllForms,
   findPokemon,
+  hydratePokemonAssets,
+  hydratePokemonAssetsBatch,
   listPokemon,
 } = require("../services/pokemon-service");
 const {
@@ -38,7 +40,7 @@ router.get(
   asyncHandler(async (request, response) => {
     const match = request.query.released === "true" ? { "flags.released": true } : {};
     const [pokemon] = await Pokemon.aggregate([{ $match: match }, { $sample: { size: 1 } }]);
-    response.json({ data: presentPokemon(pokemon || null) });
+    response.json({ data: presentPokemon(await hydratePokemonAssets(pokemon || null)) });
   }),
 );
 
@@ -53,7 +55,10 @@ for (const [route, field] of [
     asyncHandler(async (request, response) => {
       const value = field === "dexNr" ? Number(request.params.value) : request.params.value;
       const data = await Pokemon.find({ [field]: value }).sort({ form: 1 }).lean();
-      response.json({ data: presentPokemonList(data), meta: { total: data.length } });
+      response.json({
+        data: presentPokemonList(await hydratePokemonAssetsBatch(data)),
+        meta: { total: data.length },
+      });
     }),
   );
 }

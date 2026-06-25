@@ -146,6 +146,24 @@ async function hydratePokemonAssets(document) {
   return attachPokemonAssets(document, assetDocument);
 }
 
+async function hydratePokemonAssetsBatch(documents = []) {
+  const formIds = [
+    ...new Set(
+      documents
+        .map((document) => document?.formId)
+        .filter(Boolean),
+    ),
+  ];
+  if (!formIds.length) return documents;
+  const assetDocuments = await PokemonAsset.find({ formId: { $in: formIds } }).lean();
+  const assetsByFormId = new Map(
+    assetDocuments.map((assetDocument) => [assetDocument.formId, assetDocument]),
+  );
+  return documents.map((document) =>
+    attachPokemonAssets(document, assetsByFormId.get(document.formId)),
+  );
+}
+
 async function listPokemon(query) {
   const { page, limit, skip } = pagination(query);
   const filter = buildPokemonFilter(query);
@@ -206,7 +224,7 @@ async function findAllForms(identifier) {
   })
     .sort({ kind: 1, form: 1 })
     .lean();
-  return presentPokemonList(documents);
+  return presentPokemonList(await hydratePokemonAssetsBatch(documents));
 }
 
 module.exports = {
@@ -216,6 +234,8 @@ module.exports = {
   findAllForms,
   findPokemon,
   findPokemonAsset,
+  hydratePokemonAssets,
+  hydratePokemonAssetsBatch,
   identifierFilter,
   listPokemon,
   mergeAssetData,

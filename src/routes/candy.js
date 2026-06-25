@@ -3,6 +3,7 @@ const { Pokemon } = require("../models");
 const { asyncHandler } = require("../lib/async-handler");
 const { ApiError } = require("../lib/api-error");
 const { pagination, paginatedResponse } = require("../lib/http");
+const { hydratePokemonAssetsBatch } = require("../services/pokemon-service");
 
 const router = express.Router();
 
@@ -84,7 +85,7 @@ async function candyGroups() {
   )
     .sort({ dexNr: 1, form: 1, kind: 1 })
     .lean();
-  return groupCandies(docs);
+  return groupCandies(await hydratePokemonAssetsBatch(docs));
 }
 
 function matchesQuery(group, query) {

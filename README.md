@@ -282,9 +282,6 @@ meme navigateur, mais n'est pas synchronisee automatiquement entre plusieurs app
 
 Les outils d'import et d'extraction manuels vivent dans `scripts/import/`.
 
-Storybook documente les composants UI partages. Utiliser `npm run storybook` en local et
-`npm run build-storybook` dans les verifications avant push.
-
 ## Ajouter Un Pokemon
 
 1. Creer un fichier dans `PokemonGo-Data/pokemon/`.

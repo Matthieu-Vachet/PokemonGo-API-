@@ -98,7 +98,15 @@ export function preferredPokemonImage(entry = {}, options = {}) {
   if (kind === "dynamax") return matchingShuffle?.image || entry.shuffleImage || entry.image || entry.homeImage || null;
   if (kind === "gigantamax")
     return matchingHome?.image || entry.homeImage || matchingShuffle?.image || entry.shuffleImage || entry.image || null;
-  if (kind === "mega") return entry.homeImage || entry.image || matchingHome?.image || matchingShuffle?.image || null;
+  if (kind === "mega")
+    return (
+      (preferShiny ? entry.shinyImage : null) ||
+      entry.image ||
+      matchingHome?.image ||
+      entry.homeImage ||
+      matchingShuffle?.image ||
+      null
+    );
   if (kind === "form") return entry.image || matchingHome?.image || entry.homeImage || matchingShuffle?.image || null;
 
   return (

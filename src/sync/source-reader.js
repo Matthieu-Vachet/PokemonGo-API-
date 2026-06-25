@@ -81,6 +81,24 @@ function normalizePokemonMoveFields(data) {
   };
 }
 
+function inlinePokemonAssets(assets) {
+  if (!assets || typeof assets !== "object") return assets;
+  return {
+    image: assets.image ?? null,
+    shinyImage: assets.shinyImage ?? null,
+    candy: assets.candy ?? null,
+    assetsRef: assets.assetsRef ?? null,
+  };
+}
+
+function toPokemonDataDocument(data) {
+  const normalized = normalizePokemonMoveFields(data);
+  return {
+    ...normalized,
+    assets: inlinePokemonAssets(normalized.assets),
+  };
+}
+
 function pokemonKind(data, hint) {
   if (hint) return hint;
   if (data.form === "dynamax") return "dynamax";
@@ -159,7 +177,7 @@ function mergePokemon(parent, form) {
 }
 
 function toPokemonDocument(data, sourceFiles, hint, parentKey = null) {
-  const normalizedData = normalizePokemonMoveFields(data);
+  const normalizedData = toPokemonDataDocument(data);
   const availability = data.availability || {};
   const kind = pokemonKind(data, hint);
   const primaryType = normalizeType(data.primaryType);

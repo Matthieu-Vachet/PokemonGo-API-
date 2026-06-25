@@ -3,7 +3,10 @@ const { Pokemon, Type } = require("../models");
 const { asyncHandler } = require("../lib/async-handler");
 const { ApiError } = require("../lib/api-error");
 const { integer } = require("../lib/http");
-const { findPokemon } = require("../services/pokemon-service");
+const {
+  findPokemon,
+  hydratePokemonAssetsBatch,
+} = require("../services/pokemon-service");
 
 const router = express.Router();
 
@@ -74,7 +77,10 @@ router.get(
       .select("key id formId slug dexNr dexId form names flags data.assets")
       .sort({ dexNr: 1, form: 1 })
       .lean();
-    response.json({ data, meta: { total: data.length, filters: filter } });
+    response.json({
+      data: await hydratePokemonAssetsBatch(data),
+      meta: { total: data.length, filters: filter },
+    });
   }),
 );
 

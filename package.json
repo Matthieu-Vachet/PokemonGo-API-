@@ -11,8 +11,6 @@
     "build": "next build",
     "api:start": "node src/server.js",
     "api:dev": "nodemon src/server.js",
-    "storybook": "HOME=$PWD/.storybook-home STORYBOOK_DISABLE_TELEMETRY=1 storybook dev -p 6006 --ci",
-    "build-storybook": "HOME=$PWD/.storybook-home STORYBOOK_DISABLE_TELEMETRY=1 storybook build",
     "presync": "npm run ensure:data",
     "sync": "node scripts/sync/run.js",
     "presync:watch": "npm run ensure:data",
@@ -63,7 +61,7 @@
     "import:pokemon-shuffle:write": "node scripts/import/pokemon-shuffle.js --write",
     "pretest": "npm run ensure:data",
     "test": "node --test",
-    "check": "npm run ensure:data && npm run sync:dry && npm test && npm run build && npm run build-storybook",
+    "check": "npm run ensure:data && npm run sync:dry && npm test && npm run build",
     "checklist": "node apps/checklist/server/local-server.js"
   },
   "keywords": [
@@ -99,15 +97,7 @@
     "tailwindcss": "^4.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.29.7",
-    "@babel/preset-env": "^7.29.7",
-    "@babel/preset-react": "^7.29.7",
-    "@storybook/addon-a11y": "^8.6.14",
-    "@storybook/addon-essentials": "^8.6.14",
-    "@storybook/react-webpack5": "^8.6.14",
-    "babel-loader": "^9.2.1",
     "nodemon": "^3.1.14",
-    "storybook": "^8.6.14",
     "supertest": "^7.2.2"
   }
 }

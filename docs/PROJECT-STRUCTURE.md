@@ -10,8 +10,7 @@ lecture.
 | Dossier | Responsabilite |
 | --- | --- |
 | `app/` | Front public Next.js : accueil, checklist, bibliothèques, robots et sitemap. |
-| `components/` | Bibliotheque de composants partagee entre pages et Storybook. |
-| `.storybook/` | Configuration de la documentation UI Storybook. |
+| `components/` | Composants UI partages par la landing, la bibliotheque API et les fiches. |
 | `.data/PokemonGo-Data/` | Clone local ignore du depot de donnees, cree par `npm run ensure:data` si besoin. |
 | `src/` | Coeur de l'API REST Express et synchronisation MongoDB. |
 | `api/` | Points d'entree serverless necessaires au deploiement Vercel. |

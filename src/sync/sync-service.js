@@ -13,6 +13,29 @@ const { env } = require("../config/env");
 const { clearCache } = require("../lib/cache");
 const { collectAllDocuments } = require("./source-reader");
 
+function sortObject(value) {
+  if (Array.isArray(value)) return value.map(sortObject);
+  if (!value || typeof value !== "object") return value;
+  return Object.keys(value)
+    .sort()
+    .reduce((result, key) => {
+      if (
+        key !== "_id" &&
+        key !== "createdAt" &&
+        key !== "updatedAt" &&
+        key !== "__v" &&
+        value[key] !== undefined
+      ) {
+        result[key] = sortObject(value[key]);
+      }
+      return result;
+    }, {});
+}
+
+function documentFingerprint(document) {
+  return JSON.stringify(sortObject(document));
+}
+
 function operations(documents, uniqueField) {
   return documents.map((document) => ({
     updateOne: {
@@ -27,14 +50,18 @@ async function writeCollection(Model, documents, uniqueField) {
   const identifiers = documents.map((document) => document[uniqueField]);
   const existing = documents.length
     ? await Model.find({ [uniqueField]: { $in: identifiers } })
-        .select(`${uniqueField} sourceHash`)
         .lean()
     : [];
-  const hashes = new Map(
-    existing.map((document) => [document[uniqueField], document.sourceHash]),
+  const existingById = new Map(
+    existing.map((document) => [document[uniqueField], document]),
   );
   const changed = documents.filter(
-    (document) => hashes.get(document[uniqueField]) !== document.sourceHash,
+    (document) => {
+      const existingDocument = existingById.get(document[uniqueField]);
+      if (!existingDocument) return true;
+      if (existingDocument.sourceHash !== document.sourceHash) return true;
+      return documentFingerprint(existingDocument) !== documentFingerprint(document);
+    },
   );
 
   if (changed.length) {
@@ -48,8 +75,8 @@ async function writeCollection(Model, documents, uniqueField) {
     deleted = result.deletedCount;
   }
   return {
-    created: changed.filter((document) => !hashes.has(document[uniqueField])).length,
-    updated: changed.filter((document) => hashes.has(document[uniqueField])).length,
+    created: changed.filter((document) => !existingById.has(document[uniqueField])).length,
+    updated: changed.filter((document) => existingById.has(document[uniqueField])).length,
     unchanged: documents.length - changed.length,
     deleted,
   };

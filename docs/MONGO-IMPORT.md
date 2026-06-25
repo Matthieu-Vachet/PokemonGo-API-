@@ -52,11 +52,12 @@ Le sync fait des `upsert` par collection :
 - `weather`, `regions`, `generations`
 - `globalstats` pour les statistiques globales
 
-Chaque document `pokemons` garde aussi le JSON source complet dans le champ `data`.
-Les assets lourds vivent dans `pokemonAssets.data.assets` et sont lies par
-`pokemons.formId == pokemonAssets.formId`. Donc un nouveau champ ajoute aux JSON,
-par exemple `types/*.json -> damageMultiplier`, `pokemon/*.json -> assets.candy` ou
-`pokemon-assets/**/*.assets.json -> assets.shuffle`, remonte automatiquement dans
+Chaque document `pokemons` garde dans `data` le JSON principal sans assets lourds :
+gameplay, stats, attaques, PvP, disponibilités, images principales, candy et
+`assets.assetsRef`. Les assets lourds vivent dans `pokemonAssets.data.assets` et sont
+lies par `pokemons.formId == pokemonAssets.formId`. Donc un nouveau champ ajoute aux
+JSON, par exemple `types/*.json -> damageMultiplier`, `pokemon/*.json -> assets.candy`
+ou `pokemon-assets/**/*.assets.json -> assets.shuffle`, remonte automatiquement dans
 MongoDB si le fichier source change.
 
 Les routes de detail hydratent automatiquement la fiche en lisant `data.assets.assetsRef`.

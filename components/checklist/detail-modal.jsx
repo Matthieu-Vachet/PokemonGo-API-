@@ -801,8 +801,18 @@ export function DetailModal({
             {activeTab === "assets" ? <AssetGallery entry={entry} payload={payload} /> : null}
             {activeTab === "json" ? (
               <div className="space-y-4">
-                <Section title="JSON source" icon={uiAssets.icons.copy}>
+                <Section title="JSON principal" icon={uiAssets.icons.copy}>
                   <JsonBlock payload={payload.sourceData || payload} />
+                </Section>
+                <Section title="JSON assets" icon={uiAssets.icons.result}>
+                  {payload.assetSourceData ? (
+                    <JsonBlock payload={payload.assetSourceData} />
+                  ) : (
+                    <EmptyInline>
+                      Aucun fichier asset séparé lié à cette fiche
+                      {payload.assetSourceFile ? ` (${payload.assetSourceFile}).` : "."}
+                    </EmptyInline>
+                  )}
                 </Section>
               </div>
             ) : null}

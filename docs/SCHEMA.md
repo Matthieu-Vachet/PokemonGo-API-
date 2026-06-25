@@ -86,6 +86,7 @@ Les valeurs inconnues ou non applicables utilisent `null`. Les listes vides util
 | --- | --- | --- |
 | `id` | string | Identifiant technique principal, ex. `BULBASAUR`. |
 | `formId` | string | Identifiant technique de la forme. |
+| `baseFormId` | string | Identifiant de l'espèce de base. Pour une fiche normale, il est identique à `formId`. |
 | `slug` | string | Slug public lisible dans les URLs et fichiers. |
 | `dexNr` | number | Numero Pokedex numerique. |
 | `dexId` | string | Numero Pokedex formate sur 4 chiffres. |
@@ -225,7 +226,8 @@ Il ne contient aucun asset visuel tant qu'aucune collection d'images Shadow n'es
 ```
 
 `variants[]` conserve séparément les formes régionales, Apex et costumées partageant
-le même numéro Pokédex, ainsi que leurs propres coûts et Catch CP.
+le même numéro Pokédex. Les coûts de purification et les Catch CP restent au niveau
+global quand ils sont identiques pour toutes les variantes, afin d'éviter les doublons.
 
 ### Stats Et CP
 
@@ -241,10 +243,14 @@ le même numéro Pokédex, ainsi que leurs propres coûts et Catch CP.
     "maxLevel40": 1115,
     "weatherBoostLevel25": 796,
     "raidLevel20": 637,
-    "researchLevel15": 477
+    "researchLevel15": 477,
+    "maxBattlesLevel20": null
   }
 }
 ```
+
+`maxCp.maxBattlesLevel20` vaut `null` pour les fiches qui ne sont pas des rencontres
+Dynamax/Gigamax. Le validateur accepte donc `number` ou `null`.
 
 ## Attaques
 
@@ -256,7 +262,10 @@ sont centralises dans `data/moves/`.
   "quickMoves": ["VINE_WHIP_FAST", "TACKLE_FAST"],
   "cinematicMoves": ["SLUDGE_BOMB", "SEED_BOMB", "POWER_WHIP"],
   "eliteQuickMoves": [],
-  "eliteCinematicMoves": []
+  "eliteCinematicMoves": [],
+  "maxBattle": {
+    "moves": []
+  }
 }
 ```
 
@@ -286,6 +295,9 @@ attaque dans la categorie correspondante. Les references doivent exister dans :
 - `data/moves/charged_elite/`
 - `data/moves/max/`
 - `data/moves/gmax/`
+
+`maxBattle.moves` contient les attaques Max ou G-Max quand la fiche est compatible. Il
+reste present avec `[]` sur les fiches non Max pour garder un pattern uniforme.
 
 ## PvP
 
@@ -355,9 +367,10 @@ Ligues recommandees:
 | `hasGigantamaxEvolution` | boolean | Indique si le Pokemon possede une forme Gigamax. |
 | `gigantamaxForms` | string[] | Références `formId` vers les fiches Gigamax séparées. |
 
-Lorsque `hasGigantamaxEvolution` vaut `true`, `assetForms` contient normalement une
-entree avec `form: "gigantamax"`. Le champ `availability.gigantamax` indique separement
-si cette forme est disponible dans Pokemon GO.
+Lorsque `hasGigantamaxEvolution` vaut `true`, `gigantamaxForms` pointe vers les fiches
+Gigamax séparées. Les visuels Gigamax lourds vivent dans le fichier
+`pokemon-assets/gigantamax/*.assets.json`. Le champ `availability.gigantamax` indique
+séparément si cette forme est disponible dans Pokemon GO.
 
 ### Profils D'Evolution
 
@@ -431,17 +444,46 @@ forme et sont valides lorsqu'ils existent.
 
 ## Assets
 
+La fiche Pokemon principale ne garde que les assets legers et un pointeur vers son
+fichier lourd :
+
 ```json
 {
   "assets": {
     "image": "https://raw.githubusercontent.com/.../pm1.icon.png",
     "shinyImage": "https://raw.githubusercontent.com/.../pm1.s.icon.png",
+    "candy": {
+      "familyId": 1,
+      "image": "https://raw.githubusercontent.com/.../candy/001.png",
+      "primaryColor": "rgba(0.21, 0.79, 0.65, 1)",
+      "secondaryColor": "rgba(0.63, 0.98, 0.50, 1)"
+    },
+    "assetsRef": "pokemon-assets/normal/0001-bulbasaur.assets.json"
+  }
+}
+```
+
+Le fichier lourd correspondant vit dans `PokemonGo-Data/pokemon-assets/**` et dans
+MongoDB `pokemonAssets.data` :
+
+```json
+{
+  "id": "BULBASAUR",
+  "formId": "BULBASAUR",
+  "baseFormId": "BULBASAUR",
+  "form": "normal",
+  "slug": "bulbasaur",
+  "dexNr": 1,
+  "dexId": "0001",
+  "assets": {
     "home": {
       "source": "pokemon-home",
       "image": "https://raw.githubusercontent.com/.../PokemonHd/poke_capture_0001_000_mf_n_00000000_f_n.png",
       "shinyImage": "https://raw.githubusercontent.com/.../PokemonHd/poke_capture_0001_000_mf_n_00000000_f_r.png",
       "variants": []
     },
+    "portrait": null,
+    "portraitShiny": null,
     "locationCards": [
       {
         "id": "lc_GoFest2025_paris",
@@ -452,17 +494,10 @@ forme et sont valides lorsqu'ils existent.
         "image": "https://raw.githubusercontent.com/.../LocationCards/lc_GoFest2025_paris.png",
         "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
       }
-    ]
-  },
-  "assetForms": [
-    {
-      "form": null,
-      "costume": "JAN_2020_NOEVOLVE",
-      "isFemale": false,
-      "image": "https://raw.githubusercontent.com/.../pm1.cJAN_2020_NOEVOLVE.icon.png",
-      "shinyImage": "https://raw.githubusercontent.com/.../pm1.cJAN_2020_NOEVOLVE.s.icon.png"
-    }
-  ]
+    ],
+    "shuffle": null,
+    "assetForms": []
+  }
 }
 ```
 
@@ -512,12 +547,6 @@ l'index complet de compatibilité.
 
 Le catalogue `data/stickers/stickers.json` expose pour chaque sticker `id`, `filename`,
 `category` et `image`.
-| `assetForms[].form` | string/null | Forme associee a l'asset. |
-| `assetForms[].costume` | string/null | Costume associe a l'asset. |
-| `assetForms[].isFemale` | boolean | Variante visuelle femelle. |
-| `assetForms[].image` | string | Image de la variante. |
-| `assetForms[].shinyImage` | string | Image chromatique de la variante. |
-| `regionForms` | string[] | Références `formId` vers les fiches de formes séparées. |
 
 ## Formes Separees
 
@@ -535,6 +564,8 @@ Dynamax, Gigantamax, Mega et Mega X/Y.
 {
   "id": "BULBASAUR",
   "formId": "BULBASAUR",
+  "baseFormId": "BULBASAUR",
+  "form": "normal",
   "slug": "bulbasaur",
   "dexNr": 1,
   "dexId": "0001",
@@ -548,7 +579,6 @@ Dynamax, Gigantamax, Mega et Mega X/Y.
     "Korean": "이상해씨",
     "Spanish": "Bulbasaur"
   },
-  "form": "normal",
   "size": {
     "height": 0.7,
     "weight": 6.9
@@ -569,6 +599,7 @@ Dynamax, Gigantamax, Mega et Mega X/Y.
   "availability": {
     "released": true,
     "shinyReleased": true,
+    "shadowShinyReleased": false,
     "tradable": true,
     "pokemonHomeTransfer": true,
     "shadow": true,
@@ -576,12 +607,26 @@ Dynamax, Gigantamax, Mega et Mega X/Y.
     "gigantamax": false,
     "apex": false
   },
+  "shinyAvailability": {
+    "releaseDate": "2018-03-25",
+    "event": "Community Day",
+    "source": "https://www.margxt.fr/guide-liste-des-pokemon-shiny-disponibles-dans-pokemon-go/",
+    "matchedName": "Bulbizarre"
+  },
+  "shadowShinyAvailability": {
+    "releaseDate": null,
+    "event": null,
+    "source": "https://www.margxt.fr/liste-des-pokemon-obscurs-et-chromatiques-shiny-dans-pokemon-go/",
+    "matchedName": null
+  },
+  "shadow": null,
   "maxCp": {
     "maxLevel50": 1260,
     "maxLevel40": 1115,
     "weatherBoostLevel25": 796,
     "raidLevel20": 637,
-    "researchLevel15": 477
+    "researchLevel15": 477,
+    "maxBattlesLevel20": null
   },
   "pvp": {
     "littleCup": null,
@@ -601,6 +646,9 @@ Dynamax, Gigantamax, Mega et Mega X/Y.
   "cinematicMoves": [],
   "eliteQuickMoves": [],
   "eliteCinematicMoves": [],
+  "maxBattle": {
+    "moves": []
+  },
   "assets": {
     "image": "",
     "shinyImage": "",

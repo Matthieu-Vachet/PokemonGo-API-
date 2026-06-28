@@ -84,6 +84,9 @@ npm run ensure:data
 npm run sync
 ```
 
+Configurer aussi `API_ADMIN_SECRET` avec une valeur serveur non publique. Ce secret ne
+doit jamais utiliser le prefixe `NEXT_PUBLIC_`.
+
 Verifier les references d'attaques avant une synchronisation :
 
 ```bash
@@ -218,6 +221,34 @@ La checklist sert egalement d'atelier qualite:
 Les outils de correction ne modifient jamais les JSON source. Ils produisent uniquement
 du JSON a copier ou telecharger pour conserver une validation manuelle avant collage.
 
+## Authentification Admin
+
+Les routes publiques de lecture restent accessibles sans authentification :
+
+```bash
+curl "https://domain.com/api/v1/pokemon"
+```
+
+Toute route privee, interne ou toute methode d'ecriture doit envoyer le header serveur :
+
+```text
+x-api-admin-secret: <secret>
+```
+
+Exemples :
+
+```bash
+curl -X POST "https://domain.com/api/v1/pokemon" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl "https://domain.com/api/checklist-v3?action=history" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+```
+
+Reponses attendues : `401` si le header manque, `403` si le secret est invalide,
+`500` si `API_ADMIN_SECRET` n'est pas configure cote serveur. L'API REST publique reste
+read-only : un secret valide protege l'acces mais n'active pas d'ecriture publique.
+
 La checklist ecoute par defaut sur le reseau local. Pour limiter temporairement l'acces
 au Mac:
 
@@ -268,14 +299,16 @@ fonctions serverless pour rester compatible avec le plan Hobby:
 - `/checklist` et `/assets` pour les vues Next.js
 - `/admin` redirige vers `/` en attendant le futur depot `dashboard_Admin`
 
-Configurer `MONGODB_URI`, `NODE_ENV=production`, `API_PUBLIC_URL` et
+Configurer `MONGODB_URI`, `NODE_ENV=production`, `API_PUBLIC_URL`,
+`API_ADMIN_SECRET` et
 `POKEMON_GO_DATA_TOKEN` dans les variables d'environnement Vercel. Le token doit pouvoir
 lire le depot prive `PokemonGo-Data`. Les pushes GitHub redeploient automatiquement le
 projet lorsque l'integration GitHub est active.
 
 Les outils sensibles de modification, validation, veille et correction sont retires de
-ce depot public. Ils renvoient une reponse `410 Gone` depuis `/api/checklist-v3` et
-seront migrés dans `dashboard_Admin`.
+ce depot public. Les anciennes actions internes de `/api/checklist-v3` exigent
+`x-api-admin-secret`, puis renvoient une reponse `410 Gone` car elles sont migrees dans
+`dashboard_Admin`.
 
 La progression manuelle est stockee dans `localStorage`. Elle reste disponible sur le
 meme navigateur, mais n'est pas synchronisee automatiquement entre plusieurs appareils.

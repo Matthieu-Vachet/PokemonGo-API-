@@ -30,6 +30,22 @@ npm test
 Le normaliseur d'ordre vérifie que les valeurs sont strictement identiques avant
 chaque écriture.
 
+## Acces Aux Operations Sensibles
+
+Les operations d'import, de migration, de generation et de synchronisation restent des
+outils internes executes par CLI, workflow ou Dashboard Admin. Elles ne doivent pas etre
+exposees comme routes publiques.
+
+Toute route HTTP future qui declenche une ecriture, une maintenance, une generation,
+un export sensible ou un debug doit utiliser le helper `requireAdminSecret(request)` et
+verifier le header :
+
+```http
+x-api-admin-secret: <secret>
+```
+
+Le secret doit venir de `API_ADMIN_SECRET` cote serveur uniquement.
+
 La checklist valide tous les champs obligatoires de chaque famille de fiche :
 Pokémon normal, forme complète, Méga / Primo et forme Max. Un asset complémentaire
 comme Pokémon Shuffle ne remplace jamais les images Pokémon GO obligatoires d'une

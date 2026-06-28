@@ -18,6 +18,15 @@ const { assetAudit, catalog } = require("../apps/checklist/server/workshop");
 
 const app = createApp();
 
+function withAdminSecret(value) {
+  const previous = process.env.API_ADMIN_SECRET;
+  process.env.API_ADMIN_SECRET = value;
+  return () => {
+    if (previous === undefined) delete process.env.API_ADMIN_SECRET;
+    else process.env.API_ADMIN_SECRET = previous;
+  };
+}
+
 function readDataJson(relativePath) {
   return JSON.parse(
     fs.readFileSync(dataPath(...String(relativePath).split("/")), "utf8"),
@@ -91,6 +100,27 @@ test("GET /swagger fournit Swagger UI", async () => {
 test("GET /health indique un état dégradé sans MongoDB", async () => {
   const response = await request(app).get("/health").expect(503);
   assert.equal(response.body.data.status, "degraded");
+});
+
+test("POST /api/v1/pokemon exige le secret admin avant le refus read-only", async () => {
+  const restoreSecret = withAdminSecret("test-secret");
+  const missing = await request(app).post("/api/v1/pokemon").send({}).expect(401);
+  assert.equal(missing.body.error.code, "ADMIN_SECRET_REQUIRED");
+
+  const invalid = await request(app)
+    .post("/api/v1/pokemon")
+    .set("x-api-admin-secret", "wrong-secret")
+    .send({})
+    .expect(403);
+  assert.equal(invalid.body.error.code, "ADMIN_SECRET_INVALID");
+
+  const readOnly = await request(app)
+    .post("/api/v1/pokemon")
+    .set("x-api-admin-secret", "test-secret")
+    .send({})
+    .expect(405);
+  restoreSecret();
+  assert.equal(readOnly.body.error.code, "READ_ONLY_API");
 });
 
 test("une route inconnue retourne une erreur structurée", async () => {

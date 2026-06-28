@@ -54,8 +54,9 @@ référencent leurs types boostés et exposent les icônes de `asset/weather/`.
 
 Les sources externes surveillées par la checklist vivent dans
 `PokemonGo-Data/source-watch/sources.json`. Dans ce depot public read-only, l'action
-`source-watch` de `/api/checklist-v3` est désactivée : les outils de correction et
-de surveillance sont gérés dans le dashboard privé.
+`source-watch` de `/api/checklist-v3` est protegee par `x-api-admin-secret`, puis
+desactivee avec une reponse `410 Gone` : les outils de correction et de surveillance
+sont geres dans le dashboard prive.
 
 Le script `scripts/import/shadow-pokemon.js` synchronise depuis Bulbapedia les
 sorties Shadow déjà effectives, les coûts de purification, les Catch CP et les
@@ -90,7 +91,8 @@ Les fiches principales ne dupliquent plus les données de formes. `regionForms` 
 - `components/` contient les cartes, modales et panneaux reutilises par le nouveau front.
 - `apps/checklist/` conserve l'ancienne interface statique et le moteur metier partage.
 - `apps/checklist/server/` contient le serveur local legacy, l'atelier d'audit et le moteur.
-- `api/checklist-v3.js` regroupe les actions serverless publiques exposees sur Vercel.
+- `api/checklist-v3.js` regroupe les actions serverless publiques exposees sur Vercel
+  et protege les anciennes actions internes avec `x-api-admin-secret`.
 
 ## Commandes
 

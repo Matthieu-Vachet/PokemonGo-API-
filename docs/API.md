@@ -55,6 +55,7 @@ Configurer au minimum :
 ```dotenv
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/pokemon-go-api
 API_PUBLIC_URL=http://localhost:3000
+API_ADMIN_SECRET=change_me
 POKEMON_GO_DATA_DIR=../PokemonGo-Data
 ```
 
@@ -102,6 +103,66 @@ Documentation :
 - OpenAPI JSON : `http://localhost:3000/api-docs.json`
 - Sante : `http://localhost:3000/health`
 
+## Authentification Admin
+
+Les routes publiques de lecture (`GET`, `HEAD`, `OPTIONS`) restent accessibles sans
+secret quand elles exposent des donnees Pokemon publiques.
+
+Les routes privees, internes et toutes les methodes d'ecriture doivent fournir :
+
+```http
+x-api-admin-secret: <secret>
+```
+
+Le secret vient uniquement de la variable serveur `API_ADMIN_SECRET`. Ne jamais le mettre
+en dur dans le code et ne jamais utiliser `NEXT_PUBLIC_` pour cette valeur.
+
+Reponses de securite :
+
+- `401 ADMIN_SECRET_REQUIRED` quand le header manque.
+- `403 ADMIN_SECRET_INVALID` quand le header ne correspond pas.
+- `500 ADMIN_SECRET_NOT_CONFIGURED` quand `API_ADMIN_SECRET` manque cote serveur.
+
+Exemples :
+
+```bash
+curl "https://domain.com/api/v1/pokemon"
+
+curl -X POST "https://domain.com/api/v1/pokemon" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl "https://domain.com/api/checklist-v3?action=history" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+```
+
+Le secret valide protege l'acces aux operations privees. Il ne transforme pas l'API
+REST publique en API d'ecriture : les routes `/api/v1/*` restent read-only si aucune
+route privee explicite n'existe.
+
+## Classement Des Routes
+
+PUBLIC :
+
+- `GET /`, `/api-docs`, `/swagger`, `/api-docs.json`, `/health`.
+- `GET /api/v1` et toutes les routes publiques de lecture Pokemon, formes, evolutions,
+  recherche, attaques, PvP, comparaison, statistiques publiques, types, regions,
+  generations, meteo, bonbons, assets publics, backgrounds, shadow, stickers, Shuffle,
+  collection checklist, evolutions speciales, raid counters et `meta/filters`.
+- `GET /api/checklist-v3?action=bootstrap|detail|catalog|assets|session`.
+
+PRIVATE :
+
+- Toute methode `POST`, `PATCH`, `PUT` ou `DELETE` sous `/api/v1/*`.
+- Toute methode non `GET`, `HEAD` ou `OPTIONS` sur `/api/checklist-v3`.
+- `GET /api/checklist-v3?action=source-watch|history|url-audit`.
+
+INTERNAL :
+
+- Les scripts CLI d'audit, d'import, de migration et de synchronisation dans `scripts/`.
+- Le serveur local checklist dans `apps/checklist/server/`.
+- Les actions checklist legacy `source-watch`, `history` et `url-audit`, conservees
+  uniquement pour compatibilite et maintenant protegees avant leur reponse `410 Gone`.
+
 ## Routes Principales
 
 | Domaine | Routes |
@@ -129,7 +190,7 @@ Documentation :
 | Classements | `/stats/top/attack`, `/stats/top/defense`, `/stats/top/stamina`, `/stats/top/cp` |
 | Collection | `/collection/checklist` |
 | Raid | `/raid/counters/FIRE` |
-| Metadonnees | `/meta/filters`, `/meta/sync`, `/stats/global` |
+| Metadonnees | `/meta/filters`, `/stats/global` |
 
 ## Filtres Combines
 
@@ -186,6 +247,8 @@ curl "http://localhost:3000/api/v1/candy?familyId=1"
 curl "http://localhost:3000/api/v1/candy/1/pokemon"
 curl "http://localhost:3000/api/v1/dynamax"
 curl "http://localhost:3000/api/v1/gigantamax"
+curl -X POST "http://localhost:3000/api/v1/pokemon" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
 ```
 
 ## Atlas Search
@@ -206,6 +269,7 @@ Pour une autocompletion avancee, creer les indexes Atlas Search a partir de :
 - Pagination limitee a 100 resultats
 - Validation des filtres, tris et identifiants
 - Erreurs JSON uniformes avec identifiant de requete
+- Protection globale des routes privees avec `x-api-admin-secret`
 - Index MongoDB reconstruits par `npm run sync`
 
 Pour un deploiement horizontal, remplacer le cache memoire et le rate limiter par Redis.
@@ -221,6 +285,7 @@ Variables de production minimales :
 NODE_ENV=production
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/pokemon-go-api
 API_PUBLIC_URL=https://api.example.com
+API_ADMIN_SECRET=change_me
 CORS_ORIGINS=https://example.com,https://app.example.com
 CACHE_MAX_ENTRIES=5000
 TRUST_PROXY=1
@@ -251,8 +316,8 @@ anciennes routes de checklist restent limitees a la compatibilite lecture seule 
 elles existent ; les actions de correction, d'audit admin ou d'ecriture restent
 desactivees hors Dashboard.
 
-Configurer dans Vercel les variables `MONGODB_URI`, `NODE_ENV=production` et
-`API_PUBLIC_URL`. Comme `PokemonGo-Data` est prive, ajouter aussi
+Configurer dans Vercel les variables `MONGODB_URI`, `NODE_ENV=production`,
+`API_PUBLIC_URL` et `API_ADMIN_SECRET`. Comme `PokemonGo-Data` est prive, ajouter aussi
 `POKEMON_GO_DATA_TOKEN` avec un token GitHub ayant le droit de lire ce depot. Atlas doit
 accepter les connexions sortantes de Vercel ; sur un cluster standard, cela implique
 generalement une autorisation reseau adaptee ou une solution d'adresse sortante fixe.

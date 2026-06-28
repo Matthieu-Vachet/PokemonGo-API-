@@ -170,9 +170,9 @@ function createOpenApi() {
     openapi: "3.0.3",
     info: {
       title: "Pokémon GO API",
-      version: "1.0.0",
+      version: "1.0.1",
       description:
-        "Référence complète de l'API Pokémon GO francophone. Chaque route contient des exemples fonctionnels. Pour exécuter les requêtes depuis le navigateur, utilisez [Swagger UI](/swagger).",
+        "Référence complète de l'API Pokémon GO francophone. Les routes GET publiques restent accessibles sans secret. Les routes privées, internes ou d'écriture exigent le header x-api-admin-secret alimenté par API_ADMIN_SECRET côté serveur. Pour exécuter les requêtes depuis le navigateur, utilisez [Swagger UI](/swagger).",
       license: { name: "ISC" },
     },
     servers: [
@@ -482,6 +482,15 @@ function createOpenApi() {
       [`${api}/meta/filters`]: operation("Métadonnées", "Lister toutes les valeurs de filtre disponibles", { errors: false }),
     },
     components: {
+      securitySchemes: {
+        AdminSecret: {
+          type: "apiKey",
+          in: "header",
+          name: "x-api-admin-secret",
+          description:
+            "Secret serveur requis pour les routes privées, internes ou d'écriture.",
+        },
+      },
       schemas: {
         Error: {
           type: "object",

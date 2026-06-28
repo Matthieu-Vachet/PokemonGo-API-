@@ -1,5 +1,6 @@
 const { buildChecklist, detailForKey } = require("../apps/checklist/server/engine");
 const workshop = require("../apps/checklist/server/workshop");
+const { requireAdminSecret } = require("../src/lib/admin-auth");
 const { summarizeChecklist } = require("../src/lib/site-dashboard");
 
 function actionFrom(request) {
@@ -66,8 +67,10 @@ async function handleGet(request, response, action) {
   }
   if (action === "session")
     return send(response, { readOnly: true });
-  if (["source-watch", "history", "url-audit"].includes(action))
+  if (["source-watch", "history", "url-audit"].includes(action)) {
+    requireAdminSecret(request);
     return readOnlyResponse(response);
+  }
   return response.status(404).json({ error: "Action inconnue." });
 }
 
@@ -79,6 +82,7 @@ module.exports = async function handler(request, response) {
     }
     if (request.method === "GET" || request.method === "HEAD")
       return await handleGet(request, response, actionFrom(request));
+    requireAdminSecret(request);
     response.setHeader("Allow", "GET, HEAD, OPTIONS");
     return response.status(405).json({ error: "Méthode non autorisée." });
   } catch (error) {

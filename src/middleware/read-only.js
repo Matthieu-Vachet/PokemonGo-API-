@@ -1,3 +1,5 @@
+const { requireAdminSecret } = require("../lib/admin-auth");
+
 function publicReadOnly(request, response, next) {
   if (request.method === "OPTIONS") {
     response.setHeader("Allow", "GET, HEAD, OPTIONS");
@@ -6,6 +8,7 @@ function publicReadOnly(request, response, next) {
 
   if (request.method === "GET" || request.method === "HEAD") return next();
 
+  requireAdminSecret(request);
   response.setHeader("Allow", "GET, HEAD, OPTIONS");
   return response.status(405).json({
     error: {

@@ -16,6 +16,8 @@ const shuffle = require("./shuffle");
 const weather = require("./weather");
 const candy = require("./candy");
 const raids = require("./raids");
+const eggs = require("./eggs");
+const maxBattles = require("./max-battles");
 
 const router = express.Router();
 
@@ -38,6 +40,8 @@ router.get("/", (_request, response) => {
         weather: "/api/v1/weather",
         candy: "/api/v1/candy",
         raids: "/api/v1/raids",
+        eggs: "/api/v1/eggs",
+        maxBattles: "/api/v1/max-battles",
         regions: "/api/v1/regions",
         generations: "/api/v1/generations",
         compare: "/api/v1/compare/pokemon?ids=charizard,blastoise",
@@ -60,6 +64,10 @@ router.use("/weather", weather);
 router.use("/candy", candy);
 router.use("/raids", raids);
 router.use("/admin/raids", raids);
+router.use("/eggs", eggs);
+router.use("/admin/eggs", eggs);
+router.use("/max-battles", maxBattles);
+router.use("/admin/max-battles", maxBattles);
 router.use("/search", search);
 router.use("/moves", moves);
 router.use("/pvp", pvp);

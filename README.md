@@ -228,6 +228,8 @@ Les routes publiques de lecture restent accessibles sans authentification :
 ```bash
 curl "https://domain.com/api/v1/pokemon"
 curl "https://domain.com/api/v1/raids"
+curl "https://domain.com/api/v1/eggs"
+curl "https://domain.com/api/v1/max-battles"
 ```
 
 Toute route privee, interne ou toute methode d'ecriture doit envoyer le header serveur :
@@ -243,6 +245,12 @@ curl -X POST "https://domain.com/api/v1/pokemon" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
 
 curl -X POST "https://domain.com/api/v1/admin/raids/import" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/eggs/import" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/max-battles/import" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
 
 curl "https://domain.com/api/checklist-v3?action=history" \
@@ -277,6 +285,42 @@ curl -X POST "https://domain.com/api/v1/admin/raids/regenerate" \
 Ces routes importent le JSON courant dans MongoDB (`raids`, document `current`).
 La lecture publique reste disponible depuis le fichier source meme si MongoDB n'a
 pas encore recu l'import.
+
+## Oeufs Et Max Battles Pokemon GO
+
+Les routes publiques `GET /api/v1/eggs` et `GET /api/v1/max-battles` exposent
+les fichiers `PokemonGo-Data/eggs/currentEggs.json` et
+`PokemonGo-Data/max-battles/currentsMaxBattle.json`.
+
+Les oeufs sont generes depuis `https://leekduck.com/eggs/` et groupes par
+distance ou recompense speciale (`1km`, `5km_adventure_sync`,
+`7km_route_gift`, etc.). Chaque entree est enrichie avec les JSON locaux:
+identifiant, forme, noms multilingues, assets, types et disponibilite shiny.
+
+Les Max Battles sont generees depuis `https://www.snacknap.com/max-battles` et
+groupees par tiers dynamiques (`Tier1`, `Tier2`, `Tier3`, futurs tiers si la
+source evolue). Le matching privilegie les formes Dynamax/Gigantamax locales
+quand elles existent.
+
+Routes admin protegees par `x-api-admin-secret` :
+
+```bash
+curl -X POST "https://domain.com/api/v1/admin/eggs/import" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/eggs/regenerate" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/max-battles/import" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/max-battles/regenerate" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+```
+
+Ces routes importent les documents courants dans MongoDB (`eggs` et
+`maxbattles`, document `current`). La lecture publique utilise le fichier source
+par defaut et accepte `?source=mongo` apres import.
 
 La checklist ecoute par defaut sur le reseau local. Pour limiter temporairement l'acces
 au Mac:

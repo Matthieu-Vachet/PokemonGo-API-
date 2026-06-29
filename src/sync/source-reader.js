@@ -484,6 +484,36 @@ function collectRaidDocuments() {
   ];
 }
 
+function collectEggDocuments() {
+  const file = dataPath("eggs", "currentEggs.json");
+  if (!fs.existsSync(file)) return [];
+  const data = readJson(file);
+  return [
+    {
+      key: "current",
+      sourceFile: relative(file),
+      sourceHash: hash(data),
+      generatedAt: new Date(),
+      data,
+    },
+  ];
+}
+
+function collectMaxBattleDocuments() {
+  const file = dataPath("max-battles", "currentsMaxBattle.json");
+  if (!fs.existsSync(file)) return [];
+  const data = readJson(file);
+  return [
+    {
+      key: "current",
+      sourceFile: relative(file),
+      sourceHash: hash(data),
+      generatedAt: new Date(),
+      data,
+    },
+  ];
+}
+
 function collectAllDocuments() {
   const generations = collectGenerationDocuments();
   return {
@@ -495,11 +525,15 @@ function collectAllDocuments() {
     generations,
     regions: collectRegionDocuments(generations),
     raids: collectRaidDocuments(),
+    eggs: collectEggDocuments(),
+    maxBattles: collectMaxBattleDocuments(),
   };
 }
 
 module.exports = {
   collectAllDocuments,
+  collectEggDocuments,
+  collectMaxBattleDocuments,
   collectPokemonAssetDocuments,
   collectRaidDocuments,
   collectWeatherDocuments,

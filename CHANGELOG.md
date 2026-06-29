@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0 - 2026-06-29
+
+- Ajoute `GET /api/v1/eggs` et les routes admin protegees `/api/v1/admin/eggs/import|regenerate`.
+- Ajoute `GET /api/v1/max-battles` et les routes admin protegees `/api/v1/admin/max-battles/import|regenerate`.
+- Synchronise les documents courants dans MongoDB via les collections `eggs` et `maxbattles`.
+- Met a jour OpenAPI, README et docs API pour les sources LeekDuck Eggs et Snacknap Max Battles.
+
 ## 1.1.0 - 2026-06-29
 
 - Ajoute la route publique `GET /api/v1/raids` pour exposer `raids/currentRaids.json`.

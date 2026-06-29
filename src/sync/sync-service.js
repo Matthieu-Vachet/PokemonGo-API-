@@ -1,6 +1,8 @@
 const {
+  Egg,
   Generation,
   GlobalStat,
+  MaxBattle,
   Move,
   Pokemon,
   PokemonAsset,
@@ -122,6 +124,8 @@ function buildGlobalStats(data) {
       pokemon: data.pokemon.length,
       pokemonAssets: data.pokemonAssets.length,
       raids: data.raids.length,
+      eggs: data.eggs.length,
+      maxBattles: data.maxBattles.length,
       moves: data.moves.length,
       types: data.types.length,
       weather: data.weather.length,
@@ -142,6 +146,8 @@ async function rebuildIndexes() {
     Pokemon.syncIndexes(),
     PokemonAsset.syncIndexes(),
     Raid.syncIndexes(),
+    Egg.syncIndexes(),
+    MaxBattle.syncIndexes(),
     Move.syncIndexes(),
     Type.syncIndexes(),
     Weather.syncIndexes(),
@@ -162,10 +168,12 @@ async function syncAll({ dryRun = false } = {}) {
   try {
     // Remove obsolete constraints before writing, for example when the data model evolves.
     await rebuildIndexes();
-    const [pokemon, pokemonAssets, raids, moves, types, weather, regions, generations] = await Promise.all([
+    const [pokemon, pokemonAssets, raids, eggs, maxBattles, moves, types, weather, regions, generations] = await Promise.all([
       writeCollection(Pokemon, data.pokemon, "key"),
       writeCollection(PokemonAsset, data.pokemonAssets, "formId"),
       writeCollection(Raid, data.raids, "key"),
+      writeCollection(Egg, data.eggs, "key"),
+      writeCollection(MaxBattle, data.maxBattles, "key"),
       writeCollection(Move, data.moves, "id"),
       writeCollection(Type, data.types, "id"),
       writeCollection(Weather, data.weather, "id"),
@@ -173,7 +181,7 @@ async function syncAll({ dryRun = false } = {}) {
       writeCollection(Generation, data.generations, "id"),
     ]);
     await cleanupPokemonHeavyAssets();
-    const changes = { pokemon, pokemonAssets, raids, moves, types, weather, regions, generations };
+    const changes = { pokemon, pokemonAssets, raids, eggs, maxBattles, moves, types, weather, regions, generations };
     await GlobalStat.findOneAndUpdate(
       { key: "global" },
       { $set: { data: stats, generatedAt: new Date() } },

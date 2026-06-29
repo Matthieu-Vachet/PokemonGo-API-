@@ -36,6 +36,8 @@ Depuis la refonte du modele Pokemon, MongoDB separe les donnees en deux collecti
 - `pokemons` contient le gameplay, les stats, les attaques, le PvP, les disponibilites, les images principales, les bonbons et `data.assets.assetsRef`.
 - `pokemonAssets` contient les assets lourds : Home, portraits, portraits shiny, location cards, Shuffle et variantes visuelles.
 - `raids` contient le document courant `current` importe depuis `PokemonGo-Data/raids/currentRaids.json`.
+- `eggs` contient le document courant `current` importe depuis `PokemonGo-Data/eggs/currentEggs.json`.
+- `maxbattles` contient le document courant `current` importe depuis `PokemonGo-Data/max-battles/currentsMaxBattle.json`.
 
 Les routes publiques joignent automatiquement `pokemons.formId` avec `pokemonAssets.formId`
 sur les fiches de detail et les routes d'assets. La liste `/pokemon` reste legere pour
@@ -129,11 +131,19 @@ Exemples :
 ```bash
 curl "https://domain.com/api/v1/pokemon"
 curl "https://domain.com/api/v1/raids"
+curl "https://domain.com/api/v1/eggs"
+curl "https://domain.com/api/v1/max-battles"
 
 curl -X POST "https://domain.com/api/v1/pokemon" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
 
 curl -X POST "https://domain.com/api/v1/admin/raids/import" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/eggs/import" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/max-battles/import" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
 
 curl "https://domain.com/api/checklist-v3?action=history" \
@@ -152,13 +162,16 @@ PUBLIC :
 - `GET /api/v1` et toutes les routes publiques de lecture Pokemon, formes, evolutions,
   recherche, attaques, PvP, comparaison, statistiques publiques, types, regions,
   generations, meteo, bonbons, assets publics, backgrounds, shadow, stickers, Shuffle,
-  collection checklist, raids courants, evolutions speciales, raid counters et `meta/filters`.
+  collection checklist, raids courants, oeufs courants, Max Battles courantes,
+  evolutions speciales, raid counters et `meta/filters`.
 - `GET /api/checklist-v3?action=bootstrap|detail|catalog|assets|session`.
 
 PRIVATE :
 
 - Toute methode `POST`, `PATCH`, `PUT` ou `DELETE` sous `/api/v1/*`.
 - `POST /api/v1/admin/raids/import` et `/api/v1/admin/raids/regenerate`.
+- `POST /api/v1/admin/eggs/import` et `/api/v1/admin/eggs/regenerate`.
+- `POST /api/v1/admin/max-battles/import` et `/api/v1/admin/max-battles/regenerate`.
 - Toute methode non `GET`, `HEAD` ou `OPTIONS` sur `/api/checklist-v3`.
 - `GET /api/checklist-v3?action=source-watch|history|url-audit`.
 
@@ -186,6 +199,8 @@ INTERNAL :
 | Météo | `/weather`, `/weather/:identifier`, `/weather/:identifier/pokemon`, `/weather/:identifier/types`, `/weather/:identifier/moves` |
 | Candy | `/candy`, `/candy/:familyId`, `/candy/:familyId/pokemon` |
 | Raids | `/raids`, `/admin/raids/import`, `/admin/raids/regenerate` |
+| Oeufs | `/eggs`, `/admin/eggs/import`, `/admin/eggs/regenerate` |
+| Max Battles | `/max-battles`, `/admin/max-battles/import`, `/admin/max-battles/regenerate` |
 | Regions | `/regions`, `/regions/:identifier/pokemon` |
 | Generations | `/generations`, `/generations/:identifier/pokemon` |
 | Assets | `/assets/:identifier`, `/pokemon/:identifier/assets` |
@@ -239,6 +254,69 @@ curl -X POST "https://domain.com/api/v1/admin/raids/regenerate" \
 
 Ces routes importent le JSON courant dans MongoDB. La route publique lit le fichier
 source par defaut et accepte `?source=mongo` si l'import a ete execute.
+
+## Oeufs Courants
+
+`GET /api/v1/eggs` expose les eclosions actives depuis
+`PokemonGo-Data/eggs/currentEggs.json`. Le fichier est genere dans le depot data
+depuis `https://leekduck.com/eggs/`, puis enrichi avec les JSON locaux.
+
+Structure :
+
+```json
+{
+  "currentEggsList": {
+    "1km": [],
+    "2km": [],
+    "5km": [],
+    "5km_adventure_sync": [],
+    "7km": [],
+    "7km_route_gift": [],
+    "10km": [],
+    "10km_adventure_sync": [],
+    "12km": []
+  }
+}
+```
+
+Routes admin protegees :
+
+```bash
+curl -X POST "https://domain.com/api/v1/admin/eggs/import" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/eggs/regenerate" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+```
+
+## Max Battles Courantes
+
+`GET /api/v1/max-battles` expose les boss Max Battle actifs depuis
+`PokemonGo-Data/max-battles/currentsMaxBattle.json`. Le fichier est genere dans
+le depot data depuis `https://www.snacknap.com/max-battles`, puis enrichi avec
+les formes locales, notamment Dynamax et Gigantamax.
+
+Structure :
+
+```json
+{
+  "currentMaxBattle": {
+    "Tier1": [],
+    "Tier2": [],
+    "Tier3": []
+  }
+}
+```
+
+Routes admin protegees :
+
+```bash
+curl -X POST "https://domain.com/api/v1/admin/max-battles/import" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/max-battles/regenerate" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+```
 
 ## Filtres Combines
 

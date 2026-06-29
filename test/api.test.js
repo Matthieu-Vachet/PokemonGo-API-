@@ -67,6 +67,8 @@ test("GET /api-docs.json fournit OpenAPI 3", async () => {
   assert.ok(response.body.paths["/api/v1/weather/{identifier}/types"]);
   assert.ok(response.body.paths["/api/v1/weather/{identifier}/moves"]);
   assert.ok(response.body.paths["/api/v1/raids"]);
+  assert.ok(response.body.paths["/api/v1/eggs"]);
+  assert.ok(response.body.paths["/api/v1/max-battles"]);
 });
 
 test("GET /api/v1/stickers expose le catalogue des stickers", async () => {
@@ -83,6 +85,20 @@ test("GET /api/v1/raids expose les raids courants", async () => {
   const response = await request(app).get("/api/v1/raids").expect(200);
   assert.ok(response.body.data.currentList);
   assert.ok(Array.isArray(response.body.data.currentList.mega));
+  assert.ok(response.body.meta.buckets);
+});
+
+test("GET /api/v1/eggs expose les oeufs courants", async () => {
+  const response = await request(app).get("/api/v1/eggs").expect(200);
+  assert.ok(response.body.data.currentEggsList);
+  assert.ok(Array.isArray(response.body.data.currentEggsList["1km"]));
+  assert.ok(response.body.meta.buckets);
+});
+
+test("GET /api/v1/max-battles expose les Max Battles courantes", async () => {
+  const response = await request(app).get("/api/v1/max-battles").expect(200);
+  assert.ok(response.body.data.currentMaxBattle);
+  assert.ok(Array.isArray(response.body.data.currentMaxBattle.Tier1));
   assert.ok(response.body.meta.buckets);
 });
 
@@ -148,6 +164,8 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   assert.equal(data.types.length, 18);
   assert.equal(data.weather.length, 7);
   assert.equal(data.raids.length, 1);
+  assert.equal(data.eggs.length, 1);
+  assert.equal(data.maxBattles.length, 1);
   assert.equal(data.regions.length, 10);
   assert.equal(new Set(data.pokemon.map((pokemon) => pokemon.key)).size, data.pokemon.length);
   assert.ok(data.pokemon.every((pokemon) => Array.isArray(pokemon.data.quickMoves)));

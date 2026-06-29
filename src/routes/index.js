@@ -18,6 +18,8 @@ const candy = require("./candy");
 const raids = require("./raids");
 const eggs = require("./eggs");
 const maxBattles = require("./max-battles");
+const rocket = require("./rocket");
+const research = require("./research");
 
 const router = express.Router();
 
@@ -42,6 +44,8 @@ router.get("/", (_request, response) => {
         raids: "/api/v1/raids",
         eggs: "/api/v1/eggs",
         maxBattles: "/api/v1/max-battles",
+        rocket: "/api/v1/rocket",
+        research: "/api/v1/research",
         regions: "/api/v1/regions",
         generations: "/api/v1/generations",
         compare: "/api/v1/compare/pokemon?ids=charizard,blastoise",
@@ -68,6 +72,10 @@ router.use("/eggs", eggs);
 router.use("/admin/eggs", eggs);
 router.use("/max-battles", maxBattles);
 router.use("/admin/max-battles", maxBattles);
+router.use("/rocket", rocket);
+router.use("/admin/rocket", rocket);
+router.use("/research", research);
+router.use("/admin/research", research);
 router.use("/search", search);
 router.use("/moves", moves);
 router.use("/pvp", pvp);

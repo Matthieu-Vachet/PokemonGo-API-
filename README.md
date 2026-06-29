@@ -230,6 +230,8 @@ curl "https://domain.com/api/v1/pokemon"
 curl "https://domain.com/api/v1/raids"
 curl "https://domain.com/api/v1/eggs"
 curl "https://domain.com/api/v1/max-battles"
+curl "https://domain.com/api/v1/rocket"
+curl "https://domain.com/api/v1/research"
 ```
 
 Toute route privee, interne ou toute methode d'ecriture doit envoyer le header serveur :
@@ -251,6 +253,12 @@ curl -X POST "https://domain.com/api/v1/admin/eggs/import" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
 
 curl -X POST "https://domain.com/api/v1/admin/max-battles/import" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/rocket/import" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/research/import" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
 
 curl "https://domain.com/api/checklist-v3?action=history" \
@@ -320,6 +328,40 @@ curl -X POST "https://domain.com/api/v1/admin/max-battles/regenerate" \
 
 Ces routes importent les documents courants dans MongoDB (`eggs` et
 `maxbattles`, document `current`). La lecture publique utilise le fichier source
+par defaut et accepte `?source=mongo` apres import.
+
+## Rocket Et Research Pokemon GO
+
+Les routes publiques `GET /api/v1/rocket` et `GET /api/v1/research` exposent
+les fichiers `PokemonGo-Data/rocket/currentRocket.json` et
+`PokemonGo-Data/research/currentResearch.json`.
+
+Rocket est genere depuis `https://leekduck.com/rocket-lineups/` avec Giovanni,
+leaders, grunts, slots de combat et rewards possibles. Chaque Pokemon est enrichi
+avec les fiches locales et marque `shadow: true`.
+
+Research est genere depuis `https://leekduck.com/research/` avec les categories,
+textes de quetes et recompenses Pokemon/items. Les recompenses Pokemon sont
+matchees avec les assets, noms, types et disponibilites shiny locaux.
+
+Routes admin protegees par `x-api-admin-secret` :
+
+```bash
+curl -X POST "https://domain.com/api/v1/admin/rocket/import" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/rocket/regenerate" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/research/import" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/research/regenerate" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+```
+
+Ces routes importent les documents courants dans MongoDB (`rockets` et
+`researches`, document `current`). La lecture publique utilise le fichier source
 par defaut et accepte `?source=mongo` apres import.
 
 La checklist ecoute par defaut sur le reseau local. Pour limiter temporairement l'acces

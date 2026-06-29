@@ -38,6 +38,8 @@ Depuis la refonte du modele Pokemon, MongoDB separe les donnees en deux collecti
 - `raids` contient le document courant `current` importe depuis `PokemonGo-Data/raids/currentRaids.json`.
 - `eggs` contient le document courant `current` importe depuis `PokemonGo-Data/eggs/currentEggs.json`.
 - `maxbattles` contient le document courant `current` importe depuis `PokemonGo-Data/max-battles/currentsMaxBattle.json`.
+- `rockets` contient le document courant `current` importe depuis `PokemonGo-Data/rocket/currentRocket.json`.
+- `researches` contient le document courant `current` importe depuis `PokemonGo-Data/research/currentResearch.json`.
 
 Les routes publiques joignent automatiquement `pokemons.formId` avec `pokemonAssets.formId`
 sur les fiches de detail et les routes d'assets. La liste `/pokemon` reste legere pour
@@ -133,6 +135,8 @@ curl "https://domain.com/api/v1/pokemon"
 curl "https://domain.com/api/v1/raids"
 curl "https://domain.com/api/v1/eggs"
 curl "https://domain.com/api/v1/max-battles"
+curl "https://domain.com/api/v1/rocket"
+curl "https://domain.com/api/v1/research"
 
 curl -X POST "https://domain.com/api/v1/pokemon" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
@@ -144,6 +148,12 @@ curl -X POST "https://domain.com/api/v1/admin/eggs/import" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
 
 curl -X POST "https://domain.com/api/v1/admin/max-battles/import" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/rocket/import" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/research/import" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
 
 curl "https://domain.com/api/checklist-v3?action=history" \
@@ -163,6 +173,7 @@ PUBLIC :
   recherche, attaques, PvP, comparaison, statistiques publiques, types, regions,
   generations, meteo, bonbons, assets publics, backgrounds, shadow, stickers, Shuffle,
   collection checklist, raids courants, oeufs courants, Max Battles courantes,
+  lineups Team GO Rocket courants, quetes Research courantes,
   evolutions speciales, raid counters et `meta/filters`.
 - `GET /api/checklist-v3?action=bootstrap|detail|catalog|assets|session`.
 
@@ -172,6 +183,8 @@ PRIVATE :
 - `POST /api/v1/admin/raids/import` et `/api/v1/admin/raids/regenerate`.
 - `POST /api/v1/admin/eggs/import` et `/api/v1/admin/eggs/regenerate`.
 - `POST /api/v1/admin/max-battles/import` et `/api/v1/admin/max-battles/regenerate`.
+- `POST /api/v1/admin/rocket/import` et `/api/v1/admin/rocket/regenerate`.
+- `POST /api/v1/admin/research/import` et `/api/v1/admin/research/regenerate`.
 - Toute methode non `GET`, `HEAD` ou `OPTIONS` sur `/api/checklist-v3`.
 - `GET /api/checklist-v3?action=source-watch|history|url-audit`.
 
@@ -201,6 +214,8 @@ INTERNAL :
 | Raids | `/raids`, `/admin/raids/import`, `/admin/raids/regenerate` |
 | Oeufs | `/eggs`, `/admin/eggs/import`, `/admin/eggs/regenerate` |
 | Max Battles | `/max-battles`, `/admin/max-battles/import`, `/admin/max-battles/regenerate` |
+| Rocket | `/rocket`, `/admin/rocket/import`, `/admin/rocket/regenerate` |
+| Research | `/research`, `/admin/research/import`, `/admin/research/regenerate` |
 | Regions | `/regions`, `/regions/:identifier/pokemon` |
 | Generations | `/generations`, `/generations/:identifier/pokemon` |
 | Assets | `/assets/:identifier`, `/pokemon/:identifier/assets` |
@@ -315,6 +330,70 @@ curl -X POST "https://domain.com/api/v1/admin/max-battles/import" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
 
 curl -X POST "https://domain.com/api/v1/admin/max-battles/regenerate" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+```
+
+## Team GO Rocket Courant
+
+`GET /api/v1/rocket` expose les lineups Team GO Rocket actifs depuis
+`PokemonGo-Data/rocket/currentRocket.json`. Le fichier est genere dans le depot
+data depuis `https://leekduck.com/rocket-lineups/`, puis enrichi avec les fiches
+Pokemon locales.
+
+Structure :
+
+```json
+{
+  "currentRocketList": {
+    "giovanni": [],
+    "leaders": {
+      "arlo": [],
+      "cliff": [],
+      "sierra": []
+    },
+    "grunts": []
+  }
+}
+```
+
+Routes admin protegees :
+
+```bash
+curl -X POST "https://domain.com/api/v1/admin/rocket/import" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/rocket/regenerate" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+```
+
+## Research Courant
+
+`GET /api/v1/research` expose les quetes Research actives depuis
+`PokemonGo-Data/research/currentResearch.json`. Le fichier est genere dans le depot
+data depuis `https://leekduck.com/research/`, puis les recompenses Pokemon sont
+enrichies avec les JSON locaux. Les rewards item conservent `asset: null` quand
+aucun asset local fiable n'est disponible.
+
+Structure :
+
+```json
+{
+  "currentResearchList": {
+    "fieldResearch": [],
+    "eventResearch": [],
+    "specialResearch": [],
+    "timedResearch": []
+  }
+}
+```
+
+Routes admin protegees :
+
+```bash
+curl -X POST "https://domain.com/api/v1/admin/research/import" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/research/regenerate" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
 ```
 

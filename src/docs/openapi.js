@@ -116,6 +116,44 @@ const examples = {
       ],
     },
   },
+  rocket: {
+    currentRocketList: {
+      giovanni: [],
+      leaders: {
+        arlo: [
+          {
+            trainer: "Arlo",
+            trainerType: "leader",
+            slots: { slot1: [], slot2: [], slot3: [] },
+            rewards: [],
+            assets: { trainerImage: "/ui/rocket/leader-arlo.webp" },
+          },
+        ],
+      },
+      grunts: [],
+    },
+  },
+  research: {
+    currentResearchList: {
+      fieldResearch: [
+        {
+          task: "Catch 7 Pokémon",
+          category: "fieldResearch",
+          rewardType: "pokemon",
+          reward: {
+            id: "MAGIKARP",
+            form: "MAGIKARP",
+            names: { English: "Magikarp", French: "Magicarpe" },
+            shiny: true,
+            cpRange: [99, 117],
+          },
+        },
+      ],
+      eventResearch: [],
+      specialResearch: [],
+      timedResearch: [],
+    },
+  },
 };
 
 const errorResponse = {
@@ -232,7 +270,7 @@ function createOpenApi() {
     openapi: "3.0.3",
     info: {
       title: "Pokémon GO API",
-      version: "1.2.0",
+      version: "1.3.0",
       description:
         "Référence complète de l'API Pokémon GO francophone. Les routes GET publiques restent accessibles sans secret. Les routes privées, internes ou d'écriture exigent le header x-api-admin-secret alimenté par API_ADMIN_SECRET côté serveur. Pour exécuter les requêtes depuis le navigateur, utilisez [Swagger UI](/swagger).",
       license: { name: "ISC" },
@@ -257,6 +295,8 @@ function createOpenApi() {
       ["Raids", "Boss de raids Pokemon GO actifs enrichis depuis les donnees locales."],
       ["Oeufs", "Eclosions Pokemon GO actives enrichies depuis les donnees locales."],
       ["Max Battles", "Boss Max Battle Pokemon GO actifs enrichis depuis les donnees locales."],
+      ["Rocket", "Lineups Team GO Rocket actifs enrichis depuis les donnees locales."],
+      ["Research", "Quetes Research Pokemon GO actives enrichies depuis les donnees locales."],
       ["Régions", "Régions et Pokémon associés."],
       ["Générations", "Générations et Pokémon associés."],
       ["Comparaison", "Comparaison de Pokémon."],
@@ -432,6 +472,18 @@ function createOpenApi() {
           parameter("source", "query", "file", "`file` par defaut ou `mongo` si l'import admin a ete execute."),
         ],
         response: dataResponse(examples.maxBattles),
+      }),
+      [`${api}/rocket`]: operation("Rocket", "Afficher les lineups Team GO Rocket actuels", {
+        parameters: [
+          parameter("source", "query", "file", "`file` par defaut ou `mongo` si l'import admin a ete execute."),
+        ],
+        response: dataResponse(examples.rocket),
+      }),
+      [`${api}/research`]: operation("Research", "Afficher les quetes Research Pokemon GO actuelles", {
+        parameters: [
+          parameter("source", "query", "file", "`file` par defaut ou `mongo` si l'import admin a ete execute."),
+        ],
+        response: dataResponse(examples.research),
       }),
       [`${api}/regions`]: operation("Régions", "Lister les régions", { response: dataResponse([{ id: "KANTO", generation: 1, names: { French: "Kanto" } }]) }),
       [`${api}/regions/{identifier}`]: detail("Régions", "Afficher une région", "KANTO", { description: "ID ou slug de région." }),

@@ -69,6 +69,8 @@ test("GET /api-docs.json fournit OpenAPI 3", async () => {
   assert.ok(response.body.paths["/api/v1/raids"]);
   assert.ok(response.body.paths["/api/v1/eggs"]);
   assert.ok(response.body.paths["/api/v1/max-battles"]);
+  assert.ok(response.body.paths["/api/v1/rocket"]);
+  assert.ok(response.body.paths["/api/v1/research"]);
 });
 
 test("GET /api/v1/stickers expose le catalogue des stickers", async () => {
@@ -100,6 +102,20 @@ test("GET /api/v1/max-battles expose les Max Battles courantes", async () => {
   assert.ok(response.body.data.currentMaxBattle);
   assert.ok(Array.isArray(response.body.data.currentMaxBattle.Tier1));
   assert.ok(response.body.meta.buckets);
+});
+
+test("GET /api/v1/rocket expose les lineups Team GO Rocket courants", async () => {
+  const response = await request(app).get("/api/v1/rocket").expect(200);
+  assert.ok(response.body.data.currentRocketList);
+  assert.ok(Array.isArray(response.body.data.currentRocketList.giovanni));
+  assert.ok(response.body.meta.summary.trainers > 0);
+});
+
+test("GET /api/v1/research expose les quetes Research courantes", async () => {
+  const response = await request(app).get("/api/v1/research").expect(200);
+  assert.ok(response.body.data.currentResearchList);
+  assert.ok(Array.isArray(response.body.data.currentResearchList.fieldResearch));
+  assert.ok(response.body.meta.summary.tasks > 0);
 });
 
 test("GET /api-docs fournit la documentation Redoc", async () => {
@@ -166,6 +182,8 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   assert.equal(data.raids.length, 1);
   assert.equal(data.eggs.length, 1);
   assert.equal(data.maxBattles.length, 1);
+  assert.equal(data.rocket.length, 1);
+  assert.equal(data.research.length, 1);
   assert.equal(data.regions.length, 10);
   assert.equal(new Set(data.pokemon.map((pokemon) => pokemon.key)).size, data.pokemon.length);
   assert.ok(data.pokemon.every((pokemon) => Array.isArray(pokemon.data.quickMoves)));

@@ -13,7 +13,9 @@ function hasDataShape(directory) {
     fs.existsSync(path.join(directory, "moves")) &&
     fs.existsSync(path.join(directory, "raids", "currentRaids.json")) &&
     fs.existsSync(path.join(directory, "eggs", "currentEggs.json")) &&
-    fs.existsSync(path.join(directory, "max-battles", "currentsMaxBattle.json"))
+    fs.existsSync(path.join(directory, "max-battles", "currentsMaxBattle.json")) &&
+    fs.existsSync(path.join(directory, "rocket", "currentRocket.json")) &&
+    fs.existsSync(path.join(directory, "research", "currentResearch.json"))
   );
 }
 

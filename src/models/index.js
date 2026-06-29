@@ -4,6 +4,7 @@ module.exports = {
   Move: require("./move"),
   Pokemon: require("./pokemon"),
   PokemonAsset: require("./pokemon-asset"),
+  Raid: require("./raid"),
   Region: require("./region"),
   SyncRun: require("./sync-run"),
   Type: require("./type"),

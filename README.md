@@ -227,6 +227,7 @@ Les routes publiques de lecture restent accessibles sans authentification :
 
 ```bash
 curl "https://domain.com/api/v1/pokemon"
+curl "https://domain.com/api/v1/raids"
 ```
 
 Toute route privee, interne ou toute methode d'ecriture doit envoyer le header serveur :
@@ -241,6 +242,9 @@ Exemples :
 curl -X POST "https://domain.com/api/v1/pokemon" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
 
+curl -X POST "https://domain.com/api/v1/admin/raids/import" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
 curl "https://domain.com/api/checklist-v3?action=history" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
 ```
@@ -248,6 +252,31 @@ curl "https://domain.com/api/checklist-v3?action=history" \
 Reponses attendues : `401` si le header manque, `403` si le secret est invalide,
 `500` si `API_ADMIN_SECRET` n'est pas configure cote serveur. L'API REST publique reste
 read-only : un secret valide protege l'acces mais n'active pas d'ecriture publique.
+
+## Raids Pokemon GO
+
+La route publique `GET /api/v1/raids` expose le fichier
+`PokemonGo-Data/raids/currentRaids.json`, genere depuis la page LeekDuck Current
+Raid Bosses : `https://leekduck.com/raid-bosses/`.
+
+Le format est groupe par buckets `ultra_beast`, `mega`, `lvl5`, `lvl3`,
+`lvl1`, `shadow_lvl5`, `shadow_lvl3` et `shadow_lvl1`. Chaque boss est enrichi
+par les JSON locaux Pokemon : noms multilingues, `id`, `form`, assets, types,
+meteo boostee, disponibilite shiny et faiblesses.
+
+Routes admin protegees par `x-api-admin-secret` :
+
+```bash
+curl -X POST "https://domain.com/api/v1/admin/raids/import" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/raids/regenerate" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+```
+
+Ces routes importent le JSON courant dans MongoDB (`raids`, document `current`).
+La lecture publique reste disponible depuis le fichier source meme si MongoDB n'a
+pas encore recu l'import.
 
 La checklist ecoute par defaut sur le reseau local. Pour limiter temporairement l'acces
 au Mac:

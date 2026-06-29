@@ -15,6 +15,7 @@ const stickers = require("./stickers");
 const shuffle = require("./shuffle");
 const weather = require("./weather");
 const candy = require("./candy");
+const raids = require("./raids");
 
 const router = express.Router();
 
@@ -36,6 +37,7 @@ router.get("/", (_request, response) => {
         types: "/api/v1/types",
         weather: "/api/v1/weather",
         candy: "/api/v1/candy",
+        raids: "/api/v1/raids",
         regions: "/api/v1/regions",
         generations: "/api/v1/generations",
         compare: "/api/v1/compare/pokemon?ids=charizard,blastoise",
@@ -56,6 +58,8 @@ router.use("/stickers", stickers);
 router.use("/shuffle", shuffle);
 router.use("/weather", weather);
 router.use("/candy", candy);
+router.use("/raids", raids);
+router.use("/admin/raids", raids);
 router.use("/search", search);
 router.use("/moves", moves);
 router.use("/pvp", pvp);

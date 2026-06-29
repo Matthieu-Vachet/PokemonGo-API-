@@ -7,6 +7,7 @@ function publicReadOnly(request, response, next) {
   }
 
   if (request.method === "GET" || request.method === "HEAD") return next();
+  if (request.path.startsWith("/admin/")) return next();
 
   requireAdminSecret(request);
   response.setHeader("Allow", "GET, HEAD, OPTIONS");

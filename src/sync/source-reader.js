@@ -469,6 +469,21 @@ function collectRegionDocuments(generations) {
   return [...regions.values()];
 }
 
+function collectRaidDocuments() {
+  const file = dataPath("raids", "currentRaids.json");
+  if (!fs.existsSync(file)) return [];
+  const data = readJson(file);
+  return [
+    {
+      key: "current",
+      sourceFile: relative(file),
+      sourceHash: hash(data),
+      generatedAt: new Date(),
+      data,
+    },
+  ];
+}
+
 function collectAllDocuments() {
   const generations = collectGenerationDocuments();
   return {
@@ -479,12 +494,14 @@ function collectAllDocuments() {
     weather: collectWeatherDocuments(),
     generations,
     regions: collectRegionDocuments(generations),
+    raids: collectRaidDocuments(),
   };
 }
 
 module.exports = {
   collectAllDocuments,
   collectPokemonAssetDocuments,
+  collectRaidDocuments,
   collectWeatherDocuments,
   hash,
   listJsonFiles,

@@ -35,6 +35,7 @@ Depuis la refonte du modele Pokemon, MongoDB separe les donnees en deux collecti
 
 - `pokemons` contient le gameplay, les stats, les attaques, le PvP, les disponibilites, les images principales, les bonbons et `data.assets.assetsRef`.
 - `pokemonAssets` contient les assets lourds : Home, portraits, portraits shiny, location cards, Shuffle et variantes visuelles.
+- `raids` contient le document courant `current` importe depuis `PokemonGo-Data/raids/currentRaids.json`.
 
 Les routes publiques joignent automatiquement `pokemons.formId` avec `pokemonAssets.formId`
 sur les fiches de detail et les routes d'assets. La liste `/pokemon` reste legere pour
@@ -127,8 +128,12 @@ Exemples :
 
 ```bash
 curl "https://domain.com/api/v1/pokemon"
+curl "https://domain.com/api/v1/raids"
 
 curl -X POST "https://domain.com/api/v1/pokemon" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/raids/import" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
 
 curl "https://domain.com/api/checklist-v3?action=history" \
@@ -147,12 +152,13 @@ PUBLIC :
 - `GET /api/v1` et toutes les routes publiques de lecture Pokemon, formes, evolutions,
   recherche, attaques, PvP, comparaison, statistiques publiques, types, regions,
   generations, meteo, bonbons, assets publics, backgrounds, shadow, stickers, Shuffle,
-  collection checklist, evolutions speciales, raid counters et `meta/filters`.
+  collection checklist, raids courants, evolutions speciales, raid counters et `meta/filters`.
 - `GET /api/checklist-v3?action=bootstrap|detail|catalog|assets|session`.
 
 PRIVATE :
 
 - Toute methode `POST`, `PATCH`, `PUT` ou `DELETE` sous `/api/v1/*`.
+- `POST /api/v1/admin/raids/import` et `/api/v1/admin/raids/regenerate`.
 - Toute methode non `GET`, `HEAD` ou `OPTIONS` sur `/api/checklist-v3`.
 - `GET /api/checklist-v3?action=source-watch|history|url-audit`.
 
@@ -179,6 +185,7 @@ INTERNAL :
 | Types | `/types`, `/types/:identifier`, `/types/:identifier/pokemon` |
 | Météo | `/weather`, `/weather/:identifier`, `/weather/:identifier/pokemon`, `/weather/:identifier/types`, `/weather/:identifier/moves` |
 | Candy | `/candy`, `/candy/:familyId`, `/candy/:familyId/pokemon` |
+| Raids | `/raids`, `/admin/raids/import`, `/admin/raids/regenerate` |
 | Regions | `/regions`, `/regions/:identifier/pokemon` |
 | Generations | `/generations`, `/generations/:identifier/pokemon` |
 | Assets | `/assets/:identifier`, `/pokemon/:identifier/assets` |
@@ -191,6 +198,47 @@ INTERNAL :
 | Collection | `/collection/checklist` |
 | Raid | `/raid/counters/FIRE` |
 | Metadonnees | `/meta/filters`, `/stats/global` |
+
+## Raids Courants
+
+`GET /api/v1/raids` expose les boss actifs depuis
+`PokemonGo-Data/raids/currentRaids.json`. Le fichier est genere dans le depot data
+depuis `https://leekduck.com/raid-bosses/`, puis enrichi avec les JSON locaux.
+
+Structure :
+
+```json
+{
+  "currentList": {
+    "ultra_beast": [],
+    "mega": [],
+    "lvl5": [],
+    "lvl3": [],
+    "lvl1": [],
+    "shadow_lvl5": [],
+    "shadow_lvl3": [],
+    "shadow_lvl1": []
+  }
+}
+```
+
+Chaque boss contient les informations locales (`id`, `form`, `assets`, `names`,
+`types`, `weather`, `shiny`) et les donnees dynamiques disponibles depuis LeekDuck
+(`cpRange`, `cpRangeBoost`, niveau de raid). Les faiblesses `counter` sont derivees
+du catalogue local `types/*.json`.
+
+Routes admin protegees :
+
+```bash
+curl -X POST "https://domain.com/api/v1/admin/raids/import" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+
+curl -X POST "https://domain.com/api/v1/admin/raids/regenerate" \
+  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+```
+
+Ces routes importent le JSON courant dans MongoDB. La route publique lit le fichier
+source par defaut et accepte `?source=mongo` si l'import a ete execute.
 
 ## Filtres Combines
 

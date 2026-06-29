@@ -54,6 +54,30 @@ const examples = {
     secondaryColor: { r: 52, g: 145, b: 80, a: 1 },
     pokemon: [{ dexId: "0001", name: "Bulbizarre", form: "normal" }],
   },
+  raids: {
+    currentList: {
+      ultra_beast: [],
+      mega: [
+        {
+          id: "PIDGEOT",
+          form: "PIDGEOT_MEGA",
+          level: "mega",
+          names: { English: "Mega Pidgeot", French: "Méga-Roucarnage" },
+          shiny: true,
+          types: ["Normal", "Flying"],
+          weather: ["partlyCloudy", "windy"],
+          cpRange: [1151, 1216],
+          cpRangeBoost: [1439, 1521],
+        },
+      ],
+      lvl5: [],
+      lvl3: [],
+      lvl1: [],
+      shadow_lvl5: [],
+      shadow_lvl3: [],
+      shadow_lvl1: [],
+    },
+  },
 };
 
 const errorResponse = {
@@ -170,7 +194,7 @@ function createOpenApi() {
     openapi: "3.0.3",
     info: {
       title: "Pokémon GO API",
-      version: "1.0.1",
+      version: "1.1.0",
       description:
         "Référence complète de l'API Pokémon GO francophone. Les routes GET publiques restent accessibles sans secret. Les routes privées, internes ou d'écriture exigent le header x-api-admin-secret alimenté par API_ADMIN_SECRET côté serveur. Pour exécuter les requêtes depuis le navigateur, utilisez [Swagger UI](/swagger).",
       license: { name: "ISC" },
@@ -192,6 +216,7 @@ function createOpenApi() {
       ["Types", "Types, faiblesses, résistances et Pokémon associés."],
       ["Météo", "Météos Pokémon GO, icônes et ressources boostées."],
       ["Candy", "Couleurs et images de bonbons groupées par famille d'évolution."],
+      ["Raids", "Boss de raids Pokemon GO actifs enrichis depuis les donnees locales."],
       ["Régions", "Régions et Pokémon associés."],
       ["Générations", "Générations et Pokémon associés."],
       ["Comparaison", "Comparaison de Pokémon."],
@@ -349,6 +374,12 @@ function createOpenApi() {
         name: "familyId",
         description: "FamilyId partagé par le Pokémon de base et ses évolutions.",
         response: listResponse(examples.pokemon),
+      }),
+      [`${api}/raids`]: operation("Raids", "Afficher les boss de raids Pokemon GO actuels", {
+        parameters: [
+          parameter("source", "query", "file", "`file` par defaut ou `mongo` si l'import admin a ete execute."),
+        ],
+        response: dataResponse(examples.raids),
       }),
       [`${api}/regions`]: operation("Régions", "Lister les régions", { response: dataResponse([{ id: "KANTO", generation: 1, names: { French: "Kanto" } }]) }),
       [`${api}/regions/{identifier}`]: detail("Régions", "Afficher une région", "KANTO", { description: "ID ou slug de région." }),

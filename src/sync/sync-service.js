@@ -4,6 +4,7 @@ const {
   Move,
   Pokemon,
   PokemonAsset,
+  Raid,
   Region,
   SyncRun,
   Type,
@@ -120,6 +121,7 @@ function buildGlobalStats(data) {
     totals: {
       pokemon: data.pokemon.length,
       pokemonAssets: data.pokemonAssets.length,
+      raids: data.raids.length,
       moves: data.moves.length,
       types: data.types.length,
       weather: data.weather.length,
@@ -139,6 +141,7 @@ async function rebuildIndexes() {
   await Promise.all([
     Pokemon.syncIndexes(),
     PokemonAsset.syncIndexes(),
+    Raid.syncIndexes(),
     Move.syncIndexes(),
     Type.syncIndexes(),
     Weather.syncIndexes(),
@@ -159,9 +162,10 @@ async function syncAll({ dryRun = false } = {}) {
   try {
     // Remove obsolete constraints before writing, for example when the data model evolves.
     await rebuildIndexes();
-    const [pokemon, pokemonAssets, moves, types, weather, regions, generations] = await Promise.all([
+    const [pokemon, pokemonAssets, raids, moves, types, weather, regions, generations] = await Promise.all([
       writeCollection(Pokemon, data.pokemon, "key"),
       writeCollection(PokemonAsset, data.pokemonAssets, "formId"),
+      writeCollection(Raid, data.raids, "key"),
       writeCollection(Move, data.moves, "id"),
       writeCollection(Type, data.types, "id"),
       writeCollection(Weather, data.weather, "id"),
@@ -169,7 +173,7 @@ async function syncAll({ dryRun = false } = {}) {
       writeCollection(Generation, data.generations, "id"),
     ]);
     await cleanupPokemonHeavyAssets();
-    const changes = { pokemon, pokemonAssets, moves, types, weather, regions, generations };
+    const changes = { pokemon, pokemonAssets, raids, moves, types, weather, regions, generations };
     await GlobalStat.findOneAndUpdate(
       { key: "global" },
       { $set: { data: stats, generatedAt: new Date() } },

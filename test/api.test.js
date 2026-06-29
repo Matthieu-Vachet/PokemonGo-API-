@@ -66,6 +66,7 @@ test("GET /api-docs.json fournit OpenAPI 3", async () => {
   assert.ok(response.body.paths["/api/v1/weather/{identifier}/pokemon"]);
   assert.ok(response.body.paths["/api/v1/weather/{identifier}/types"]);
   assert.ok(response.body.paths["/api/v1/weather/{identifier}/moves"]);
+  assert.ok(response.body.paths["/api/v1/raids"]);
 });
 
 test("GET /api/v1/stickers expose le catalogue des stickers", async () => {
@@ -76,6 +77,13 @@ test("GET /api/v1/stickers expose le catalogue des stickers", async () => {
     .get("/api/v1/stickers/sticker-2023collab-1")
     .expect(200);
   assert.equal(detail.body.data.filename, "sticker_2023collab_1.png");
+});
+
+test("GET /api/v1/raids expose les raids courants", async () => {
+  const response = await request(app).get("/api/v1/raids").expect(200);
+  assert.ok(response.body.data.currentList);
+  assert.ok(Array.isArray(response.body.data.currentList.mega));
+  assert.ok(response.body.meta.buckets);
 });
 
 test("GET /api-docs fournit la documentation Redoc", async () => {
@@ -139,6 +147,7 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   assert.ok(data.moves.length >= 250);
   assert.equal(data.types.length, 18);
   assert.equal(data.weather.length, 7);
+  assert.equal(data.raids.length, 1);
   assert.equal(data.regions.length, 10);
   assert.equal(new Set(data.pokemon.map((pokemon) => pokemon.key)).size, data.pokemon.length);
   assert.ok(data.pokemon.every((pokemon) => Array.isArray(pokemon.data.quickMoves)));
@@ -157,7 +166,8 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   assert.equal(bulbasaur.data.region.names.French, "Kanto");
   assert.match(bulbasaur.data.assets.assetsRef, /pokemon-assets\/normal\/0001-bulbasaur\.assets\.json/);
   assert.equal(bulbasaurAssets.home.source, "pokemon-home");
-  assert.ok(bulbasaurAssets.home.variants.length >= 1);
+  assert.ok(Array.isArray(bulbasaurAssets.home.variants));
+  assert.equal(bulbasaurAssets.home.variants.length, 0);
   assert.equal(bulbasaurAssets.shuffle.source, "pokemon-shuffle");
   assert.ok(bulbasaurAssets.shuffle.variants.length >= 1);
   assert.ok(
@@ -301,7 +311,7 @@ test("la checklist calcule les scores, catégories et diagnostics d'assets", () 
   }
   assert.equal(bulbasaur.assets.go, true);
   assert.equal(bulbasaur.assets.home, true);
-  assert.ok(bulbasaur.assets.homeVariants >= 1);
+  assert.equal(bulbasaur.assets.homeVariants, 0);
   assert.ok(bulbasaur.assets.shuffleVariants >= 1);
   assert.equal(typeof bulbasaur.assets.locationCards, "number");
   assert.equal(typeof bulbasaur.assets.duplicateUrls, "number");

@@ -2,6 +2,7 @@ const {
   Egg,
   Generation,
   GlobalStat,
+  Item,
   MaxBattle,
   Move,
   Pokemon,
@@ -10,6 +11,7 @@ const {
   Research,
   Region,
   Rocket,
+  RocketText,
   SyncRun,
   Type,
   Weather,
@@ -130,6 +132,8 @@ function buildGlobalStats(data) {
       maxBattles: data.maxBattles.length,
       rocket: data.rocket.length,
       research: data.research.length,
+      items: data.items.length,
+      rocketTexts: data.rocketTexts.length,
       moves: data.moves.length,
       types: data.types.length,
       weather: data.weather.length,
@@ -154,6 +158,8 @@ async function rebuildIndexes() {
     MaxBattle.syncIndexes(),
     Rocket.syncIndexes(),
     Research.syncIndexes(),
+    Item.syncIndexes(),
+    RocketText.syncIndexes(),
     Move.syncIndexes(),
     Type.syncIndexes(),
     Weather.syncIndexes(),
@@ -174,7 +180,7 @@ async function syncAll({ dryRun = false } = {}) {
   try {
     // Remove obsolete constraints before writing, for example when the data model evolves.
     await rebuildIndexes();
-    const [pokemon, pokemonAssets, raids, eggs, maxBattles, rocket, research, moves, types, weather, regions, generations] = await Promise.all([
+    const [pokemon, pokemonAssets, raids, eggs, maxBattles, rocket, research, items, rocketTexts, moves, types, weather, regions, generations] = await Promise.all([
       writeCollection(Pokemon, data.pokemon, "key"),
       writeCollection(PokemonAsset, data.pokemonAssets, "formId"),
       writeCollection(Raid, data.raids, "key"),
@@ -182,6 +188,8 @@ async function syncAll({ dryRun = false } = {}) {
       writeCollection(MaxBattle, data.maxBattles, "key"),
       writeCollection(Rocket, data.rocket, "key"),
       writeCollection(Research, data.research, "key"),
+      writeCollection(Item, data.items, "id"),
+      writeCollection(RocketText, data.rocketTexts, "id"),
       writeCollection(Move, data.moves, "id"),
       writeCollection(Type, data.types, "id"),
       writeCollection(Weather, data.weather, "id"),
@@ -189,7 +197,7 @@ async function syncAll({ dryRun = false } = {}) {
       writeCollection(Generation, data.generations, "id"),
     ]);
     await cleanupPokemonHeavyAssets();
-    const changes = { pokemon, pokemonAssets, raids, eggs, maxBattles, rocket, research, moves, types, weather, regions, generations };
+    const changes = { pokemon, pokemonAssets, raids, eggs, maxBattles, rocket, research, items, rocketTexts, moves, types, weather, regions, generations };
     await GlobalStat.findOneAndUpdate(
       { key: "global" },
       { $set: { data: stats, generatedAt: new Date() } },

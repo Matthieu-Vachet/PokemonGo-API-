@@ -40,6 +40,8 @@ Depuis la refonte du modele Pokemon, MongoDB separe les donnees en deux collecti
 - `maxbattles` contient le document courant `current` importe depuis `PokemonGo-Data/max-battles/currentsMaxBattle.json`.
 - `rockets` contient le document courant `current` importe depuis `PokemonGo-Data/rocket/currentRocket.json`.
 - `researches` contient le document courant `current` importe depuis `PokemonGo-Data/research/currentResearch.json`.
+- `items` contient les objets canoniques de `PokemonGo-Data/items/items.json`, un document par objet.
+- `rocket_texts` contient les phrases Team GO Rocket de `PokemonGo-Data/rocket/rocketTexts.json`, un document par texte.
 
 Les routes publiques joignent automatiquement `pokemons.formId` avec `pokemonAssets.formId`
 sur les fiches de detail et les routes d'assets. La liste `/pokemon` reste legere pour
@@ -135,7 +137,9 @@ curl "https://domain.com/api/v1/pokemon"
 curl "https://domain.com/api/v1/raids"
 curl "https://domain.com/api/v1/eggs"
 curl "https://domain.com/api/v1/max-battles"
+curl "https://domain.com/api/v1/items"
 curl "https://domain.com/api/v1/rocket"
+curl "https://domain.com/api/v1/rocket-texts"
 curl "https://domain.com/api/v1/research"
 
 curl -X POST "https://domain.com/api/v1/pokemon" \
@@ -395,6 +399,48 @@ curl -X POST "https://domain.com/api/v1/admin/research/import" \
 
 curl -X POST "https://domain.com/api/v1/admin/research/regenerate" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
+```
+
+## Items
+
+`GET /api/v1/items` expose les objets canoniques utiles aux recompenses Research.
+Les donnees viennent de `PokemonGo-Data/items/items.json` puis sont synchronisees
+dans MongoDB, collection `items`.
+
+Champs principaux :
+
+- `id`, `templateId`, `itemId`
+- `category`, `itemType`
+- `names`, `description`
+- `asset`, `assetKey`
+
+Exemples :
+
+```bash
+curl "https://domain.com/api/v1/items"
+curl "https://domain.com/api/v1/items?category=pokeball&q=ball"
+curl "https://domain.com/api/v1/items/ITEM_ULTRA_BALL"
+```
+
+## Rocket Texts
+
+`GET /api/v1/rocket-texts` expose les traductions officielles des phrases Team GO
+Rocket. Les donnees viennent de `PokemonGo-Data/rocket/rocketTexts.json` puis sont
+synchronisees dans MongoDB, collection `rocket_texts`.
+
+Champs principaux :
+
+- `id`, `textKey`
+- `trainerType`, `gender`, `type`, `character`
+- `texts`
+- `textVariants`
+
+Exemples :
+
+```bash
+curl "https://domain.com/api/v1/rocket-texts"
+curl "https://domain.com/api/v1/rocket-texts?trainerType=grunt&type=FIRE"
+curl "https://domain.com/api/v1/rocket-texts/grunt_fire_female_combat_grunt_quote_fire"
 ```
 
 ## Filtres Combines

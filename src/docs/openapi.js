@@ -116,6 +116,33 @@ const examples = {
       ],
     },
   },
+  item: {
+    id: "ITEM_ULTRA_BALL",
+    templateId: "ITEM_ULTRA_BALL",
+    itemId: "ITEM_ULTRA_BALL",
+    category: "pokeball",
+    itemType: "pokeball",
+    names: { English: "Ultra Ball", French: "Hyper Ball" },
+    description: { English: "A high-performance Poké Ball.", French: "Une Ball très performante." },
+    asset: "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/items/ultra_ball.png",
+    assetKey: "ultra_ball",
+  },
+  rocketText: {
+    id: "grunt_fire_female_combat_grunt_quote_fire",
+    textKey: "combat_grunt_quote_fire",
+    trainerType: "grunt",
+    gender: "female",
+    type: "FIRE",
+    character: null,
+    texts: {
+      English: "Do you know how hot Pokémon fire breath can get?",
+      French: "Sais-tu à quel point le souffle de feu des Pokémon peut être chaud ?",
+    },
+    textVariants: {
+      English: ["Do you know how hot Pokémon fire breath can get?"],
+      French: ["Sais-tu à quel point le souffle de feu des Pokémon peut être chaud ?"],
+    },
+  },
   rocket: {
     currentRocketList: {
       giovanni: [],
@@ -473,11 +500,39 @@ function createOpenApi() {
         ],
         response: dataResponse(examples.maxBattles),
       }),
+      [`${api}/items`]: operation("Items", "Lister les objets canoniques Pokemon GO", {
+        parameters: [
+          page,
+          limit,
+          parameter("q", "query", "Ultra Ball", "Recherche texte sur les noms, IDs et assetKey."),
+          parameter("category", "query", "pokeball", "Filtrer par categorie item."),
+          parameter("itemType", "query", "pokeball", "Filtrer par type item."),
+        ],
+        response: listResponse(examples.item),
+      }),
+      [`${api}/items/{identifier}`]: detail("Items", "Afficher un objet", "ITEM_ULTRA_BALL", {
+        description: "ID, itemId, templateId ou assetKey.",
+        response: dataResponse(examples.item),
+      }),
       [`${api}/rocket`]: operation("Rocket", "Afficher les lineups Team GO Rocket actuels", {
         parameters: [
           parameter("source", "query", "file", "`file` par defaut ou `mongo` si l'import admin a ete execute."),
         ],
         response: dataResponse(examples.rocket),
+      }),
+      [`${api}/rocket-texts`]: operation("Rocket Texts", "Lister les textes traduits Team GO Rocket", {
+        parameters: [
+          page,
+          limit,
+          parameter("trainerType", "query", "grunt", "Filtrer par type de trainer."),
+          parameter("type", "query", "FIRE", "Filtrer par type Pokemon associe."),
+          parameter("character", "query", "giovanni", "Filtrer par personnage si disponible."),
+        ],
+        response: listResponse(examples.rocketText),
+      }),
+      [`${api}/rocket-texts/{identifier}`]: detail("Rocket Texts", "Afficher un texte Rocket", "grunt_fire_female_combat_grunt_quote_fire", {
+        description: "ID stable ou textKey officiel.",
+        response: dataResponse(examples.rocketText),
       }),
       [`${api}/research`]: operation("Research", "Afficher les quetes Research Pokemon GO actuelles", {
         parameters: [
@@ -702,6 +757,7 @@ function createOpenApi() {
     { name: "Pokédex", tags: ["Pokémon", "Évolutions", "Méga", "Dynamax", "Gigantamax", "Shadow", "Assets", "Backgrounds", "Candy", "Stickers", "Shuffle"] },
     { name: "Combat", tags: ["PvP", "Raid", "Attaques", "Types", "Statistiques", "Comparaison"] },
     { name: "Univers", tags: ["Régions", "Générations", "Collection"] },
+    { name: "Données vivantes", tags: ["Items", "Rocket Texts"] },
     { name: "Métadonnées publiques", tags: ["Métadonnées"] },
   ];
 

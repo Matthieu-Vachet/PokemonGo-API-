@@ -18,7 +18,9 @@ const candy = require("./candy");
 const raids = require("./raids");
 const eggs = require("./eggs");
 const maxBattles = require("./max-battles");
+const items = require("./items");
 const rocket = require("./rocket");
+const rocketTexts = require("./rocket-texts");
 const research = require("./research");
 
 const router = express.Router();
@@ -44,7 +46,9 @@ router.get("/", (_request, response) => {
         raids: "/api/v1/raids",
         eggs: "/api/v1/eggs",
         maxBattles: "/api/v1/max-battles",
+        items: "/api/v1/items",
         rocket: "/api/v1/rocket",
+        rocketTexts: "/api/v1/rocket-texts",
         research: "/api/v1/research",
         regions: "/api/v1/regions",
         generations: "/api/v1/generations",
@@ -72,8 +76,10 @@ router.use("/eggs", eggs);
 router.use("/admin/eggs", eggs);
 router.use("/max-battles", maxBattles);
 router.use("/admin/max-battles", maxBattles);
+router.use("/items", items);
 router.use("/rocket", rocket);
 router.use("/admin/rocket", rocket);
+router.use("/rocket-texts", rocketTexts);
 router.use("/research", research);
 router.use("/admin/research", research);
 router.use("/search", search);

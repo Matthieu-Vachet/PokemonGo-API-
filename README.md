@@ -230,7 +230,9 @@ curl "https://domain.com/api/v1/pokemon"
 curl "https://domain.com/api/v1/raids"
 curl "https://domain.com/api/v1/eggs"
 curl "https://domain.com/api/v1/max-battles"
+curl "https://domain.com/api/v1/items"
 curl "https://domain.com/api/v1/rocket"
+curl "https://domain.com/api/v1/rocket-texts"
 curl "https://domain.com/api/v1/research"
 ```
 
@@ -363,6 +365,29 @@ curl -X POST "https://domain.com/api/v1/admin/research/regenerate" \
 Ces routes importent les documents courants dans MongoDB (`rockets` et
 `researches`, document `current`). La lecture publique utilise le fichier source
 par defaut et accepte `?source=mongo` apres import.
+
+## Items Et Textes Rocket
+
+Les routes publiques `GET /api/v1/items` et `GET /api/v1/rocket-texts` exposent
+les sources de verite `PokemonGo-Data/items/items.json` et
+`PokemonGo-Data/rocket/rocketTexts.json` apres synchronisation MongoDB.
+
+`/api/v1/items` sert notamment aux recompenses item Research. Chaque entree garde
+`id`, `templateId`, `itemId`, `category`, `itemType`, `names`, `description`,
+`asset` et `assetKey`.
+
+`/api/v1/rocket-texts` sert aux traductions Team GO Rocket. Chaque entree garde
+`id`, `textKey`, `trainerType`, `gender`, `type`, `character`, `texts` et
+`textVariants`.
+
+Exemples :
+
+```bash
+curl "https://domain.com/api/v1/items"
+curl "https://domain.com/api/v1/items/ITEM_ULTRA_BALL"
+curl "https://domain.com/api/v1/rocket-texts"
+curl "https://domain.com/api/v1/rocket-texts?trainerType=grunt&type=FIRE"
+```
 
 La checklist ecoute par defaut sur le reseau local. Pour limiter temporairement l'acces
 au Mac:

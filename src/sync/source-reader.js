@@ -544,6 +544,48 @@ function collectResearchDocuments() {
   ];
 }
 
+function collectItemDocuments() {
+  const file = dataPath("items", "items.json");
+  if (!fs.existsSync(file)) return [];
+  const data = readJson(file);
+  const items = Array.isArray(data.items) ? data.items : [];
+  return items.map((item) => ({
+    ...item,
+    id: String(item.id),
+    itemId: String(item.itemId || item.id),
+    templateId: String(item.templateId || item.id),
+    searchTerms: [...new Set([item.id, item.itemId, item.templateId, item.assetKey, ...namesToTerms(item.names)].filter(Boolean).map(String))],
+    sourceFile: relative(file),
+    sourceHash: hash(item),
+    data: item,
+  }));
+}
+
+function collectRocketTextDocuments() {
+  const file = dataPath("rocket", "rocketTexts.json");
+  if (!fs.existsSync(file)) return [];
+  const data = readJson(file);
+  const rocketTexts = Array.isArray(data.rocketTexts) ? data.rocketTexts : [];
+  return rocketTexts.map((text) => ({
+    ...text,
+    id: String(text.id),
+    textKey: String(text.textKey || text.id),
+    searchTerms: [
+      text.id,
+      text.textKey,
+      text.trainerType,
+      text.gender,
+      text.type,
+      text.character,
+      ...namesToTerms(text.texts),
+      ...Object.values(text.textVariants || {}).flatMap((items) => (Array.isArray(items) ? items : [])),
+    ].filter(Boolean).map(String),
+    sourceFile: relative(file),
+    sourceHash: hash(text),
+    data: text,
+  }));
+}
+
 function collectAllDocuments() {
   const generations = collectGenerationDocuments();
   return {
@@ -559,17 +601,21 @@ function collectAllDocuments() {
     maxBattles: collectMaxBattleDocuments(),
     rocket: collectRocketDocuments(),
     research: collectResearchDocuments(),
+    items: collectItemDocuments(),
+    rocketTexts: collectRocketTextDocuments(),
   };
 }
 
 module.exports = {
   collectAllDocuments,
   collectEggDocuments,
+  collectItemDocuments,
   collectMaxBattleDocuments,
   collectPokemonAssetDocuments,
   collectRaidDocuments,
   collectResearchDocuments,
   collectRocketDocuments,
+  collectRocketTextDocuments,
   collectWeatherDocuments,
   hash,
   listJsonFiles,

@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.4.0 - 2026-06-30
+
+- Ajoute les collections MongoDB `items` et `rocket_texts` synchronisees depuis `PokemonGo-Data/items/items.json` et `PokemonGo-Data/rocket/rocketTexts.json`.
+- Ajoute les routes publiques `GET /api/v1/items` et `GET /api/v1/rocket-texts`.
+- Documente les ressources publiques pour les recompenses Research et les textes Team GO Rocket.
+
+## 1.3.0 - 2026-06-29
+
+- Ajoute `GET /api/v1/rocket` et `GET /api/v1/research`.
+- Ajoute les routes admin protegees `/api/v1/admin/rocket/import|regenerate` et `/api/v1/admin/research/import|regenerate`.
+- Synchronise les documents courants dans MongoDB via les collections `rockets` et `researches`.
+
 ## 1.2.0 - 2026-06-29
 
 - Ajoute `GET /api/v1/eggs` et les routes admin protegees `/api/v1/admin/eggs/import|regenerate`.

@@ -7,9 +7,11 @@ const { ApiError } = require("../lib/api-error");
 const { dataPath } = require("../lib/data-repository");
 const { hash } = require("../sync/source-reader");
 const { asyncHandler } = require("../lib/async-handler");
+const { buildPipelineReport, bucketStats, generateCurrentData } = require("../lib/current-data-pipeline");
 
 const router = express.Router();
 const maxBattlesFile = dataPath("max-battles", "currentsMaxBattle.json");
+const maxBattlesJsonPath = "data/max-battles/currentsMaxBattle.json";
 
 function readCurrentMaxBattlesFile() {
   if (!fs.existsSync(maxBattlesFile)) {
@@ -23,6 +25,21 @@ function maxBattleSummary(data) {
   return Object.fromEntries(
     Object.entries(currentMaxBattle).map(([key, pokemon]) => [key, Array.isArray(pokemon) ? pokemon.length : 0]),
   );
+}
+
+function maxBattleStats(_data, report, buckets) {
+  return bucketStats(report, buckets);
+}
+
+async function regenerateCurrentMaxBattles() {
+  return generateCurrentData({
+    source: "max-battles",
+    scriptName: "generateCurrentMaxBattles.js",
+    exportName: "generateCurrentMaxBattles",
+    jsonPath: maxBattlesJsonPath,
+    summarize: maxBattleSummary,
+    stats: maxBattleStats,
+  });
 }
 
 async function readMongoCurrentMaxBattles() {
@@ -43,7 +60,7 @@ async function upsertCurrentMaxBattles(data) {
       $set: {
         key: "current",
         data,
-        sourceFile: "data/max-battles/currentsMaxBattle.json",
+        sourceFile: maxBattlesJsonPath,
         sourceHash,
         generatedAt: new Date(),
       },
@@ -75,14 +92,24 @@ router.post(
   asyncHandler(async (request, response) => {
     requireAdminSecret(request);
     const payload = request.body?.currentMaxBattle ? request.body : request.body?.data;
-    const data = payload?.currentMaxBattle ? payload : readCurrentMaxBattlesFile();
+    const data = payload?.currentMaxBattle ? payload : (await readMongoCurrentMaxBattles()) || readCurrentMaxBattlesFile();
     const document = await upsertCurrentMaxBattles(data);
+    const buckets = maxBattleSummary(document.data);
+    const itemsParsed = Object.values(buckets).reduce((sum, count) => sum + Number(count || 0), 0);
+    const report = buildPipelineReport({
+      source: "max-battles",
+      summary: buckets,
+      stats: { itemsParsed, itemsMatched: itemsParsed },
+      jsonPath: maxBattlesJsonPath,
+      mongoUpdated: true,
+      updatedAt: document.updatedAt,
+    });
     response.json({
       data: {
         imported: true,
         key: document.key,
-        buckets: maxBattleSummary(document.data),
-        updatedAt: document.updatedAt,
+        buckets,
+        ...report,
       },
     });
   }),
@@ -92,15 +119,23 @@ router.post(
   "/regenerate",
   asyncHandler(async (request, response) => {
     requireAdminSecret(request);
-    const data = readCurrentMaxBattlesFile();
-    const document = await upsertCurrentMaxBattles(data);
+    const generated = await regenerateCurrentMaxBattles();
+    const document = await upsertCurrentMaxBattles(generated.data);
+    const report = buildPipelineReport({
+      source: "max-battles",
+      report: generated.report,
+      summary: generated.summary,
+      stats: generated.stats,
+      jsonPath: maxBattlesJsonPath,
+      mongoUpdated: true,
+      updatedAt: document.updatedAt,
+    });
     response.json({
       data: {
         regenerated: true,
-        source: "data/max-battles/currentsMaxBattle.json",
         key: document.key,
-        buckets: maxBattleSummary(document.data),
-        updatedAt: document.updatedAt,
+        buckets: generated.summary,
+        ...report,
       },
     });
   }),

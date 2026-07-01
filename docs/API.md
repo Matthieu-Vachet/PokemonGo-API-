@@ -199,6 +199,17 @@ INTERNAL :
 - Les actions checklist legacy `source-watch`, `history` et `url-audit`, conservees
   uniquement pour compatibilite et maintenant protegees avant leur reponse `410 Gone`.
 
+Contrat des wrappers courants :
+
+- Les routes `POST /api/v1/admin/*/regenerate` executent le wrapper live associe
+  avant upsert MongoDB et ne se contentent pas de relire le fichier JSON courant.
+- Une regeneration vide retourne une erreur `502` avec `No data parsed from source`.
+- Les routes `POST /api/v1/admin/*/import` utilisent le payload JSON fourni,
+  sinon le dernier document MongoDB, sinon le fichier source versionne.
+- Les reponses d'import/regeneration exposent `success`, `source`, `sourceUrl`,
+  `itemsParsed`, `itemsMatched`, `itemsUnmatched`, `jsonPath`, `mongoUpdated`,
+  `updatedAt`, `summary` et `report`.
+
 ## Routes Principales
 
 | Domaine | Routes |

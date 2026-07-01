@@ -7,9 +7,11 @@ const { ApiError } = require("../lib/api-error");
 const { dataPath } = require("../lib/data-repository");
 const { hash } = require("../sync/source-reader");
 const { asyncHandler } = require("../lib/async-handler");
+const { buildPipelineReport, bucketStats, generateCurrentData } = require("../lib/current-data-pipeline");
 
 const router = express.Router();
 const raidsFile = dataPath("raids", "currentRaids.json");
+const raidsJsonPath = "data/raids/currentRaids.json";
 
 function readCurrentRaidsFile() {
   if (!fs.existsSync(raidsFile)) {
@@ -23,6 +25,21 @@ function raidSummary(data) {
   return Object.fromEntries(
     Object.entries(currentList).map(([key, bosses]) => [key, Array.isArray(bosses) ? bosses.length : 0]),
   );
+}
+
+function raidStats(_data, report, buckets) {
+  return bucketStats(report, buckets);
+}
+
+async function regenerateCurrentRaids() {
+  return generateCurrentData({
+    source: "raids",
+    scriptName: "generateCurrentRaids.js",
+    exportName: "generateCurrentRaids",
+    jsonPath: raidsJsonPath,
+    summarize: raidSummary,
+    stats: raidStats,
+  });
 }
 
 async function readMongoCurrentRaids() {
@@ -43,7 +60,7 @@ async function upsertCurrentRaids(data) {
       $set: {
         key: "current",
         data,
-        sourceFile: "data/raids/currentRaids.json",
+        sourceFile: raidsJsonPath,
         sourceHash,
         generatedAt: new Date(),
       },
@@ -75,14 +92,24 @@ router.post(
   asyncHandler(async (request, response) => {
     requireAdminSecret(request);
     const payload = request.body?.currentList ? request.body : request.body?.data;
-    const data = payload?.currentList ? payload : readCurrentRaidsFile();
+    const data = payload?.currentList ? payload : (await readMongoCurrentRaids()) || readCurrentRaidsFile();
     const document = await upsertCurrentRaids(data);
+    const buckets = raidSummary(document.data);
+    const itemsParsed = Object.values(buckets).reduce((sum, count) => sum + Number(count || 0), 0);
+    const report = buildPipelineReport({
+      source: "raids",
+      summary: buckets,
+      stats: { itemsParsed, itemsMatched: itemsParsed },
+      jsonPath: raidsJsonPath,
+      mongoUpdated: true,
+      updatedAt: document.updatedAt,
+    });
     response.json({
       data: {
         imported: true,
         key: document.key,
-        buckets: raidSummary(document.data),
-        updatedAt: document.updatedAt,
+        buckets,
+        ...report,
       },
     });
   }),
@@ -92,15 +119,23 @@ router.post(
   "/regenerate",
   asyncHandler(async (request, response) => {
     requireAdminSecret(request);
-    const data = readCurrentRaidsFile();
-    const document = await upsertCurrentRaids(data);
+    const generated = await regenerateCurrentRaids();
+    const document = await upsertCurrentRaids(generated.data);
+    const report = buildPipelineReport({
+      source: "raids",
+      report: generated.report,
+      summary: generated.summary,
+      stats: generated.stats,
+      jsonPath: raidsJsonPath,
+      mongoUpdated: true,
+      updatedAt: document.updatedAt,
+    });
     response.json({
       data: {
         regenerated: true,
-        source: "data/raids/currentRaids.json",
         key: document.key,
-        buckets: raidSummary(document.data),
-        updatedAt: document.updatedAt,
+        buckets: generated.summary,
+        ...report,
       },
     });
   }),

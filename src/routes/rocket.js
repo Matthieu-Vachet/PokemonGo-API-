@@ -7,9 +7,11 @@ const { ApiError } = require("../lib/api-error");
 const { dataPath } = require("../lib/data-repository");
 const { hash } = require("../sync/source-reader");
 const { asyncHandler } = require("../lib/async-handler");
+const { buildPipelineReport, generateCurrentData } = require("../lib/current-data-pipeline");
 
 const router = express.Router();
 const rocketFile = dataPath("rocket", "currentRocket.json");
+const rocketJsonPath = "data/rocket/currentRocket.json";
 
 function readCurrentRocketFile() {
   if (!fs.existsSync(rocketFile)) {
@@ -38,6 +40,27 @@ function rocketSummary(data) {
   };
 }
 
+function rocketStats(_data, report, summary) {
+  const itemsParsed = Number(report.trainers || summary.trainers || 0);
+  const itemsUnmatched = Array.isArray(report.unmatched) ? report.unmatched.length : 0;
+  return {
+    itemsParsed,
+    itemsMatched: Number(report.matched || summary.pokemonEntries || 0),
+    itemsUnmatched,
+  };
+}
+
+async function regenerateCurrentRocket() {
+  return generateCurrentData({
+    source: "rocket",
+    scriptName: "generateCurrentRocket.js",
+    exportName: "generateCurrentRocket",
+    jsonPath: rocketJsonPath,
+    summarize: rocketSummary,
+    stats: rocketStats,
+  });
+}
+
 async function readMongoCurrentRocket() {
   if (mongoose.connection.readyState !== 1) return null;
   const document = await Rocket.findOne({ key: "current" }).lean();
@@ -56,7 +79,7 @@ async function upsertCurrentRocket(data) {
       $set: {
         key: "current",
         data,
-        sourceFile: "data/rocket/currentRocket.json",
+        sourceFile: rocketJsonPath,
         sourceHash,
         generatedAt: new Date(),
       },
@@ -88,14 +111,23 @@ router.post(
   asyncHandler(async (request, response) => {
     requireAdminSecret(request);
     const payload = request.body?.currentRocketList ? request.body : request.body?.data;
-    const data = payload?.currentRocketList ? payload : readCurrentRocketFile();
+    const data = payload?.currentRocketList ? payload : (await readMongoCurrentRocket()) || readCurrentRocketFile();
     const document = await upsertCurrentRocket(data);
+    const summary = rocketSummary(document.data);
+    const report = buildPipelineReport({
+      source: "rocket",
+      summary,
+      stats: { itemsParsed: summary.trainers, itemsMatched: summary.pokemonEntries },
+      jsonPath: rocketJsonPath,
+      mongoUpdated: true,
+      updatedAt: document.updatedAt,
+    });
     response.json({
       data: {
         imported: true,
         key: document.key,
-        summary: rocketSummary(document.data),
-        updatedAt: document.updatedAt,
+        summary,
+        ...report,
       },
     });
   }),
@@ -105,15 +137,23 @@ router.post(
   "/regenerate",
   asyncHandler(async (request, response) => {
     requireAdminSecret(request);
-    const data = readCurrentRocketFile();
-    const document = await upsertCurrentRocket(data);
+    const generated = await regenerateCurrentRocket();
+    const document = await upsertCurrentRocket(generated.data);
+    const report = buildPipelineReport({
+      source: "rocket",
+      report: generated.report,
+      summary: generated.summary,
+      stats: generated.stats,
+      jsonPath: rocketJsonPath,
+      mongoUpdated: true,
+      updatedAt: document.updatedAt,
+    });
     response.json({
       data: {
         regenerated: true,
-        source: "data/rocket/currentRocket.json",
         key: document.key,
-        summary: rocketSummary(document.data),
-        updatedAt: document.updatedAt,
+        summary: generated.summary,
+        ...report,
       },
     });
   }),

@@ -7,9 +7,11 @@ const { ApiError } = require("../lib/api-error");
 const { dataPath } = require("../lib/data-repository");
 const { hash } = require("../sync/source-reader");
 const { asyncHandler } = require("../lib/async-handler");
+const { buildPipelineReport, bucketStats, generateCurrentData } = require("../lib/current-data-pipeline");
 
 const router = express.Router();
 const eggsFile = dataPath("eggs", "currentEggs.json");
+const eggsJsonPath = "data/eggs/currentEggs.json";
 
 function readCurrentEggsFile() {
   if (!fs.existsSync(eggsFile)) {
@@ -23,6 +25,21 @@ function eggSummary(data) {
   return Object.fromEntries(
     Object.entries(currentEggsList).map(([key, pokemon]) => [key, Array.isArray(pokemon) ? pokemon.length : 0]),
   );
+}
+
+function eggStats(_data, report, buckets) {
+  return bucketStats(report, buckets);
+}
+
+async function regenerateCurrentEggs() {
+  return generateCurrentData({
+    source: "eggs",
+    scriptName: "generateCurrentEggs.js",
+    exportName: "generateCurrentEggs",
+    jsonPath: eggsJsonPath,
+    summarize: eggSummary,
+    stats: eggStats,
+  });
 }
 
 async function readMongoCurrentEggs() {
@@ -43,7 +60,7 @@ async function upsertCurrentEggs(data) {
       $set: {
         key: "current",
         data,
-        sourceFile: "data/eggs/currentEggs.json",
+        sourceFile: eggsJsonPath,
         sourceHash,
         generatedAt: new Date(),
       },
@@ -75,14 +92,24 @@ router.post(
   asyncHandler(async (request, response) => {
     requireAdminSecret(request);
     const payload = request.body?.currentEggsList ? request.body : request.body?.data;
-    const data = payload?.currentEggsList ? payload : readCurrentEggsFile();
+    const data = payload?.currentEggsList ? payload : (await readMongoCurrentEggs()) || readCurrentEggsFile();
     const document = await upsertCurrentEggs(data);
+    const buckets = eggSummary(document.data);
+    const itemsParsed = Object.values(buckets).reduce((sum, count) => sum + Number(count || 0), 0);
+    const report = buildPipelineReport({
+      source: "eggs",
+      summary: buckets,
+      stats: { itemsParsed, itemsMatched: itemsParsed },
+      jsonPath: eggsJsonPath,
+      mongoUpdated: true,
+      updatedAt: document.updatedAt,
+    });
     response.json({
       data: {
         imported: true,
         key: document.key,
-        buckets: eggSummary(document.data),
-        updatedAt: document.updatedAt,
+        buckets,
+        ...report,
       },
     });
   }),
@@ -92,15 +119,23 @@ router.post(
   "/regenerate",
   asyncHandler(async (request, response) => {
     requireAdminSecret(request);
-    const data = readCurrentEggsFile();
-    const document = await upsertCurrentEggs(data);
+    const generated = await regenerateCurrentEggs();
+    const document = await upsertCurrentEggs(generated.data);
+    const report = buildPipelineReport({
+      source: "eggs",
+      report: generated.report,
+      summary: generated.summary,
+      stats: generated.stats,
+      jsonPath: eggsJsonPath,
+      mongoUpdated: true,
+      updatedAt: document.updatedAt,
+    });
     response.json({
       data: {
         regenerated: true,
-        source: "data/eggs/currentEggs.json",
         key: document.key,
-        buckets: eggSummary(document.data),
-        updatedAt: document.updatedAt,
+        buckets: generated.summary,
+        ...report,
       },
     });
   }),

@@ -7,9 +7,11 @@ const { ApiError } = require("../lib/api-error");
 const { dataPath } = require("../lib/data-repository");
 const { hash } = require("../sync/source-reader");
 const { asyncHandler } = require("../lib/async-handler");
+const { buildPipelineReport, generateCurrentData } = require("../lib/current-data-pipeline");
 
 const router = express.Router();
 const researchFile = dataPath("research", "currentResearch.json");
+const researchJsonPath = "data/research/currentResearch.json";
 
 function readCurrentResearchFile() {
   if (!fs.existsSync(researchFile)) {
@@ -33,36 +35,35 @@ function researchSummary(data) {
   };
 }
 
-function assertGeneratedResearch(data, report = {}) {
-  const summary = researchSummary(data);
+function assertGeneratedResearch(_data, report = {}, summary = {}) {
   if (!summary.tasks) {
     throw new ApiError(502, "No Research tasks parsed from LeekDuck", "RESEARCH_REGENERATE_EMPTY");
   }
   if ((report.eventCategoryBlocksFound || 0) > 0 && !summary.buckets.eventResearch) {
     throw new ApiError(502, "No event tasks parsed from LeekDuck", "RESEARCH_REGENERATE_NO_EVENT_TASKS");
   }
-  return summary;
+}
+
+function researchStats(_data, report, summary) {
+  const unmatchedPokemon = Array.isArray(report.unmatchedPokemonRewards) ? report.unmatchedPokemonRewards.length : 0;
+  const unmatchedItems = Array.isArray(report.unmatchedItemRewards) ? report.unmatchedItemRewards.length : 0;
+  return {
+    itemsParsed: summary.tasks,
+    itemsMatched: Number(report.pokemonRewardsMatched || 0) + Number(report.itemRewardsMatched || 0),
+    itemsUnmatched: unmatchedPokemon + unmatchedItems,
+  };
 }
 
 async function regenerateCurrentResearchFromLeekDuck() {
-  const generatorFile = dataPath("scripts", "generateCurrentResearch.js");
-  if (!fs.existsSync(generatorFile)) {
-    throw new ApiError(
-      500,
-      "Générateur Research introuvable dans PokemonGo-Data.",
-      "RESEARCH_GENERATOR_NOT_FOUND",
-    );
-  }
-
-  delete require.cache[require.resolve(generatorFile)];
-  const { generateCurrentResearch } = require(generatorFile);
-  if (typeof generateCurrentResearch !== "function") {
-    throw new ApiError(500, "Générateur Research invalide.", "RESEARCH_GENERATOR_INVALID");
-  }
-
-  const result = await generateCurrentResearch();
-  const summary = assertGeneratedResearch(result.data, result.report);
-  return { ...result, summary };
+  return generateCurrentData({
+    source: "research",
+    scriptName: "generateCurrentResearch.js",
+    exportName: "generateCurrentResearch",
+    jsonPath: researchJsonPath,
+    summarize: researchSummary,
+    stats: researchStats,
+    validate: assertGeneratedResearch,
+  });
 }
 
 async function readMongoCurrentResearch() {
@@ -83,7 +84,7 @@ async function upsertCurrentResearch(data) {
       $set: {
         key: "current",
         data,
-        sourceFile: "data/research/currentResearch.json",
+        sourceFile: researchJsonPath,
         sourceHash,
         generatedAt: new Date(),
       },
@@ -119,12 +120,21 @@ router.post(
       ? payload
       : (await readMongoCurrentResearch()) || readCurrentResearchFile();
     const document = await upsertCurrentResearch(data);
+    const summary = researchSummary(document.data);
+    const report = buildPipelineReport({
+      source: "research",
+      summary,
+      stats: { itemsParsed: summary.tasks, itemsMatched: summary.pokemonRewards + summary.itemRewards },
+      jsonPath: researchJsonPath,
+      mongoUpdated: true,
+      updatedAt: document.updatedAt,
+    });
     response.json({
       data: {
         imported: true,
         key: document.key,
-        summary: researchSummary(document.data),
-        updatedAt: document.updatedAt,
+        summary,
+        ...report,
       },
     });
   }),
@@ -137,14 +147,21 @@ router.post(
     const generated = await regenerateCurrentResearchFromLeekDuck();
     const data = generated.data;
     const document = await upsertCurrentResearch(data);
+    const report = buildPipelineReport({
+      source: "research",
+      report: generated.report,
+      summary: generated.summary,
+      stats: generated.stats,
+      jsonPath: researchJsonPath,
+      mongoUpdated: true,
+      updatedAt: document.updatedAt,
+    });
     response.json({
       data: {
         regenerated: true,
-        source: generated.report.source,
         key: document.key,
-        summary: researchSummary(document.data),
-        report: generated.report,
-        updatedAt: document.updatedAt,
+        summary: generated.summary,
+        ...report,
       },
     });
   }),

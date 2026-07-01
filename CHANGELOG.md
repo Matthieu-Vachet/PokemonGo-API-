@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.4.2 - 2026-07-01
+
+- Corrige les routes admin `regenerate` Raids, Oeufs, Max Battles et Rocket pour executer les wrappers live au lieu de reimporter l'ancien JSON.
+- Harmonise les rapports de pipeline avec `success`, `itemsParsed`, `itemsMatched`, `itemsUnmatched`, `jsonPath`, `mongoUpdated` et `updatedAt`.
+- Fait echouer les regenerations qui ne parsent aucune donnee afin d'eviter les faux succes Dashboard.
+- Corrige les imports admin pour utiliser le payload fourni, sinon le dernier document MongoDB, sinon le fichier source.
+
 ## 1.4.0 - 2026-06-30
 
 - Ajoute les collections MongoDB `items` et `rocket_texts` synchronisees depuis `PokemonGo-Data/items/items.json` et `PokemonGo-Data/rocket/rocketTexts.json`.

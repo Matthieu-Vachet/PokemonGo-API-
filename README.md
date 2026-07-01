@@ -271,6 +271,18 @@ Reponses attendues : `401` si le header manque, `403` si le secret est invalide,
 `500` si `API_ADMIN_SECRET` n'est pas configure cote serveur. L'API REST publique reste
 read-only : un secret valide protege l'acces mais n'active pas d'ecriture publique.
 
+Les routes `POST /api/v1/admin/*/regenerate` executent le wrapper live associe
+avant de mettre a jour MongoDB. Elles retournent un rapport de pipeline commun :
+`success`, `source`, `sourceUrl`, `itemsParsed`, `itemsMatched`,
+`itemsUnmatched`, `jsonPath`, `mongoUpdated`, `updatedAt`, `summary` et
+`report`. Si le wrapper ne parse aucune donnee, l'API repond en erreur `502`
+avec `No data parsed from source` au lieu d'afficher un faux succes.
+
+Les routes `POST /api/v1/admin/*/import` importent le payload JSON fourni par le
+Dashboard si present, sinon le dernier document MongoDB, sinon le fichier source
+versionne. Le bouton "Telecharger JSON" cote Dashboard doit donc correspondre au
+dernier JSON charge depuis `?source=mongo`.
+
 ## Raids Pokemon GO
 
 La route publique `GET /api/v1/raids` expose le fichier

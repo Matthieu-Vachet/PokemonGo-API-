@@ -57,7 +57,7 @@ function createApp() {
     }),
   );
   app.use(compression());
-  app.use(express.json({ limit: "256kb" }));
+  app.use(express.json({ limit: "1mb" }));
   app.use(morgan(env.isProduction ? "combined" : "dev"));
   app.use(
     rateLimit({

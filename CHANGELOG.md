@@ -6,6 +6,7 @@
 - Harmonise les rapports de pipeline avec `success`, `itemsParsed`, `itemsMatched`, `itemsUnmatched`, `jsonPath`, `mongoUpdated` et `updatedAt`.
 - Fait echouer les regenerations qui ne parsent aucune donnee afin d'eviter les faux succes Dashboard.
 - Corrige les imports admin pour utiliser le payload fourni, sinon le dernier document MongoDB, sinon le fichier source.
+- Augmente la limite JSON admin a `1mb` pour accepter les imports Research complets.
 
 ## 1.4.0 - 2026-06-30
 

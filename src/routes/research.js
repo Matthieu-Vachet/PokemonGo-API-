@@ -33,6 +33,38 @@ function researchSummary(data) {
   };
 }
 
+function assertGeneratedResearch(data, report = {}) {
+  const summary = researchSummary(data);
+  if (!summary.tasks) {
+    throw new ApiError(502, "No Research tasks parsed from LeekDuck", "RESEARCH_REGENERATE_EMPTY");
+  }
+  if ((report.eventCategoryBlocksFound || 0) > 0 && !summary.buckets.eventResearch) {
+    throw new ApiError(502, "No event tasks parsed from LeekDuck", "RESEARCH_REGENERATE_NO_EVENT_TASKS");
+  }
+  return summary;
+}
+
+async function regenerateCurrentResearchFromLeekDuck() {
+  const generatorFile = dataPath("scripts", "generateCurrentResearch.js");
+  if (!fs.existsSync(generatorFile)) {
+    throw new ApiError(
+      500,
+      "Générateur Research introuvable dans PokemonGo-Data.",
+      "RESEARCH_GENERATOR_NOT_FOUND",
+    );
+  }
+
+  delete require.cache[require.resolve(generatorFile)];
+  const { generateCurrentResearch } = require(generatorFile);
+  if (typeof generateCurrentResearch !== "function") {
+    throw new ApiError(500, "Générateur Research invalide.", "RESEARCH_GENERATOR_INVALID");
+  }
+
+  const result = await generateCurrentResearch();
+  const summary = assertGeneratedResearch(result.data, result.report);
+  return { ...result, summary };
+}
+
 async function readMongoCurrentResearch() {
   if (mongoose.connection.readyState !== 1) return null;
   const document = await Research.findOne({ key: "current" }).lean();
@@ -83,7 +115,9 @@ router.post(
   asyncHandler(async (request, response) => {
     requireAdminSecret(request);
     const payload = request.body?.currentResearchList ? request.body : request.body?.data;
-    const data = payload?.currentResearchList ? payload : readCurrentResearchFile();
+    const data = payload?.currentResearchList
+      ? payload
+      : (await readMongoCurrentResearch()) || readCurrentResearchFile();
     const document = await upsertCurrentResearch(data);
     response.json({
       data: {
@@ -100,14 +134,16 @@ router.post(
   "/regenerate",
   asyncHandler(async (request, response) => {
     requireAdminSecret(request);
-    const data = readCurrentResearchFile();
+    const generated = await regenerateCurrentResearchFromLeekDuck();
+    const data = generated.data;
     const document = await upsertCurrentResearch(data);
     response.json({
       data: {
         regenerated: true,
-        source: "data/research/currentResearch.json",
+        source: generated.report.source,
         key: document.key,
         summary: researchSummary(document.data),
+        report: generated.report,
         updatedAt: document.updatedAt,
       },
     });

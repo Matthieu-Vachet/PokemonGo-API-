@@ -92,7 +92,8 @@ router.post(
   asyncHandler(async (request, response) => {
     requireAdminSecret(request);
     const payload = request.body?.currentMaxBattle ? request.body : request.body?.data;
-    const data = payload?.currentMaxBattle ? payload : (await readMongoCurrentMaxBattles()) || readCurrentMaxBattlesFile();
+    // Le JSON fourni est prioritaire; sans lui, la source est le fichier de donnees courant.
+    const data = payload?.currentMaxBattle ? payload : readCurrentMaxBattlesFile();
     const document = await upsertCurrentMaxBattles(data);
     const buckets = maxBattleSummary(document.data);
     const itemsParsed = Object.values(buckets).reduce((sum, count) => sum + Number(count || 0), 0);
@@ -107,6 +108,7 @@ router.post(
     response.json({
       data: {
         imported: true,
+        importedFrom: payload?.currentMaxBattle ? "request" : maxBattlesJsonPath,
         key: document.key,
         buckets,
         ...report,

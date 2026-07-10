@@ -111,7 +111,8 @@ router.post(
   asyncHandler(async (request, response) => {
     requireAdminSecret(request);
     const payload = request.body?.currentRocketList ? request.body : request.body?.data;
-    const data = payload?.currentRocketList ? payload : (await readMongoCurrentRocket()) || readCurrentRocketFile();
+    // Ne pas reutiliser Mongo comme source de secours: l'import doit rester reproductible.
+    const data = payload?.currentRocketList ? payload : readCurrentRocketFile();
     const document = await upsertCurrentRocket(data);
     const summary = rocketSummary(document.data);
     const report = buildPipelineReport({
@@ -125,6 +126,7 @@ router.post(
     response.json({
       data: {
         imported: true,
+        importedFrom: payload?.currentRocketList ? "request" : rocketJsonPath,
         key: document.key,
         summary,
         ...report,

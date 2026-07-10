@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.3 - 2026-07-10
+
+- Corrige les imports administrateur Raids, Oeufs, Max Battles, Rocket et Research : sans payload explicite, ils relisent maintenant le JSON versionne au lieu de reimporter un ancien document MongoDB.
+- Ajoute `importedFrom` aux rapports d'import pour identifier la source effectivement synchronisee.
+- Documente le contrat d'import pour le Dashboard Admin.
+
 ## 1.4.2 - 2026-07-01
 
 - Corrige les routes admin `regenerate` Raids, Oeufs, Max Battles et Rocket pour executer les wrappers live au lieu de reimporter l'ancien JSON.

@@ -205,7 +205,8 @@ Contrat des wrappers courants :
   avant upsert MongoDB et ne se contentent pas de relire le fichier JSON courant.
 - Une regeneration vide retourne une erreur `502` avec `No data parsed from source`.
 - Les routes `POST /api/v1/admin/*/import` utilisent le payload JSON fourni,
-  sinon le dernier document MongoDB, sinon le fichier source versionne.
+  sinon le fichier source versionne. Elles ne reutilisent pas un ancien document
+  MongoDB comme source de secours.
 - Les reponses d'import/regeneration exposent `success`, `source`, `sourceUrl`,
   `itemsParsed`, `itemsMatched`, `itemsUnmatched`, `jsonPath`, `mongoUpdated`,
   `updatedAt`, `summary` et `report`.

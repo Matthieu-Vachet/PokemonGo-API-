@@ -279,9 +279,9 @@ avant de mettre a jour MongoDB. Elles retournent un rapport de pipeline commun :
 avec `No data parsed from source` au lieu d'afficher un faux succes.
 
 Les routes `POST /api/v1/admin/*/import` importent le payload JSON fourni par le
-Dashboard si present, sinon le dernier document MongoDB, sinon le fichier source
-versionne. Le bouton "Telecharger JSON" cote Dashboard doit donc correspondre au
-dernier JSON charge depuis `?source=mongo`.
+Dashboard si present, sinon le fichier source versionne. Elles ne relisent jamais
+un ancien document MongoDB comme source de secours. Le bouton "Telecharger JSON"
+cote Dashboard correspond donc au JSON effectivement charge et synchronise.
 
 ## Raids Pokemon GO
 

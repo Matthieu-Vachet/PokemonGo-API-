@@ -116,9 +116,8 @@ router.post(
   asyncHandler(async (request, response) => {
     requireAdminSecret(request);
     const payload = request.body?.currentResearchList ? request.body : request.body?.data;
-    const data = payload?.currentResearchList
-      ? payload
-      : (await readMongoCurrentResearch()) || readCurrentResearchFile();
+    // Un clic d'import sans JSON explicite part du fichier genere, pas d'un cache Mongo.
+    const data = payload?.currentResearchList ? payload : readCurrentResearchFile();
     const document = await upsertCurrentResearch(data);
     const summary = researchSummary(document.data);
     const report = buildPipelineReport({
@@ -132,6 +131,7 @@ router.post(
     response.json({
       data: {
         imported: true,
+        importedFrom: payload?.currentResearchList ? "request" : researchJsonPath,
         key: document.key,
         summary,
         ...report,

@@ -92,7 +92,9 @@ router.post(
   asyncHandler(async (request, response) => {
     requireAdminSecret(request);
     const payload = request.body?.currentList ? request.body : request.body?.data;
-    const data = payload?.currentList ? payload : (await readMongoCurrentRaids()) || readCurrentRaidsFile();
+    // Sans payload, l'import doit prendre la source JSON du depot. Relire Mongo ici
+    // transformait le bouton d'import en simple re-sauvegarde de donnees obsoletes.
+    const data = payload?.currentList ? payload : readCurrentRaidsFile();
     const document = await upsertCurrentRaids(data);
     const buckets = raidSummary(document.data);
     const itemsParsed = Object.values(buckets).reduce((sum, count) => sum + Number(count || 0), 0);
@@ -107,6 +109,7 @@ router.post(
     response.json({
       data: {
         imported: true,
+        importedFrom: payload?.currentList ? "request" : raidsJsonPath,
         key: document.key,
         buckets,
         ...report,

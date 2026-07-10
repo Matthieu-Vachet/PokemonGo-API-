@@ -92,7 +92,8 @@ router.post(
   asyncHandler(async (request, response) => {
     requireAdminSecret(request);
     const payload = request.body?.currentEggsList ? request.body : request.body?.data;
-    const data = payload?.currentEggsList ? payload : (await readMongoCurrentEggs()) || readCurrentEggsFile();
+    // Un import sans payload synchronise le JSON du depot, jamais un ancien snapshot Mongo.
+    const data = payload?.currentEggsList ? payload : readCurrentEggsFile();
     const document = await upsertCurrentEggs(data);
     const buckets = eggSummary(document.data);
     const itemsParsed = Object.values(buckets).reduce((sum, count) => sum + Number(count || 0), 0);
@@ -107,6 +108,7 @@ router.post(
     response.json({
       data: {
         imported: true,
+        importedFrom: payload?.currentEggsList ? "request" : eggsJsonPath,
         key: document.key,
         buckets,
         ...report,

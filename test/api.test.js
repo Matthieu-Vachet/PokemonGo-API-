@@ -1,7 +1,11 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("fs");
+const mongoose = require("mongoose");
 const request = require("supertest");
+
+mongoose.set("bufferCommands", false);
+
 const { createApp } = require("../src/app");
 const { dataPath } = require("../src/lib/data-repository");
 const { normalizeLeague } = require("../src/lib/pvp");

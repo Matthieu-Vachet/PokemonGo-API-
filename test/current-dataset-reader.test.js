@@ -21,7 +21,6 @@ test("la lecture current cible toujours { key: current } et retourne MongoDB", a
       assert.deepEqual(filter, { key: "current" });
     }),
     domain: "raids",
-    isConnected: true,
   });
 
   assert.equal(MONGODB_SOURCE, "mongodb");
@@ -36,7 +35,6 @@ test("un document current absent produit une erreur explicite sans fallback", as
   const result = await readCurrentDatasetFromMongo({
     model: modelReturning(null),
     domain: "max-battles",
-    isConnected: true,
   });
 
   assert.deepEqual(result, {
@@ -50,4 +48,41 @@ test("un document current absent produit une erreur explicite sans fallback", as
       domain: "max-battles",
     },
   });
+});
+
+test("une erreur de requete MongoDB produit un 503 explicite", async () => {
+  const result = await readCurrentDatasetFromMongo({
+    model: {
+      findOne() {
+        return { lean: async () => { throw new Error("connection interrupted"); } };
+      },
+    },
+    domain: "eggs",
+  });
+
+  assert.deepEqual(result, {
+    ok: false,
+    status: 503,
+    body: {
+      success: false,
+      source: "mongodb",
+      error: "MONGODB_UNAVAILABLE",
+      message: "MongoDB n'est pas disponible pour le domaine eggs.",
+      domain: "eggs",
+    },
+  });
+});
+
+test("un etat de connexion explicitement indisponible evite toute requete", async () => {
+  let queried = false;
+  const result = await readCurrentDatasetFromMongo({
+    model: modelReturning(null, () => { queried = true; }),
+    domain: "research",
+    isConnected: false,
+  });
+
+  assert.equal(queried, false);
+  assert.equal(result.ok, false);
+  assert.equal(result.status, 503);
+  assert.equal(result.body.error, "MONGODB_UNAVAILABLE");
 });

@@ -15,7 +15,7 @@ function datasetReadFailure(status, domain, error, message) {
 }
 
 async function readCurrentDatasetFromMongo({ model, domain, isConnected }) {
-  if (!isConnected) {
+  if (isConnected === false) {
     return datasetReadFailure(
       503,
       domain,
@@ -24,7 +24,17 @@ async function readCurrentDatasetFromMongo({ model, domain, isConnected }) {
     );
   }
 
-  const document = await model.findOne({ key: "current" }).lean();
+  let document;
+  try {
+    document = await model.findOne({ key: "current" }).lean();
+  } catch (_error) {
+    return datasetReadFailure(
+      503,
+      domain,
+      "MONGODB_UNAVAILABLE",
+      `MongoDB n'est pas disponible pour le domaine ${domain}.`,
+    );
+  }
   if (!document || document.data === null || document.data === undefined) {
     return datasetReadFailure(
       404,

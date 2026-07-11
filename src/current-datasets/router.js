@@ -1,5 +1,4 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const { requireAdminSecret } = require("../lib/admin-auth");
 const { ApiError } = require("../lib/api-error");
 const { asyncHandler } = require("../lib/async-handler");
@@ -72,7 +71,6 @@ function createCurrentDatasetRouter(adapter) {
       const result = await readCurrentDatasetFromMongo({
         model: adapter.Model,
         domain: adapter.domain,
-        isConnected: mongoose.connection.readyState === 1,
       });
       if (!result.ok) return response.status(result.status).json(result.body);
       const summary = adapter.summarize(result.data);

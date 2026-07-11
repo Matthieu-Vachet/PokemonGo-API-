@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.1 - 2026-07-11
+
+- Supprime le controle instantane de `mongoose.connection.readyState` qui provoquait un faux `503` au premier GET d'une fonction Vercel froide.
+- Laisse la requete MongoDB courante confirmer la connexion et transforme uniquement une vraie erreur de lecture en `MONGODB_UNAVAILABLE`.
+- Ajoute les tests de non-regression pour le cold start et l'indisponibilite MongoDB explicite.
+
 ## 1.5.0 - 2026-07-11
 
 - Fait de MongoDB l'unique source de verite runtime pour raids, oeufs, Max Battles, Research et Rocket, sans fallback JSON silencieux.

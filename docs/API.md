@@ -28,18 +28,17 @@ Chaque document MongoDB conserve :
 
 - les champs normalises et indexes necessaires aux recherches rapides ;
 - le JSON complet dans `data` ;
-- son hash et ses fichiers sources ;
+- son hash et ses metadonnees de provenance ;
 - des metadonnees de synchronisation.
 
 Depuis la refonte du modele Pokemon, MongoDB separe les donnees en deux collections :
 
 - `pokemons` contient le gameplay, les stats, les attaques, le PvP, les disponibilites, les images principales, les bonbons et `data.assets.assetsRef`.
 - `pokemonAssets` contient les assets lourds : Home, portraits, portraits shiny, location cards, Shuffle et variantes visuelles.
-- `raids` contient le document courant `current` importe depuis `PokemonGo-Data/raids/currentRaids.json`.
-- `eggs` contient le document courant `current` importe depuis `PokemonGo-Data/eggs/currentEggs.json`.
-- `maxbattles` contient le document courant `current` importe depuis `PokemonGo-Data/max-battles/currentsMaxBattle.json`.
-- `rockets` contient le document courant `current` importe depuis `PokemonGo-Data/rocket/currentRocket.json`.
-- `researches` contient le document courant `current` importe depuis `PokemonGo-Data/research/currentResearch.json`.
+- `raids`, `eggs`, `maxbattles`, `rockets` et `researches` contiennent chacun le
+  document `{ key: "current" }` produit par le pipeline de regeneration externe.
+  MongoDB est leur unique source de lecture ; les JSON locaux ne sont que des
+  references, fixtures ou exports explicites.
 - `items` contient les objets canoniques de `PokemonGo-Data/items/items.json`, un document par objet.
 - `rocket_texts` contient les phrases Team GO Rocket de `PokemonGo-Data/rocket/rocketTexts.json`, un document par texte.
 
@@ -74,12 +73,16 @@ Valider toutes les sources sans MongoDB et sans ecriture :
 npm run sync:dry
 ```
 
-Synchroniser MongoDB, supprimer les documents devenus obsoletes, reconstruire les
-indexes et regenerer les statistiques globales :
+Synchroniser uniquement les référentiels statiques MongoDB, supprimer leurs documents
+devenus obsolètes, reconstruire leurs index et régénérer les statistiques globales :
 
 ```bash
 npm run sync
 ```
+
+Cette commande traite uniquement les referentiels statiques. Elle exclut
+`raids`, `eggs`, `maxbattles`, `rockets` et `researches`, dont les documents
+`current` sont ecrits par les pipelines de regeneration dedies.
 
 Surveiller les nouveaux fichiers et les modifications :
 
@@ -146,19 +149,29 @@ curl -X POST "https://domain.com/api/v1/pokemon" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
 
 curl -X POST "https://domain.com/api/v1/admin/raids/import" \
-  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+  -H "x-api-admin-secret: $API_ADMIN_SECRET" \
+  -H "Content-Type: application/json" \
+  --data-binary @/chemin/raids-maintenance.json
 
 curl -X POST "https://domain.com/api/v1/admin/eggs/import" \
-  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+  -H "x-api-admin-secret: $API_ADMIN_SECRET" \
+  -H "Content-Type: application/json" \
+  --data-binary @/chemin/eggs-maintenance.json
 
 curl -X POST "https://domain.com/api/v1/admin/max-battles/import" \
-  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+  -H "x-api-admin-secret: $API_ADMIN_SECRET" \
+  -H "Content-Type: application/json" \
+  --data-binary @/chemin/max-battles-maintenance.json
 
 curl -X POST "https://domain.com/api/v1/admin/rocket/import" \
-  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+  -H "x-api-admin-secret: $API_ADMIN_SECRET" \
+  -H "Content-Type: application/json" \
+  --data-binary @/chemin/rocket-maintenance.json
 
 curl -X POST "https://domain.com/api/v1/admin/research/import" \
-  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+  -H "x-api-admin-secret: $API_ADMIN_SECRET" \
+  -H "Content-Type: application/json" \
+  --data-binary @/chemin/research-maintenance.json
 
 curl "https://domain.com/api/checklist-v3?action=history" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
@@ -201,15 +214,23 @@ INTERNAL :
 
 Contrat des wrappers courants :
 
-- Les routes `POST /api/v1/admin/*/regenerate` executent le wrapper live associe
-  avant upsert MongoDB et ne se contentent pas de relire le fichier JSON courant.
-- Une regeneration vide retourne une erreur `502` avec `No data parsed from source`.
-- Les routes `POST /api/v1/admin/*/import` utilisent le payload JSON fourni,
-  sinon le fichier source versionne. Elles ne reutilisent pas un ancien document
-  MongoDB comme source de secours.
-- Les reponses d'import/regeneration exposent `success`, `source`, `sourceUrl`,
-  `itemsParsed`, `itemsMatched`, `itemsUnmatched`, `jsonPath`, `mongoUpdated`,
-  `updatedAt`, `summary` et `report`.
+- Les `GET` de raids, oeufs, Max Battles, Rocket et Research lisent strictement
+  MongoDB avec `{ key: "current" }`. Aucun parametre ne permet de basculer vers un
+  fichier local.
+- Chaque `GET` expose `data`, `meta` et `current`. `meta` porte notamment la source
+  MongoDB, le domaine, le fournisseur, le mode, les dates, le compteur, le hash,
+  le statut, les diagnostics et le resume du domaine. `current` est la forme
+  serialisee du document MongoDB persiste.
+- Les routes `POST /api/v1/admin/*/regenerate` executent le pipeline source externe,
+  parsing, enrichissement, validation, hash canonique, diff, `upsert`, invalidation
+  du cache, relecture et verification MongoDB.
+- Une regeneration vide ou invalide retourne une erreur et n'ecrit aucun faux succes.
+- Les routes `POST /api/v1/admin/*/import` sont des operations de maintenance
+  protegees. Elles exigent un payload JSON explicite contenant la racine du domaine ;
+  l'absence de body retourne `400 CURRENT_IMPORT_PAYLOAD_REQUIRED` sans lecture locale.
+- Les reponses d'import/regeneration exposent notamment `success`, `current`,
+  `source`, `sourceUrl`, `itemsParsed`, `itemsMatched`, `itemsUnmatched`,
+  `mongoUpdated`, `changed`, `diff`, le resume du domaine et `report`.
 
 ## Routes Principales
 
@@ -247,11 +268,16 @@ Contrat des wrappers courants :
 
 ## Raids Courants
 
-`GET /api/v1/raids` expose les boss actifs depuis
-`PokemonGo-Data/raids/currentRaids.json`. Le fichier est genere dans le depot data
-depuis `https://leekduck.com/raid-bosses/`, puis enrichi avec les JSON locaux.
+`GET /api/v1/raids` expose les boss actifs depuis le document MongoDB
+`{ key: "current" }` de la collection `raids`. La seule source externe autorisee
+pendant la regeneration est `https://leekduck.com/raid-bosses/`.
 
-Structure :
+Le mode normal ou evenement est detecte dans le contenu de cette page, notamment
+ses sections et marqueurs comme `SELECTED EVENT`. Le pipeline ne consulte jamais
+`/gofest/raids/` et ne force aucune activation, date, liste de Pokemon ou nombre
+d'entrees. Les categories publiees par la page sont conservees dynamiquement.
+
+Exemple de `data` non exhaustif (les buckets suivent la source) :
 
 ```json
 {
@@ -277,20 +303,22 @@ Routes admin protegees :
 
 ```bash
 curl -X POST "https://domain.com/api/v1/admin/raids/import" \
-  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+  -H "x-api-admin-secret: $API_ADMIN_SECRET" \
+  -H "Content-Type: application/json" \
+  --data-binary @/chemin/raids-maintenance.json
 
 curl -X POST "https://domain.com/api/v1/admin/raids/regenerate" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
 ```
 
-Ces routes importent le JSON courant dans MongoDB. La route publique lit le fichier
-source par defaut et accepte `?source=mongo` si l'import a ete execute.
+`regenerate` execute le pipeline complet et `import` exige un payload dont la racine
+est `currentList`. La route publique relit uniquement MongoDB, sans fallback fichier.
 
 ## Oeufs Courants
 
-`GET /api/v1/eggs` expose les eclosions actives depuis
-`PokemonGo-Data/eggs/currentEggs.json`. Le fichier est genere dans le depot data
-depuis `https://leekduck.com/eggs/`, puis enrichi avec les JSON locaux.
+`GET /api/v1/eggs` expose les eclosions actives depuis le document MongoDB
+`{ key: "current" }` de la collection `eggs`. La regeneration utilise
+`https://leekduck.com/eggs/`, puis enrichit les entrees avec les catalogues locaux.
 
 Structure :
 
@@ -314,18 +342,23 @@ Routes admin protegees :
 
 ```bash
 curl -X POST "https://domain.com/api/v1/admin/eggs/import" \
-  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+  -H "x-api-admin-secret: $API_ADMIN_SECRET" \
+  -H "Content-Type: application/json" \
+  --data-binary @/chemin/eggs-maintenance.json
 
 curl -X POST "https://domain.com/api/v1/admin/eggs/regenerate" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
 ```
 
+`import` exige un payload dont la racine est `currentEggsList`. Le `GET` relit
+uniquement MongoDB, sans fallback fichier.
+
 ## Max Battles Courantes
 
-`GET /api/v1/max-battles` expose les boss Max Battle actifs depuis
-`PokemonGo-Data/max-battles/currentsMaxBattle.json`. Le fichier est genere dans
-le depot data depuis `https://www.snacknap.com/max-battles`, puis enrichi avec
-les formes locales, notamment Dynamax et Gigantamax.
+`GET /api/v1/max-battles` expose les boss actifs depuis le document MongoDB
+`{ key: "current" }` de la collection `maxbattles`. La regeneration utilise
+`https://www.snacknap.com/max-battles`, puis enrichit les entrees avec les formes
+locales, notamment Dynamax et Gigantamax.
 
 Structure :
 
@@ -343,17 +376,22 @@ Routes admin protegees :
 
 ```bash
 curl -X POST "https://domain.com/api/v1/admin/max-battles/import" \
-  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+  -H "x-api-admin-secret: $API_ADMIN_SECRET" \
+  -H "Content-Type: application/json" \
+  --data-binary @/chemin/max-battles-maintenance.json
 
 curl -X POST "https://domain.com/api/v1/admin/max-battles/regenerate" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
 ```
 
+`import` exige un payload dont la racine est `currentMaxBattle`. Le `GET` relit
+uniquement MongoDB, sans fallback fichier.
+
 ## Team GO Rocket Courant
 
-`GET /api/v1/rocket` expose les lineups Team GO Rocket actifs depuis
-`PokemonGo-Data/rocket/currentRocket.json`. Le fichier est genere dans le depot
-data depuis `https://leekduck.com/rocket-lineups/`, puis enrichi avec les fiches
+`GET /api/v1/rocket` expose les lineups actifs depuis le document MongoDB
+`{ key: "current" }` de la collection `rockets`. La regeneration utilise
+`https://leekduck.com/rocket-lineups/`, puis enrichit les entrees avec les fiches
 Pokemon locales.
 
 Structure :
@@ -376,19 +414,24 @@ Routes admin protegees :
 
 ```bash
 curl -X POST "https://domain.com/api/v1/admin/rocket/import" \
-  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+  -H "x-api-admin-secret: $API_ADMIN_SECRET" \
+  -H "Content-Type: application/json" \
+  --data-binary @/chemin/rocket-maintenance.json
 
 curl -X POST "https://domain.com/api/v1/admin/rocket/regenerate" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
 ```
 
+`import` exige un payload dont la racine est `currentRocketList`. Le `GET` relit
+uniquement MongoDB, sans fallback fichier.
+
 ## Research Courant
 
-`GET /api/v1/research` expose les quetes Research actives depuis
-`PokemonGo-Data/research/currentResearch.json`. Le fichier est genere dans le depot
-data depuis `https://leekduck.com/research/`, puis les recompenses Pokemon sont
-enrichies avec les JSON locaux. Les rewards item conservent `asset: null` quand
-aucun asset local fiable n'est disponible.
+`GET /api/v1/research` expose les quetes actives depuis le document MongoDB
+`{ key: "current" }` de la collection `researches`. La regeneration utilise
+`https://leekduck.com/research/`, puis enrichit les recompenses Pokemon avec les
+catalogues locaux. Les rewards item conservent `asset: null` quand aucun asset local
+fiable n'est disponible.
 
 Structure :
 
@@ -407,11 +450,16 @@ Routes admin protegees :
 
 ```bash
 curl -X POST "https://domain.com/api/v1/admin/research/import" \
-  -H "x-api-admin-secret: $API_ADMIN_SECRET"
+  -H "x-api-admin-secret: $API_ADMIN_SECRET" \
+  -H "Content-Type: application/json" \
+  --data-binary @/chemin/research-maintenance.json
 
 curl -X POST "https://domain.com/api/v1/admin/research/regenerate" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
 ```
+
+`import` exige un payload dont la racine est `currentResearchList`. Le `GET` relit
+uniquement MongoDB, sans fallback fichier.
 
 ## Items
 

@@ -94,11 +94,20 @@ async function generateCurrentData(options) {
 }
 
 function bucketStats(report = {}, buckets = {}) {
-  const itemsParsed = Number(report.fetched || countBuckets(buckets));
-  const itemsUnmatched = countArray(report.unmatched);
+  const itemsParsed = Number(
+    report.totalParsed ?? report.parsedCount ?? report.fetched ?? countBuckets(buckets),
+  );
+  const itemsUnmatched = Number(
+    report.totalUnmatched ?? report.unmatchedCount ?? countArray(report.unmatched),
+  );
   return {
     itemsParsed,
-    itemsMatched: Number(report.matched ?? Math.max(itemsParsed - itemsUnmatched, 0)),
+    itemsMatched: Number(
+      report.totalMatched
+      ?? report.matchedCount
+      ?? report.matched
+      ?? Math.max(itemsParsed - itemsUnmatched, 0),
+    ),
     itemsUnmatched,
   };
 }

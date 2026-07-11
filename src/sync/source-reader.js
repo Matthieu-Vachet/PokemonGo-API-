@@ -469,81 +469,6 @@ function collectRegionDocuments(generations) {
   return [...regions.values()];
 }
 
-function collectRaidDocuments() {
-  const file = dataPath("raids", "currentRaids.json");
-  if (!fs.existsSync(file)) return [];
-  const data = readJson(file);
-  return [
-    {
-      key: "current",
-      sourceFile: relative(file),
-      sourceHash: hash(data),
-      generatedAt: new Date(),
-      data,
-    },
-  ];
-}
-
-function collectEggDocuments() {
-  const file = dataPath("eggs", "currentEggs.json");
-  if (!fs.existsSync(file)) return [];
-  const data = readJson(file);
-  return [
-    {
-      key: "current",
-      sourceFile: relative(file),
-      sourceHash: hash(data),
-      generatedAt: new Date(),
-      data,
-    },
-  ];
-}
-
-function collectMaxBattleDocuments() {
-  const file = dataPath("max-battles", "currentsMaxBattle.json");
-  if (!fs.existsSync(file)) return [];
-  const data = readJson(file);
-  return [
-    {
-      key: "current",
-      sourceFile: relative(file),
-      sourceHash: hash(data),
-      generatedAt: new Date(),
-      data,
-    },
-  ];
-}
-
-function collectRocketDocuments() {
-  const file = dataPath("rocket", "currentRocket.json");
-  if (!fs.existsSync(file)) return [];
-  const data = readJson(file);
-  return [
-    {
-      key: "current",
-      sourceFile: relative(file),
-      sourceHash: hash(data),
-      generatedAt: new Date(),
-      data,
-    },
-  ];
-}
-
-function collectResearchDocuments() {
-  const file = dataPath("research", "currentResearch.json");
-  if (!fs.existsSync(file)) return [];
-  const data = readJson(file);
-  return [
-    {
-      key: "current",
-      sourceFile: relative(file),
-      sourceHash: hash(data),
-      generatedAt: new Date(),
-      data,
-    },
-  ];
-}
-
 function collectItemDocuments() {
   const file = dataPath("items", "items.json");
   if (!fs.existsSync(file)) return [];
@@ -596,11 +521,6 @@ function collectAllDocuments() {
     weather: collectWeatherDocuments(),
     generations,
     regions: collectRegionDocuments(generations),
-    raids: collectRaidDocuments(),
-    eggs: collectEggDocuments(),
-    maxBattles: collectMaxBattleDocuments(),
-    rocket: collectRocketDocuments(),
-    research: collectResearchDocuments(),
     items: collectItemDocuments(),
     rocketTexts: collectRocketTextDocuments(),
   };
@@ -608,13 +528,8 @@ function collectAllDocuments() {
 
 module.exports = {
   collectAllDocuments,
-  collectEggDocuments,
   collectItemDocuments,
-  collectMaxBattleDocuments,
   collectPokemonAssetDocuments,
-  collectRaidDocuments,
-  collectResearchDocuments,
-  collectRocketDocuments,
   collectRocketTextDocuments,
   collectWeatherDocuments,
   hash,

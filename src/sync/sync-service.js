@@ -1,16 +1,11 @@
 const {
-  Egg,
   Generation,
   GlobalStat,
   Item,
-  MaxBattle,
   Move,
   Pokemon,
   PokemonAsset,
-  Raid,
-  Research,
   Region,
-  Rocket,
   RocketText,
   SyncRun,
   Type,
@@ -19,6 +14,33 @@ const {
 const { env } = require("../config/env");
 const { clearCache } = require("../lib/cache");
 const { collectAllDocuments } = require("./source-reader");
+
+// Ces collections contiennent des datasets "current" générés depuis les sources
+// externes. Elles sont volontairement exclues du sync JSON global afin qu'un ancien
+// snapshot de PokemonGo-Data ne puisse jamais écraser une régénération MongoDB.
+const EXCLUDED_CURRENT_DATASET_COLLECTIONS = Object.freeze([
+  "raids",
+  "eggs",
+  "maxbattles",
+  "researches",
+  "rockets",
+]);
+
+const STATIC_SYNC_TARGETS = Object.freeze([
+  { key: "pokemon", Model: Pokemon, uniqueField: "key" },
+  { key: "pokemonAssets", Model: PokemonAsset, uniqueField: "formId" },
+  { key: "items", Model: Item, uniqueField: "id" },
+  { key: "rocketTexts", Model: RocketText, uniqueField: "id" },
+  { key: "moves", Model: Move, uniqueField: "id" },
+  { key: "types", Model: Type, uniqueField: "id" },
+  { key: "weather", Model: Weather, uniqueField: "id" },
+  { key: "regions", Model: Region, uniqueField: "id" },
+  { key: "generations", Model: Generation, uniqueField: "id" },
+]);
+
+const STATIC_SYNC_COLLECTIONS = Object.freeze(
+  STATIC_SYNC_TARGETS.map(({ Model }) => Model.collection.name),
+);
 
 const pokemonHeavyAssetPaths = {
   "data.assetForms": "",
@@ -127,11 +149,6 @@ function buildGlobalStats(data) {
     totals: {
       pokemon: data.pokemon.length,
       pokemonAssets: data.pokemonAssets.length,
-      raids: data.raids.length,
-      eggs: data.eggs.length,
-      maxBattles: data.maxBattles.length,
-      rocket: data.rocket.length,
-      research: data.research.length,
       items: data.items.length,
       rocketTexts: data.rocketTexts.length,
       moves: data.moves.length,
@@ -146,25 +163,16 @@ function buildGlobalStats(data) {
     pokemonByType: countBy(data.pokemon, (item) => item.types),
     movesByKind: countBy(data.moves, (item) => item.kind),
     movesByType: countBy(data.moves, (item) => item.type),
+    syncPolicy: {
+      scope: "static-references-only",
+      excludedCurrentDatasetCollections: EXCLUDED_CURRENT_DATASET_COLLECTIONS,
+    },
   };
 }
 
 async function rebuildIndexes() {
   await Promise.all([
-    Pokemon.syncIndexes(),
-    PokemonAsset.syncIndexes(),
-    Raid.syncIndexes(),
-    Egg.syncIndexes(),
-    MaxBattle.syncIndexes(),
-    Rocket.syncIndexes(),
-    Research.syncIndexes(),
-    Item.syncIndexes(),
-    RocketText.syncIndexes(),
-    Move.syncIndexes(),
-    Type.syncIndexes(),
-    Weather.syncIndexes(),
-    Region.syncIndexes(),
-    Generation.syncIndexes(),
+    ...STATIC_SYNC_TARGETS.map(({ Model }) => Model.syncIndexes()),
     GlobalStat.syncIndexes(),
     SyncRun.syncIndexes(),
   ]);
@@ -180,24 +188,14 @@ async function syncAll({ dryRun = false } = {}) {
   try {
     // Remove obsolete constraints before writing, for example when the data model evolves.
     await rebuildIndexes();
-    const [pokemon, pokemonAssets, raids, eggs, maxBattles, rocket, research, items, rocketTexts, moves, types, weather, regions, generations] = await Promise.all([
-      writeCollection(Pokemon, data.pokemon, "key"),
-      writeCollection(PokemonAsset, data.pokemonAssets, "formId"),
-      writeCollection(Raid, data.raids, "key"),
-      writeCollection(Egg, data.eggs, "key"),
-      writeCollection(MaxBattle, data.maxBattles, "key"),
-      writeCollection(Rocket, data.rocket, "key"),
-      writeCollection(Research, data.research, "key"),
-      writeCollection(Item, data.items, "id"),
-      writeCollection(RocketText, data.rocketTexts, "id"),
-      writeCollection(Move, data.moves, "id"),
-      writeCollection(Type, data.types, "id"),
-      writeCollection(Weather, data.weather, "id"),
-      writeCollection(Region, data.regions, "id"),
-      writeCollection(Generation, data.generations, "id"),
-    ]);
+    const staticResults = await Promise.all(
+      STATIC_SYNC_TARGETS.map(async ({ key, Model, uniqueField }) => [
+        key,
+        await writeCollection(Model, data[key], uniqueField),
+      ]),
+    );
     await cleanupPokemonHeavyAssets();
-    const changes = { pokemon, pokemonAssets, raids, eggs, maxBattles, rocket, research, items, rocketTexts, moves, types, weather, regions, generations };
+    const changes = Object.fromEntries(staticResults);
     await GlobalStat.findOneAndUpdate(
       { key: "global" },
       { $set: { data: stats, generatedAt: new Date() } },
@@ -229,4 +227,10 @@ async function syncAll({ dryRun = false } = {}) {
   }
 }
 
-module.exports = { buildGlobalStats, rebuildIndexes, syncAll };
+module.exports = {
+  EXCLUDED_CURRENT_DATASET_COLLECTIONS,
+  STATIC_SYNC_COLLECTIONS,
+  buildGlobalStats,
+  rebuildIndexes,
+  syncAll,
+};

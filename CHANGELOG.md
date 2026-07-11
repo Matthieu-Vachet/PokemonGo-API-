@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.0 - 2026-07-11
+
+- Fait de MongoDB l'unique source de verite runtime pour raids, oeufs, Max Battles, Research et Rocket, sans fallback JSON silencieux.
+- Ajoute un pipeline commun fetch, validation, hash canonique, diff metier, upsert, invalidation du cache et readback verifie.
+- Uniformise les cinq documents `current`, exclut definitivement leurs collections de `npm run sync` et conserve les imports uniquement en maintenance avec payload explicite.
+- Retourne le document MongoDB serialise avec les diagnostics, bypass le cache des GET dynamiques et ajoute 58 tests automatises.
+
 ## 1.4.3 - 2026-07-10
 
 - Corrige les imports administrateur Raids, Oeufs, Max Battles, Rocket et Research : sans payload explicite, ils relisent maintenant le JSON versionne au lieu de reimporter un ancien document MongoDB.

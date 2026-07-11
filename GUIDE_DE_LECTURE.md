@@ -22,8 +22,14 @@ La commande principale est:
 npm run sync
 ```
 
-Elle lit `PokemonGo-Data`, transforme les fichiers JSON, ecrit les collections MongoDB et
-reconstruit les index.
+Elle lit les référentiels statiques de `PokemonGo-Data`, transforme les fichiers JSON,
+écrit leurs collections MongoDB et reconstruit leurs index. Les collections dynamiques
+`raids`, `eggs`, `maxbattles`, `researches` et `rockets` sont exclues : leurs documents
+`{ key: "current" }` sont gérés uniquement par le pipeline commun de régénération.
+
+Les fichiers `current*.json` conservés dans `PokemonGo-Data` servent uniquement de
+références, de fixtures de test ou d'exports. Ils ne sont jamais importés par
+`npm run sync` et ne sont pas des fallbacks de production.
 
 Le workflow GitHub est:
 
@@ -38,12 +44,39 @@ Il se lance dans trois cas:
 Donc, apres un push dans `PokemonGo-Data`, la synchronisation est automatique seulement si
 le depot data envoie bien un `repository_dispatch` vers `PokemonGo-API-` avec un token GitHub.
 
+## Datasets dynamiques `current`
+
+Pour raids, œufs, Max Battles, Research et Rocket, le contrat est le suivant :
+
+- MongoDB est l'unique source lue par le Dashboard ;
+- `Actualiser` relit MongoDB sans fallback local ;
+- `Régénérer` exécute le flux source externe, parsing, enrichissement,
+  validation, hash canonique, diff, `upsert`, invalidation du cache, puis relecture
+  et vérification MongoDB ;
+- le téléchargement exporte le document courant relu depuis MongoDB avec ses
+  métadonnées, pas un JSON déployé ;
+- `/import` est réservé à la maintenance protégée et exige toujours un payload
+  explicite ; l'absence de payload est une erreur, jamais une demande de lecture locale.
+
+Toutes les écritures passent par le même pipeline afin que le hash, la diff, les
+diagnostics et la relecture MongoDB aient la même sémantique pour les cinq domaines.
+
+### Source des raids
+
+Les raids ont exactement une source : `https://leekduck.com/raid-bosses/`.
+Le mode événement est déduit du contenu de cette page, notamment des sections ou
+marqueurs comme `SELECTED EVENT`. Il n'existe aucun appel vers `/gofest/raids/` et
+aucune date, activation, liste de Pokémon ou taille attendue codée en dur pour
+simuler un événement.
+
 ## Collections MongoDB principales
 
 - `pokemons`: gameplay, stats, moves, PVP, images principales et `assetsRef`.
 - `pokemonAssets`: assets lourds separes.
 - `moves`, `types`, `weather`, `generations`: catalogues utilises par l'API.
 - `syncRuns`: historique des synchronisations.
+- `raids`, `eggs`, `maxbattles`, `researches`, `rockets`: un document dynamique
+  courant par collection, identifié par `{ key: "current" }`.
 
 ## Bibliotheque API publique
 

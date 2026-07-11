@@ -9,6 +9,10 @@ const { buildPokemonFilter } = require("../src/services/pokemon-service");
 const { presentPokemon } = require("../src/services/pokemon-presenter");
 const { collectAllDocuments } = require("../src/sync/source-reader");
 const {
+  EXCLUDED_CURRENT_DATASET_COLLECTIONS,
+  STATIC_SYNC_COLLECTIONS,
+} = require("../src/sync/sync-service");
+const {
   buildSuggestedPatch,
   buildChecklist,
   detailForKey,
@@ -83,39 +87,23 @@ test("GET /api/v1/stickers expose le catalogue des stickers", async () => {
   assert.equal(detail.body.data.filename, "sticker_2023collab_1.png");
 });
 
-test("GET /api/v1/raids expose les raids courants", async () => {
-  const response = await request(app).get("/api/v1/raids").expect(200);
-  assert.ok(response.body.data.currentList);
-  assert.ok(Array.isArray(response.body.data.currentList.mega));
-  assert.ok(response.body.meta.buckets);
-});
-
-test("GET /api/v1/eggs expose les oeufs courants", async () => {
-  const response = await request(app).get("/api/v1/eggs").expect(200);
-  assert.ok(response.body.data.currentEggsList);
-  assert.ok(Array.isArray(response.body.data.currentEggsList["1km"]));
-  assert.ok(response.body.meta.buckets);
-});
-
-test("GET /api/v1/max-battles expose les Max Battles courantes", async () => {
-  const response = await request(app).get("/api/v1/max-battles").expect(200);
-  assert.ok(response.body.data.currentMaxBattle);
-  assert.ok(Array.isArray(response.body.data.currentMaxBattle.Tier1));
-  assert.ok(response.body.meta.buckets);
-});
-
-test("GET /api/v1/rocket expose les lineups Team GO Rocket courants", async () => {
-  const response = await request(app).get("/api/v1/rocket").expect(200);
-  assert.ok(response.body.data.currentRocketList);
-  assert.ok(Array.isArray(response.body.data.currentRocketList.giovanni));
-  assert.ok(response.body.meta.summary.trainers > 0);
-});
-
-test("GET /api/v1/research expose les quetes Research courantes", async () => {
-  const response = await request(app).get("/api/v1/research").expect(200);
-  assert.ok(response.body.data.currentResearchList);
-  assert.ok(Array.isArray(response.body.data.currentResearchList.fieldResearch));
-  assert.ok(response.body.meta.summary.tasks > 0);
+test("les GET current refusent tout fallback JSON quand MongoDB est indisponible", async () => {
+  for (const [path, domain] of [
+    ["/api/v1/raids", "raids"],
+    ["/api/v1/eggs", "eggs"],
+    ["/api/v1/max-battles", "max-battles"],
+    ["/api/v1/rocket", "rocket"],
+    ["/api/v1/research", "research"],
+  ]) {
+    const response = await request(app).get(`${path}?source=file`).expect(503);
+    assert.deepEqual(response.body, {
+      success: false,
+      source: "mongodb",
+      error: "MONGODB_UNAVAILABLE",
+      message: `MongoDB n'est pas disponible pour le domaine ${domain}.`,
+      domain,
+    });
+  }
 });
 
 test("GET /api-docs fournit la documentation Redoc", async () => {
@@ -179,11 +167,6 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   assert.ok(data.moves.length >= 250);
   assert.equal(data.types.length, 18);
   assert.equal(data.weather.length, 7);
-  assert.equal(data.raids.length, 1);
-  assert.equal(data.eggs.length, 1);
-  assert.equal(data.maxBattles.length, 1);
-  assert.equal(data.rocket.length, 1);
-  assert.equal(data.research.length, 1);
   assert.equal(data.regions.length, 10);
   assert.equal(new Set(data.pokemon.map((pokemon) => pokemon.key)).size, data.pokemon.length);
   assert.ok(data.pokemon.every((pokemon) => Array.isArray(pokemon.data.quickMoves)));
@@ -228,6 +211,25 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   const rookidee = data.pokemon.find((pokemon) => pokemon.key === "ROOKIDEE");
   assert.equal(rookidee.data.availability.shadow, false);
   assert.equal(rookidee.data.shadow, null);
+});
+
+test("le sync JSON global exclut tous les datasets current dynamiques", () => {
+  const data = collectAllDocuments();
+  const dynamicDocumentKeys = ["raids", "eggs", "maxBattles", "research", "rocket"];
+
+  assert.deepEqual(EXCLUDED_CURRENT_DATASET_COLLECTIONS, [
+    "raids",
+    "eggs",
+    "maxbattles",
+    "researches",
+    "rockets",
+  ]);
+  assert.ok(dynamicDocumentKeys.every((key) => !Object.hasOwn(data, key)));
+  assert.ok(
+    EXCLUDED_CURRENT_DATASET_COLLECTIONS.every(
+      (collection) => !STATIC_SYNC_COLLECTIONS.includes(collection),
+    ),
+  );
 });
 
 test("les types, PvP null et formes Max sont normalisés", () => {

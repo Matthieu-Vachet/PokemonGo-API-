@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.1 - 2026-07-11
+
+- Reinitialise la promesse de connexion MongoDB lorsqu'une connexion serverless inactive est fermee, afin que `/health` et la requete suivante reconnectent Atlas correctement.
+
 ## 1.6.0 - 2026-07-11
 
 - Expose les metadonnees de selection dynamique des raids : fuseau, rotation reguliere, rotation Shadow et detection du shell LeekDuck.

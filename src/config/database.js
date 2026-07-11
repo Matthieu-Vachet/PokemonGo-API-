@@ -10,6 +10,9 @@ async function connectDatabase() {
     throw new Error("MONGODB_URI est requis pour démarrer l'API.");
   }
   if (mongoose.connection.readyState === 1) return mongoose.connection;
+  if (mongoose.connection.readyState === 0 && connectionPromise) {
+    connectionPromise = null;
+  }
   if (!connectionPromise) {
     connectionPromise = mongoose
       .connect(env.mongoUri, {
@@ -26,6 +29,10 @@ async function connectDatabase() {
   await connectionPromise;
   return mongoose.connection;
 }
+
+mongoose.connection.on("disconnected", () => {
+  connectionPromise = null;
+});
 
 async function disconnectDatabase() {
   if (mongoose.connection.readyState !== 0) await mongoose.disconnect();

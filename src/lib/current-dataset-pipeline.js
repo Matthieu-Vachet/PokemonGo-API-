@@ -38,6 +38,9 @@ function sourceMetadata(adapter, report = {}, now = new Date()) {
     mode: report.sourceMode || report.mode || (event ? "event" : "regular"),
     fetchedAt: new Date(report.fetchedAt || report.updatedAt || now),
     event,
+    timezone: report.timezone || event?.timezone || null,
+    selection: report.selectedRaids || report.selection || null,
+    dynamicShellDetected: Boolean(report.dynamicShellDetected),
   };
 }
 
@@ -48,6 +51,9 @@ function manualSourceMetadata(now = new Date()) {
     mode: "maintenance",
     fetchedAt: now,
     event: null,
+    timezone: null,
+    selection: null,
+    dynamicShellDetected: false,
   };
 }
 
@@ -70,6 +76,19 @@ function buildDiagnostics({ report = {}, stats, diff }) {
     matchedCount: Number(stats.itemsMatched || 0),
     unmatchedCount: Number(stats.itemsUnmatched || 0),
     warnings: [...new Set(warnings)],
+    details: {
+      timezone: report.timezone || report.event?.timezone || null,
+      dynamicShellDetected: Boolean(report.dynamicShellDetected),
+      selectedRaids: report.selectedRaids || null,
+      buckets: report.buckets || report.sections || report.groups || null,
+      categories: report.categoriesFound || report.categoryTitles || null,
+      rotations: report.rotations || null,
+      internalResources: report.internalResources || null,
+      eventTasks: report.eventTasks ?? null,
+      pokemonRewards: report.pokemonRewards ?? null,
+      itemRewards: report.itemRewards ?? null,
+      sourceAssets: report.sourceAssets ?? null,
+    },
     diff,
   };
 }

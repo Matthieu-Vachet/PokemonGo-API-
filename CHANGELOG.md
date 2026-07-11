@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.0 - 2026-07-11
+
+- Expose les metadonnees de selection dynamique des raids : fuseau, rotation reguliere, rotation Shadow et detection du shell LeekDuck.
+- Enrichit les diagnostics MongoDB avec les buckets, categories, rotations, ressources internes et couverture des assets sources.
+- Rend les details complets de provenance disponibles aux cinq panneaux du Dashboard sans reintroduire de fallback local.
+
 ## 1.5.1 - 2026-07-11
 
 - Supprime le controle instantane de `mongoose.connection.readyState` qui provoquait un faux `503` au premier GET d'une fonction Vercel froide.

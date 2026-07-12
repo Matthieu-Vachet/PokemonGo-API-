@@ -161,6 +161,18 @@ async function persistCurrentDataset({ adapter, data, report = {}, summary, stat
     { upsert: true, runValidators: true, setDefaultsOnInsert: true },
   ));
 
+  if (adapter.SnapshotModel) {
+    await adapter.SnapshotModel.create({
+      domain: adapter.domain,
+      snapshotAt: generatedAt,
+      sourceHash: diff.newHash,
+      count,
+      source: document.source,
+      diagnostics: document.diagnostics,
+      data,
+    });
+  }
+
   invalidateDatasetCache(adapter.domain);
   const readback = await readStoredDocument(adapter);
   verifyReadback(adapter, readback, { count, sourceHash: diff.newHash });

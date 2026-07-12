@@ -71,20 +71,48 @@ function createCurrentDatasetRouter(adapter) {
 
   router.get(
     "/",
-    asyncHandler(async (_request, response) => {
+    asyncHandler(async (request, response) => {
       const result = await readCurrentDatasetFromMongo({
         model: adapter.Model,
         domain: adapter.domain,
       });
       if (!result.ok) return response.status(result.status).json(result.body);
       const summary = adapter.summarize(result.data);
+      const presented = typeof adapter.present === "function"
+        ? adapter.present(result.data, request.query)
+        : { data: result.data, meta: {} };
+      const current = serializeCurrentDatasetDocument(result.document);
+      if (adapter.compactCurrent) delete current.data;
       return response.json({
-        data: result.data,
-        meta: currentMeta(adapter, result.document, summary),
-        current: serializeCurrentDatasetDocument(result.document),
+        data: presented.data,
+        meta: { ...currentMeta(adapter, result.document, summary), ...(presented.meta || {}) },
+        current,
       });
     }),
   );
+
+  if (adapter.SnapshotModel && typeof adapter.historyPoints === "function") {
+    router.get(
+      "/:identity/history",
+      asyncHandler(async (request, response) => {
+        const days = Math.min(365, Math.max(1, Number.parseInt(request.query.days, 10) || 30));
+        const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+        const snapshots = await adapter.SnapshotModel.find({ snapshotAt: { $gte: since } })
+          .sort({ snapshotAt: 1 })
+          .lean();
+        const points = snapshots
+          .map((snapshot) => adapter.historyPoints(snapshot, request.params.identity, request.query))
+          .filter(Boolean);
+        const statistics = typeof adapter.historySummary === "function"
+          ? adapter.historySummary(points)
+          : null;
+        return response.json({
+          data: points,
+          meta: { domain: adapter.domain, identity: request.params.identity, days, total: points.length, statistics },
+        });
+      }),
+    );
+  }
 
   router.post(
     "/import",

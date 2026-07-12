@@ -1,4 +1,13 @@
-const { Egg, MaxBattle, Raid, Research, Rocket } = require("../models");
+const {
+  Egg,
+  MaxBattle,
+  PvpRanking,
+  Raid,
+  Research,
+  Rocket,
+  ShinyRanking,
+  ShinySnapshot,
+} = require("../models");
 const { ApiError } = require("../lib/api-error");
 const { bucketStats } = require("../lib/current-data-pipeline");
 
@@ -42,6 +51,190 @@ function bucketSummary(data, key) {
 
 function countSummary(summary) {
   return Object.values(summary || {}).reduce((sum, count) => sum + Number(count || 0), 0);
+}
+
+function pageValues(valuesToPage, query = {}) {
+  const page = Math.max(1, Number.parseInt(query.page, 10) || 1);
+  const limit = Math.min(100, Math.max(1, Number.parseInt(query.limit, 10) || 25));
+  const total = valuesToPage.length;
+  const start = (page - 1) * limit;
+  return {
+    items: valuesToPage.slice(start, start + limit),
+    meta: { page, limit, total, pages: Math.ceil(total / limit) },
+  };
+}
+
+function generationForDex(value) {
+  const dex = Number(value) || 0;
+  if (dex <= 151) return 1;
+  if (dex <= 251) return 2;
+  if (dex <= 386) return 3;
+  if (dex <= 493) return 4;
+  if (dex <= 649) return 5;
+  if (dex <= 721) return 6;
+  if (dex <= 809) return 7;
+  if (dex <= 905) return 8;
+  return 9;
+}
+
+function rankedIdentity(entry = {}) {
+  return entry.pokemon?.formId
+    || entry.sourceIdentity?.variantKey
+    || entry.sourceIdentity?.speciesId
+    || entry.sourceIdentity?.id
+    || pokemonIdentity(entry.pokemon || entry);
+}
+
+function shinySummary(data) {
+  return data?.summary || Object.fromEntries(
+    Object.entries(data?.rankings || {}).map(([board, entries]) => [board, values(entries).length]),
+  );
+}
+
+function pvpSummary(data) {
+  return Object.fromEntries((data?.formats || []).map((format) => [format.id, Number(format.total || data?.leagues?.[format.id]?.rankings?.length || 0)]));
+}
+
+function assertShinyDataset(data) {
+  if (!data?.rankings || typeof data.rankings !== "object") throw new ApiError(422, "rankings est requis pour shiny.", "CURRENT_DATASET_INVALID");
+  for (const board of ["today", "total", "rare"]) {
+    if (!Array.isArray(data.rankings[board]) || !data.rankings[board].length) throw new ApiError(422, `Le classement shiny ${board} est vide.`, "CURRENT_DATASET_EMPTY");
+  }
+}
+
+function assertPvpDataset(data) {
+  if (!Array.isArray(data?.formats) || !data.formats.length || !data?.leagues) throw new ApiError(422, "Les formats PvP sont requis.", "CURRENT_DATASET_INVALID");
+  for (const format of data.formats) {
+    if (!Array.isArray(data.leagues?.[format.id]?.rankings) || !data.leagues[format.id].rankings.length) throw new ApiError(422, `Le classement PvP ${format.id} est vide.`, "CURRENT_DATASET_EMPTY");
+  }
+}
+
+function presentShiny(data, query = {}) {
+  const board = ["today", "total", "rare"].includes(query.board) ? query.board : "today";
+  const search = normalizeIdentity(query.search || "");
+  const type = String(query.type || "").toUpperCase();
+  const generation = Number.parseInt(query.generation, 10) || null;
+  const trend = ["up", "down", "flat"].includes(query.trend) ? query.trend : null;
+  const oddsMin = Number(query.oddsMin) || null;
+  const oddsMax = Number(query.oddsMax) || null;
+  const filtered = values(data.rankings[board]).filter((entry) => {
+    const pokemon = entry.pokemon || {};
+    const denominator = Number(entry.shiny?.odds?.denominator) || 0;
+    const haystack = normalizeIdentity([entry.sourceIdentity?.name, pokemon.names?.French, pokemon.names?.English, pokemon.id, pokemon.formId, pokemon.dexNr].filter(Boolean).join(" "));
+    return (!search || haystack.includes(search))
+      && (!type || values(pokemon.types).map((value) => String(value).toUpperCase()).includes(type))
+      && (!generation || generationForDex(pokemon.dexNr) === generation)
+      && (!trend || entry.source?.trend === trend)
+      && (!oddsMin || denominator >= oddsMin)
+      && (!oddsMax || denominator <= oddsMax);
+  });
+  const paged = pageValues(filtered, query);
+  return {
+    data: { meta: data.meta, summary: data.summary, board, rankings: paged.items },
+    meta: { ...paged.meta, board, filters: { search: query.search || null, type: type || null, generation, trend, oddsMin, oddsMax } },
+  };
+}
+
+function presentPvp(data, query = {}) {
+  const available = (data.formats || []).map((format) => format.id);
+  const league = available.includes(query.league) ? query.league : (available.includes("great") ? "great" : available[0]);
+  const search = normalizeIdentity(query.search || "");
+  const role = ["lead", "closer", "switch", "charger", "attacker", "consistency"].includes(query.role) ? query.role : null;
+  const source = values(data.leagues?.[league]?.rankings);
+  const filtered = source.filter((entry) => {
+    const pokemon = entry.pokemon || {};
+    const haystack = normalizeIdentity([entry.sourceIdentity?.speciesId, entry.sourceIdentity?.speciesName, pokemon.names?.French, pokemon.names?.English, pokemon.id, pokemon.formId].filter(Boolean).join(" "));
+    return (!search || haystack.includes(search)) && (!role || Number(entry.roleScores?.[role]) > 0);
+  });
+  const sorted = role ? [...filtered].sort((left, right) => Number(right.roleScores?.[role] || 0) - Number(left.roleScores?.[role] || 0)) : filtered;
+  const paged = pageValues(sorted, query);
+  return {
+    data: { meta: data.meta, formats: data.formats, league, rankings: paged.items },
+    meta: { ...paged.meta, league, filters: { search: query.search || null, role } },
+  };
+}
+
+function shinyHistoryPoint(snapshot, identity, query = {}) {
+  const board = ["today", "total", "rare"].includes(query.board) ? query.board : "total";
+  const wanted = normalizeIdentity(identity);
+  const entry = values(snapshot.data?.rankings?.[board]).find((item) => [
+    item.pokemon?.id,
+    item.pokemon?.formId,
+    item.sourceIdentity?.id,
+    item.sourceIdentity?.variantKey,
+  ].some((value) => normalizeIdentity(value) === wanted));
+  if (!entry) return null;
+  return {
+    snapshotAt: snapshot.snapshotAt,
+    sourceHash: snapshot.sourceHash,
+    board,
+    rank: entry.rank,
+    odds: entry.shiny?.odds || null,
+    sample: entry.stats?.daily ?? null,
+    ratePercent: entry.shiny?.ratePercent ?? null,
+  };
+}
+
+function summarizeOdds(points) {
+  const observations = values(points)
+    .map((point) => ({
+      snapshotAt: point.snapshotAt,
+      value: Number(point.odds?.denominator),
+    }))
+    .filter((point) => Number.isFinite(point.value) && point.value > 0);
+  if (!observations.length) return null;
+
+  const first = observations[0];
+  const current = observations[observations.length - 1];
+  const best = observations.reduce((selected, point) => point.value < selected.value ? point : selected);
+  const worst = observations.reduce((selected, point) => point.value > selected.value ? point : selected);
+  const absolute = current.value - first.value;
+
+  return {
+    observations: observations.length,
+    current,
+    average: Number((observations.reduce((sum, point) => sum + point.value, 0) / observations.length).toFixed(2)),
+    variation: {
+      absolute,
+      percent: first.value ? Number(((absolute / first.value) * 100).toFixed(2)) : null,
+    },
+    best,
+    worst,
+  };
+}
+
+function summarizeShinyHistory(points) {
+  const ordered = [...values(points)].sort((left, right) => new Date(left.snapshotAt) - new Date(right.snapshotAt));
+  const latestAt = ordered.at(-1)?.snapshotAt ? new Date(ordered.at(-1).snapshotAt).getTime() : null;
+  const window = (days) => {
+    if (!latestAt) return null;
+    return summarizeOdds(ordered.filter((point) => new Date(point.snapshotAt).getTime() >= latestAt - days * 24 * 60 * 60 * 1000));
+  };
+  const daily = new Map();
+  for (const point of ordered) {
+    const value = Number(point.odds?.denominator);
+    if (Number.isFinite(value) && value > 0) daily.set(new Date(point.snapshotAt).toISOString().slice(0, 10), value);
+  }
+  let previous = null;
+  const dailyEvolution = [...daily.entries()].map(([date, value]) => {
+    const change = previous == null ? null : value - previous;
+    const result = {
+      date,
+      value,
+      change,
+      changePercent: previous ? Number(((change / previous) * 100).toFixed(2)) : null,
+    };
+    previous = value;
+    return result;
+  });
+
+  return {
+    metric: "odds_denominator",
+    lowerIsBetter: true,
+    allTime: summarizeOdds(ordered),
+    windows: { sevenDays: window(7), thirtyDays: window(30) },
+    dailyEvolution,
+  };
 }
 
 function assertBucketDataset(data, key, domain) {
@@ -169,6 +362,55 @@ function rocketEntries(data) {
 }
 
 const adapters = {
+  shiny: {
+    domain: "shiny",
+    rootKey: "rankings",
+    metaKey: "summary",
+    provider: "snacknap",
+    sourceUrl: "https://www.snacknap.com/pokemon/shiny",
+    strictSourceUrl: true,
+    Model: ShinyRanking,
+    SnapshotModel: ShinySnapshot,
+    compactCurrent: true,
+    scriptName: "generateShinyTracker.js",
+    exportName: "generateShinyTracker",
+    jsonPath: "shiny-tracker/current.json",
+    summarize: shinySummary,
+    stats: (_data, report) => ({
+      itemsParsed: Number(report.parsedCount || report.rawCount || 0),
+      itemsMatched: Number(report.matchedCount || 0),
+      itemsUnmatched: Number(report.unmatchedCount || 0),
+    }),
+    validate: assertShinyDataset,
+    count: (_data, summary) => countSummary(summary),
+    extractEntries: (data) => Object.entries(data.rankings || {}).flatMap(([board, rankings]) => values(rankings).map((entry) => ({ key: `${board}:${normalizeIdentity(rankedIdentity(entry))}:${entry.rank}`, value: entry }))),
+    present: presentShiny,
+    historyPoints: shinyHistoryPoint,
+    historySummary: summarizeShinyHistory,
+  },
+  "pvp-rankings": {
+    domain: "pvp-rankings",
+    rootKey: "leagues",
+    metaKey: "formats",
+    provider: "pvpoke-official-repository",
+    sourceUrl: "https://github.com/pvpoke/pvpoke",
+    strictSourceUrl: true,
+    Model: PvpRanking,
+    compactCurrent: true,
+    scriptName: "generatePvpRankings.js",
+    exportName: "generatePvpRankings",
+    jsonPath: "pvp-rankings/current.json",
+    summarize: pvpSummary,
+    stats: (_data, report) => ({
+      itemsParsed: Number(report.parsedCount || report.rawCount || 0),
+      itemsMatched: Number(report.matchedCount || 0),
+      itemsUnmatched: Number(report.unmatchedCount || 0),
+    }),
+    validate: assertPvpDataset,
+    count: (_data, summary) => countSummary(summary),
+    extractEntries: (data) => Object.entries(data.leagues || {}).flatMap(([league, value]) => values(value.rankings).map((entry) => ({ key: `${league}:${normalizeIdentity(rankedIdentity(entry))}`, value: entry }))),
+    present: presentPvp,
+  },
   raids: {
     domain: "raids",
     rootKey: "currentList",
@@ -300,4 +542,5 @@ module.exports = {
   getCurrentDatasetAdapter,
   normalizeIdentity,
   pokemonIdentity,
+  summarizeShinyHistory,
 };

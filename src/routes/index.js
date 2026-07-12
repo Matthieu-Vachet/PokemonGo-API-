@@ -22,6 +22,8 @@ const items = require("./items");
 const rocket = require("./rocket");
 const rocketTexts = require("./rocket-texts");
 const research = require("./research");
+const shiny = require("./shiny");
+const pvpRankings = require("./pvp-rankings");
 
 const router = express.Router();
 
@@ -82,6 +84,11 @@ router.use("/admin/rocket", rocket);
 router.use("/rocket-texts", rocketTexts);
 router.use("/research", research);
 router.use("/admin/research", research);
+// Routes internes non publiees dans OpenAPI. Elles alimentent exclusivement le Dashboard Admin.
+router.use("/shiny", shiny);
+router.use("/admin/shiny", shiny);
+router.use("/pvp-rankings", pvpRankings);
+router.use("/admin/pvp-rankings", pvpRankings);
 router.use("/search", search);
 router.use("/moves", moves);
 router.use("/pvp", pvp);

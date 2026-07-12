@@ -33,6 +33,18 @@ const MODEL_CONFIGS = [
     collectionName: "rockets",
     domain: "rocket",
   },
+  {
+    model: require("../src/models/shiny-ranking"),
+    modelName: "ShinyRanking",
+    collectionName: "shiny_rankings",
+    domain: "shiny",
+  },
+  {
+    model: require("../src/models/pvp-ranking"),
+    modelName: "PvpRanking",
+    collectionName: "pvp_rankings",
+    domain: "pvp-rankings",
+  },
 ];
 
 const REQUIRED_FIELDS = [
@@ -48,7 +60,7 @@ const REQUIRED_FIELDS = [
   "diagnostics",
 ];
 
-test("les cinq datasets current partagent le même contrat MongoDB", () => {
+test("les datasets current partagent le même contrat MongoDB", () => {
   for (const { model, collectionName, domain } of MODEL_CONFIGS) {
     assert.equal(model.collection.collectionName, collectionName);
     assert.equal(model.schema.options.timestamps, true);

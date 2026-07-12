@@ -50,6 +50,7 @@ const MODEL_CONFIGS = [
 const REQUIRED_FIELDS = [
   "key",
   "domain",
+  "visibility",
   "source",
   "generatedAt",
   "savedAt",
@@ -82,6 +83,7 @@ test("les datasets current partagent le même contrat MongoDB", () => {
 
     const document = new model({
       key: "current",
+      visibility: domain === "shiny" ? "private" : "public",
       source: { provider: "test", url: "https://example.test" },
       generatedAt: new Date("2026-07-11T00:00:00.000Z"),
       savedAt: new Date("2026-07-11T00:00:01.000Z"),
@@ -93,6 +95,7 @@ test("les datasets current partagent le même contrat MongoDB", () => {
     });
 
     assert.equal(document.domain, domain);
+    assert.deepEqual(model.schema.path("visibility").enumValues, ["public", "private"]);
     assert.equal(document.validateSync(), undefined);
   }
 });

@@ -4,6 +4,7 @@ function createDatasetSnapshotSchema(domain) {
   const schema = new mongoose.Schema(
     {
       domain: { type: String, required: true, enum: [domain], index: true },
+      visibility: { type: String, required: true, enum: ["public", "private"], index: true },
       snapshotAt: { type: Date, required: true, index: true },
       sourceHash: { type: String, required: true, index: true },
       count: { type: Number, required: true, min: 0 },

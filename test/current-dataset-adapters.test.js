@@ -17,6 +17,7 @@ function localFixture(adapter) {
 test("les adaptateurs valident leurs fixtures locales sans en faire une source runtime", () => {
   for (const domain of DOMAINS) {
     const adapter = getCurrentDatasetAdapter(domain);
+    assert.equal(adapter.visibility, domain === "shiny" ? "private" : "public");
     const data = localFixture(adapter);
     const summary = adapter.summarize(data);
     adapter.validate(data, {}, summary);
@@ -46,6 +47,18 @@ test("chaque adaptateur cible la collection et la racine de données attendues",
     assert.equal(adapter.Model.collection.collectionName, collection);
     assert.equal(adapter.rootKey, rootKey);
   }
+});
+
+test("le presenter PvP hydrate la fiche Pokémon centralisée sans dupliquer les matchups", () => {
+  const adapter = getCurrentDatasetAdapter("pvp-rankings");
+  const data = localFixture(adapter);
+  const presented = adapter.present(data, { league: "great", limit: "1" });
+  const entry = presented.data.rankings[0];
+
+  assert.equal(entry.pokemon.formId, entry.pokemonRef);
+  assert.ok(presented.data.references.pokemon[entry.pokemonRef]);
+  assert.equal(entry.matchups[0].pokemon, undefined);
+  assert.ok(entry.matchups[0].pokemonRef);
 });
 
 test("l'identité Rocket distingue profil, slot et Pokémon", () => {

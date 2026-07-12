@@ -80,7 +80,7 @@ test("GET /api-docs.json fournit OpenAPI 3", async () => {
   assert.ok(response.body.paths["/api/v1/rocket"]);
   assert.ok(response.body.paths["/api/v1/research"]);
   assert.equal(response.body.paths["/api/v1/shiny"], undefined);
-  assert.equal(response.body.paths["/api/v1/pvp-rankings"], undefined);
+  assert.ok(response.body.paths["/api/v1/pvp-rankings"]);
 });
 
 test("GET /api/v1/stickers expose le catalogue des stickers", async () => {
@@ -100,7 +100,6 @@ test("les GET current refusent tout fallback JSON quand MongoDB est indisponible
     ["/api/v1/max-battles", "max-battles"],
     ["/api/v1/rocket", "rocket"],
     ["/api/v1/research", "research"],
-    ["/api/v1/shiny", "shiny"],
     ["/api/v1/pvp-rankings", "pvp-rankings"],
   ]) {
     const response = await request(app).get(`${path}?source=file`).expect(503);
@@ -111,6 +110,18 @@ test("les GET current refusent tout fallback JSON quand MongoDB est indisponible
       message: `MongoDB n'est pas disponible pour le domaine ${domain}.`,
       domain,
     });
+  }
+});
+
+test("le Shiny Tracker prive exige toujours le secret admin", async () => {
+  const previous = process.env.API_ADMIN_SECRET;
+  process.env.API_ADMIN_SECRET = "test-secret";
+  try {
+    await request(app).get("/api/v1/shiny").expect(401);
+    await request(app).get("/api/v1/shiny/demo/history").expect(401);
+  } finally {
+    if (previous === undefined) delete process.env.API_ADMIN_SECRET;
+    else process.env.API_ADMIN_SECRET = previous;
   }
 });
 

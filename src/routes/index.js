@@ -39,6 +39,7 @@ router.get("/", (_request, response) => {
         search: "/api/v1/search?q=dracaufeu",
         moves: "/api/v1/moves",
         pvp: "/api/v1/pvp/great/rankings",
+        pvpRankings: "/api/v1/pvp-rankings?league=great",
         mega: "/api/v1/mega",
         dynamax: "/api/v1/dynamax",
         gigantamax: "/api/v1/gigantamax",
@@ -84,9 +85,10 @@ router.use("/admin/rocket", rocket);
 router.use("/rocket-texts", rocketTexts);
 router.use("/research", research);
 router.use("/admin/research", research);
-// Routes internes non publiees dans OpenAPI. Elles alimentent exclusivement le Dashboard Admin.
+// Shiny reste privé et volontairement absent d'OpenAPI.
 router.use("/shiny", shiny);
 router.use("/admin/shiny", shiny);
+// Les classements PvPoke sont publics; seules les mutations /admin restent protégées.
 router.use("/pvp-rankings", pvpRankings);
 router.use("/admin/pvp-rankings", pvpRankings);
 router.use("/search", search);

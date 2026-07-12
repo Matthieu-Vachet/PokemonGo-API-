@@ -66,6 +66,7 @@ function createMemoryModel(initialDocument = null, options = {}) {
 function createAdapter(Model) {
   return {
     domain: "test-domain",
+    visibility: "public",
     rootKey: "items",
     metaKey: "summary",
     provider: "manual-test",
@@ -121,7 +122,7 @@ test("le pipeline upsert current, nettoie sourceFile et relit réellement MongoD
   assert.equal(Model.updateCalls.length, 1);
   const [write] = Model.updateCalls;
   assert.deepEqual(write.filter, { key: "current" });
-  assert.deepEqual(write.update.$unset, { sourceFile: "" });
+  assert.deepEqual(write.update.$unset, { sourceFile: "", compressedData: "" });
   assert.deepEqual(write.options, {
     upsert: true,
     runValidators: true,
@@ -219,6 +220,20 @@ test("un import identique est idempotent et ne fabrique aucun changement", async
     result.current.diagnostics.diff.previousHash,
     result.current.diagnostics.diff.newHash,
   );
+});
+
+test("un dataset volumineux peut être compressé puis vérifié après relecture MongoDB", async () => {
+  const Model = createMemoryModel();
+  const adapter = { ...createAdapter(Model), compressData: true };
+  const data = { items: Array.from({ length: 250 }, (_, index) => ({ id: `entry-${index}`, label: "payload répétitif" })) };
+
+  const result = await importCurrentDataset(adapter, data);
+  const stored = Model.storedDocument;
+
+  assert.deepEqual(stored.data, { compressed: true, encoding: "gzip+json", schemaVersion: 1 });
+  assert.ok(stored.compressedData, "le payload gzip doit être stocké séparément");
+  assert.deepEqual(result.current.data, data, "la relecture doit hydrater le JSON avant le contrôle du hash");
+  assert.equal(result.current.compressedData, undefined, "le binaire interne ne doit jamais sortir dans l'API");
 });
 
 test("la vérification échoue si le hash de la relecture MongoDB est corrompu", async () => {

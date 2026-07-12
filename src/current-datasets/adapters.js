@@ -130,7 +130,7 @@ function presentShiny(data, query = {}) {
   });
   const paged = pageValues(filtered, query);
   return {
-    data: { meta: data.meta, summary: data.summary, board, rankings: paged.items },
+    data: { meta: data.meta, summary: data.summary, board, podium: filtered.slice(0, 3), rankings: paged.items },
     meta: { ...paged.meta, board, filters: { search: query.search || null, type: type || null, generation, trend, oddsMin, oddsMax } },
   };
 }
@@ -139,17 +139,40 @@ function presentPvp(data, query = {}) {
   const available = (data.formats || []).map((format) => format.id);
   const league = available.includes(query.league) ? query.league : (available.includes("great") ? "great" : available[0]);
   const search = normalizeIdentity(query.search || "");
-  const role = ["lead", "closer", "switch", "charger", "attacker", "consistency"].includes(query.role) ? query.role : null;
-  const source = values(data.leagues?.[league]?.rankings);
+  const role = [
+    "lead", "closer", "switch", "charger", "attacker", "consistency",
+    "stat-product", "offense", "defense", "stamina",
+  ].includes(query.role) ? query.role : null;
+  const source = values(data.leagues?.[league]?.rankings).map((entry) => ({
+    ...entry,
+    pokemon: entry.pokemon || data.references?.pokemon?.[entry.pokemonRef] || null,
+  }));
   const filtered = source.filter((entry) => {
     const pokemon = entry.pokemon || {};
     const haystack = normalizeIdentity([entry.sourceIdentity?.speciesId, entry.sourceIdentity?.speciesName, pokemon.names?.French, pokemon.names?.English, pokemon.id, pokemon.formId].filter(Boolean).join(" "));
-    return (!search || haystack.includes(search)) && (!role || Number(entry.roleScores?.[role]) > 0);
+    const value = ["stat-product", "offense", "defense", "stamina"].includes(role)
+      ? Number(entry.stats?.[({ "stat-product": "product", offense: "attack", defense: "defense", stamina: "stamina" })[role]])
+      : Number(entry.roleScores?.[role]);
+    return (!search || haystack.includes(search)) && (!role || value > 0);
   });
-  const sorted = role ? [...filtered].sort((left, right) => Number(right.roleScores?.[role] || 0) - Number(left.roleScores?.[role] || 0)) : filtered;
+  const metricValue = (entry) => {
+    if (role === "stat-product") return Number(entry.stats?.product || 0);
+    if (role === "offense") return Number(entry.stats?.attack || 0);
+    if (role === "defense") return Number(entry.stats?.defense || 0);
+    if (role === "stamina") return Number(entry.stats?.stamina || 0);
+    return Number(entry.roleScores?.[role] || 0);
+  };
+  const sorted = role ? [...filtered].sort((left, right) => metricValue(right) - metricValue(left)) : filtered;
   const paged = pageValues(sorted, query);
   return {
-    data: { meta: data.meta, formats: data.formats, league, rankings: paged.items },
+    data: {
+      meta: data.meta,
+      formats: data.formats,
+      roles: data.roles || [],
+      references: data.references || { moves: {}, types: {} },
+      league,
+      rankings: paged.items.map((entry) => ({ ...entry, displayScore: role ? metricValue(entry) : entry.score })),
+    },
     meta: { ...paged.meta, league, filters: { search: query.search || null, role } },
   };
 }
@@ -364,6 +387,7 @@ function rocketEntries(data) {
 const adapters = {
   shiny: {
     domain: "shiny",
+    visibility: "private",
     rootKey: "rankings",
     metaKey: "summary",
     provider: "snacknap",
@@ -390,6 +414,7 @@ const adapters = {
   },
   "pvp-rankings": {
     domain: "pvp-rankings",
+    visibility: "public",
     rootKey: "leagues",
     metaKey: "formats",
     provider: "pvpoke-official-repository",
@@ -397,6 +422,7 @@ const adapters = {
     strictSourceUrl: true,
     Model: PvpRanking,
     compactCurrent: true,
+    compressData: true,
     scriptName: "generatePvpRankings.js",
     exportName: "generatePvpRankings",
     jsonPath: "pvp-rankings/current.json",
@@ -413,6 +439,7 @@ const adapters = {
   },
   raids: {
     domain: "raids",
+    visibility: "public",
     rootKey: "currentList",
     metaKey: "buckets",
     provider: "leekduck",
@@ -435,6 +462,7 @@ const adapters = {
   },
   eggs: {
     domain: "eggs",
+    visibility: "public",
     rootKey: "currentEggsList",
     metaKey: "buckets",
     provider: "leekduck",
@@ -452,6 +480,7 @@ const adapters = {
   },
   "max-battles": {
     domain: "max-battles",
+    visibility: "public",
     rootKey: "currentMaxBattle",
     metaKey: "buckets",
     provider: "snacknap",
@@ -468,6 +497,7 @@ const adapters = {
   },
   research: {
     domain: "research",
+    visibility: "public",
     rootKey: "currentResearchList",
     metaKey: "summary",
     provider: "leekduck",
@@ -504,6 +534,7 @@ const adapters = {
   },
   rocket: {
     domain: "rocket",
+    visibility: "public",
     rootKey: "currentRocketList",
     metaKey: "summary",
     provider: "leekduck",

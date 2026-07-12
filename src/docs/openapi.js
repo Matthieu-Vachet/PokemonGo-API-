@@ -552,6 +552,20 @@ function createOpenApi() {
         parameters: [page, limit],
         response: listResponse(),
       }),
+      [`${api}/pvp-rankings`]: operation("PvP", "Explorer les classements officiels PvPoke enrichis", {
+        parameters: [
+          page,
+          limit,
+          parameter("league", "query", "great", "Identifiant d'un format issu du manifeste PvPoke."),
+          parameter("role", "query", "lead", "Total, rôle de combat ou statistique disponible."),
+          parameter("search", "query", "mimiqui", "Nom français, anglais, ID ou forme."),
+        ],
+        response: dataResponse({
+          formats: [{ id: "great", label: "Ligue Super", cp: 1500, category: "standards" }],
+          league: "great",
+          rankings: [],
+        }),
+      }),
       [`${api}/pvp/{league}/top`]: detail("PvP", "Meilleurs Pokémon d'une ligue", "ultra", {
         name: "league",
         description: "Alias accepté : little, great, ultra ou master.",

@@ -22,6 +22,7 @@ function currentMeta(adapter, document, summary) {
   return {
     source: MONGODB_SOURCE,
     domain: adapter.domain,
+    visibility: document.visibility || adapter.visibility,
     provider: document.source?.provider || null,
     url: document.source?.url || null,
     mode: document.source?.mode || null,
@@ -72,6 +73,7 @@ function createCurrentDatasetRouter(adapter) {
   router.get(
     "/",
     asyncHandler(async (request, response) => {
+      if (adapter.visibility === "private") requireAdminSecret(request);
       const result = await readCurrentDatasetFromMongo({
         model: adapter.Model,
         domain: adapter.domain,
@@ -95,6 +97,7 @@ function createCurrentDatasetRouter(adapter) {
     router.get(
       "/:identity/history",
       asyncHandler(async (request, response) => {
+        if (adapter.visibility === "private") requireAdminSecret(request);
         const days = Math.min(365, Math.max(1, Number.parseInt(request.query.days, 10) || 30));
         const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
         const snapshots = await adapter.SnapshotModel.find({ snapshotAt: { $gte: since } })

@@ -1,8 +1,9 @@
 const { ApiError } = require("./api-error");
+const zlib = require("node:zlib");
 const { invalidateDatasetCache } = require("./cache");
 const { generateCurrentData } = require("./current-data-pipeline");
 const { computeDatasetHash, diffDatasets } = require("./current-dataset-hash");
-const { serializeCurrentDatasetDocument } = require("./current-dataset-reader");
+const { hydrateCurrentDatasetDocument, serializeCurrentDatasetDocument } = require("./current-dataset-reader");
 
 function asArray(value) {
   return Array.isArray(value) ? value : [];
@@ -98,7 +99,7 @@ async function leanQuery(query) {
 }
 
 async function readStoredDocument(adapter) {
-  return leanQuery(adapter.Model.findOne({ key: "current" }));
+  return hydrateCurrentDatasetDocument(await leanQuery(adapter.Model.findOne({ key: "current" })));
 }
 
 function verifyReadback(adapter, document, expected) {
@@ -145,6 +146,7 @@ async function persistCurrentDataset({ adapter, data, report = {}, summary, stat
   const document = {
     key: "current",
     domain: adapter.domain,
+    visibility: adapter.visibility,
     source: source || sourceMetadata(adapter, report, generatedAt),
     generatedAt,
     savedAt,
@@ -154,16 +156,23 @@ async function persistCurrentDataset({ adapter, data, report = {}, summary, stat
     data,
     diagnostics: buildDiagnostics({ report, stats, diff }),
   };
+  if (adapter.compressData) {
+    document.compressedData = zlib.gzipSync(Buffer.from(JSON.stringify(data)));
+    document.data = { compressed: true, encoding: "gzip+json", schemaVersion: data.meta?.schemaVersion || 1 };
+  }
 
   await leanQuery(adapter.Model.findOneAndUpdate(
     { key: "current" },
-    { $set: document, $unset: { sourceFile: "" } },
+    adapter.compressData
+      ? { $set: document, $unset: { sourceFile: "" } }
+      : { $set: document, $unset: { sourceFile: "", compressedData: "" } },
     { upsert: true, runValidators: true, setDefaultsOnInsert: true },
   ));
 
   if (adapter.SnapshotModel) {
     await adapter.SnapshotModel.create({
       domain: adapter.domain,
+      visibility: adapter.visibility,
       snapshotAt: generatedAt,
       sourceHash: diff.newHash,
       count,

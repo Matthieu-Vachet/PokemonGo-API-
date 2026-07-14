@@ -11,6 +11,8 @@ Les referentiels statiques vivent dans le depot prive `PokemonGo-Data`. Les cinq
 datasets courants raids, oeufs, Max Battles, Rocket et Research sont regeneres depuis
 leurs sources externes puis lus exclusivement dans MongoDB.
 
+Les classements Best Attackers suivent le même contrat MongoDB (`best_attackers`, gzip, hash, diff et relecture). `GET /api/v1/best-attackers` expose niveaux, types, métriques et filtres. Le diagnostic privé `pokemon-identity-mappings` rapproche le Game Master des formes locales et reste protégé par le secret admin.
+
 Documentation detaillee de l'API : [docs/API.md](docs/API.md)
 Import MongoDB depuis les JSON : [docs/MONGO-IMPORT.md](docs/MONGO-IMPORT.md)
 

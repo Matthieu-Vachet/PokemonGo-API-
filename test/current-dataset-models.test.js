@@ -45,6 +45,18 @@ const MODEL_CONFIGS = [
     collectionName: "pvp_rankings",
     domain: "pvp-rankings",
   },
+  {
+    model: require("../src/models/best-attacker"),
+    modelName: "BestAttacker",
+    collectionName: "best_attackers",
+    domain: "best-attackers",
+  },
+  {
+    model: require("../src/models/pokemon-identity-mapping"),
+    modelName: "PokemonIdentityMapping",
+    collectionName: "pokemon_identity_mappings",
+    domain: "pokemon-identity-mappings",
+  },
 ];
 
 const REQUIRED_FIELDS = [

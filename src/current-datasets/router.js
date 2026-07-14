@@ -44,11 +44,12 @@ function currentMeta(adapter, document, summary) {
 
 function actionPayload(adapter, result, action) {
   const { current, summary, stats, report } = result;
+  const serializedCurrent = adapter.compactCurrent ? { ...current, data: undefined } : current;
   return {
     success: true,
     [action]: true,
     key: current.key,
-    current,
+    current: serializedCurrent,
     [adapter.metaKey]: summary,
     source: MONGODB_SOURCE,
     sourceUrl: current.source?.url || null,

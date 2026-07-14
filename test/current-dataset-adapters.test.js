@@ -8,7 +8,7 @@ const {
 const { computeDatasetHash } = require("../src/lib/current-dataset-hash");
 const { dataPathFromRelative } = require("../src/lib/data-repository");
 
-const DOMAINS = ["raids", "eggs", "max-battles", "research", "rocket", "shiny", "pvp-rankings"];
+const DOMAINS = ["raids", "eggs", "max-battles", "research", "rocket", "shiny", "pvp-rankings", "best-attackers", "pokemon-identity-mappings"];
 
 function localFixture(adapter) {
   return JSON.parse(fs.readFileSync(dataPathFromRelative(adapter.jsonPath), "utf8"));
@@ -17,7 +17,7 @@ function localFixture(adapter) {
 test("les adaptateurs valident leurs fixtures locales sans en faire une source runtime", () => {
   for (const domain of DOMAINS) {
     const adapter = getCurrentDatasetAdapter(domain);
-    assert.equal(adapter.visibility, domain === "shiny" ? "private" : "public");
+    assert.equal(adapter.visibility, ["shiny", "pokemon-identity-mappings"].includes(domain) ? "private" : "public");
     const data = localFixture(adapter);
     const summary = adapter.summarize(data);
     adapter.validate(data, {}, summary);
@@ -40,6 +40,8 @@ test("chaque adaptateur cible la collection et la racine de données attendues",
     rocket: ["rockets", "currentRocketList"],
     shiny: ["shiny_rankings", "rankings"],
     "pvp-rankings": ["pvp_rankings", "leagues"],
+    "best-attackers": ["best_attackers", "rankings"],
+    "pokemon-identity-mappings": ["pokemon_identity_mappings", "mappings"],
   };
 
   for (const [domain, [collection, rootKey]] of Object.entries(expected)) {
@@ -47,6 +49,38 @@ test("chaque adaptateur cible la collection et la racine de données attendues",
     assert.equal(adapter.Model.collection.collectionName, collection);
     assert.equal(adapter.rootKey, rootKey);
   }
+});
+
+test("les mappings Game Master filtrent les variantes non résolues", () => {
+  const adapter = getCurrentDatasetAdapter("pokemon-identity-mappings");
+  const data = localFixture(adapter);
+  const presented = adapter.present(data, { status: "missing-local-form", limit: "20" });
+  assert.ok(presented.data.mappings.length > 0);
+  assert.ok(presented.data.mappings.every((mapping) => mapping.mappingStatus === "missing-local-form"));
+});
+
+test("le presenter Best Attackers hydrate Pokémon et attaques puis trie la métrique demandée", () => {
+  const adapter = getCurrentDatasetAdapter("best-attackers");
+  const data = localFixture(adapter);
+  const presented = adapter.present(data, { type: "FIRE", level: "40", metric: "dps", limit: "3" });
+  assert.equal(presented.data.rankings.length, 3);
+  assert.equal(presented.meta.metric, "dps");
+  assert.ok(presented.data.rankings.every((entry) => entry.pokemon && entry.fastMove && entry.chargedMove));
+  assert.ok(presented.data.rankings[0].dps >= presented.data.rankings[1].dps);
+  assert.ok(presented.data.rankings.every((entry) => entry.rank >= 1 && entry.percentage > 0 && entry.tier));
+});
+
+test("les filtres Best Attackers obscur, Méga, élite et classe de moveset sont appliqués serveur", () => {
+  const adapter = getCurrentDatasetAdapter("best-attackers");
+  const data = localFixture(adapter);
+  const shadow = adapter.present(data, { shadow: "true", limit: "10" });
+  assert.ok(shadow.data.rankings.every((entry) => entry.pokemon.shadow));
+  const mega = adapter.present(data, { mega: "true", limit: "10" });
+  assert.ok(mega.data.rankings.every((entry) => entry.pokemon.mega));
+  const elite = adapter.present(data, { elite: "true", limit: "10" });
+  assert.ok(elite.data.rankings.every((entry) => entry.eliteFast || entry.eliteCharged));
+  const mixed = adapter.present(data, { movesetClass: "mixed", limit: "10" });
+  assert.ok(mixed.data.rankings.every((entry) => entry.movesetClass === "mixed"));
 });
 
 test("le presenter PvP hydrate la fiche Pokémon centralisée sans dupliquer les matchups", () => {

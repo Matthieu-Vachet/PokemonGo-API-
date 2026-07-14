@@ -297,7 +297,7 @@ function createOpenApi() {
     openapi: "3.0.3",
     info: {
       title: "Pokémon GO API",
-      version: "1.4.1",
+      version: "1.8.0",
       description:
         "Référence complète de l'API Pokémon GO francophone. Les routes GET publiques restent accessibles sans secret. Les routes privées, internes ou d'écriture exigent le header x-api-admin-secret alimenté par API_ADMIN_SECRET côté serveur. Pour exécuter les requêtes depuis le navigateur, utilisez [Swagger UI](/swagger).",
       license: { name: "ISC" },
@@ -563,6 +563,24 @@ function createOpenApi() {
         response: dataResponse({
           formats: [{ id: "great", label: "Ligue Super", cp: 1500, category: "standards" }],
           league: "great",
+          rankings: [],
+        }),
+      }),
+      [`${api}/best-attackers`]: operation("PvE", "Explorer les meilleurs attaquants calculés avec le moteur DialgaDex", {
+        parameters: [
+          page,
+          limit,
+          parameter("type", "query", "FIRE", "Type d'attaque ou ANY."),
+          parameter("level", "query", 40, "Niveau 30, 40 ou 50."),
+          parameter("metric", "query", "edps", "Métrique edps, dps ou tdo."),
+          parameter("search", "query", "dracaufeu", "Nom, ID, forme ou attaque."),
+          parameter("shadow", "query", true, "Filtrer les Pokémon obscurs."),
+          parameter("mega", "query", false, "Filtrer les Méga/Primo."),
+          parameter("elite", "query", false, "Filtrer selon la présence d'une attaque élite."),
+          parameter("movesetClass", "query", "on-type", "on-type, same-type, mixed ou off-type."),
+        ],
+        response: dataResponse({
+          options: { levels: [30, 40, 50], types: ["ANY", "FIRE", "WATER"], metrics: ["edps", "dps", "tdo"] },
           rankings: [],
         }),
       }),

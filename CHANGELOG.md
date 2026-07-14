@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.8.0 - 2026-07-14
+
+- Ajoute le dataset MongoDB compressé `best_attackers`, sa route publique filtrée et sa régénération admin idempotente.
+- Ajoute le diagnostic privé `pokemon_identity_mappings` issu du Game Master PokeMiners.
+- Hydrate les classements avec Pokémon et attaques locales, puis calcule rang, pourcentage et tier côté serveur.
+- Étend les diagnostics avec la résolution canonique, l'usage des données et les empreintes de source.
+
 ## 1.6.1 - 2026-07-11
 
 - Reinitialise la promesse de connexion MongoDB lorsqu'une connexion serverless inactive est fermee, afin que `/health` et la requete suivante reconnectent Atlas correctement.

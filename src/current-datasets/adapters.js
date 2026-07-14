@@ -1,7 +1,9 @@
 const {
+  BestAttacker,
   Egg,
   MaxBattle,
   PvpRanking,
+  PokemonIdentityMapping,
   Raid,
   Research,
   Rocket,
@@ -174,6 +176,157 @@ function presentPvp(data, query = {}) {
       rankings: paged.items.map((entry) => ({ ...entry, displayScore: role ? metricValue(entry) : entry.score })),
     },
     meta: { ...paged.meta, league, filters: { search: query.search || null, role } },
+  };
+}
+
+const BEST_ATTACKER_LEVELS = [30, 40, 50];
+const BEST_ATTACKER_METRICS = ["edps", "dps", "tdo"];
+
+function queryBoolean(value) {
+  if (value === undefined || value === null || value === "") return null;
+  return ["1", "true", "yes", "on"].includes(String(value).toLowerCase());
+}
+
+function attackerTier(percentage) {
+  if (percentage >= 90) return "S";
+  if (percentage >= 80) return "A";
+  if (percentage >= 70) return "B";
+  return "C";
+}
+
+function assertBestAttackersDataset(data) {
+  const levels = values(data?.metadata?.levels);
+  const types = values(data?.metadata?.types);
+  if (!data?.rankings || !data?.entities || !data?.moves || !levels.length || !types.length) {
+    throw new ApiError(422, "Le dataset Best Attackers est incomplet.", "CURRENT_DATASET_INVALID");
+  }
+  for (const level of levels) {
+    for (const type of types) {
+      if (!Array.isArray(data.rankings?.[`level${level}`]?.[type])) {
+        throw new ApiError(422, `Le classement niveau ${level}/${type} est absent.`, "CURRENT_DATASET_INVALID");
+      }
+    }
+  }
+}
+
+function bestAttackersSummary(data) {
+  return {
+    pokemon: Object.keys(data?.entities || {}).length,
+    moves: Object.keys(data?.moves || {}).length,
+    rankings: Number(data?.metadata?.localData?.rankingCount || 0),
+    levels: values(data?.metadata?.levels),
+    types: values(data?.metadata?.types),
+    metrics: values(data?.metadata?.algorithm?.metrics),
+  };
+}
+
+function presentBestAttackers(data, query = {}) {
+  const levels = values(data.metadata?.levels);
+  const types = values(data.metadata?.types);
+  const requestedLevel = Number.parseInt(query.level, 10);
+  const level = levels.includes(requestedLevel) ? requestedLevel : (levels.includes(40) ? 40 : levels[0]);
+  const requestedType = String(query.type || "ANY").toUpperCase();
+  const type = types.includes(requestedType) ? requestedType : "ANY";
+  const metric = BEST_ATTACKER_METRICS.includes(String(query.metric).toLowerCase())
+    ? String(query.metric).toLowerCase()
+    : "edps";
+  const search = normalizeIdentity(query.search || "");
+  const shadow = queryBoolean(query.shadow);
+  const mega = queryBoolean(query.mega);
+  const elite = queryBoolean(query.elite);
+  const pokemonClass = String(query.class || "").toUpperCase();
+  const movesetClass = ["on-type", "same-type", "mixed", "off-type"].includes(query.movesetClass)
+    ? query.movesetClass
+    : null;
+  const source = values(data.rankings?.[`level${level}`]?.[type]);
+  const ordered = [...source].sort((left, right) => Number(right[metric]) - Number(left[metric])
+    || Number(right.tdo) - Number(left.tdo)
+    || String(left.pokemonKey).localeCompare(String(right.pokemonKey)));
+  const maximum = Number(ordered[0]?.[metric] || 0);
+  const globalRank = new Map(ordered.map((entry, index) => [entry.pokemonKey, index + 1]));
+  const filtered = ordered.filter((entry) => {
+    const pokemon = data.entities[entry.pokemonKey] || {};
+    const haystack = normalizeIdentity([
+      pokemon.pokemonId, pokemon.formId, pokemon.names?.French, pokemon.names?.English, pokemon.dexNr,
+      data.moves?.[entry.fastMoveId]?.names?.French, data.moves?.[entry.fastMoveId]?.names?.English,
+      data.moves?.[entry.chargedMoveId]?.names?.French, data.moves?.[entry.chargedMoveId]?.names?.English,
+    ].filter(Boolean).join(" "));
+    return (!search || haystack.includes(search))
+      && (shadow === null || Boolean(pokemon.shadow) === shadow)
+      && (mega === null || Boolean(pokemon.mega) === mega)
+      && (elite === null || Boolean(entry.eliteFast || entry.eliteCharged) === elite)
+      && (!pokemonClass || String(pokemon.class || "").toUpperCase() === pokemonClass)
+      && (!movesetClass || entry.movesetClass === movesetClass);
+  });
+  const paged = query.full === "true"
+    ? { items: filtered, meta: { page: 1, limit: filtered.length, total: filtered.length, pages: filtered.length ? 1 : 0 } }
+    : pageValues(filtered, query);
+  return {
+    data: {
+      metadata: data.metadata,
+      options: { levels, types, metrics: BEST_ATTACKER_METRICS },
+      rankings: paged.items.map((entry) => {
+        const percentage = maximum > 0 ? Number(((Number(entry[metric]) / maximum) * 100).toFixed(2)) : 0;
+        return {
+          ...entry,
+          rank: globalRank.get(entry.pokemonKey),
+          rating: percentage,
+          percentage,
+          tier: attackerTier(percentage),
+          selectedMetric: metric,
+          pokemon: data.entities[entry.pokemonKey] || null,
+          fastMove: data.moves[entry.fastMoveId] || null,
+          chargedMove: data.moves[entry.chargedMoveId] || null,
+        };
+      }),
+    },
+    meta: {
+      ...paged.meta,
+      level,
+      type,
+      metric,
+      filters: {
+        search: query.search || null,
+        shadow,
+        mega,
+        elite,
+        class: pokemonClass || null,
+        movesetClass,
+      },
+    },
+  };
+}
+
+function assertPokemonIdentityMappings(data) {
+  if (!Array.isArray(data?.mappings) || !data.mappings.length || !data?.metadata?.source) {
+    throw new ApiError(422, "Le mapping Game Master Pokémon est vide ou invalide.", "CURRENT_DATASET_INVALID");
+  }
+}
+
+function identityMappingsSummary(data) {
+  return {
+    total: Number(data?.metadata?.total || data?.mappings?.length || 0),
+    statusCounts: data?.metadata?.statusCounts || {},
+    sourceUpdatedAt: data?.metadata?.sourceUpdatedAt || null,
+  };
+}
+
+function presentPokemonIdentityMappings(data, query = {}) {
+  const status = String(query.status || "");
+  const search = normalizeIdentity(query.search || "");
+  const filtered = values(data.mappings).filter((mapping) => {
+    const haystack = normalizeIdentity([
+      mapping.pokemonId, mapping.pokemon, mapping.form, mapping.templateId,
+      mapping.assetBundleValue, mapping.assetBundleSuffix, mapping.localForm,
+    ].filter(Boolean).join(" "));
+    return (!status || mapping.mappingStatus === status) && (!search || haystack.includes(search));
+  });
+  const paged = query.full === "true"
+    ? { items: filtered, meta: { page: 1, limit: filtered.length, total: filtered.length, pages: filtered.length ? 1 : 0 } }
+    : pageValues(filtered, query);
+  return {
+    data: { metadata: data.metadata, mappings: paged.items },
+    meta: { ...paged.meta, filters: { status: status || null, search: query.search || null } },
   };
 }
 
@@ -385,6 +538,63 @@ function rocketEntries(data) {
 }
 
 const adapters = {
+  "pokemon-identity-mappings": {
+    domain: "pokemon-identity-mappings",
+    visibility: "private",
+    rootKey: "mappings",
+    metaKey: "summary",
+    provider: "PokeMiners-game_masters",
+    sourceUrl: "https://raw.githubusercontent.com/PokeMiners/game_masters/master/latest/latest.json",
+    strictSourceUrl: true,
+    Model: PokemonIdentityMapping,
+    compactCurrent: true,
+    scriptName: "generateGameMasterPokemonMappings.js",
+    exportName: "generateGameMasterPokemonMappings",
+    jsonPath: "game-master/gameMasterPokemonMappings.json",
+    summarize: identityMappingsSummary,
+    stats: (data) => ({
+      itemsParsed: Number(data?.metadata?.total || 0),
+      itemsMatched: Number(data?.metadata?.statusCounts?.matched || 0),
+      itemsUnmatched: Number(data?.metadata?.total || 0) - Number(data?.metadata?.statusCounts?.matched || 0),
+    }),
+    validate: assertPokemonIdentityMappings,
+    count: (_data, summary) => summary.total,
+    extractEntries: (data) => values(data.mappings).map((mapping) => ({
+      key: `${mapping.templateId}:${mapping.form}:${mapping.assetBundleValue || ""}:${mapping.assetBundleSuffix || ""}`,
+      value: mapping,
+    })),
+    present: presentPokemonIdentityMappings,
+  },
+  "best-attackers": {
+    domain: "best-attackers",
+    visibility: "public",
+    rootKey: "rankings",
+    metaKey: "summary",
+    provider: "dialgadex-official-repository",
+    sourceUrl: "https://github.com/mgrann03/dialgadex",
+    strictSourceUrl: true,
+    Model: BestAttacker,
+    compactCurrent: true,
+    compressData: true,
+    scriptName: "generateBestAttackers.js",
+    exportName: "generateBestAttackers",
+    jsonPath: "best-attackers/bestAttackers.json",
+    summarize: bestAttackersSummary,
+    stats: (data) => ({
+      itemsParsed: Number(data?.metadata?.localData?.rankingCount || 0),
+      itemsMatched: Number(data?.metadata?.localData?.rankingCount || 0),
+      itemsUnmatched: 0,
+    }),
+    validate: assertBestAttackersDataset,
+    count: (_data, summary) => summary.rankings,
+    extractEntries: (data) => Object.entries(data.rankings || {}).flatMap(([level, byType]) =>
+      Object.entries(byType || {}).flatMap(([type, entries]) => values(entries).map((entry) => ({
+        key: `${level}:${type}:${entry.pokemonKey}`,
+        value: entry,
+      }))),
+    ),
+    present: presentBestAttackers,
+  },
   shiny: {
     domain: "shiny",
     visibility: "private",
@@ -570,8 +780,13 @@ function getCurrentDatasetAdapter(domain) {
 }
 
 module.exports = {
+  assertBestAttackersDataset,
+  assertPokemonIdentityMappings,
+  bestAttackersSummary,
   getCurrentDatasetAdapter,
   normalizeIdentity,
   pokemonIdentity,
+  presentBestAttackers,
+  presentPokemonIdentityMappings,
   summarizeShinyHistory,
 };

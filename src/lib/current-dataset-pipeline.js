@@ -89,6 +89,9 @@ function buildDiagnostics({ report = {}, stats, diff }) {
       pokemonRewards: report.pokemonRewards ?? null,
       itemRewards: report.itemRewards ?? null,
       sourceAssets: report.sourceAssets ?? null,
+      resolutionReport: report.resolutionReport ?? null,
+      dataUsage: report.dataUsage ?? null,
+      sourceDetails: report.sourceDetails ?? null,
     },
     diff,
   };

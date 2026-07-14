@@ -24,6 +24,8 @@ const rocketTexts = require("./rocket-texts");
 const research = require("./research");
 const shiny = require("./shiny");
 const pvpRankings = require("./pvp-rankings");
+const bestAttackers = require("./best-attackers");
+const pokemonIdentityMappings = require("./pokemon-identity-mappings");
 
 const router = express.Router();
 
@@ -40,6 +42,7 @@ router.get("/", (_request, response) => {
         moves: "/api/v1/moves",
         pvp: "/api/v1/pvp/great/rankings",
         pvpRankings: "/api/v1/pvp-rankings?league=great",
+        bestAttackers: "/api/v1/best-attackers?type=FIRE&level=40&metric=edps",
         mega: "/api/v1/mega",
         dynamax: "/api/v1/dynamax",
         gigantamax: "/api/v1/gigantamax",
@@ -91,6 +94,12 @@ router.use("/admin/shiny", shiny);
 // Les classements PvPoke sont publics; seules les mutations /admin restent protégées.
 router.use("/pvp-rankings", pvpRankings);
 router.use("/admin/pvp-rankings", pvpRankings);
+// Les classements PvE sont publics; seules les mutations /admin restent protégées.
+router.use("/best-attackers", bestAttackers);
+router.use("/admin/best-attackers", bestAttackers);
+// Diagnostic privé de résolution Game Master.
+router.use("/pokemon-identity-mappings", pokemonIdentityMappings);
+router.use("/admin/pokemon-identity-mappings", pokemonIdentityMappings);
 router.use("/search", search);
 router.use("/moves", moves);
 router.use("/pvp", pvp);

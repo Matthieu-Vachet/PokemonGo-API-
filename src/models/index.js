@@ -1,4 +1,5 @@
 module.exports = {
+  BestAttacker: require("./best-attacker"),
   Egg: require("./egg"),
   Generation: require("./generation"),
   GlobalStat: require("./global-stat"),
@@ -7,6 +8,7 @@ module.exports = {
   Move: require("./move"),
   Pokemon: require("./pokemon"),
   PokemonAsset: require("./pokemon-asset"),
+  PokemonIdentityMapping: require("./pokemon-identity-mapping"),
   PvpRanking: require("./pvp-ranking"),
   Raid: require("./raid"),
   Research: require("./research"),

@@ -13,6 +13,19 @@ leurs sources externes puis lus exclusivement dans MongoDB.
 
 Les classements Best Attackers suivent le même contrat MongoDB (`best_attackers`, gzip, hash, diff et relecture). `GET /api/v1/best-attackers` expose niveaux, types, métriques et filtres. Le diagnostic privé `pokemon-identity-mappings` rapproche le Game Master des formes locales et reste protégé par le secret admin.
 
+## Game Master Explorer privé
+
+Le Game Master officiel PokeMiners est récupéré, validé et indexé uniquement côté serveur. Les routes `/api/v1/admin/game-master/*` exigent `x-api-admin-secret`, restent absentes d’OpenAPI et exposent des listes paginées sans champ `raw`; le JSON brut n’est renvoyé que pour un template demandé explicitement.
+
+Le stockage utilise `game_master_states`, `game_master_snapshots`, `game_master_templates`, `game_master_diffs` et `game_master_local_comparisons`. Un hash identique met seulement à jour la vérification. Un hash différent crée le staging, les diffs et la comparaison locale avant de basculer atomiquement le pointeur `current`. `GAME_MASTER_SNAPSHOT_RETENTION=0` conserve tout l’historique; une valeur positive active une rétention bornée documentée.
+
+La régénération et la réindexation sont privées :
+
+```bash
+curl -X POST -H "x-api-admin-secret: $API_ADMIN_SECRET" https://domain.com/api/v1/admin/game-master/regenerate
+curl -H "x-api-admin-secret: $API_ADMIN_SECRET" "https://domain.com/api/v1/admin/game-master/search?q=COPY_2019&page=1&limit=50"
+```
+
 Documentation detaillee de l'API : [docs/API.md](docs/API.md)
 Import MongoDB depuis les JSON : [docs/MONGO-IMPORT.md](docs/MONGO-IMPORT.md)
 

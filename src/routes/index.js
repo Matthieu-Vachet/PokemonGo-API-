@@ -26,6 +26,7 @@ const shiny = require("./shiny");
 const pvpRankings = require("./pvp-rankings");
 const bestAttackers = require("./best-attackers");
 const pokemonIdentityMappings = require("./pokemon-identity-mappings");
+const gameMaster = require("./game-master");
 
 const router = express.Router();
 
@@ -100,6 +101,8 @@ router.use("/admin/best-attackers", bestAttackers);
 // Diagnostic privé de résolution Game Master.
 router.use("/pokemon-identity-mappings", pokemonIdentityMappings);
 router.use("/admin/pokemon-identity-mappings", pokemonIdentityMappings);
+// Explorer Game Master strictement privé, absent de la découverte et de l'OpenAPI publics.
+router.use("/admin/game-master", gameMaster);
 router.use("/search", search);
 router.use("/moves", moves);
 router.use("/pvp", pvp);

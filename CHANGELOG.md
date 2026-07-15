@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.9.0 - 2026-07-15
+
+- Ajoute douze routes privées Game Master pour résumé, catégories, recherche, détail, comparaison locale, snapshots, diffs, exports, régénération et réindexation.
+- Ajoute cinq collections MongoDB indexées avec staging, activation atomique par pointeur, hash idempotent, diff structuré et rétention optionnelle désactivée par défaut.
+- Limite toutes les recherches et paginations, échappe les regex, garde les routes hors OpenAPI public et ne renvoie jamais le Game Master complet sur une route de liste.
+- Étend les tests aux diffs, assets locaux exacts, sécurité, pagination et conservation du snapshot actif.
+
 ## 1.8.0 - 2026-07-14
 
 - Ajoute le dataset MongoDB compressé `best_attackers`, sa route publique filtrée et sa régénération admin idempotente.

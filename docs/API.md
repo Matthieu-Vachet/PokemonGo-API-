@@ -202,6 +202,9 @@ PRIVATE :
 - `POST /api/v1/admin/max-battles/import` et `/api/v1/admin/max-battles/regenerate`.
 - `POST /api/v1/admin/rocket/import` et `/api/v1/admin/rocket/regenerate`.
 - `POST /api/v1/admin/research/import` et `/api/v1/admin/research/regenerate`.
+- Toutes les lectures et écritures sous `/api/v1/admin/game-master/*`, y compris
+  résumé, catégories, recherche, détail, comparaison locale, snapshots, diff,
+  export, régénération et réindexation.
 - Toute methode non `GET`, `HEAD` ou `OPTIONS` sur `/api/checklist-v3`.
 - `GET /api/checklist-v3?action=source-watch|history|url-audit`.
 
@@ -253,6 +256,7 @@ Contrat des wrappers courants :
 | Max Battles | `/max-battles`, `/admin/max-battles/import`, `/admin/max-battles/regenerate` |
 | Rocket | `/rocket`, `/admin/rocket/import`, `/admin/rocket/regenerate` |
 | Research | `/research`, `/admin/research/import`, `/admin/research/regenerate` |
+| Game Master privé | `/admin/game-master/summary`, `/categories`, `/templates`, `/search`, `/local-comparison`, `/snapshots`, `/diff`, `/export`, `/regenerate`, `/reindex` |
 | Regions | `/regions`, `/regions/:identifier/pokemon` |
 | Generations | `/generations`, `/generations/:identifier/pokemon` |
 | Assets | `/assets/:identifier`, `/pokemon/:identifier/assets` |

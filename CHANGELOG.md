@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.9.1 - 2026-07-15
+
+- Compacte les templates Game Master en conservant une seule copie du JSON brut et en reconstruisant les propriétés au détail.
+- Purge les staging orphelins expirés, conserve deux snapshots par défaut et nettoie toute tentative incomplète avant activation.
+- Évite les milliers de diffs artificiels au premier import et corrige l'activation initiale atomique du pointeur courant.
+- Retourne `507 GAME_MASTER_STORAGE_QUOTA_EXCEEDED` lorsque le quota Atlas bloque les écritures, sans masquer le diagnostic ni créer de données partielles.
+
 ## 1.9.0 - 2026-07-15
 
 - Ajoute douze routes privées Game Master pour résumé, catégories, recherche, détail, comparaison locale, snapshots, diffs, exports, régénération et réindexation.

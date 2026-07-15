@@ -125,6 +125,12 @@ Sur Vercel, verifie que les variables suivantes existent selon ton setup :
 - `POKEMON_GO_DATA_TOKEN` si le depot `PokemonGo-Data` est prive
 - `POKEMON_GO_DATA_REF` si tu veux cloner une branche autre que `main`
 
+### Game Master Explorer
+
+La régénération privée Game Master écrit d'abord un staging complet, puis active le snapshot par le pointeur `game_master_states/current`. Les templates ne persistent qu'une copie du JSON brut et un texte de recherche borné ; les propriétés aplaties du détail sont reconstruites à la lecture.
+
+Deux snapshots sont conservés par défaut (`GAME_MASTER_SNAPSHOT_RETENTION`). Avant chaque régénération, les staging orphelins âgés d'au moins quinze minutes sont supprimés. Un quota Atlas saturé retourne `507 GAME_MASTER_STORAGE_QUOTA_EXCEEDED`, nettoie la tentative courante et conserve l'ancien snapshot actif.
+
 ## 6. Réflexe de sécurité data
 
 Avant toute modification massive dans `PokemonGo-Data`, lance le backup de refonte ou

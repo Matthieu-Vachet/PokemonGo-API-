@@ -136,6 +136,7 @@ function verifyReadback(adapter, document, expected) {
 }
 
 async function persistCurrentDataset({ adapter, data, report = {}, summary, stats, source }) {
+  const persistenceStartedAt = Date.now();
   adapter.validate(data, report, summary);
   const count = Number(adapter.count(data, summary));
   const previous = await readStoredDocument(adapter);
@@ -172,7 +173,13 @@ async function persistCurrentDataset({ adapter, data, report = {}, summary, stat
     { upsert: true, runValidators: true, setDefaultsOnInsert: true },
   ));
 
+  console.info(`[current-dataset:${adapter.domain}] Current document persisted`, {
+    count,
+    elapsedMs: Date.now() - persistenceStartedAt,
+  });
+
   if (adapter.SnapshotModel) {
+    const snapshotStartedAt = Date.now();
     await adapter.SnapshotModel.create({
       domain: adapter.domain,
       visibility: adapter.visibility,
@@ -182,6 +189,10 @@ async function persistCurrentDataset({ adapter, data, report = {}, summary, stat
       source: document.source,
       diagnostics: document.diagnostics,
       data,
+    });
+    console.info(`[current-dataset:${adapter.domain}] History snapshot persisted`, {
+      count,
+      elapsedMs: Date.now() - snapshotStartedAt,
     });
   }
 
@@ -196,6 +207,7 @@ async function persistCurrentDataset({ adapter, data, report = {}, summary, stat
     added: diff.added,
     removed: diff.removed,
     modified: diff.modified,
+    elapsedMs: Date.now() - persistenceStartedAt,
   });
 
   return {
@@ -207,6 +219,8 @@ async function persistCurrentDataset({ adapter, data, report = {}, summary, stat
 }
 
 async function regenerateCurrentDataset(adapter) {
+  const regenerationStartedAt = Date.now();
+  console.info(`[current-dataset:${adapter.domain}] Regeneration started`);
   let generated;
   try {
     generated = await generateCurrentData({
@@ -222,13 +236,22 @@ async function regenerateCurrentDataset(adapter) {
     );
   }
 
-  return persistCurrentDataset({
+  console.info(`[current-dataset:${adapter.domain}] Source generation completed`, {
+    itemsParsed: Number(generated.stats?.itemsParsed || 0),
+    elapsedMs: Date.now() - regenerationStartedAt,
+  });
+
+  const result = await persistCurrentDataset({
     adapter,
     data: generated.data,
     report: generated.report,
     summary: generated.summary,
     stats: generated.stats,
   });
+  console.info(`[current-dataset:${adapter.domain}] Regeneration completed`, {
+    elapsedMs: Date.now() - regenerationStartedAt,
+  });
+  return result;
 }
 
 async function importCurrentDataset(adapter, data) {

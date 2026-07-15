@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.9.2 - 2026-07-15
+
+- Porte la durée maximale de la fonction REST à cinq minutes afin que les snapshots Shiny complets puissent terminer sur Vercel.
+- Journalise séparément la génération source, l'écriture du document courant, l'historique MongoDB et la relecture vérifiée.
+- Ajoute un test de non-régression sur la configuration de durée des fonctions de données.
+
 ## 1.9.1 - 2026-07-15
 
 - Compacte les templates Game Master en conservant une seule copie du JSON brut et en reconstruisant les propriétés au détail.

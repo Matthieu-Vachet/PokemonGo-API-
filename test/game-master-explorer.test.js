@@ -6,10 +6,13 @@ const path = require("node:path");
 const { createApp } = require("../src/app");
 const {
   changeRows,
+  compactTemplateDocument,
   comparisonDocument,
   escapedRegex,
+  isExpiredOrphan,
   pageOptions,
   snapshotIdFor,
+  storageError,
 } = require("../src/services/game-master-explorer-service");
 const { structuredDiff } = require(path.join(process.env.POKEMON_GO_DATA_DIR || path.resolve(__dirname, "../../PokemonGo-Data"), "scripts/lib/game-master-explorer.js"));
 
@@ -25,6 +28,56 @@ test("borne la pagination serveur", () => {
 
 test("crée un identifiant de snapshot stable et lisible", () => {
   assert.equal(snapshotIdFor("abcdef0123456789", new Date("2026-07-15T01:02:03.000Z")), "gm-20260715010203-abcdef012345");
+});
+
+test("compacte les templates MongoDB sans dupliquer l’index de propriétés", () => {
+  const compact = compactTemplateDocument({
+    templateId: "V0001_POKEMON_BULBASAUR",
+    category: "pokemon/pokemon-settings",
+    categorySlug: "pokemon-settings",
+    categoryLabel: "Pokémon Settings",
+    categoryGroup: "pokemon",
+    categoryGroupLabel: "Pokémon",
+    settingType: "pokemonSettings",
+    pokemonId: { accidental: "object" },
+    numericPokemonId: 1,
+    form: "BULBASAUR_NORMAL",
+    costume: null,
+    itemId: null,
+    moveId: null,
+    assetBundleValue: null,
+    assetBundleSuffix: null,
+    searchTokens: Array.from({ length: 2_000 }, (_, index) => `token-${index}`),
+    flattenedPaths: [{ path: "data.value", value: "duplicated" }],
+    flattenedText: "duplicated",
+    propertyCount: 2,
+    sizeBytes: 100,
+    sourceHash: "hash",
+    sourceUpdatedAt: null,
+    indexSchemaVersion: 1,
+    raw: { templateId: "V0001_POKEMON_BULBASAUR", data: { value: true } },
+  });
+  assert.equal(compact.pokemonId, null);
+  assert.equal(compact.numericPokemonId, 1);
+  assert.equal(compact.form, "BULBASAUR_NORMAL");
+  assert.ok(compact.searchText.length <= 16_000);
+  assert.equal(Object.hasOwn(compact, "searchTokens"), false);
+  assert.equal(Object.hasOwn(compact, "flattenedPaths"), false);
+  assert.equal(Object.hasOwn(compact, "flattenedText"), false);
+});
+
+test("ne purge que les snapshots orphelins arrivés à expiration", () => {
+  const now = new Date("2026-07-15T03:00:00.000Z");
+  assert.equal(isExpiredOrphan("gm-20260715020000-abcdef", now), true);
+  assert.equal(isExpiredOrphan("gm-20260715025000-abcdef", now), false);
+  assert.equal(isExpiredOrphan("snapshot-externe", now), false);
+});
+
+test("transforme le quota Atlas en erreur explicite et actionnable", () => {
+  const mapped = storageError({ code: 8000, message: "you are over your space quota, writes are blocked" });
+  assert.equal(mapped.status, 507);
+  assert.equal(mapped.code, "GAME_MASTER_STORAGE_QUOTA_EXCEEDED");
+  assert.equal(mapped.details.retryable, true);
 });
 
 test("calcule les ajouts, retraits et modifications entre deux snapshots", () => {
@@ -74,7 +127,11 @@ test("active le snapshot par pointeur après le staging et traite un hash identi
   assert.ok(insertOffset > 0 && activateOffset > insertOffset);
   assert.match(source, /existingState\?\.sourceHash === payload\.metadata\.sourceHash/);
   assert.match(source, /\$inc: \{ checkCount: 1 \}/);
+  assert.doesNotMatch(source, /\$setOnInsert: \{ checkCount: 0 \}/);
   assert.match(source, /cleanupStaging\(snapshotId\)/);
+  assert.match(source, /const diffs = existingState\s*\? changeRows/);
+  assert.match(source, /compactTemplateDocument\(template\)/);
+  assert.match(source, /explorer\.flattenObject\(template\.raw\)/);
 });
 
 test("toutes les lectures Game Master exigent le secret Admin", async () => {

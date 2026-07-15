@@ -11,13 +11,90 @@ const {
 const MAX_PAGE_SIZE = 100;
 const MAX_EXPORT_SIZE = 10_000;
 const MAX_QUERY_LENGTH = 120;
+const MAX_SEARCH_TEXT_LENGTH = 16_000;
+const ORPHAN_STAGING_MINIMUM_AGE_MS = 15 * 60 * 1_000;
 const generationRanges = {
   1: [1, 151], 2: [152, 251], 3: [252, 386], 4: [387, 493], 5: [494, 649],
   6: [650, 721], 7: [722, 809], 8: [810, 905], 9: [906, 1_100],
 };
 
 function snapshotRetentionLimit() {
-  return Math.max(0, Number.parseInt(process.env.GAME_MASTER_SNAPSHOT_RETENTION, 10) || 0);
+  const configured = Number.parseInt(process.env.GAME_MASTER_SNAPSHOT_RETENTION, 10);
+  return Math.max(1, Number.isFinite(configured) ? configured : 2);
+}
+
+function scalarIdentifier(value) {
+  if (value === null || value === undefined || value === "") return null;
+  if (!["string", "number", "boolean"].includes(typeof value)) return null;
+  return String(value).slice(0, 500);
+}
+
+function compactTemplateDocument(template) {
+  const searchText = [
+    template.templateId,
+    template.category,
+    template.categoryLabel,
+    template.categoryGroup,
+    template.settingType,
+    scalarIdentifier(template.pokemonId),
+    scalarIdentifier(template.form),
+    scalarIdentifier(template.costume),
+    scalarIdentifier(template.itemId),
+    scalarIdentifier(template.moveId),
+    scalarIdentifier(template.assetBundleValue),
+    scalarIdentifier(template.assetBundleSuffix),
+    ...(Array.isArray(template.searchTokens) ? template.searchTokens.slice(0, 256) : []),
+  ].filter(Boolean).join(" ").toLowerCase().slice(0, MAX_SEARCH_TEXT_LENGTH);
+  return {
+    templateId: template.templateId,
+    category: template.category,
+    categorySlug: template.categorySlug,
+    categoryLabel: template.categoryLabel,
+    categoryGroup: template.categoryGroup,
+    categoryGroupLabel: template.categoryGroupLabel,
+    settingType: template.settingType,
+    pokemonId: scalarIdentifier(template.pokemonId),
+    numericPokemonId: Number.isFinite(template.numericPokemonId) ? template.numericPokemonId : null,
+    form: scalarIdentifier(template.form),
+    costume: scalarIdentifier(template.costume),
+    itemId: scalarIdentifier(template.itemId),
+    moveId: scalarIdentifier(template.moveId),
+    assetBundleValue: scalarIdentifier(template.assetBundleValue),
+    assetBundleSuffix: scalarIdentifier(template.assetBundleSuffix),
+    searchText,
+    propertyCount: template.propertyCount,
+    sizeBytes: template.sizeBytes,
+    sourceHash: template.sourceHash,
+    sourceUpdatedAt: template.sourceUpdatedAt || null,
+    indexSchemaVersion: template.indexSchemaVersion,
+    raw: template.raw,
+  };
+}
+
+function snapshotCreatedAt(snapshotId) {
+  const match = String(snapshotId || "").match(/^gm-(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})-/);
+  if (!match) return null;
+  const [, year, month, day, hour, minute, second] = match;
+  const value = new Date(`${year}-${month}-${day}T${hour}:${minute}:${second}Z`);
+  return Number.isNaN(value.getTime()) ? null : value;
+}
+
+function isExpiredOrphan(snapshotId, now = new Date(), minimumAgeMs = ORPHAN_STAGING_MINIMUM_AGE_MS) {
+  const createdAt = snapshotCreatedAt(snapshotId);
+  return createdAt ? now.getTime() - createdAt.getTime() >= minimumAgeMs : false;
+}
+
+function storageError(error) {
+  const message = String(error?.message || "");
+  if (Number(error?.code) === 8000 && /space quota|writes are blocked/i.test(message)) {
+    return new ApiError(
+      507,
+      "Le quota de stockage MongoDB est atteint. Les snapshots incomplets ont été nettoyés ; relancez la régénération.",
+      "GAME_MASTER_STORAGE_QUOTA_EXCEEDED",
+      { stage: "persist", retryable: true },
+    );
+  }
+  return error;
 }
 
 function loadDataTools() {
@@ -222,6 +299,9 @@ async function getTemplate(templateId) {
       .lean(),
     GameMasterDiff.find({ templateId: template.templateId }).sort({ createdAt: -1 }).limit(20).lean(),
   ]);
+  if (!Array.isArray(template.flattenedPaths) || !template.flattenedPaths.length) {
+    template.flattenedPaths = loadDataTools().explorer.flattenObject(template.raw);
+  }
   return { template, localComparison, history, diffs };
 }
 
@@ -318,6 +398,38 @@ async function cleanupStaging(snapshotId) {
   ]);
 }
 
+async function cleanupOrphanedSnapshots({ now = new Date(), minimumAgeMs = ORPHAN_STAGING_MINIMUM_AGE_MS } = {}) {
+  const [state, snapshots, templateIds, comparisonIds, diffIds] = await Promise.all([
+    currentState(),
+    GameMasterSnapshot.find({}).select("snapshotId").lean(),
+    GameMasterTemplate.distinct("snapshotId"),
+    GameMasterLocalComparison.distinct("snapshotId"),
+    GameMasterDiff.distinct("snapshotId"),
+  ]);
+  const validIds = new Set([
+    state?.snapshotId,
+    ...snapshots.map((snapshot) => snapshot.snapshotId),
+  ].filter(Boolean));
+  const storedIds = new Set([...templateIds, ...comparisonIds, ...diffIds].filter(Boolean));
+  const orphanIds = [...storedIds].filter((snapshotId) => (
+    !validIds.has(snapshotId) && isExpiredOrphan(snapshotId, now, minimumAgeMs)
+  ));
+  if (!orphanIds.length) return { snapshots: 0, templates: 0, comparisons: 0, diffs: 0 };
+  const [templates, comparisons, diffs] = await Promise.all([
+    GameMasterTemplate.deleteMany({ snapshotId: { $in: orphanIds } }),
+    GameMasterLocalComparison.deleteMany({ snapshotId: { $in: orphanIds } }),
+    GameMasterDiff.deleteMany({ snapshotId: { $in: orphanIds } }),
+  ]);
+  const diagnostics = {
+    snapshots: orphanIds.length,
+    templates: templates.deletedCount || 0,
+    comparisons: comparisons.deletedCount || 0,
+    diffs: diffs.deletedCount || 0,
+  };
+  console.info("[game-master-explorer] orphan staging cleaned", diagnostics);
+  return diagnostics;
+}
+
 async function enforceSnapshotRetention(activeSnapshotId) {
   const limit = snapshotRetentionLimit();
   if (!limit) return { maximumSnapshots: 0, removed: 0 };
@@ -337,6 +449,10 @@ async function enforceSnapshotRetention(activeSnapshotId) {
 
 async function regenerate() {
   const startedAt = Date.now();
+  const cleanup = await cleanupOrphanedSnapshots().catch((error) => {
+    console.warn("[game-master-explorer] orphan cleanup failed", { message: error.message });
+    return { snapshots: 0, templates: 0, comparisons: 0, diffs: 0, warning: error.message };
+  });
   const { explorer, generator } = loadDataTools();
   const generated = await generator.generateGameMasterExplorerIndex();
   const payload = generated.data;
@@ -364,6 +480,7 @@ async function regenerate() {
       warnings: [],
       errors: [],
       durationMs: Date.now() - startedAt,
+      cleanup,
     };
   }
 
@@ -373,7 +490,9 @@ async function regenerate() {
     const previousTemplates = existingState
       ? await GameMasterTemplate.find({ snapshotId: existingState.snapshotId }).lean()
       : [];
-    const diffs = changeRows(previousTemplates, payload.templates, explorer.structuredDiff);
+    const diffs = existingState
+      ? changeRows(previousTemplates, payload.templates, explorer.structuredDiff)
+      : [];
     const changesByType = {
       added: diffs.filter((diff) => diff.changeType === "added"),
       removed: diffs.filter((diff) => diff.changeType === "removed"),
@@ -383,7 +502,12 @@ async function regenerate() {
     const comparisons = payload.localComparison.map((mapping, index) => comparisonDocument(mapping, snapshotId, index));
     const localSummary = localStatusCounts(comparisons);
 
-    if (payload.templates.length) await GameMasterTemplate.insertMany(payload.templates.map((template) => ({ ...template, snapshotId })), { ordered: false });
+    if (payload.templates.length) {
+      await GameMasterTemplate.insertMany(
+        payload.templates.map((template) => ({ ...compactTemplateDocument(template), snapshotId })),
+        { ordered: false },
+      );
+    }
     if (comparisons.length) await GameMasterLocalComparison.insertMany(comparisons, { ordered: false });
     if (diffs.length) await GameMasterDiff.insertMany(diffs.map((diff) => ({ ...diff, snapshotId, previousSnapshotId: existingState?.snapshotId || null })), { ordered: false });
     await GameMasterSnapshot.create({
@@ -416,7 +540,7 @@ async function regenerate() {
         totalTemplates: payload.metadata.totalTemplates,
         totalCategories: payload.metadata.totalCategories,
         indexSchemaVersion: payload.metadata.indexSchemaVersion,
-      }, $inc: { checkCount: 1 }, $setOnInsert: { checkCount: 0 } },
+      }, $inc: { checkCount: 1 } },
       { upsert: true, new: true, runValidators: true },
     );
     const retention = await enforceSnapshotRetention(snapshotId).catch((error) => {
@@ -444,10 +568,11 @@ async function regenerate() {
       errors: [],
       durationMs: Date.now() - startedAt,
       retention,
+      cleanup,
     };
   } catch (error) {
     await cleanupStaging(snapshotId).catch(() => undefined);
-    throw error;
+    throw storageError(error);
   }
 }
 
@@ -459,7 +584,13 @@ async function reindex() {
   const indexed = explorer.buildGameMasterExplorerIndex(gameMaster, { sourceUpdatedAt: state.sourceUpdatedAt, retrievedAt: state.retrievedAt });
   const local = mappings.buildGameMasterPokemonMappings(gameMaster, events.loadPokemonEntries(dataPath()), { sourceUpdatedAt: state.sourceUpdatedAt, retrievedAt: state.retrievedAt });
   const operations = indexed.templates.map((template) => ({
-    updateOne: { filter: { snapshotId: state.snapshotId, templateId: template.templateId }, update: { $set: template } },
+    updateOne: {
+      filter: { snapshotId: state.snapshotId, templateId: template.templateId },
+      update: {
+        $set: compactTemplateDocument(template),
+        $unset: { searchTokens: "", flattenedPaths: "", flattenedText: "" },
+      },
+    },
   }));
   if (operations.length) await GameMasterTemplate.bulkWrite(operations, { ordered: false });
   await GameMasterLocalComparison.deleteMany({ snapshotId: state.snapshotId });
@@ -505,6 +636,8 @@ module.exports = {
   MAX_EXPORT_SIZE,
   categories,
   changeRows,
+  cleanupOrphanedSnapshots,
+  compactTemplateDocument,
   comparisonDocument,
   escapedRegex,
   enforceSnapshotRetention,
@@ -516,10 +649,12 @@ module.exports = {
   listSnapshots,
   listTemplates,
   localStatusCounts,
+  isExpiredOrphan,
   pageOptions,
   regenerate,
   reindex,
   snapshotIdFor,
+  storageError,
   summary,
   templateFilter,
 };

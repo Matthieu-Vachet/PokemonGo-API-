@@ -180,6 +180,9 @@ async function persistCurrentDataset({ adapter, data, report = {}, summary, stat
 
   if (adapter.SnapshotModel) {
     const snapshotStartedAt = Date.now();
+    const snapshotData = typeof adapter.snapshotData === "function"
+      ? adapter.snapshotData(data)
+      : data;
     await adapter.SnapshotModel.create({
       domain: adapter.domain,
       visibility: adapter.visibility,
@@ -188,7 +191,7 @@ async function persistCurrentDataset({ adapter, data, report = {}, summary, stat
       count,
       source: document.source,
       diagnostics: document.diagnostics,
-      data,
+      data: snapshotData,
     });
     console.info(`[current-dataset:${adapter.domain}] History snapshot persisted`, {
       count,

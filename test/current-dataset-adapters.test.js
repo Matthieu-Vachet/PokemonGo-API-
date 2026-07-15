@@ -119,3 +119,30 @@ test("les statistiques Shiny proviennent exclusivement des snapshots observés",
   assert.equal(statistics.windows.sevenDays.observations, 2);
   assert.deepEqual(statistics.dailyEvolution.map((point) => point.change), [null, -100, 200]);
 });
+
+test("les snapshots Shiny historiques ne dupliquent que les métriques nécessaires", () => {
+  const adapter = getCurrentDatasetAdapter("shiny");
+  const compact = adapter.snapshotData({
+    meta: { schemaVersion: 3 },
+    rankings: {
+      today: [{
+        rank: 4,
+        sourceIdentity: { id: "25", variantKey: "25_c28", name: "Pikachu" },
+        pokemon: { id: "PIKACHU", formId: "PIKACHU_NORMAL", names: { French: "Pikachu" }, assets: { image: "large" } },
+        stats: { daily: 4050000, monthly: 6550000 },
+        shiny: { odds: { numerator: 1, denominator: 167 }, ratePercent: 0.6, seen: 1000 },
+        diagnostics: ["large-field"],
+      }],
+    },
+  });
+
+  assert.deepEqual(compact.rankings.today[0], {
+    rank: 4,
+    sourceIdentity: { id: "25", variantKey: "25_c28" },
+    pokemon: { id: "PIKACHU", formId: "PIKACHU_NORMAL" },
+    stats: { daily: 4050000 },
+    shiny: { odds: { numerator: 1, denominator: 167 }, ratePercent: 0.6 },
+  });
+  assert.equal(adapter.compressData, true);
+  assert.equal(JSON.stringify(compact).includes("large-field"), false);
+});

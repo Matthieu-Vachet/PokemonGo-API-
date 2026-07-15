@@ -2,9 +2,9 @@
 
 ## 1.9.2 - 2026-07-15
 
-- Porte la durée maximale de la fonction REST à cinq minutes afin que les snapshots Shiny complets puissent terminer sur Vercel.
+- Compresse le document Shiny courant et réduit chaque historique aux identifiants et métriques réellement utilisés afin de terminer sous la limite Vercel de 60 secondes.
 - Journalise séparément la génération source, l'écriture du document courant, l'historique MongoDB et la relecture vérifiée.
-- Ajoute un test de non-régression sur la configuration de durée des fonctions de données.
+- Ajoute des tests de non-régression sur la configuration Vercel et le format compact des snapshots.
 
 ## 1.9.1 - 2026-07-15
 

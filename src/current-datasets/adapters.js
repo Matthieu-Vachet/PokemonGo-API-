@@ -93,6 +93,36 @@ function shinySummary(data) {
   );
 }
 
+function compactShinyHistoryData(data) {
+  return {
+    meta: {
+      schemaVersion: data?.meta?.schemaVersion || 1,
+      dataset: "shiny-history",
+    },
+    rankings: Object.fromEntries(
+      Object.entries(data?.rankings || {}).map(([board, entries]) => [
+        board,
+        values(entries).map((entry) => ({
+          rank: entry.rank ?? null,
+          sourceIdentity: {
+            id: entry.sourceIdentity?.id || null,
+            variantKey: entry.sourceIdentity?.variantKey || null,
+          },
+          pokemon: {
+            id: entry.pokemon?.id || null,
+            formId: entry.pokemon?.formId || null,
+          },
+          stats: { daily: entry.stats?.daily ?? null },
+          shiny: {
+            odds: entry.shiny?.odds || null,
+            ratePercent: entry.shiny?.ratePercent ?? null,
+          },
+        })),
+      ]),
+    ),
+  };
+}
+
 function pvpSummary(data) {
   return Object.fromEntries((data?.formats || []).map((format) => [format.id, Number(format.total || data?.leagues?.[format.id]?.rankings?.length || 0)]));
 }
@@ -606,6 +636,7 @@ const adapters = {
     Model: ShinyRanking,
     SnapshotModel: ShinySnapshot,
     compactCurrent: true,
+    compressData: true,
     scriptName: "generateShinyTracker.js",
     exportName: "generateShinyTracker",
     jsonPath: "shiny-tracker/current.json",
@@ -619,6 +650,7 @@ const adapters = {
     count: (_data, summary) => countSummary(summary),
     extractEntries: (data) => Object.entries(data.rankings || {}).flatMap(([board, rankings]) => values(rankings).map((entry) => ({ key: `${board}:${normalizeIdentity(rankedIdentity(entry))}:${entry.rank}`, value: entry }))),
     present: presentShiny,
+    snapshotData: compactShinyHistoryData,
     historyPoints: shinyHistoryPoint,
     historySummary: summarizeShinyHistory,
   },
@@ -783,6 +815,7 @@ module.exports = {
   assertBestAttackersDataset,
   assertPokemonIdentityMappings,
   bestAttackersSummary,
+  compactShinyHistoryData,
   getCurrentDatasetAdapter,
   normalizeIdentity,
   pokemonIdentity,

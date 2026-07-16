@@ -574,6 +574,34 @@ Pour une autocompletion avancee, creer les indexes Atlas Search a partir de :
 - `config/atlas-search-pokemon.json`
 - `config/atlas-search-moves.json`
 
+## Community Days et archive Events
+
+Les collections `community_days` et `events_archive` vivent dans la base Dashboard
+(`DASHBOARD_MONGODB_DB`, valeur par défaut `matweb-dashboard-admin`). Le Dashboard est
+seul responsable des synchronisations ; cette API fournit uniquement les projections
+publiques MongoDB paginées :
+
+```http
+GET /api/v1/community-days?year=2024&month=1&status=past&pokemon=ROWLET&page=1&limit=50
+GET /api/v1/community-days/:id
+GET /api/v1/events/history?status=upcoming&activeInCurrentFeed=true&page=1&limit=50
+GET /api/v1/events/history/:id
+GET /api/v1/events/history/:id/revisions
+```
+
+Les Community Days et événements archivés ne sont jamais supprimés lorsqu’ils
+disparaissent de leur source. Dans l’archive, `activeInCurrentFeed: false` signifie
+« absent du flux actuel ». Les projections publiques excluent les payloads source,
+hashes, diagnostics, propriétaires et valeurs précédentes internes.
+
+## Images Dynamax privées
+
+Les quatre routes `/api/v1/admin/dynamax-images/*` exigent `x-api-admin-secret`, sont
+absentes d’OpenAPI et n’écrivent aucune collection MongoDB. Le scan récupère uniquement
+nom, numéro et URL d’image depuis GO Hub, télécharge les images dans un cache temporaire
+privé et produit `dynamax-images.zip` avec `images/`, `manifest.json` et `errors.json`.
+Aucune statistique ou donnée de combat Pokémon n’est extraite.
+
 ## Securite Et Performance
 
 - Helmet et suppression de `X-Powered-By`

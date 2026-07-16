@@ -27,6 +27,9 @@ const pvpRankings = require("./pvp-rankings");
 const bestAttackers = require("./best-attackers");
 const pokemonIdentityMappings = require("./pokemon-identity-mappings");
 const gameMaster = require("./game-master");
+const dynamaxImages = require("./dynamax-images");
+const communityDays = require("./community-days");
+const eventsHistory = require("./events-history");
 
 const router = express.Router();
 
@@ -57,6 +60,8 @@ router.get("/", (_request, response) => {
         rocket: "/api/v1/rocket",
         rocketTexts: "/api/v1/rocket-texts",
         research: "/api/v1/research",
+        communityDays: "/api/v1/community-days",
+        eventsHistory: "/api/v1/events/history",
         regions: "/api/v1/regions",
         generations: "/api/v1/generations",
         compare: "/api/v1/compare/pokemon?ids=charizard,blastoise",
@@ -103,6 +108,10 @@ router.use("/pokemon-identity-mappings", pokemonIdentityMappings);
 router.use("/admin/pokemon-identity-mappings", pokemonIdentityMappings);
 // Explorer Game Master strictement privé, absent de la découverte et de l'OpenAPI publics.
 router.use("/admin/game-master", gameMaster);
+// Scraping d'images Dynamax strictement privé, sans route publique ni dataset Pokémon.
+router.use("/admin/dynamax-images", dynamaxImages);
+router.use("/community-days", communityDays);
+router.use("/events/history", eventsHistory);
 router.use("/search", search);
 router.use("/moves", moves);
 router.use("/pvp", pvp);

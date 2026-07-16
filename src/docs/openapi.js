@@ -297,7 +297,7 @@ function createOpenApi() {
     openapi: "3.0.3",
     info: {
       title: "Pokémon GO API",
-      version: "1.10.0",
+      version: "1.11.0",
       description:
         "Référence complète de l'API Pokémon GO francophone. Les routes GET publiques restent accessibles sans secret. Les routes privées, internes ou d'écriture exigent le header x-api-admin-secret alimenté par API_ADMIN_SECRET côté serveur. Pour exécuter les requêtes depuis le navigateur, utilisez [Swagger UI](/swagger).",
       license: { name: "ISC" },
@@ -324,6 +324,8 @@ function createOpenApi() {
       ["Max Battles", "Boss Max Battle Pokemon GO actifs enrichis depuis les donnees locales."],
       ["Rocket", "Lineups Team GO Rocket actifs enrichis depuis les donnees locales."],
       ["Research", "Quetes Research Pokemon GO actives enrichies depuis les donnees locales."],
+      ["Community Days", "Référentiel permanent des Community Days synchronisés depuis PogoAPI."],
+      ["Historique Events", "Archive permanente des événements déjà observés par le Calendrier Events."],
       ["Régions", "Régions et Pokémon associés."],
       ["Générations", "Générations et Pokémon associés."],
       ["Comparaison", "Comparaison de Pokémon."],
@@ -691,6 +693,25 @@ function createOpenApi() {
         ],
         response: listResponse(),
       }),
+      [`${api}/community-days`]: list("Community Days", "Lister les Community Days persistants", [
+        parameter("year", "query", 2024, "Année UTC.", { type: "integer" }),
+        parameter("month", "query", 1, "Mois de 1 à 12.", { type: "integer", minimum: 1, maximum: 12 }),
+        parameter("status", "query", "past", "Statut calculé.", { enum: ["past", "active", "upcoming"] }),
+        parameter("pokemon", "query", "ROWLET", "Identifiant Pokémon canonique."),
+      ]),
+      [`${api}/community-days/{id}`]: detail("Community Days", "Afficher un Community Day", "community-day-2024-01-rowlet", { name: "id", description: "Identifiant permanent ou sourceId." }),
+      [`${api}/events/history`]: list("Historique Events", "Lister l'archive permanente des événements", [
+        parameter("year", "query", 2026, "Année UTC.", { type: "integer" }),
+        parameter("month", "query", 7, "Mois de 1 à 12.", { type: "integer", minimum: 1, maximum: 12 }),
+        parameter("type", "query", "community_day", "Type d'événement."),
+        parameter("status", "query", "upcoming", "Statut calculé.", { enum: ["past", "active", "upcoming"] }),
+        parameter("pokemon", "query", "Pikachu", "Nom Pokémon lié."),
+        parameter("provider", "query", "leekduck-events", "Provider source."),
+        parameter("activeInCurrentFeed", "query", true, "Présence dans le flux courant.", { type: "boolean" }),
+        parameter("modified", "query", true, "Filtrer les événements ayant une révision.", { type: "boolean" }),
+      ]),
+      [`${api}/events/history/{id}`]: detail("Historique Events", "Afficher un événement archivé", "community-day-example", { name: "id", description: "ID, sourceId ou clé canonique." }),
+      [`${api}/events/history/{id}/revisions`]: detail("Historique Events", "Lister les révisions publiques d'un événement", "community-day-example", { name: "id", description: "ID, sourceId ou clé canonique." }),
       [`${api}/evolutions/special`]: operation("Évolutions", "Lister les évolutions spéciales", {
         parameters: [parameter("kind", "query", "item", "Condition : item ou buddy.", { enum: ["item", "buddy"] })],
         response: listResponse(),
@@ -788,7 +809,7 @@ function createOpenApi() {
     { name: "Commencer", tags: ["System", "Recherche"] },
     { name: "Pokédex", tags: ["Pokémon", "Évolutions", "Méga", "Dynamax", "Gigantamax", "Shadow", "Assets", "Backgrounds", "Candy", "Stickers", "Shuffle"] },
     { name: "Combat", tags: ["PvP", "Raid", "Attaques", "Types", "Statistiques", "Comparaison"] },
-    { name: "Univers", tags: ["Régions", "Générations", "Collection"] },
+    { name: "Univers", tags: ["Régions", "Générations", "Collection", "Community Days", "Historique Events"] },
     { name: "Données vivantes", tags: ["Items", "Rocket Texts"] },
     { name: "Métadonnées publiques", tags: ["Métadonnées"] },
   ];

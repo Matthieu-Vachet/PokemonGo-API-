@@ -13,6 +13,12 @@ leurs sources externes puis lus exclusivement dans MongoDB.
 
 Les classements Best Attackers suivent le même contrat MongoDB (`best_attackers`, gzip, hash, diff et relecture). `GET /api/v1/best-attackers` expose niveaux, types, métriques et filtres. Le diagnostic privé `pokemon-identity-mappings` rapproche le Game Master des formes locales et reste protégé par le secret admin.
 
+Les référentiels permanents Community Days et Historique Events sont exposés en lecture
+seule par `/api/v1/community-days` et `/api/v1/events/history`. Ils lisent les collections
+Dashboard partagées sans déclencher de synchronisation. Le scraping d’images Dynamax
+reste strictement privé sous `/api/v1/admin/dynamax-images/*`, hors OpenAPI et sans
+collection ou JSON Dynamax public.
+
 ## Game Master Explorer privé
 
 Le Game Master officiel PokeMiners est récupéré, validé et indexé uniquement côté serveur. Les routes `/api/v1/admin/game-master/*` exigent `x-api-admin-secret`, restent absentes d’OpenAPI et exposent des listes paginées sans champ `raw`; le JSON brut n’est renvoyé que pour un template demandé explicitement.

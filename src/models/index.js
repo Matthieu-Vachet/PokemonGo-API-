@@ -1,5 +1,6 @@
 module.exports = {
   BestAttacker: require("./best-attacker"),
+  DatasetRun: require("./dataset-run"),
   Egg: require("./egg"),
   Generation: require("./generation"),
   GameMasterDiff: require("./game-master-diff"),

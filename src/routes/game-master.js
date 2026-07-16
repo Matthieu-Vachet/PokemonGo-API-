@@ -43,6 +43,11 @@ router.get("/snapshots", asyncHandler(async (request, response) => {
   response.json({ data: result.items, meta: { ...result.pagination, source: "mongodb", visibility: "private" } });
 }));
 
+router.get("/runs", asyncHandler(async (request, response) => {
+  const result = await service.listRuns(request.query);
+  response.json({ data: result.items, meta: { ...result.pagination, source: "mongodb", visibility: "private" } });
+}));
+
 router.get("/snapshots/:snapshotId", asyncHandler(async (request, response) => {
   response.json({ data: await service.getSnapshot(request.params.snapshotId), meta: { source: "mongodb", visibility: "private" } });
 }));

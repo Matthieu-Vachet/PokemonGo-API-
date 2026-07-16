@@ -11,6 +11,7 @@ const {
   readCurrentDatasetFromMongo,
   serializeCurrentDatasetDocument,
 } = require("../lib/current-dataset-reader");
+const { DatasetRun } = require("../models");
 
 function dynamicHeaders(response) {
   response.set("Cache-Control", "no-store, no-cache, must-revalidate");
@@ -60,6 +61,7 @@ function actionPayload(adapter, result, action) {
     changed: Boolean(current.diagnostics?.diff?.changed),
     diff: current.diagnostics?.diff || null,
     report,
+    run: result.run || null,
   };
 }
 
@@ -90,6 +92,25 @@ function createCurrentDatasetRouter(adapter) {
         data: presented.data,
         meta: { ...currentMeta(adapter, result.document, summary), ...(presented.meta || {}) },
         current,
+      });
+    }),
+  );
+
+  router.get(
+    "/history",
+    asyncHandler(async (request, response) => {
+      requireAdminSecret(request);
+      const page = Math.max(1, Number.parseInt(request.query.page, 10) || 1);
+      const limit = Math.min(100, Math.max(1, Number.parseInt(request.query.limit, 10) || 20));
+      const filter = { datasetKey: adapter.domain };
+      if (request.query.status) filter.status = String(request.query.status);
+      const [items, total] = await Promise.all([
+        DatasetRun.find(filter).sort({ startedAt: -1 }).skip((page - 1) * limit).limit(limit).lean(),
+        DatasetRun.countDocuments(filter),
+      ]);
+      return response.json({
+        data: items,
+        meta: { domain: adapter.domain, page, limit, total, pages: Math.ceil(total / limit) },
       });
     }),
   );

@@ -110,6 +110,13 @@ test("conserve dans la comparaison l’asset local exact et sa provenance", () =
     localAssetsRef: "pokemon-assets/normal/0001-bulbasaur.assets.json",
     gameAvailability: { released: false },
     assetAvailability: { normal: true, shiny: false, independentFromGameRelease: true },
+    assetBundleSource: "pokemonSettings",
+    assetBundleResolved: true,
+    assetBundlePaths: { value: "data.pokemonSettings.assetBundleValue", suffix: null },
+    genderVariants: [{ isFemale: false, image: "bulbasaur.png" }],
+    candidateCount: 1,
+    localIdentityKey: "1|BULBASAUR|none",
+    variantCategory: "normal",
     mappingStatus: "matched",
   }, "gm-test", 0);
   assert.equal(document.localAsset.image, "bulbasaur.png");
@@ -117,6 +124,10 @@ test("conserve dans la comparaison l’asset local exact et sa provenance", () =
   assert.equal(document.gameAvailability.released, false);
   assert.equal(document.assetAvailability.normal, true);
   assert.equal(document.localFile, "pokemon/0001-bulbasaur.json");
+  assert.equal(document.assetBundleResolved, true);
+  assert.equal(document.assetBundleSource, "pokemonSettings");
+  assert.equal(document.genderVariants.length, 1);
+  assert.equal(document.variantCategory, "normal");
   assert.match(document.searchText, /bulbasaur/);
 });
 
@@ -141,6 +152,7 @@ test("toutes les lectures Game Master exigent le secret Admin", async () => {
     const app = createApp();
     await request(app).get("/api/v1/admin/game-master/summary").expect(401);
     await request(app).get("/api/v1/admin/game-master/templates").expect(401);
+    await request(app).get("/api/v1/admin/game-master/runs").expect(401);
     await request(app).get("/api/v1/admin/game-master/export").expect(401);
     const openApi = await request(app).get("/api-docs.json").expect(200);
     assert.equal(Object.keys(openApi.body.paths).some((route) => route.includes("/admin/game-master")), false);

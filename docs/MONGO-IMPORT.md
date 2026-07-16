@@ -89,6 +89,8 @@ Les cinq domaines dynamiques suivent le même flux atomique :
 6. invalider les caches du domaine ;
 7. relire le document depuis MongoDB et vérifier le hash et le compteur sauvegardés.
 
+Chaque tentative crée aussi un document `dataset_runs` avant la récupération. Le même document passe ensuite à `success`, `partial`, `unchanged` ou `failed` et conserve fournisseur, URL, dates, durée, hashes, compteurs, diff, warnings, erreurs et entrées non matchées détaillées. Les routes privées `GET /api/v1/<domain>/history` exposent cette chronologie sans renvoyer les datasets complets.
+
 Le Dashboard utilise ensuite exclusivement cette relecture MongoDB pour
 `Actualiser`, l'affichage, les compteurs, les diagnostics et le téléchargement.
 Une erreur MongoDB est donc affichée explicitement ; elle ne déclenche jamais un
@@ -130,6 +132,8 @@ Sur Vercel, verifie que les variables suivantes existent selon ton setup :
 La régénération privée Game Master écrit d'abord un staging complet, puis active le snapshot par le pointeur `game_master_states/current`. Les templates ne persistent qu'une copie du JSON brut et un texte de recherche borné ; les propriétés aplaties du détail sont reconstruites à la lecture.
 
 Deux snapshots sont conservés par défaut (`GAME_MASTER_SNAPSHOT_RETENTION`). Avant chaque régénération, les staging orphelins âgés d'au moins quinze minutes sont supprimés. Un quota Atlas saturé retourne `507 GAME_MASTER_STORAGE_QUOTA_EXCEEDED`, nettoie la tentative courante et conserve l'ancien snapshot actif.
+
+`GET /api/v1/admin/game-master/runs` expose le même contrat d’exécution centralisé. Les snapshots décrivent les versions de contenu ; les runs décrivent toutes les tentatives, y compris les contenus inchangés et les échecs.
 
 ## 6. Réflexe de sécurité data
 

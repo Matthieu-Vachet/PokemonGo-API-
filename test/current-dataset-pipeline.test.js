@@ -6,6 +6,7 @@ const { createCurrentDatasetRouter } = require("../src/current-datasets/router")
 const {
   importCurrentDataset,
   sourceMetadata,
+  unmatchedEntriesFromReport,
 } = require("../src/lib/current-dataset-pipeline");
 const { errorHandler } = require("../src/middleware/errors");
 
@@ -95,6 +96,57 @@ function createAdapter(Model) {
     },
   };
 }
+
+test("normalise les non-matchés en diagnostics détaillés et dédupliqués", () => {
+  const entries = unmatchedEntriesFromReport({
+    resolutionReport: {
+      details: [
+        {
+          status: "ambiguous",
+          sourceId: "PIKACHU_FALL_2019",
+          sourceName: "Pikachu",
+          sourceForm: "PIKACHU_NORMAL",
+          sourceCostume: "FALL_2019",
+          sourceImage: "pikachu.png",
+          ambiguousCandidates: [{ costume: "FALL_2019" }, { costume: "WINTER_2020" }],
+          localFile: "pokemon/0025-pikachu.json",
+        },
+        {
+          status: "ambiguous",
+          sourceId: "PIKACHU_FALL_2019",
+          sourceName: "Pikachu",
+          sourceForm: "PIKACHU_NORMAL",
+          sourceCostume: "FALL_2019",
+        },
+      ],
+    },
+    unmatchedItems: ["Rare Candy XL"],
+  });
+
+  assert.equal(entries.length, 2);
+  assert.deepEqual(entries[0], {
+    sourceId: "PIKACHU_FALL_2019",
+    sourceName: "Pikachu",
+    sourceForm: "PIKACHU_NORMAL",
+    sourceCostume: "FALL_2019",
+    sourceImage: "pikachu.png",
+    reason: "ambiguous",
+    candidates: [{ costume: "FALL_2019" }, { costume: "WINTER_2020" }],
+    localFile: "pokemon/0025-pikachu.json",
+    sourcePayload: {
+      status: "ambiguous",
+      sourceId: "PIKACHU_FALL_2019",
+      sourceName: "Pikachu",
+      sourceForm: "PIKACHU_NORMAL",
+      sourceCostume: "FALL_2019",
+      sourceImage: "pikachu.png",
+      ambiguousCandidates: [{ costume: "FALL_2019" }, { costume: "WINTER_2020" }],
+      localFile: "pokemon/0025-pikachu.json",
+    },
+  });
+  assert.equal(entries[1].sourceName, "Rare Candy XL");
+  assert.equal(entries[1].reason, "missing-local-item");
+});
 
 test("le pipeline upsert current, nettoie sourceFile et relit réellement MongoDB", async () => {
   const Model = createMemoryModel({

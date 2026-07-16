@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.10.0 - 2026-07-16
+
+- Persiste les variantes sexuées, les raisons d’ambiguïté, les candidats, les catégories et les métadonnées d’asset bundle dans la comparaison Game Master.
+- Ajoute `dataset_runs` et les routes privées d’historique pour chaque dataset dynamique et pour le Game Master.
+- Conserve les non-matchés détaillés, les warnings, erreurs, hashes, diffs et compteurs de chaque régénération, y compris les échecs.
+- Évite de dupliquer un snapshot volumineux lorsque le hash courant est inchangé.
+
 ## 1.9.2 - 2026-07-15
 
 - Compresse le document Shiny courant et réduit chaque historique aux identifiants et métriques réellement utilisés afin de terminer sous la limite Vercel de 60 secondes.

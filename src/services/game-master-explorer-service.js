@@ -6,6 +6,7 @@ const {
   GameMasterSnapshot,
   GameMasterState,
   GameMasterTemplate,
+  DatasetRun,
 } = require("../models");
 
 const MAX_PAGE_SIZE = 100;
@@ -61,6 +62,9 @@ function compactTemplateDocument(template) {
     moveId: scalarIdentifier(template.moveId),
     assetBundleValue: scalarIdentifier(template.assetBundleValue),
     assetBundleSuffix: scalarIdentifier(template.assetBundleSuffix),
+    assetBundleSource: scalarIdentifier(template.assetBundleSource),
+    assetBundleResolved: Boolean(template.assetBundleResolved),
+    assetBundlePaths: template.assetBundlePaths || null,
     searchText,
     propertyCount: template.propertyCount,
     sizeBytes: template.sizeBytes,
@@ -124,7 +128,7 @@ function snapshotIdFor(hash, date = new Date()) {
 }
 
 function comparisonKey(mapping, index = 0) {
-  return [mapping.templateId, mapping.pokemonId, mapping.form, mapping.assetBundleValue, mapping.assetBundleSuffix, index]
+  return [mapping.templateId, mapping.pokemonId, mapping.form, mapping.assetBundleValue, mapping.assetBundleSuffix, mapping.isFemale, index]
     .map((value) => String(value ?? ""))
     .join("|");
 }
@@ -140,6 +144,10 @@ function comparisonDocument(mapping, snapshotId, index) {
     costume: mapping.costume || mapping.localCostume || null,
     assetBundleValue: mapping.assetBundleValue,
     assetBundleSuffix: mapping.assetBundleSuffix,
+    assetBundleSource: mapping.assetBundleSource,
+    assetBundleResolved: Boolean(mapping.assetBundleResolved),
+    assetBundlePaths: mapping.assetBundlePaths || null,
+    isFemale: typeof mapping.isFemale === "boolean" ? mapping.isFemale : null,
     localForm: mapping.localForm,
     localCostume: mapping.localCostume,
     localPokemonFormId: mapping.localPokemonFormId,
@@ -152,10 +160,17 @@ function comparisonDocument(mapping, snapshotId, index) {
     category: mapping.sourceType === "formSettings" ? "pokemon/form-settings" : "pokemon/pokemon-settings",
     dataType: mapping.sourceType || null,
     localAsset: mapping.localAsset,
+    genderVariants: mapping.genderVariants || [],
     gameAvailability: mapping.gameAvailability,
     assetAvailability: mapping.assetAvailability,
     mappingStatus: mapping.mappingStatus,
     ambiguityCount: mapping.ambiguityCount || 0,
+    candidateCount: mapping.candidateCount || 0,
+    ambiguousCandidates: mapping.ambiguousCandidates || [],
+    ambiguityReason: mapping.ambiguityReason || null,
+    ambiguityExplanation: mapping.ambiguityExplanation || null,
+    localIdentityKey: mapping.localIdentityKey || null,
+    variantCategory: mapping.variantCategory || null,
     searchText: [
       mapping.templateId,
       mapping.pokemonId,
@@ -169,6 +184,9 @@ function comparisonDocument(mapping, snapshotId, index) {
       mapping.localFile,
       mapping.localAssetsRef,
       mapping.mappingStatus,
+      mapping.variantCategory,
+      mapping.ambiguityReason,
+      mapping.ambiguityExplanation,
     ].filter(Boolean).join(" ").toLowerCase(),
     raw: mapping,
   };
@@ -324,6 +342,7 @@ async function listLocalComparison(query = {}, maximum = MAX_PAGE_SIZE) {
   if (query.sex === "neutral") filter["localAsset.isFemale"] = { $ne: true };
   if (query.dataType) filter.dataType = String(query.dataType);
   if (query.category) filter.category = String(query.category);
+  if (query.variantCategory) filter.variantCategory = String(query.variantCategory);
   const search = String(query.q || query.search || "").trim();
   if (search) filter.searchText = new RegExp(escapedRegex(search), "i");
   const [items, total] = await Promise.all([
@@ -341,6 +360,17 @@ async function listSnapshots(query = {}) {
     currentState(),
   ]);
   return { items: items.map((item) => ({ ...item, current: item.snapshotId === state?.snapshotId })), pagination: { page: pagination.page, limit: pagination.limit, total, pages: Math.ceil(total / pagination.limit) } };
+}
+
+async function listRuns(query = {}) {
+  const pagination = pageOptions(query, 100);
+  const filter = { datasetKey: "game-master" };
+  if (query.status) filter.status = String(query.status);
+  const [items, total] = await Promise.all([
+    DatasetRun.find(filter).sort({ startedAt: -1 }).skip(pagination.skip).limit(pagination.limit).lean(),
+    DatasetRun.countDocuments(filter),
+  ]);
+  return { items, pagination: { page: pagination.page, limit: pagination.limit, total, pages: Math.ceil(total / pagination.limit) } };
 }
 
 async function getSnapshot(snapshotId) {
@@ -449,12 +479,27 @@ async function enforceSnapshotRetention(activeSnapshotId) {
 
 async function regenerate() {
   const startedAt = Date.now();
-  const cleanup = await cleanupOrphanedSnapshots().catch((error) => {
+  const run = await DatasetRun.create({
+    datasetKey: "game-master",
+    provider: "PokeMiners-game_masters",
+    sourceUrl: "https://raw.githubusercontent.com/PokeMiners/game_masters/master/latest/latest.json",
+    status: "running",
+    startedAt: new Date(startedAt),
+  });
+  let cleanup;
+  let generated;
+  try {
+    cleanup = await cleanupOrphanedSnapshots().catch((error) => {
     console.warn("[game-master-explorer] orphan cleanup failed", { message: error.message });
     return { snapshots: 0, templates: 0, comparisons: 0, diffs: 0, warning: error.message };
-  });
-  const { explorer, generator } = loadDataTools();
-  const generated = await generator.generateGameMasterExplorerIndex();
+    });
+    const { generator } = loadDataTools();
+    generated = await generator.generateGameMasterExplorerIndex();
+  } catch (error) {
+    await DatasetRun.updateOne({ _id: run._id }, { $set: { status: "failed", completedAt: new Date(), durationMs: Date.now() - startedAt, errorsCount: 1, errors: [{ message: error.message }] } }).catch(() => undefined);
+    throw error;
+  }
+  const { explorer } = loadDataTools();
   const payload = generated.data;
   const existingState = await currentState();
   if (existingState?.sourceHash === payload.metadata.sourceHash) {
@@ -464,7 +509,7 @@ async function regenerate() {
       { $set: { lastCheckedAt: now, sourceUpdatedAt: payload.metadata.sourceUpdatedAt || null }, $inc: { checkCount: 1 } },
       { new: true },
     ).lean();
-    return {
+    const result = {
       success: true,
       changed: false,
       snapshotId: state.snapshotId,
@@ -482,6 +527,8 @@ async function regenerate() {
       durationMs: Date.now() - startedAt,
       cleanup,
     };
+    await DatasetRun.updateOne({ _id: run._id }, { $set: { status: "unchanged", completedAt: new Date(), durationMs: result.durationMs, retrievedAt: payload.metadata.retrievedAt, hashBefore: state.sourceHash, hashAfter: state.sourceHash, changed: false, totalBefore: state.totalTemplates, totalAfter: state.totalTemplates, matchedCount: result.matchedLocal, unmatchedCount: result.unmatchedLocal, warningsCount: 0, errorsCount: 0, warnings: [], errors: [] } });
+    return result;
   }
 
   const indexedAt = new Date();
@@ -548,7 +595,7 @@ async function regenerate() {
       return { maximumSnapshots: snapshotRetentionLimit(), removed: 0, warning: error.message };
     });
     console.info("[game-master-explorer] snapshot activated", { snapshotId, totalTemplates: payload.metadata.totalTemplates, changes: { added: changesByType.added.length, removed: changesByType.removed.length, modified: changesByType.modified.length } });
-    return {
+    const result = {
       success: true,
       source: payload.metadata.source,
       sourceUpdatedAt: payload.metadata.sourceUpdatedAt,
@@ -570,8 +617,22 @@ async function regenerate() {
       retention,
       cleanup,
     };
+    const unmatchedEntries = comparisons.filter((comparison) => comparison.mappingStatus !== "matched").map((comparison) => ({
+      sourceId: comparison.templateId,
+      sourceName: comparison.pokemon,
+      sourceForm: comparison.form,
+      sourceCostume: comparison.costume,
+      sourceImage: comparison.localAsset?.image || null,
+      reason: comparison.mappingStatus,
+      candidates: comparison.ambiguousCandidates || [],
+      localFile: comparison.localFile || null,
+      sourcePayload: comparison.raw || {},
+    }));
+    await DatasetRun.updateOne({ _id: run._id }, { $set: { status: result.unmatchedLocal ? "partial" : "success", completedAt: new Date(), durationMs: result.durationMs, retrievedAt: payload.metadata.retrievedAt, savedAt: indexedAt, hashBefore: existingState?.sourceHash || null, hashAfter: payload.metadata.sourceHash, changed: true, totalBefore: Number(existingState?.totalTemplates || 0), totalAfter: payload.metadata.totalTemplates, added: result.added, removed: result.removed, modified: result.modified, matchedCount: result.matchedLocal, unmatchedCount: result.unmatchedLocal, warningsCount: 0, errorsCount: 0, unmatchedEntries, warnings: [], errors: [] } });
+    return result;
   } catch (error) {
     await cleanupStaging(snapshotId).catch(() => undefined);
+    await DatasetRun.updateOne({ _id: run._id }, { $set: { status: "failed", completedAt: new Date(), durationMs: Date.now() - startedAt, errorsCount: 1, errors: [{ message: error.message, code: error.code || null }] } }).catch(() => undefined);
     throw storageError(error);
   }
 }
@@ -646,6 +707,7 @@ module.exports = {
   getTemplate,
   listDiff,
   listLocalComparison,
+  listRuns,
   listSnapshots,
   listTemplates,
   localStatusCounts,

@@ -3,7 +3,6 @@ const fs = require("node:fs");
 const fsp = require("node:fs/promises");
 const os = require("node:os");
 const path = require("node:path");
-const puppeteer = require("puppeteer-core");
 const { ApiError } = require("../lib/api-error");
 
 const SOURCE_URL = "https://db.pokemongohub.net/pokemon-list/category/dynamax";
@@ -88,8 +87,11 @@ function normalizeCard(raw) {
 }
 
 async function collectDynamaxCards() {
-  // Chromium 149 is ESM-only on the Node.js 22 runtime used by Vercel.
-  const { default: chromium } = await import("@sparticuz/chromium");
+  // Both browser packages are ESM-only on the Node.js 22 runtime used by Vercel.
+  const [{ default: chromium }, puppeteer] = await Promise.all([
+    import("@sparticuz/chromium"),
+    import("puppeteer-core"),
+  ]);
   const localCandidates = process.platform === "darwin" ? [
     process.env.CHROMIUM_EXECUTABLE_PATH,
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",

@@ -3,7 +3,6 @@ const fs = require("node:fs");
 const fsp = require("node:fs/promises");
 const os = require("node:os");
 const path = require("node:path");
-const { ZipArchive } = require("archiver");
 const chromium = require("@sparticuz/chromium");
 const puppeteer = require("puppeteer-core");
 const { ApiError } = require("../lib/api-error");
@@ -265,6 +264,8 @@ async function dynamaxImagePath(filename) {
 }
 
 async function createDynamaxZip(response) {
+  // Archiver 8 is ESM-only on the Node.js 22 runtime used by Vercel.
+  const { ZipArchive } = await import("archiver");
   const state = await readState();
   if (!state) throw new ApiError(404, "Aucun scan Dynamax disponible.", "DYNAMAX_SCAN_NOT_FOUND");
   const successful = state.images.filter((image) => image.downloadStatus === "success");

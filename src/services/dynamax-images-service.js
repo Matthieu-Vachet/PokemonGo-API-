@@ -129,16 +129,25 @@ async function collectDynamaxCards() {
       cards.push(...batch);
 
       const nextState = await page.evaluate(() => {
-        const image = document.querySelector('img[alt="Next page"]');
-        const button = image?.closest("button");
+        const buttons = [...document.querySelectorAll('img[alt="Next page"]')]
+          .map((image) => image.closest("button"))
+          .filter(Boolean);
+        const enabled = buttons.filter((button) => !button.disabled && button.getAttribute("aria-disabled") !== "true");
+        const button = enabled.find((candidate) => candidate.getClientRects().length > 0) || enabled[0];
         return {
-          present: Boolean(button),
-          disabled: !button || button.disabled || button.getAttribute("aria-disabled") === "true",
+          present: buttons.length > 0,
+          disabled: !button,
+          buttonIndex: button ? buttons.indexOf(button) : -1,
           marker: document.querySelector("table tbody tr")?.textContent || "",
         };
       });
       if (!nextState.present || nextState.disabled) break;
-      await page.evaluate(() => document.querySelector('img[alt="Next page"]')?.closest("button")?.click());
+      await page.evaluate((buttonIndex) => {
+        const buttons = [...document.querySelectorAll('img[alt="Next page"]')]
+          .map((image) => image.closest("button"))
+          .filter(Boolean);
+        buttons[buttonIndex]?.click();
+      }, nextState.buttonIndex);
       await page.waitForFunction(
         (marker) => (document.querySelector("table tbody tr")?.textContent || "") !== marker,
         { timeout: 10_000 },

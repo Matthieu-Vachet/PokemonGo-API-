@@ -115,41 +115,6 @@ async function collectDynamaxCards() {
     await page.goto(SOURCE_URL, { waitUntil: "networkidle2", timeout: 45_000 });
     await page.waitForSelector("table tbody tr", { timeout: 30_000 });
 
-    // The source exposes a native page-size selector up to 200 rows. Selecting
-    // it is more reliable than repeatedly clicking the duplicated responsive
-    // pagination controls and still covers the complete Dynamax result set.
-    const pageSizeState = await page.evaluate(() => {
-      const matches = [...document.querySelectorAll("select")].map((select) => ({
-        select,
-        option: [...select.options].find((candidate) => candidate.textContent?.trim() === "200"),
-      })).filter((match) => match.option);
-      const initialRows = document.querySelectorAll("table tbody tr").length;
-      let changed = false;
-      for (const { select, option } of matches) {
-        if (select.value === option.value) continue;
-        const valueSetter = Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype, "value")?.set;
-        if (valueSetter) valueSetter.call(select, option.value);
-        else select.value = option.value;
-        select.dispatchEvent(new Event("input", { bubbles: true }));
-        select.dispatchEvent(new Event("change", { bubbles: true }));
-        changed = true;
-      }
-      return { changed, initialRows, selectorCount: matches.length };
-    });
-    if (pageSizeState.changed) {
-      await page.waitForFunction(
-        (initialRows) => document.querySelectorAll("table tbody tr").length > initialRows,
-        { timeout: 10_000 },
-        pageSizeState.initialRows,
-      ).catch(() => undefined);
-    }
-    const expandedRows = await page.$$eval("table tbody tr", (rows) => rows.length);
-    console.info("[dynamax-images] Source table prepared", {
-      initialRows: pageSizeState.initialRows,
-      expandedRows,
-      selectorCount: pageSizeState.selectorCount,
-    });
-
     const cards = [];
     for (let pageIndex = 0; pageIndex < 30; pageIndex += 1) {
       const batch = await page.$$eval("table tbody tr", (rows) => rows.map((row) => {
@@ -163,31 +128,33 @@ async function collectDynamaxCards() {
       }).filter((card) => card.name && card.sourceImageUrl));
       cards.push(...batch);
 
-      const nextState = await page.evaluate(() => {
-        const buttons = [...document.querySelectorAll('img[alt="Next page"]')]
-          .map((image) => image.closest("button"))
-          .filter(Boolean);
-        const enabled = buttons.filter((button) => !button.disabled && button.getAttribute("aria-disabled") !== "true");
-        const button = enabled.find((candidate) => candidate.getClientRects().length > 0) || enabled[0];
-        return {
-          present: buttons.length > 0,
-          disabled: !button,
-          buttonIndex: button ? buttons.indexOf(button) : -1,
-          marker: document.querySelector("table tbody tr")?.textContent || "",
-        };
-      });
-      if (!nextState.present || nextState.disabled) break;
-      await page.evaluate((buttonIndex) => {
-        const buttons = [...document.querySelectorAll('img[alt="Next page"]')]
-          .map((image) => image.closest("button"))
-          .filter(Boolean);
-        buttons[buttonIndex]?.click();
-      }, nextState.buttonIndex);
-      await page.waitForFunction(
-        (marker) => (document.querySelector("table tbody tr")?.textContent || "") !== marker,
-        { timeout: 10_000 },
-        nextState.marker,
-      );
+      const nextImages = await page.$$('img[alt="Next page"]');
+      let nextImage = null;
+      for (const image of nextImages) {
+        const enabled = await image.evaluate((candidate) => {
+          const button = candidate.closest("button");
+          return Boolean(button && !button.disabled && button.getAttribute("aria-disabled") !== "true");
+        });
+        if (enabled && await image.boundingBox()) {
+          nextImage = image;
+          break;
+        }
+      }
+      if (!nextImage) {
+        await Promise.all(nextImages.map((image) => image.dispose()));
+        break;
+      }
+      const marker = await page.$eval("table tbody tr", (row) => row.textContent || "");
+      try {
+        await nextImage.click();
+        await page.waitForFunction(
+          (previousMarker) => (document.querySelector("table tbody tr")?.textContent || "") !== previousMarker,
+          { timeout: 10_000 },
+          marker,
+        );
+      } finally {
+        await Promise.all(nextImages.map((image) => image.dispose()));
+      }
     }
     return cards;
   } finally {

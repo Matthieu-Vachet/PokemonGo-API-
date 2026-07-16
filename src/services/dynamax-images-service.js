@@ -119,18 +119,22 @@ async function collectDynamaxCards() {
     // it is more reliable than repeatedly clicking the duplicated responsive
     // pagination controls and still covers the complete Dynamax result set.
     const pageSizeState = await page.evaluate(() => {
-      const select = [...document.querySelectorAll("select")].find((candidate) => (
-        [...candidate.options].some((option) => option.textContent?.trim() === "200")
-      ));
-      const option = select
-        ? [...select.options].find((candidate) => candidate.textContent?.trim() === "200")
-        : null;
+      const matches = [...document.querySelectorAll("select")].map((select) => ({
+        select,
+        option: [...select.options].find((candidate) => candidate.textContent?.trim() === "200"),
+      })).filter((match) => match.option);
       const initialRows = document.querySelectorAll("table tbody tr").length;
-      if (!select || !option || select.value === option.value) return { changed: false, initialRows };
-      select.value = option.value;
-      select.dispatchEvent(new Event("input", { bubbles: true }));
-      select.dispatchEvent(new Event("change", { bubbles: true }));
-      return { changed: true, initialRows };
+      let changed = false;
+      for (const { select, option } of matches) {
+        if (select.value === option.value) continue;
+        const valueSetter = Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype, "value")?.set;
+        if (valueSetter) valueSetter.call(select, option.value);
+        else select.value = option.value;
+        select.dispatchEvent(new Event("input", { bubbles: true }));
+        select.dispatchEvent(new Event("change", { bubbles: true }));
+        changed = true;
+      }
+      return { changed, initialRows, selectorCount: matches.length };
     });
     if (pageSizeState.changed) {
       await page.waitForFunction(
@@ -139,6 +143,12 @@ async function collectDynamaxCards() {
         pageSizeState.initialRows,
       ).catch(() => undefined);
     }
+    const expandedRows = await page.$$eval("table tbody tr", (rows) => rows.length);
+    console.info("[dynamax-images] Source table prepared", {
+      initialRows: pageSizeState.initialRows,
+      expandedRows,
+      selectorCount: pageSizeState.selectorCount,
+    });
 
     const cards = [];
     for (let pageIndex = 0; pageIndex < 30; pageIndex += 1) {

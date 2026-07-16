@@ -20,6 +20,10 @@ router.get("/", async (request, response, next) => {
     if (request.query.file) {
       const result = await dynamaxImagePath(String(request.query.file));
       response.setHeader("Cache-Control", "private, max-age=300");
+      if (result.buffer) {
+        response.type(result.contentType || "application/octet-stream");
+        return response.send(result.buffer);
+      }
       return response.sendFile(result.filePath);
     }
     response.setHeader("Cache-Control", "private, no-store");

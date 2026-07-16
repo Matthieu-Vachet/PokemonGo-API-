@@ -3,6 +3,7 @@ const fs = require("node:fs");
 const fsp = require("node:fs/promises");
 const os = require("node:os");
 const path = require("node:path");
+const mongoose = require("mongoose");
 const { ApiError } = require("../lib/api-error");
 
 const SOURCE_URL = "https://db.pokemongohub.net/pokemon-list/category/dynamax";
@@ -14,6 +15,37 @@ const STATE_FILE = path.join(CACHE_DIR, "state.json");
 const MAX_IMAGE_BYTES = 10 * 1024 * 1024;
 const DOWNLOAD_TIMEOUT_MS = 12_000;
 const MAX_REDIRECTS = 3;
+const CACHE_DATASET_KEY = "dynamax-images";
+const CACHE_COLLECTION = "admin_asset_cache";
+const CACHE_TTL_MS = 6 * 60 * 60 * 1000;
+const DASHBOARD_DB = process.env.DASHBOARD_MONGODB_DB || "matweb-dashboard-admin";
+
+let cacheIndexPromise;
+
+function persistentCacheCollection() {
+  return mongoose.connection.client?.db(DASHBOARD_DB).collection(CACHE_COLLECTION) || null;
+}
+
+async function preparePersistentCache(collection) {
+  if (!collection) return;
+  if (!cacheIndexPromise) {
+    cacheIndexPromise = collection.createIndex(
+      { expiresAt: 1 },
+      { expireAfterSeconds: 0, name: "expiresAt_ttl" },
+    ).catch((error) => {
+      cacheIndexPromise = null;
+      throw error;
+    });
+  }
+  await cacheIndexPromise;
+}
+
+function bufferFromMongo(value) {
+  if (Buffer.isBuffer(value)) return value;
+  if (typeof value?.value === "function") return Buffer.from(value.value(true));
+  if (Buffer.isBuffer(value?.buffer)) return Buffer.from(value.buffer);
+  return value ? Buffer.from(value) : null;
+}
 
 function cleanText(value) {
   return String(value || "").replace(/\s+/g, " ").trim();
@@ -208,20 +240,58 @@ async function readState() {
   try {
     return JSON.parse(await fsp.readFile(STATE_FILE, "utf8"));
   } catch (error) {
-    if (error.code === "ENOENT") return null;
-    throw error;
+    if (error.code !== "ENOENT") throw error;
   }
+  const collection = persistentCacheCollection();
+  if (!collection) return null;
+  const document = await collection.findOne({ _id: `${CACHE_DATASET_KEY}:state`, datasetKey: CACHE_DATASET_KEY });
+  return document?.state || null;
 }
 
-async function writeState(state) {
-  await fsp.mkdir(CACHE_DIR, { recursive: true });
-  const temporary = `${STATE_FILE}.${process.pid}.tmp`;
-  await fsp.writeFile(temporary, `${JSON.stringify(state, null, 2)}\n`, "utf8");
-  await fsp.rename(temporary, STATE_FILE);
+async function writeState(state, cachedFiles = new Map()) {
+  const localWrite = (async () => {
+    await fsp.mkdir(CACHE_DIR, { recursive: true });
+    const temporary = `${STATE_FILE}.${process.pid}.tmp`;
+    await fsp.writeFile(temporary, `${JSON.stringify(state, null, 2)}\n`, "utf8");
+    await fsp.rename(temporary, STATE_FILE);
+  })();
+  const collection = persistentCacheCollection();
+  const persistentWrite = collection ? (async () => {
+    await preparePersistentCache(collection);
+    const expiresAt = new Date(Date.now() + CACHE_TTL_MS);
+    const updatedAt = new Date();
+    const documents = [{
+      _id: `${CACHE_DATASET_KEY}:state`,
+      datasetKey: CACHE_DATASET_KEY,
+      kind: "state",
+      state,
+      updatedAt,
+      expiresAt,
+    }];
+    for (const [filename, file] of cachedFiles) {
+      documents.push({
+        _id: `${CACHE_DATASET_KEY}:image:${filename}`,
+        datasetKey: CACHE_DATASET_KEY,
+        kind: "image",
+        filename,
+        contentType: file.contentType,
+        data: file.buffer,
+        updatedAt,
+        expiresAt,
+      });
+    }
+    await collection.deleteMany({ datasetKey: CACHE_DATASET_KEY });
+    await collection.insertMany(documents, { ordered: false });
+  })() : Promise.resolve();
+  await Promise.all([localWrite, persistentWrite]);
 }
 
 async function clearDynamaxImageCache() {
-  await fsp.rm(CACHE_DIR, { recursive: true, force: true });
+  const collection = persistentCacheCollection();
+  await Promise.all([
+    fsp.rm(CACHE_DIR, { recursive: true, force: true }),
+    collection ? collection.deleteMany({ datasetKey: CACHE_DATASET_KEY }) : Promise.resolve(),
+  ]);
   return { cleared: true };
 }
 
@@ -236,25 +306,38 @@ async function scanDynamaxImages(options = {}) {
   await clearDynamaxImageCache();
   await fsp.mkdir(IMAGE_DIR, { recursive: true });
 
-  const usedFilenames = new Map();
-  const images = [];
+  const downloads = new Array(uniqueCards.length);
   let cursor = 0;
   async function worker() {
     while (cursor < uniqueCards.length) {
-      const card = uniqueCards[cursor];
+      const index = cursor;
       cursor += 1;
       try {
-        const downloaded = await downloader(card.sourceImageUrl);
-        const filename = filenameFor(card, downloaded.contentType, usedFilenames);
-        await fsp.writeFile(path.join(IMAGE_DIR, filename), downloaded.buffer);
-        images.push({ ...card, filename, downloadStatus: "success", error: null });
+        downloads[index] = { downloaded: await downloader(uniqueCards[index].sourceImageUrl) };
       } catch (error) {
-        const filename = filenameFor(card, "", usedFilenames);
-        images.push({ ...card, filename, downloadStatus: "failed", error: error instanceof Error ? error.message : String(error) });
+        downloads[index] = { error: error instanceof Error ? error.message : String(error) };
       }
     }
   }
   await Promise.all(Array.from({ length: Math.min(16, uniqueCards.length || 1) }, worker));
+  const usedFilenames = new Map();
+  const images = [];
+  const cachedFiles = new Map();
+  const localWrites = [];
+  for (let index = 0; index < uniqueCards.length; index += 1) {
+    const card = uniqueCards[index];
+    const result = downloads[index];
+    if (result.downloaded) {
+      const filename = filenameFor(card, result.downloaded.contentType, usedFilenames);
+      localWrites.push(fsp.writeFile(path.join(IMAGE_DIR, filename), result.downloaded.buffer));
+      cachedFiles.set(filename, { buffer: result.downloaded.buffer, contentType: result.downloaded.contentType });
+      images.push({ ...card, filename, downloadStatus: "success", error: null });
+    } else {
+      const filename = filenameFor(card, "", usedFilenames);
+      images.push({ ...card, filename, downloadStatus: "failed", error: result.error });
+    }
+  }
+  await Promise.all(localWrites);
   images.sort((left, right) => (left.dexNr || 99999) - (right.dexNr || 99999) || left.name.localeCompare(right.name));
   const downloadedCount = images.filter((image) => image.downloadStatus === "success").length;
   const state = {
@@ -268,7 +351,7 @@ async function scanDynamaxImages(options = {}) {
     },
     images,
   };
-  await writeState(state);
+  await writeState(state, cachedFiles);
   return state;
 }
 
@@ -277,7 +360,22 @@ async function dynamaxImagePath(filename) {
   const safeName = path.basename(String(filename || ""));
   const item = state?.images?.find((image) => image.filename === safeName && image.downloadStatus === "success");
   if (!item || !safeName || safeName !== filename) throw new ApiError(404, "Image Dynamax introuvable.", "DYNAMAX_IMAGE_NOT_FOUND");
-  return { item, filePath: path.join(IMAGE_DIR, safeName) };
+  const filePath = path.join(IMAGE_DIR, safeName);
+  try {
+    await fsp.access(filePath);
+    return { item, filePath };
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
+  }
+  const collection = persistentCacheCollection();
+  const document = collection ? await collection.findOne({
+    _id: `${CACHE_DATASET_KEY}:image:${safeName}`,
+    datasetKey: CACHE_DATASET_KEY,
+    kind: "image",
+  }) : null;
+  const buffer = bufferFromMongo(document?.data);
+  if (!buffer) throw new ApiError(404, "Image Dynamax expirée.", "DYNAMAX_IMAGE_NOT_FOUND");
+  return { item, buffer, contentType: document.contentType };
 }
 
 async function createDynamaxZip(response) {
@@ -303,7 +401,21 @@ async function createDynamaxZip(response) {
   const archive = new ZipArchive({ zlib: { level: 9 } });
   archive.on("error", (error) => response.destroy(error));
   archive.pipe(response);
-  for (const image of successful) archive.file(path.join(IMAGE_DIR, image.filename), { name: `dynamax-images/images/${image.filename}` });
+  const collection = persistentCacheCollection();
+  const persistentImages = new Map();
+  if (collection && successful.length) {
+    const documents = await collection.find({
+      datasetKey: CACHE_DATASET_KEY,
+      kind: "image",
+      filename: { $in: successful.map((image) => image.filename) },
+    }).toArray();
+    for (const document of documents) persistentImages.set(document.filename, bufferFromMongo(document.data));
+  }
+  for (const image of successful) {
+    const buffer = persistentImages.get(image.filename);
+    if (buffer) archive.append(buffer, { name: `dynamax-images/images/${image.filename}` });
+    else archive.file(path.join(IMAGE_DIR, image.filename), { name: `dynamax-images/images/${image.filename}` });
+  }
   archive.append(`${JSON.stringify(manifest, null, 2)}\n`, { name: "dynamax-images/manifest.json" });
   archive.append(`${JSON.stringify(errors, null, 2)}\n`, { name: "dynamax-images/errors.json" });
   await archive.finalize();

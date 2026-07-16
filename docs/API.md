@@ -597,10 +597,12 @@ hashes, diagnostics, propriétaires et valeurs précédentes internes.
 ## Images Dynamax privées
 
 Les quatre routes `/api/v1/admin/dynamax-images/*` exigent `x-api-admin-secret`, sont
-absentes d’OpenAPI et n’écrivent aucune collection MongoDB. Le scan récupère uniquement
-nom, numéro et URL d’image depuis GO Hub, télécharge les images dans un cache temporaire
-privé et produit `dynamax-images.zip` avec `images/`, `manifest.json` et `errors.json`.
-Aucune statistique ou donnée de combat Pokémon n’est extraite.
+absentes d’OpenAPI et n’écrivent aucun référentiel Dynamax. Le scan récupère uniquement
+nom, numéro et URL d’image depuis GO Hub. Les fichiers et le petit état technique sont
+conservés dans le cache privé générique `admin_asset_cache`, avec un TTL de 6 heures, afin
+de rester disponibles entre deux invocations serverless. L’export produit
+`dynamax-images.zip` avec `images/`, `manifest.json` et `errors.json`. Aucune statistique
+ou donnée de combat Pokémon n’est extraite.
 
 ## Securite Et Performance
 

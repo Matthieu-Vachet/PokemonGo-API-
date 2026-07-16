@@ -3,7 +3,7 @@
 ## 1.11.0 - 2026-07-16
 
 - Ajoute les lectures publiques paginées Community Days et Historique Events depuis les collections permanentes du Dashboard, sans exposer les payloads ni diagnostics internes.
-- Ajoute le scraping privé des seules images Dynamax, ses contrôles réseau stricts, son cache temporaire et l’archive ZIP avec manifest et erreurs.
+- Ajoute le scraping privé des seules images Dynamax, ses contrôles réseau stricts, son cache technique privé TTL compatible serverless et l’archive ZIP avec manifest et erreurs.
 - Documente la politique de non-suppression, la différence entre flux courant, archive et historique de scraping, puis étend OpenAPI et les tests de sécurité.
 
 ## 1.10.0 - 2026-07-16

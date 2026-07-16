@@ -17,7 +17,8 @@ Les référentiels permanents Community Days et Historique Events sont exposés 
 seule par `/api/v1/community-days` et `/api/v1/events/history`. Ils lisent les collections
 Dashboard partagées sans déclencher de synchronisation. Le scraping d’images Dynamax
 reste strictement privé sous `/api/v1/admin/dynamax-images/*`, hors OpenAPI et sans
-collection ou JSON Dynamax public.
+collection de référentiel ou JSON Dynamax public. Le cache serverless utilise uniquement
+`admin_asset_cache`, stockage technique privé avec expiration automatique après 6 heures.
 
 ## Game Master Explorer privé
 

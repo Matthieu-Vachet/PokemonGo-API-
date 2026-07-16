@@ -109,10 +109,13 @@ async function collectDynamaxCards() {
     await page.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/149 Safari/537.36");
     await page.setRequestInterception(true);
     page.on("request", (request) => {
-      if (["font", "media"].includes(request.resourceType())) request.abort();
+      // Only the image URLs in the rendered cards are needed here. Avoid
+      // downloading the same files in Chromium before the validated server
+      // downloader fetches them.
+      if (["font", "image", "media"].includes(request.resourceType())) request.abort();
       else request.continue();
     });
-    await page.goto(SOURCE_URL, { waitUntil: "networkidle2", timeout: 45_000 });
+    await page.goto(SOURCE_URL, { waitUntil: "domcontentloaded", timeout: 45_000 });
     await page.waitForSelector("table tbody tr", { timeout: 30_000 });
 
     const cards = [];
@@ -251,7 +254,7 @@ async function scanDynamaxImages(options = {}) {
       }
     }
   }
-  await Promise.all(Array.from({ length: Math.min(6, uniqueCards.length || 1) }, worker));
+  await Promise.all(Array.from({ length: Math.min(16, uniqueCards.length || 1) }, worker));
   images.sort((left, right) => (left.dexNr || 99999) - (right.dexNr || 99999) || left.name.localeCompare(right.name));
   const downloadedCount = images.filter((image) => image.downloadStatus === "success").length;
   const state = {

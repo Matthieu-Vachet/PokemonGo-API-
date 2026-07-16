@@ -319,7 +319,7 @@ async function scanDynamaxImages(options = {}) {
       }
     }
   }
-  await Promise.all(Array.from({ length: Math.min(16, uniqueCards.length || 1) }, worker));
+  await Promise.all(Array.from({ length: Math.min(32, uniqueCards.length || 1) }, worker));
   const usedFilenames = new Map();
   const images = [];
   const cachedFiles = new Map();

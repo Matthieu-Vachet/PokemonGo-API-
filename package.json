@@ -1,6 +1,6 @@
 {
   "name": "pokemon-go-api",
-  "version": "1.11.0",
+  "version": "1.12.0",
   "description": "API REST publique et multilingue pour Pokemon GO",
   "main": "src/server.js",
   "scripts": {
@@ -41,6 +41,8 @@
     "migrate:max-forms:write": "node scripts/migrate/normalize-max-forms.js --write",
     "migrate:identifiers": "node scripts/migrate/normalize-identifiers.js",
     "migrate:identifiers:write": "node scripts/migrate/normalize-identifiers.js --write",
+    "migrate:pokemon-identities": "node scripts/migrate/pokemon-identities.js",
+    "migrate:pokemon-identities:write": "node scripts/migrate/pokemon-identities.js --write",
     "migrate:home-assets": "node scripts/migrate/home-assets.js",
     "migrate:home-assets:write": "node scripts/migrate/home-assets.js --write",
     "import:enrich-pokemon": "node scripts/import/enrich-pokemon.js",
@@ -97,7 +99,8 @@
     "react-dom": "^19.2.7",
     "swagger-jsdoc": "^6.3.0",
     "swagger-ui-express": "^5.0.1",
-    "tailwindcss": "^4.3.1"
+    "tailwindcss": "^4.3.1",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "adm-zip": "^0.6.0",

@@ -354,6 +354,13 @@ async function regenerateCurrentDataset(adapter) {
     elapsedMs: Date.now() - regenerationStartedAt,
   });
 
+  if (adapter.domain === "pokemon-identity-mappings") {
+    const details = generated.report?.resolutionReport?.details || [];
+    const diagnosticBatch = await require("../services/pokemon-identity-service").recordDiagnosticsBatch(details);
+    generated.report.identityDiagnostics = diagnosticBatch;
+    console.info(`[current-dataset:${adapter.domain}] Identity diagnostics synchronized`, diagnosticBatch);
+  }
+
   let result;
   try {
     result = await persistCurrentDataset({

@@ -580,6 +580,9 @@ const adapters = {
     compactCurrent: true,
     scriptName: "generateGameMasterPokemonMappings.js",
     exportName: "generateGameMasterPokemonMappings",
+    generatorOptions: async () => ({
+      identityCatalog: await require("../services/pokemon-identity-service").aliasCatalog(),
+    }),
     jsonPath: "game-master/gameMasterPokemonMappings.json",
     summarize: identityMappingsSummary,
     stats: (data) => ({

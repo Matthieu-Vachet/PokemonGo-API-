@@ -26,6 +26,7 @@ const shiny = require("./shiny");
 const pvpRankings = require("./pvp-rankings");
 const bestAttackers = require("./best-attackers");
 const pokemonIdentityMappings = require("./pokemon-identity-mappings");
+const pokemonIdentities = require("./pokemon-identities");
 const gameMaster = require("./game-master");
 const dynamaxImages = require("./dynamax-images");
 const communityDays = require("./community-days");
@@ -106,6 +107,8 @@ router.use("/admin/best-attackers", bestAttackers);
 // Diagnostic privé de résolution Game Master.
 router.use("/pokemon-identity-mappings", pokemonIdentityMappings);
 router.use("/admin/pokemon-identity-mappings", pokemonIdentityMappings);
+// Référentiel canonique privé, administré exclusivement depuis le Dashboard.
+router.use("/admin/pokemon-identities", pokemonIdentities);
 // Explorer Game Master strictement privé, absent de la découverte et de l'OpenAPI publics.
 router.use("/admin/game-master", gameMaster);
 // Scraping d'images Dynamax strictement privé, sans route publique ni dataset Pokémon.

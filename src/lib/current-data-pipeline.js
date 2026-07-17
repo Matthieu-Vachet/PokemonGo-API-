@@ -48,7 +48,10 @@ function buildPipelineReport({ source, report = {}, summary = {}, stats = {}, js
 
 async function generateCurrentData(options) {
   const generator = loadGenerator(options);
-  const result = await generator();
+  const generatorOptions = typeof options.generatorOptions === "function"
+    ? await options.generatorOptions()
+    : (options.generatorOptions || {});
+  const result = await generator(generatorOptions);
   const data = result?.data;
   const report = result?.report || {};
   if (!data || typeof data !== "object") {

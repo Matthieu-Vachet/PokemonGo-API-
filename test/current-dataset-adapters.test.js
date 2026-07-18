@@ -126,6 +126,54 @@ test("les statistiques Shiny proviennent exclusivement des snapshots observés",
   assert.deepEqual(statistics.dailyEvolution.map((point) => point.change), [null, -100, 200]);
 });
 
+test("le presenter Shiny conserve l'identité et la résolution d'asset canoniques", () => {
+  const adapter = getCurrentDatasetAdapter("shiny");
+  const flyingPikachu = {
+    rank: 3,
+    sourceIdentity: { id: "25", variantKey: "25_f2332_s", name: "Pikachu (Flying)" },
+    pokemon: {
+      id: "PIKACHU",
+      dexNr: 25,
+      formId: "PIKACHU_COSTUME_2020",
+      names: { French: "Pikachu (Flying)", English: "Pikachu (Flying)" },
+      identity: {
+        canonicalId: "PIKACHU_COSTUME_2020",
+        provider: "snacknap",
+        rawAlias: "Pikachu (Flying)",
+        assetResolution: {
+          status: "matched",
+          reason: null,
+          assetBundle: "pokemon-assets/normal/0025-pikachu.assets.json",
+          shinyImage: "https://assets.example/pm25.fCOSTUME_2020.s.icon.png",
+          trace: {
+            canonicalId: "PIKACHU_COSTUME_2020",
+            selection: "canonical-costume-base:male",
+          },
+        },
+      },
+    },
+    shiny: { odds: { numerator: 1, denominator: 133 } },
+  };
+  const base = {
+    meta: { schemaVersion: 3 },
+    summary: { today: 1, total: 1, rare: 1 },
+    rankings: { today: [flyingPikachu], total: [flyingPikachu], rare: [flyingPikachu] },
+  };
+
+  const presented = adapter.present(base, { board: "today", search: "Flying", limit: "50" });
+
+  assert.equal(presented.data.podium[0].pokemon.identity.canonicalId, "PIKACHU_COSTUME_2020");
+  assert.equal(presented.data.rankings[0].pokemon.identity.assetResolution.status, "matched");
+  assert.equal(
+    presented.data.rankings[0].pokemon.identity.assetResolution.shinyImage,
+    "https://assets.example/pm25.fCOSTUME_2020.s.icon.png",
+  );
+  assert.equal(
+    presented.data.rankings[0].pokemon.identity.assetResolution.trace.selection,
+    "canonical-costume-base:male",
+  );
+});
+
 test("les snapshots Shiny historiques ne dupliquent que les métriques nécessaires", () => {
   const adapter = getCurrentDatasetAdapter("shiny");
   const compact = adapter.snapshotData({

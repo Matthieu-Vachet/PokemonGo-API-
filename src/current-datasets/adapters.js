@@ -17,6 +17,12 @@ function values(value) {
   return Array.isArray(value) ? value : [];
 }
 
+async function identityGeneratorOptions() {
+  return {
+    identityCatalog: await require("../services/pokemon-identity-service").aliasCatalog(),
+  };
+}
+
 function normalizeIdentity(value) {
   return String(value || "")
     .normalize("NFD")
@@ -580,9 +586,7 @@ const adapters = {
     compactCurrent: true,
     scriptName: "generateGameMasterPokemonMappings.js",
     exportName: "generateGameMasterPokemonMappings",
-    generatorOptions: async () => ({
-      identityCatalog: await require("../services/pokemon-identity-service").aliasCatalog(),
-    }),
+    generatorOptions: identityGeneratorOptions,
     jsonPath: "game-master/gameMasterPokemonMappings.json",
     summarize: identityMappingsSummary,
     stats: (data) => ({
@@ -642,6 +646,7 @@ const adapters = {
     compressData: true,
     scriptName: "generateShinyTracker.js",
     exportName: "generateShinyTracker",
+    generatorOptions: identityGeneratorOptions,
     jsonPath: "shiny-tracker/current.json",
     summarize: shinySummary,
     stats: (_data, report) => ({
@@ -670,6 +675,7 @@ const adapters = {
     compressData: true,
     scriptName: "generatePvpRankings.js",
     exportName: "generatePvpRankings",
+    generatorOptions: identityGeneratorOptions,
     jsonPath: "pvp-rankings/current.json",
     summarize: pvpSummary,
     stats: (_data, report) => ({
@@ -693,6 +699,7 @@ const adapters = {
     Model: Raid,
     scriptName: "generateCurrentRaids.js",
     exportName: "generateCurrentRaids",
+    generatorOptions: identityGeneratorOptions,
     jsonPath: "raids/currentRaids.json",
     summarize: raidSummary,
     stats: (_data, report, summary) => bucketStats(report, summary),
@@ -715,6 +722,7 @@ const adapters = {
     Model: Egg,
     scriptName: "generateCurrentEggs.js",
     exportName: "generateCurrentEggs",
+    generatorOptions: identityGeneratorOptions,
     jsonPath: "eggs/currentEggs.json",
     summarize: eggSummary,
     stats: (_data, report, summary) => bucketStats(report, summary),
@@ -733,6 +741,7 @@ const adapters = {
     Model: MaxBattle,
     scriptName: "generateCurrentMaxBattles.js",
     exportName: "generateCurrentMaxBattles",
+    generatorOptions: identityGeneratorOptions,
     jsonPath: "max-battles/currentsMaxBattle.json",
     summarize: maxBattleSummary,
     stats: (_data, report, summary) => bucketStats(report, summary),
@@ -750,6 +759,7 @@ const adapters = {
     Model: Research,
     scriptName: "generateCurrentResearch.js",
     exportName: "generateCurrentResearch",
+    generatorOptions: identityGeneratorOptions,
     jsonPath: "research/currentResearch.json",
     summarize: researchSummary,
     stats: (_data, report, summary) => ({
@@ -787,6 +797,7 @@ const adapters = {
     Model: Rocket,
     scriptName: "generateCurrentRocket.js",
     exportName: "generateCurrentRocket",
+    generatorOptions: identityGeneratorOptions,
     jsonPath: "rocket/currentRocket.json",
     summarize: rocketSummary,
     stats: (_data, report, summary) => ({

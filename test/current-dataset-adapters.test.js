@@ -51,6 +51,12 @@ test("chaque adaptateur cible la collection et la racine de données attendues",
   }
 });
 
+test("les générateurs qui résolvent des identités reçoivent le catalogue Identity Manager", () => {
+  for (const domain of ["shiny", "pvp-rankings", "raids", "eggs", "max-battles", "research", "rocket", "pokemon-identity-mappings"]) {
+    assert.equal(typeof getCurrentDatasetAdapter(domain).generatorOptions, "function", domain);
+  }
+});
+
 test("les mappings Game Master filtrent les variantes non résolues", () => {
   const adapter = getCurrentDatasetAdapter("pokemon-identity-mappings");
   const data = localFixture(adapter);

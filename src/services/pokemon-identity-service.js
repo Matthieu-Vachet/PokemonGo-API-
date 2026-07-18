@@ -12,6 +12,7 @@ const {
   selectGenderAsset,
 } = require("./pokemon-local-identity-inventory-service");
 const { localIdentityPayload } = require("./pokemon-identity-sync-service");
+const { invalidatePokemonResolutionCaches } = require("./pokemon-resolution-cache-service");
 
 const identityStatuses = ["active", "draft", "deprecated", "ignored"];
 const aliasStatuses = ["active", "deprecated", "ignored", "conflict"];
@@ -116,6 +117,7 @@ const CACHE_TTL_MS = 30_000;
 function invalidateIdentityCache() {
   cache.expiresAt = 0;
   cache.aliases = null;
+  invalidatePokemonResolutionCaches("identity-catalog-invalidated");
 }
 
 function parse(schema, payload, code = "IDENTITY_VALIDATION_FAILED") {

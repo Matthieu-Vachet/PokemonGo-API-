@@ -3,7 +3,7 @@ id: ADR-IDENTITY-001
 title: Identity Manager Pokémon GO
 status: active
 lang: fr
-version: 1.1.0
+version: 1.2.0
 updated_at: 2026-07-18
 owners:
   - pokemon-data
@@ -98,7 +98,22 @@ La liste accepte notamment `status` et `syncStatus` (`synchronized`, `orphaned`,
 5. suggestion prudente avec score ;
 6. non matché.
 
-Le resolver ne choisit jamais le premier candidat lorsqu’il en reste plusieurs et ne rabat jamais une variante inconnue vers la forme normale. Le catalogue MongoDB est chargé en lot et mis en cache 30 secondes ; l’inventaire local est lui aussi chargé une seule fois par processus. Toute mutation invalide le cache MongoDB.
+Le resolver ne choisit jamais le premier candidat lorsqu’il en reste plusieurs et ne rabat jamais une variante inconnue vers la forme normale. Le catalogue MongoDB est chargé en lot et mis en cache 30 secondes ; l’inventaire local est lui aussi chargé une seule fois par processus. Toute mutation invalide le cache MongoDB et le cache de résolution d'assets.
+
+### Résolution canonique des assets
+
+Après obtention d'un `canonicalId`, `pokemon-canonical-asset-service.js` délègue au résolveur partagé PokemonGo-Data. Le chemin est strict : `canonicalId → localReference → assetsRef → entrée exacte → genre → normal/shiny`. Les données brutes du provider ne peuvent plus remplacer la référence synchronisée et une image provider ou HOME ne peut pas masquer un asset canonique absent.
+
+Les résultats transportent la référence locale, le bundle, le chemin JSON de l'entrée, les variantes sexuées disponibles, la raison exacte et la trace complète. Les codes d'échec stables sont :
+
+- `CANONICAL_ID_NOT_FOUND` ;
+- `LOCAL_REFERENCE_MISSING` ou `LOCAL_REFERENCE_INVALID` ;
+- `ASSET_BUNDLE_NOT_FOUND` ou `ASSET_ENTRY_NOT_FOUND` ;
+- `COSTUME_ASSET_NOT_FOUND` ou `FORM_ASSET_NOT_FOUND` ;
+- `SHINY_ASSET_MISSING` ;
+- `GENDER_VARIANT_NOT_FOUND`.
+
+Les adaptateurs Game Master, Shiny Tracker, raids, œufs, Max Battles, Research, Rocket et PvPoke reçoivent le catalogue Identity Manager en lot. Le cache du service est versionné en mémoire et sa révision est incrémentée après toute création, modification, fusion, restauration, dépréciation ou mutation d'alias.
 
 ## Règles d’intégrité
 
@@ -155,3 +170,4 @@ Résultat du 18 juillet 2026 : 1 391 documents reliés, 520 identités locales c
 - 2026-07-17 — création de l’architecture MongoDB, du CRUD privé, de la migration, du cache de résolution et des diagnostics détaillés.
 - 2026-07-18 — remplacement du catalogue dérivé par l’inventaire exhaustif PokemonGo-Data, synchronisation idempotente, empreintes locales, états d’orphelin, résolution déterministe et régression Mewtwo Armored.
 - 2026-07-18 — stabilisation de la sérialisation des identifiants MongoDB pour les routes CRUD et les clés de rendu du Dashboard.
+- 2026-07-18 — ajout du résolveur canonique d'assets, de sa trace stable, de l'invalidation coordonnée des caches et branchement des datasets courants/classés.

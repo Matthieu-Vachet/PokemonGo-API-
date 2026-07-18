@@ -1,5 +1,7 @@
 const { dataPath, dataRoot } = require("../lib/data-repository");
-const { resolveAlias } = require("./pokemon-identity-service");
+const { z } = require("zod");
+const { ApiError } = require("../lib/api-error");
+const identityService = require("./pokemon-identity-service");
 const {
   pokemonResolutionRevision,
   registerPokemonResolutionInvalidator,
@@ -46,7 +48,7 @@ function resolveCanonicalPokemonAsset(identity, options = {}) {
 }
 
 async function resolveProviderPokemonAsset(payload = {}) {
-  const identityResolution = await resolveAlias(payload);
+  const identityResolution = await identityService.resolveAlias(payload);
   if (identityResolution.status !== "matched") {
     return {
       identityResolution,
@@ -68,8 +70,59 @@ async function resolveProviderPokemonAsset(payload = {}) {
   };
 }
 
+const providerAssetRequestSchema = z.object({
+  provider: z.string().trim().min(1),
+  rawAlias: z.string().trim().min(1),
+  shiny: z.boolean().optional(),
+  isShiny: z.boolean().optional(),
+  isFemale: z.boolean().optional(),
+  pokemonId: z.coerce.number().int().positive().optional(),
+  form: z.string().trim().min(1).nullable().optional(),
+  costume: z.string().trim().min(1).nullable().optional(),
+  transformation: z.string().trim().min(1).nullable().optional(),
+}).passthrough();
+
+const providerAssetBatchSchema = z.array(providerAssetRequestSchema).min(1).max(500);
+
+async function resolveProviderPokemonAssets(payloads = []) {
+  const parsed = providerAssetBatchSchema.safeParse(payloads);
+  if (!parsed.success) {
+    throw new ApiError(
+      422,
+      "La résolution d'assets en lot est invalide.",
+      "IDENTITY_ASSET_BATCH_INVALID",
+      parsed.error.flatten(),
+    );
+  }
+  const identityResolutions = await identityService.resolveAliasesBatch(parsed.data);
+  return identityResolutions.map((identityResolution, index) => {
+    const payload = parsed.data[index];
+    if (identityResolution.status !== "matched") {
+      return {
+        request: payload,
+        identityResolution,
+        assetResolution: null,
+        status: identityResolution.status,
+        reason: identityResolution.reason || "CANONICAL_ID_NOT_FOUND",
+      };
+    }
+    const assetResolution = resolveCanonicalPokemonAsset(identityResolution.identity, {
+      shiny: payload.shiny === true || payload.isShiny === true,
+      ...(typeof payload.isFemale === "boolean" ? { isFemale: payload.isFemale } : {}),
+    });
+    return {
+      request: payload,
+      identityResolution,
+      assetResolution,
+      status: assetResolution.status,
+      reason: assetResolution.reason,
+    };
+  });
+}
+
 module.exports = {
   invalidateLocalAssetInventory,
   resolveCanonicalPokemonAsset,
   resolveProviderPokemonAsset,
+  resolveProviderPokemonAssets,
 };

@@ -3,7 +3,7 @@ id: ADR-IDENTITY-001
 title: Identity Manager Pokémon GO
 status: active
 lang: fr
-version: 1.2.0
+version: 1.3.0
 updated_at: 2026-07-18
 owners:
   - pokemon-data
@@ -75,6 +75,7 @@ Préfixe : `/api/v1/admin/pokemon-identities`.
 - `POST /:id/restore` et `POST /:id/merge` ;
 - `POST /:id/aliases` et `PATCH /:id/aliases/:aliasId` ;
 - `POST /resolve` : résolution provider + alias ;
+- `POST /resolve-assets` : résolution privée de 1 à 500 alias vers leurs identités et assets canoniques, dans l'ordre d'entrée et avec un seul chargement du catalogue ;
 - `GET /inventory` : recherche paginée dans l’inventaire local sans passer par les anciens mappings ;
 - `GET /sync/preview` : plan de synchronisation sans écriture et empreinte du plan ;
 - `POST /sync/apply` : application groupée, historisée et idempotente ;
@@ -171,3 +172,4 @@ Résultat du 18 juillet 2026 : 1 391 documents reliés, 520 identités locales c
 - 2026-07-18 — remplacement du catalogue dérivé par l’inventaire exhaustif PokemonGo-Data, synchronisation idempotente, empreintes locales, états d’orphelin, résolution déterministe et régression Mewtwo Armored.
 - 2026-07-18 — stabilisation de la sérialisation des identifiants MongoDB pour les routes CRUD et les clés de rendu du Dashboard.
 - 2026-07-18 — ajout du résolveur canonique d'assets, de sa trace stable, de l'invalidation coordonnée des caches et branchement des datasets courants/classés.
+- 2026-07-18 — ajout de la résolution privée d'assets en lot pour les pipelines Dashboard PogoAPI et LeekDuck.

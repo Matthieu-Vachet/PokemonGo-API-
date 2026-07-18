@@ -4,6 +4,7 @@ const { asyncHandler } = require("../lib/async-handler");
 const service = require("../services/pokemon-identity-service");
 const inventoryService = require("../services/pokemon-local-identity-inventory-service");
 const syncService = require("../services/pokemon-identity-sync-service");
+const canonicalAssetService = require("../services/pokemon-canonical-asset-service");
 
 const router = express.Router();
 
@@ -68,6 +69,18 @@ router.post("/", asyncHandler(async (request, response) => {
 
 router.post("/resolve", asyncHandler(async (request, response) => {
   response.json({ data: await service.resolveAlias(request.body) });
+}));
+
+router.post("/resolve-assets", asyncHandler(async (request, response) => {
+  const data = await canonicalAssetService.resolveProviderPokemonAssets(request.body?.requests);
+  response.json({
+    data,
+    meta: {
+      total: data.length,
+      matched: data.filter((entry) => entry.status === "matched").length,
+      visibility: "private",
+    },
+  });
 }));
 
 router.post("/import", asyncHandler(async (request, response) => {

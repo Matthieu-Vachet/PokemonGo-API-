@@ -531,12 +531,11 @@ async function aliasCatalog(force = false) {
   return catalog;
 }
 
-async function resolveAlias(payload = {}) {
+function resolveAliasAgainstCatalog(payload = {}, catalog = []) {
   const provider = normalizeProvider(payload.provider);
   const rawAlias = String(payload.rawAlias || payload.alias || "").trim();
   const normalizedAlias = normalizeAlias(rawAlias);
   if (!provider || !rawAlias) throw new ApiError(422, "Provider et alias sont requis.", "IDENTITY_RESOLVE_INVALID");
-  const catalog = await aliasCatalog();
   const matches = [];
   for (const identity of catalog) {
     for (const alias of identity.aliases) {
@@ -588,6 +587,18 @@ async function resolveAlias(payload = {}) {
     .filter((identity) => identity.aliases.some((alias) => alias.provider === provider && (alias.normalizedAlias.includes(normalizedAlias) || normalizedAlias.includes(alias.normalizedAlias))))
     .slice(0, 10);
   return { status: "unmatched", strategy: suggestions.length === 1 ? "confidence-suggestion" : "none", confidence: suggestions.length === 1 ? 0.65 : 0, reason: "ALIAS_UNKNOWN", reasonDetails: `Aucun alias ${provider}:${normalizedAlias} ni aucune identité locale déterministe ne correspond.`, candidates: suggestions };
+}
+
+async function resolveAlias(payload = {}) {
+  return resolveAliasAgainstCatalog(payload, await aliasCatalog());
+}
+
+async function resolveAliasesBatch(payloads = []) {
+  if (!Array.isArray(payloads)) {
+    throw new ApiError(422, "La liste d'alias est invalide.", "IDENTITY_RESOLVE_BATCH_INVALID");
+  }
+  const catalog = await aliasCatalog();
+  return payloads.map((payload) => resolveAliasAgainstCatalog(payload, catalog));
 }
 
 async function listDiagnostics(query = {}) {
@@ -743,6 +754,7 @@ module.exports = {
   recordDiagnostic,
   recordDiagnosticsBatch,
   resolveAlias,
+  resolveAliasesBatch,
   restoreIdentity,
   serialize,
   updateAlias,

@@ -258,6 +258,7 @@ async function createIdentity(payload, requestedBy) {
 function listFilter(query = {}) {
   const filter = {};
   if (query.status) filter.status = String(query.status);
+  if (query.syncStatus) filter.syncStatus = String(query.syncStatus);
   if (query.provider) filter["aliases.provider"] = normalizeProvider(query.provider);
   if (query.pokemonId) filter.pokemonId = Number(query.pokemonId);
   if (query.form) filter.form = { $regex: String(query.form), $options: "i" };
@@ -279,7 +280,7 @@ function listFilter(query = {}) {
 async function listIdentities(query = {}) {
   const page = Math.max(1, Number(query.page) || 1);
   const limit = Math.min(200, Math.max(1, Number(query.limit) || 50));
-  const sortField = ["canonicalId", "pokemonId", "updatedAt", "status"].includes(query.sort) ? query.sort : "updatedAt";
+  const sortField = ["canonicalId", "pokemonId", "updatedAt", "status", "syncStatus"].includes(query.sort) ? query.sort : "updatedAt";
   const sortOrder = String(query.order).toLowerCase() === "asc" ? 1 : -1;
   const filter = listFilter(query);
   const [documents, total, providerStats, statusStats] = await Promise.all([
@@ -716,6 +717,7 @@ module.exports = {
   identityInputSchema,
   importIdentities,
   invalidateIdentityCache,
+  listFilter,
   listDiagnostics,
   listHistory,
   listIdentities,

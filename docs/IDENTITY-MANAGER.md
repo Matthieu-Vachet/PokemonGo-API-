@@ -85,6 +85,8 @@ Préfixe : `/api/v1/admin/pokemon-identities`.
 
 Toutes les routes exigent `x-api-admin-secret`. Le Dashboard ajoute également l’utilisateur authentifié pour l’audit.
 
+La liste accepte notamment `status` et `syncStatus` (`synchronized`, `orphaned`, `draft`, `conflict`) ainsi qu’un tri `sort=syncStatus`, afin que l’interface puisse isoler les entrées qui exigent une intervention.
+
 ## Resolver
 
 ### RULE-IDENTITY-001 — ordre de résolution

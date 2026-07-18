@@ -20,6 +20,13 @@ test("l'API valide l'inventaire local exhaustif et expose Mewtwo Armored", () =>
   assert.equal(armored.costume, "MEWTWO_ARMORED");
 });
 
+test("la liste filtre explicitement les états de synchronisation", () => {
+  assert.deepEqual(identityService.listFilter({ syncStatus: "orphaned", status: "draft" }), {
+    syncStatus: "orphaned",
+    status: "draft",
+  });
+});
+
 test("le plan de synchronisation crée tout le catalogue puis devient idempotent", () => {
   const inventory = inventoryService.loadLocalIdentityInventory();
   const first = syncService.buildIdentitySyncPlan({ inventory, existingIdentities: [], validatedAt: "2026-07-18T00:00:00.000Z" });

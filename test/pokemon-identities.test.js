@@ -23,7 +23,8 @@ test("le modèle Identity Manager expose les collections et index d'intégrité 
   assert.deepEqual(PokemonIdentity.schema.path("status").enumValues, ["active", "draft", "deprecated", "ignored"]);
   const indexes = PokemonIdentity.schema.indexes();
   assert.ok(indexes.some(([fields, options]) => fields.canonicalId === 1 && options.unique));
-  assert.ok(indexes.some(([fields, options]) => fields.activeAliasKeys === 1 && options.unique));
+  assert.ok(indexes.some(([fields, options]) => fields.activeAliasKeys === 1 && options.unique && options.partialFilterExpression));
+  assert.ok(indexes.some(([fields, options]) => fields["localIdentity.identityKey"] === 1 && options.unique));
   assert.ok(indexes.some(([fields]) => fields["aliases.provider"] === 1 && fields["aliases.normalizedValue"] === 1));
 });
 
@@ -86,7 +87,13 @@ test("le resolver respecte exact, normalisé, déprécié, ambigu et inconnu", a
 });
 
 test("la dépréciation et la restauration sont logiques, motivées et historisées", async () => {
-  const identity = validIdentity({ _id: "000000000000000000000025", status: "active" });
+  const identity = validIdentity({
+    _id: "000000000000000000000025",
+    canonicalId: "PIKACHU_NORMAL",
+    pokemonId: 25,
+    costume: null,
+    status: "active",
+  });
   identity.save = async () => identity;
   const originalFindById = PokemonIdentity.findById;
   const originalFindOne = PokemonIdentity.findOne;
@@ -118,6 +125,9 @@ test("les routes Identity Manager sont privées et valident le serveur avant Mon
   const app = createApp();
   try {
     await request(app).get("/api/v1/admin/pokemon-identities").expect(401);
+    await request(app).get("/api/v1/admin/pokemon-identities/inventory").expect(401);
+    await request(app).get("/api/v1/admin/pokemon-identities/sync/preview").expect(401);
+    await request(app).post("/api/v1/admin/pokemon-identities/sync/apply").expect(401);
     await request(app)
       .post("/api/v1/admin/pokemon-identities")
       .set("x-api-admin-secret", "identity-test-secret")

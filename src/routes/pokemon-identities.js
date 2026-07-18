@@ -2,6 +2,8 @@ const express = require("express");
 const { requireAdminSecret } = require("../lib/admin-auth");
 const { asyncHandler } = require("../lib/async-handler");
 const service = require("../services/pokemon-identity-service");
+const inventoryService = require("../services/pokemon-local-identity-inventory-service");
+const syncService = require("../services/pokemon-identity-sync-service");
 
 const router = express.Router();
 
@@ -32,6 +34,22 @@ router.get("/history", asyncHandler(async (request, response) => {
 router.get("/diagnostics", asyncHandler(async (request, response) => {
   const result = await service.listDiagnostics(request.query);
   response.json({ data: result.items, meta: { ...result.pagination, source: "mongodb", visibility: "private" } });
+}));
+
+router.get("/inventory", asyncHandler(async (request, response) => {
+  const result = inventoryService.searchLocalIdentities(request.query);
+  response.json({ data: result.items, meta: { ...result.pagination, stats: result.stats, inventory: result.metadata, source: "PokemonGo-Data", visibility: "private" } });
+}));
+
+router.get("/sync/preview", asyncHandler(async (_request, response) => {
+  const plan = await syncService.previewIdentitySync({ forceInventory: true });
+  response.json({ data: syncService.reportFromPlan(plan, "dry-run"), meta: { digest: syncService.syncPlanDigest(plan), visibility: "private" } });
+}));
+
+router.post("/sync/apply", asyncHandler(async (request, response) => {
+  const result = await syncService.applyIdentitySync({ requestedBy: user(request), forceInventory: true });
+  service.invalidateIdentityCache();
+  response.json({ data: result, meta: { visibility: "private" } });
 }));
 
 router.get("/export", asyncHandler(async (request, response) => {

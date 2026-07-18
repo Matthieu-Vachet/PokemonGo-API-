@@ -2,17 +2,25 @@ const crypto = require("crypto");
 const { z } = require("zod");
 const { ApiError } = require("../lib/api-error");
 const {
-  Pokemon,
-  PokemonAsset,
   PokemonIdentity,
   PokemonIdentityDiagnostic,
   PokemonIdentityHistory,
 } = require("../models");
+const {
+  findDeterministicLocalCandidates,
+  loadLocalIdentityInventory,
+  selectGenderAsset,
+} = require("./pokemon-local-identity-inventory-service");
+const { localIdentityPayload } = require("./pokemon-identity-sync-service");
 
 const identityStatuses = ["active", "draft", "deprecated", "ignored"];
 const aliasStatuses = ["active", "deprecated", "ignored", "conflict"];
 const aliasSources = ["manual", "migration", "detected", "rule", "import"];
 const diagnosticStatuses = ["open", "resolved", "ignored", "false-positive"];
+const diagnosticReasons = [
+  "unknown-alias", "unknown-pokemon", "unknown-form", "unknown-costume", "missing-canonical-id", "duplicate", "conflict", "multiple-candidates", "ambiguous-gender", "deprecated-identity", "ignored-alias", "incomplete-source", "missing-local-match",
+  "ALIAS_UNKNOWN", "POKEMON_UNKNOWN", "FORM_UNKNOWN", "COSTUME_UNKNOWN", "CANONICAL_ID_MISSING", "CANONICAL_ID_NOT_SYNCHRONIZED", "DUPLICATE_ALIAS", "ALIAS_CONFLICT", "MULTIPLE_FUNCTIONAL_IDENTITIES", "GENDER_ASSET_UNAVAILABLE", "IDENTITY_DEPRECATED", "ALIAS_IGNORED", "SOURCE_DATA_INCOMPLETE", "LOCAL_IDENTITY_MISSING", "VARIANT_NOT_FOUND",
+];
 
 function normalizeProvider(value) {
   return String(value || "")
@@ -62,6 +70,7 @@ const identityInputSchema = z.object({
   pokemonId: z.coerce.number().int().min(1).max(99999),
   form: nullableToken.default(null),
   costume: nullableToken.default(null),
+  transformation: nullableToken.default(null),
   status: z.enum(identityStatuses).default("active"),
   aliases: z.array(aliasInputSchema).default([]),
   genderVariants: z.object({ male: z.boolean().default(false), female: z.boolean().default(false) }).default({ male: false, female: false }),
@@ -94,7 +103,7 @@ const diagnosticInputSchema = z.object({
   pokemon: z.string().trim().nullable().optional(),
   form: z.string().trim().nullable().optional(),
   costume: z.string().trim().nullable().optional(),
-  reason: z.enum(["unknown-alias", "unknown-pokemon", "unknown-form", "unknown-costume", "missing-canonical-id", "duplicate", "conflict", "multiple-candidates", "ambiguous-gender", "deprecated-identity", "ignored-alias", "incomplete-source", "missing-local-match"]).default("unknown-alias"),
+  reason: z.enum(diagnosticReasons).default("ALIAS_UNKNOWN"),
   confidence: z.coerce.number().min(0).max(1).default(0),
   candidates: z.array(z.unknown()).default([]),
   proposedAction: z.string().trim().default("associate"),
@@ -136,31 +145,48 @@ function mongoConflict(error) {
 }
 
 async function validateLocalIdentityReference(input) {
-  if (input.status === "draft") return;
-  const pokemon = await Pokemon.findOne({ dexNr: input.pokemonId }).select({ key: 1, formId: 1, form: 1, id: 1 }).lean();
-  if (!pokemon) {
-    throw new ApiError(422, `Le Pokémon #${input.pokemonId} n'existe pas dans PokemonGo-Data. Utilisez le statut draft pour préparer cette identité.`, "IDENTITY_LOCAL_POKEMON_MISSING");
+  if (input.status !== "active") return null;
+  const inventory = loadLocalIdentityInventory();
+  const canonicalId = normalizeCanonicalId(input.canonicalId);
+  const exact = inventory.indexes.byCanonicalId.get(canonicalId);
+  const candidates = exact
+    ? [exact]
+    : findDeterministicLocalCandidates({
+      pokemonId: input.pokemonId,
+      form: input.form,
+      costume: input.costume,
+      transformation: input.transformation,
+    });
+  if (!candidates.length) {
+    throw new ApiError(422, `L'identité ${canonicalId || `#${input.pokemonId}`} n'existe pas dans l'inventaire PokemonGo-Data. Utilisez le statut draft pour la préparer.`, "IDENTITY_LOCAL_MATCH_MISSING");
   }
-  if (input.form) {
-    const token = normalizeAlias(input.form);
-    const formMatch = await Pokemon.findOne({
-      dexNr: input.pokemonId,
-      $or: [
-        { formId: { $regex: token.replace(/_/g, ".*"), $options: "i" } },
-        { form: { $regex: `^${token}$`, $options: "i" } },
-      ],
-    }).select({ _id: 1 }).lean();
-    if (!formMatch && !input.costume) {
-      throw new ApiError(422, `La forme ${input.form} n'existe pas pour le Pokémon #${input.pokemonId}.`, "IDENTITY_LOCAL_FORM_MISSING");
-    }
+  if (candidates.length > 1) {
+    throw new ApiError(409, `Plusieurs identités locales correspondent à ${canonicalId}.`, "IDENTITY_LOCAL_MATCH_AMBIGUOUS", candidates.map((candidate) => candidate.canonicalId));
   }
-  if (input.costume) {
-    const asset = await PokemonAsset.findOne({ dexNr: input.pokemonId }).select({ assets: 1, data: 1 }).lean();
-    const text = JSON.stringify(asset?.assets || asset?.data?.assets || {}).toLowerCase();
-    if (!text.includes(normalizeAlias(input.costume).replace(/_/g, "")) && !text.includes(normalizeAlias(input.costume))) {
-      throw new ApiError(422, `Le costume ${input.costume} n'existe pas dans les assets locaux du Pokémon #${input.pokemonId}.`, "IDENTITY_LOCAL_COSTUME_MISSING");
-    }
+  if (candidates[0].canonicalId !== canonicalId) {
+    throw new ApiError(422, `Le canonicalId attendu pour cette référence locale est ${candidates[0].canonicalId}.`, "IDENTITY_CANONICAL_ID_MISMATCH", { expected: candidates[0].canonicalId });
   }
+  return candidates[0];
+}
+
+function synchronizedLocalFields(local, inventory = loadLocalIdentityInventory()) {
+  if (!local) return {};
+  const validatedAt = new Date();
+  return {
+    pokemonId: local.pokemonId,
+    form: local.form,
+    costume: local.costume,
+    transformation: local.transformation,
+    syncStatus: "synchronized",
+    genderVariants: local.genderVariants,
+    localReference: {
+      key: local.identityKey,
+      formId: local.formId,
+      file: local.sourceFile,
+      assetsRef: local.assetsRef,
+    },
+    localIdentity: localIdentityPayload(local, inventory.metadata, validatedAt),
+  };
 }
 
 function prepareAlias(input, user) {
@@ -210,11 +236,17 @@ async function history(identity, action, user, options = {}) {
 async function createIdentity(payload, requestedBy) {
   const user = actor(requestedBy);
   const input = parse(identityInputSchema, payload);
-  await validateLocalIdentityReference(input);
+  const local = await validateLocalIdentityReference(input);
   const aliases = input.aliases.map((entry) => prepareAlias(entry, user));
   await assertAliasesAvailable(aliases);
   try {
-    const identity = await PokemonIdentity.create({ ...input, aliases, createdBy: user, updatedBy: user });
+    const identity = await PokemonIdentity.create({
+      ...input,
+      ...(local ? synchronizedLocalFields(local) : { syncStatus: "draft" }),
+      aliases,
+      createdBy: user,
+      updatedBy: user,
+    });
     await history(identity, "create", user);
     invalidateIdentityCache();
     return serialize(identity);
@@ -283,12 +315,16 @@ async function updateIdentity(identifier, payload, requestedBy) {
     pokemonId: input.pokemonId ?? identity.pokemonId,
     form: input.form !== undefined ? input.form : identity.form,
     costume: input.costume !== undefined ? input.costume : identity.costume,
+    transformation: input.transformation !== undefined ? input.transformation : identity.transformation,
+    canonicalId: input.canonicalId ?? identity.canonicalId,
     status: input.status ?? identity.status,
   };
-  await validateLocalIdentityReference(localCandidate);
-  for (const field of ["canonicalId", "pokemonId", "form", "costume", "status", "genderVariants", "localReference", "metadata"]) {
+  const local = await validateLocalIdentityReference(localCandidate);
+  for (const field of ["canonicalId", "pokemonId", "form", "costume", "transformation", "status", "genderVariants", "localReference", "metadata"]) {
     if (input[field] !== undefined) identity[field] = input[field];
   }
+  if (local) Object.assign(identity, synchronizedLocalFields(local));
+  else if (identity.status === "draft") identity.syncStatus = identity.localIdentity ? identity.syncStatus : "draft";
   identity.updatedBy = user;
   try {
     await identity.save();
@@ -372,8 +408,17 @@ async function restoreIdentity(identifier, requestedBy) {
   const identity = await PokemonIdentity.findById(identifier);
   if (!identity) throw new ApiError(404, "Identité canonique introuvable.", "IDENTITY_NOT_FOUND");
   const before = serialize(identity);
+  const local = await validateLocalIdentityReference({
+    canonicalId: identity.canonicalId,
+    pokemonId: identity.pokemonId,
+    form: identity.form,
+    costume: identity.costume,
+    transformation: identity.transformation,
+    status: "active",
+  });
   await assertAliasesAvailable(identity.aliases.filter((entry) => entry.status === "active").map((entry) => entry.toObject()), identity._id);
   identity.status = "active";
+  Object.assign(identity, synchronizedLocalFields(local));
   identity.deprecatedAt = null;
   identity.deprecatedBy = null;
   identity.deprecationReason = null;
@@ -444,16 +489,18 @@ async function conflicts() {
 
 async function aliasCatalog(force = false) {
   if (!force && cache.aliases && cache.expiresAt > Date.now()) return cache.aliases;
-  const identities = await PokemonIdentity.find({ status: { $in: ["active", "deprecated"] } }).select({ canonicalId: 1, pokemonId: 1, form: 1, costume: 1, status: 1, aliases: 1, genderVariants: 1, localReference: 1 }).lean();
+  const identities = await PokemonIdentity.find({ status: { $in: ["active", "deprecated"] }, syncStatus: "synchronized" }).select({ canonicalId: 1, pokemonId: 1, form: 1, costume: 1, transformation: 1, status: 1, aliases: 1, genderVariants: 1, localReference: 1, localIdentity: 1 }).lean();
   const catalog = identities.map((identity) => ({
     identityId: String(identity._id),
     canonicalId: identity.canonicalId,
     pokemonId: identity.pokemonId,
     form: identity.form || null,
     costume: identity.costume || null,
+    transformation: identity.transformation || null,
     status: identity.status,
     genderVariants: identity.genderVariants || { male: false, female: false },
     localReference: identity.localReference || null,
+    localIdentity: identity.localIdentity || null,
     aliases: (identity.aliases || []).map((entry) => ({
       aliasId: entry.aliasId,
       provider: entry.provider,
@@ -490,15 +537,41 @@ async function resolveAlias(payload = {}) {
   const bestOrder = matches[0]?.order;
   const best = matches.filter((entry) => entry.order === bestOrder);
   if (best.length === 1) {
-    return { status: "matched", strategy: best[0].strategy, confidence: best[0].alias.confidence, identity: best[0].identity, alias: best[0].alias };
+    const selectedAsset = selectGenderAsset(best[0].identity.localIdentity, payload.isFemale);
+    return { status: "matched", strategy: best[0].strategy, confidence: best[0].alias.confidence, identity: best[0].identity, alias: best[0].alias, selectedAsset };
   }
   if (best.length > 1) {
-    return { status: "ambiguous", strategy: best[0].strategy, confidence: Math.min(...best.map((entry) => entry.alias.confidence)), reason: "multiple-candidates", candidates: best.map((entry) => entry.identity) };
+    return { status: "ambiguous", strategy: best[0].strategy, confidence: Math.min(...best.map((entry) => entry.alias.confidence)), reason: "MULTIPLE_FUNCTIONAL_IDENTITIES", reasonDetails: "Plusieurs identités fonctionnelles distinctes portent le même alias fournisseur.", candidates: best.map((entry) => entry.identity) };
+  }
+  const deterministic = findDeterministicLocalCandidates({ ...payload, rawAlias, normalizedAlias });
+  if (deterministic.length === 1) {
+    const identity = catalog.find((entry) => entry.canonicalId === deterministic[0].canonicalId && entry.status === "active");
+    if (identity) {
+      return {
+        status: "matched",
+        strategy: "local-deterministic-unique",
+        confidence: 1,
+        identity,
+        alias: null,
+        selectedAsset: selectGenderAsset(identity.localIdentity, payload.isFemale),
+      };
+    }
+    return {
+      status: "unmatched",
+      strategy: "local-identity-not-synchronized",
+      confidence: 1,
+      reason: "CANONICAL_ID_NOT_SYNCHRONIZED",
+      reasonDetails: `L'identité locale ${deterministic[0].canonicalId} existe mais n'est pas active dans Identity Manager.`,
+      candidates: deterministic,
+    };
+  }
+  if (deterministic.length > 1) {
+    return { status: "ambiguous", strategy: "local-deterministic", confidence: 1, reason: "MULTIPLE_FUNCTIONAL_IDENTITIES", reasonDetails: "Plusieurs formes, costumes ou transformations locales distinctes restent possibles.", candidates: deterministic };
   }
   const suggestions = catalog
     .filter((identity) => identity.aliases.some((alias) => alias.provider === provider && (alias.normalizedAlias.includes(normalizedAlias) || normalizedAlias.includes(alias.normalizedAlias))))
     .slice(0, 10);
-  return { status: "unmatched", strategy: suggestions.length === 1 ? "confidence-suggestion" : "none", confidence: suggestions.length === 1 ? 0.65 : 0, reason: "unknown-alias", candidates: suggestions };
+  return { status: "unmatched", strategy: suggestions.length === 1 ? "confidence-suggestion" : "none", confidence: suggestions.length === 1 ? 0.65 : 0, reason: "ALIAS_UNKNOWN", reasonDetails: `Aucun alias ${provider}:${normalizedAlias} ni aucune identité locale déterministe ne correspond.`, candidates: suggestions };
 }
 
 async function listDiagnostics(query = {}) {
@@ -569,7 +642,7 @@ async function recordDiagnosticsBatch(entries = []) {
             pokemon: payload.sourceName || payload.pokemon || null,
             form: payload.sourceForm || payload.form || null,
             costume: payload.sourceCostume || payload.costume || null,
-            reason: payload.reason || "unknown-alias",
+            reason: payload.reason || "ALIAS_UNKNOWN",
             confidence: payload.confidence || 0,
             candidates: payload.candidates || payload.ambiguousCandidates || [],
             proposedAction: payload.proposedAction || "associate",

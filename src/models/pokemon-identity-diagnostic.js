@@ -14,7 +14,10 @@ const pokemonIdentityDiagnosticSchema = new mongoose.Schema(
     reason: {
       type: String,
       required: true,
-      enum: ["unknown-alias", "unknown-pokemon", "unknown-form", "unknown-costume", "missing-canonical-id", "duplicate", "conflict", "multiple-candidates", "ambiguous-gender", "deprecated-identity", "ignored-alias", "incomplete-source", "missing-local-match"],
+      enum: [
+        "unknown-alias", "unknown-pokemon", "unknown-form", "unknown-costume", "missing-canonical-id", "duplicate", "conflict", "multiple-candidates", "ambiguous-gender", "deprecated-identity", "ignored-alias", "incomplete-source", "missing-local-match",
+        "ALIAS_UNKNOWN", "POKEMON_UNKNOWN", "FORM_UNKNOWN", "COSTUME_UNKNOWN", "CANONICAL_ID_MISSING", "CANONICAL_ID_NOT_SYNCHRONIZED", "DUPLICATE_ALIAS", "ALIAS_CONFLICT", "MULTIPLE_FUNCTIONAL_IDENTITIES", "GENDER_ASSET_UNAVAILABLE", "IDENTITY_DEPRECATED", "ALIAS_IGNORED", "SOURCE_DATA_INCOMPLETE", "LOCAL_IDENTITY_MISSING", "VARIANT_NOT_FOUND",
+      ],
       index: true,
     },
     confidence: { type: Number, min: 0, max: 1, default: 0 },

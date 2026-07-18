@@ -3,8 +3,8 @@ id: ADR-IDENTITY-001
 title: Identity Manager Pokémon GO
 status: active
 lang: fr
-version: 1.0.0
-updated_at: 2026-07-17
+version: 1.1.0
+updated_at: 2026-07-18
 owners:
   - pokemon-data
 related:
@@ -18,11 +18,11 @@ related:
 
 ## Objectif
 
-L’Identity Manager est la référence privée qui relie les identifiants originaux des fournisseurs à une identité canonique PokemonGo-Data. Il conserve séparément la valeur brute, sa valeur normalisée et le fournisseur. Les anciens fichiers de mappings restent disponibles pendant la migration, mais ne constituent plus la source d’administration.
+L’Identity Manager est la référence privée qui relie les identifiants originaux des fournisseurs à une identité canonique PokemonGo-Data. Le catalogue fonctionnel est inventorié directement depuis `pokemon/`, `pokemon-forms/` et `pokemon-assets/` ; les anciens mappings ne créent plus d’identité. La valeur fournisseur brute, sa valeur normalisée et le fournisseur restent séparés.
 
 ## Architecture
 
-Le flux de résolution suit `source externe → normalisation minimale → provider + alias → identité canonique → PokemonGo-Data`. Le Dashboard appelle uniquement le BFF authentifié ; celui-ci transmet la requête à PokemonGo-API avec le secret serveur. Aucune route publique ne permet de modifier les identités.
+Le flux de résolution suit `source externe → normalisation minimale → provider + alias → identité canonique synchronisée → PokemonGo-Data`. Le module partagé d’inventaire vit dans PokemonGo-Data et son contrat est validé par Zod lors du chargement API. Le Dashboard appelle uniquement le BFF authentifié ; celui-ci transmet la requête à PokemonGo-API avec le secret serveur. Aucune route publique ne permet de lire ou modifier ce catalogue administratif.
 
 Le snapshot historique `pokemon_identity_mappings` reste un diagnostic généré. Les identités administrables sont des documents autonomes et ne sont jamais regroupées dans un document JSON unique.
 
@@ -32,12 +32,14 @@ Le snapshot historique `pokemon_identity_mappings` reste un diagnostic généré
 
 Champs structurants :
 
-- `canonicalId`, unique et stable ;
-- `pokemonId`, `form`, `costume` ;
+- `canonicalId`, unique et stable, avec `previousCanonicalIds` pour les renommages contrôlés ;
+- `pokemonId`, `form`, `costume`, `transformation` ;
 - `status` : `active`, `draft`, `deprecated`, `ignored` ;
+- `syncStatus` : `synchronized`, `orphaned`, `draft`, `conflict` ;
 - `aliases[]` avec `provider`, `value`, `normalizedValue`, statut, confiance, source et dates ;
 - `genderVariants`, utilisé pour exposer la disponibilité mâle/femelle sans dupliquer l’identité fonctionnelle ;
-- `localReference`, lien contrôlé vers PokemonGo-Data ;
+- `localIdentity`, référence complète vers PokemonGo-Data : clé fonctionnelle, forme, costume, transformation, catégorie, fichiers, chemins JSON, assets sexués, empreintes et date de validation ;
+- `localReference`, projection de compatibilité pour les consommateurs existants ;
 - `metadata`, informations d’usage et notes ;
 - auteurs et dates de création/modification/dépréciation.
 
@@ -48,12 +50,13 @@ Index :
 - `aliases.provider` ;
 - `aliases.normalizedValue` ;
 - composé `aliases.provider + aliases.normalizedValue` ;
-- unique multikey `activeAliasKeys`, qui empêche un alias actif d’appartenir à deux identités ;
-- `status`, identité fonctionnelle et date de modification.
+- unique multikey partiel `activeAliasKeys`, qui empêche un alias actif d’appartenir à deux identités tout en excluant les tableaux vides ;
+- unique partiel `localIdentity.identityKey` ;
+- `localIdentity.fingerprint`, `syncStatus + status`, anciens canonical IDs et date de modification.
 
 ### `pokemon_identity_history`
 
-Chaque création, modification, alias, fusion, dépréciation ou restauration produit une entrée d’audit contenant l’avant/après, l’utilisateur, le fournisseur, l’alias et le motif.
+Chaque création, modification, alias, fusion, dépréciation, restauration ou synchronisation produit une entrée d’audit contenant l’avant/après, l’utilisateur, le fournisseur, l’alias et le motif. Les actions de synchronisation sont `sync-create`, `sync-update`, `sync-relink`, `sync-orphan` et `sync-alias-move`.
 
 ### `pokemon_identity_diagnostics`
 
@@ -72,6 +75,9 @@ Préfixe : `/api/v1/admin/pokemon-identities`.
 - `POST /:id/restore` et `POST /:id/merge` ;
 - `POST /:id/aliases` et `PATCH /:id/aliases/:aliasId` ;
 - `POST /resolve` : résolution provider + alias ;
+- `GET /inventory` : recherche paginée dans l’inventaire local sans passer par les anciens mappings ;
+- `GET /sync/preview` : plan de synchronisation sans écriture et empreinte du plan ;
+- `POST /sync/apply` : application groupée, historisée et idempotente ;
 - `GET /conflicts`, `GET /history`, `GET /diagnostics` ;
 - `POST /diagnostics` et `PATCH /diagnostics/:id` ;
 - `GET /export` ;
@@ -86,40 +92,42 @@ Toutes les routes exigent `x-api-admin-secret`. Le Dashboard ajoute également l
 1. alias brut exact pour le fournisseur ;
 2. alias normalisé exact pour le fournisseur ;
 3. alias déprécié connu ;
-4. règle locale déterministe sans ambiguïté ;
+4. canonicalId ou tuple local déterministe unique dans l’inventaire synchronisé ;
 5. suggestion prudente avec score ;
 6. non matché.
 
-Le resolver ne choisit jamais le premier candidat lorsqu’il en reste plusieurs. Le catalogue est chargé en lot et mis en cache 30 secondes ; toute mutation invalide ce cache.
+Le resolver ne choisit jamais le premier candidat lorsqu’il en reste plusieurs et ne rabat jamais une variante inconnue vers la forme normale. Le catalogue MongoDB est chargé en lot et mis en cache 30 secondes ; l’inventaire local est lui aussi chargé une seule fois par processus. Toute mutation invalide le cache MongoDB.
 
 ## Règles d’intégrité
 
 - aucun provider, alias brut ou alias normalisé vide ;
 - aucun doublon provider + alias normalisé dans un document ;
 - aucun alias actif partagé entre plusieurs identités ;
-- aucune identité active sans Pokémon local valide ; le statut `draft` est l’exception explicite ;
+- aucune identité active sans `localIdentity.identityKey`, empreinte locale et `syncStatus: synchronized` ; le statut `draft` est l’exception explicite ;
 - aucune suppression physique depuis le CRUD ; la dépréciation exige un motif et reste historisée ;
 - les imports destructifs sans aperçu sont interdits.
 
 ## Gestion des genres
 
-Une variante mâle et femelle d’un même costume est une seule identité, regroupée par `pokemonId + form + costume`. `isFemale` ne sert qu’à sélectionner l’asset final. Sans sexe demandé, la miniature mâle ou neutre est utilisée par défaut. Une forme dont `MALE` ou `FEMALE` appartient réellement au `formId` officiel reste une identité distincte.
+Une variante mâle et femelle d’un même costume est une seule identité, regroupée par `pokemonId + form + costume + transformation`. `isFemale` ne sert qu’à sélectionner l’asset final. Sans sexe demandé, la miniature mâle ou neutre est utilisée par défaut. Une forme dont `MALE` ou `FEMALE` appartient réellement au `formId` officiel reste une identité distincte.
 
 ## Migration
 
 Commande sans écriture :
 
 ```bash
-npm run migrate:pokemon-identities
+npm run sync:pokemon-identities
 ```
 
 Application contrôlée :
 
 ```bash
-npm run migrate:pokemon-identities:write
+npm run sync:pokemon-identities:write
 ```
 
-Le script est idempotent, synchronise les index avant écriture, conserve les sources historiques et rapporte candidats, alias, doublons, conflits, invalides et non migrés.
+Les anciens noms `migrate:pokemon-identities*` restent des alias de compatibilité. Le script exporte la collection avant écriture, recalcule le plan depuis les 1 911 identités locales, conserve les alias et métadonnées manuelles, relie les anciens documents, marque les orphelins en brouillon sans les supprimer, écrit en lots et vérifie un second dry-run.
+
+Résultat du 18 juillet 2026 : 1 391 documents reliés, 520 identités locales créées, 1 396 alias conservés, zéro conflit, zéro orphelin, 1 911 événements d’historique et second passage entièrement inchangé. `MEWTWO_NORMAL` et `MEWTWO_ARMORED` sont deux identités actives distinctes ; `pvpoke:mewtwo_armored` se résout de manière déterministe vers la seconde.
 
 ## Bonnes pratiques
 
@@ -143,3 +151,4 @@ Le script est idempotent, synchronise les index avant écriture, conserve les so
 ## Historique
 
 - 2026-07-17 — création de l’architecture MongoDB, du CRUD privé, de la migration, du cache de résolution et des diagnostics détaillés.
+- 2026-07-18 — remplacement du catalogue dérivé par l’inventaire exhaustif PokemonGo-Data, synchronisation idempotente, empreintes locales, états d’orphelin, résolution déterministe et régression Mewtwo Armored.

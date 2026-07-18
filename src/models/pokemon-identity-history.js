@@ -7,7 +7,7 @@ const pokemonIdentityHistorySchema = new mongoose.Schema(
     action: {
       type: String,
       required: true,
-      enum: ["create", "update", "alias-add", "alias-update", "alias-deprecate", "canonical-change", "conflict-resolve", "merge", "deprecate", "restore", "import"],
+      enum: ["create", "update", "alias-add", "alias-update", "alias-deprecate", "canonical-change", "conflict-resolve", "merge", "deprecate", "restore", "import", "sync-create", "sync-update", "sync-orphan", "sync-relink", "sync-alias-move"],
       index: true,
     },
     before: { type: mongoose.Schema.Types.Mixed, default: null },

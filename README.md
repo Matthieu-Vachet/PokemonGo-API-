@@ -89,7 +89,10 @@ PokemonGo-API-/
 
 Le depot `PokemonGo-Data` doit etre disponible a cote du projet, ou configure via
 `POKEMON_GO_DATA_DIR`. En production Vercel, `npm run ensure:data` peut cloner le depot
-dans `.data/PokemonGo-Data`.
+dans `.data/PokemonGo-Data`. Les routes REST embarquent le depot via `vercel.json` et
+les pages Next.js embarquent le sous-ensemble requis via `outputFileTracingIncludes`
+dans `next.config.mjs`; aucune fonction de production ne doit dépendre du clone de build
+resté hors de son bundle d'exécution.
 
 Le rôle détaillé de chaque dossier est expliqué dans
 [docs/PROJECT-STRUCTURE.md](docs/PROJECT-STRUCTURE.md).

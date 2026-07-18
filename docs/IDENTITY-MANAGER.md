@@ -154,3 +154,4 @@ Résultat du 18 juillet 2026 : 1 391 documents reliés, 520 identités locales c
 
 - 2026-07-17 — création de l’architecture MongoDB, du CRUD privé, de la migration, du cache de résolution et des diagnostics détaillés.
 - 2026-07-18 — remplacement du catalogue dérivé par l’inventaire exhaustif PokemonGo-Data, synchronisation idempotente, empreintes locales, états d’orphelin, résolution déterministe et régression Mewtwo Armored.
+- 2026-07-18 — stabilisation de la sérialisation des identifiants MongoDB pour les routes CRUD et les clés de rendu du Dashboard.

@@ -132,8 +132,21 @@ function actor(value) {
 
 function serialize(document) {
   if (!document) return null;
-  const value = typeof document.toObject === "function" ? document.toObject({ versionKey: false }) : structuredClone(document);
-  if (value._id) value.id = String(value._id);
+  const source = typeof document.toObject === "function" ? document.toObject({ versionKey: false }) : document;
+  const identifier = source?._id && typeof source._id.toHexString === "function"
+    ? source._id.toHexString()
+    : source?._id == null
+      ? null
+      : String(source._id);
+  // JSON.stringify delegates BSON values such as ObjectId to their toJSON()
+  // implementation. structuredClone() would instead expose their internal
+  // buffer, which previously turned every lean Mongo identifier into
+  // "[object Object]" and made CRUD URLs as well as React keys unusable.
+  const value = JSON.parse(JSON.stringify(source));
+  if (identifier) {
+    value._id = identifier;
+    value.id = identifier;
+  }
   delete value.activeAliasKeys;
   return value;
 }
@@ -729,6 +742,7 @@ module.exports = {
   recordDiagnosticsBatch,
   resolveAlias,
   restoreIdentity,
+  serialize,
   updateAlias,
   updateDiagnostic,
   updateIdentity,

@@ -1,5 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
+const mongoose = require("mongoose");
 const request = require("supertest");
 const { PokemonIdentity, PokemonIdentityHistory } = require("../src/models");
 const service = require("../src/services/pokemon-identity-service");
@@ -54,6 +55,19 @@ test("la normalisation conserve la valeur brute séparée de la clé de recherch
   assert.equal(parsed.value, "Pikachu – World Cap");
   assert.equal(parsed.provider, "pokemon-go-hub");
   assert.equal(service.normalizeAlias(parsed.value), "pikachu_world_cap");
+});
+
+test("la sérialisation expose un ObjectId MongoDB stable pour le CRUD et les clés UI", () => {
+  const identifier = new mongoose.Types.ObjectId("6a59cba6cfe1e218e1356f3b");
+  const serialized = service.serialize({
+    _id: identifier,
+    canonicalId: "MEWTWO_ARMORED",
+    createdAt: new Date("2026-07-18T12:00:00.000Z"),
+  });
+
+  assert.equal(serialized._id, "6a59cba6cfe1e218e1356f3b");
+  assert.equal(serialized.id, "6a59cba6cfe1e218e1356f3b");
+  assert.equal(serialized.createdAt, "2026-07-18T12:00:00.000Z");
 });
 
 test("le resolver respecte exact, normalisé, déprécié, ambigu et inconnu", async () => {

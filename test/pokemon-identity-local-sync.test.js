@@ -148,6 +148,52 @@ test("un resolver sans alias choisit Mewtwo Armored uniquement par identité loc
   }
 });
 
+test("les noms PogoAPI et leurs qualificatifs régionaux résolvent une identité locale unique", async () => {
+  const originalFind = PokemonIdentity.find;
+  const inventory = inventoryService.loadLocalIdentityInventory();
+  const canonicalIds = ["POPPLIO_NORMAL", "SLOWPOKE_GALARIAN", "WOOPER_PALDEA"];
+  const documents = canonicalIds.map((canonicalId, index) => {
+    const local = inventory.indexes.byCanonicalId.get(canonicalId);
+    assert.ok(local, `${canonicalId} doit exister dans PokemonGo-Data`);
+    return {
+      _id: mongoId(index + 300),
+      canonicalId: local.canonicalId,
+      pokemonId: local.pokemonId,
+      form: local.form,
+      costume: local.costume,
+      transformation: local.transformation,
+      status: "active",
+      syncStatus: "synchronized",
+      aliases: [],
+      genderVariants: local.genderVariants,
+      localIdentity: syncService.localIdentityPayload(local, inventory.metadata, new Date("2026-07-19T00:00:00.000Z")),
+    };
+  });
+  PokemonIdentity.find = () => ({ select: () => ({ lean: async () => documents }) });
+  try {
+    identityService.invalidateIdentityCache();
+    const results = await Promise.all([
+      identityService.resolveAlias({ provider: "pogoapi", rawAlias: "Popplio" }),
+      identityService.resolveAlias({ provider: "pogoapi", rawAlias: "Galarian:::Slowpoke" }),
+      identityService.resolveAlias({ provider: "pogoapi", rawAlias: "Paldean:::Wooper" }),
+    ]);
+    assert.deepEqual(results.map((result) => result.status), ["matched", "matched", "matched"]);
+    assert.deepEqual(results.map((result) => result.strategy), ["local-deterministic-unique", "local-deterministic-unique", "local-deterministic-unique"]);
+    assert.deepEqual(results.map((result) => result.identity.canonicalId), canonicalIds);
+  } finally {
+    PokemonIdentity.find = originalFind;
+    identityService.invalidateIdentityCache();
+  }
+});
+
+test("l'équivalence nominale ne contourne jamais un indice structuré contradictoire", () => {
+  const candidates = inventoryService.findDeterministicLocalCandidates({
+    rawAlias: "Galarian:::Slowpoke",
+    form: "ALOLA",
+  });
+  assert.deepEqual(candidates, []);
+});
+
 test("le modèle refuse une identité active sans référence locale synchronisée", async () => {
   await assert.rejects(new PokemonIdentity({
     canonicalId: "PIKACHU_NORMAL",

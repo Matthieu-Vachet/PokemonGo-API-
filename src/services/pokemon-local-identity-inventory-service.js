@@ -69,6 +69,22 @@ function normalizeToken(value) {
   return inventoryModule().normalizeIdentityToken(value);
 }
 
+const regionalTokenRoots = new Map([
+  ["ALOLAN", "ALOLA"],
+  ["GALARIAN", "GALAR"],
+  ["HISUIAN", "HISUI"],
+  ["PALDEAN", "PALDEA"],
+]);
+
+function comparableIdentityToken(value) {
+  return normalizeToken(value)
+    .split("_")
+    .filter((token) => token && token !== "NORMAL")
+    .map((token) => regionalTokenRoots.get(token) || token)
+    .sort()
+    .join("|");
+}
+
 function loadLocalIdentityInventory({ force = false } = {}) {
   if (!force && cache) return cache;
   const raw = inventoryModule().loadPokemonLocalIdentityInventory(dataRoot);
@@ -128,6 +144,16 @@ function findDeterministicLocalCandidates(payload = {}) {
   const pool = pokemonId ? inventory.indexes.byPokemonId.get(pokemonId) || [] : inventory.identities;
   const exact = pool.filter((identity) => normalizeToken(identity.canonicalId) === token);
   if (exact.length) return exact;
+  const hasStructuredHint = [payload.form, payload.costume, payload.transformation]
+    .some((value) => Boolean(normalizeToken(value)));
+  if (!hasStructuredHint) {
+    const comparable = comparableIdentityToken(token);
+    const equivalent = comparable
+      ? pool.filter((identity) => [identity.canonicalId, identity.formId]
+        .some((value) => comparableIdentityToken(value) === comparable))
+      : [];
+    if (equivalent.length) return equivalent;
+  }
   if (!pokemonId) return [];
   const form = normalizeToken(payload.form);
   const costume = normalizeToken(payload.costume);
@@ -159,6 +185,7 @@ module.exports = {
   inventorySchema,
   loadLocalIdentityInventory,
   localIdentitySchema,
+  comparableIdentityToken,
   searchLocalIdentities,
   selectGenderAsset,
 };

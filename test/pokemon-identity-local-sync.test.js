@@ -20,6 +20,14 @@ test("l'API valide l'inventaire local exhaustif et expose Mewtwo Armored", () =>
   assert.equal(armored.costume, "MEWTWO_ARMORED");
 });
 
+test("la synchronisation conserve les types canoniques de PokemonGo-Data", () => {
+  const inventory = inventoryService.loadLocalIdentityInventory();
+  const bulbasaur = inventory.indexes.byCanonicalId.get("BULBASAUR_NORMAL");
+  assert.deepEqual(bulbasaur.types, ["GRASS", "POISON"]);
+  const payload = syncService.localIdentityPayload(bulbasaur, inventory.metadata, new Date("2026-07-19T00:00:00.000Z"));
+  assert.deepEqual(payload.types, ["GRASS", "POISON"]);
+});
+
 test("la liste filtre explicitement les états de synchronisation", () => {
   assert.deepEqual(identityService.listFilter({ syncStatus: "orphaned", status: "draft" }), {
     syncStatus: "orphaned",

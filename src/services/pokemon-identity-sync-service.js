@@ -24,6 +24,7 @@ function localIdentityPayload(identity, metadata, validatedAt) {
   return {
     pokemonKey: identity.pokemonKey,
     pokemonName: identity.pokemonName,
+    types: identity.types,
     form: identity.form,
     formId: identity.formId,
     parentFormId: identity.parentFormId,

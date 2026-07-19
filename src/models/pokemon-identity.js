@@ -53,6 +53,7 @@ const localIdentitySchema = new mongoose.Schema(
   {
     pokemonKey: { type: String, default: null },
     pokemonName: { type: String, default: null },
+    types: { type: [String], default: [] },
     form: { type: String, default: null },
     formId: { type: String, default: null },
     parentFormId: { type: String, default: null },

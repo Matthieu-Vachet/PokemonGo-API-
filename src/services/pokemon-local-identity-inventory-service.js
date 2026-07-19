@@ -21,6 +21,7 @@ const localIdentitySchema = z.object({
   pokemonId: z.number().int().positive(),
   pokemonKey: nullableString,
   pokemonName: nullableString,
+  types: z.array(z.string().min(1)).max(2),
   form: nullableString,
   formId: nullableString,
   parentFormId: nullableString,

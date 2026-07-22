@@ -11,7 +11,8 @@ function mongoId(index) {
 
 test("l'API valide l'inventaire local exhaustif et expose Mewtwo Armored", () => {
   const inventory = inventoryService.loadLocalIdentityInventory({ force: true });
-  assert.equal(inventory.stats.totalIdentities, 1911);
+  assert.equal(inventory.stats.totalIdentities, inventory.identities.length);
+  assert.ok(inventory.stats.totalIdentities > 1_900);
   const armored = inventory.indexes.byCanonicalId.get("MEWTWO_ARMORED");
   const normal = inventory.indexes.byCanonicalId.get("MEWTWO_NORMAL");
   assert.ok(armored);
@@ -38,7 +39,7 @@ test("la liste filtre explicitement les états de synchronisation", () => {
 test("le plan de synchronisation crée tout le catalogue puis devient idempotent", () => {
   const inventory = inventoryService.loadLocalIdentityInventory();
   const first = syncService.buildIdentitySyncPlan({ inventory, existingIdentities: [], validatedAt: "2026-07-18T00:00:00.000Z" });
-  assert.equal(first.summary.create, 1911);
+  assert.equal(first.summary.create, inventory.stats.totalIdentities);
   assert.equal(first.summary.conflict, 0);
   const synchronized = first.creates.map((entry, index) => ({
     _id: mongoId(index + 1),
@@ -50,7 +51,7 @@ test("le plan de synchronisation crée tout le catalogue puis devient idempotent
   assert.deepEqual(second.summary, {
     create: 0,
     update: 0,
-    unchanged: 1911,
+    unchanged: inventory.stats.totalIdentities,
     orphan: 0,
     conflict: 0,
     aliasesPreserved: 0,

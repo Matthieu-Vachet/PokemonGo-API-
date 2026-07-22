@@ -4,8 +4,11 @@ const mongoose = require("mongoose");
 const { invalidateDatasetCache } = require("./cache");
 const { generateCurrentData } = require("./current-data-pipeline");
 const { computeDatasetHash, diffDatasets } = require("./current-dataset-hash");
-const { hydrateCurrentDatasetDocument, serializeCurrentDatasetDocument } = require("./current-dataset-reader");
+const { compressedBuffer, hydrateCurrentDatasetDocument, serializeCurrentDatasetDocument } = require("./current-dataset-reader");
 const { DatasetRun } = require("../models");
+
+const ACTIVE_REGENERATION_WINDOW_MS = 75 * 1000;
+const REGENERATION_TIMEOUT_CODE = "DATASET_REGENERATION_TIMEOUT";
 
 function asArray(value) {
   return Array.isArray(value) ? value : [];
@@ -140,15 +143,74 @@ function datasetRunModel() {
   return mongoose.connection.readyState === 1 ? DatasetRun : null;
 }
 
+function serializeDatasetRun(run) {
+  if (!run) return null;
+  const value = typeof run.toObject === "function" ? run.toObject() : run;
+  return {
+    id: String(value._id),
+    datasetKey: value.datasetKey,
+    status: value.status,
+    phase: value.phase || null,
+    startedAt: value.startedAt,
+    completedAt: value.completedAt || null,
+    durationMs: Number(value.durationMs || 0),
+    changed: Boolean(value.changed),
+    diff: {
+      changed: Boolean(value.changed),
+      added: Number(value.added || 0),
+      removed: Number(value.removed || 0),
+      modified: Number(value.modified || 0),
+    },
+    totalAfter: Number(value.totalAfter || 0),
+    matchedCount: Number(value.matchedCount || 0),
+    unmatchedCount: Number(value.unmatchedCount || 0),
+    warningsCount: Number(value.warningsCount || 0),
+    errorsCount: Number(value.errorsCount || 0),
+    warnings: asArray(value.warnings),
+    errors: asArray(value.errors),
+  };
+}
+
+function staleDatasetRunUpdate(run, now = Date.now()) {
+  if (!run || run.status !== "running") return null;
+  if (["generated", "persisting"].includes(run.phase)) return null;
+  const startedAt = new Date(run.startedAt).getTime();
+  if (!Number.isFinite(startedAt) || now - startedAt <= ACTIVE_REGENERATION_WINDOW_MS) return null;
+  const completedAt = new Date(now);
+  return {
+    status: "failed",
+    phase: "completed",
+    phaseStartedAt: completedAt,
+    completedAt,
+    durationMs: Math.max(0, now - startedAt),
+    errorsCount: 1,
+    errors: [{
+      code: REGENERATION_TIMEOUT_CODE,
+      message: "La régénération a dépassé la durée maximale de la Function Vercel.",
+    }],
+  };
+}
+
+function logRegenerationFailure(adapter, phase, error, startedAt) {
+  console.error(`[current-dataset:${adapter.domain}] Regeneration failed`, {
+    phase,
+    code: error?.code || error?.name || "UNKNOWN_ERROR",
+    message: error?.message || String(error),
+    elapsedMs: Date.now() - startedAt,
+  });
+}
+
 async function startDatasetRun(adapter, mode = "regenerate") {
   const Model = datasetRunModel();
   if (!Model) return null;
-  const previous = await readStoredDocument(adapter).catch(() => null);
+  const previous = await readStoredMetadata(adapter).catch(() => null);
   return Model.create({
     datasetKey: adapter.domain,
     provider: mode === "import" ? "manual" : adapter.provider,
     sourceUrl: mode === "import" ? null : adapter.sourceUrl,
     status: "running",
+    phase: "generating",
+    phaseStartedAt: new Date(),
     startedAt: new Date(),
     hashBefore: previous?.sourceHash || null,
     totalBefore: Number(previous?.count || 0),
@@ -170,6 +232,8 @@ async function finishDatasetRun(run, result) {
   const completedAt = new Date();
   const update = {
     status,
+    phase: "completed",
+    phaseStartedAt: completedAt,
     completedAt,
     durationMs: completedAt.getTime() - new Date(run.startedAt).getTime(),
     retrievedAt: result.current?.source?.fetchedAt || null,
@@ -189,8 +253,9 @@ async function finishDatasetRun(run, result) {
     errors: [],
     diffUnavailableReason: typeof diff.changed === "boolean" ? null : (run.diffUnavailableReason || "Diff non calculé par le générateur."),
   };
-  await DatasetRun.updateOne({ _id: run._id }, { $set: update });
-  return { ...run.toObject(), ...update };
+  await DatasetRun.updateOne({ _id: run._id }, { $set: update, $unset: { stagedPayload: "" } });
+  const source = typeof run.toObject === "function" ? run.toObject() : run;
+  return { ...source, ...update };
 }
 
 async function failDatasetRun(run, error) {
@@ -198,15 +263,191 @@ async function failDatasetRun(run, error) {
   const completedAt = new Date();
   await DatasetRun.updateOne({ _id: run._id }, { $set: {
     status: "failed",
+    phase: "completed",
+    phaseStartedAt: completedAt,
     completedAt,
     durationMs: completedAt.getTime() - new Date(run.startedAt).getTime(),
     errorsCount: 1,
     errors: [{ message: error.message, code: error.code || null, details: error.details || null }],
-  } }).catch(() => undefined);
+  }, $unset: { stagedPayload: "" } }).catch(() => undefined);
+}
+
+async function getCurrentDatasetRegeneration(adapter, runId) {
+  const Model = datasetRunModel();
+  if (!Model) {
+    throw new ApiError(503, "Le suivi des régénérations nécessite MongoDB.", "DATASET_RUN_STORE_UNAVAILABLE");
+  }
+  if (!mongoose.isValidObjectId(runId)) {
+    throw new ApiError(400, "Identifiant de régénération invalide.", "DATASET_RUN_ID_INVALID");
+  }
+  let run = await Model.findOne({ _id: runId, datasetKey: adapter.domain }).lean();
+  if (!run) {
+    throw new ApiError(404, "Régénération introuvable.", "DATASET_RUN_NOT_FOUND");
+  }
+  const staleUpdate = staleDatasetRunUpdate(run);
+  if (staleUpdate) {
+    await Model.updateOne(
+      { _id: run._id, datasetKey: adapter.domain, status: "running" },
+      { $set: staleUpdate },
+    );
+    run = { ...run, ...staleUpdate };
+  }
+  return serializeDatasetRun(run);
+}
+
+async function enqueueCurrentDatasetRegeneration(adapter) {
+  const Model = datasetRunModel();
+  if (!Model) {
+    throw new ApiError(503, "La régénération asynchrone nécessite MongoDB.", "DATASET_RUN_STORE_UNAVAILABLE");
+  }
+
+  const activeSince = new Date(Date.now() - ACTIVE_REGENERATION_WINDOW_MS);
+  const existing = await Model.findOne({
+    datasetKey: adapter.domain,
+    status: "running",
+    $or: [
+      { phase: { $in: ["generated", "persisting"] } },
+      { startedAt: { $gte: activeSince } },
+    ],
+  }).sort({ startedAt: -1 }).lean();
+  if (existing) {
+    return { alreadyRunning: true, run: serializeDatasetRun(existing), task: null };
+  }
+
+  const run = await startDatasetRun(adapter, "regenerate");
+  if (!run) {
+    throw new ApiError(503, "Impossible d'initialiser la régénération asynchrone.", "DATASET_RUN_START_FAILED");
+  }
+  const task = stageCurrentDatasetRegeneration(adapter, run).catch((error) => {
+    logRegenerationFailure(adapter, "background", error, new Date(run.startedAt).getTime());
+  });
+  return { alreadyRunning: false, run: serializeDatasetRun(run), task };
+}
+
+async function stageCurrentDatasetRegeneration(adapter, run) {
+  const regenerationStartedAt = Date.now();
+  console.info(`[current-dataset:${adapter.domain}] Regeneration generation stage started`);
+  let generated;
+  try {
+    generated = await generateCurrentData({
+      ...adapter,
+      source: adapter.domain,
+    });
+    console.info(`[current-dataset:${adapter.domain}] Source generation completed`, {
+      itemsParsed: Number(generated.stats?.itemsParsed || 0),
+      elapsedMs: Date.now() - regenerationStartedAt,
+    });
+    const stagedPayload = zlib.gzipSync(Buffer.from(JSON.stringify({
+      data: generated.data,
+      report: generated.report,
+      summary: generated.summary,
+      stats: generated.stats,
+    })));
+    const phaseStartedAt = new Date();
+    await DatasetRun.updateOne(
+      { _id: run._id, status: "running", phase: "generating" },
+      { $set: { phase: "generated", phaseStartedAt, stagedPayload } },
+    );
+    console.info(`[current-dataset:${adapter.domain}] Regeneration payload staged`, {
+      compressedBytes: stagedPayload.length,
+      elapsedMs: Date.now() - regenerationStartedAt,
+    });
+  } catch (error) {
+    await failDatasetRun(run, error);
+    logRegenerationFailure(adapter, "generation-or-staging", error, regenerationStartedAt);
+    throw error;
+  }
+}
+
+async function persistStagedCurrentDatasetRegeneration(adapter, run) {
+  const persistenceStartedAt = Date.now();
+  try {
+    if (!run.stagedPayload) {
+      throw new ApiError(500, "Le payload de staging est absent.", "DATASET_REGENERATION_STAGE_MISSING");
+    }
+    const generated = JSON.parse(zlib.gunzipSync(compressedBuffer(run.stagedPayload)).toString("utf8"));
+    const result = await persistCurrentDataset({
+      adapter,
+      data: generated.data,
+      report: generated.report,
+      summary: generated.summary,
+      stats: generated.stats,
+    });
+    result.run = await finishDatasetRun(run, result);
+    console.info(`[current-dataset:${adapter.domain}] Regeneration persistence stage completed`, {
+      elapsedMs: Date.now() - persistenceStartedAt,
+    });
+  } catch (error) {
+    await failDatasetRun(run, error);
+    logRegenerationFailure(adapter, "staged-persistence", error, persistenceStartedAt);
+    throw error;
+  }
+}
+
+async function continueCurrentDatasetRegeneration(adapter, runId) {
+  const Model = datasetRunModel();
+  if (!Model) {
+    throw new ApiError(503, "Le suivi des régénérations nécessite MongoDB.", "DATASET_RUN_STORE_UNAVAILABLE");
+  }
+  if (!mongoose.isValidObjectId(runId)) {
+    throw new ApiError(400, "Identifiant de régénération invalide.", "DATASET_RUN_ID_INVALID");
+  }
+
+  const stalePersistenceBefore = new Date(Date.now() - ACTIVE_REGENERATION_WINDOW_MS);
+  await Model.updateOne(
+    {
+      _id: runId,
+      datasetKey: adapter.domain,
+      status: "running",
+      phase: "persisting",
+      phaseStartedAt: { $lt: stalePersistenceBefore },
+    },
+    { $set: { phase: "generated", phaseStartedAt: new Date() } },
+  );
+
+  let run = await Model.findOne({ _id: runId, datasetKey: adapter.domain }).lean();
+  if (!run) {
+    throw new ApiError(404, "Régénération introuvable.", "DATASET_RUN_NOT_FOUND");
+  }
+  const staleUpdate = staleDatasetRunUpdate(run);
+  if (staleUpdate) {
+    await Model.updateOne(
+      { _id: run._id, datasetKey: adapter.domain, status: "running" },
+      { $set: staleUpdate, $unset: { stagedPayload: "" } },
+    );
+    run = { ...run, ...staleUpdate };
+    return { run: serializeDatasetRun(run), task: null };
+  }
+
+  if (run.status === "running" && run.phase === "generated") {
+    const phaseStartedAt = new Date();
+    const claimed = await Model.findOneAndUpdate(
+      { _id: run._id, datasetKey: adapter.domain, status: "running", phase: "generated" },
+      { $set: { phase: "persisting", phaseStartedAt } },
+      { returnDocument: "after" },
+    ).lean();
+    if (claimed) {
+      const task = persistStagedCurrentDatasetRegeneration(adapter, claimed).catch((error) => {
+        logRegenerationFailure(adapter, "persistence-background", error, phaseStartedAt.getTime());
+      });
+      return { run: serializeDatasetRun(claimed), task };
+    }
+    run = await Model.findOne({ _id: runId, datasetKey: adapter.domain }).lean();
+  }
+
+  return { run: serializeDatasetRun(run), task: null };
 }
 
 async function leanQuery(query) {
   return query && typeof query.lean === "function" ? query.lean() : query;
+}
+
+async function readStoredMetadata(adapter) {
+  let query = adapter.Model.findOne({ key: "current" });
+  if (query && typeof query.select === "function") {
+    query = query.select({ sourceHash: 1, count: 1 });
+  }
+  return leanQuery(query);
 }
 
 async function readStoredDocument(adapter) {
@@ -329,9 +570,9 @@ async function persistCurrentDataset({ adapter, data, report = {}, summary, stat
   };
 }
 
-async function regenerateCurrentDataset(adapter) {
+async function regenerateCurrentDataset(adapter, options = {}) {
   const regenerationStartedAt = Date.now();
-  const run = await startDatasetRun(adapter, "regenerate");
+  const run = options.run || await startDatasetRun(adapter, "regenerate");
   console.info(`[current-dataset:${adapter.domain}] Regeneration started`);
   let generated;
   try {
@@ -341,6 +582,7 @@ async function regenerateCurrentDataset(adapter) {
     });
   } catch (error) {
     await failDatasetRun(run, error);
+    logRegenerationFailure(adapter, "source-generation", error, regenerationStartedAt);
     if (error instanceof ApiError) throw error;
     throw new ApiError(
       502,
@@ -354,15 +596,15 @@ async function regenerateCurrentDataset(adapter) {
     elapsedMs: Date.now() - regenerationStartedAt,
   });
 
-  if (adapter.domain === "pokemon-identity-mappings") {
-    const details = generated.report?.resolutionReport?.details || [];
-    const diagnosticBatch = await require("../services/pokemon-identity-service").recordDiagnosticsBatch(details);
-    generated.report.identityDiagnostics = diagnosticBatch;
-    console.info(`[current-dataset:${adapter.domain}] Identity diagnostics synchronized`, diagnosticBatch);
-  }
-
   let result;
   try {
+    if (adapter.domain === "pokemon-identity-mappings") {
+      const details = generated.report?.resolutionReport?.details || [];
+      const diagnosticBatch = await require("../services/pokemon-identity-service").recordDiagnosticsBatch(details);
+      generated.report.identityDiagnostics = diagnosticBatch;
+      console.info(`[current-dataset:${adapter.domain}] Identity diagnostics synchronized`, diagnosticBatch);
+    }
+
     result = await persistCurrentDataset({
       adapter,
       data: generated.data,
@@ -373,6 +615,7 @@ async function regenerateCurrentDataset(adapter) {
     result.run = await finishDatasetRun(run, result);
   } catch (error) {
     await failDatasetRun(run, error);
+    logRegenerationFailure(adapter, "diagnostics-or-persistence", error, regenerationStartedAt);
     throw error;
   }
   console.info(`[current-dataset:${adapter.domain}] Regeneration completed`, {
@@ -410,11 +653,16 @@ async function importCurrentDataset(adapter, data) {
 
 module.exports = {
   buildDiagnostics,
+  continueCurrentDatasetRegeneration,
+  enqueueCurrentDatasetRegeneration,
   finishDatasetRun,
+  getCurrentDatasetRegeneration,
   importCurrentDataset,
   persistCurrentDataset,
   regenerateCurrentDataset,
+  serializeDatasetRun,
   sourceMetadata,
+  staleDatasetRunUpdate,
   unmatchedEntriesFromReport,
   verifyReadback,
 };

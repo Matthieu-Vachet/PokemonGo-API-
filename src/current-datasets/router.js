@@ -3,9 +3,12 @@ const { requireAdminSecret } = require("../lib/admin-auth");
 const { ApiError } = require("../lib/api-error");
 const { asyncHandler } = require("../lib/async-handler");
 const {
+  continueCurrentDatasetRegeneration,
+  enqueueCurrentDatasetRegeneration,
   importCurrentDataset,
   regenerateCurrentDataset,
 } = require("../lib/current-dataset-pipeline");
+const { scheduleBackgroundTask } = require("../lib/background-task");
 const {
   MONGODB_SOURCE,
   readCurrentDatasetFromMongo,
@@ -65,8 +68,11 @@ function actionPayload(adapter, result, action) {
   };
 }
 
-function createCurrentDatasetRouter(adapter) {
+function createCurrentDatasetRouter(adapter, options = {}) {
   const router = express.Router();
+  const enqueueRegeneration = options.enqueueRegeneration || enqueueCurrentDatasetRegeneration;
+  const readRegeneration = options.readRegeneration || continueCurrentDatasetRegeneration;
+  const scheduleTask = options.scheduleTask || scheduleBackgroundTask;
 
   router.use((_request, response, next) => {
     dynamicHeaders(response);
@@ -112,6 +118,16 @@ function createCurrentDatasetRouter(adapter) {
         data: items,
         meta: { domain: adapter.domain, page, limit, total, pages: Math.ceil(total / limit) },
       });
+    }),
+  );
+
+  router.get(
+    "/regenerate/:runId",
+    asyncHandler(async (request, response) => {
+      requireAdminSecret(request);
+      const continuation = await readRegeneration(adapter, request.params.runId);
+      if (continuation?.task) scheduleTask(continuation.task);
+      return response.json({ data: continuation?.run || continuation });
     }),
   );
 
@@ -166,6 +182,19 @@ function createCurrentDatasetRouter(adapter) {
     "/regenerate",
     asyncHandler(async (request, response) => {
       requireAdminSecret(request);
+      if (adapter.asyncRegeneration) {
+        const queued = await enqueueRegeneration(adapter);
+        if (queued.task) scheduleTask(queued.task);
+        return response.status(202).json({
+          data: {
+            success: true,
+            accepted: true,
+            alreadyRunning: queued.alreadyRunning,
+            statusPath: `/api/v1/admin/${adapter.domain}/regenerate/${queued.run.id}`,
+            run: queued.run,
+          },
+        });
+      }
       const result = await regenerateCurrentDataset(adapter);
       return response.json({ data: actionPayload(adapter, result, "regenerated") });
     }),

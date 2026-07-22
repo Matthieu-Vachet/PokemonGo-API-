@@ -676,7 +676,7 @@ async function recordDiagnosticsBatch(entries = []) {
             lastDetectedAt: now,
             sourcePayload: payload,
           },
-          $setOnInsert: { firstDetectedAt: now, status: "open", occurrences: 0 },
+          $setOnInsert: { firstDetectedAt: now, status: "open" },
           $inc: { occurrences: Number(payload.occurrences) || 1 },
         },
         upsert: true,

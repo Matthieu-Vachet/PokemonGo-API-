@@ -6,6 +6,7 @@ const { createCurrentDatasetRouter } = require("../src/current-datasets/router")
 const {
   importCurrentDataset,
   sourceMetadata,
+  staleDatasetRunUpdate,
   unmatchedEntriesFromReport,
 } = require("../src/lib/current-dataset-pipeline");
 const { errorHandler } = require("../src/middleware/errors");
@@ -350,6 +351,74 @@ test("la route d'import refuse un chemin local et n'essaie aucun fallback", asyn
     if (previousSecret === undefined) delete process.env.API_ADMIN_SECRET;
     else process.env.API_ADMIN_SECRET = previousSecret;
   }
+});
+
+test("une régénération longue répond 202 puis expose son statut persistant", async () => {
+  const previousSecret = process.env.API_ADMIN_SECRET;
+  process.env.API_ADMIN_SECRET = "pipeline-test-secret";
+  const adapter = { ...createAdapter(createMemoryModel()), asyncRegeneration: true };
+  const scheduled = [];
+  const run = {
+    id: "run-pvp-1",
+    datasetKey: adapter.domain,
+    status: "running",
+    startedAt: "2026-07-22T00:00:00.000Z",
+  };
+  const app = express();
+  app.use(express.json());
+  app.use("/datasets", createCurrentDatasetRouter(adapter, {
+    enqueueRegeneration: async () => ({ alreadyRunning: false, run, task: Promise.resolve() }),
+    readRegeneration: async (_adapter, runId) => ({
+      run: { ...run, id: runId, status: "success", phase: "completed", durationMs: 72_000 },
+      task: Promise.resolve(),
+    }),
+    scheduleTask: (task) => scheduled.push(task),
+  }));
+  app.use(errorHandler);
+
+  try {
+    const accepted = await request(app)
+      .post("/datasets/regenerate")
+      .set("x-api-admin-secret", "pipeline-test-secret");
+    assert.equal(accepted.status, 202);
+    assert.equal(accepted.body.data.accepted, true);
+    assert.equal(accepted.body.data.run.id, "run-pvp-1");
+    assert.equal(accepted.body.data.statusPath, "/api/v1/admin/test-domain/regenerate/run-pvp-1");
+    assert.equal(scheduled.length, 1);
+
+    const completed = await request(app)
+      .get("/datasets/regenerate/run-pvp-1")
+      .set("x-api-admin-secret", "pipeline-test-secret");
+    assert.equal(completed.status, 200);
+    assert.equal(completed.body.data.status, "success");
+    assert.equal(completed.body.data.phase, "completed");
+    assert.equal(completed.body.data.durationMs, 72_000);
+    assert.equal(scheduled.length, 2);
+  } finally {
+    if (previousSecret === undefined) delete process.env.API_ADMIN_SECRET;
+    else process.env.API_ADMIN_SECRET = previousSecret;
+  }
+});
+
+test("une exécution interrompue par la limite Vercel devient un échec terminal", () => {
+  const update = staleDatasetRunUpdate({
+    status: "running",
+    startedAt: "2026-07-22T00:00:00.000Z",
+  }, new Date("2026-07-22T00:01:16.000Z").getTime());
+
+  assert.equal(update.status, "failed");
+  assert.equal(update.durationMs, 76_000);
+  assert.equal(update.errorsCount, 1);
+  assert.equal(update.errors[0].code, "DATASET_REGENERATION_TIMEOUT");
+  assert.equal(staleDatasetRunUpdate({
+    status: "running",
+    startedAt: "2026-07-22T00:00:01.000Z",
+  }, new Date("2026-07-22T00:01:16.000Z").getTime()), null);
+  assert.equal(staleDatasetRunUpdate({
+    status: "running",
+    phase: "generated",
+    startedAt: "2026-07-22T00:00:00.000Z",
+  }, new Date("2026-07-22T00:10:00.000Z").getTime()), null);
 });
 
 test("les raids refusent toute URL événementielle secondaire", () => {

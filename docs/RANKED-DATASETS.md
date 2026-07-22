@@ -10,6 +10,10 @@ Collections :
 
 Les réponses sont paginées par les presenters des adaptateurs. Le document `current` renvoyé est compact et ne duplique pas le payload. Le payload PvP complet est stocké en gzip dans `compressedData`, puis hydraté et vérifié par hash lors de la lecture afin de rester sous la limite BSON MongoDB de 16 Mo.
 
+La régénération PvP est une tâche longue. `POST /api/v1/admin/pvp-rankings/regenerate` crée ou réutilise une exécution récente, la confie au mécanisme de tâche de fond Vercel et répond `202 Accepted` avec `run.id` et `statusPath`. La première invocation génère les données puis stocke dans le `DatasetRun` un staging `gzip+json` inférieur à la limite BSON ; le polling suivant revendique atomiquement la phase `generated`, persiste et relit MongoDB dans une seconde invocation. `GET /api/v1/admin/pvp-rankings/regenerate/:runId` n'expose jamais le staging : uniquement l'état sérialisé (`running`, puis `success`, `partial`, `unchanged` ou `failed`), la phase, les métriques, le diff, les avertissements et les erreurs. L'exécution reste protégée par le secret Admin et dédupliquée ; une persistance interrompue est récupérable et idempotente. Si le runtime interrompt la génération, le polling transforme le `running` périmé en `failed` avec le code `DATASET_REGENERATION_TIMEOUT` au lieu de laisser un job fantôme bloquer les relances.
+
+Le pipeline encadre aussi l'enrichissement Identity Manager et la persistance : toute exception marque le `DatasetRun` en échec et produit un log structuré avec le domaine et l'identifiant d'exécution. Les diagnostics d'identité incrémentent `occurrences` uniquement via `$inc`; aucune valeur concurrente n'est écrite sur le même chemin lors de l'upsert.
+
 La visibilité est un contrat du modèle et de l'adaptateur :
 
 - `shiny` est privé. `/api/v1/shiny`, son historique et ses actions Admin exigent toujours le secret serveur et restent absents d'OpenAPI, Swagger, Redoc et de la découverte publique ;

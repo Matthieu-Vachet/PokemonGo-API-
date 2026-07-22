@@ -673,6 +673,7 @@ const adapters = {
     Model: PvpRanking,
     compactCurrent: true,
     compressData: true,
+    asyncRegeneration: true,
     scriptName: "generatePvpRankings.js",
     exportName: "generatePvpRankings",
     generatorOptions: identityGeneratorOptions,

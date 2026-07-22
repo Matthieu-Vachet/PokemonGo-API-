@@ -74,6 +74,7 @@ function serializeCurrentDatasetDocument(document) {
 
 module.exports = {
   MONGODB_SOURCE,
+  compressedBuffer,
   hydrateCurrentDatasetDocument,
   readCurrentDatasetFromMongo,
   serializeCurrentDatasetDocument,

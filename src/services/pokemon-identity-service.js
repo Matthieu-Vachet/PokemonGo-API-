@@ -678,7 +678,7 @@ async function recordDiagnostic(payload = {}) {
       $setOnInsert: { firstDetectedAt: new Date(), status: "open" },
       $inc: { occurrences: 1 },
     },
-    { upsert: true, new: true, runValidators: true, setDefaultsOnInsert: false },
+    { upsert: true, returnDocument: "after", runValidators: true, setDefaultsOnInsert: false },
   ).lean();
 }
 
@@ -727,7 +727,7 @@ async function updateDiagnostic(identifier, payload, requestedBy) {
   const status = parse(z.object({ status: z.enum(diagnosticStatuses) }), payload, "IDENTITY_DIAGNOSTIC_INVALID").status;
   const update = { status };
   if (status === "resolved") Object.assign(update, { resolvedIdentityId: payload.identityId || null, resolvedAt: new Date(), resolvedBy: user });
-  const document = await PokemonIdentityDiagnostic.findByIdAndUpdate(identifier, { $set: update }, { new: true, runValidators: true }).lean();
+  const document = await PokemonIdentityDiagnostic.findByIdAndUpdate(identifier, { $set: update }, { returnDocument: "after", runValidators: true }).lean();
   if (!document) throw new ApiError(404, "Diagnostic introuvable.", "IDENTITY_DIAGNOSTIC_NOT_FOUND");
   return serialize(document);
 }

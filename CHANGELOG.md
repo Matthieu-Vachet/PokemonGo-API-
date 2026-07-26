@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.16.2 - 2026-07-26
+
+- Replace deprecated Mongoose update options in Identity Manager diagnostics so successful admin writes no longer emit error-level runtime warnings.
+
 ## 1.16.1 - 2026-07-26
 
 - Include explicit runtime tracing for the HTML parser used by dynamically loaded PokemonGo-Data generators on Vercel.

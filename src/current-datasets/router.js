@@ -90,7 +90,7 @@ function createCurrentDatasetRouter(adapter, options = {}) {
       if (!result.ok) return response.status(result.status).json(result.body);
       const summary = adapter.summarize(result.data);
       const presented = typeof adapter.present === "function"
-        ? adapter.present(result.data, request.query)
+        ? await adapter.present(result.data, request.query)
         : { data: result.data, meta: {} };
       const current = serializeCurrentDatasetDocument(result.document);
       if (adapter.compactCurrent) delete current.data;

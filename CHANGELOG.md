@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.16.3 - 2026-07-26
+
+- Réhydrate l’audit Costumes avec le catalogue Identity Manager courant afin qu’un alias Margxt nouvellement résolu affiche immédiatement son asset canonique.
+- Ajoute les filtres événement/type et les tris date, événement, type, nom et numéro Pokédex dans le presenter privé.
+
 ## 1.16.2 - 2026-07-26
 
 - Replace deprecated Mongoose update options in Identity Manager diagnostics so successful admin writes no longer emit error-level runtime warnings.

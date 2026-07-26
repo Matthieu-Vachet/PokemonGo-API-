@@ -68,12 +68,54 @@ test("Best Defenders filtre par tier et hydrate uniquement l'asset canonique", (
   assert.ok(presented.data.rankings.every((entry) => !String(entry.pokemon.assets.image || "").includes("pokemongohub.net")));
 });
 
-test("Costume Audit reste privé et paginé", () => {
+test("Costume Audit reste privé et paginé", async () => {
   const adapter = getCurrentDatasetAdapter("costume-audit");
   const data = localFixture(adapter);
-  const presented = adapter.present(data, { status: "missing", limit: "5" });
+  const presented = await adapter.present(data, { status: "missing", limit: "5" }, {
+    resolveAliasesBatch: async (entries) => entries.map(() => ({ status: "unmatched", reason: "ALIAS_UNKNOWN" })),
+  });
   assert.equal(presented.data.items.length, 5);
   assert.ok(presented.data.items.every((entry) => entry.pokemonGoData.status !== "present"));
+});
+
+test("Costume Audit réhydrate immédiatement un alias Margxt résolu et applique les tris", async () => {
+  const adapter = getCurrentDatasetAdapter("costume-audit");
+  const data = {
+    metadata: { visibility: "private", statusCounts: {} },
+    items: [{
+      id: "willow",
+      sourceIndex: 1,
+      source: { pokemonName: "Pikachu", costumeName: "Assistant du Professeur Willow", title: "Pikachu – Assistant du Professeur Willow" },
+      events: ["Ultra Bonus (21 au 27 juillet 2026)"],
+      shinyAvailable: true,
+      identity: { pokemonId: 25, costume: "ASSISTANT_DU_PROFESSEUR_WILLOW" },
+      pokemonGoData: { status: "unresolved", exactNormalAsset: null, exactShinyAsset: null },
+    }],
+  };
+  const presented = await adapter.present(data, { sort: "pokemonId", order: "asc", type: "ELECTRIC" }, {
+    resolveAliasesBatch: async () => [{
+      status: "matched",
+      strategy: "provider-exact",
+      confidence: 1,
+      selectedAsset: { gender: "MALE", image: "https://assets.example/pm25.willow.png", shinyImage: "https://assets.example/pm25.willow.s.png" },
+      identity: {
+        identityId: "identity-willow",
+        canonicalId: "PIKACHU_ANNIVERSARY_2026",
+        pokemonId: 25,
+        form: "normal",
+        costume: "ANNIVERSARY_2026",
+        localIdentity: { pokemonKey: "PIKACHU", pokemonName: "Pikachu", types: ["ELECTRIC"], sourceFile: "pokemon/0025-pikachu.json", assetsRef: "pokemon-assets/normal/0025-pikachu.assets.json", assets: {} },
+      },
+    }],
+  });
+  const item = presented.data.items[0];
+  assert.equal(item.pokemonGoData.status, "present");
+  assert.equal(item.pokemonGoData.canonicalId, "PIKACHU_ANNIVERSARY_2026");
+  assert.equal(item.pokemonGoData.exactNormalAsset, "https://assets.example/pm25.willow.png");
+  assert.deepEqual(item.types, ["ELECTRIC"]);
+  assert.equal(presented.data.metadata.statusCounts.present, 1);
+  assert.deepEqual(presented.data.metadata.availableTypes, ["ELECTRIC"]);
+  assert.equal(presented.meta.filters.sort, "pokemonId");
 });
 
 test("les mappings Game Master filtrent les variantes non résolues", () => {

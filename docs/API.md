@@ -144,6 +144,7 @@ curl "https://domain.com/api/v1/items"
 curl "https://domain.com/api/v1/rocket"
 curl "https://domain.com/api/v1/rocket-texts"
 curl "https://domain.com/api/v1/research"
+curl "https://domain.com/api/v1/best-defenders?tier=S&page=1&limit=100"
 
 curl -X POST "https://domain.com/api/v1/pokemon" \
   -H "x-api-admin-secret: $API_ADMIN_SECRET"
@@ -191,6 +192,7 @@ PUBLIC :
   generations, meteo, bonbons, assets publics, backgrounds, shadow, stickers, Shuffle,
   collection checklist, raids courants, oeufs courants, Max Battles courantes,
   lineups Team GO Rocket courants, quetes Research courantes,
+  Best Defenders Pokémon GO Hub,
   evolutions speciales, raid counters et `meta/filters`.
 - `GET /api/checklist-v3?action=bootstrap|detail|catalog|assets|session`.
 
@@ -202,6 +204,9 @@ PRIVATE :
 - `POST /api/v1/admin/max-battles/import` et `/api/v1/admin/max-battles/regenerate`.
 - `POST /api/v1/admin/rocket/import` et `/api/v1/admin/rocket/regenerate`.
 - `POST /api/v1/admin/research/import` et `/api/v1/admin/research/regenerate`.
+- `POST /api/v1/admin/best-defenders/import` et `/api/v1/admin/best-defenders/regenerate`.
+- Toutes les lectures et écritures `/api/v1/admin/costume-audit/*` ; aucune route publique Costume Audit n’existe.
+- Toutes les routes `/api/v1/admin/pokemon-identities/*`, notamment la liste centralisée des providers, la résolution d’assets et les diagnostics groupés.
 - Toutes les lectures et écritures sous `/api/v1/admin/game-master/*`, y compris
   résumé, catégories, recherche, détail, comparaison locale, snapshots, diff,
   export, régénération et réindexation.
@@ -256,6 +261,9 @@ Contrat des wrappers courants :
 | Max Battles | `/max-battles`, `/admin/max-battles/import`, `/admin/max-battles/regenerate` |
 | Rocket | `/rocket`, `/admin/rocket/import`, `/admin/rocket/regenerate` |
 | Research | `/research`, `/admin/research/import`, `/admin/research/regenerate` |
+| Best Defenders | `/best-defenders`, `/admin/best-defenders/import`, `/admin/best-defenders/regenerate` |
+| Audit Costumes privé | `/admin/costume-audit`, `/admin/costume-audit/import`, `/admin/costume-audit/regenerate` |
+| Identity Manager privé | `/admin/pokemon-identities/providers`, `/resolve-assets`, `/diagnostics`, `/diagnostics/batch` |
 | Game Master privé | `/admin/game-master/summary`, `/categories`, `/templates`, `/search`, `/local-comparison`, `/snapshots`, `/diff`, `/export`, `/regenerate`, `/reindex` |
 | Regions | `/regions`, `/regions/:identifier/pokemon` |
 | Generations | `/generations`, `/generations/:identifier/pokemon` |

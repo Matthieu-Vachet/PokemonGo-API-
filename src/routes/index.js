@@ -25,6 +25,8 @@ const research = require("./research");
 const shiny = require("./shiny");
 const pvpRankings = require("./pvp-rankings");
 const bestAttackers = require("./best-attackers");
+const bestDefenders = require("./best-defenders");
+const costumeAudit = require("./costume-audit");
 const pokemonIdentityMappings = require("./pokemon-identity-mappings");
 const pokemonIdentities = require("./pokemon-identities");
 const gameMaster = require("./game-master");
@@ -48,6 +50,7 @@ router.get("/", (_request, response) => {
         pvp: "/api/v1/pvp/great/rankings",
         pvpRankings: "/api/v1/pvp-rankings?league=great",
         bestAttackers: "/api/v1/best-attackers?type=FIRE&level=40&metric=edps",
+        bestDefenders: "/api/v1/best-defenders?tier=S",
         mega: "/api/v1/mega",
         dynamax: "/api/v1/dynamax",
         gigantamax: "/api/v1/gigantamax",
@@ -104,6 +107,11 @@ router.use("/admin/pvp-rankings", pvpRankings);
 // Les classements PvE sont publics; seules les mutations /admin restent protégées.
 router.use("/best-attackers", bestAttackers);
 router.use("/admin/best-attackers", bestAttackers);
+// Les tiers GO Hub sont publics; leur régénération reste protégée.
+router.use("/best-defenders", bestDefenders);
+router.use("/admin/best-defenders", bestDefenders);
+// L'audit Margxt des costumes est strictement privé et absent de la découverte publique.
+router.use("/admin/costume-audit", costumeAudit);
 // Diagnostic privé de résolution Game Master.
 router.use("/pokemon-identity-mappings", pokemonIdentityMappings);
 router.use("/admin/pokemon-identity-mappings", pokemonIdentityMappings);

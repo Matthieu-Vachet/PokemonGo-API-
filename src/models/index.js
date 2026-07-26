@@ -1,5 +1,7 @@
 module.exports = {
   BestAttacker: require("./best-attacker"),
+  BestDefender: require("./best-defender"),
+  CostumeAudit: require("./costume-audit"),
   DatasetRun: require("./dataset-run"),
   Egg: require("./egg"),
   Generation: require("./generation"),

@@ -11,7 +11,7 @@ Les referentiels statiques vivent dans le depot prive `PokemonGo-Data`. Les cinq
 datasets courants raids, oeufs, Max Battles, Rocket et Research sont regeneres depuis
 leurs sources externes puis lus exclusivement dans MongoDB.
 
-Les classements Best Attackers suivent le même contrat MongoDB (`best_attackers`, gzip, hash, diff et relecture). `GET /api/v1/best-attackers` expose niveaux, types, métriques et filtres. Le diagnostic privé `pokemon-identity-mappings` rapproche le Game Master des formes locales et reste protégé par le secret admin.
+Les classements Best Attackers et Best Defenders suivent le même contrat MongoDB (`best_attackers` et `best_defenders`, gzip, hash, diff et relecture). `GET /api/v1/best-defenders` expose les six tiers Pokémon GO Hub après résolution canonique. Le diagnostic privé `pokemon-identity-mappings` et l’audit Margxt `costume_audits` restent protégés par le secret admin ; aucun endpoint Costume Audit n’est déclaré dans la découverte publique.
 
 Les référentiels permanents Community Days et Historique Events sont exposés en lecture
 seule par `/api/v1/community-days` et `/api/v1/events/history`. Ils lisent les collections

@@ -82,6 +82,8 @@ test("GET /api-docs.json fournit OpenAPI 3", async () => {
   assert.equal(response.body.paths["/api/v1/shiny"], undefined);
   assert.ok(response.body.paths["/api/v1/pvp-rankings"]);
   assert.ok(response.body.paths["/api/v1/best-attackers"]);
+  assert.ok(response.body.paths["/api/v1/best-defenders"]);
+  assert.equal(response.body.paths["/api/v1/costume-audit"], undefined);
 });
 
 test("GET /api/v1/stickers expose le catalogue des stickers", async () => {
@@ -103,6 +105,7 @@ test("les GET current refusent tout fallback JSON quand MongoDB est indisponible
     ["/api/v1/research", "research"],
     ["/api/v1/pvp-rankings", "pvp-rankings"],
     ["/api/v1/best-attackers", "best-attackers"],
+    ["/api/v1/best-defenders", "best-defenders"],
   ]) {
     const response = await request(app).get(`${path}?source=file`).expect(503);
     assert.deepEqual(response.body, {
@@ -217,8 +220,9 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   );
   const eevee = data.pokemon.find((pokemon) => pokemon.key === "EEVEE");
   const citySafari = assetsByFormId.get(eevee.formId).locationCards.find(
-    (card) => card.id === "lc_CitySafari2023_barcelona_2023",
+    (card) => card.name === "City Safari Barcelona",
   );
+  assert.ok(citySafari);
   assert.equal(citySafari.date, "October 13th - 14th 2023");
   assert.deepEqual(citySafari.eligibleForms, ["Eevee (Explorer Hat)"]);
   assert.match(citySafari.image, /\/LocationCards\//);

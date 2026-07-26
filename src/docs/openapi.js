@@ -297,7 +297,7 @@ function createOpenApi() {
     openapi: "3.0.3",
     info: {
       title: "Pokémon GO API",
-      version: "1.13.2",
+      version: "1.16.0",
       description:
         "Référence complète de l'API Pokémon GO francophone. Les routes GET publiques restent accessibles sans secret. Les routes privées, internes ou d'écriture exigent le header x-api-admin-secret alimenté par API_ADMIN_SECRET côté serveur. Pour exécuter les requêtes depuis le navigateur, utilisez [Swagger UI](/swagger).",
       license: { name: "ISC" },
@@ -583,6 +583,19 @@ function createOpenApi() {
         ],
         response: dataResponse({
           options: { levels: [30, 40, 50], types: ["ANY", "FIRE", "WATER"], metrics: ["edps", "dps", "tdo"] },
+          rankings: [],
+        }),
+      }),
+      [`${api}/best-defenders`]: operation("PvE", "Explorer les meilleurs défenseurs d’arènes classés par Pokémon GO Hub", {
+        parameters: [
+          page,
+          limit,
+          parameter("tier", "query", "S", "Tier S, A+, A, B, C ou D."),
+          parameter("type", "query", "NORMAL", "Type canonique Pokémon GO."),
+          parameter("search", "query", "Leuphorie", "Nom, numéro Pokédex ou forme."),
+        ],
+        response: dataResponse({
+          tiers: [{ id: "S", label: "Tier S", total: 2 }],
           rankings: [],
         }),
       }),

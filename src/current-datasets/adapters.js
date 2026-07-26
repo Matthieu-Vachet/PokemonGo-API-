@@ -1,5 +1,7 @@
 const {
   BestAttacker,
+  BestDefender,
+  CostumeAudit,
   Egg,
   MaxBattle,
   PvpRanking,
@@ -333,6 +335,68 @@ function presentBestAttackers(data, query = {}) {
   };
 }
 
+function bestDefendersSummary(data) {
+  const tiers = Object.fromEntries(values(data?.tiers).map((tier) => [tier.id, values(tier.entries).length]));
+  return { total: Object.values(tiers).reduce((sum, count) => sum + count, 0), tiers };
+}
+
+function assertBestDefendersDataset(data) {
+  const expected = ["S", "A+", "A", "B", "C", "D"];
+  if (!Array.isArray(data?.tiers) || data.tiers.length !== expected.length) {
+    throw new ApiError(422, "Le dataset Best Defenders est incomplet.", "CURRENT_DATASET_INVALID");
+  }
+  for (const tier of data.tiers) {
+    if (!expected.includes(tier.id) || !Array.isArray(tier.entries) || !tier.entries.length) {
+      throw new ApiError(422, `Le tier Best Defenders ${tier.id || "inconnu"} est invalide.`, "CURRENT_DATASET_INVALID");
+    }
+  }
+}
+
+function presentBestDefenders(data, query = {}) {
+  const tier = ["S", "A+", "A", "B", "C", "D"].includes(String(query.tier || "").toUpperCase())
+    ? String(query.tier).toUpperCase()
+    : null;
+  const search = normalizeIdentity(query.search || "");
+  const type = String(query.type || "").toUpperCase();
+  const source = values(data.tiers).filter((entry) => !tier || entry.id === tier).flatMap((entry) => values(entry.entries));
+  const filtered = source.filter((entry) => {
+    const pokemon = entry.pokemon || {};
+    const haystack = normalizeIdentity([entry.source?.name, pokemon.names?.French, pokemon.names?.English, pokemon.dexNr, pokemon.formId].filter(Boolean).join(" "));
+    return (!search || haystack.includes(search))
+      && (!type || values(pokemon.types).map((value) => String(value).toUpperCase()).includes(type));
+  });
+  const paged = pageValues(filtered, { ...query, limit: query.limit || 100 });
+  return {
+    data: { metadata: data.metadata, tiers: data.tiers.map(({ id, label, description, entries }) => ({ id, label, description, total: entries.length })), rankings: paged.items },
+    meta: { ...paged.meta, filters: { tier, search: query.search || null, type: type || null } },
+  };
+}
+
+function costumeAuditSummary(data) {
+  return { total: values(data?.items).length, ...(data?.metadata?.statusCounts || {}) };
+}
+
+function assertCostumeAuditDataset(data) {
+  if (data?.metadata?.visibility !== "private" || !Array.isArray(data?.items) || !data.items.length) {
+    throw new ApiError(422, "Le dataset privé Costume Audit est invalide.", "CURRENT_DATASET_INVALID");
+  }
+}
+
+function presentCostumeAudit(data, query = {}) {
+  const search = normalizeIdentity(query.search || "");
+  const allowedStatuses = ["present", "missing", "unresolved", "ambiguous", "asset-missing", "inconsistent", "duplicate"];
+  const status = allowedStatuses.includes(query.status) ? query.status : null;
+  const shiny = queryBoolean(query.shiny);
+  const filtered = values(data.items).filter((entry) => {
+    const haystack = normalizeIdentity([entry.source?.title, entry.source?.pokemonName, entry.source?.costumeName, ...(entry.events || [])].filter(Boolean).join(" "));
+    return (!search || haystack.includes(search))
+      && (!status || (status === "missing" ? entry.pokemonGoData?.status !== "present" : entry.pokemonGoData?.status === status))
+      && (shiny === null || Boolean(entry.shinyAvailable) === shiny);
+  });
+  const paged = pageValues(filtered, query);
+  return { data: { metadata: data.metadata, items: paged.items }, meta: { ...paged.meta, filters: { search: query.search || null, status, shiny } } };
+}
+
 function assertPokemonIdentityMappings(data) {
   if (!Array.isArray(data?.mappings) || !data.mappings.length || !data?.metadata?.source) {
     throw new ApiError(422, "Le mapping Game Master Pokémon est vide ou invalide.", "CURRENT_DATASET_INVALID");
@@ -631,6 +695,50 @@ const adapters = {
       }))),
     ),
     present: presentBestAttackers,
+  },
+  "best-defenders": {
+    domain: "best-defenders",
+    visibility: "public",
+    rootKey: "tiers",
+    metaKey: "summary",
+    provider: "pokemon-go-hub",
+    sourceUrl: "https://db.pokemongohub.net/fr/best/gym-defenders",
+    strictSourceUrl: true,
+    Model: BestDefender,
+    compactCurrent: true,
+    compressData: true,
+    scriptName: "generateBestDefenders.js",
+    exportName: "generateBestDefenders",
+    generatorOptions: identityGeneratorOptions,
+    jsonPath: "best-defenders/current.json",
+    summarize: bestDefendersSummary,
+    stats: (_data, report) => ({ itemsParsed: Number(report.parsedCount || report.rawCount || 0), itemsMatched: Number(report.matchedCount || 0), itemsUnmatched: Number(report.unmatchedCount || 0) }),
+    validate: assertBestDefendersDataset,
+    count: (_data, summary) => summary.total,
+    extractEntries: (data) => values(data.tiers).flatMap((tier) => values(tier.entries).map((entry) => ({ key: `${tier.id}:${entry.rank}:${entry.source?.slug || entry.pokemon?.dexNr}`, value: entry }))),
+    present: presentBestDefenders,
+  },
+  "costume-audit": {
+    domain: "costume-audit",
+    visibility: "private",
+    rootKey: "items",
+    metaKey: "summary",
+    provider: "margxt",
+    sourceUrl: "https://www.margxt.fr/guide-les-pokemon-deguises-dans-pokemon-go/",
+    strictSourceUrl: true,
+    Model: CostumeAudit,
+    compactCurrent: true,
+    compressData: true,
+    scriptName: "generateCostumeAudit.js",
+    exportName: "generateCostumeAudit",
+    generatorOptions: identityGeneratorOptions,
+    jsonPath: "costume-audit/current.json",
+    summarize: costumeAuditSummary,
+    stats: (_data, report) => ({ itemsParsed: Number(report.parsedCount || report.rawCount || 0), itemsMatched: Number(report.matchedCount || 0), itemsUnmatched: Number(report.unmatchedCount || 0) }),
+    validate: assertCostumeAuditDataset,
+    count: (_data, summary) => summary.total,
+    extractEntries: (data) => values(data.items).map((entry) => ({ key: entry.id, value: entry })),
+    present: presentCostumeAudit,
   },
   shiny: {
     domain: "shiny",

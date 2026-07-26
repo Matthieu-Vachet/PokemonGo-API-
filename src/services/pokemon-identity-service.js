@@ -23,6 +23,17 @@ const diagnosticReasons = [
   "ALIAS_UNKNOWN", "POKEMON_UNKNOWN", "FORM_UNKNOWN", "COSTUME_UNKNOWN", "CANONICAL_ID_MISSING", "CANONICAL_ID_NOT_SYNCHRONIZED", "DUPLICATE_ALIAS", "ALIAS_CONFLICT", "MULTIPLE_FUNCTIONAL_IDENTITIES", "GENDER_ASSET_UNAVAILABLE", "IDENTITY_DEPRECATED", "ALIAS_IGNORED", "SOURCE_DATA_INCOMPLETE", "LOCAL_IDENTITY_MISSING", "VARIANT_NOT_FOUND",
 ];
 
+const providerCatalog = Object.freeze([
+  { id: "game-master", label: "Game Master · PokeMiners", domains: ["pokemon-identity-mappings"], visibility: "private" },
+  { id: "leekduck", label: "LeekDuck", domains: ["raids", "eggs", "research", "rocket", "events"], visibility: "public" },
+  { id: "snacknap", label: "Snacknap", domains: ["max-battles", "shiny"], visibility: "mixed" },
+  { id: "pvpoke", label: "PvPoke", domains: ["pvp-rankings"], visibility: "public" },
+  { id: "pokemon-go-hub", label: "Pokémon GO Hub", domains: ["best-defenders"], visibility: "public" },
+  { id: "margxt", label: "Margxt", domains: ["costume-audit"], visibility: "private" },
+  { id: "ma-collection", label: "Ma Collection", domains: ["trainer-pokemon"], visibility: "private" },
+  { id: "pogoapi", label: "Pokémon GO API", domains: ["catalogs"], visibility: "public" },
+]);
+
 function normalizeProvider(value) {
   return String(value || "")
     .normalize("NFKD")
@@ -312,6 +323,29 @@ async function listIdentities(query = {}) {
       statuses: Object.fromEntries(statusStats.map((entry) => [entry._id, entry.count])),
     },
   };
+}
+
+async function listProviders() {
+  const [aliasCounts, diagnosticCounts] = await Promise.all([
+    PokemonIdentity.aggregate([{ $unwind: "$aliases" }, { $group: { _id: "$aliases.provider", aliases: { $sum: 1 }, activeAliases: { $sum: { $cond: [{ $eq: ["$aliases.status", "active"] }, 1, 0] } } } }]),
+    PokemonIdentityDiagnostic.aggregate([{ $match: { status: "open" } }, { $group: { _id: "$provider", openDiagnostics: { $sum: 1 }, occurrences: { $sum: "$occurrences" } } }]),
+  ]);
+  const aliasesByProvider = new Map(aliasCounts.map((entry) => [entry._id, entry]));
+  const diagnosticsByProvider = new Map(diagnosticCounts.map((entry) => [entry._id, entry]));
+  const ids = new Set([...providerCatalog.map((entry) => entry.id), ...aliasesByProvider.keys(), ...diagnosticsByProvider.keys()]);
+  return [...ids].map((id) => {
+    const definition = providerCatalog.find((entry) => entry.id === id) || { id, label: id, domains: [], visibility: "private" };
+    const aliases = aliasesByProvider.get(id) || {};
+    const diagnostics = diagnosticsByProvider.get(id) || {};
+    return {
+      ...definition,
+      status: "active",
+      aliases: Number(aliases.aliases || 0),
+      activeAliases: Number(aliases.activeAliases || 0),
+      openDiagnostics: Number(diagnostics.openDiagnostics || 0),
+      occurrences: Number(diagnostics.occurrences || 0),
+    };
+  }).sort((left, right) => left.label.localeCompare(right.label, "fr"));
 }
 
 async function getIdentity(identifier) {
@@ -675,9 +709,9 @@ async function recordDiagnosticsBatch(entries = []) {
             proposedAction: payload.proposedAction || "associate",
             lastDetectedAt: now,
             sourcePayload: payload,
+            occurrences: Number(payload.occurrences) || 1,
           },
           $setOnInsert: { firstDetectedAt: now, status: "open" },
-          $inc: { occurrences: Number(payload.occurrences) || 1 },
         },
         upsert: true,
       },
@@ -747,6 +781,7 @@ module.exports = {
   listDiagnostics,
   listHistory,
   listIdentities,
+  listProviders,
   mergeIdentities,
   normalizeAlias,
   normalizeCanonicalId,

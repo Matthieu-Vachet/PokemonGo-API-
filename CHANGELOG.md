@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.16.0 - 2026-07-26
+
+- Persiste Best Defenders dans `best_defenders`, expose sa lecture publique paginée et protège ses imports, historiques et régénérations Admin.
+- Persiste l’audit Margxt dans `costume_audits` sous un contrat strictement privé, sans route de découverte publique ni entrée OpenAPI.
+- Centralise les providers Identity Manager, ajoute GO Hub, Margxt et Ma Collection, puis expose la liste et l’enregistrement idempotent de diagnostics groupés.
+- Transmet le catalogue canonique aux deux générateurs, conserve les diagnostics de variantes et vérifie hash, diff et relecture MongoDB après écriture.
+
 ## 1.11.0 - 2026-07-16
 
 - Ajoute les lectures publiques paginées Community Days et Historique Events depuis les collections permanentes du Dashboard, sans exposer les payloads ni diagnostics internes.

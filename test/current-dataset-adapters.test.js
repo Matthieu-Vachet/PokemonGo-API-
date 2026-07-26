@@ -8,7 +8,7 @@ const {
 const { computeDatasetHash } = require("../src/lib/current-dataset-hash");
 const { dataPathFromRelative } = require("../src/lib/data-repository");
 
-const DOMAINS = ["raids", "eggs", "max-battles", "research", "rocket", "shiny", "pvp-rankings", "best-attackers", "pokemon-identity-mappings"];
+const DOMAINS = ["raids", "eggs", "max-battles", "research", "rocket", "shiny", "pvp-rankings", "best-attackers", "best-defenders", "costume-audit", "pokemon-identity-mappings"];
 
 function localFixture(adapter) {
   return JSON.parse(fs.readFileSync(dataPathFromRelative(adapter.jsonPath), "utf8"));
@@ -17,7 +17,7 @@ function localFixture(adapter) {
 test("les adaptateurs valident leurs fixtures locales sans en faire une source runtime", () => {
   for (const domain of DOMAINS) {
     const adapter = getCurrentDatasetAdapter(domain);
-    assert.equal(adapter.visibility, ["shiny", "pokemon-identity-mappings"].includes(domain) ? "private" : "public");
+    assert.equal(adapter.visibility, ["shiny", "costume-audit", "pokemon-identity-mappings"].includes(domain) ? "private" : "public");
     const data = localFixture(adapter);
     const summary = adapter.summarize(data);
     adapter.validate(data, {}, summary);
@@ -41,6 +41,8 @@ test("chaque adaptateur cible la collection et la racine de données attendues",
     shiny: ["shiny_rankings", "rankings"],
     "pvp-rankings": ["pvp_rankings", "leagues"],
     "best-attackers": ["best_attackers", "rankings"],
+    "best-defenders": ["best_defenders", "tiers"],
+    "costume-audit": ["costume_audits", "items"],
     "pokemon-identity-mappings": ["pokemon_identity_mappings", "mappings"],
   };
 
@@ -52,9 +54,26 @@ test("chaque adaptateur cible la collection et la racine de données attendues",
 });
 
 test("les générateurs qui résolvent des identités reçoivent le catalogue Identity Manager", () => {
-  for (const domain of ["shiny", "pvp-rankings", "raids", "eggs", "max-battles", "research", "rocket", "pokemon-identity-mappings"]) {
+  for (const domain of ["shiny", "pvp-rankings", "raids", "eggs", "max-battles", "research", "rocket", "best-defenders", "costume-audit", "pokemon-identity-mappings"]) {
     assert.equal(typeof getCurrentDatasetAdapter(domain).generatorOptions, "function", domain);
   }
+});
+
+test("Best Defenders filtre par tier et hydrate uniquement l'asset canonique", () => {
+  const adapter = getCurrentDatasetAdapter("best-defenders");
+  const data = localFixture(adapter);
+  const presented = adapter.present(data, { tier: "S", limit: "100" });
+  assert.equal(presented.data.rankings.length, 2);
+  assert.ok(presented.data.rankings.every((entry) => entry.tier === "S"));
+  assert.ok(presented.data.rankings.every((entry) => !String(entry.pokemon.assets.image || "").includes("pokemongohub.net")));
+});
+
+test("Costume Audit reste privé et paginé", () => {
+  const adapter = getCurrentDatasetAdapter("costume-audit");
+  const data = localFixture(adapter);
+  const presented = adapter.present(data, { status: "missing", limit: "5" });
+  assert.equal(presented.data.items.length, 5);
+  assert.ok(presented.data.items.every((entry) => entry.pokemonGoData.status !== "present"));
 });
 
 test("les mappings Game Master filtrent les variantes non résolues", () => {

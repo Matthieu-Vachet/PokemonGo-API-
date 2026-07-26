@@ -139,6 +139,7 @@ test("les routes Identity Manager sont privées et valident le serveur avant Mon
   const app = createApp();
   try {
     await request(app).get("/api/v1/admin/pokemon-identities").expect(401);
+    await request(app).get("/api/v1/admin/pokemon-identities/providers").expect(401);
     await request(app).get("/api/v1/admin/pokemon-identities/inventory").expect(401);
     await request(app).get("/api/v1/admin/pokemon-identities/sync/preview").expect(401);
     await request(app).post("/api/v1/admin/pokemon-identities/sync/apply").expect(401);
@@ -152,6 +153,11 @@ test("les routes Identity Manager sont privées et valident le serveur avant Mon
       .post("/api/v1/admin/pokemon-identities/resolve-assets")
       .set("x-api-admin-secret", "identity-test-secret")
       .send({ requests: [] })
+      .expect(422);
+    await request(app)
+      .post("/api/v1/admin/pokemon-identities/diagnostics/batch")
+      .set("x-api-admin-secret", "identity-test-secret")
+      .send({ entries: [] })
       .expect(422);
   } finally {
     if (previous === undefined) delete process.env.API_ADMIN_SECRET;

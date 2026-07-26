@@ -1,4 +1,5 @@
 const express = require("express");
+const { ApiError } = require("../lib/api-error");
 const { requireAdminSecret } = require("../lib/admin-auth");
 const { asyncHandler } = require("../lib/async-handler");
 const service = require("../services/pokemon-identity-service");
@@ -35,6 +36,10 @@ router.get("/history", asyncHandler(async (request, response) => {
 router.get("/diagnostics", asyncHandler(async (request, response) => {
   const result = await service.listDiagnostics(request.query);
   response.json({ data: result.items, meta: { ...result.pagination, source: "mongodb", visibility: "private" } });
+}));
+
+router.get("/providers", asyncHandler(async (_request, response) => {
+  response.json({ data: await service.listProviders(), meta: { source: "identity-manager", visibility: "private" } });
 }));
 
 router.get("/inventory", asyncHandler(async (request, response) => {
@@ -89,6 +94,14 @@ router.post("/import", asyncHandler(async (request, response) => {
 
 router.post("/diagnostics", asyncHandler(async (request, response) => {
   response.status(201).json({ data: await service.recordDiagnostic(request.body) });
+}));
+
+router.post("/diagnostics/batch", asyncHandler(async (request, response) => {
+  const entries = Array.isArray(request.body?.entries) ? request.body.entries : [];
+  if (!entries.length || entries.length > 500) {
+    throw new ApiError(422, "Le lot de diagnostics doit contenir entre 1 et 500 entrées.", "IDENTITY_DIAGNOSTIC_BATCH_INVALID");
+  }
+  response.status(201).json({ data: await service.recordDiagnosticsBatch(entries), meta: { visibility: "private", limit: 500 } });
 }));
 
 router.patch("/diagnostics/:diagnosticId", asyncHandler(async (request, response) => {

@@ -52,6 +52,18 @@ const MODEL_CONFIGS = [
     domain: "best-attackers",
   },
   {
+    model: require("../src/models/best-defender"),
+    modelName: "BestDefender",
+    collectionName: "best_defenders",
+    domain: "best-defenders",
+  },
+  {
+    model: require("../src/models/costume-audit"),
+    modelName: "CostumeAudit",
+    collectionName: "costume_audits",
+    domain: "costume-audit",
+  },
+  {
     model: require("../src/models/pokemon-identity-mapping"),
     modelName: "PokemonIdentityMapping",
     collectionName: "pokemon_identity_mappings",

@@ -3,8 +3,8 @@ id: ADR-IDENTITY-001
 title: Identity Manager Pokémon GO
 status: active
 lang: fr
-version: 1.3.0
-updated_at: 2026-07-18
+version: 1.4.0
+updated_at: 2026-07-26
 owners:
   - pokemon-data
 related:
@@ -80,7 +80,8 @@ Préfixe : `/api/v1/admin/pokemon-identities`.
 - `GET /sync/preview` : plan de synchronisation sans écriture et empreinte du plan ;
 - `POST /sync/apply` : application groupée, historisée et idempotente ;
 - `GET /conflicts`, `GET /history`, `GET /diagnostics` ;
-- `POST /diagnostics` et `PATCH /diagnostics/:id` ;
+- `GET /providers` : catalogue central et compteurs d’alias/diagnostics pour Game Master, LeekDuck, Snacknap, PvPoke, Pokémon GO Hub, Margxt, Ma Collection et les providers personnalisés découverts ;
+- `POST /diagnostics`, `POST /diagnostics/batch` (1 à 500 anomalies agrégées et idempotentes) et `PATCH /diagnostics/:id` ;
 - `GET /export` ;
 - `POST /import` avec `mode: preview` obligatoire avant un `mode: apply` décidé par l’administrateur.
 
@@ -114,7 +115,7 @@ Les résultats transportent la référence locale, le bundle, le chemin JSON de 
 - `SHINY_ASSET_MISSING` ;
 - `GENDER_VARIANT_NOT_FOUND`.
 
-Les adaptateurs Game Master, Shiny Tracker, raids, œufs, Max Battles, Research, Rocket et PvPoke reçoivent le catalogue Identity Manager en lot. Le cache du service est versionné en mémoire et sa révision est incrémentée après toute création, modification, fusion, restauration, dépréciation ou mutation d'alias.
+Les adaptateurs Game Master, Shiny Tracker, raids, œufs, Max Battles, Research, Rocket, PvPoke, Pokémon GO Hub et Margxt reçoivent le catalogue Identity Manager en lot. Ma Collection utilise `/resolve-assets` par groupes de 500, agrège ses échecs par alias brut et permet de relancer la résolution de tout le snapshot actif après la création d’un alias. Le cache du service est versionné en mémoire et sa révision est incrémentée après toute création, modification, fusion, restauration, dépréciation ou mutation d'alias.
 
 ## Règles d’intégrité
 
@@ -173,3 +174,4 @@ Résultat du 18 juillet 2026 : 1 391 documents reliés, 520 identités locales c
 - 2026-07-18 — stabilisation de la sérialisation des identifiants MongoDB pour les routes CRUD et les clés de rendu du Dashboard.
 - 2026-07-18 — ajout du résolveur canonique d'assets, de sa trace stable, de l'invalidation coordonnée des caches et branchement des datasets courants/classés.
 - 2026-07-18 — ajout de la résolution privée d'assets en lot pour les pipelines Dashboard PogoAPI et LeekDuck.
+- 2026-07-26 — centralisation des providers, ajout de Pokémon GO Hub, Margxt et Ma Collection, diagnostics groupés idempotents et relance de résolution du snapshot Collection.

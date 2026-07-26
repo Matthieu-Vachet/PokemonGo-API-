@@ -78,6 +78,32 @@ test("Costume Audit reste privé et paginé", async () => {
   assert.ok(presented.data.items.every((entry) => entry.pokemonGoData.status !== "present"));
 });
 
+test("Costume Audit résout une variante avec sa forme contextuelle quand elle existe", async () => {
+  const adapter = getCurrentDatasetAdapter("costume-audit");
+  const data = {
+    metadata: { visibility: "private", statusCounts: {} },
+    items: [{
+      id: "dedenne-holidays",
+      sourceIndex: 1,
+      source: { pokemonName: "Dedenne", costumeName: "Tenue des fêtes", title: "Dedenne – Tenue des fêtes" },
+      events: [],
+      shinyAvailable: true,
+      identity: { pokemonId: 702, form: "DEDENNE_TENUE_DES_FETES", costume: "TENUE_DES_FETES" },
+      pokemonGoData: { status: "unresolved", exactNormalAsset: null, exactShinyAsset: null },
+    }],
+  };
+  let requests = [];
+  await adapter.present(data, {}, {
+    resolveAliasesBatch: async (entries) => {
+      requests = entries;
+      return entries.map(() => ({ status: "unmatched", reason: "ALIAS_UNKNOWN" }));
+    },
+  });
+
+  assert.equal(requests[0].rawAlias, "DEDENNE_TENUE_DES_FETES");
+  assert.equal(requests[0].costume, "TENUE_DES_FETES");
+});
+
 test("Costume Audit réhydrate immédiatement un alias Margxt résolu et applique les tris", async () => {
   const adapter = getCurrentDatasetAdapter("costume-audit");
   const data = {

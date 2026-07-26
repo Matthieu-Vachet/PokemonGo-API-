@@ -508,7 +508,7 @@ async function presentCostumeAudit(data, query = {}, dependencies = {}) {
   const source = values(data.items);
   const resolutions = await resolveAliasesBatch(source.map((entry) => ({
     provider: "margxt",
-    rawAlias: entry.identity?.costume || entry.identity?.raw?.rawCostume || entry.source?.costumeName || entry.source?.title,
+    rawAlias: entry.identity?.form || entry.identity?.costume || entry.identity?.raw?.rawCostume || entry.source?.costumeName || entry.source?.title,
     pokemonId: entry.identity?.pokemonId || null,
     form: entry.identity?.form || null,
     costume: entry.identity?.costume || null,

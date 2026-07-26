@@ -36,6 +36,17 @@ test("la liste filtre explicitement les états de synchronisation", () => {
   });
 });
 
+test("la recherche Identity Manager accepte le nom français de PokemonGo-Data", () => {
+  const inventory = inventoryService.loadLocalIdentityInventory();
+  const gimmighoul = inventory.indexes.byCanonicalId.get("GIMMIGHOUL_NORMAL");
+  assert.equal(gimmighoul.pokemonName, "Mordudor");
+
+  const filter = identityService.listFilter({ search: "Mordudor" });
+  assert.deepEqual(filter.$or.find((clause) => clause["localIdentity.pokemonName"]), {
+    "localIdentity.pokemonName": { $regex: "Mordudor", $options: "i" },
+  });
+});
+
 test("le plan de synchronisation crée tout le catalogue puis devient idempotent", () => {
   const inventory = inventoryService.loadLocalIdentityInventory();
   const first = syncService.buildIdentitySyncPlan({ inventory, existingIdentities: [], validatedAt: "2026-07-18T00:00:00.000Z" });

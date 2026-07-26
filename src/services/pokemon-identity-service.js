@@ -296,6 +296,7 @@ function listFilter(query = {}) {
     const escaped = String(query.search).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     filter.$or = [
       { canonicalId: { $regex: escaped, $options: "i" } },
+      { "localIdentity.pokemonName": { $regex: escaped, $options: "i" } },
       { "aliases.value": { $regex: escaped, $options: "i" } },
       { "aliases.normalizedValue": { $regex: escaped, $options: "i" } },
     ];

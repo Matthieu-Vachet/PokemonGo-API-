@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.16.1 - 2026-07-26
+
+- Include explicit runtime tracing for the HTML parser used by dynamically loaded PokemonGo-Data generators on Vercel.
+
 ## 1.16.0 - 2026-07-26
 
 - Persiste Best Defenders dans `best_defenders`, expose sa lecture publique paginée et protège ses imports, historiques et régénérations Admin.

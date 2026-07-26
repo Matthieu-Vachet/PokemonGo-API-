@@ -1,4 +1,8 @@
 const fs = require("fs");
+// The current-data generators are loaded dynamically from the bundled
+// PokemonGo-Data checkout. Keep their shared HTML parser visible to Vercel's
+// static dependency tracer so it is present in the Function at runtime.
+require("cheerio");
 const { ApiError } = require("./api-error");
 const { dataPath } = require("./data-repository");
 

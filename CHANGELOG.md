@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.17.1 - 2026-07-28
+
+- Complète la projection canonique des Suggested Teammates avec `identity.image`, `shinyImage`, `resolutionStatus` et `assetResolution` issus du seul `selectedAsset` de l’Identity Manager.
+- Conserve le contrat historique `pokemon.assets` sans fabriquer d’URL et ajoute une couverture des cinq partenaires actuels de Mimiqui.
+
 ## 1.17.0 - 2026-07-28
 
 - Ajoute le dataset MongoDB public `gbl_calendar`, ses lectures et filtres, son historique et sa régénération Admin Battleflow.

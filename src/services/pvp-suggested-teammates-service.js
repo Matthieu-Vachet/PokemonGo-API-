@@ -98,6 +98,9 @@ async function resolveSuggestedTeammates(rawItems, context, resolver = identityS
     const identity = resolution.identity || null;
     const local = identity?.localIdentity || null;
     const selectedAsset = resolution.selectedAsset || local?.assets || null;
+    const image = selectedAsset?.image || null;
+    const shinyImage = selectedAsset?.shinyImage || null;
+    const assetStatus = resolution.status === "matched" && image ? "matched" : "missing-asset";
     return {
       rawName: item.rawName,
       providerAlias: item.providerAlias,
@@ -115,8 +118,24 @@ async function resolveSuggestedTeammates(rawItems, context, resolver = identityS
         formId: local?.formId || identity.form || identity.canonicalId,
         names: { French: local?.pokemonName || item.rawName, English: item.rawName },
         types: local?.types || [],
-        assets: { image: selectedAsset?.image || null, shinyImage: selectedAsset?.shinyImage || null },
-        identity: { canonicalId: identity.canonicalId, provider: "pvpoke", rawAlias: item.identityAlias },
+        assets: { image, shinyImage },
+        identity: {
+          canonicalId: identity.canonicalId,
+          pokemon: identity.pokemonId,
+          form: identity.form || local?.formId || null,
+          costume: identity.costume || null,
+          provider: "pvpoke",
+          rawAlias: item.identityAlias,
+          image,
+          shinyImage,
+          resolutionStatus: assetStatus,
+          assetResolution: {
+            status: assetStatus,
+            image,
+            shinyImage,
+            reason: assetStatus === "matched" ? null : "CANONICAL_ASSET_MISSING",
+          },
+        },
       } : null,
     };
   });
@@ -141,7 +160,7 @@ async function suggestedTeammatesFor(context, options = {}) {
   const sourceHash = String(context.sourceHash || "");
   const league = safeContextId(context.league, "Ligue");
   const speciesId = safeToken(context.speciesId, "SpeciesId");
-  const key = `${sourceHash}:${league}:${speciesId}`;
+  const key = `v2:${sourceHash}:${league}:${speciesId}`;
   const now = new Date();
   const cached = await PvpTeammateCache.findOne({ key, expiresAt: { $gt: now } }).lean();
   if (cached) return { ...cached, cache: "hit" };

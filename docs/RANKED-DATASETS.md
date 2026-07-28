@@ -1,12 +1,13 @@
 # Architecture Mongo des classements
 
-Les domaines `shiny`, `pvp-rankings`, `best-defenders` et `costume-audit` réutilisent le pipeline `current-dataset` existant : génération PokemonGo-Data, validation d'adaptateur, hash/diff, upsert Mongo et relecture de contrôle.
+Les domaines `shiny`, `pvp-rankings`, `gbl-calendar`, `best-defenders` et `costume-audit` réutilisent le pipeline `current-dataset` existant : génération PokemonGo-Data, validation d'adaptateur, hash/diff, upsert Mongo et relecture de contrôle.
 
 Collections :
 
 - `shiny_rankings` : vue courante ;
 - `shiny_snapshots` : snapshots immuables utilisés pour l'historique du projet ;
-- `pvp_rankings` : vue courante PvPoke.
+- `pvp_rankings` : vue courante PvPoke ;
+- `gbl_calendar` : rotations GBL publiques Battleflow ;
 - `best_defenders` : tiers publics Pokémon GO Hub ;
 - `costume_audits` : comparaison privée Margxt / PokemonGo-Data.
 
@@ -20,6 +21,7 @@ La visibilité est un contrat du modèle et de l'adaptateur :
 
 - `shiny` est privé. `/api/v1/shiny`, son historique et ses actions Admin exigent toujours le secret serveur et restent absents d'OpenAPI, Swagger, Redoc et de la découverte publique ;
 - `pvp-rankings` est public. `/api/v1/pvp-rankings` figure dans OpenAPI et la découverte de l'API ;
+- `gbl-calendar` est public. `/api/v1/gbl-calendar` expose saison, périodes, statuts, bonus et compétitions avec filtres `status`, `tier` et `cup` ;
 - `best-defenders` est public. `/api/v1/best-defenders` accepte tier, type, recherche et pagination ;
 - `costume-audit` est privé. Il n’existe ni `/api/v1/costume-audit` public, ni schéma Margxt dans OpenAPI ;
 - les routes de régénération restent privées dans tous les cas.
@@ -31,3 +33,7 @@ Avant chaque génération, l'adaptateur charge le catalogue Identity Manager une
 Best Defenders applique le même chemin au provider `pokemon-go-hub`. L’audit Costumes applique le provider `margxt` et conserve les images externes comme preuve source uniquement. Les diagnostics des deux datasets sont persistés dans `pokemon_identity_diagnostics`; une nouvelle association d’alias devient effective à la prochaine régénération sans réécriture du scraper.
 
 Une lecture privée sans secret est refusée avant tout accès MongoDB. La visibilité stockée est également relue avec le document afin qu'une erreur de routage ne puisse pas rendre un dataset privé public.
+
+Le presenter PvP conserve la pagination normale ; `full=true` renvoie le catalogue complet de la ligue sélectionnée pour les consommateurs qui doivent établir une checklist exacte. Les IV affichés viennent de `rank1`/`pvp.ivs`; le profil `pvp.simulationProfile` est une donnée d’audit distincte.
+
+`GET /api/v1/pvp-rankings/:league/:speciesId/teammates` ouvre la fiche de détail canonique PvPoke correspondant au format, extrait les cinq liens `.partner-pokemon .list a`, résout leurs alias par Identity Manager et persiste le résultat dans `pvp_teammate_cache`. La clé inclut le `sourceHash` du classement ; le cache expire après 24 heures. Une identité non résolue reste visible comme diagnostic et n’obtient aucun asset arbitraire.

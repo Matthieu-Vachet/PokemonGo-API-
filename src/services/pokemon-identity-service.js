@@ -28,6 +28,7 @@ const providerCatalog = Object.freeze([
   { id: "leekduck", label: "LeekDuck", domains: ["raids", "eggs", "research", "rocket", "events"], visibility: "public" },
   { id: "snacknap", label: "Snacknap", domains: ["max-battles", "shiny"], visibility: "mixed" },
   { id: "pvpoke", label: "PvPoke", domains: ["pvp-rankings"], visibility: "public" },
+  { id: "battleflow", label: "Battleflow", domains: ["gbl-calendar"], visibility: "public" },
   { id: "pokemon-go-hub", label: "Pokémon GO Hub", domains: ["best-defenders"], visibility: "public" },
   { id: "margxt", label: "Margxt", domains: ["costume-audit"], visibility: "private" },
   { id: "ma-collection", label: "Ma Collection", domains: ["trainer-pokemon"], visibility: "private" },

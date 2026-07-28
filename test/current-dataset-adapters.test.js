@@ -8,7 +8,7 @@ const {
 const { computeDatasetHash } = require("../src/lib/current-dataset-hash");
 const { dataPathFromRelative } = require("../src/lib/data-repository");
 
-const DOMAINS = ["raids", "eggs", "max-battles", "research", "rocket", "shiny", "pvp-rankings", "best-attackers", "best-defenders", "costume-audit", "pokemon-identity-mappings"];
+const DOMAINS = ["raids", "eggs", "max-battles", "research", "rocket", "shiny", "pvp-rankings", "gbl-calendar", "best-attackers", "best-defenders", "costume-audit", "pokemon-identity-mappings"];
 
 function localFixture(adapter) {
   return JSON.parse(fs.readFileSync(dataPathFromRelative(adapter.jsonPath), "utf8"));
@@ -40,6 +40,7 @@ test("chaque adaptateur cible la collection et la racine de données attendues",
     rocket: ["rockets", "currentRocketList"],
     shiny: ["shiny_rankings", "rankings"],
     "pvp-rankings": ["pvp_rankings", "leagues"],
+    "gbl-calendar": ["gbl_calendar", "periods"],
     "best-attackers": ["best_attackers", "rankings"],
     "best-defenders": ["best_defenders", "tiers"],
     "costume-audit": ["costume_audits", "items"],
@@ -186,6 +187,19 @@ test("le presenter PvP hydrate la fiche Pokémon centralisée sans dupliquer les
   assert.ok(presented.data.references.pokemon[entry.pokemonRef]);
   assert.equal(entry.matchups[0].pokemon, undefined);
   assert.ok(entry.matchups[0].pokemonRef);
+});
+
+test("le catalogue PvP complet et le calendrier GBL conservent leurs contrats publics", () => {
+  const pvp = getCurrentDatasetAdapter("pvp-rankings");
+  const pvpData = localFixture(pvp);
+  const full = pvp.present(pvpData, { league: "great", full: "true" });
+  assert.equal(full.data.rankings.length, pvpData.leagues.great.rankings.length);
+
+  const calendar = getCurrentDatasetAdapter("gbl-calendar");
+  const data = localFixture(calendar);
+  const current = calendar.present(data, { status: "current" });
+  assert.equal(current.data.periods.length, 1);
+  assert.equal(current.data.periods[0].status, "current");
 });
 
 test("l'identité Rocket distingue profil, slot et Pokémon", () => {

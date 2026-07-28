@@ -3,6 +3,7 @@ const {
   BestDefender,
   CostumeAudit,
   Egg,
+  GblCalendar,
   MaxBattle,
   PvpRanking,
   PokemonIdentityMapping,
@@ -203,7 +204,9 @@ function presentPvp(data, query = {}) {
     return Number(entry.roleScores?.[role] || 0);
   };
   const sorted = role ? [...filtered].sort((left, right) => metricValue(right) - metricValue(left)) : filtered;
-  const paged = pageValues(sorted, query);
+  const paged = query.full === "true"
+    ? { items: sorted, meta: { page: 1, limit: sorted.length, total: sorted.length, pages: sorted.length ? 1 : 0 } }
+    : pageValues(sorted, query);
   return {
     data: {
       meta: data.meta,
@@ -214,6 +217,53 @@ function presentPvp(data, query = {}) {
       rankings: paged.items.map((entry) => ({ ...entry, displayScore: role ? metricValue(entry) : entry.score })),
     },
     meta: { ...paged.meta, league, filters: { search: query.search || null, role } },
+  };
+}
+
+function gblCalendarSummary(data) {
+  const periods = values(data?.periods);
+  const statuses = periods.reduce((counts, period) => {
+    counts[period.status] = (counts[period.status] || 0) + 1;
+    return counts;
+  }, {});
+  return {
+    season: data?.season || null,
+    total: periods.length,
+    competitions: periods.reduce((sum, period) => sum + values(period.competitions).length, 0),
+    statuses,
+    currentPeriodId: periods.find((period) => period.status === "current")?.id || null,
+  };
+}
+
+function assertGblCalendarDataset(data) {
+  if (!data?.season?.start || !data?.season?.end || !Array.isArray(data?.periods) || !data.periods.length) {
+    throw new ApiError(422, "Le calendrier GBL Battleflow est incomplet.", "CURRENT_DATASET_INVALID");
+  }
+  for (const period of data.periods) {
+    if (!period.id || !period.start || !period.end || !["past", "current", "upcoming"].includes(period.status)
+      || !Array.isArray(period.competitions) || !period.competitions.length) {
+      throw new ApiError(422, `La période GBL ${period.id || "inconnue"} est invalide.`, "CURRENT_DATASET_INVALID");
+    }
+  }
+}
+
+function presentGblCalendar(data, query = {}) {
+  const status = ["past", "current", "upcoming"].includes(query.status) ? query.status : null;
+  const tier = ["little", "great", "ultra", "master", "custom"].includes(query.tier) ? query.tier : null;
+  const cup = normalizeIdentity(query.cup || "");
+  const asOf = Date.now();
+  const periods = values(data.periods).map((period) => ({
+    ...period,
+    status: asOf < Date.parse(period.start) ? "upcoming" : asOf < Date.parse(period.end) ? "current" : "past",
+  })).filter((period) => {
+    const competitions = values(period.competitions);
+    return (!status || period.status === status)
+      && (!tier || competitions.some((competition) => competition.tier === tier))
+      && (!cup || competitions.some((competition) => normalizeIdentity(competition.cup).includes(cup)));
+  });
+  return {
+    data: { meta: data.meta, season: data.season, periods },
+    meta: { total: periods.length, asOf: new Date(asOf).toISOString(), filters: { status, tier, cup: cup || null } },
   };
 }
 
@@ -944,6 +994,30 @@ const adapters = {
     extractEntries: (data) => Object.entries(data.leagues || {}).flatMap(([league, value]) => values(value.rankings).map((entry) => ({ key: `${league}:${normalizeIdentity(rankedIdentity(entry))}`, value: entry }))),
     present: presentPvp,
   },
+  "gbl-calendar": {
+    domain: "gbl-calendar",
+    visibility: "public",
+    rootKey: "periods",
+    metaKey: "summary",
+    provider: "battleflow",
+    sourceUrl: "https://battleflow.app/fr/gbl-calendar/",
+    strictSourceUrl: true,
+    Model: GblCalendar,
+    compactCurrent: true,
+    scriptName: "generateGblCalendar.js",
+    exportName: "generateGblCalendar",
+    jsonPath: "gbl-calendar/current.json",
+    summarize: gblCalendarSummary,
+    stats: (_data, report) => ({
+      itemsParsed: Number(report.parsedCount || report.rawCount || 0),
+      itemsMatched: Number(report.matchedCount || 0),
+      itemsUnmatched: Number(report.unmatchedCount || 0),
+    }),
+    validate: assertGblCalendarDataset,
+    count: (_data, summary) => summary.total,
+    extractEntries: (data) => values(data.periods).map((period) => ({ key: period.id, value: period })),
+    present: presentGblCalendar,
+  },
   raids: {
     domain: "raids",
     visibility: "public",
@@ -1083,6 +1157,7 @@ function getCurrentDatasetAdapter(domain) {
 
 module.exports = {
   assertBestAttackersDataset,
+  assertGblCalendarDataset,
   assertPokemonIdentityMappings,
   bestAttackersSummary,
   compactShinyHistoryData,
@@ -1090,6 +1165,7 @@ module.exports = {
   normalizeIdentity,
   pokemonIdentity,
   presentBestAttackers,
+  presentGblCalendar,
   presentPokemonIdentityMappings,
   summarizeShinyHistory,
 };

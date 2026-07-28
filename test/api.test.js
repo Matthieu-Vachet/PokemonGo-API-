@@ -81,6 +81,8 @@ test("GET /api-docs.json fournit OpenAPI 3", async () => {
   assert.ok(response.body.paths["/api/v1/research"]);
   assert.equal(response.body.paths["/api/v1/shiny"], undefined);
   assert.ok(response.body.paths["/api/v1/pvp-rankings"]);
+  assert.ok(response.body.paths["/api/v1/pvp-rankings/{league}/{speciesId}/teammates"]);
+  assert.ok(response.body.paths["/api/v1/gbl-calendar"]);
   assert.ok(response.body.paths["/api/v1/best-attackers"]);
   assert.ok(response.body.paths["/api/v1/best-defenders"]);
   assert.equal(response.body.paths["/api/v1/costume-audit"], undefined);
@@ -104,6 +106,7 @@ test("les GET current refusent tout fallback JSON quand MongoDB est indisponible
     ["/api/v1/rocket", "rocket"],
     ["/api/v1/research", "research"],
     ["/api/v1/pvp-rankings", "pvp-rankings"],
+    ["/api/v1/gbl-calendar", "gbl-calendar"],
     ["/api/v1/best-attackers", "best-attackers"],
     ["/api/v1/best-defenders", "best-defenders"],
   ]) {

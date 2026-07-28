@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.17.0 - 2026-07-28
+
+- Ajoute le dataset MongoDB public `gbl_calendar`, ses lectures et filtres, son historique et sa régénération Admin Battleflow.
+- Expose le catalogue PvP complet par ligue avec `full=true` pour la checklist persistante tout en conservant la pagination par défaut.
+- Transmet le contrat Rank 1 PvPoke enrichi, documente le calendrier GBL dans OpenAPI et ajoute Battleflow au catalogue des providers.
+- Extrait à la demande les cinq Suggested Teammates de la fiche déroulante PvPoke, les résout canoniquement et les met en cache dans `pvp_teammate_cache`.
+- Étend les tests de modèles, adaptateurs, routes publiques, absence de fallback JSON et OpenAPI.
+
 ## 1.16.3 - 2026-07-26
 
 - Réhydrate l’audit Costumes avec le catalogue Identity Manager courant afin qu’un alias Margxt nouvellement résolu affiche immédiatement son asset canonique.

@@ -24,6 +24,7 @@ const rocketTexts = require("./rocket-texts");
 const research = require("./research");
 const shiny = require("./shiny");
 const pvpRankings = require("./pvp-rankings");
+const gblCalendar = require("./gbl-calendar");
 const bestAttackers = require("./best-attackers");
 const bestDefenders = require("./best-defenders");
 const costumeAudit = require("./costume-audit");
@@ -49,6 +50,7 @@ router.get("/", (_request, response) => {
         moves: "/api/v1/moves",
         pvp: "/api/v1/pvp/great/rankings",
         pvpRankings: "/api/v1/pvp-rankings?league=great",
+        gblCalendar: "/api/v1/gbl-calendar",
         bestAttackers: "/api/v1/best-attackers?type=FIRE&level=40&metric=edps",
         bestDefenders: "/api/v1/best-defenders?tier=S",
         mega: "/api/v1/mega",
@@ -104,6 +106,9 @@ router.use("/admin/shiny", shiny);
 // Les classements PvPoke sont publics; seules les mutations /admin restent protégées.
 router.use("/pvp-rankings", pvpRankings);
 router.use("/admin/pvp-rankings", pvpRankings);
+// Le calendrier Battleflow est public; sa régénération reste protégée sous /admin.
+router.use("/gbl-calendar", gblCalendar);
+router.use("/admin/gbl-calendar", gblCalendar);
 // Les classements PvE sont publics; seules les mutations /admin restent protégées.
 router.use("/best-attackers", bestAttackers);
 router.use("/admin/best-attackers", bestAttackers);

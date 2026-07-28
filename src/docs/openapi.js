@@ -297,7 +297,7 @@ function createOpenApi() {
     openapi: "3.0.3",
     info: {
       title: "Pokémon GO API",
-      version: "1.16.3",
+      version: "1.17.0",
       description:
         "Référence complète de l'API Pokémon GO francophone. Les routes GET publiques restent accessibles sans secret. Les routes privées, internes ou d'écriture exigent le header x-api-admin-secret alimenté par API_ADMIN_SECRET côté serveur. Pour exécuter les requêtes depuis le navigateur, utilisez [Swagger UI](/swagger).",
       license: { name: "ISC" },
@@ -566,6 +566,24 @@ function createOpenApi() {
           formats: [{ id: "great", label: "Ligue Super", cp: 1500, category: "standards" }],
           league: "great",
           rankings: [],
+        }),
+      }),
+      [`${api}/pvp-rankings/{league}/{speciesId}/teammates`]: operation("PvP", "Récupérer les partenaires suggérés calculés par la fiche PvPoke", {
+        parameters: [
+          requiredParameter("league", "path", "great", "Identifiant exact du format PvPoke."),
+          requiredParameter("speciesId", "path", "mimikyu", "SpeciesId exact présent dans le classement."),
+        ],
+        response: dataResponse([{ rawName: "Kingdra", providerAlias: "kingdra", canonicalId: "KINGDRA", shadow: false, rankOrOrder: 1 }]),
+      }),
+      [`${api}/gbl-calendar`]: operation("PvP", "Consulter le calendrier des rotations GBL fourni par Battleflow", {
+        parameters: [
+          parameter("status", "query", "current", "Filtrer par past, current ou upcoming."),
+          parameter("tier", "query", "great", "Filtrer par little, great, ultra, master ou custom."),
+          parameter("cup", "query", "retro", "Filtrer par identifiant de coupe."),
+        ],
+        response: dataResponse({
+          season: { name: "Toujours en avant", start: "2026-06-02T20:00:00.000Z", end: "2026-09-08T20:00:00.000Z" },
+          periods: [],
         }),
       }),
       [`${api}/best-attackers`]: operation("PvE", "Explorer les meilleurs attaquants calculés avec le moteur DialgaDex", {

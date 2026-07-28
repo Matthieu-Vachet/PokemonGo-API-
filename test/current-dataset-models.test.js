@@ -46,6 +46,12 @@ const MODEL_CONFIGS = [
     domain: "pvp-rankings",
   },
   {
+    model: require("../src/models/gbl-calendar"),
+    modelName: "GblCalendar",
+    collectionName: "gbl_calendar",
+    domain: "gbl-calendar",
+  },
+  {
     model: require("../src/models/best-attacker"),
     modelName: "BestAttacker",
     collectionName: "best_attackers",

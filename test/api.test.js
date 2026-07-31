@@ -9,7 +9,7 @@ mongoose.set("bufferCommands", false);
 const { createApp } = require("../src/app");
 const { dataPath } = require("../src/lib/data-repository");
 const { normalizeLeague } = require("../src/lib/pvp");
-const { buildPokemonFilter } = require("../src/services/pokemon-service");
+const { attachPokemonAssets, buildPokemonFilter } = require("../src/services/pokemon-service");
 const { presentPokemon } = require("../src/services/pokemon-presenter");
 const { collectAllDocuments } = require("../src/sync/source-reader");
 const {
@@ -633,4 +633,18 @@ test("les filtres numériques invalides sont refusés", () => {
     () => buildPokemonFilter({ catchRateMin: "10", catchRateMax: "5" }),
     /inférieur ou égal/,
   );
+});
+
+test("le provider Pokémon transmet xlImage sans reconstruire son URL", () => {
+  const candy = {
+    familyId: 1,
+    image: "https://assets.test/candy/1.png",
+    xlImage: "https://assets.test/xl_candy/1.png",
+    primaryColor: { r: 1, g: 2, b: 3, a: 1 },
+    secondaryColor: { r: 4, g: 5, b: 6, a: 1 },
+  };
+  const fromPokemon = attachPokemonAssets({ data: { assets: { candy } } }, { assets: { candy: { ...candy, familyId: 999 } } });
+  assert.deepEqual(fromPokemon.data.assets.candy, candy);
+  const fromAssetDocument = attachPokemonAssets({ data: { assets: {} } }, { assets: { candy } });
+  assert.deepEqual(fromAssetDocument.data.assets.candy, candy);
 });

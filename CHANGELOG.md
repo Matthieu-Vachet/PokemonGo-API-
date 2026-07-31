@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.18.0 - 2026-07-31
+
+- Transmet le contrat canonique `assets.candy.xlImage` déjà résolu par PokemonGo-Data, y compris depuis un bundle de forme lorsque la fiche principale ne porte pas la copie.
+- Conserve la fiche Pokémon principale comme autorité lorsqu’elle contient les données candy et n’introduit aucune construction d’URL XL dans le provider.
+- Étend les tests d’API à la précédence et à la rétrocompatibilité de `assets.candy.image`.
+
 ## 1.17.1 - 2026-07-28
 
 - Complète la projection canonique des Suggested Teammates avec `identity.image`, `shinyImage`, `resolutionStatus` et `assetResolution` issus du seul `selectedAsset` de l’Identity Manager.

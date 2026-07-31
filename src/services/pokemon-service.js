@@ -115,6 +115,7 @@ function mergeAssetData(data = {}, assetDocument = null) {
     ...data,
     assets: {
       ...(data.assets || {}),
+      candy: data.assets?.candy ?? heavyAssets.candy ?? null,
       home: heavyAssets.home ?? null,
       portrait: heavyAssets.portrait ?? null,
       portraitShiny: heavyAssets.portraitShiny ?? null,

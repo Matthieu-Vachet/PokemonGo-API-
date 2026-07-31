@@ -4,6 +4,7 @@
 
 - Transmet le contrat canonique `assets.candy.xlImage` déjà résolu par PokemonGo-Data, y compris depuis un bundle de forme lorsque la fiche principale ne porte pas la copie.
 - Conserve la fiche Pokémon principale comme autorité lorsqu’elle contient les données candy et n’introduit aucune construction d’URL XL dans le provider.
+- Privilégie la fiche JSON embarquée sur un snapshot MongoDB incomplet lors de l’hydratation du candy familial.
 - Étend les tests d’API à la précédence et à la rétrocompatibilité de `assets.candy.image`.
 
 ## 1.17.1 - 2026-07-28

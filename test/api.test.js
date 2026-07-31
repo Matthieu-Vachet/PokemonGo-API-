@@ -647,4 +647,13 @@ test("le provider Pokémon transmet xlImage sans reconstruire son URL", () => {
   assert.deepEqual(fromPokemon.data.assets.candy, candy);
   const fromAssetDocument = attachPokemonAssets({ data: { assets: {} } }, { assets: { candy } });
   assert.deepEqual(fromAssetDocument.data.assets.candy, candy);
+
+  const fromCanonicalJson = attachPokemonAssets({
+    sourceFiles: ["data/pokemon/0001-bulbasaur.json"],
+    data: { assets: { candy: { ...candy, xlImage: null } } },
+  });
+  assert.equal(
+    fromCanonicalJson.data.assets.candy.xlImage,
+    "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/xl_candy/1.png",
+  );
 });

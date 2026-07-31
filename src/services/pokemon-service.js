@@ -1,5 +1,7 @@
+const fs = require("fs");
 const { Pokemon, PokemonAsset } = require("../models");
 const { ApiError } = require("../lib/api-error");
+const { dataPath } = require("../lib/data-repository");
 const { boolean, csv, pagination, sortFromQuery } = require("../lib/http");
 const {
   presentPokemon,
@@ -19,6 +21,25 @@ const SORT_FIELDS = [
   "catchRate",
   "fleeRate",
 ];
+const canonicalCandyCache = new Map();
+
+function canonicalCandyFromSource(document = {}) {
+  const sourceFile = (document.sourceFiles || []).find((file) =>
+    /^(?:data\/)?pokemon(?:-forms)?\/.*\.json$/i.test(String(file)),
+  );
+  if (!sourceFile) return null;
+  const relativeFile = String(sourceFile).replace(/^data\//, "");
+  if (canonicalCandyCache.has(relativeFile)) return canonicalCandyCache.get(relativeFile);
+  try {
+    const payload = JSON.parse(fs.readFileSync(dataPath(...relativeFile.split("/")), "utf8"));
+    const candy = payload.assets?.candy ?? null;
+    canonicalCandyCache.set(relativeFile, candy);
+    return candy;
+  } catch {
+    canonicalCandyCache.set(relativeFile, null);
+    return null;
+  }
+}
 
 function escapeRegex(value) {
   return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -109,13 +130,13 @@ function listProjection(includeData) {
       };
 }
 
-function mergeAssetData(data = {}, assetDocument = null) {
+function mergeAssetData(data = {}, assetDocument = null, canonicalCandy = null) {
   const heavyAssets = assetDocument?.assets || assetDocument?.data?.assets || {};
   return {
     ...data,
     assets: {
       ...(data.assets || {}),
-      candy: data.assets?.candy ?? heavyAssets.candy ?? null,
+      candy: canonicalCandy ?? data.assets?.candy ?? heavyAssets.candy ?? null,
       home: heavyAssets.home ?? null,
       portrait: heavyAssets.portrait ?? null,
       portraitShiny: heavyAssets.portraitShiny ?? null,
@@ -132,7 +153,7 @@ function attachPokemonAssets(document, assetDocument = null) {
   if (!document) return document;
   return {
     ...document,
-    data: mergeAssetData(document.data, assetDocument),
+    data: mergeAssetData(document.data, assetDocument, canonicalCandyFromSource(document)),
   };
 }
 

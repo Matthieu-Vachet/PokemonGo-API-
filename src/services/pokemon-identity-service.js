@@ -25,13 +25,17 @@ const diagnosticReasons = [
 
 const providerCatalog = Object.freeze([
   { id: "game-master", label: "Game Master · PokeMiners", domains: ["pokemon-identity-mappings"], visibility: "private" },
+  { id: "pokeminers-game-masters", label: "PokeMiners Game Masters", domains: ["game-master"], visibility: "private" },
   { id: "leekduck", label: "LeekDuck", domains: ["raids", "eggs", "research", "rocket", "events"], visibility: "public" },
+  { id: "leekduck-raids", label: "LeekDuck · Raids", domains: ["raids"], visibility: "private" },
   { id: "snacknap", label: "Snacknap", domains: ["max-battles", "shiny"], visibility: "mixed" },
+  { id: "snacknap-max-battles", label: "Snacknap · Combats Dynamax", domains: ["max-battles"], visibility: "private" },
   { id: "pvpoke", label: "PvPoke", domains: ["pvp-rankings"], visibility: "public" },
+  { id: "pvpoke-official-repository", label: "PvPoke · dépôt officiel", domains: ["pvp-rankings"], visibility: "private" },
   { id: "battleflow", label: "Battleflow", domains: ["gbl-calendar"], visibility: "public" },
+  { id: "dialgadex-official-repository", label: "DialgaDex · dépôt officiel", domains: ["pve"], visibility: "private" },
   { id: "pokemon-go-hub", label: "Pokémon GO Hub", domains: ["best-defenders"], visibility: "public" },
-  { id: "margxt", label: "Margxt", domains: ["costume-audit"], visibility: "private" },
-  { id: "ma-collection", label: "Ma Collection", domains: ["trainer-pokemon"], visibility: "private" },
+  { id: "margxt", label: "Margxt", domains: ["pokemon-availability", "pokemon-shiny-availability", "pokemon-costumes", "pokemon-shadow-availability"], visibility: "private" },
   { id: "pogoapi", label: "Pokémon GO API", domains: ["catalogs"], visibility: "public" },
 ]);
 
@@ -43,6 +47,16 @@ function normalizeProvider(value) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+}
+
+const registeredProviders = new Set(providerCatalog.map((provider) => provider.id));
+
+function assertRegisteredProvider(value) {
+  const provider = normalizeProvider(value);
+  if (!provider || !registeredProviders.has(provider)) {
+    throw new ApiError(422, `La source Identity Manager « ${provider || "vide"} » n’est pas enregistrée ou a été retirée.`, "IDENTITY_PROVIDER_NOT_REGISTERED", { provider });
+  }
+  return provider;
 }
 
 function normalizeAlias(value) {
@@ -221,7 +235,7 @@ function prepareAlias(input, user) {
   return {
     ...input,
     aliasId: input.aliasId || crypto.randomUUID(),
-    provider: normalizeProvider(input.provider),
+    provider: assertRegisteredProvider(input.provider),
     value: String(input.value).trim(),
     normalizedValue: normalizeAlias(input.value),
     reason: input.reason || null,
@@ -334,9 +348,8 @@ async function listProviders() {
   ]);
   const aliasesByProvider = new Map(aliasCounts.map((entry) => [entry._id, entry]));
   const diagnosticsByProvider = new Map(diagnosticCounts.map((entry) => [entry._id, entry]));
-  const ids = new Set([...providerCatalog.map((entry) => entry.id), ...aliasesByProvider.keys(), ...diagnosticsByProvider.keys()]);
-  return [...ids].map((id) => {
-    const definition = providerCatalog.find((entry) => entry.id === id) || { id, label: id, domains: [], visibility: "private" };
+  return providerCatalog.map((definition) => {
+    const id = definition.id;
     const aliases = aliasesByProvider.get(id) || {};
     const diagnostics = diagnosticsByProvider.get(id) || {};
     return {
@@ -415,7 +428,7 @@ async function updateAlias(identifier, aliasId, payload, requestedBy) {
   if (!alias) throw new ApiError(404, "Alias introuvable.", "IDENTITY_ALIAS_NOT_FOUND");
   const before = serialize(identity);
   const parsed = parse(aliasInputSchema.partial(), payload);
-  if (parsed.provider !== undefined) alias.provider = normalizeProvider(parsed.provider);
+  if (parsed.provider !== undefined) alias.provider = assertRegisteredProvider(parsed.provider);
   if (parsed.value !== undefined) {
     alias.value = parsed.value;
     alias.normalizedValue = normalizeAlias(parsed.value);
@@ -568,7 +581,7 @@ async function aliasCatalog(force = false) {
 }
 
 function resolveAliasAgainstCatalog(payload = {}, catalog = []) {
-  const provider = normalizeProvider(payload.provider);
+  const provider = assertRegisteredProvider(payload.provider);
   const rawAlias = String(payload.rawAlias || payload.alias || "").trim();
   const normalizedAlias = normalizeAlias(rawAlias);
   if (!provider || !rawAlias) throw new ApiError(422, "Provider et alias sont requis.", "IDENTITY_RESOLVE_INVALID");
@@ -653,7 +666,7 @@ async function listDiagnostics(query = {}) {
 
 async function recordDiagnostic(payload = {}) {
   const input = parse(diagnosticInputSchema, payload, "IDENTITY_DIAGNOSTIC_INVALID");
-  const provider = normalizeProvider(input.provider);
+  const provider = assertRegisteredProvider(input.provider);
   const rawAlias = String(input.rawAlias || input.sourceId || "").trim();
   const normalizedAlias = normalizeAlias(rawAlias);
   const sourceId = String(input.sourceId || rawAlias).trim();
@@ -687,7 +700,7 @@ async function recordDiagnostic(payload = {}) {
 async function recordDiagnosticsBatch(entries = []) {
   const now = new Date();
   const operations = entries.filter(Boolean).map((payload) => {
-    const provider = normalizeProvider(payload.provider || payload.source || "unknown");
+    const provider = assertRegisteredProvider(payload.provider || payload.source);
     const rawAlias = String(payload.rawAlias || payload.sourceForm || payload.sourceCostume || payload.sourceId || "unknown").trim();
     const normalizedAlias = normalizeAlias(payload.normalizedAlias || rawAlias);
     const sourceId = String(payload.sourceId || rawAlias).trim();
@@ -737,6 +750,9 @@ async function updateDiagnostic(identifier, payload, requestedBy) {
 async function importIdentities(payload, requestedBy) {
   const user = actor(requestedBy);
   const input = parse(importSchema, payload, "IDENTITY_IMPORT_INVALID");
+  for (const identity of input.identities) {
+    for (const alias of identity.aliases) assertRegisteredProvider(alias.provider);
+  }
   const seenCanonical = new Set();
   const seenAliases = new Map();
   const report = { mode: input.mode, total: input.identities.length, create: 0, update: 0, duplicates: [], conflicts: [], invalid: [] };
@@ -772,6 +788,7 @@ async function importIdentities(payload, requestedBy) {
 module.exports = {
   aliasCatalog,
   aliasInputSchema,
+  assertRegisteredProvider,
   conflicts,
   createIdentity,
   deprecateIdentity,
@@ -788,6 +805,7 @@ module.exports = {
   normalizeAlias,
   normalizeCanonicalId,
   normalizeProvider,
+  providerCatalog,
   recordDiagnostic,
   recordDiagnosticsBatch,
   resolveAlias,

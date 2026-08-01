@@ -3,8 +3,8 @@ id: ADR-IDENTITY-001
 title: Identity Manager Pokémon GO
 status: active
 lang: fr
-version: 2.0.0
-updated_at: 2026-07-26
+version: 2.0.1
+updated_at: 2026-08-01
 owners:
   - pokemon-data
 related:
@@ -73,7 +73,7 @@ Préfixe : `/api/v1/admin/pokemon-identities`.
 - `GET /:id` et `PATCH /:id` : lecture et modification ;
 - `DELETE /:id` : dépréciation logique avec motif obligatoire ;
 - `POST /:id/restore` et `POST /:id/merge` ;
-- `POST /:id/aliases` et `PATCH /:id/aliases/:aliasId` ;
+- `POST /:id/aliases` et `PATCH /:id/aliases/:aliasId` ; l’ajout répété du même alias actif sur la même identité est idempotent et ne crée ni doublon ni historique artificiel ;
 - `POST /resolve` : résolution provider + alias ;
 - `POST /resolve-assets` : résolution privée de 1 à 500 alias vers leurs identités et assets canoniques, dans l'ordre d'entrée et avec un seul chargement du catalogue ;
 - `GET /inventory` : recherche paginée dans l’inventaire local sans passer par les anciens mappings ;
@@ -122,6 +122,7 @@ Les adaptateurs Game Master, Shiny Tracker, raids, œufs, Max Battles, Research,
 - aucun provider, alias brut ou alias normalisé vide ;
 - aucun provider absent du registre ; les résolutions, diagnostics, imports et mutations sont rejetés avec `IDENTITY_PROVIDER_NOT_REGISTERED` ;
 - aucun doublon provider + alias normalisé dans un document ;
+- un ajout répétitif du même alias actif sur la même identité retourne l’identité existante sans nouvelle écriture ;
 - aucun alias actif partagé entre plusieurs identités ;
 - aucune identité active sans `localIdentity.identityKey`, empreinte locale et `syncStatus: synchronized` ; le statut `draft` est l’exception explicite ;
 - aucune suppression physique depuis le CRUD ; la dépréciation exige un motif et reste historisée ;
@@ -178,3 +179,4 @@ Résultat du 18 juillet 2026 : 1 391 documents reliés, 520 identités locales c
 - 2026-07-18 — ajout de la résolution privée d'assets en lot pour les pipelines Dashboard PogoAPI et LeekDuck.
 - 2026-07-26 — centralisation initiale des providers et diagnostics groupés idempotents.
 - 2026-07-31 — fermeture du registre, retrait de la source obsolète et migration réversible de ses données ; zéro référence active après contrôle.
+- 2026-08-01 — ajout idempotent des alias déjà actifs afin qu’une association répétée ne déclenche plus une erreur de validation MongoDB.

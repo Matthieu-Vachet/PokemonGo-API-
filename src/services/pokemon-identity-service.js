@@ -408,6 +408,26 @@ async function addAlias(identifier, payload, requestedBy) {
   if (!identity) throw new ApiError(404, "Identité canonique introuvable.", "IDENTITY_NOT_FOUND");
   const alias = prepareAlias(input, user);
   await assertAliasesAvailable([alias], identity._id);
+  const existing = identity.aliases.find((entry) => (
+    normalizeProvider(entry.provider) === alias.provider
+    && normalizeAlias(entry.normalizedValue || entry.value) === alias.normalizedValue
+  ));
+  if (existing?.status === alias.status) return serialize(identity);
+  if (existing) {
+    const before = serialize(identity);
+    for (const field of ["provider", "value", "normalizedValue", "status", "confidence", "source", "reason", "firstDetectedAt", "lastDetectedAt", "occurrences", "updatedAt", "updatedBy"]) {
+      if (alias[field] !== undefined) existing[field] = alias[field];
+    }
+    identity.updatedBy = user;
+    try {
+      await identity.save();
+      await history(identity, "alias-update", user, { before, provider: alias.provider, alias: alias.value, reason: alias.reason });
+      invalidateIdentityCache();
+      return serialize(identity);
+    } catch (error) {
+      mongoConflict(error);
+    }
+  }
   identity.aliases.push(alias);
   identity.updatedBy = user;
   try {

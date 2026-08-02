@@ -401,6 +401,30 @@ async function updateIdentity(identifier, payload, requestedBy) {
   }
 }
 
+async function resolveDiagnosticsForAlias(identity, alias, requestedBy) {
+  if (alias.status !== "active") return { matchedCount: 0, modifiedCount: 0 };
+  const now = new Date();
+  const result = await PokemonIdentityDiagnostic.updateMany(
+    {
+      provider: alias.provider,
+      normalizedAlias: alias.normalizedValue,
+      status: "open",
+    },
+    {
+      $set: {
+        status: "resolved",
+        resolvedIdentityId: identity._id,
+        resolvedAt: now,
+        resolvedBy: actor(requestedBy),
+      },
+    },
+  );
+  return {
+    matchedCount: Number(result.matchedCount || 0),
+    modifiedCount: Number(result.modifiedCount || 0),
+  };
+}
+
 async function addAlias(identifier, payload, requestedBy) {
   const user = actor(requestedBy);
   const input = parse(aliasInputSchema, payload);
@@ -412,7 +436,11 @@ async function addAlias(identifier, payload, requestedBy) {
     normalizeProvider(entry.provider) === alias.provider
     && normalizeAlias(entry.normalizedValue || entry.value) === alias.normalizedValue
   ));
-  if (existing?.status === alias.status) return serialize(identity);
+  if (existing?.status === alias.status) {
+    await resolveDiagnosticsForAlias(identity, alias, user);
+    invalidateIdentityCache();
+    return serialize(identity);
+  }
   if (existing) {
     const before = serialize(identity);
     for (const field of ["provider", "value", "normalizedValue", "status", "confidence", "source", "reason", "firstDetectedAt", "lastDetectedAt", "occurrences", "updatedAt", "updatedBy"]) {
@@ -422,6 +450,7 @@ async function addAlias(identifier, payload, requestedBy) {
     try {
       await identity.save();
       await history(identity, "alias-update", user, { before, provider: alias.provider, alias: alias.value, reason: alias.reason });
+      await resolveDiagnosticsForAlias(identity, alias, user);
       invalidateIdentityCache();
       return serialize(identity);
     } catch (error) {
@@ -433,6 +462,7 @@ async function addAlias(identifier, payload, requestedBy) {
   try {
     await identity.save();
     await history(identity, "alias-add", user, { provider: alias.provider, alias: alias.value, reason: alias.reason });
+    await resolveDiagnosticsForAlias(identity, alias, user);
     invalidateIdentityCache();
     return serialize(identity);
   } catch (error) {
@@ -828,6 +858,7 @@ module.exports = {
   providerCatalog,
   recordDiagnostic,
   recordDiagnosticsBatch,
+  resolveDiagnosticsForAlias,
   resolveAlias,
   resolveAliasesBatch,
   restoreIdentity,

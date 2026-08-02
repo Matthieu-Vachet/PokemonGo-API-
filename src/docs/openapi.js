@@ -297,7 +297,7 @@ function createOpenApi() {
     openapi: "3.0.3",
     info: {
       title: "Pokémon GO API",
-      version: "1.17.1",
+      version: "1.19.0",
       description:
         "Référence complète de l'API Pokémon GO francophone. Les routes GET publiques restent accessibles sans secret. Les routes privées, internes ou d'écriture exigent le header x-api-admin-secret alimenté par API_ADMIN_SECRET côté serveur. Pour exécuter les requêtes depuis le navigateur, utilisez [Swagger UI](/swagger).",
       license: { name: "ISC" },

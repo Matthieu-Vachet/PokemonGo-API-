@@ -588,6 +588,11 @@ async function regenerateCurrentDataset(adapter, options = {}) {
       502,
       `La recuperation externe a echoue pour ${adapter.domain}: ${error.message}`,
       domainCode(adapter.domain, "SOURCE_FETCH_FAILED"),
+      error && typeof error === "object" && error.details ? error.details : {
+        provider: adapter.provider,
+        sourceUrl: adapter.sourceUrl,
+        preservation: "Le dernier snapshot MongoDB valide reste actif.",
+      },
     );
   }
 

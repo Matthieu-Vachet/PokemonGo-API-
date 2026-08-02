@@ -14,8 +14,10 @@ test("l'ajout répétitif du même alias actif est idempotent", async () => {
   const originalFindById = PokemonIdentity.findById;
   const originalFindOne = PokemonIdentity.findOne;
   const originalHistoryCreate = PokemonIdentityHistory.create;
+  const originalDiagnosticUpdateMany = PokemonIdentityDiagnostic.updateMany;
   let saves = 0;
   let histories = 0;
+  let diagnosticsResolved = 0;
   const identity = {
     _id: "6a5b845a37c48578724ac21f",
     canonicalId: "EEVEE_GOFEST_2024_STIARA",
@@ -33,6 +35,10 @@ test("l'ajout répétitif du même alias actif est idempotent", async () => {
   PokemonIdentity.findById = async () => identity;
   PokemonIdentity.findOne = () => ({ select: () => ({ lean: async () => null }) });
   PokemonIdentityHistory.create = async () => { histories += 1; };
+  PokemonIdentityDiagnostic.updateMany = async () => {
+    diagnosticsResolved += 1;
+    return { matchedCount: 0, modifiedCount: 0 };
+  };
   try {
     const result = await addAlias(identity._id, {
       provider: "game-master",
@@ -44,10 +50,12 @@ test("l'ajout répétitif du même alias actif est idempotent", async () => {
     assert.equal(result.aliases.length, 1);
     assert.equal(saves, 0);
     assert.equal(histories, 0);
+    assert.equal(diagnosticsResolved, 1);
   } finally {
     PokemonIdentity.findById = originalFindById;
     PokemonIdentity.findOne = originalFindOne;
     PokemonIdentityHistory.create = originalHistoryCreate;
+    PokemonIdentityDiagnostic.updateMany = originalDiagnosticUpdateMany;
   }
 });
 

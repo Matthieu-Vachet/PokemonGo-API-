@@ -12,8 +12,9 @@ test("la fonction REST longue et la checklist déclarent leur durée Vercel", ()
     if (!functionConfig.includeFiles) continue;
     assert.doesNotMatch(functionConfig.includeFiles, /PokemonGo-Data\/\*\*/);
     assert.doesNotMatch(functionConfig.includeFiles, /pvp-rankings|archives|best-attackers/);
-    assert.match(functionConfig.includeFiles, /pokemon-assets\/\*\*/);
-    assert.match(functionConfig.includeFiles, /mappings\/\*\*/);
-    assert.match(functionConfig.includeFiles, /scripts\/\*\*/);
+    assert.match(functionConfig.includeFiles, /pokemon-assets/);
+    assert.match(functionConfig.includeFiles, /mappings/);
+    assert.match(functionConfig.includeFiles, /scripts/);
+    assert.ok(functionConfig.includeFiles.length <= 256);
   }
 });

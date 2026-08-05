@@ -51,6 +51,12 @@ const pokemonGoDataTrace = [
   "./.data/PokemonGo-Data/max-battles/**/*",
   "./.data/PokemonGo-Data/rocket/**/*",
   "./.data/PokemonGo-Data/research/**/*",
+  "./.data/PokemonGo-Data/items/**/*",
+  "./.data/PokemonGo-Data/mappings/**/*",
+  "./.data/PokemonGo-Data/scripts/**/*",
+  "./.data/PokemonGo-Data/game-master/**/*",
+  "./.data/PokemonGo-Data/checklist/**/*",
+  "./.data/PokemonGo-Data/schemas/**/*",
   "./.data/PokemonGo-Data/*-report.json",
 ];
 

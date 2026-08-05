@@ -12,4 +12,6 @@ test("les fonctions Next.js embarquent le dataset PokemonGo-Data requis", async 
   assert.ok(tracedFiles.includes("./.data/PokemonGo-Data/pokemon-assets/**/*"));
   assert.ok(tracedFiles.includes("./.data/PokemonGo-Data/types/**/*"));
   assert.ok(tracedFiles.includes("./.data/PokemonGo-Data/research/**/*"));
+  assert.ok(tracedFiles.includes("./.data/PokemonGo-Data/mappings/**/*"));
+  assert.ok(tracedFiles.includes("./.data/PokemonGo-Data/scripts/**/*"));
 });

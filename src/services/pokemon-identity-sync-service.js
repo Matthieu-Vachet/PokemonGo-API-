@@ -85,26 +85,121 @@ function legacyIdentityKey(document) {
   return document.localIdentity?.identityKey || document.localReference?.key || null;
 }
 
+function localCandidateSummary(candidate) {
+  return {
+    canonicalId: candidate.canonicalId,
+    identityKey: candidate.identityKey,
+    pokemonId: candidate.pokemonId,
+    pokemonKey: candidate.pokemonKey || null,
+    form: candidate.form || null,
+    formId: candidate.formId || null,
+    parentFormId: candidate.parentFormId || null,
+    costume: candidate.costume || null,
+    transformation: candidate.transformation || null,
+    category: candidate.category || null,
+    sourceFile: candidate.sourceFile || null,
+    pokemonSourceFile: candidate.pokemonSourceFile || null,
+    assetsRef: candidate.assetsRef || null,
+    candidateFiles: [...new Set([
+      candidate.sourceFile,
+      candidate.pokemonSourceFile,
+      ...(candidate.localReferences || []).map((reference) => reference.sourceFile),
+    ].filter(Boolean))],
+  };
+}
+
+function mongoIdentitySummary(document) {
+  return {
+    identityId: String(document._id || document.id),
+    canonicalId: document.canonicalId,
+    identityKey: legacyIdentityKey(document),
+    pokemonId: Number(document.pokemonId),
+    form: document.form || null,
+    formId: document.localIdentity?.formId || document.localReference?.formId || null,
+    costume: document.costume || null,
+    transformation: document.transformation || null,
+    sourceFile: document.localIdentity?.sourceFile || document.localReference?.file || null,
+    aliases: (document.aliases || []).map((alias) => ({
+      provider: alias.provider,
+      value: alias.value,
+      status: alias.status,
+    })),
+  };
+}
+
+function conflictResolution(recommendation) {
+  return {
+    action: "manual-review-required",
+    recommendation,
+    automaticSelection: false,
+    automaticDeletion: false,
+  };
+}
+
+function isBaseNormalCandidate(candidate) {
+  const canonicalId = normalized(candidate.canonicalId);
+  const formId = normalized(candidate.formId);
+  const pokemonKey = normalized(candidate.pokemonKey);
+  return canonicalId.endsWith("_NORMAL")
+    && !normalized(candidate.costume)
+    && !normalized(candidate.transformation)
+    && (!formId || formId === pokemonKey);
+}
+
+function candidateFormTokens(candidate) {
+  const pokemonKey = normalized(candidate.pokemonKey);
+  const values = [candidate.form, candidate.formId, candidate.parentFormId].map(normalized).filter(Boolean);
+  for (const value of [...values]) {
+    if (pokemonKey && value.startsWith(`${pokemonKey}_`)) values.push(value.slice(pokemonKey.length + 1));
+  }
+  return new Set(values);
+}
+
 function candidateMatchesDocument(candidate, document) {
   if (Number(document.pokemonId) !== candidate.pokemonId) return false;
+  const documentIdentityKey = legacyIdentityKey(document);
+  if (documentIdentityKey) return documentIdentityKey === candidate.identityKey;
   if (document.canonicalId === candidate.canonicalId) return true;
+
   const documentCostume = normalized(document.costume);
+  const candidateCostume = normalized(candidate.costume);
+  const documentTransformation = normalized(document.transformation);
+  const candidateTransformation = normalized(candidate.transformation);
+  if (documentCostume !== candidateCostume || documentTransformation !== candidateTransformation) return false;
+
+  const documentFormId = normalized(document.localIdentity?.formId || document.localReference?.formId);
+  if (documentFormId) return documentFormId === normalized(candidate.formId);
+
   const documentForm = normalized(document.form);
-  return Boolean(documentCostume || documentForm)
-    && (!documentCostume || normalized(candidate.costume) === documentCostume)
-    && (!documentForm || [candidate.form, candidate.formId].some((value) => normalized(value) === documentForm));
+  if (documentForm === "NORMAL") return isBaseNormalCandidate(candidate);
+  if (documentForm) return candidateFormTokens(candidate).has(documentForm);
+
+  // Sans clé, canonicalId, forme, costume ou transformation, un document ancien
+  // n'apporte aucune preuve suffisante pour être relié automatiquement.
+  return false;
+}
+
+function bucketBy(items, selector) {
+  const buckets = new Map();
+  for (const item of items) {
+    const key = selector(item);
+    if (!key) continue;
+    if (!buckets.has(key)) buckets.set(key, []);
+    buckets.get(key).push(item);
+  }
+  return buckets;
 }
 
 function buildIdentitySyncPlan({ inventory, existingIdentities, validatedAt = new Date().toISOString() }) {
   const existing = existingIdentities.map(serializable);
-  const byCanonical = new Map(existing.map((identity) => [identity.canonicalId, identity]));
-  const byIdentityKey = new Map(existing.filter((identity) => legacyIdentityKey(identity)).map((identity) => [legacyIdentityKey(identity), identity]));
+  const byCanonical = bucketBy(existing, (identity) => identity.canonicalId);
+  const byIdentityKey = bucketBy(existing, legacyIdentityKey);
   const byPokemonId = new Map();
   for (const identity of existing) {
     if (!byPokemonId.has(Number(identity.pokemonId))) byPokemonId.set(Number(identity.pokemonId), []);
     byPokemonId.get(Number(identity.pokemonId)).push(identity);
   }
-  const matchedExistingIds = new Set();
+  const matchedExistingClaims = new Map();
   const creates = [];
   const updates = [];
   const unchanged = [];
@@ -117,40 +212,92 @@ function buildIdentitySyncPlan({ inventory, existingIdentities, validatedAt = ne
     if (seenCanonical.has(local.canonicalId) || seenIdentityKey.has(local.identityKey)) {
       conflicts.push({
         code: "LOCAL_INVENTORY_DUPLICATE",
+        cause: "doublon-reel-inventaire-local",
         canonicalId: local.canonicalId,
         identityKey: local.identityKey,
+        localCandidate: localCandidateSummary(local),
+        resolution: conflictResolution("Corriger le doublon dans PokemonGo-Data puis régénérer l'inventaire local."),
       });
       continue;
     }
     seenCanonical.add(local.canonicalId);
     seenIdentityKey.add(local.identityKey);
-    let current = byIdentityKey.get(local.identityKey) || null;
+    let current = null;
+    const identityKeyMatches = byIdentityKey.get(local.identityKey) || [];
+    if (identityKeyMatches.length > 1) {
+      conflicts.push({
+        code: "MONGODB_IDENTITY_KEY_DUPLICATE",
+        cause: "index-mongodb-ancien-ou-incoherent",
+        canonicalId: local.canonicalId,
+        identityKey: local.identityKey,
+        localCandidate: localCandidateSummary(local),
+        existingCandidates: identityKeyMatches.map(mongoIdentitySummary),
+        resolution: conflictResolution("Inspecter les documents MongoDB qui partagent la même identityKey et leurs alias; conserver les deux tant qu'une décision humaine n'est pas enregistrée."),
+      });
+      continue;
+    }
+    if (identityKeyMatches.length === 1) {
+      if (candidateMatchesDocument(local, identityKeyMatches[0])) current = identityKeyMatches[0];
+      else {
+        conflicts.push({
+          code: "IDENTITY_KEY_LOCAL_CONFLICT",
+          cause: "collision-cle-identite",
+          canonicalId: local.canonicalId,
+          identityKey: local.identityKey,
+          localCandidate: localCandidateSummary(local),
+          existingIdentity: mongoIdentitySummary(identityKeyMatches[0]),
+          resolution: conflictResolution("Comparer pokemonId, forme et fichier source avant de corriger explicitement la clé du document MongoDB ancien."),
+        });
+        continue;
+      }
+    }
     if (!current) {
-      const canonicalMatch = byCanonical.get(local.canonicalId);
+      const canonicalMatches = byCanonical.get(local.canonicalId) || [];
+      if (canonicalMatches.length > 1) {
+        conflicts.push({
+          code: "MONGODB_CANONICAL_ID_DUPLICATE",
+          cause: "index-mongodb-ancien-ou-incoherent",
+          canonicalId: local.canonicalId,
+          identityKey: local.identityKey,
+          localCandidate: localCandidateSummary(local),
+          existingCandidates: canonicalMatches.map(mongoIdentitySummary),
+          resolution: conflictResolution("Inspecter les documents et leurs alias; ne rétablir l'index unique qu'après une résolution humaine documentée."),
+        });
+        continue;
+      }
+      const canonicalMatch = canonicalMatches[0] || null;
       if (canonicalMatch && candidateMatchesDocument(local, canonicalMatch)) current = canonicalMatch;
       else if (canonicalMatch) {
         conflicts.push({
           code: "CANONICAL_ID_LOCAL_CONFLICT",
+          cause: "collision-forme-ou-document-mongodb-ancien",
           canonicalId: local.canonicalId,
           identityKey: local.identityKey,
           existingIdentityId: String(canonicalMatch._id || canonicalMatch.id),
           existingPokemonId: canonicalMatch.pokemonId,
+          localCandidate: localCandidateSummary(local),
+          existingIdentity: mongoIdentitySummary(canonicalMatch),
+          resolution: conflictResolution("Comparer la clé locale, formId et les fichiers avant toute correction manuelle du document MongoDB; préserver ses alias."),
         });
         continue;
       }
     }
     if (!current) {
       const safeLegacyMatches = (byPokemonId.get(local.pokemonId) || []).filter((identity) => (
-        !matchedExistingIds.has(String(identity._id || identity.id))
+        !matchedExistingClaims.has(String(identity._id || identity.id))
         && candidateMatchesDocument(local, identity)
       ));
       if (safeLegacyMatches.length === 1) current = safeLegacyMatches[0];
       else if (safeLegacyMatches.length > 1) {
         conflicts.push({
           code: "LEGACY_IDENTITY_MULTIPLE_LOCAL_MATCHES",
+          cause: "document-mongodb-ancien-ambigu",
           canonicalId: local.canonicalId,
           identityKey: local.identityKey,
           existingCanonicalIds: safeLegacyMatches.map((identity) => identity.canonicalId),
+          localCandidate: localCandidateSummary(local),
+          existingCandidates: safeLegacyMatches.map(mongoIdentitySummary),
+          resolution: conflictResolution("Renseigner explicitement identityKey/formId sur le bon document MongoDB après comparaison des fichiers et alias."),
         });
         continue;
       }
@@ -171,16 +318,21 @@ function buildIdentitySyncPlan({ inventory, existingIdentities, validatedAt = ne
       continue;
     }
     const currentId = String(current._id || current.id);
-    if (matchedExistingIds.has(currentId)) {
+    if (matchedExistingClaims.has(currentId)) {
       conflicts.push({
         code: "EXISTING_IDENTITY_MULTIPLE_LOCAL_MATCHES",
+        cause: "collision-forme-ou-normalisation-trop-large",
         canonicalId: local.canonicalId,
         identityKey: local.identityKey,
         existingIdentityId: currentId,
+        localCandidate: localCandidateSummary(local),
+        claimedBy: matchedExistingClaims.get(currentId),
+        existingIdentity: mongoIdentitySummary(current),
+        resolution: conflictResolution("Comparer les deux candidats, leurs formId et fichiers. Corriger la normalisation ou le document ancien sans choisir ni supprimer automatiquement une identité MongoDB."),
       });
       continue;
     }
-    matchedExistingIds.add(currentId);
+    matchedExistingClaims.set(currentId, localCandidateSummary(local));
     const renamed = current.canonicalId !== local.canonicalId;
     const nextPayload = {
       ...payload,
@@ -203,7 +355,7 @@ function buildIdentitySyncPlan({ inventory, existingIdentities, validatedAt = ne
   }
 
   const orphans = existing
-    .filter((identity) => !matchedExistingIds.has(String(identity._id || identity.id)))
+    .filter((identity) => !matchedExistingClaims.has(String(identity._id || identity.id)))
     .map((identity) => ({
       identityId: String(identity._id || identity.id),
       canonicalId: identity.canonicalId,
@@ -325,7 +477,10 @@ function syncPlanDigest(plan) {
 module.exports = {
   applyIdentitySync,
   buildIdentitySyncPlan,
+  candidateMatchesDocument,
+  localCandidateSummary,
   localIdentityPayload,
+  mongoIdentitySummary,
   previewIdentitySync,
   reportFromPlan,
   syncPlanDigest,

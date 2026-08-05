@@ -69,6 +69,132 @@ test("le plan de synchronisation crée tout le catalogue puis devient idempotent
   });
 });
 
+test("Sneasler et Gimmighoul séparent leur forme précise du document NORMAL historique", () => {
+  const inventory = inventoryService.loadLocalIdentityInventory();
+  const canonicalIds = ["SNEASLER_HISUIAN", "SNEASLER_NORMAL", "GIMMIGHOUL_CHEST", "GIMMIGHOUL_NORMAL"];
+  const identities = canonicalIds.map((canonicalId) => {
+    const identity = inventory.indexes.byCanonicalId.get(canonicalId);
+    assert.ok(identity, `${canonicalId} doit exister dans PokemonGo-Data`);
+    return identity;
+  });
+  const normalDocuments = ["SNEASLER_NORMAL", "GIMMIGHOUL_NORMAL"].map((canonicalId, index) => {
+    const local = inventory.indexes.byCanonicalId.get(canonicalId);
+    return {
+      _id: mongoId(9000 + index),
+      canonicalId,
+      pokemonId: local.pokemonId,
+      form: "normal",
+      costume: null,
+      transformation: null,
+      status: "active",
+      syncStatus: "synchronized",
+      aliases: [{ provider: "legacy", value: canonicalId, status: "active" }],
+      genderVariants: local.genderVariants,
+      localReference: { key: local.identityKey, formId: local.formId, file: local.sourceFile },
+      localIdentity: syncService.localIdentityPayload(local, inventory.metadata, new Date("2026-08-05T00:00:00.000Z")),
+    };
+  });
+  const reducedInventory = { ...inventory, identities };
+
+  const first = syncService.buildIdentitySyncPlan({
+    inventory: reducedInventory,
+    existingIdentities: normalDocuments,
+    validatedAt: "2026-08-05T00:00:00.000Z",
+  });
+  assert.equal(first.summary.conflict, 0);
+  assert.deepEqual(first.creates.map((entry) => entry.canonicalId).sort(), ["GIMMIGHOUL_CHEST", "SNEASLER_HISUIAN"]);
+  assert.deepEqual(first.unchanged.map((entry) => entry.canonicalId).sort(), ["GIMMIGHOUL_NORMAL", "SNEASLER_NORMAL"]);
+  assert.equal(first.summary.aliasesPreserved, 2);
+
+  const afterFirstSync = [
+    ...normalDocuments,
+    ...first.creates.map((entry, index) => ({ _id: mongoId(9100 + index), ...entry.payload })),
+  ];
+  const second = syncService.buildIdentitySyncPlan({
+    inventory: reducedInventory,
+    existingIdentities: afterFirstSync,
+    validatedAt: "2026-08-05T00:00:00.000Z",
+  });
+  assert.equal(second.summary.conflict, 0);
+  assert.equal(second.summary.create, 0);
+  assert.equal(second.summary.update, 0);
+  assert.equal(second.summary.unchanged, 4);
+});
+
+test("la forme NORMAL générique ne capture ni régionale, ni costume, ni Mewtwo Armored", () => {
+  const inventory = inventoryService.loadLocalIdentityInventory();
+  const candidates = ["SLOWPOKE_GALARIAN", "PIKACHU_ADVENTURE_HAT_2020", "MEWTWO_ARMORED"]
+    .map((canonicalId) => inventory.indexes.byCanonicalId.get(canonicalId));
+  assert.ok(candidates.every(Boolean));
+
+  for (const [index, candidate] of candidates.entries()) {
+    const oldNormalDocument = {
+      _id: mongoId(9200 + index),
+      canonicalId: `LEGACY_${candidate.pokemonId}_NORMAL`,
+      pokemonId: candidate.pokemonId,
+      form: "normal",
+      costume: null,
+      transformation: null,
+      status: "draft",
+      aliases: [],
+    };
+    const plan = syncService.buildIdentitySyncPlan({
+      inventory: { ...inventory, identities: [candidate] },
+      existingIdentities: [oldNormalDocument],
+    });
+    assert.deepEqual(plan.creates.map((entry) => entry.canonicalId), [candidate.canonicalId]);
+    assert.equal(plan.summary.update, 0);
+    assert.equal(plan.summary.conflict, 0);
+    assert.equal(plan.summary.orphan, 1);
+  }
+});
+
+test("Mewtwo Normal et Armored restent déterministes et idempotents", () => {
+  const inventory = inventoryService.loadLocalIdentityInventory();
+  const identities = ["MEWTWO_ARMORED", "MEWTWO_NORMAL"].map((canonicalId) => inventory.indexes.byCanonicalId.get(canonicalId));
+  const first = syncService.buildIdentitySyncPlan({ inventory: { ...inventory, identities }, existingIdentities: [], validatedAt: "2026-08-05T00:00:00.000Z" });
+  const documents = first.creates.map((entry, index) => ({ _id: mongoId(9300 + index), ...entry.payload }));
+  const second = syncService.buildIdentitySyncPlan({ inventory: { ...inventory, identities }, existingIdentities: documents, validatedAt: "2026-08-05T00:00:00.000Z" });
+  assert.equal(second.summary.conflict, 0);
+  assert.equal(second.summary.unchanged, 2);
+  assert.notEqual(identities[0].identityKey, identities[1].identityKey);
+});
+
+test("une vraie collision de forme reste bloquée avec candidats, fichiers et résolution non destructive", () => {
+  const inventory = inventoryService.loadLocalIdentityInventory();
+  const chest = inventory.indexes.byCanonicalId.get("GIMMIGHOUL_CHEST");
+  const competing = {
+    ...chest,
+    canonicalId: "GIMMIGHOUL_CHEST_LEGACY_COLLISION",
+    identityKey: `${chest.identityKey}|legacy-collision`,
+    sourceFile: "pokemon-forms/normal/0999-gimmighoul-chest-legacy.json",
+  };
+  const mongoDocument = {
+    _id: mongoId(9400),
+    canonicalId: competing.canonicalId,
+    pokemonId: chest.pokemonId,
+    form: "CHEST",
+    costume: null,
+    transformation: null,
+    status: "active",
+    aliases: [{ provider: "game-master", value: "GIMMIGHOUL_CHEST", status: "active" }],
+    localReference: { formId: chest.formId, file: "legacy/gimmighoul.json" },
+  };
+  const plan = syncService.buildIdentitySyncPlan({
+    inventory: { ...inventory, identities: [chest, competing] },
+    existingIdentities: [mongoDocument],
+  });
+  const conflict = plan.conflicts.find((entry) => entry.code === "EXISTING_IDENTITY_MULTIPLE_LOCAL_MATCHES");
+  assert.ok(conflict);
+  assert.equal(conflict.cause, "collision-forme-ou-normalisation-trop-large");
+  assert.equal(conflict.localCandidate.sourceFile, competing.sourceFile);
+  assert.equal(conflict.claimedBy.sourceFile, chest.sourceFile);
+  assert.equal(conflict.existingIdentity.aliases[0].provider, "game-master");
+  assert.equal(conflict.resolution.automaticSelection, false);
+  assert.equal(conflict.resolution.automaticDeletion, false);
+  assert.match(conflict.resolution.recommendation, /sans choisir ni supprimer automatiquement/i);
+});
+
 test("la synchronisation conserve les alias et marque sans suppression une identité orpheline", () => {
   const inventory = inventoryService.loadLocalIdentityInventory();
   const pikachu = inventory.indexes.byCanonicalId.get("PIKACHU_NORMAL");

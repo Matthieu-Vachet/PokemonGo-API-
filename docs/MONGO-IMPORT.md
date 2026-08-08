@@ -3,7 +3,7 @@ id: COL-MONGODB-SYNC-001
 title: Importer les JSON dans MongoDB
 status: canonical
 lang: fr
-version: 1.20.0
+version: 1.21.0
 updated_at: 2026-08-08
 author: MatWeb Innovation
 projects:

@@ -3,7 +3,7 @@ id: ADR-READING-001
 title: Guide de lecture PokemonGo-API-
 status: active
 lang: fr
-version: 1.20.0
+version: 1.21.0
 updated_at: 2026-08-08
 author: MatWeb Innovation
 projects:

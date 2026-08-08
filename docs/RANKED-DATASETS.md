@@ -3,7 +3,7 @@ id: DATASET-RANKED-001
 title: Architecture Mongo des classements
 status: canonical
 lang: fr
-version: 1.20.0
+version: 1.21.0
 updated_at: 2026-08-08
 author: MatWeb Innovation
 projects:

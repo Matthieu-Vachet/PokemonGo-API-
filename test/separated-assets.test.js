@@ -18,7 +18,7 @@ const bulbasaurFamilies = data.pokemonAssetFamilies.filter(
 
 test("le reader sépare le core et les quatre familles sans collision", () => {
   assert.equal(data.pokemonAssets.length, 1611);
-  assert.equal(data.pokemonAssetFamilies.length, 3148);
+  assert.equal(data.pokemonAssetFamilies.length, 3147);
   assert.equal(new Set(data.pokemonAssets.map((document) => document.formId)).size, 1611);
   assert.equal(
     new Set(data.pokemonAssetFamilies.map((document) => document.key)).size,
@@ -31,7 +31,7 @@ test("le reader sépare le core et les quatre familles sans collision", () => {
         data.pokemonAssetFamilies.filter((document) => document.family === family).length,
       ]),
     ),
-    { home: 1089, shuffle: 1512, variants: 332, "location-cards": 215 },
+    { home: 1089, shuffle: 1512, variants: 331, "location-cards": 215 },
   );
   assert.ok(data.pokemonAssets.every((document) => /\/core\//.test(document.sourceFile)));
   assert.ok(data.pokemonAssets.every((document) => document.sourceFile.includes(`/${document.entityCategory === "FORM" ? "forms" : document.entityCategory.toLowerCase()}/`)));

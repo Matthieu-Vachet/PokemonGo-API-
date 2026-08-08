@@ -3,7 +3,7 @@ id: RULE-CHANGELOG-001
 title: Changelog Pokemon GO API
 status: active
 lang: fr
-version: 1.20.0
+version: 1.21.0
 updated_at: 2026-08-08
 author: MatWeb Innovation
 projects:
@@ -14,6 +14,14 @@ related:
 ---
 
 # Changelog
+
+## 1.21.0 - 2026-08-08
+
+- Publie le contrat canonique transversal et les métadonnées documentaires permanentes.
+- Garantit par tests l’identité, la catégorie et les références Assets/PvP des 1 611
+  entités exposées par le reader de synchronisation.
+- Aligne OpenAPI, package, erreurs, versioning, dépréciation, attribution et rollback
+  avant publication de production.
 
 ## 1.20.0 - 2026-08-08
 

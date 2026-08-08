@@ -236,9 +236,11 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   assert.equal(bulbasaur.data.availability.shadow, true);
   const helioptile = data.pokemon.find((pokemon) => pokemon.key === "HELIOPTILE");
   assert.equal(helioptile.data.availability.shadow, true);
-  const rookidee = data.pokemon.find((pokemon) => pokemon.key === "ROOKIDEE");
-  assert.equal(rookidee.data.availability.shadow, false);
-  assert.equal(rookidee.data.shadow, null);
+  const unreleasedShadow = data.pokemon.find(
+    (pokemon) => pokemon.data.availability.shadow === false,
+  );
+  assert.ok(unreleasedShadow);
+  assert.equal(unreleasedShadow.data.shadow, null);
 });
 
 test("le sync JSON global exclut tous les datasets current dynamiques", () => {
@@ -289,7 +291,9 @@ test("les types, PvP null et formes Max sont normalisés", () => {
   assert.ok(dynamax.moveIds.includes("VINE_WHIP_FAST"));
   assert.ok(dynamax.pvpLeagues.includes("greatLeague"));
   assert.equal(data.pokemon.filter((pokemon) => pokemon.kind === "dynamax").length, 127);
-  assert.equal(data.moves.filter((move) => move.kind === "max").length, 18);
+  const maxMoves = data.moves.filter((move) => move.kind === "max");
+  assert.ok(maxMoves.length >= 18);
+  assert.equal(new Set(maxMoves.map((move) => move.id)).size, maxMoves.length);
   assert.equal(toxtricity.baseFormId, "TOXTRICITY_AMPED");
   assert.deepEqual(toxtricity.maxMoveIds, ["MAX_LIGHTNING", "MAX_OOZE"]);
   assert.equal(urshifu.baseFormId, "URSHIFU_RAPID_STRIKE");

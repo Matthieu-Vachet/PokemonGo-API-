@@ -3,6 +3,7 @@ const { Pokemon } = require("../models");
 const { asyncHandler } = require("../lib/async-handler");
 const { ApiError } = require("../lib/api-error");
 const { pagination, paginatedResponse } = require("../lib/http");
+const { resolvePreferredPokemonAsset } = require("../lib/pokemon-asset-resolution");
 const { hydratePokemonAssetsBatch } = require("../services/pokemon-service");
 
 const router = express.Router();
@@ -32,6 +33,7 @@ function pokemonName(doc) {
 }
 
 function pokemonPreview(doc) {
+  const preferredAsset = resolvePreferredPokemonAsset(doc);
   return {
     key: doc.key,
     kind: doc.kind,
@@ -47,11 +49,8 @@ function pokemonPreview(doc) {
     types: doc.types,
     primaryType: doc.primaryType,
     secondaryType: doc.secondaryType,
-    image:
-      doc.data?.assets?.portrait ||
-      doc.data?.assets?.home?.image ||
-      doc.data?.assets?.image ||
-      null,
+    image: preferredAsset.image,
+    imageSource: preferredAsset.source,
   };
 }
 

@@ -8,6 +8,12 @@ const {
 } = require("../lib/data-repository");
 
 const copySuffix = / \d+\.json$/;
+const ASSET_FAMILY_FIELDS = Object.freeze({
+  home: "home",
+  shuffle: "shuffle",
+  variants: "variants",
+  "location-cards": "locationCards",
+});
 
 function listJsonFiles(directory) {
   if (!fs.existsSync(directory)) return [];
@@ -357,7 +363,12 @@ function collectPokemonDocuments(generations = collectGenerationDocuments()) {
 }
 
 function collectPokemonAssetDocuments() {
-  return listJsonFiles(dataPath("pokemon-assets")).map((file) => {
+  const coreDirectory = dataPath("pokemon-assets", "core");
+  const legacyDirectory = dataPath("pokemon-assets");
+  const files = fs.existsSync(coreDirectory)
+    ? listJsonFiles(coreDirectory)
+    : listJsonFiles(legacyDirectory);
+  return files.map((file) => {
     const data = readJson(file);
     return {
       key: data.formId,
@@ -371,9 +382,33 @@ function collectPokemonAssetDocuments() {
       sourceFile: relative(file),
       sourceHash: hash(data),
       assets: data.assets || {},
+      assetRefs: data.assetRefs || {},
       data,
     };
   });
+}
+
+function collectPokemonAssetFamilyDocuments() {
+  return Object.entries(ASSET_FAMILY_FIELDS).flatMap(([family, field]) =>
+    listJsonFiles(dataPath("pokemon-assets", family)).map((file) => {
+      const data = readJson(file);
+      return {
+        key: `${family}:${data.formId}`,
+        family,
+        id: data.id,
+        formId: data.formId,
+        baseFormId: data.baseFormId,
+        form: data.form,
+        slug: data.slug,
+        dexNr: data.dexNr,
+        dexId: data.dexId,
+        sourceFile: relative(file),
+        sourceHash: hash(data),
+        payload: data[field],
+        data,
+      };
+    }),
+  );
 }
 
 function collectMoveDocuments() {
@@ -554,6 +589,7 @@ function collectAllDocuments() {
   return {
     pokemon: collectPokemonDocuments(generations),
     pokemonAssets: collectPokemonAssetDocuments(),
+    pokemonAssetFamilies: collectPokemonAssetFamilyDocuments(),
     moves: collectMoveDocuments(),
     types: collectTypeDocuments(),
     weather: collectWeatherDocuments(),
@@ -568,6 +604,7 @@ module.exports = {
   collectAllDocuments,
   collectItemDocuments,
   collectPokemonAssetDocuments,
+  collectPokemonAssetFamilyDocuments,
   collectRocketTextDocuments,
   collectWeatherDocuments,
   hash,

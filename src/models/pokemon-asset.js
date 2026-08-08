@@ -13,6 +13,7 @@ const pokemonAssetSchema = new mongoose.Schema(
     sourceFile: { type: String },
     sourceHash: { type: String, required: true },
     assets: { type: mongoose.Schema.Types.Mixed, required: true },
+    assetRefs: { type: mongoose.Schema.Types.Mixed, default: {} },
     data: { type: mongoose.Schema.Types.Mixed, required: true },
   },
   {

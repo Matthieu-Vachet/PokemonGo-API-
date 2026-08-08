@@ -1,5 +1,5 @@
 const express = require("express");
-const { Pokemon, PokemonAsset } = require("../models");
+const { Pokemon, PokemonAssetFamily } = require("../models");
 const { asyncHandler } = require("../lib/async-handler");
 const { ApiError } = require("../lib/api-error");
 const { findPokemon } = require("../services/pokemon-service");
@@ -9,8 +9,8 @@ const router = express.Router();
 
 function backgroundFilter(query = {}) {
   const match = {};
-  if (query.type) match["assets.locationCards.type"] = String(query.type).toLowerCase();
-  if (query.date) match["assets.locationCards.date"] = {
+  if (query.type) match["payload.type"] = String(query.type).toLowerCase();
+  if (query.date) match["payload.date"] = {
     $regex: String(query.date),
     $options: "i",
   };
@@ -21,16 +21,16 @@ router.get(
   "/",
   asyncHandler(async (request, response) => {
     const filter = backgroundFilter(request.query);
-    const data = await PokemonAsset.aggregate([
-      { $match: { "assets.locationCards.0": { $exists: true }, ...filter } },
-      { $unwind: "$assets.locationCards" },
+    const data = await PokemonAssetFamily.aggregate([
+      { $match: { family: "location-cards", "payload.0": { $exists: true } } },
+      { $unwind: "$payload" },
       ...(request.query.type
-        ? [{ $match: { "assets.locationCards.type": String(request.query.type).toLowerCase() } }]
+        ? [{ $match: { "payload.type": String(request.query.type).toLowerCase() } }]
         : []),
       ...(request.query.date
         ? [{
             $match: {
-              "assets.locationCards.date": {
+              "payload.date": {
                 $regex: String(request.query.date),
                 $options: "i",
               },
@@ -39,8 +39,8 @@ router.get(
         : []),
       {
         $group: {
-          _id: "$assets.locationCards.id",
-          background: { $first: "$assets.locationCards" },
+          _id: "$payload.id",
+          background: { $first: "$payload" },
           eligiblePokemon: { $addToSet: "$formId" },
         },
       },
@@ -63,7 +63,10 @@ router.get(
 router.get(
   "/:id/pokemon",
   asyncHandler(async (request, response) => {
-    const assets = await PokemonAsset.find({ "assets.locationCards.id": request.params.id })
+    const assets = await PokemonAssetFamily.find({
+      family: "location-cards",
+      "payload.id": request.params.id,
+    })
       .select("formId")
       .lean();
     const formIds = assets.map((asset) => asset.formId);
@@ -82,7 +85,10 @@ router.get(
 router.get(
   "/pokemon/:identifier",
   asyncHandler(async (request, response) => {
-    const pokemon = await findPokemon(request.params.identifier, request.query);
+    const pokemon = await findPokemon(request.params.identifier, {
+      ...request.query,
+      include: [request.query.include, "location-cards"].filter(Boolean).join(","),
+    });
     const backgrounds = pokemon.data?.assets?.locationCards || [];
     response.json({
       data: backgrounds,

@@ -1,5 +1,5 @@
 const express = require("express");
-const { PokemonAsset } = require("../models");
+const { PokemonAssetFamily } = require("../models");
 const { asyncHandler } = require("../lib/async-handler");
 const { pagination, paginatedResponse, boolean } = require("../lib/http");
 const { findPokemon } = require("../services/pokemon-service");
@@ -8,12 +8,12 @@ const router = express.Router();
 
 function variantFilter(query = {}) {
   const filter = {};
-  if (query.state) filter["assets.shuffle.variants.state"] = String(query.state).toLowerCase();
-  if (query.form) filter["assets.shuffle.variants.form"] = String(query.form).toLowerCase();
+  if (query.state) filter["payload.variants.state"] = String(query.state).toLowerCase();
+  if (query.form) filter["payload.variants.form"] = String(query.form).toLowerCase();
   const shiny = boolean(query.shiny);
-  if (shiny !== undefined) filter["assets.shuffle.variants.shiny"] = shiny;
+  if (shiny !== undefined) filter["payload.variants.shiny"] = shiny;
   if (query.q)
-    filter["assets.shuffle.variants.filename"] = {
+    filter["payload.variants.filename"] = {
       $regex: String(query.q),
       $options: "i",
     };
@@ -25,9 +25,9 @@ router.get(
   asyncHandler(async (request, response) => {
     const { page, limit, skip } = pagination(request.query);
     const filter = variantFilter(request.query);
-    const [result] = await PokemonAsset.aggregate([
-      { $match: { "assets.shuffle.variants.0": { $exists: true } } },
-      { $unwind: "$assets.shuffle.variants" },
+    const [result] = await PokemonAssetFamily.aggregate([
+      { $match: { family: "shuffle", "payload.variants.0": { $exists: true } } },
+      { $unwind: "$payload.variants" },
       ...(Object.keys(filter).length ? [{ $match: filter }] : []),
       {
         $lookup: {
@@ -42,7 +42,7 @@ router.get(
         $project: {
           _id: 0,
           pokemon: {
-            key: "$key",
+            key: "$formId",
             formId: "$formId",
             slug: "$slug",
             dexNr: "$dexNr",
@@ -53,7 +53,7 @@ router.get(
             primaryType: "$pokemonDocument.primaryType",
             secondaryType: "$pokemonDocument.secondaryType",
           },
-          asset: "$assets.shuffle.variants",
+          asset: "$payload.variants",
         },
       },
       { $sort: { "pokemon.dexNr": 1, "asset.filename": 1 } },
@@ -75,7 +75,10 @@ router.get(
 router.get(
   "/:identifier",
   asyncHandler(async (request, response) => {
-    const pokemon = await findPokemon(request.params.identifier, request.query);
+    const pokemon = await findPokemon(request.params.identifier, {
+      ...request.query,
+      include: [request.query.include, "shuffle"].filter(Boolean).join(","),
+    });
     const variants = pokemon.data?.assets?.shuffle?.variants || [];
     response.json({
       data: variants,

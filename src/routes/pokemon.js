@@ -1,6 +1,7 @@
 const express = require("express");
 const { Move, Pokemon } = require("../models");
 const { asyncHandler } = require("../lib/async-handler");
+const { ApiError } = require("../lib/api-error");
 const { paginatedResponse } = require("../lib/http");
 const {
   findAllForms,
@@ -8,6 +9,7 @@ const {
   hydratePokemonAssets,
   hydratePokemonAssetsBatch,
   listPokemon,
+  normalizeAssetFamilies,
 } = require("../services/pokemon-service");
 const {
   directEvolutions,
@@ -21,6 +23,11 @@ const {
 } = require("../services/pokemon-presenter");
 
 const router = express.Router();
+
+function withAssetFamily(query, family) {
+  const include = [query.include, family].filter(Boolean).join(",");
+  return { ...query, include };
+}
 
 router.get(
   "/",
@@ -40,7 +47,11 @@ router.get(
   asyncHandler(async (request, response) => {
     const match = request.query.released === "true" ? { "flags.released": true } : {};
     const [pokemon] = await Pokemon.aggregate([{ $match: match }, { $sample: { size: 1 } }]);
-    response.json({ data: presentPokemon(await hydratePokemonAssets(pokemon || null)) });
+    response.json({
+      data: presentPokemon(await hydratePokemonAssets(pokemon || null, {
+        families: normalizeAssetFamilies(request.query.include),
+      })),
+    });
   }),
 );
 
@@ -56,7 +67,9 @@ for (const [route, field] of [
       const value = field === "dexNr" ? Number(request.params.value) : request.params.value;
       const data = await Pokemon.find({ [field]: value }).sort({ form: 1 }).lean();
       response.json({
-        data: presentPokemonList(await hydratePokemonAssetsBatch(data)),
+        data: presentPokemonList(await hydratePokemonAssetsBatch(data, {
+          families: normalizeAssetFamilies(request.query.include),
+        })),
         meta: { total: data.length },
       });
     }),
@@ -66,7 +79,7 @@ for (const [route, field] of [
 router.get(
   "/:identifier/forms",
   asyncHandler(async (request, response) => {
-    response.json({ data: await findAllForms(request.params.identifier) });
+    response.json({ data: await findAllForms(request.params.identifier, request.query) });
   }),
 );
 
@@ -124,11 +137,45 @@ router.get(
 router.get(
   "/:identifier/backgrounds",
   asyncHandler(async (request, response) => {
-    const pokemon = await findPokemon(request.params.identifier, request.query);
+    const pokemon = await findPokemon(
+      request.params.identifier,
+      withAssetFamily(request.query, "location-cards"),
+    );
     const backgrounds = pokemon.data?.assets?.locationCards || [];
     response.json({
       data: backgrounds,
       meta: { pokemon: pokemon.key, total: backgrounds.length },
+    });
+  }),
+);
+
+router.get(
+  "/:identifier/assets/:family",
+  asyncHandler(async (request, response) => {
+    const [family] = normalizeAssetFamilies(request.params.family);
+    if (!family) {
+      throw new ApiError(
+        400,
+        `Famille d'assets invalide : ${request.params.family}`,
+        "INVALID_ASSET_FAMILY",
+      );
+    }
+    const pokemon = await findPokemon(
+      request.params.identifier,
+      withAssetFamily(request.query, family),
+    );
+    const value = family === "variants"
+      ? pokemon.data?.assetForms
+      : family === "location-cards"
+        ? pokemon.data?.assets?.locationCards
+        : pokemon.data?.assets?.[family];
+    response.json({
+      data: value ?? null,
+      meta: {
+        pokemon: pokemon.key,
+        family,
+        source: pokemon.data?.assetRefs?.[family] || null,
+      },
     });
   }),
 );
@@ -141,8 +188,12 @@ router.get(
       data: {
         key: pokemon.key,
         assets: pokemon.data?.assets || {},
+        assetRefs: pokemon.data?.assetRefs || {},
         backgrounds: pokemon.data?.assets?.locationCards || [],
         forms: pokemon.data?.assetForms || [],
+      },
+      meta: {
+        includedFamilies: normalizeAssetFamilies(request.query.include),
       },
     });
   }),

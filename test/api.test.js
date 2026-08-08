@@ -184,13 +184,36 @@ test("une route inconnue retourne une erreur structurée", async () => {
   assert.ok(response.body.error.requestId);
 });
 
+test("les familles d'assets invalides sont refusées avant toute lecture MongoDB", async () => {
+  const response = await request(app)
+    .get("/api/v1/pokemon/bulbasaur/assets/monolithe")
+    .expect(400);
+  assert.equal(response.body.error.code, "INVALID_ASSET_FAMILY");
+});
+
+test("OpenAPI expose les includes et les ressources d'assets séparées", async () => {
+  const response = await request(app).get("/api-docs.json").expect(200);
+  const paths = response.body.paths;
+  assert.ok(paths["/api/v1/pokemon/{identifier}/assets"]);
+  assert.ok(paths["/api/v1/pokemon/{identifier}/assets/{family}"]);
+  const familyParameter = paths["/api/v1/pokemon/{identifier}/assets/{family}"].get.parameters
+    .find((parameter) => parameter.name === "family");
+  assert.deepEqual(familyParameter.schema.enum, [
+    "home",
+    "shuffle",
+    "variants",
+    "location-cards",
+  ]);
+});
+
 test("les sources JSON sont lisibles et dédupliquées", () => {
   const data = collectAllDocuments();
-  const assetsByFormId = new Map(
-    data.pokemonAssets.map((asset) => [asset.formId, asset.assets]),
+  const assetFamiliesByKey = new Map(
+    data.pokemonAssetFamilies.map((asset) => [`${asset.family}:${asset.formId}`, asset.payload]),
   );
   assert.ok(data.pokemon.length >= 1000);
   assert.equal(data.pokemonAssets.length, data.pokemon.length);
+  assert.equal(data.pokemonAssetFamilies.length, 3148);
   assert.ok(data.moves.length >= 250);
   assert.equal(data.types.length, 18);
   assert.equal(data.weather.length, 7);
@@ -206,23 +229,27 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
     ),
   );
   const bulbasaur = data.pokemon.find((pokemon) => pokemon.key === "BULBASAUR");
-  const bulbasaurAssets = assetsByFormId.get("BULBASAUR");
+  const bulbasaurCore = data.pokemonAssets.find((asset) => asset.formId === "BULBASAUR");
+  const bulbasaurHome = assetFamiliesByKey.get("home:BULBASAUR");
+  const bulbasaurShuffle = assetFamiliesByKey.get("shuffle:BULBASAUR");
   assert.equal(bulbasaur.generation, 1);
   assert.equal(bulbasaur.regionId, "KANTO");
   assert.equal(bulbasaur.data.region.names.French, "Kanto");
   assert.match(bulbasaur.data.assets.assetsRef, /pokemon-assets\/normal\/0001-bulbasaur\.assets\.json/);
-  assert.equal(bulbasaurAssets.home.source, "pokemon-home");
-  assert.ok(Array.isArray(bulbasaurAssets.home.variants));
-  assert.equal(bulbasaurAssets.home.variants.length, 0);
-  assert.equal(bulbasaurAssets.shuffle.source, "pokemon-shuffle");
-  assert.ok(bulbasaurAssets.shuffle.variants.length >= 1);
+  assert.equal(bulbasaurCore.sourceFile, "data/pokemon-assets/core/0001-bulbasaur.assets.json");
+  assert.equal(bulbasaurCore.assetRefs.home, "pokemon-assets/home/0001-bulbasaur.home.json");
+  assert.equal(bulbasaurHome.source, "pokemon-home");
+  assert.ok(Array.isArray(bulbasaurHome.variants));
+  assert.equal(bulbasaurHome.variants.length, 0);
+  assert.equal(bulbasaurShuffle.source, "pokemon-shuffle");
+  assert.ok(bulbasaurShuffle.variants.length >= 1);
   assert.ok(
-    bulbasaurAssets.shuffle.variants.every(
+    bulbasaurShuffle.variants.every(
       (asset) => asset.form === "normal" && !asset.filename.includes("_dynamax"),
     ),
   );
   const eevee = data.pokemon.find((pokemon) => pokemon.key === "EEVEE");
-  const citySafari = assetsByFormId.get(eevee.formId).locationCards.find(
+  const citySafari = assetFamiliesByKey.get(`location-cards:${eevee.formId}`).find(
     (card) => card.name === "City Safari Barcelona",
   );
   assert.ok(citySafari);
@@ -498,9 +525,11 @@ test("la bibliothèque d'assets expose les icônes Pokémon Shuffle", async () =
 });
 
 test("les assets Shuffle sont associés une seule fois à leur forme exacte", () => {
-  const data = collectAllDocuments().pokemonAssets;
+  const data = collectAllDocuments().pokemonAssetFamilies.filter(
+    (document) => document.family === "shuffle",
+  );
   data.forEach((pokemon) => {
-    const filenames = (pokemon.assets?.shuffle?.variants || []).map(
+    const filenames = (pokemon.payload?.variants || []).map(
       (asset) => asset.filename,
     );
     assert.equal(new Set(filenames).size, filenames.length);
@@ -508,13 +537,13 @@ test("les assets Shuffle sont associés une seule fois à leur forme exacte", ()
 
   const rattataAlola = data.find((pokemon) => pokemon.formId === "RATTATA_ALOLA");
   assert.ok(
-    rattataAlola.assets.shuffle.variants.every((asset) =>
+    rattataAlola.payload.variants.every((asset) =>
       asset.filename.includes("_rattata_alola"),
     ),
   );
   const venusaurMega = data.find((pokemon) => pokemon.formId === "VENUSAUR_MEGA");
   assert.ok(
-    venusaurMega.assets.shuffle.variants.every(
+    venusaurMega.payload.variants.every(
       (asset) => asset.form === "mega" && !asset.filename.endsWith("_dynamax.png"),
     ),
   );
@@ -522,7 +551,7 @@ test("les assets Shuffle sont associés une seule fois à leur forme exacte", ()
     (pokemon) => pokemon.formId === "BULBASAUR_DYNAMAX",
   );
   assert.ok(
-    bulbasaurDynamax.assets.shuffle.variants.every(
+    bulbasaurDynamax.payload.variants.every(
       (asset) => asset.state === "dynamax",
     ),
   );

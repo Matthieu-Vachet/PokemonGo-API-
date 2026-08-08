@@ -36,7 +36,7 @@ const examples = {
     assets: {
       image: "https://raw.githubusercontent.com/.../pokemon/0006.png",
       shinyImage: "https://raw.githubusercontent.com/.../pokemon/0006-shiny.png",
-      assetsRef: "pokemon-assets/normal/0006-charizard.assets.json",
+      assetsRef: "pokemon-assets/core/0006-charizard.assets.json",
     },
   },
   move: {
@@ -394,6 +394,7 @@ function createOpenApi() {
         parameters: [
           parameter("form", "query", "normal", "Choisir une forme en cas d'ambiguïté."),
           parameter("kind", "query", "pokemon", "Choisir une catégorie en cas d'ambiguïté."),
+          parameter("include", "query", "home,shuffle", "Charger à la demande une ou plusieurs familles : home, shuffle, variants, location-cards ou all."),
         ],
       }),
       [`${api}/pokemon/{identifier}/forms`]: detail("Pokémon", "Lister toutes les formes", "charizard", { response: listResponse() }),
@@ -408,7 +409,18 @@ function createOpenApi() {
         ],
         response: dataResponse({ pokemon: "CHARIZARD", level: 50, ivs: { attack: 15, defense: 15, stamina: 15 }, cp: 3266 }),
       }),
-      [`${api}/pokemon/{identifier}/assets`]: detail("Assets", "Afficher tous les assets d'une fiche", "pikachu"),
+      [`${api}/pokemon/{identifier}/assets`]: detail("Assets", "Afficher le core léger et, sur demande, les familles d'assets d'une fiche", "pikachu", {
+        parameters: [
+          parameter("include", "query", "home,variants", "Familles secondaires à charger : home, shuffle, variants, location-cards ou all."),
+        ],
+      }),
+      [`${api}/pokemon/{identifier}/assets/{family}`]: detail("Assets", "Afficher une famille d'assets séparée", "pikachu", {
+        parameters: [
+          parameter("family", "path", "home", "Famille canonique.", {
+            enum: ["home", "shuffle", "variants", "location-cards"],
+          }),
+        ],
+      }),
       [`${api}/pokemon/{identifier}/backgrounds`]: detail("Backgrounds", "Afficher les backgrounds éligibles d'un Pokémon", "eevee"),
       [`${api}/pokemon/{identifier}/shadow`]: detail("Shadow", "Afficher les données Shadow d'un Pokémon", "bulbasaur"),
       [`${api}/pokemon/{identifier}/shuffle`]: detail("Shuffle", "Afficher les assets Shuffle d'un Pokémon ou d'une forme", "bulbasaur"),

@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { Pokemon, PokemonAsset } = require("../models");
+const { Pokemon, PokemonAsset, PokemonAssetFamily } = require("../models");
 const { ApiError } = require("../lib/api-error");
 const { dataPath } = require("../lib/data-repository");
 const { boolean, csv, pagination, sortFromQuery } = require("../lib/http");
@@ -22,6 +22,22 @@ const SORT_FIELDS = [
   "fleeRate",
 ];
 const canonicalCandyCache = new Map();
+const ASSET_FAMILIES = Object.freeze([
+  "home",
+  "shuffle",
+  "variants",
+  "location-cards",
+]);
+const ASSET_FAMILY_ALIASES = Object.freeze({
+  home: "home",
+  shuffle: "shuffle",
+  variants: "variants",
+  assetforms: "variants",
+  "asset-forms": "variants",
+  "location-cards": "location-cards",
+  locationcards: "location-cards",
+  backgrounds: "location-cards",
+});
 
 function canonicalCandyFromSource(document = {}) {
   const sourceFile = (document.sourceFiles || []).find((file) =>
@@ -130,30 +146,74 @@ function listProjection(includeData) {
       };
 }
 
-function mergeAssetData(data = {}, assetDocument = null, canonicalCandy = null) {
-  const heavyAssets = assetDocument?.assets || assetDocument?.data?.assets || {};
-  return {
-    ...data,
-    assets: {
-      ...(data.assets || {}),
-      candy: canonicalCandy ?? data.assets?.candy ?? heavyAssets.candy ?? null,
-      home: heavyAssets.home ?? null,
-      portrait: heavyAssets.portrait ?? null,
-      portraitShiny: heavyAssets.portraitShiny ?? null,
-      locationCards: Array.isArray(heavyAssets.locationCards)
-        ? heavyAssets.locationCards
-        : [],
-      shuffle: heavyAssets.shuffle ?? null,
-    },
-    assetForms: Array.isArray(heavyAssets.assetForms) ? heavyAssets.assetForms : [],
-  };
+function normalizeAssetFamilies(value) {
+  const tokens = Array.isArray(value) ? value : csv(value);
+  if (tokens.some((token) => ["all", "heavy"].includes(String(token).toLowerCase()))) {
+    return [...ASSET_FAMILIES];
+  }
+  return [...new Set(tokens
+    .map((token) => ASSET_FAMILY_ALIASES[String(token).toLowerCase()])
+    .filter(Boolean))];
 }
 
-function attachPokemonAssets(document, assetDocument = null) {
+function assetFamiliesFromQuery(query = {}) {
+  return normalizeAssetFamilies(query.assetFamilies || query.include);
+}
+
+function familyPayload(document, family) {
+  if (!document) return undefined;
+  if (document.payload !== undefined) return document.payload;
+  const field = family === "location-cards" ? "locationCards" : family;
+  return document.data?.[field] ?? document[field];
+}
+
+function mergeAssetData(
+  data = {},
+  assetDocument = null,
+  canonicalCandy = null,
+  familyDocuments = [],
+) {
+  const coreAssets = assetDocument?.assets || assetDocument?.data?.assets || {};
+  const byFamily = new Map(
+    familyDocuments.map((document) => [document.family, document]),
+  );
+  const assets = {
+    ...(data.assets || {}),
+    ...coreAssets,
+    candy: canonicalCandy ?? data.assets?.candy ?? coreAssets.candy ?? null,
+  };
+  const assetRefs = assetDocument?.assetRefs || assetDocument?.data?.assetRefs || {};
+  const separatedCore = Object.keys(assetRefs).length > 0 ||
+    /(?:^|\/)pokemon-assets\/core\//.test(String(assetDocument?.sourceFile || ""));
+  const legacyHeavyAssets = assetDocument && !separatedCore ? coreAssets : {};
+  const home = familyPayload(byFamily.get("home"), "home") ?? legacyHeavyAssets.home;
+  const shuffle = familyPayload(byFamily.get("shuffle"), "shuffle") ?? legacyHeavyAssets.shuffle;
+  const variants = familyPayload(byFamily.get("variants"), "variants") ?? legacyHeavyAssets.assetForms;
+  const locationCards = familyPayload(byFamily.get("location-cards"), "location-cards") ?? legacyHeavyAssets.locationCards;
+
+  if (home !== undefined) assets.home = home;
+  if (shuffle !== undefined) assets.shuffle = shuffle;
+  if (locationCards !== undefined) assets.locationCards = locationCards;
+
+  const merged = {
+    ...data,
+    assets,
+    assetRefs: Object.keys(assetRefs).length ? assetRefs : data.assetRefs || {},
+  };
+  if (variants !== undefined) merged.assetForms = variants;
+  return merged;
+}
+
+function attachPokemonAssets(document, assetDocument = null, familyDocuments = []) {
   if (!document) return document;
   return {
     ...document,
-    data: mergeAssetData(document.data, assetDocument, canonicalCandyFromSource(document)),
+    data: mergeAssetData(
+      document.data,
+      assetDocument,
+      canonicalCandyFromSource(document),
+      familyDocuments,
+    ),
   };
 }
 
@@ -162,13 +222,28 @@ async function findPokemonAsset(formId) {
   return PokemonAsset.findOne({ formId }).lean();
 }
 
-async function hydratePokemonAssets(document) {
-  if (!document) return document;
-  const assetDocument = await findPokemonAsset(document.formId);
-  return attachPokemonAssets(document, assetDocument);
+async function findPokemonAssetFamilies(formIds, families = []) {
+  const normalizedFamilies = normalizeAssetFamilies(families);
+  const normalizedFormIds = [].concat(formIds || []).filter(Boolean);
+  if (!normalizedFormIds.length || !normalizedFamilies.length) return [];
+  return PokemonAssetFamily.find({
+    formId: { $in: normalizedFormIds },
+    family: { $in: normalizedFamilies },
+  }).lean();
 }
 
-async function hydratePokemonAssetsBatch(documents = []) {
+async function hydratePokemonAssets(document, options = {}) {
+  if (!document) return document;
+  const families = normalizeAssetFamilies(options.families || options);
+  const [assetDocument, familyDocuments] = await Promise.all([
+    findPokemonAsset(document.formId),
+    findPokemonAssetFamilies(document.formId, families),
+  ]);
+  return attachPokemonAssets(document, assetDocument, familyDocuments);
+}
+
+async function hydratePokemonAssetsBatch(documents = [], options = {}) {
+  const families = normalizeAssetFamilies(options.families || options);
   const formIds = [
     ...new Set(
       documents
@@ -177,12 +252,25 @@ async function hydratePokemonAssetsBatch(documents = []) {
     ),
   ];
   if (!formIds.length) return documents;
-  const assetDocuments = await PokemonAsset.find({ formId: { $in: formIds } }).lean();
+  const [assetDocuments, familyDocuments] = await Promise.all([
+    PokemonAsset.find({ formId: { $in: formIds } }).lean(),
+    findPokemonAssetFamilies(formIds, families),
+  ]);
   const assetsByFormId = new Map(
     assetDocuments.map((assetDocument) => [assetDocument.formId, assetDocument]),
   );
+  const familiesByFormId = new Map();
+  for (const familyDocument of familyDocuments) {
+    const documentsForForm = familiesByFormId.get(familyDocument.formId) || [];
+    documentsForForm.push(familyDocument);
+    familiesByFormId.set(familyDocument.formId, documentsForForm);
+  }
   return documents.map((document) =>
-    attachPokemonAssets(document, assetsByFormId.get(document.formId)),
+    attachPokemonAssets(
+      document,
+      assetsByFormId.get(document.formId),
+      familiesByFormId.get(document.formId) || [],
+    ),
   );
 }
 
@@ -231,11 +319,13 @@ async function findPokemon(identifier, query = {}) {
     documents.length === 1 || query.form
       ? documents[0]
       : documents.find((document) => document.form === "normal") || documents[0];
-  return presentPokemon(await hydratePokemonAssets(selected));
+  return presentPokemon(await hydratePokemonAssets(selected, {
+    families: assetFamiliesFromQuery(query),
+  }));
 }
 
-async function findAllForms(identifier) {
-  const pokemon = await findPokemon(identifier);
+async function findAllForms(identifier, query = {}) {
+  const pokemon = await findPokemon(identifier, query);
   const documents = await Pokemon.find({
     $or: [
       { id: pokemon.id },
@@ -246,19 +336,25 @@ async function findAllForms(identifier) {
   })
     .sort({ kind: 1, form: 1 })
     .lean();
-  return presentPokemonList(await hydratePokemonAssetsBatch(documents));
+  return presentPokemonList(await hydratePokemonAssetsBatch(documents, {
+    families: assetFamiliesFromQuery(query),
+  }));
 }
 
 module.exports = {
   SORT_FIELDS,
+  ASSET_FAMILIES,
+  assetFamiliesFromQuery,
   attachPokemonAssets,
   buildPokemonFilter,
   findAllForms,
   findPokemon,
   findPokemonAsset,
+  findPokemonAssetFamilies,
   hydratePokemonAssets,
   hydratePokemonAssetsBatch,
   identifierFilter,
   listPokemon,
   mergeAssetData,
+  normalizeAssetFamilies,
 };

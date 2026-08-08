@@ -5,6 +5,7 @@ const {
   Move,
   Pokemon,
   PokemonAsset,
+  PokemonAssetFamily,
   Region,
   RocketText,
   SyncRun,
@@ -29,6 +30,7 @@ const EXCLUDED_CURRENT_DATASET_COLLECTIONS = Object.freeze([
 const STATIC_SYNC_TARGETS = Object.freeze([
   { key: "pokemon", Model: Pokemon, uniqueField: "key" },
   { key: "pokemonAssets", Model: PokemonAsset, uniqueField: "formId" },
+  { key: "pokemonAssetFamilies", Model: PokemonAssetFamily, uniqueField: "key" },
   { key: "items", Model: Item, uniqueField: "id" },
   { key: "rocketTexts", Model: RocketText, uniqueField: "id" },
   { key: "moves", Model: Move, uniqueField: "id" },
@@ -149,6 +151,7 @@ function buildGlobalStats(data) {
     totals: {
       pokemon: data.pokemon.length,
       pokemonAssets: data.pokemonAssets.length,
+      pokemonAssetFamilies: data.pokemonAssetFamilies.length,
       items: data.items.length,
       rocketTexts: data.rocketTexts.length,
       moves: data.moves.length,

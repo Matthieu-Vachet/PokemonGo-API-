@@ -17,6 +17,7 @@ module.exports = {
   Move: require("./move"),
   Pokemon: require("./pokemon"),
   PokemonAsset: require("./pokemon-asset"),
+  PokemonAssetFamily: require("./pokemon-asset-family"),
   PokemonIdentity: require("./pokemon-identity"),
   PokemonIdentityDiagnostic: require("./pokemon-identity-diagnostic"),
   PokemonIdentityHistory: require("./pokemon-identity-history"),

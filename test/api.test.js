@@ -235,9 +235,9 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   assert.equal(bulbasaur.generation, 1);
   assert.equal(bulbasaur.regionId, "KANTO");
   assert.equal(bulbasaur.data.region.names.French, "Kanto");
-  assert.match(bulbasaur.data.assets.assetsRef, /pokemon-assets\/normal\/0001-bulbasaur\.assets\.json/);
-  assert.equal(bulbasaurCore.sourceFile, "data/pokemon-assets/core/0001-bulbasaur.assets.json");
-  assert.equal(bulbasaurCore.assetRefs.home, "pokemon-assets/home/0001-bulbasaur.home.json");
+  assert.match(bulbasaur.data.assets.assetsRef, /pokemon-assets\/core\/normal\/0001-bulbasaur\.assets\.json/);
+  assert.equal(bulbasaurCore.sourceFile, "data/pokemon-assets/core/normal/0001-bulbasaur.assets.json");
+  assert.equal(bulbasaurCore.assetRefs.home, "pokemon-assets/home/normal/0001-bulbasaur.home.json");
   assert.equal(bulbasaurHome.source, "pokemon-home");
   assert.ok(Array.isArray(bulbasaurHome.variants));
   assert.equal(bulbasaurHome.variants.length, 0);
@@ -424,7 +424,7 @@ test("les formes séparées sont référencées sans données dupliquées", () =
   assert.deepEqual(venusaur.data.megaEvolutions, ["VENUSAUR_MEGA"]);
   assert.deepEqual(mega.sourceFiles, [
     "data/pokemon-forms/mega/0003-venusaur-mega.json",
-    "data/pvp/pokemon/0003-venusaur-mega.pvp.json",
+    "data/pvp/pokemon/mega/0003-venusaur-mega.pvp.json",
   ]);
   assert.equal(mega.data.formId, "VENUSAUR_MEGA");
 });

@@ -111,7 +111,7 @@ Template complet:
     "image": "",
     "shinyImage": "",
     "candy": null,
-    "assetsRef": "pokemon-assets/normal/0001-bulbasaur.assets.json"
+    "assetsRef": "pokemon-assets/core/normal/0001-bulbasaur.assets.json"
   },
   "regionForms": [],
   "evolutions": [],
@@ -123,12 +123,16 @@ Template complet:
 }
 ```
 
-## Template Asset Lourd
+## Template Core Assets
 
-A placer dans `PokemonGo-Data/pokemon-assets/<form>/[dexId]-[slug].assets.json`.
+À placer dans `PokemonGo-Data/pokemon-assets/core/<catégorie>/[dexId]-[identité].assets.json`.
+Les catégories autorisées sont `normal`, `forms`, `mega`, `dynamax` et `gigantamax`.
+Le Core ne référence que les familles secondaires réellement présentes ; voir
+`ENTITY-CATEGORY-ARCHITECTURE.md`.
 
 ```json
 {
+  "schemaVersion": 1,
   "id": "BULBASAUR",
   "formId": "BULBASAUR",
   "baseFormId": "BULBASAUR",
@@ -137,26 +141,17 @@ A placer dans `PokemonGo-Data/pokemon-assets/<form>/[dexId]-[slug].assets.json`.
   "dexNr": 1,
   "dexId": "0001",
   "assets": {
-    "home": null,
+    "image": "https://example.invalid/bulbasaur.png",
+    "shinyImage": "https://example.invalid/bulbasaur-shiny.png",
     "portrait": null,
     "portraitShiny": null,
-    "locationCards": [],
-    "shuffle": {
-      "source": "pokemon-shuffle",
-      "variants": [
-        {
-          "id": "0001_bulbasaur_shadow",
-          "filename": "0001_bulbasaur_shadow.png",
-          "image": "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle/0001_bulbasaur_shadow.png",
-          "form": "normal",
-          "state": "shadow",
-          "codes": ["bulbasaur", "shadow"],
-          "tags": ["bulbasaur"],
-          "shiny": false
-        }
-      ]
-    },
-    "assetForms": []
+    "candy": null
+  },
+  "assetRefs": {
+    "home": "pokemon-assets/home/normal/0001-bulbasaur.home.json",
+    "shuffle": "pokemon-assets/shuffle/normal/0001-bulbasaur.shuffle.json",
+    "variants": "pokemon-assets/variants/normal/0001-bulbasaur.variants.json",
+    "location-cards": "pokemon-assets/location-cards/normal/0001-bulbasaur.location-cards.json"
   }
 }
 ```
@@ -323,7 +318,7 @@ A créer dans `data/pokemon-forms/`, puis ajouter son `formId` à la liste
       "image": "",
       "shinyImage": "",
       "candy": null,
-      "assetsRef": "pokemon-assets/mega/0003-venusaur-mega.assets.json"
+      "assetsRef": "pokemon-assets/core/mega/0003-venusaur-mega.assets.json"
     }
   }
 }
@@ -379,10 +374,11 @@ Le bloc `assets` de la fiche Max conserve seulement `image`, `shinyImage`, `cand
 Une forme
 Dynamax conserve également son tableau `evolutions`.
 
-## Bloc Asset Form
+## Bloc Variant Asset
 
-A ajouter dans `pokemon-assets/**/*.assets.json -> assets.assetForms` pour les costumes,
-formes visuelles ou variantes femelles.
+À ajouter dans `pokemon-assets/variants/<catégorie>/*.variants.json -> variants` pour les
+costumes, formes visuelles ou variantes femelles. Aucun fichier n’est créé si la liste
+est vide.
 
 ```json
 {

@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const pokemonAssetFamilySchema = new mongoose.Schema(
   {
     key: { type: String, required: true, unique: true },
+    entityCategory: { type: String, enum: ["NORMAL", "FORM", "MEGA", "DYNAMAX", "GIGANTAMAX"], index: true },
     family: {
       type: String,
       required: true,

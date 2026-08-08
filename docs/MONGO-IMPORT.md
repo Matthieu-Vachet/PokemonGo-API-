@@ -42,7 +42,8 @@ npm run sync:dry
 Cette commande lit tous les JSON et affiche les compteurs, mais ne se connecte pas a
 MongoDB. C'est le bon controle apres un ajout comme `damageMultiplier` dans les types
 ou `assets.candy` dans les fiches Pokemon. Le dry-run doit aussi afficher
-`pokemonAssets`, genere depuis `PokemonGo-Data/pokemon-assets`.
+`pokemonAssets` et `pokemonAssetFamilies`, générés récursivement depuis les Core et les
+familles catégorisées de `PokemonGo-Data/pokemon-assets`.
 
 ## 3. Importer dans MongoDB
 
@@ -56,6 +57,7 @@ Le sync fait des `upsert` par collection :
 
 - `pokemons` avec la cle unique `key`
 - `pokemonAssets` avec la cle unique `formId`
+- `pokemonAssetFamilies` avec la clé unique `family:formId`
 - `moves` avec la cle unique `id`
 - `types` avec la cle unique `id`
 - `weather`, `regions`, `generations`
@@ -68,13 +70,14 @@ production, ni un fallback, ni une entrée du job MongoDB global.
 
 Chaque document `pokemons` garde dans `data` le JSON principal sans assets lourds :
 gameplay, stats, attaques, PvP, disponibilités, images principales, candy et
-`assets.assetsRef`. Les assets lourds vivent dans `pokemonAssets.data.assets` et sont
-lies par `pokemons.formId == pokemonAssets.formId`. Donc un nouveau champ ajoute aux
-JSON, par exemple `types/*.json -> damageMultiplier`, `pokemon/*.json -> assets.candy`
-ou `pokemon-assets/**/*.assets.json -> assets.shuffle`, remonte automatiquement dans
-MongoDB si le fichier source change.
+`assets.assetsRef`. Le Core vit dans `pokemonAssets`; chaque payload secondaire vit dans
+`pokemonAssetFamilies` et porte `family`, `formId` et `entityCategory`. Les documents
+sont liés par `formId`, puis hydratés exclusivement depuis les références `assetRefs`
+du Core. Un fichier dans une mauvaise catégorie bloque le sync.
 
-Les routes de détail hydratent automatiquement la fiche en lisant `data.assets.assetsRef`.
+Les routes de détail hydratent automatiquement la fiche en lisant
+`data.assets.assetsRef`, puis les références secondaires du Core. `pvpRef` est validé
+contre la même catégorie avant import.
 La liste des Pokemon reste volontairement plus légère.
 
 ## 4. Flux des cinq datasets `current`

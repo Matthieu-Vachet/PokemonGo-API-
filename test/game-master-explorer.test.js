@@ -107,7 +107,7 @@ test("conserve dans la comparaison l’asset local exact et sa provenance", () =
     resolutionSource: "pokemon.formId",
     localAsset: { image: "bulbasaur.png", source: "pokemon.formId" },
     localFile: "pokemon/0001-bulbasaur.json",
-    localAssetsRef: "pokemon-assets/normal/0001-bulbasaur.assets.json",
+    localAssetsRef: "pokemon-assets/core/normal/0001-bulbasaur.assets.json",
     gameAvailability: { released: false },
     assetAvailability: { normal: true, shiny: false, independentFromGameRelease: true },
     assetBundleSource: "pokemonSettings",

@@ -34,6 +34,7 @@ test("le reader sépare le core et les quatre familles sans collision", () => {
     { home: 1089, shuffle: 1512, variants: 332, "location-cards": 215 },
   );
   assert.ok(data.pokemonAssets.every((document) => /\/core\//.test(document.sourceFile)));
+  assert.ok(data.pokemonAssets.every((document) => document.sourceFile.includes(`/${document.entityCategory === "FORM" ? "forms" : document.entityCategory.toLowerCase()}/`)));
   assert.ok(data.pokemonAssetFamilies.every((document) => document.payload !== null));
 });
 

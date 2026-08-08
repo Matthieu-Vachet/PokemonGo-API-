@@ -369,7 +369,7 @@ Ligues recommandees:
 
 Lorsque `hasGigantamaxEvolution` vaut `true`, `gigantamaxForms` pointe vers les fiches
 Gigamax séparées. Les visuels Gigamax lourds vivent dans le fichier
-`pokemon-assets/gigantamax/*.assets.json`. Le champ `availability.gigantamax` indique
+`pokemon-assets/core/gigantamax/*.assets.json`. Le champ `availability.gigantamax` indique
 séparément si cette forme est disponible dans Pokemon GO.
 
 ### Profils D'Evolution
@@ -458,16 +458,19 @@ fichier lourd :
       "primaryColor": "rgba(0.21, 0.79, 0.65, 1)",
       "secondaryColor": "rgba(0.63, 0.98, 0.50, 1)"
     },
-    "assetsRef": "pokemon-assets/normal/0001-bulbasaur.assets.json"
+    "assetsRef": "pokemon-assets/core/normal/0001-bulbasaur.assets.json"
   }
 }
 ```
 
-Le fichier lourd correspondant vit dans `PokemonGo-Data/pokemon-assets/**` et dans
-MongoDB `pokemonAssets.data` :
+Le Core correspondant vit dans `PokemonGo-Data/pokemon-assets/core/<catégorie>/` et dans
+MongoDB `pokemonAssets.data`. Les payloads HOME, Shuffle, Variants et Location Cards sont
+des documents séparés référencés par `assetRefs` et persistés dans
+`pokemonAssetFamilies` :
 
 ```json
 {
+  "schemaVersion": 1,
   "id": "BULBASAUR",
   "formId": "BULBASAUR",
   "baseFormId": "BULBASAUR",
@@ -476,27 +479,17 @@ MongoDB `pokemonAssets.data` :
   "dexNr": 1,
   "dexId": "0001",
   "assets": {
-    "home": {
-      "source": "pokemon-home",
-      "image": "https://raw.githubusercontent.com/.../PokemonHd/poke_capture_0001_000_mf_n_00000000_f_n.png",
-      "shinyImage": "https://raw.githubusercontent.com/.../PokemonHd/poke_capture_0001_000_mf_n_00000000_f_r.png",
-      "variants": []
-    },
+    "image": "https://raw.githubusercontent.com/.../pokemon/0001.png",
+    "shinyImage": "https://raw.githubusercontent.com/.../pokemon/0001-shiny.png",
     "portrait": null,
     "portraitShiny": null,
-    "locationCards": [
-      {
-        "id": "lc_GoFest2025_paris",
-        "name": "Pokémon GO Fest 2025: Paris",
-        "type": "location",
-        "date": "June 13th - 15th 2025",
-        "eligibleForms": ["Eevee (Explorer Hat)"],
-        "image": "https://raw.githubusercontent.com/.../LocationCards/lc_GoFest2025_paris.png",
-        "source": "https://www.serebii.net/pokemongo/backgrounds.shtml"
-      }
-    ],
-    "shuffle": null,
-    "assetForms": []
+    "candy": null
+  },
+  "assetRefs": {
+    "home": "pokemon-assets/home/normal/0001-bulbasaur.home.json",
+    "shuffle": "pokemon-assets/shuffle/normal/0001-bulbasaur.shuffle.json",
+    "variants": "pokemon-assets/variants/normal/0001-bulbasaur.variants.json",
+    "location-cards": "pokemon-assets/location-cards/normal/0001-bulbasaur.location-cards.json"
   }
 }
 ```
@@ -509,11 +502,12 @@ MongoDB `pokemonAssets.data` :
 | `assets.candy.image` | string | Image publique du bonbon, servie depuis `PokemonGo-Assets-API`. |
 | `assets.candy.primaryColor` | object | Couleur principale RGBA issue de `PokemonCandyColorData.json`. |
 | `assets.candy.secondaryColor` | object | Couleur secondaire RGBA issue de `PokemonCandyColorData.json`. |
-| `assets.assetsRef` | string/null | Chemin vers le fichier lourd `pokemon-assets/**/*.assets.json`. |
+| `assets.assetsRef` | string/null | Chemin vers le Core `pokemon-assets/core/<catégorie>/*.assets.json`. |
 
-Les assets lourds sont séparés dans `PokemonGo-Data/pokemon-assets` et dans la collection
-MongoDB `pokemonAssets`. Les routes de détail et le Dashboard hydratent automatiquement
-ces données à partir de `assets.assetsRef`.
+Les assets sont séparés par famille et catégorie dans `PokemonGo-Data/pokemon-assets`.
+Les routes de détail et le Dashboard hydratent le Core depuis `assets.assetsRef`, puis
+les familles depuis ses `assetRefs`. La convention complète est décrite dans
+`docs/ENTITY-CATEGORY-ARCHITECTURE.md`.
 
 | Champ asset lourd | Type | Description |
 | --- | --- | --- |
@@ -653,7 +647,7 @@ Dynamax, Gigantamax, Mega et Mega X/Y.
     "image": "",
     "shinyImage": "",
     "candy": null,
-    "assetsRef": "pokemon-assets/normal/0001-bulbasaur.assets.json"
+    "assetsRef": "pokemon-assets/core/normal/0001-bulbasaur.assets.json"
   },
   "regionForms": [],
   "evolutions": [],

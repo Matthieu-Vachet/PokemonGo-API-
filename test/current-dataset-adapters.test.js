@@ -131,7 +131,7 @@ test("Costume Audit réhydrate immédiatement un alias Margxt résolu et appliqu
         pokemonId: 25,
         form: "normal",
         costume: "ANNIVERSARY_2026",
-        localIdentity: { pokemonKey: "PIKACHU", pokemonName: "Pikachu", types: ["ELECTRIC"], sourceFile: "pokemon/0025-pikachu.json", assetsRef: "pokemon-assets/normal/0025-pikachu.assets.json", assets: {} },
+        localIdentity: { pokemonKey: "PIKACHU", pokemonName: "Pikachu", types: ["ELECTRIC"], sourceFile: "pokemon/0025-pikachu.json", assetsRef: "pokemon-assets/core/normal/0025-pikachu.assets.json", assets: {} },
       },
     }],
   });
@@ -244,7 +244,7 @@ test("le presenter Shiny conserve l'identité et la résolution d'asset canoniqu
         assetResolution: {
           status: "matched",
           reason: null,
-          assetBundle: "pokemon-assets/normal/0025-pikachu.assets.json",
+          assetBundle: "pokemon-assets/core/normal/0025-pikachu.assets.json",
           shinyImage: "https://assets.example/pm25.fCOSTUME_2020.s.icon.png",
           trace: {
             canonicalId: "PIKACHU_COSTUME_2020",

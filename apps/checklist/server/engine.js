@@ -7,6 +7,7 @@ const {
   resolveDataFile,
 } = require("../../../src/lib/data-repository");
 const { buildCpByLevel } = require("../../../src/lib/pokemon-cp");
+const { categoryFromReference, classifyEntity, resolveCanonicalReference } = require("../../../src/lib/entity-category");
 const {
   applyCustomRules,
   enabledCustomRules,
@@ -48,11 +49,24 @@ function readJson(file) {
 function readAssetRecord(data) {
   const assetsRef = data?.assets?.assetsRef;
   if (!assetsRef) return null;
+  const classification = classifyEntity(data);
+  if (classification.ambiguous || assetsRef !== resolveCanonicalReference(data, { family: "core" })) return null;
   const file = resolveDataFile(assetsRef);
   if (!isInsideData(file) || !file.startsWith(assetsDir) || !fs.existsSync(file)) {
     return null;
   }
-  return readJson(file);
+  const core = readJson(file);
+  const heavy = {};
+  for (const [family, reference] of Object.entries(core.assetRefs || {})) {
+    if (categoryFromReference(reference) !== classification.category) return null;
+    const familyFile = resolveDataFile(reference);
+    if (!isInsideData(familyFile) || !fs.existsSync(familyFile)) return null;
+    const record = readJson(familyFile);
+    if (record.formId !== data.formId) return null;
+    const field = family === "location-cards" ? "locationCards" : family;
+    heavy[field === "variants" ? "assetForms" : field] = record[field];
+  }
+  return { ...core, assets: { ...core.assets, ...heavy } };
 }
 
 function hydrateSourceData(data) {

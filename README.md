@@ -549,15 +549,18 @@ Les outils d'import et d'extraction manuels vivent dans `scripts/import/`.
 - Identifiants techniques Pokemon GO en majuscules.
 - Slugs publics en anglais et en minuscules.
 - Images Pokémon GO principales via `assets.image` et `assets.shinyImage`.
-- Assets lourds via `assets.assetsRef` vers `PokemonGo-Data/pokemon-assets/**/*.assets.json`
-  : Pokémon Home, portraits, Shuffle, location cards et `assetForms`.
+- Assets séparés via `assets.assetsRef` vers
+  `PokemonGo-Data/pokemon-assets/core/<catégorie>/*.assets.json`; le Core référence les
+  familles HOME, Shuffle, Variants et Location Cards uniquement lorsqu’elles existent.
+- PvP dédié via `pvpRef` vers
+  `PokemonGo-Data/pvp/pokemon/<catégorie>/*.pvp.json` sans classement artificiel.
 - Traductions principales dans les objets `names`.
 - `regionForms`, `megaEvolutions`, `dynamaxForms` et `gigantamaxForms` sont des listes de références `formId`.
 - Les données complètes de chaque forme vivent uniquement dans `PokemonGo-Data/pokemon-forms/`.
 - `regionId` référence `PokemonGo-Data/generations/`; l'API recompose la région traduite et la génération.
 - `weatherBoost` référence les identifiants du catalogue `PokemonGo-Data/weather/`.
-- Les icônes Pokémon Shuffle vivent dans le fichier `.assets.json` de leur fiche exacte
-  (normale, régionale, Méga, Dynamax ou Gigantamax) et sont importées avec
+- Les icônes Pokémon Shuffle vivent dans le fichier `.shuffle.json` de leur fiche exacte,
+  sous la même catégorie (normale, forme, Méga, Dynamax ou Gigamax), et sont importées avec
   `npm run import:pokemon-shuffle:write`. Les fichiers sans fiche compatible restent
   dans la galerie globale et dans `PokemonGo-Data/pokemon-shuffle-import-report.json`.
 - Les quatre champs d'attaques des Pokemon sont des tableaux d'identifiants.
@@ -567,8 +570,12 @@ Les outils d'import et d'extraction manuels vivent dans `scripts/import/`.
 - `megaEnergyReward` peut valoir `null` lorsqu'il n'y a pas d'energie Mega a gagner.
 - Les evolutions pointent vers `targetFormId`; la cible peut ne pas encore exister si tu ajoutes les fiches au fur et a mesure.
 - Les formes Dynamax et Gigantamax utilisent `baseFormId`, leur propre `slug`, leur propre bloc `maxCp` (`maxLevel50`, `maxLevel40`, `maxBattlesLevel20`) et `maxBattle`.
-- `hasGigantamaxEvolution: true` implique un asset avec `form: "gigantamax"` dans
-  `pokemon-assets/**/*.assets.json -> assets.assetForms`.
+- `hasGigantamaxEvolution: true` implique une référence canonique dans
+  `gigantamaxForms`; la fiche Gigamax possède son propre Core sous
+  `pokemon-assets/core/gigantamax/`.
+
+La convention complète de classification, résolution, import, Engine et rollback est
+décrite dans [docs/ENTITY-CATEGORY-ARCHITECTURE.md](docs/ENTITY-CATEGORY-ARCHITECTURE.md).
 
 ## Roadmap Possible
 

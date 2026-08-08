@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const pokemonAssetSchema = new mongoose.Schema(
   {
     key: { type: String, required: true, unique: true },
+    entityCategory: { type: String, enum: ["NORMAL", "FORM", "MEGA", "DYNAMAX", "GIGANTAMAX"], index: true },
     id: { type: String, required: true, index: true },
     formId: { type: String, required: true, unique: true },
     baseFormId: { type: String, required: true, index: true },

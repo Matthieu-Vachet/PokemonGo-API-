@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.20.0 - 2026-08-08
+
+- Centralise la résolution des Assets et fiches PvP par catégorie Pokémon.
+- Persiste `entityCategory` dans les documents Pokémon, Core et familles secondaires, et refuse les mauvais dossiers avant import.
+- Étend l’OpenAPI et les tests aux catégories NORMAL, FORM, MEGA, DYNAMAX et GIGANTAMAX.
+
 ## 1.18.0 - 2026-07-31
 
 - Transmet le contrat canonique `assets.candy.xlImage` déjà résolu par PokemonGo-Data, y compris depuis un bundle de forme lorsque la fiche principale ne porte pas la copie.

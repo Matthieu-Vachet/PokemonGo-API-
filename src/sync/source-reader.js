@@ -6,6 +6,7 @@ const {
   dataPathFromRelative,
   relativeToApp,
 } = require("../lib/data-repository");
+const { categoryFromReference, classifyEntity, resolveCanonicalReference } = require("../lib/entity-category");
 
 const copySuffix = / \d+\.json$/;
 const ASSET_FAMILY_FIELDS = Object.freeze({
@@ -99,6 +100,8 @@ function inlinePokemonAssets(assets) {
 
 function readPvpRecord(data) {
   if (!data?.pvpRef) return null;
+  const expected = resolveCanonicalReference(data, { family: "pvp" });
+  if (data.pvpRef !== expected) throw new Error(`${data.formId}: PVP_WRONG_CATEGORY_DIRECTORY (${data.pvpRef}).`);
   const file = dataPathFromRelative(data.pvpRef);
   if (!fs.existsSync(file)) return null;
   const record = readJson(file);
@@ -231,6 +234,8 @@ function toPokemonDocument(data, sourceFiles, hint, parentKey = null) {
   const eliteChargedMoves = moveIds(data.eliteCinematicMoves);
   const maxMoves = moveIds(data.maxBattle?.moves);
   const key = pokemonKey(data);
+  const entityCategory = classifyEntity(data, { sourceFile: sourceFiles[0] });
+  if (entityCategory.ambiguous) throw new Error(`${data.formId}: ENTITY_CLASSIFICATION_AMBIGUOUS.`);
   const searchTerms = [
     data.id,
     data.formId,
@@ -249,6 +254,7 @@ function toPokemonDocument(data, sourceFiles, hint, parentKey = null) {
 
   return {
     key,
+    entityCategory: entityCategory.category,
     kind,
     parentKey,
     baseFormId: data.baseFormId || null,
@@ -370,6 +376,10 @@ function collectPokemonAssetDocuments() {
     : listJsonFiles(legacyDirectory);
   return files.map((file) => {
     const data = readJson(file);
+    const sourceFile = relative(file);
+    const classification = classifyEntity(data);
+    if (classification.ambiguous) throw new Error(`${data.formId}: ENTITY_CLASSIFICATION_AMBIGUOUS.`);
+    if (categoryFromReference(sourceFile.replace(/^data\//, "")) !== classification.category) throw new Error(`${data.formId}: ASSET_WRONG_CATEGORY_DIRECTORY.`);
     return {
       key: data.formId,
       id: data.id,
@@ -379,7 +389,8 @@ function collectPokemonAssetDocuments() {
       slug: data.slug,
       dexNr: data.dexNr,
       dexId: data.dexId,
-      sourceFile: relative(file),
+      entityCategory: classification.category,
+      sourceFile,
       sourceHash: hash(data),
       assets: data.assets || {},
       assetRefs: data.assetRefs || {},
@@ -392,9 +403,14 @@ function collectPokemonAssetFamilyDocuments() {
   return Object.entries(ASSET_FAMILY_FIELDS).flatMap(([family, field]) =>
     listJsonFiles(dataPath("pokemon-assets", family)).map((file) => {
       const data = readJson(file);
+      const sourceFile = relative(file);
+      const classification = classifyEntity(data);
+      if (classification.ambiguous) throw new Error(`${data.formId}: ENTITY_CLASSIFICATION_AMBIGUOUS.`);
+      if (categoryFromReference(sourceFile.replace(/^data\//, "")) !== classification.category) throw new Error(`${data.formId}: ASSET_WRONG_CATEGORY_DIRECTORY.`);
       return {
         key: `${family}:${data.formId}`,
         family,
+        entityCategory: classification.category,
         id: data.id,
         formId: data.formId,
         baseFormId: data.baseFormId,
@@ -402,7 +418,7 @@ function collectPokemonAssetFamilyDocuments() {
         slug: data.slug,
         dexNr: data.dexNr,
         dexId: data.dexId,
-        sourceFile: relative(file),
+        sourceFile,
         sourceHash: hash(data),
         payload: data[field],
         data,

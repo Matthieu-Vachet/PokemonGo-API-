@@ -21,7 +21,6 @@ test("les documents Mongo/API référencent la fiche PvP comme source canonique"
   const documents = collectAllDocuments().pokemon;
   const bulbasaur = documents.find((entry) => entry.formId === "BULBASAUR");
   assert.equal(bulbasaur.data.pvpRecord.pvpId, "BULBASAUR");
-  assert.ok(bulbasaur.sourceFiles.includes("data/pvp/pokemon/0001-bulbasaur.pvp.json"));
+  assert.ok(bulbasaur.sourceFiles.includes("data/pvp/pokemon/normal/0001-bulbasaur.pvp.json"));
   assert.equal(bulbasaur.pvpLeagues.includes("greatLeague"), true);
 });
-

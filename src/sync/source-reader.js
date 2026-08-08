@@ -91,6 +91,41 @@ function inlinePokemonAssets(assets) {
   };
 }
 
+function readPvpRecord(data) {
+  if (!data?.pvpRef) return null;
+  const file = dataPathFromRelative(data.pvpRef);
+  if (!fs.existsSync(file)) return null;
+  const record = readJson(file);
+  return record?.identity?.canonicalId === (data.formId || data.id) ? record : null;
+}
+
+function legacyPvpFromRecord(record) {
+  if (!record?.leagues) return null;
+  const keys = { little: "littleCup", great: "greatLeague", ultra: "ultraLeague", master: "masterLeague" };
+  return Object.fromEntries(Object.entries(keys).map(([leagueId, legacyKey]) => {
+    const league = record.leagues[leagueId];
+    if (!league) return [legacyKey, null];
+    if (league.status !== "RANKED") return [legacyKey, null];
+    const primary = league.variants?.find((variant) => variant.variant === "normal") || league.variants?.[0] || null;
+    return [legacyKey, {
+      tierRank: league.tier ?? null,
+      rank1: league.rank1 ?? null,
+      bestMovesets: primary ? {
+        fast: primary.bestMoveset?.fast?.moveId || null,
+        charged: (primary.bestMoveset?.charged || []).map((move) => move.moveId).filter(Boolean),
+      } : league.legacyBestMovesets ?? null,
+      status: league.status,
+      source: record.source,
+      variants: league.variants || [],
+    }];
+  }));
+}
+
+function hydratePokemonPvp(data) {
+  const pvpRecord = readPvpRecord(data);
+  return pvpRecord ? { ...data, pvp: legacyPvpFromRecord(pvpRecord), pvpRecord } : data;
+}
+
 function toPokemonDataDocument(data) {
   const normalized = normalizePokemonMoveFields(data);
   return {
@@ -155,6 +190,8 @@ function mergePokemon(parent, form) {
         ? parent.maxCp
         : form.maxCp,
     pvp: form.pvp === undefined ? parent.pvp : form.pvp,
+    pvpRef: form.pvpRef || parent.pvpRef || null,
+    pvpRecord: form.pvpRecord || parent.pvpRecord || null,
     assets: mergedFormAssets(parent, form),
     maxBattle: form.maxBattle || parent.maxBattle,
   };
@@ -280,18 +317,19 @@ function collectPokemonDocuments(generations = collectGenerationDocuments()) {
   const regions = new Map(generations.map((entry) => [entry.id, entry.data]));
 
   for (const file of listJsonFiles(pokemonDir)) {
-    const data = resolveRegionReference(readJson(file), regions);
+    const data = hydratePokemonPvp(resolveRegionReference(readJson(file), regions));
     const source = relative(file);
+    const sourceFiles = [source, ...(data.pvpRef ? [`data/${data.pvpRef}`] : [])];
     const parentKey = pokemonKey(data);
     parents.set(data.dexId, data);
     parents.set(data.id, data);
     parents.set(data.formId, data);
-    documents.set(parentKey, toPokemonDocument(data, [source], "pokemon"));
+    documents.set(parentKey, toPokemonDocument(data, sourceFiles, "pokemon"));
 
   }
 
   for (const file of listJsonFiles(formsDir)) {
-    const form = readJson(file);
+    const form = hydratePokemonPvp(readJson(file));
     const parent =
       parents.get(form.baseFormId) ||
       parents.get(form.inherits) ||
@@ -309,7 +347,7 @@ function collectPokemonDocuments(generations = collectGenerationDocuments()) {
       key,
       toPokemonDocument(
         merged,
-        [...(existing?.sourceFiles || []), relative(file)],
+        [...(existing?.sourceFiles || []), relative(file), ...(merged.pvpRef ? [`data/${merged.pvpRef}`] : [])],
         pokemonKind(form),
         parentKey,
       ),
@@ -533,10 +571,13 @@ module.exports = {
   collectRocketTextDocuments,
   collectWeatherDocuments,
   hash,
+  hydratePokemonPvp,
+  legacyPvpFromRecord,
   listJsonFiles,
   mergePokemon,
   namesToTerms,
   normalizeType,
   normalizePokemonMoveFields,
   readJson,
+  readPvpRecord,
 };

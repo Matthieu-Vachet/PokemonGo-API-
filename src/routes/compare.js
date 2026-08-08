@@ -29,7 +29,8 @@ router.get(
           defense: 15,
           stamina: 15,
         }),
-        pvp: item.data?.pvp || {},
+        pvp: item.data?.pvpRecord || item.data?.pvp || {},
+        pvpRef: item.data?.pvpRef || null,
       })),
       meta: { level },
     });

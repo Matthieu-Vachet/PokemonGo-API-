@@ -12,6 +12,7 @@ function hasDataShape(directory) {
     fs.existsSync(path.join(directory, "pokemon")) &&
     fs.existsSync(path.join(directory, "pokemon-forms")) &&
     fs.existsSync(path.join(directory, "pokemon-assets")) &&
+    fs.existsSync(path.join(directory, "pvp", "manifest.json")) &&
     fs.existsSync(path.join(directory, "moves")) &&
     fs.existsSync(path.join(directory, "raids", "currentRaids.json")) &&
     fs.existsSync(path.join(directory, "eggs", "currentEggs.json")) &&

@@ -262,7 +262,7 @@ test("le sync JSON global exclut tous les datasets current dynamiques", () => {
   );
 });
 
-test("les types, PvP null et formes Max sont normalisés", () => {
+test("les types, statuts PvP dédiés et formes Max sont normalisés", () => {
   const data = collectAllDocuments();
   const caterpie = data.pokemon.find((pokemon) => pokemon.key === "CATERPIE");
   const dynamax = data.pokemon.find((pokemon) => pokemon.key === "BULBASAUR_DYNAMAX");
@@ -289,7 +289,8 @@ test("les types, PvP null et formes Max sont normalisés", () => {
     "weatherBoostLevel25",
   ]);
   assert.ok(dynamax.moveIds.includes("VINE_WHIP_FAST"));
-  assert.ok(dynamax.pvpLeagues.includes("greatLeague"));
+  assert.deepEqual(dynamax.pvpLeagues, []);
+  assert.equal(dynamax.data.pvpRecord.leagues.great.status, "MAPPING_MISSING");
   assert.equal(data.pokemon.filter((pokemon) => pokemon.kind === "dynamax").length, 127);
   const maxMoves = data.moves.filter((move) => move.kind === "max");
   assert.ok(maxMoves.length >= 18);
@@ -396,6 +397,7 @@ test("les formes séparées sont référencées sans données dupliquées", () =
   assert.deepEqual(venusaur.data.megaEvolutions, ["VENUSAUR_MEGA"]);
   assert.deepEqual(mega.sourceFiles, [
     "data/pokemon-forms/mega/0003-venusaur-mega.json",
+    "data/pvp/pokemon/0003-venusaur-mega.pvp.json",
   ]);
   assert.equal(mega.data.formId, "VENUSAUR_MEGA");
 });

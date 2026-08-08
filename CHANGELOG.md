@@ -1,3 +1,18 @@
+---
+id: RULE-CHANGELOG-001
+title: Changelog Pokemon GO API
+status: active
+lang: fr
+version: 1.20.0
+updated_at: 2026-08-08
+author: MatWeb Innovation
+projects:
+  - PokemonGo-API-
+related:
+  - RULE-VERSIONING-001
+  - API-PUBLIC-001
+---
+
 # Changelog
 
 ## 1.20.0 - 2026-08-08
@@ -5,6 +20,10 @@
 - Centralise la résolution des Assets et fiches PvP par catégorie Pokémon.
 - Persiste `entityCategory` dans les documents Pokémon, Core et familles secondaires, et refuse les mauvais dossiers avant import.
 - Étend l’OpenAPI et les tests aux catégories NORMAL, FORM, MEGA, DYNAMAX et GIGANTAMAX.
+- Publie le contrat canonique transversal, les identifiants documentaires permanents,
+  la politique de versioning, de dépréciation, d’attribution et de rollback.
+- Verrouille par tests le frontmatter des documents actifs et les champs stables du
+  contrat public pour les cinq catégories Pokémon.
 
 ## 1.18.0 - 2026-07-31
 

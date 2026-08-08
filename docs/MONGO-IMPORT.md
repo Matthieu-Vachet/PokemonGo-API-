@@ -1,3 +1,20 @@
+---
+id: COL-MONGODB-SYNC-001
+title: Importer les JSON dans MongoDB
+status: canonical
+lang: fr
+version: 1.20.0
+updated_at: 2026-08-08
+author: MatWeb Innovation
+projects:
+  - PokemonGo-API-
+  - PokemonGo-Data
+  - Dashboard Admin
+related:
+  - DATASET-POKEMON-001
+  - RULE-MAINTENANCE-001
+---
+
 # Importer les JSON dans MongoDB
 
 Ce projet importe les referentiels statiques depuis le depot local `PokemonGo-Data`,

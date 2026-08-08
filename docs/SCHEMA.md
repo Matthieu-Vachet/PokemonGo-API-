@@ -1,3 +1,21 @@
+---
+id: DATASET-POKEMON-001
+title: Schéma canonique Pokemon GO
+status: canonical
+lang: fr
+version: 1.20.0
+updated_at: 2026-08-08
+author: MatWeb Innovation
+projects:
+  - PokemonGo-API-
+  - PokemonGo-Data
+  - Dashboard Admin
+related:
+  - ADR-CANONICAL-001
+  - RULE-NORMALIZATION-001
+  - API-PUBLIC-001
+---
+
 # Pokemon GO API - Schema
 
 Ce document decrit le format de reference des fichiers JSON Pokemon.
@@ -299,42 +317,22 @@ attaque dans la categorie correspondante. Les references doivent exister dans :
 `maxBattle.moves` contient les attaques Max ou G-Max quand la fiche est compatible. Il
 reste present avec `[]` sur les fiches non Max pour garder un pattern uniforme.
 
-## PvP
+## PvP séparé
 
-`pvp` peut valoir `null` si aucune information PvP n'est applicable. Sinon, les quatre
-ligues sont explicites et chaque ligue peut valoir `null`.
+`pvpRef` vaut `null` ou référence une fiche
+`pvp/pokemon/<catégorie>/<fichier>.pvp.json`. La fiche séparée porte les quatre ligues,
+les profils Rank 1, les movesets réellement observés, la provenance PvPoke et les
+statuts `RANKED`, `NOT_RANKED`, `UNSUPPORTED_FORM` ou `MAPPING_MISSING`. Une absence ne
+doit jamais être convertie en classement artificiel.
 
 ```json
 {
-  "pvp": {
-    "littleCup": null,
-    "greatLeague": {
-      "tierRank": "F",
-      "rank1": {
-        "ivs": {
-          "attack": 15,
-          "defense": 15,
-          "stamina": 15
-        },
-        "level": 50,
-        "cp": 1260
-      },
-      "bestMovesets": {
-        "fast": "VINE_WHIP_FAST",
-        "charged": ["POWER_WHIP", "SLUDGE_BOMB"]
-      }
-    },
-    "ultraLeague": null,
-    "masterLeague": null
-  }
+  "pvpRef": "pvp/pokemon/normal/0001-bulbasaur.pvp.json"
 }
 ```
 
-Ligues recommandees:
-
-- `littleCup`
-- `greatLeague`
-- `ultraLeague`
+L’API peut produire une projection `pvp` dérivée pour compatibilité de lecture, mais
+elle n’est pas stockée dans la fiche Pokémon canonique.
 - `masterLeague`
 
 ## Evolutions
@@ -622,12 +620,7 @@ Dynamax, Gigantamax, Mega et Mega X/Y.
     "researchLevel15": 477,
     "maxBattlesLevel20": null
   },
-  "pvp": {
-    "littleCup": null,
-    "greatLeague": null,
-    "ultraLeague": null,
-    "masterLeague": null
-  },
+  "pvpRef": "pvp/pokemon/normal/0001-bulbasaur.pvp.json",
   "stats": {
     "stamina": 128,
     "attack": 118,

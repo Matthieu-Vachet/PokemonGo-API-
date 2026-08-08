@@ -1,3 +1,19 @@
+---
+id: ADR-PROJECT-001
+title: Structure du projet
+status: canonical
+lang: fr
+version: 1.20.0
+updated_at: 2026-08-08
+author: MatWeb Innovation
+projects:
+  - PokemonGo-API-
+  - PokemonGo-Data
+related:
+  - ADR-CANONICAL-001
+  - COMP-API-RUNTIME-001
+---
+
 # Structure Du Projet
 
 Le depot `PokemonGo-API-` contient l'API publique, le site visiteur, la checklist

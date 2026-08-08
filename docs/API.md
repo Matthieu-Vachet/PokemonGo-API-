@@ -1,9 +1,29 @@
+---
+id: API-PUBLIC-001
+title: Pokemon GO API REST
+status: canonical
+lang: fr
+version: 1.20.0
+updated_at: 2026-08-08
+author: MatWeb Innovation
+projects:
+  - PokemonGo-API-
+  - PokemonGo-Data
+  - Dashboard Admin
+related:
+  - ADR-CANONICAL-001
+  - DATASET-POKEMON-001
+  - RULE-VERSIONING-001
+---
+
 # Pokemon GO API REST
 
 L'API publique vit dans `src/` et reste separee des outils de controle du Dashboard Admin.
 Les fichiers du depot prive `PokemonGo-Data` restent la source de verite et ne sont
 jamais modifies par la synchronisation. Les details des attaques vivent dans
 `PokemonGo-Data/moves/`; les Pokemon ne conservent que leurs identifiants.
+Le contrat de publication transversal est défini dans
+[CANONICAL-DATA-CONTRACTS.md](CANONICAL-DATA-CONTRACTS.md).
 
 ## Architecture
 
@@ -33,7 +53,9 @@ Chaque document MongoDB conserve :
 
 Depuis la refonte du modele Pokemon, MongoDB separe les donnees en deux collections :
 
-- `pokemons` contient le gameplay, les stats, les attaques, le PvP, les disponibilites, les images principales, les bonbons et `data.assets.assetsRef`.
+- `pokemons` contient le gameplay, les stats, les attaques, la projection PvP dérivée,
+  les disponibilites, les images principales, les bonbons, `data.assets.assetsRef` et
+  `data.pvpRef`; les fichiers Assets et PvP séparés restent les ressources canoniques.
 - `pokemonAssets` contient les assets lourds : Home, portraits, portraits shiny, location cards, Shuffle et variantes visuelles.
 - `raids`, `eggs`, `maxbattles`, `rockets` et `researches` contiennent chacun le
   document `{ key: "current" }` produit par le pipeline de regeneration externe.

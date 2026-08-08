@@ -1,3 +1,21 @@
+---
+id: API-PROJECT-001
+title: Pokemon GO API
+status: canonical
+lang: fr
+version: 1.20.0
+updated_at: 2026-08-08
+author: MatWeb Innovation
+projects:
+  - PokemonGo-API-
+  - PokemonGo-Data
+  - Dashboard Admin
+related:
+  - ADR-CANONICAL-001
+  - API-PUBLIC-001
+  - DATASET-POKEMON-001
+---
+
 # Pokemon GO API
 
 API REST publique, multilingue et versionnee pour Pokemon GO, alimentee par un depot
@@ -37,6 +55,8 @@ curl -H "x-api-admin-secret: $API_ADMIN_SECRET" "https://domain.com/api/v1/admin
 
 Documentation detaillee de l'API : [docs/API.md](docs/API.md)
 Import MongoDB depuis les JSON : [docs/MONGO-IMPORT.md](docs/MONGO-IMPORT.md)
+Contrats canoniques partagés :
+[docs/CANONICAL-DATA-CONTRACTS.md](docs/CANONICAL-DATA-CONTRACTS.md)
 
 ## Points Forts
 
@@ -566,7 +586,8 @@ Les outils d'import et d'extraction manuels vivent dans `scripts/import/`.
 - Les quatre champs d'attaques des Pokemon sont des tableaux d'identifiants.
 - Les details des attaques vivent uniquement dans `PokemonGo-Data/moves/`, y compris `max/` et `gmax/`.
 - `primaryType`, `secondaryType` et `type` d'attaque utilisent les identifiants courts de `PokemonGo-Data/types/`, par exemple `"GRASS"`.
-- `pvp` peut valoir `null`; sinon les ligues `littleCup`, `greatLeague`, `ultraLeague` et `masterLeague` peuvent chacune valoir `null`.
+- `pvpRef` référence la fiche PvP séparée de la même catégorie ; la projection `pvp`
+  éventuellement hydratée par l’API est dérivée et ne constitue jamais une seconde source.
 - `megaEnergyReward` peut valoir `null` lorsqu'il n'y a pas d'energie Mega a gagner.
 - Les evolutions pointent vers `targetFormId`; la cible peut ne pas encore exister si tu ajoutes les fiches au fur et a mesure.
 - Les formes Dynamax et Gigantamax utilisent `baseFormId`, leur propre `slug`, leur propre bloc `maxCp` (`maxLevel50`, `maxLevel40`, `maxBattlesLevel20`) et `maxBattle`.
@@ -576,14 +597,8 @@ Les outils d'import et d'extraction manuels vivent dans `scripts/import/`.
 
 La convention complète de classification, résolution, import, Engine et rollback est
 décrite dans [docs/ENTITY-CATEGORY-ARCHITECTURE.md](docs/ENTITY-CATEGORY-ARCHITECTURE.md).
-
-## Roadmap Possible
-
-- Ajouter des routes REST pour exposer `data/pokemon`.
-- Ajouter une recherche par slug, nom, type et generation.
-- Generer un index global au demarrage.
-- Ajouter une validation automatique du schema.
-- Publier une documentation d'endpoints quand l'API sera branchee.
+Le contrat de publication transversal, le versioning et la dépréciation sont définis
+dans [docs/CANONICAL-DATA-CONTRACTS.md](docs/CANONICAL-DATA-CONTRACTS.md).
 
 ## Licence
 

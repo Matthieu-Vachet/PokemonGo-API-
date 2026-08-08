@@ -1,3 +1,18 @@
+---
+id: RULE-GIT-001
+title: Commandes Git du projet
+status: active
+lang: fr
+version: 1.20.0
+updated_at: 2026-08-08
+author: MatWeb Innovation
+projects:
+  - PokemonGo-API-
+related:
+  - RULE-VERSIONING-001
+  - RULE-CHANGELOG-001
+---
+
 # Commandes Git Du Projet
 
 Ce guide remplace les operations courantes faites auparavant avec GitKraken.

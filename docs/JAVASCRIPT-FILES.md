@@ -1,3 +1,18 @@
+---
+id: COMP-API-RUNTIME-001
+title: Guide des fichiers JavaScript
+status: active
+lang: fr
+version: 1.20.0
+updated_at: 2026-08-08
+author: MatWeb Innovation
+projects:
+  - PokemonGo-API-
+related:
+  - ADR-PROJECT-001
+  - COMP-ENGINE-001
+---
+
 # Guide Des Fichiers JavaScript
 
 Ce document explique le rôle des fichiers JavaScript du projet. Les scripts ne sont jamais

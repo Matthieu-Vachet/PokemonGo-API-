@@ -1,3 +1,19 @@
+---
+id: RULE-NORMALIZATION-001
+title: Normalisation des données
+status: canonical
+lang: fr
+version: 1.20.0
+updated_at: 2026-08-08
+author: MatWeb Innovation
+projects:
+  - PokemonGo-API-
+  - PokemonGo-Data
+related:
+  - DATASET-POKEMON-001
+  - ADR-CANONICAL-001
+---
+
 # Normalisation Des Donnees
 
 Les sources JSON restent lisibles a la main, mais les informations repetables sont
@@ -73,32 +89,13 @@ Les sept météos Pokémon GO vivent dans `PokemonGo-Data/weather/`. Chaque entr
 traductions, son icône et les identifiants des types boostés. Les Pokémon utilisent
 `weatherBoost: string[]`; chaque type utilise `weatherBoost: string`.
 
-## PvP Nullable
+## PvP séparé
 
-`pvp` peut valoir `null` lorsqu'aucune information PvP n'est utile. Sinon, les quatre
-ligues sont explicites et chaque ligue peut valoir `null`.
-
-```json
-{
-  "pvp": {
-    "littleCup": null,
-    "greatLeague": {
-      "tierRank": "F",
-      "rank1": {
-        "ivs": { "attack": 15, "defense": 15, "stamina": 15 },
-        "level": 50,
-        "cp": 1260
-      },
-      "bestMovesets": {
-        "fast": "VINE_WHIP_FAST",
-        "charged": ["POWER_WHIP", "SLUDGE_BOMB"]
-      }
-    },
-    "ultraLeague": null,
-    "masterLeague": null
-  }
-}
-```
+La fiche Pokémon conserve uniquement `pvpRef` lorsqu’une ressource PvP séparée existe.
+Cette référence pointe vers `pvp/pokemon/<catégorie>/<fichier>.pvp.json`. Les ligues,
+profils Rank 1, movesets, statuts d’absence et métadonnées PvPoke vivent dans cette
+ressource. La projection `pvp` hydratée par l’API est dérivée pour compatibilité et ne
+doit jamais être écrite comme une seconde source canonique.
 
 ## Dynamax Et Gigantamax
 

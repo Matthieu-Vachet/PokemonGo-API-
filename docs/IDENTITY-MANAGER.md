@@ -3,10 +3,13 @@ id: ADR-IDENTITY-001
 title: Identity Manager Pokémon GO
 status: active
 lang: fr
-version: 2.0.1
-updated_at: 2026-08-01
-owners:
-  - pokemon-data
+version: 2.1.0
+updated_at: 2026-08-08
+author: MatWeb Innovation
+projects:
+  - PokemonGo-API-
+  - PokemonGo-Data
+  - Dashboard Admin
 related:
   - COL-IDENTITY-001
   - API-IDENTITY-001

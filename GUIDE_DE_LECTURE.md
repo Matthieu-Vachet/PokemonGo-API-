@@ -1,3 +1,19 @@
+---
+id: ADR-READING-001
+title: Guide de lecture PokemonGo-API-
+status: active
+lang: fr
+version: 1.20.0
+updated_at: 2026-08-08
+author: MatWeb Innovation
+projects:
+  - PokemonGo-API-
+  - PokemonGo-Data
+related:
+  - ADR-PROJECT-001
+  - ADR-CANONICAL-001
+---
+
 # Guide de lecture - PokemonGo-API-
 
 Ce projet sert a publier l'API Pokemon GO, synchroniser MongoDB et afficher la bibliotheque

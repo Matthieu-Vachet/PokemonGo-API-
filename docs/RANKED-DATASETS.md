@@ -1,3 +1,21 @@
+---
+id: DATASET-RANKED-001
+title: Architecture Mongo des classements
+status: canonical
+lang: fr
+version: 1.20.0
+updated_at: 2026-08-08
+author: MatWeb Innovation
+projects:
+  - PokemonGo-API-
+  - PokemonGo-Data
+  - Dashboard Admin
+related:
+  - PROVIDER-PVPOKE-001
+  - DATASET-PVP-001
+  - COL-MONGODB-SYNC-001
+---
+
 # Architecture Mongo des classements
 
 Les domaines `shiny`, `pvp-rankings`, `gbl-calendar`, `best-defenders` et `costume-audit` réutilisent le pipeline `current-dataset` existant : génération PokemonGo-Data, validation d'adaptateur, hash/diff, upsert Mongo et relecture de contrôle.

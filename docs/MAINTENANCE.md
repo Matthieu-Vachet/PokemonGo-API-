@@ -1,3 +1,21 @@
+---
+id: RULE-MAINTENANCE-001
+title: Maintenance des données
+status: canonical
+lang: fr
+version: 1.20.0
+updated_at: 2026-08-08
+author: MatWeb Innovation
+projects:
+  - PokemonGo-API-
+  - PokemonGo-Data
+  - Dashboard Admin
+related:
+  - RULE-CANONICAL-001
+  - RULE-ROLLBACK-001
+  - COL-MONGODB-SYNC-001
+---
+
 # Maintenance Des Données
 
 ## Sources De Vérité

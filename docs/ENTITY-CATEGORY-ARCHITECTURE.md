@@ -1,3 +1,21 @@
+---
+id: ADR-CATEGORY-001
+title: Résolution API des catégories Pokémon
+status: canonical
+lang: fr
+version: 1.20.0
+updated_at: 2026-08-08
+author: MatWeb Innovation
+projects:
+  - PokemonGo-API-
+  - PokemonGo-Data
+  - Dashboard Admin
+related:
+  - RULE-ENTITY-CATEGORY-001
+  - COMP-ENGINE-001
+  - DATASET-POKEMON-001
+---
+
 # Résolution API des catégories Pokémon
 
 ## Contrat partagé

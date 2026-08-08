@@ -1,3 +1,19 @@
+---
+id: RULE-TEMPLATE-001
+title: Templates Pokemon GO API
+status: active
+lang: fr
+version: 1.20.0
+updated_at: 2026-08-08
+author: MatWeb Innovation
+projects:
+  - PokemonGo-API-
+  - PokemonGo-Data
+related:
+  - DATASET-POKEMON-001
+  - RULE-ENTITY-CATEGORY-001
+---
+
 # Templates Pokemon GO API
 
 Ce fichier regroupe les templates a copier pour ajouter ou normaliser les donnees.
@@ -89,12 +105,7 @@ Template complet:
     "raidLevel20": null,
     "researchLevel15": null
   },
-  "pvp": {
-    "littleCup": null,
-    "greatLeague": null,
-    "ultraLeague": null,
-    "masterLeague": null
-  },
+  "pvpRef": "pvp/pokemon/normal/0001-bulbasaur.pvp.json",
   "stats": {
     "stamina": null,
     "attack": null,

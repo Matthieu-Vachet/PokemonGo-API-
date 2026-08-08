@@ -6,6 +6,8 @@ const examples = {
     kind: "pokemon",
     id: "CHARIZARD",
     formId: "CHARIZARD",
+    baseFormId: "CHARIZARD",
+    entityCategory: "NORMAL",
     slug: "charizard",
     dexNr: 6,
     dexId: "0006",
@@ -38,6 +40,7 @@ const examples = {
       shinyImage: "https://raw.githubusercontent.com/.../pokemon/0006-shiny.png",
       assetsRef: "pokemon-assets/core/normal/0006-charizard.assets.json",
     },
+    pvpRef: "pvp/pokemon/normal/0006-charizard.pvp.json",
   },
   move: {
     id: "BLAST_BURN",

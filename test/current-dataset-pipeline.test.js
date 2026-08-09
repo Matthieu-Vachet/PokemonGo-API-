@@ -454,16 +454,16 @@ test("une exécution interrompue par la limite Vercel devient un échec terminal
   const update = staleDatasetRunUpdate({
     status: "running",
     startedAt: "2026-07-22T00:00:00.000Z",
-  }, new Date("2026-07-22T00:01:16.000Z").getTime());
+  }, new Date("2026-07-22T00:02:16.000Z").getTime());
 
   assert.equal(update.status, "failed");
-  assert.equal(update.durationMs, 76_000);
+  assert.equal(update.durationMs, 136_000);
   assert.equal(update.errorsCount, 1);
   assert.equal(update.errors[0].code, "DATASET_REGENERATION_TIMEOUT");
   assert.equal(staleDatasetRunUpdate({
     status: "running",
     startedAt: "2026-07-22T00:00:01.000Z",
-  }, new Date("2026-07-22T00:01:16.000Z").getTime()), null);
+  }, new Date("2026-07-22T00:02:16.000Z").getTime()), null);
   assert.equal(staleDatasetRunUpdate({
     status: "running",
     phase: "generated",

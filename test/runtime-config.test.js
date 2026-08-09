@@ -6,7 +6,7 @@ const path = require("node:path");
 test("la fonction REST longue et la checklist déclarent leur durée Vercel", () => {
   const config = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../vercel.json"), "utf8"));
 
-  assert.equal(config.functions["api/rest.js"].maxDuration, 120);
+  assert.equal(config.functions["api/rest.js"].maxDuration, 60);
   assert.equal(config.functions["api/checklist-v3.js"].maxDuration, 60);
   for (const functionConfig of Object.values(config.functions)) {
     if (!functionConfig.includeFiles) continue;

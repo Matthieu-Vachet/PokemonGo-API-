@@ -7,9 +7,9 @@ const { computeDatasetHash, diffDatasets } = require("./current-dataset-hash");
 const { compressedBuffer, hydrateCurrentDatasetDocument, serializeCurrentDatasetDocument } = require("./current-dataset-reader");
 const { DatasetRun } = require("../models");
 
-// The generation stage runs in api/rest.js (120 s max). Keep the orphan window
+// The generation stage runs in api/rest.js (60 s max). Keep the orphan window
 // slightly above that ceiling so polling never fails a Function still running.
-const ACTIVE_REGENERATION_WINDOW_MS = 135 * 1000;
+const ACTIVE_REGENERATION_WINDOW_MS = 75 * 1000;
 const REGENERATION_TIMEOUT_CODE = "DATASET_REGENERATION_TIMEOUT";
 
 function asArray(value) {

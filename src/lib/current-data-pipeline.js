@@ -52,9 +52,14 @@ function buildPipelineReport({ source, report = {}, summary = {}, stats = {}, js
 
 async function generateCurrentData(options) {
   const generator = loadGenerator(options);
+  const generatorOptionsStartedAt = Date.now();
   const generatorOptions = typeof options.generatorOptions === "function"
     ? await options.generatorOptions()
     : (options.generatorOptions || {});
+  console.info(`[current-data:${options.source}] Generator options loaded`, {
+    identityCatalogSize: Array.isArray(generatorOptions.identityCatalog) ? generatorOptions.identityCatalog.length : 0,
+    elapsedMs: Date.now() - generatorOptionsStartedAt,
+  });
   const result = await generator(generatorOptions);
   const data = result?.data;
   const report = result?.report || {};

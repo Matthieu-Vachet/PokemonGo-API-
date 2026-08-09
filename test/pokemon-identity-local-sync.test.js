@@ -252,6 +252,38 @@ test("un costume uniquement mâle ne fabrique aucune ambiguïté ni asset femell
   assert.equal(inventoryService.selectGenderAsset(costume, true), null);
 });
 
+test("le catalogue PvP charge uniquement les identités portant un alias PvPoke", async () => {
+  const originalFind = PokemonIdentity.find;
+  let query;
+  PokemonIdentity.find = (receivedQuery) => {
+    query = receivedQuery;
+    return {
+      select: () => ({
+        lean: async () => [{
+          _id: mongoId(25),
+          canonicalId: "PIKACHU_NORMAL",
+          pokemonId: 25,
+          status: "active",
+          syncStatus: "synchronized",
+          aliases: [
+            { aliasId: "pvp", provider: "pvpoke", value: "pikachu", normalizedValue: "pikachu", status: "active", confidence: 1 },
+            { aliasId: "shiny", provider: "snacknap", value: "Pikachu", normalizedValue: "pikachu", status: "active", confidence: 1 },
+          ],
+        }],
+      }),
+    };
+  };
+  try {
+    identityService.invalidateIdentityCache();
+    const catalog = await identityService.aliasCatalogForProviders(["pvpoke", "pvpoke-official-repository"]);
+    assert.deepEqual(query.aliases.$elemMatch.provider.$in, ["pvpoke", "pvpoke-official-repository"]);
+    assert.deepEqual(catalog[0].aliases.map((alias) => alias.provider), ["pvpoke"]);
+  } finally {
+    PokemonIdentity.find = originalFind;
+    identityService.invalidateIdentityCache();
+  }
+});
+
 test("un resolver sans alias choisit Mewtwo Armored uniquement par identité locale déterministe", async () => {
   const originalFind = PokemonIdentity.find;
   const inventory = inventoryService.loadLocalIdentityInventory();

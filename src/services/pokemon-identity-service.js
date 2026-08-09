@@ -172,12 +172,13 @@ const diagnosticInputSchema = z.object({
   sourcePayload: z.unknown().optional(),
 });
 
-const cache = { expiresAt: 0, aliases: null };
+const cache = { expiresAt: 0, aliases: null, providerAliases: new Map() };
 const CACHE_TTL_MS = 30_000;
 
 function invalidateIdentityCache() {
   cache.expiresAt = 0;
   cache.aliases = null;
+  cache.providerAliases.clear();
   invalidatePokemonResolutionCaches("identity-catalog-invalidated");
 }
 
@@ -655,10 +656,8 @@ async function conflicts() {
   return { aliasConflicts, explicitConflicts, incomplete };
 }
 
-async function aliasCatalog(force = false) {
-  if (!force && cache.aliases && cache.expiresAt > Date.now()) return cache.aliases;
-  const identities = await PokemonIdentity.find({ status: { $in: ["active", "deprecated"] }, syncStatus: "synchronized" }).select({ canonicalId: 1, pokemonId: 1, form: 1, costume: 1, transformation: 1, status: 1, aliases: 1, genderVariants: 1, localReference: 1, localIdentity: 1 }).lean();
-  const catalog = identities.map((identity) => ({
+function identityCatalogEntries(identities, allowedProviders = null) {
+  return identities.map((identity) => ({
     identityId: String(identity._id),
     canonicalId: identity.canonicalId,
     pokemonId: identity.pokemonId,
@@ -669,17 +668,49 @@ async function aliasCatalog(force = false) {
     genderVariants: identity.genderVariants || { male: false, female: false },
     localReference: identity.localReference || null,
     localIdentity: identity.localIdentity || null,
-    aliases: (identity.aliases || []).map((entry) => ({
-      aliasId: entry.aliasId,
-      provider: entry.provider,
-      rawAlias: entry.value,
-      normalizedAlias: entry.normalizedValue,
-      status: entry.status,
-      confidence: entry.confidence,
-    })),
+    aliases: (identity.aliases || [])
+      .filter((entry) => !allowedProviders || (
+        allowedProviders.has(entry.provider)
+        && ["active", "deprecated"].includes(entry.status)
+      ))
+      .map((entry) => ({
+        aliasId: entry.aliasId,
+        provider: entry.provider,
+        rawAlias: entry.value,
+        normalizedAlias: entry.normalizedValue,
+        status: entry.status,
+        confidence: entry.confidence,
+      })),
   }));
+}
+
+async function aliasCatalog(force = false) {
+  if (!force && cache.aliases && cache.expiresAt > Date.now()) return cache.aliases;
+  const identities = await PokemonIdentity.find({ status: { $in: ["active", "deprecated"] }, syncStatus: "synchronized" }).select({ canonicalId: 1, pokemonId: 1, form: 1, costume: 1, transformation: 1, status: 1, aliases: 1, genderVariants: 1, localReference: 1, localIdentity: 1 }).lean();
+  const catalog = identityCatalogEntries(identities);
   cache.aliases = catalog;
   cache.expiresAt = Date.now() + CACHE_TTL_MS;
+  return catalog;
+}
+
+async function aliasCatalogForProviders(providers, force = false) {
+  const allowedProviders = new Set((providers || []).map((provider) => String(provider || "").trim()).filter(Boolean));
+  if (!allowedProviders.size) return [];
+  const cacheKey = [...allowedProviders].sort().join("|");
+  const cached = cache.providerAliases.get(cacheKey);
+  if (!force && cached && cached.expiresAt > Date.now()) return cached.catalog;
+  const identities = await PokemonIdentity.find({
+    status: { $in: ["active", "deprecated"] },
+    syncStatus: "synchronized",
+    aliases: {
+      $elemMatch: {
+        provider: { $in: [...allowedProviders] },
+        status: { $in: ["active", "deprecated"] },
+      },
+    },
+  }).select({ canonicalId: 1, pokemonId: 1, form: 1, costume: 1, transformation: 1, status: 1, aliases: 1, genderVariants: 1, localReference: 1, localIdentity: 1 }).lean();
+  const catalog = identityCatalogEntries(identities, allowedProviders);
+  cache.providerAliases.set(cacheKey, { catalog, expiresAt: Date.now() + CACHE_TTL_MS });
   return catalog;
 }
 
@@ -891,6 +922,7 @@ async function importIdentities(payload, requestedBy) {
 
 module.exports = {
   aliasCatalog,
+  aliasCatalogForProviders,
   aliasInputSchema,
   assertRegisteredProvider,
   conflicts,

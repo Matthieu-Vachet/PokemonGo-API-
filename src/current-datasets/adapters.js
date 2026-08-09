@@ -26,6 +26,15 @@ async function identityGeneratorOptions() {
   };
 }
 
+async function pvpIdentityGeneratorOptions() {
+  return {
+    identityCatalog: await require("../services/pokemon-identity-service").aliasCatalogForProviders([
+      "pvpoke",
+      "pvpoke-official-repository",
+    ]),
+  };
+}
+
 function normalizeIdentity(value) {
   return String(value || "")
     .normalize("NFD")
@@ -981,7 +990,7 @@ const adapters = {
     asyncRegeneration: true,
     scriptName: "generatePvpRankings.js",
     exportName: "generatePvpRankings",
-    generatorOptions: identityGeneratorOptions,
+    generatorOptions: pvpIdentityGeneratorOptions,
     jsonPath: "pvp-rankings/current.json",
     summarize: pvpSummary,
     stats: (_data, report) => ({

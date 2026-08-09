@@ -73,6 +73,61 @@ test("les fournisseurs encore utilisés sont enregistrés explicitement", () => 
   assert.equal(providerCatalog.some((provider) => provider.id === "ma-collection"), false);
 });
 
+test("les identifiants de jeux de données LeekDuck convergent vers le fournisseur canonique", () => {
+  for (const provider of ["leekduck-eggs", "leekduck-research", "leekduck-rocket", "leekduck-rocket-lineups"]) {
+    assert.equal(assertRegisteredProvider(provider), "leekduck");
+  }
+  assert.equal(providerCatalog.filter((provider) => provider.id === "leekduck").length, 1);
+  assert.equal(providerCatalog.some((provider) => provider.id.startsWith("leekduck-") && provider.id !== "leekduck-raids"), false);
+});
+
+test("les diagnostics LeekDuck sont toujours persistés sous le fournisseur canonique", async () => {
+  const originalBulkWrite = PokemonIdentityDiagnostic.bulkWrite;
+  let operations = [];
+  PokemonIdentityDiagnostic.bulkWrite = async (entries) => {
+    operations = entries;
+    return { upsertedCount: entries.length, modifiedCount: 0 };
+  };
+  try {
+    const result = await recordDiagnosticsBatch([
+      { provider: "leekduck-eggs", rawAlias: "Bulbasaur" },
+      { provider: "leekduck-research", rawAlias: "Charmander" },
+      { provider: "leekduck-rocket-lineups", rawAlias: "Squirtle" },
+    ]);
+    assert.equal(result.detected, 3);
+    for (const operation of operations) {
+      assert.equal(operation.updateOne.update.$set.provider, "leekduck");
+      assert.match(operation.updateOne.filter.diagnosticKey, /^leekduck:/);
+    }
+  } finally {
+    PokemonIdentityDiagnostic.bulkWrite = originalBulkWrite;
+  }
+});
+
+test("les statistiques historiques LeekDuck sont agrégées sans créer de fournisseur", async () => {
+  const originalIdentityAggregate = PokemonIdentity.aggregate;
+  const originalDiagnosticAggregate = PokemonIdentityDiagnostic.aggregate;
+  PokemonIdentity.aggregate = async () => [
+    { _id: "leekduck", aliases: 2, activeAliases: 2 },
+    { _id: "leekduck-eggs", aliases: 3, activeAliases: 1 },
+  ];
+  PokemonIdentityDiagnostic.aggregate = async () => [
+    { _id: "leekduck-research", openDiagnostics: 4, occurrences: 7 },
+  ];
+  try {
+    const providers = await listProviders();
+    const leekduck = providers.find((provider) => provider.id === "leekduck");
+    assert.equal(leekduck.aliases, 5);
+    assert.equal(leekduck.activeAliases, 3);
+    assert.equal(leekduck.openDiagnostics, 4);
+    assert.equal(leekduck.occurrences, 7);
+    assert.equal(providers.some((provider) => provider.id === "leekduck-eggs"), false);
+  } finally {
+    PokemonIdentity.aggregate = originalIdentityAggregate;
+    PokemonIdentityDiagnostic.aggregate = originalDiagnosticAggregate;
+  }
+});
+
 test("un fournisseur historique inconnu n’est pas réinjecté comme source active", async () => {
   const originalIdentityAggregate = PokemonIdentity.aggregate;
   const originalDiagnosticAggregate = PokemonIdentityDiagnostic.aggregate;

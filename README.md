@@ -3,8 +3,8 @@ id: API-PROJECT-001
 title: Pokemon GO API
 status: canonical
 lang: fr
-version: 1.21.0
-updated_at: 2026-08-08
+version: 1.21.1
+updated_at: 2026-08-09
 author: MatWeb Innovation
 projects:
   - PokemonGo-API-

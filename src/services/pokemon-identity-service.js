@@ -26,7 +26,13 @@ const diagnosticReasons = [
 const providerCatalog = Object.freeze([
   { id: "game-master", label: "Game Master · PokeMiners", domains: ["pokemon-identity-mappings"], visibility: "private" },
   { id: "pokeminers-game-masters", label: "PokeMiners Game Masters", domains: ["game-master"], visibility: "private" },
-  { id: "leekduck", label: "LeekDuck", domains: ["raids", "eggs", "research", "rocket", "events"], visibility: "public" },
+  {
+    id: "leekduck",
+    label: "LeekDuck",
+    domains: ["raids", "eggs", "research", "rocket", "events"],
+    visibility: "public",
+    aliases: ["leekduck-eggs", "leekduck-research", "leekduck-rocket", "leekduck-rocket-lineups"],
+  },
   { id: "leekduck-raids", label: "LeekDuck · Raids", domains: ["raids"], visibility: "private" },
   { id: "snacknap", label: "Snacknap", domains: ["max-battles", "shiny"], visibility: "mixed" },
   { id: "snacknap-max-battles", label: "Snacknap · Combats Dynamax", domains: ["max-battles"], visibility: "private" },
@@ -39,7 +45,7 @@ const providerCatalog = Object.freeze([
   { id: "pogoapi", label: "Pokémon GO API", domains: ["catalogs"], visibility: "public" },
 ]);
 
-function normalizeProvider(value) {
+function normalizeProviderToken(value) {
   return String(value || "")
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
@@ -50,6 +56,35 @@ function normalizeProvider(value) {
 }
 
 const registeredProviders = new Set(providerCatalog.map((provider) => provider.id));
+const providerCanonicalByToken = new Map();
+const providerTokensByCanonical = new Map();
+
+for (const definition of providerCatalog) {
+  const tokens = [definition.id, ...(definition.aliases || [])].map(normalizeProviderToken);
+  providerTokensByCanonical.set(definition.id, tokens);
+  for (const token of tokens) {
+    const existing = providerCanonicalByToken.get(token);
+    if (existing && existing !== definition.id) {
+      throw new Error(`Alias de fournisseur Identity Manager dupliqué : ${token}`);
+    }
+    providerCanonicalByToken.set(token, definition.id);
+  }
+}
+
+function normalizeProvider(value) {
+  const token = normalizeProviderToken(value);
+  return providerCanonicalByToken.get(token) || token;
+}
+
+function providerStorageTokens(value) {
+  const provider = normalizeProvider(value);
+  return providerTokensByCanonical.get(provider) || [provider];
+}
+
+function providerStorageFilter(value) {
+  const tokens = providerStorageTokens(value);
+  return tokens.length === 1 ? tokens[0] : { $in: tokens };
+}
 
 function assertRegisteredProvider(value) {
   const provider = normalizeProvider(value);
@@ -300,7 +335,7 @@ function listFilter(query = {}) {
   const filter = {};
   if (query.status) filter.status = String(query.status);
   if (query.syncStatus) filter.syncStatus = String(query.syncStatus);
-  if (query.provider) filter["aliases.provider"] = normalizeProvider(query.provider);
+  if (query.provider) filter["aliases.provider"] = providerStorageFilter(query.provider);
   if (query.pokemonId) filter.pokemonId = Number(query.pokemonId);
   if (query.form) filter.form = { $regex: String(query.form), $options: "i" };
   if (query.costume) filter.costume = { $regex: String(query.costume), $options: "i" };
@@ -335,7 +370,7 @@ async function listIdentities(query = {}) {
     items: documents.map(serialize),
     pagination: { page, limit, total, pages: Math.ceil(total / limit) },
     stats: {
-      providers: providerStats.map((entry) => ({ provider: entry._id, count: entry.count })),
+      providers: aggregateProviderStats(providerStats, "count"),
       statuses: Object.fromEntries(statusStats.map((entry) => [entry._id, entry.count])),
     },
   };
@@ -346,8 +381,8 @@ async function listProviders() {
     PokemonIdentity.aggregate([{ $unwind: "$aliases" }, { $group: { _id: "$aliases.provider", aliases: { $sum: 1 }, activeAliases: { $sum: { $cond: [{ $eq: ["$aliases.status", "active"] }, 1, 0] } } } }]),
     PokemonIdentityDiagnostic.aggregate([{ $match: { status: "open" } }, { $group: { _id: "$provider", openDiagnostics: { $sum: 1 }, occurrences: { $sum: "$occurrences" } } }]),
   ]);
-  const aliasesByProvider = new Map(aliasCounts.map((entry) => [entry._id, entry]));
-  const diagnosticsByProvider = new Map(diagnosticCounts.map((entry) => [entry._id, entry]));
+  const aliasesByProvider = aggregateProviderEntries(aliasCounts, ["aliases", "activeAliases"]);
+  const diagnosticsByProvider = aggregateProviderEntries(diagnosticCounts, ["openDiagnostics", "occurrences"]);
   return providerCatalog.map((definition) => {
     const id = definition.id;
     const aliases = aliasesByProvider.get(id) || {};
@@ -361,6 +396,24 @@ async function listProviders() {
       occurrences: Number(diagnostics.occurrences || 0),
     };
   }).sort((left, right) => left.label.localeCompare(right.label, "fr"));
+}
+
+function aggregateProviderEntries(entries, fields) {
+  const result = new Map();
+  for (const entry of entries) {
+    const provider = normalizeProvider(entry._id);
+    if (!registeredProviders.has(provider)) continue;
+    const aggregate = result.get(provider) || {};
+    for (const field of fields) aggregate[field] = Number(aggregate[field] || 0) + Number(entry[field] || 0);
+    result.set(provider, aggregate);
+  }
+  return result;
+}
+
+function aggregateProviderStats(entries, field) {
+  return [...aggregateProviderEntries(entries, [field]).entries()]
+    .map(([provider, values]) => ({ provider, [field]: values[field] }))
+    .sort((left, right) => right[field] - left[field] || left.provider.localeCompare(right.provider));
 }
 
 async function getIdentity(identifier) {
@@ -406,7 +459,7 @@ async function resolveDiagnosticsForAlias(identity, alias, requestedBy) {
   const now = new Date();
   const result = await PokemonIdentityDiagnostic.updateMany(
     {
-      provider: alias.provider,
+      provider: providerStorageFilter(alias.provider),
       normalizedAlias: alias.normalizedValue,
       status: "open",
     },
@@ -580,7 +633,7 @@ async function listHistory(query = {}) {
   if (query.identityId) filter.identityId = query.identityId;
   if (query.canonicalId) filter.canonicalId = normalizeCanonicalId(query.canonicalId);
   if (query.action) filter.action = String(query.action);
-  if (query.provider) filter.provider = normalizeProvider(query.provider);
+  if (query.provider) filter.provider = providerStorageFilter(query.provider);
   const [items, total] = await Promise.all([
     PokemonIdentityHistory.find(filter).sort({ createdAt: -1 }).skip((page - 1) * limit).limit(limit).lean(),
     PokemonIdentityHistory.countDocuments(filter),
@@ -704,7 +757,8 @@ async function listDiagnostics(query = {}) {
   const page = Math.max(1, Number(query.page) || 1);
   const limit = Math.min(200, Math.max(1, Number(query.limit) || 50));
   const filter = {};
-  for (const field of ["provider", "reason", "status"]) if (query[field]) filter[field] = String(query[field]);
+  if (query.provider) filter.provider = providerStorageFilter(query.provider);
+  for (const field of ["reason", "status"]) if (query[field]) filter[field] = String(query[field]);
   for (const field of ["pokemonId", "form", "costume"]) if (query[field]) filter[field] = field === "pokemonId" ? Number(query[field]) : { $regex: String(query[field]), $options: "i" };
   if (query.confidence) filter.confidence = { $gte: Number(query.confidence) };
   const [items, total] = await Promise.all([

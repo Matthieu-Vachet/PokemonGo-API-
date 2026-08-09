@@ -65,6 +65,12 @@ Chaque création, modification, alias, fusion, dépréciation, restauration ou s
 
 Les alias non résolus sont agrégés par fournisseur, alias normalisé et identifiant source. La première et dernière détection, le nombre d’occurrences, la cause exacte, la confiance et les candidats sont conservés.
 
+### Fournisseurs canoniques et alias de source
+
+`providerCatalog` est l’autorité fermée des fournisseurs Identity Manager. Un fournisseur peut déclarer des alias d’entrée pour les identifiants de provenance employés par un dataset, sans créer de fournisseur supplémentaire. `leekduck-eggs`, `leekduck-research`, `leekduck-rocket` et l’ancien `leekduck-rocket-lineups` convergent ainsi vers l’unique fournisseur canonique `leekduck`; `leekduck-raids` reste un fournisseur privé distinct pour préserver son contrat existant.
+
+Cette canonisation est appliquée avant résolution, import, mutation d’alias et écriture de diagnostic. Les filtres et compteurs agrègent également les éventuelles valeurs historiques sous leur fournisseur canonique. Une valeur inconnue reste refusée avec `IDENTITY_PROVIDER_NOT_REGISTERED` : aucun fallback ni ajout implicite au registre n’est autorisé.
+
 ## API
 
 ### API-IDENTITY-001 — routes privées
@@ -183,3 +189,4 @@ Résultat du 18 juillet 2026 : 1 391 documents reliés, 520 identités locales c
 - 2026-07-26 — centralisation initiale des providers et diagnostics groupés idempotents.
 - 2026-07-31 — fermeture du registre, retrait de la source obsolète et migration réversible de ses données ; zéro référence active après contrôle.
 - 2026-08-01 — ajout idempotent des alias déjà actifs afin qu’une association répétée ne déclenche plus une erreur de validation MongoDB.
+- 2026-08-09 — canonisation des identifiants de datasets LeekDuck vers le fournisseur `leekduck`, avec agrégation rétrocompatible des traces historiques.

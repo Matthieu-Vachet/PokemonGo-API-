@@ -23,6 +23,8 @@ const schema = new mongoose.Schema({
   modified: { type: Number, default: 0 },
   matchedCount: { type: Number, default: 0 },
   unmatchedCount: { type: Number, default: 0 },
+  mappingMissingCount: { type: Number, default: 0 },
+  ignoredCount: { type: Number, default: 0 },
   warningsCount: { type: Number, default: 0 },
   errorsCount: { type: Number, default: 0 },
   unmatchedEntries: { type: [mongoose.Schema.Types.Mixed], default: undefined },

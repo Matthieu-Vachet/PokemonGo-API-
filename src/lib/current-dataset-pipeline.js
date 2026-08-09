@@ -116,6 +116,8 @@ function buildDiagnostics({ report = {}, stats, diff }) {
     parsedCount: Number(stats.itemsParsed || 0),
     matchedCount: Number(stats.itemsMatched || 0),
     unmatchedCount: Number(stats.itemsUnmatched || 0),
+    mappingMissingCount: Number(report.mappingMissingCount ?? stats.itemsUnmatched ?? 0),
+    ignoredCount: Number(report.ignoredCount ?? report.skippedCount ?? report.skipped ?? 0),
     warnings: [...new Set(warnings)],
     warningsCount: [...new Set(warnings)].length,
     unmatchedEntries,
@@ -164,6 +166,8 @@ function serializeDatasetRun(run) {
     totalAfter: Number(value.totalAfter || 0),
     matchedCount: Number(value.matchedCount || 0),
     unmatchedCount: Number(value.unmatchedCount || 0),
+    mappingMissingCount: Number(value.mappingMissingCount ?? value.unmatchedCount ?? 0),
+    ignoredCount: Number(value.ignoredCount || 0),
     warningsCount: Number(value.warningsCount || 0),
     errorsCount: Number(value.errorsCount || 0),
     warnings: asArray(value.warnings),
@@ -218,17 +222,23 @@ async function startDatasetRun(adapter, mode = "regenerate") {
   });
 }
 
+function datasetRunStatus(diagnostics = {}, diff = {}) {
+  const warnings = asArray(diagnostics.warnings);
+  if (
+    Number(diagnostics.mappingMissingCount || diagnostics.unmatchedCount || 0)
+    || Number(diagnostics.warningsCount || 0)
+    || warnings.length
+  ) return "partial";
+  return diff.changed === false ? "unchanged" : "success";
+}
+
 async function finishDatasetRun(run, result) {
   if (!run) return null;
   const diagnostics = result.current?.diagnostics || {};
   const diff = diagnostics.diff || {};
   const warnings = asArray(diagnostics.warnings);
   const unmatchedEntries = asArray(diagnostics.unmatchedEntries);
-  const status = diff.changed === false
-    ? "unchanged"
-    : Number(diagnostics.unmatchedCount || 0) || warnings.length
-      ? "partial"
-      : "success";
+  const status = datasetRunStatus(diagnostics, diff);
   const completedAt = new Date();
   const update = {
     status,
@@ -246,6 +256,8 @@ async function finishDatasetRun(run, result) {
     modified: Number(diff.modified || 0),
     matchedCount: Number(diagnostics.matchedCount || 0),
     unmatchedCount: Number(diagnostics.unmatchedCount || 0),
+    mappingMissingCount: Number(diagnostics.mappingMissingCount ?? diagnostics.unmatchedCount ?? 0),
+    ignoredCount: Number(diagnostics.ignoredCount || 0),
     warningsCount: warnings.length,
     errorsCount: 0,
     unmatchedEntries,
@@ -661,6 +673,7 @@ async function importCurrentDataset(adapter, data) {
 module.exports = {
   buildDiagnostics,
   continueCurrentDatasetRegeneration,
+  datasetRunStatus,
   enqueueCurrentDatasetRegeneration,
   finishDatasetRun,
   getCurrentDatasetRegeneration,

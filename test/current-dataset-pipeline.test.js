@@ -4,7 +4,10 @@ const express = require("express");
 const request = require("supertest");
 const { createCurrentDatasetRouter } = require("../src/current-datasets/router");
 const {
+  buildDiagnostics,
+  datasetRunStatus,
   importCurrentDataset,
+  serializeDatasetRun,
   sourceMetadata,
   staleDatasetRunUpdate,
   unmatchedEntriesFromReport,
@@ -147,6 +150,53 @@ test("normalise les non-matchés en diagnostics détaillés et dédupliqués", (
   });
   assert.equal(entries[1].sourceName, "Rare Candy XL");
   assert.equal(entries[1].reason, "missing-local-item");
+});
+
+test("le rapport PvP expose séparément génération, ignorés, MAPPING_MISSING et WARNING", () => {
+  const diagnostics = buildDiagnostics({
+    report: {
+      mappingMissingCount: 13,
+      ignoredCount: 2,
+      warnings: ["MOVE_UNMATCHED"],
+    },
+    stats: { itemsParsed: 120, itemsMatched: 107, itemsUnmatched: 13 },
+    diff: { changed: true, added: 4, removed: 0, modified: 1 },
+  });
+
+  assert.equal(diagnostics.parsedCount, 120);
+  assert.equal(diagnostics.mappingMissingCount, 13);
+  assert.equal(diagnostics.ignoredCount, 2);
+  assert.equal(diagnostics.warningsCount, 2);
+
+  const run = serializeDatasetRun({
+    _id: "run-partial",
+    datasetKey: "pvp-rankings",
+    status: "partial",
+    totalAfter: 120,
+    matchedCount: 107,
+    unmatchedCount: 13,
+    mappingMissingCount: diagnostics.mappingMissingCount,
+    ignoredCount: diagnostics.ignoredCount,
+    warningsCount: diagnostics.warningsCount,
+  });
+  assert.deepEqual(
+    {
+      status: run.status,
+      generated: run.totalAfter,
+      mappingMissing: run.mappingMissingCount,
+      ignored: run.ignoredCount,
+      warnings: run.warningsCount,
+    },
+    { status: "partial", generated: 120, mappingMissing: 13, ignored: 2, warnings: 2 },
+  );
+  assert.equal(
+    datasetRunStatus({ unmatchedCount: 13, warnings: ["MAPPING_MISSING"] }, { changed: false }),
+    "partial",
+    "un second passage inchangé reste partiel tant que ses diagnostics subsistent",
+  );
+  assert.equal(datasetRunStatus({ mappingMissingCount: 13, warningsCount: 0 }, { changed: false }), "partial");
+  assert.equal(datasetRunStatus({ mappingMissingCount: 0, warningsCount: 2 }, { changed: false }), "partial");
+  assert.equal(datasetRunStatus({ unmatchedCount: 0, warnings: [] }, { changed: false }), "unchanged");
 });
 
 test("le pipeline upsert current, nettoie sourceFile et relit réellement MongoDB", async () => {

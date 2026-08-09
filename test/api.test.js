@@ -321,7 +321,7 @@ test("les types, statuts PvP dédiés et formes Max sont normalisés", () => {
   ]);
   assert.ok(dynamax.moveIds.includes("VINE_WHIP_FAST"));
   assert.deepEqual(dynamax.pvpLeagues, []);
-  assert.equal(dynamax.data.pvpRecord.leagues.great.status, "MAPPING_MISSING");
+  assert.equal(dynamax.data.pvpRecord.leagues.great.status, "UNSUPPORTED_FORM");
   assert.equal(data.pokemon.filter((pokemon) => pokemon.kind === "dynamax").length, 127);
   const maxMoves = data.moves.filter((move) => move.kind === "max");
   assert.ok(maxMoves.length >= 18);

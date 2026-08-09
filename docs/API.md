@@ -54,7 +54,7 @@ Chaque document MongoDB conserve :
 Depuis la refonte du modele Pokemon, MongoDB separe les donnees en deux collections :
 
 - `pokemons` contient le gameplay, les stats, les attaques, la projection PvP dérivée,
-  les disponibilites, les images principales, les bonbons, `data.assets.assetsRef` et
+  les disponibilites et `data.assetsRef`; images et bonbons sont hydratés depuis le Core, et
   `data.pvpRef`; les fichiers Assets et PvP séparés restent les ressources canoniques.
 - `pokemonAssets` contient les assets lourds : Home, portraits, portraits shiny, location cards, Shuffle et variantes visuelles.
 - `raids`, `eggs`, `maxbattles`, `rockets` et `researches` contiennent chacun le

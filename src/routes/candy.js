@@ -22,10 +22,7 @@ const projection = {
   types: 1,
   primaryType: 1,
   secondaryType: 1,
-  "data.assets.candy": 1,
-  "data.assets.image": 1,
-  "data.assets.portrait": 1,
-  "data.assets.home.image": 1,
+  "data.assetsRef": 1,
 };
 
 function pokemonName(doc) {
@@ -78,10 +75,7 @@ function groupCandies(docs) {
 }
 
 async function candyGroups() {
-  const docs = await Pokemon.find(
-    { "data.assets.candy.familyId": { $exists: true } },
-    projection,
-  )
+  const docs = await Pokemon.find({}, projection)
     .sort({ dexNr: 1, form: 1, kind: 1 })
     .lean();
   return groupCandies(await hydratePokemonAssetsBatch(docs));

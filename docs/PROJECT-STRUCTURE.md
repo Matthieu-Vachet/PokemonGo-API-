@@ -84,7 +84,7 @@ Le rôle détaillé de chaque fichier JavaScript est documenté dans
 Les icônes de style Pokémon Shuffle vivent dans `asset/pokemonShuffle/`.
 `scripts/import/pokemon-shuffle.js` les associe une seule fois à la fiche JSON exacte
 dans `pokemon-assets/shuffle/<catégorie>/*.shuffle.json`, référencé par le Core indiqué
-par `assets.assetsRef`.
+par `assetsRef` à la racine.
 Une image Dynamax va uniquement dans une fiche Dynamax, une Méga dans sa fiche Méga
 et une forme régionale dans sa fiche régionale. Les images Shadow et purifiées restent
 regroupées sur la fiche asset de leur forme.

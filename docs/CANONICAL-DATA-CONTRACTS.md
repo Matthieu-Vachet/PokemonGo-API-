@@ -90,7 +90,7 @@ Les manifestes comptent chaque famille par catégorie et vérifient les collisio
 orphelins, mauvaises références et pertes de fichiers.
 
 Les fiches publiques conservent les champs stables suivants : `id`, `formId`,
-`baseFormId`, `slug`, `dexId`, `entityCategory`, `data.assets.assetsRef`,
+`baseFormId`, `slug`, `dexId`, `entityCategory`, `data.assetsRef`,
 `data.assetRefs` et `data.pvpRef`. Les sections Bonbons utilisent `familyId` et les
 images canoniques Candy/XL.
 Une fiche Méga tente d’abord l’asset Pokémon GO canonique ; une image HOME ne peut être

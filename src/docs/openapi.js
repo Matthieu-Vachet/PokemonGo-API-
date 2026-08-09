@@ -35,10 +35,10 @@ const examples = {
       source: "https://www.margxt.fr/liste-des-pokemon-obscurs-et-chromatiques-shiny-dans-pokemon-go/",
       matchedName: "Dracaufeu",
     },
+    assetsRef: "pokemon-assets/core/normal/0006-charizard.assets.json",
     assets: {
       image: "https://raw.githubusercontent.com/.../pokemon/0006.png",
       shinyImage: "https://raw.githubusercontent.com/.../pokemon/0006-shiny.png",
-      assetsRef: "pokemon-assets/core/normal/0006-charizard.assets.json",
     },
     pvpRef: "pvp/pokemon/normal/0006-charizard.pvp.json",
   },

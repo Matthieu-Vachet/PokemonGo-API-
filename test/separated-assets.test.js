@@ -34,6 +34,8 @@ test("le reader sépare le core et les quatre familles sans collision", () => {
     { home: 1089, shuffle: 1512, variants: 331, "location-cards": 215 },
   );
   assert.ok(data.pokemonAssets.every((document) => /\/core\//.test(document.sourceFile)));
+  assert.ok(data.pokemon.every((document) => document.data.assets === undefined));
+  assert.ok(data.pokemon.every((document) => /^pokemon-assets\/core\//.test(document.data.assetsRef)));
   assert.ok(data.pokemonAssets.every((document) => document.sourceFile.includes(`/${document.entityCategory === "FORM" ? "forms" : document.entityCategory.toLowerCase()}/`)));
   assert.ok(data.pokemonAssetFamilies.every((document) => document.payload !== null));
 });
@@ -42,6 +44,8 @@ test("le core reste léger tant qu'aucune famille n'est incluse", () => {
   const hydrated = attachPokemonAssets(bulbasaur, bulbasaurCore);
   assert.equal(hydrated.data.assets.image, bulbasaurCore.assets.image);
   assert.equal(hydrated.data.assets.shinyImage, bulbasaurCore.assets.shinyImage);
+  assert.equal(hydrated.data.assetsRef, bulbasaur.data.assetsRef);
+  assert.equal(hydrated.data.assets.assetsRef, undefined);
   assert.equal(hydrated.data.assets.home, undefined);
   assert.equal(hydrated.data.assets.shuffle, undefined);
   assert.equal(hydrated.data.assets.locationCards, undefined);

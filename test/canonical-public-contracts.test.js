@@ -47,11 +47,12 @@ test("les cinq catégories conservent leur identité et leurs références publi
     assert.match(pokemon.dexId, /^\d{4}$/);
     assert.ok(pokemon.slug);
     assert.ok(pokemon.formId);
-    assert.match(pokemon.data.assets.assetsRef, new RegExp(`^pokemon-assets/core/${directory}/`));
+    assert.equal(pokemon.data.assets, undefined);
+    assert.match(pokemon.data.assetsRef, new RegExp(`^pokemon-assets/core/${directory}/`));
     assert.match(pokemon.data.pvpRef, new RegExp(`^pvp/pokemon/${directory}/`));
-    assert.equal(assetReferences.has(pokemon.data.assets.assetsRef), false, `${pokemon.formId}: collision assetsRef`);
+    assert.equal(assetReferences.has(pokemon.data.assetsRef), false, `${pokemon.formId}: collision assetsRef`);
     assert.equal(pvpReferences.has(pokemon.data.pvpRef), false, `${pokemon.formId}: collision pvpRef`);
-    assetReferences.add(pokemon.data.assets.assetsRef);
+    assetReferences.add(pokemon.data.assetsRef);
     pvpReferences.add(pokemon.data.pvpRef);
 
     const core = coreByFormId.get(pokemon.formId);
@@ -63,7 +64,7 @@ test("les cinq catégories conservent leur identité et leurs références publi
 
     const presented = presentPokemon(pokemon);
     assert.equal(presented.entityCategory, pokemon.entityCategory);
-    assert.equal(presented.data.assets.assetsRef, pokemon.data.assets.assetsRef);
+    assert.equal(presented.data.assetsRef, pokemon.data.assetsRef);
     assert.equal(presented.data.pvpRef, pokemon.data.pvpRef);
   }
 

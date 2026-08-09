@@ -90,16 +90,6 @@ function normalizePokemonMoveFields(data) {
   };
 }
 
-function inlinePokemonAssets(assets) {
-  if (!assets || typeof assets !== "object") return assets;
-  return {
-    image: assets.image ?? null,
-    shinyImage: assets.shinyImage ?? null,
-    candy: assets.candy ?? null,
-    assetsRef: assets.assetsRef ?? null,
-  };
-}
-
 function readPvpRecord(data) {
   if (!data?.pvpRef) return null;
   const expected = resolveCanonicalReference(data, { family: "pvp" });
@@ -139,10 +129,8 @@ function hydratePokemonPvp(data) {
 
 function toPokemonDataDocument(data) {
   const normalized = normalizePokemonMoveFields(data);
-  return {
-    ...normalized,
-    assets: inlinePokemonAssets(normalized.assets),
-  };
+  const { assets: _legacyEmbeddedAssets, ...withoutEmbeddedAssets } = normalized;
+  return withoutEmbeddedAssets;
 }
 
 function pokemonKind(data, hint) {
@@ -158,16 +146,6 @@ function pokemonKind(data, hint) {
 
 function pokemonKey(data) {
   return String(data.formId || `${data.id}:${data.form || "normal"}`).toUpperCase();
-}
-
-function mergedFormAssets(parent, form) {
-  const assets = {
-    ...(parent.assets || {}),
-    ...(form.assets || {}),
-    home: form.assets?.home || parent.assets?.home,
-  };
-  if (form.assets?.shuffle === undefined) delete assets.shuffle;
-  return assets;
 }
 
 function mergePokemon(parent, form) {
@@ -206,7 +184,7 @@ function mergePokemon(parent, form) {
     pvp: form.pvp === undefined ? parent.pvp : form.pvp,
     pvpRef: form.pvpRef || parent.pvpRef || null,
     pvpRecord: form.pvpRecord || parent.pvpRecord || null,
-    assets: mergedFormAssets(parent, form),
+    assetsRef: form.assetsRef || null,
     maxBattle: form.maxBattle || parent.maxBattle,
   };
   if (!isMaxForm) return merged;

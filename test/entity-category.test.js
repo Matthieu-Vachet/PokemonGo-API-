@@ -21,7 +21,7 @@ test("l'API indexe les cinq catégories et conserve leurs chemins canoniques", (
     assert.ok(core, formId);
     assert.equal(pokemon.entityCategory, category);
     assert.equal(core.entityCategory, category);
-    assert.equal(pokemon.data.assets.assetsRef, resolveCanonicalReference(pokemon.data, { family: "core" }));
+    assert.equal(pokemon.data.assetsRef, resolveCanonicalReference(pokemon.data, { family: "core" }));
     assert.equal(pokemon.data.pvpRef, resolveCanonicalReference(pokemon.data, { family: "pvp" }));
   }
 });

@@ -239,7 +239,8 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   assert.equal(bulbasaur.generation, 1);
   assert.equal(bulbasaur.regionId, "KANTO");
   assert.equal(bulbasaur.data.region.names.French, "Kanto");
-  assert.match(bulbasaur.data.assets.assetsRef, /pokemon-assets\/core\/normal\/0001-bulbasaur\.assets\.json/);
+  assert.equal(bulbasaur.data.assets, undefined);
+  assert.match(bulbasaur.data.assetsRef, /pokemon-assets\/core\/normal\/0001-bulbasaur\.assets\.json/);
   assert.equal(bulbasaurCore.sourceFile, "data/pokemon-assets/core/normal/0001-bulbasaur.assets.json");
   assert.equal(bulbasaurCore.assetRefs.home, "pokemon-assets/home/normal/0001-bulbasaur.home.json");
   assert.equal(bulbasaurHome.source, "pokemon-home");
@@ -571,7 +572,7 @@ test("une forme Pokémon Home peut déclarer une liste de variantes vide", () =>
   assert.ok(!issues.some((issue) => issue.path === "assets.home.variants"));
 });
 
-test("assets peut être null uniquement pour une forme non sortie", () => {
+test("assetsRef est obligatoire pour une forme sortie ou non sortie", () => {
   const unreleased = readDataJson("pokemon-forms/normal/0327-spinda-10.json");
   const released = readDataJson("pokemon-forms/normal/0327-spinda-00.json");
   const unreleasedIssues = validateSourceData(
@@ -580,26 +581,32 @@ test("assets peut être null uniquement pour une forme non sortie", () => {
     "form",
   );
   const releasedIssues = validateSourceData(
-    { ...released, assets: null },
+    { ...released, assetsRef: null },
     "data/pokemon-forms/normal/0327-spinda-00.json",
     "form",
   );
-  assert.ok(!unreleasedIssues.some((issue) => issue.path === "assets"));
-  assert.ok(releasedIssues.some((issue) => issue.path === "assets"));
+  const missingUnreleasedIssues = validateSourceData(
+    { ...unreleased, assetsRef: null },
+    "data/pokemon-forms/normal/0327-spinda-10.json",
+    "form",
+  );
+  assert.ok(!unreleasedIssues.some((issue) => issue.path === "assetsRef"));
+  assert.ok(missingUnreleasedIssues.some((issue) => issue.path === "assetsRef"));
+  assert.ok(releasedIssues.some((issue) => issue.path === "assetsRef"));
 });
 
-test("un asset Shuffle ne remplace pas les images GO d'une fiche sortie", () => {
+test("une copie embarquée est diagnostiquée et ne remplace pas le core", () => {
   const released = structuredClone(
     readDataJson("pokemon-forms/normal/0201-unown-a.json"),
   );
-  released.assets = { shuffle: released.assets.shuffle };
+  released.assets = { image: "https://provider.invalid/wrong.png" };
   const issues = validateSourceData(
     released,
     "data/pokemon-forms/normal/0201-unown-a.json",
     "form",
   );
-  assert.ok(issues.some((issue) => issue.path === "assets.image"));
-  assert.ok(issues.some((issue) => issue.path === "assets.shinyImage"));
+  assert.ok(issues.some((issue) => issue.issue === "LEGACY_EMBEDDED_ASSET_DUPLICATE"));
+  assert.ok(!issues.some((issue) => issue.path === "assets.image"));
 });
 
 test("la checklist exige les champs propres à chaque famille Pokémon", () => {
@@ -626,7 +633,7 @@ test("la checklist exige les champs propres à chaque famille Pokémon", () => {
       source: readDataJson("pokemon-forms/dynamax/0001-bulbasaur-dynamax.json"),
       file: "data/pokemon-forms/dynamax/0001-bulbasaur-dynamax.json",
       kind: "dynamax",
-      removed: "assets",
+      removed: "assetsRef",
     },
     {
       source: readDataJson("pokemon-forms/dynamax/0001-bulbasaur-dynamax.json"),
@@ -678,7 +685,7 @@ test("les filtres numériques invalides sont refusés", () => {
   );
 });
 
-test("le provider Pokémon transmet xlImage sans reconstruire son URL", () => {
+test("le provider Pokémon transmet exclusivement le candy du core", () => {
   const candy = {
     familyId: 1,
     image: "https://assets.test/candy/1.png",
@@ -686,17 +693,16 @@ test("le provider Pokémon transmet xlImage sans reconstruire son URL", () => {
     primaryColor: { r: 1, g: 2, b: 3, a: 1 },
     secondaryColor: { r: 4, g: 5, b: 6, a: 1 },
   };
-  const fromPokemon = attachPokemonAssets({ data: { assets: { candy } } }, { assets: { candy: { ...candy, familyId: 999 } } });
-  assert.deepEqual(fromPokemon.data.assets.candy, candy);
-  const fromAssetDocument = attachPokemonAssets({ data: { assets: {} } }, { assets: { candy } });
+  const coreCandy = { ...candy, familyId: 999 };
+  const fromPokemon = attachPokemonAssets({ data: { assetsRef: "pokemon-assets/core/normal/0001.assets.json", assets: { candy } } }, { assets: { candy: coreCandy } });
+  assert.deepEqual(fromPokemon.data.assets.candy, coreCandy);
+  assert.equal(fromPokemon.data.assetsRef, "pokemon-assets/core/normal/0001.assets.json");
+  const fromAssetDocument = attachPokemonAssets({ data: { assetsRef: "pokemon-assets/core/normal/0001.assets.json" } }, { assets: { candy } });
   assert.deepEqual(fromAssetDocument.data.assets.candy, candy);
 
   const fromCanonicalJson = attachPokemonAssets({
     sourceFiles: ["data/pokemon/0001-bulbasaur.json"],
-    data: { assets: { candy: { ...candy, xlImage: null } } },
-  });
-  assert.equal(
-    fromCanonicalJson.data.assets.candy.xlImage,
-    "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/xl_candy/1.png",
-  );
+    data: { assetsRef: "pokemon-assets/core/normal/0001-bulbasaur.assets.json" },
+  }, { assets: { candy } });
+  assert.equal(fromCanonicalJson.data.assets.candy.xlImage, candy.xlImage);
 });

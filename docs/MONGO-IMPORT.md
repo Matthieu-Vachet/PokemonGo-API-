@@ -87,13 +87,13 @@ production, ni un fallback, ni une entrée du job MongoDB global.
 
 Chaque document `pokemons` garde dans `data` le JSON principal sans assets lourds :
 gameplay, stats, attaques, PvP, disponibilités, images principales, candy et
-`assets.assetsRef`. Le Core vit dans `pokemonAssets`; chaque payload secondaire vit dans
+`assetsRef` à la racine. Le Core vit dans `pokemonAssets`; chaque payload secondaire vit dans
 `pokemonAssetFamilies` et porte `family`, `formId` et `entityCategory`. Les documents
 sont liés par `formId`, puis hydratés exclusivement depuis les références `assetRefs`
 du Core. Un fichier dans une mauvaise catégorie bloque le sync.
 
 Les routes de détail hydratent automatiquement la fiche en lisant
-`data.assets.assetsRef`, puis les références secondaires du Core. `pvpRef` est validé
+`data.assetsRef`, puis les références secondaires du Core. `pvpRef` est validé
 contre la même catégorie avant import.
 La liste des Pokemon reste volontairement plus légère.
 

@@ -389,7 +389,7 @@ Une entree de `megaEvolutions` contient:
 - Gameplay: `size`, `catchRate`, `fleeRate`, `availability`.
 - Combat: `maxCp`, `stats`, `primaryType`, `secondaryType`.
 - Mega: `megaEnergyCost`.
-- Images légères: `assets.image`, `assets.shinyImage`, `assets.assetsRef`.
+- Référence d’assets : `assetsRef` à la racine ; les images vivent dans le Core.
 
 `availability` d'une Mega contient `released`, `shinyReleased`, `tradable` et
 `pokemonHomeTransfer`.
@@ -416,10 +416,7 @@ duplique que les informations propres au combat Max et garde sa propre identite 
   "maxBattle": {
     "moves": ["GMAX_VINE_LASH"]
   },
-  "assets": {
-    "image": "",
-    "shinyImage": ""
-  }
+  "assetsRef": "pokemon-assets/core/gigantamax/0003-venusaur-gigantamax.assets.json"
 }
 ```
 
@@ -437,29 +434,18 @@ duplique que les informations propres au combat Max et garde sa propre identite 
 `maxLevel50`, `maxLevel40` et `maxBattlesLevel20`. Les champs propres aux Pokemon normaux,
 comme `weatherBoostLevel25`, `raidLevel20` et `researchLevel15`, ne doivent pas y figurer.
 
-`assets` est obligatoire afin que chaque fiche Max expose ses propres visuels disponibles.
+`assetsRef` est obligatoire afin que chaque fiche Max référence ses propres visuels disponibles.
 Une forme Dynamax conserve aussi son tableau `evolutions`. Les autres champs qui changent
 reellement, comme `availability`, `names`, `stats` ou les types, peuvent etre ajoutes a la
 forme et sont valides lorsqu'ils existent.
 
 ## Assets
 
-La fiche Pokemon principale ne garde que les assets legers et un pointeur vers son
-fichier lourd :
+La fiche Pokemon principale ne garde qu’un pointeur racine vers son Core :
 
 ```json
 {
-  "assets": {
-    "image": "https://raw.githubusercontent.com/.../pm1.icon.png",
-    "shinyImage": "https://raw.githubusercontent.com/.../pm1.s.icon.png",
-    "candy": {
-      "familyId": 1,
-      "image": "https://raw.githubusercontent.com/.../candy/001.png",
-      "primaryColor": "rgba(0.21, 0.79, 0.65, 1)",
-      "secondaryColor": "rgba(0.63, 0.98, 0.50, 1)"
-    },
-    "assetsRef": "pokemon-assets/core/normal/0001-bulbasaur.assets.json"
-  }
+  "assetsRef": "pokemon-assets/core/normal/0001-bulbasaur.assets.json"
 }
 ```
 
@@ -496,16 +482,13 @@ des documents séparés référencés par `assetRefs` et persistés dans
 
 | Champ | Type | Description |
 | --- | --- | --- |
-| `assets.image` | string/null | Image principale légère stockée dans la fiche Pokémon. |
-| `assets.shinyImage` | string/null | Image chromatique principale légère stockée dans la fiche Pokémon. |
-| `assets.candy.familyId` | number | Famille de bonbon partagée par le Pokémon de base, ses évolutions et ses formes. |
-| `assets.candy.image` | string | Image publique du bonbon, servie depuis `PokemonGo-Assets-API`. |
-| `assets.candy.primaryColor` | object | Couleur principale RGBA issue de `PokemonCandyColorData.json`. |
-| `assets.candy.secondaryColor` | object | Couleur secondaire RGBA issue de `PokemonCandyColorData.json`. |
-| `assets.assetsRef` | string/null | Chemin vers le Core `pokemon-assets/core/<catégorie>/*.assets.json`. |
+| `assetsRef` | string | Chemin racine vers le Core `pokemon-assets/core/<catégorie>/*.assets.json`. |
+| Core `assets.image` | string/null | Image principale, stockée uniquement dans le Core. |
+| Core `assets.shinyImage` | string/null | Image chromatique principale, stockée uniquement dans le Core. |
+| Core `assets.candy` | object/null | Bonbon, XL et couleurs, stockés uniquement dans le Core. |
 
 Les assets sont séparés par famille et catégorie dans `PokemonGo-Data/pokemon-assets`.
-Les routes de détail et le Dashboard hydratent le Core depuis `assets.assetsRef`, puis
+Les routes de détail et le Dashboard hydratent le Core depuis `assetsRef`, puis
 les familles depuis ses `assetRefs`. La convention complète est décrite dans
 `docs/ENTITY-CATEGORY-ARCHITECTURE.md`.
 
@@ -527,9 +510,9 @@ les familles depuis ses `assetRefs`. La convention complète est décrite dans
 | `assets.shuffle.variants[].tags` | string[] | Codes utiles sans l'état terminal ni `chromatique`. |
 | `assets.shuffle.variants[].shiny` | boolean | Vrai lorsque le fichier se termine par `chromatique`. |
 
-Une fiche principale déjà sortie doit conserver `assets.image` et `assets.shinyImage`
-quand les URLs existent. Les visuels Home, portraits, Shuffle, location cards et
-`assetForms` appartiennent au fichier asset lourd et à la collection `pokemonAssets`.
+Une fiche principale ne doit jamais réembarquer `assets.image`, `assets.shinyImage`,
+`assets.candy` ou les couleurs. Les visuels principaux, bonbons et portraits vivent
+dans le Core ; HOME, Shuffle, Location Cards et Variants vivent dans leurs familles.
 
 Les types vivent dans `data/types/<slug>.json`. Leur bloc `assets` contient `icon` et
 `background`. `data/types/types.json` reste un index complet compatible avec les anciens

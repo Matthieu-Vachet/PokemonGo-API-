@@ -74,7 +74,7 @@ router.get(
     if (request.query.shadow === "true") filter["flags.shadow"] = true;
     if (request.query.tradable === "true") filter["flags.tradable"] = true;
     const data = await Pokemon.find(filter)
-      .select("key id formId slug dexNr dexId form names flags data.assets")
+      .select("key id formId slug dexNr dexId form names flags data.assetsRef")
       .sort({ dexNr: 1, form: 1 })
       .lean();
     response.json({

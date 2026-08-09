@@ -47,7 +47,7 @@ function readJson(file) {
 }
 
 function readAssetRecord(data) {
-  const assetsRef = data?.assets?.assetsRef;
+  const assetsRef = data?.assetsRef;
   if (!assetsRef) return null;
   const classification = classifyEntity(data);
   if (classification.ambiguous || assetsRef !== resolveCanonicalReference(data, { family: "core" })) return null;
@@ -66,16 +66,19 @@ function readAssetRecord(data) {
     const field = family === "location-cards" ? "locationCards" : family;
     heavy[field === "variants" ? "assetForms" : field] = record[field];
   }
-  return { ...core, assets: { ...core.assets, ...heavy } };
+  return { ...core, assetsRef, assets: { ...core.assets, ...heavy } };
 }
 
 function hydrateSourceData(data) {
   const record = readAssetRecord(data);
   if (!record?.assets) return data;
+  const { assets: _legacyEmbeddedAssets, ...withoutEmbeddedAssets } = data;
   return {
-    ...data,
+    ...withoutEmbeddedAssets,
     assets: {
-      ...(data.assets || {}),
+      image: record.assets.image ?? null,
+      shinyImage: record.assets.shinyImage ?? null,
+      candy: record.assets.candy ?? null,
       home: record.assets.home ?? null,
       portrait: record.assets.portrait ?? null,
       portraitShiny: record.assets.portraitShiny ?? null,
@@ -529,6 +532,7 @@ function createValidator() {
         field(stats, key, `${pathName}.stats.${key}`, "number");
     typeBlock(value.primaryType, `${pathName}.primaryType`);
     typeBlock(value.secondaryType, `${pathName}.secondaryType`, true);
+    field(value, "assetsRef", `${pathName ? `${pathName}.` : ""}assetsRef`, "string", { nonEmpty: true });
     assets(
       value.assets,
       `${pathName}.assets`,
@@ -619,6 +623,7 @@ function createValidator() {
               actualType(flag),
             );
     }
+    field(value, "assetsRef", `${prefix}assetsRef`, "string", { nonEmpty: true });
     assets(
       value.assets,
       `${prefix}assets`,
@@ -733,6 +738,7 @@ function createValidator() {
         "absent",
       );
     else eliteMoves(value.eliteCinematicMoves, `${prefix}eliteCinematicMoves`);
+    field(value, "assetsRef", `${prefix}assetsRef`, "string", { nonEmpty: true });
     assets(
       value.assets,
       `${prefix}assets`,
@@ -867,6 +873,8 @@ function createValidator() {
 }
 
 function validateSourceData(data, relativeFile = "", kindHint = "", options = {}) {
+  const embeddedAssetFields = ["image", "shinyImage", "candy", "colors"]
+    .filter((field) => Object.hasOwn(data?.assets || {}, field));
   data = hydrateSourceData(data);
   const validator = createValidator();
   const kind =
@@ -884,6 +892,14 @@ function validateSourceData(data, relativeFile = "", kindHint = "", options = {}
   else if (kind === "dynamax" || kind === "gigantamax")
     validator.maxForm(data, "");
   else validator.pokemon(data, "single", "", kind === "form");
+  if (embeddedAssetFields.length) {
+    validator.add(
+      "assets",
+      "LEGACY_EMBEDDED_ASSET_DUPLICATE",
+      "assetsRef racine uniquement",
+      embeddedAssetFields.join(", "),
+    );
+  }
   applyCustomRules(
     data,
     kind,
@@ -1465,7 +1481,7 @@ function detailForKey(key) {
     ...data,
     sourceData,
     assetSourceData,
-    assetSourceFile: sourceData.assets?.assetsRef || null,
+    assetSourceFile: sourceData.assetsRef || null,
     moveDetails: {
       quickMoves: resolveMoves(data.quickMoves, moveCatalog),
       cinematicMoves: resolveMoves(data.cinematicMoves, moveCatalog),

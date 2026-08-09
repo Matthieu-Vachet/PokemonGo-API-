@@ -46,17 +46,9 @@ const STATIC_SYNC_COLLECTIONS = Object.freeze(
 
 const pokemonHeavyAssetPaths = {
   "data.assetForms": "",
-  "data.assets.home": "",
-  "data.assets.portrait": "",
-  "data.assets.portraitShiny": "",
-  "data.assets.locationCards": "",
-  "data.assets.shuffle": "",
+  "data.assets": "",
   assetForms: "",
-  "assets.home": "",
-  "assets.portrait": "",
-  "assets.portraitShiny": "",
-  "assets.locationCards": "",
-  "assets.shuffle": "",
+  assets: "",
 };
 
 function sortObject(value) {

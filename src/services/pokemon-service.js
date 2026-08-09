@@ -1,7 +1,5 @@
-const fs = require("fs");
 const { Pokemon, PokemonAsset, PokemonAssetFamily } = require("../models");
 const { ApiError } = require("../lib/api-error");
-const { dataPath } = require("../lib/data-repository");
 const { boolean, csv, pagination, sortFromQuery } = require("../lib/http");
 const {
   presentPokemon,
@@ -21,7 +19,6 @@ const SORT_FIELDS = [
   "catchRate",
   "fleeRate",
 ];
-const canonicalCandyCache = new Map();
 const ASSET_FAMILIES = Object.freeze([
   "home",
   "shuffle",
@@ -38,24 +35,6 @@ const ASSET_FAMILY_ALIASES = Object.freeze({
   locationcards: "location-cards",
   backgrounds: "location-cards",
 });
-
-function canonicalCandyFromSource(document = {}) {
-  const sourceFile = (document.sourceFiles || []).find((file) =>
-    /^(?:data\/)?pokemon(?:-forms)?\/.*\.json$/i.test(String(file)),
-  );
-  if (!sourceFile) return null;
-  const relativeFile = String(sourceFile).replace(/^data\//, "");
-  if (canonicalCandyCache.has(relativeFile)) return canonicalCandyCache.get(relativeFile);
-  try {
-    const payload = JSON.parse(fs.readFileSync(dataPath(...relativeFile.split("/")), "utf8"));
-    const candy = payload.assets?.candy ?? null;
-    canonicalCandyCache.set(relativeFile, candy);
-    return candy;
-  } catch {
-    canonicalCandyCache.set(relativeFile, null);
-    return null;
-  }
-}
 
 function escapeRegex(value) {
   return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -170,18 +149,14 @@ function familyPayload(document, family) {
 function mergeAssetData(
   data = {},
   assetDocument = null,
-  canonicalCandy = null,
   familyDocuments = [],
 ) {
   const coreAssets = assetDocument?.assets || assetDocument?.data?.assets || {};
   const byFamily = new Map(
     familyDocuments.map((document) => [document.family, document]),
   );
-  const assets = {
-    ...(data.assets || {}),
-    ...coreAssets,
-    candy: canonicalCandy ?? data.assets?.candy ?? coreAssets.candy ?? null,
-  };
+  const { assets: _legacyEmbeddedAssets, ...withoutEmbeddedAssets } = data;
+  const assets = { ...coreAssets, candy: coreAssets.candy ?? null };
   const assetRefs = assetDocument?.assetRefs || assetDocument?.data?.assetRefs || {};
   const separatedCore = Object.keys(assetRefs).length > 0 ||
     /(?:^|\/)pokemon-assets\/core\//.test(String(assetDocument?.sourceFile || ""));
@@ -196,7 +171,7 @@ function mergeAssetData(
   if (locationCards !== undefined) assets.locationCards = locationCards;
 
   const merged = {
-    ...data,
+    ...withoutEmbeddedAssets,
     assets,
     assetRefs: Object.keys(assetRefs).length ? assetRefs : data.assetRefs || {},
   };
@@ -211,7 +186,6 @@ function attachPokemonAssets(document, assetDocument = null, familyDocuments = [
     data: mergeAssetData(
       document.data,
       assetDocument,
-      canonicalCandyFromSource(document),
       familyDocuments,
     ),
   };

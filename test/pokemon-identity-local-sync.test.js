@@ -121,6 +121,118 @@ test("Sneasler et Gimmighoul séparent leur forme précise du document NORMAL hi
   assert.equal(second.summary.unchanged, 4);
 });
 
+test("Corsola normal, Galarian et SPRING_2026 réparent le modèle historique sans perdre les alias", () => {
+  const inventory = inventoryService.loadLocalIdentityInventory();
+  const identities = ["CORSOLA_NORMAL", "CORSOLA_GALARIAN", "CORSOLA_SPRING_2026"]
+    .map((canonicalId) => inventory.indexes.byCanonicalId.get(canonicalId));
+  assert.ok(identities.every(Boolean));
+  assert.deepEqual(identities.map((identity) => identity.identityKey), [
+    "222|CORSOLA|none|none",
+    "222|CORSOLA_GALARIAN|none|none",
+    "222|SPRING_2026|none|none",
+  ]);
+
+  const initial = syncService.buildIdentitySyncPlan({
+    inventory: { ...inventory, identities },
+    existingIdentities: [],
+    validatedAt: "2026-08-09T00:00:00.000Z",
+  });
+  const documents = initial.creates.map((entry, index) => ({
+    _id: mongoId(9250 + index),
+    ...entry.payload,
+  }));
+  const spring = documents.find((document) => document.canonicalId === "CORSOLA_SPRING_2026");
+  spring.form = null;
+  spring.costume = "CORSOLA_SPRING_2026";
+  spring.aliases = [
+    { provider: "game-master", value: "corsola_spring_2026", status: "active" },
+    { provider: "margxt", value: "corayon_de_galar_lunettes_de_soleil_roses", status: "active" },
+  ];
+  spring.localReference = {
+    key: "222|none|SPRING_2026|none",
+    formId: null,
+    file: "pokemon-assets/galar/0222-corsola-galarian.assets.json",
+    assetsRef: "pokemon-assets/galar/0222-corsola-galarian.assets.json",
+  };
+  spring.localIdentity = {
+    ...spring.localIdentity,
+    form: null,
+    formId: null,
+    costume: "CORSOLA_SPRING_2026",
+    identityKey: "222|none|SPRING_2026|none",
+    sourceFile: "pokemon-assets/galar/0222-corsola-galarian.assets.json",
+    assetsRef: "pokemon-assets/galar/0222-corsola-galarian.assets.json",
+  };
+
+  const repaired = syncService.buildIdentitySyncPlan({
+    inventory: { ...inventory, identities },
+    existingIdentities: documents,
+    validatedAt: "2026-08-09T00:00:00.000Z",
+  });
+  assert.deepEqual(repaired.summary, {
+    create: 0,
+    update: 1,
+    unchanged: 2,
+    orphan: 0,
+    conflict: 0,
+    aliasesPreserved: 2,
+  });
+  const update = repaired.updates[0];
+  assert.equal(update.canonicalId, "CORSOLA_SPRING_2026");
+  assert.equal(update.auditedRelink.previousIdentityKey, "222|none|SPRING_2026|none");
+  assert.equal(update.payload.formId || update.payload.form, "CORSOLA_SPRING_2026");
+  assert.equal(update.payload.costume, null);
+  assert.equal(update.payload.localReference.key, "222|SPRING_2026|none|none");
+  assert.equal(update.payload.localReference.file, "pokemon-assets/core/normal/0222-corsola.assets.json");
+  assert.equal(Object.hasOwn(update.payload, "aliases"), false);
+  assert.deepEqual(update.before.aliases.map((alias) => alias.provider), ["game-master", "margxt"]);
+
+  const synchronized = documents.map((document) => (
+    document._id === update.identityId
+      ? { ...document, ...update.payload, aliases: document.aliases }
+      : document
+  ));
+  const idempotent = syncService.buildIdentitySyncPlan({
+    inventory: { ...inventory, identities },
+    existingIdentities: synchronized,
+    validatedAt: "2026-08-10T00:00:00.000Z",
+  });
+  assert.equal(idempotent.summary.conflict, 0);
+  assert.equal(idempotent.summary.update, 0);
+  assert.equal(idempotent.summary.unchanged, 3);
+});
+
+test("une combinaison forme + costume Corsola reste distincte et ne déclenche aucun relink audité", () => {
+  const inventory = inventoryService.loadLocalIdentityInventory();
+  const spring = inventory.indexes.byCanonicalId.get("CORSOLA_SPRING_2026");
+  const combined = {
+    ...spring,
+    canonicalId: "CORSOLA_GALARIAN_SPRING_2026",
+    identityKey: "222|CORSOLA_GALARIAN|SPRING_2026|none",
+    form: "CORSOLA_GALARIAN",
+    formId: "CORSOLA_GALARIAN",
+    costume: "SPRING_2026",
+  };
+  const oldDocument = {
+    _id: mongoId(9299),
+    canonicalId: combined.canonicalId,
+    pokemonId: 222,
+    form: null,
+    costume: "SPRING_2026",
+    status: "active",
+    aliases: [{ provider: "game-master", value: "CORSOLA_SPRING_2026", status: "active" }],
+    localReference: { key: "222|none|SPRING_2026|none", file: "legacy/corsola.json" },
+  };
+  const plan = syncService.buildIdentitySyncPlan({
+    inventory: { ...inventory, identities: [combined] },
+    existingIdentities: [oldDocument],
+  });
+  assert.equal(plan.summary.conflict, 1);
+  assert.equal(plan.conflicts[0].code, "CANONICAL_ID_LOCAL_CONFLICT");
+  assert.equal(plan.conflicts[0].resolution.automaticSelection, false);
+  assert.equal(syncService.auditedCanonicalRelink(combined, oldDocument), null);
+});
+
 test("la forme NORMAL générique ne capture ni régionale, ni costume, ni Mewtwo Armored", () => {
   const inventory = inventoryService.loadLocalIdentityInventory();
   const candidates = ["SLOWPOKE_GALARIAN", "PIKACHU_ADVENTURE_HAT_2020", "MEWTWO_ARMORED"]

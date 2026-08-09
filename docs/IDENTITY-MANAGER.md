@@ -3,8 +3,8 @@ id: ADR-IDENTITY-001
 title: Identity Manager Pokémon GO
 status: active
 lang: fr
-version: 2.1.0
-updated_at: 2026-08-08
+version: 2.2.0
+updated_at: 2026-08-09
 author: MatWeb Innovation
 projects:
   - PokemonGo-API-
@@ -157,6 +157,8 @@ npm run sync:pokemon-identities:write
 
 Les anciens noms `migrate:pokemon-identities*` restent des alias de compatibilité. Le script exporte la collection avant écriture, recalcule le plan depuis les 1 920 identités locales, conserve les alias et métadonnées manuelles, relie les anciens documents, marque les orphelins en brouillon sans les supprimer, écrit en lots et vérifie un second dry-run.
 
+La transition historique `CORSOLA_SPRING_2026` est la seule reclassification canonique explicitement auditée. Le document MongoDB ancien utilisait `222|none|SPRING_2026|none`, rangeait la variante dans `costume` et pointait vers le core Galarian. Le Game Master et l’inventaire local courant prouvent une forme normale unique `222|SPRING_2026|none|none`, portée par `pokemon-assets/core/normal/0222-corsola.assets.json`. Le relink exige simultanément le canonicalId, le dex, les deux clés exactes, l’alias Game Master actif et les fichiers source attendus. Il met à jour la forme et la référence locale, conserve tous les alias MongoDB, écrit un historique `sync-relink` et devient idempotent. Toute combinaison forme + costume ou toute autre divergence reste un conflit manuel sans sélection automatique.
+
 Résultat du 18 juillet 2026 : 1 391 documents reliés, 520 identités locales créées, 1 396 alias conservés, zéro conflit, zéro orphelin, 1 911 événements d’historique et second passage entièrement inchangé. `MEWTWO_NORMAL` et `MEWTWO_ARMORED` sont deux identités actives distinctes ; `pvpoke:mewtwo_armored` se résout de manière déterministe vers la seconde.
 
 ## Bonnes pratiques
@@ -190,3 +192,4 @@ Résultat du 18 juillet 2026 : 1 391 documents reliés, 520 identités locales c
 - 2026-07-31 — fermeture du registre, retrait de la source obsolète et migration réversible de ses données ; zéro référence active après contrôle.
 - 2026-08-01 — ajout idempotent des alias déjà actifs afin qu’une association répétée ne déclenche plus une erreur de validation MongoDB.
 - 2026-08-09 — canonisation des identifiants de datasets LeekDuck vers le fournisseur `leekduck`, avec agrégation rétrocompatible des traces historiques.
+- 2026-08-09 — relink audité de `CORSOLA_SPRING_2026` depuis l’ancien costume Galarian vers la forme normale Game Master, sans perte d’alias ni règle heuristique générale.

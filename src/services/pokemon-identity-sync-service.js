@@ -13,6 +13,20 @@ function normalized(value) {
     .replace(/_+/g, "_");
 }
 
+const AUDITED_CANONICAL_RELINKS = Object.freeze({
+  CORSOLA_SPRING_2026: Object.freeze({
+    pokemonId: 222,
+    previousIdentityKey: "222|none|SPRING_2026|none",
+    identityKey: "222|SPRING_2026|none|none",
+    formId: "CORSOLA_SPRING_2026",
+    previousCostume: "CORSOLA_SPRING_2026",
+    previousSourceFile: "pokemon-assets/galar/0222-corsola-galarian.assets.json",
+    sourceFile: "pokemon-assets/core/normal/0222-corsola.assets.json",
+    gameMasterAlias: "CORSOLA_SPRING_2026",
+    reason: "Le Game Master et l'asset form normal identifient une forme; l'ancien document l'avait classée comme costume Galarian.",
+  }),
+});
+
 function serializable(value) {
   if (value == null) return value;
   const plain = typeof value.toObject === "function" ? value.toObject({ versionKey: false }) : value;
@@ -179,6 +193,31 @@ function candidateMatchesDocument(candidate, document) {
   return false;
 }
 
+function auditedCanonicalRelink(candidate, document) {
+  const rule = AUDITED_CANONICAL_RELINKS[candidate.canonicalId];
+  if (!rule || document.canonicalId !== candidate.canonicalId) return null;
+  const gameMasterAlias = (document.aliases || []).some((alias) => (
+    alias.provider === "game-master"
+    && alias.status === "active"
+    && normalized(alias.value) === rule.gameMasterAlias
+  ));
+  if (
+    Number(candidate.pokemonId) !== rule.pokemonId
+    || Number(document.pokemonId) !== rule.pokemonId
+    || candidate.identityKey !== rule.identityKey
+    || legacyIdentityKey(document) !== rule.previousIdentityKey
+    || candidate.formId !== rule.formId
+    || candidate.sourceFile !== rule.sourceFile
+    || candidate.assetsRef !== rule.sourceFile
+    || candidate.costume != null
+    || candidate.transformation != null
+    || normalized(document.costume) !== rule.previousCostume
+    || mongoIdentitySummary(document).sourceFile !== rule.previousSourceFile
+    || !gameMasterAlias
+  ) return null;
+  return rule;
+}
+
 function bucketBy(items, selector) {
   const buckets = new Map();
   for (const item of items) {
@@ -266,7 +305,7 @@ function buildIdentitySyncPlan({ inventory, existingIdentities, validatedAt = ne
         continue;
       }
       const canonicalMatch = canonicalMatches[0] || null;
-      if (canonicalMatch && candidateMatchesDocument(local, canonicalMatch)) current = canonicalMatch;
+      if (canonicalMatch && (candidateMatchesDocument(local, canonicalMatch) || auditedCanonicalRelink(local, canonicalMatch))) current = canonicalMatch;
       else if (canonicalMatch) {
         conflicts.push({
           code: "CANONICAL_ID_LOCAL_CONFLICT",
@@ -334,6 +373,7 @@ function buildIdentitySyncPlan({ inventory, existingIdentities, validatedAt = ne
     }
     matchedExistingClaims.set(currentId, localCandidateSummary(local));
     const renamed = current.canonicalId !== local.canonicalId;
+    const auditedRelink = auditedCanonicalRelink(local, current);
     const nextPayload = {
       ...payload,
       status: ["deprecated", "ignored"].includes(current.status) ? current.status : "active",
@@ -348,6 +388,7 @@ function buildIdentitySyncPlan({ inventory, existingIdentities, validatedAt = ne
         identityId: currentId,
         canonicalId: local.canonicalId,
         previousCanonicalId: renamed ? current.canonicalId : null,
+        auditedRelink,
         before: current,
         payload: nextPayload,
       });
@@ -454,7 +495,17 @@ async function applyIdentitySync({ requestedBy = "sync:pokemon-identities", forc
   }
   for (const entry of plan.updates) {
     const identity = byCanonical.get(entry.canonicalId);
-    if (identity) history.push({ identityId: identity._id, canonicalId: identity.canonicalId, action: entry.previousCanonicalId ? "sync-relink" : "sync-update", before: entry.before, after: identity, user: requestedBy, reason: `Inventaire local ${plan.inventory.fingerprint}` });
+    if (identity) history.push({
+      identityId: identity._id,
+      canonicalId: identity.canonicalId,
+      action: entry.previousCanonicalId || entry.auditedRelink ? "sync-relink" : "sync-update",
+      before: entry.before,
+      after: identity,
+      user: requestedBy,
+      reason: entry.auditedRelink
+        ? `${entry.auditedRelink.reason} Inventaire local ${plan.inventory.fingerprint}`
+        : `Inventaire local ${plan.inventory.fingerprint}`,
+    });
   }
   for (const entry of plan.orphans) {
     const identity = byCanonical.get(entry.canonicalId);
@@ -476,6 +527,7 @@ function syncPlanDigest(plan) {
 
 module.exports = {
   applyIdentitySync,
+  auditedCanonicalRelink,
   buildIdentitySyncPlan,
   candidateMatchesDocument,
   localCandidateSummary,

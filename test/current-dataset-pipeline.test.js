@@ -12,6 +12,7 @@ const {
   staleDatasetRunUpdate,
   unmatchedEntriesFromReport,
 } = require("../src/lib/current-dataset-pipeline");
+const { computeDatasetHash } = require("../src/lib/current-dataset-hash");
 const { errorHandler } = require("../src/middleware/errors");
 
 function clone(value) {
@@ -337,6 +338,30 @@ test("un dataset volumineux peut être compressé puis vérifié après relectur
   assert.ok(stored.compressedData, "le payload gzip doit être stocké séparément");
   assert.deepEqual(result.current.data, data, "la relecture doit hydrater le JSON avant le contrôle du hash");
   assert.equal(result.current.compressedData, undefined, "le binaire interne ne doit jamais sortir dans l'API");
+});
+
+test("un dataset compressé inchangé utilise son hash sans hydrater une seconde copie pour le diff", async () => {
+  const data = { items: Array.from({ length: 250 }, (_, index) => ({ id: `entry-${index}`, label: "payload répétitif" })) };
+  const adapterOptions = { extractEntries: (dataset) => dataset.items.map((item) => ({ key: item.id, value: item })) };
+  const Model = createMemoryModel({
+    key: "current",
+    count: data.items.length,
+    sourceHash: computeDatasetHash(data, adapterOptions),
+    data,
+  });
+  const adapter = { ...createAdapter(Model), compressData: true };
+
+  const result = await importCurrentDataset(adapter, clone(data));
+
+  assert.deepEqual(result.current.diagnostics.diff, {
+    previousHash: result.current.sourceHash,
+    newHash: result.current.sourceHash,
+    changed: false,
+    added: 0,
+    removed: 0,
+    modified: 0,
+  });
+  assert.equal(Model.readCount, 2, "une lecture metadata et une relecture de vérification suffisent");
 });
 
 test("la vérification échoue si le hash de la relecture MongoDB est corrompu", async () => {

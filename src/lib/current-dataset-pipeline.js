@@ -502,11 +502,36 @@ async function persistCurrentDataset({ adapter, data, report = {}, summary, stat
   const persistenceStartedAt = Date.now();
   adapter.validate(data, report, summary);
   const count = Number(adapter.count(data, summary));
-  const previous = await readStoredDocument(adapter);
-  const diff = diffDatasets(previous?.data || null, data, {
-    extractEntries: adapter.extractEntries,
-  });
-  if (!previous) diff.previousHash = null;
+  let diff;
+  if (adapter.compressData) {
+    // Compressed datasets can be much larger once hydrated. Compare the new
+    // hash with the stored metadata first so an idempotent regeneration never
+    // holds both complete datasets plus two canonical diff copies in memory.
+    const previousMetadata = await readStoredMetadata(adapter);
+    const newHash = computeDatasetHash(data, { extractEntries: adapter.extractEntries });
+    if (previousMetadata?.sourceHash === newHash) {
+      diff = {
+        previousHash: newHash,
+        newHash,
+        changed: false,
+        added: 0,
+        removed: 0,
+        modified: 0,
+      };
+    } else {
+      const previous = previousMetadata ? await readStoredDocument(adapter) : null;
+      diff = diffDatasets(previous?.data || null, data, {
+        extractEntries: adapter.extractEntries,
+      });
+      if (!previous) diff.previousHash = null;
+    }
+  } else {
+    const previous = await readStoredDocument(adapter);
+    diff = diffDatasets(previous?.data || null, data, {
+      extractEntries: adapter.extractEntries,
+    });
+    if (!previous) diff.previousHash = null;
+  }
 
   const generatedAt = new Date();
   const savedAt = new Date();

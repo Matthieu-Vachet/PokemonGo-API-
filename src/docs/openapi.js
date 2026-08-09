@@ -433,6 +433,8 @@ function createOpenApi() {
           cinematicMoves: [],
           eliteQuickMoves: [],
           eliteCinematicMoves: [],
+          legacyQuickMoves: [],
+          legacyCinematicMoves: [],
         }),
       }),
       [`${api}/search`]: operation("Recherche", "Rechercher Pokémon et attaques en français ou autre langue", {

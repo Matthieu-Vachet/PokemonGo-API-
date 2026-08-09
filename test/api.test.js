@@ -220,6 +220,10 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   assert.equal(data.regions.length, 10);
   assert.equal(new Set(data.pokemon.map((pokemon) => pokemon.key)).size, data.pokemon.length);
   assert.ok(data.pokemon.every((pokemon) => Array.isArray(pokemon.data.quickMoves)));
+  const muk = data.pokemon.find((pokemon) => pokemon.key === "MUK");
+  assert.deepEqual(muk.data.legacyQuickMoves, ["ACID_FAST"]);
+  assert.deepEqual(muk.legacyMoveIds, ["ACID_FAST"]);
+  assert.equal(muk.eliteMoveIds.includes("ACID_FAST"), false);
   assert.ok(data.weather.every((weather) => weather.assets.icon.includes("/weather/")));
   assert.ok(
     data.types.every(
@@ -650,10 +654,14 @@ test("les anciennes attaques embarquées sont présentées comme références", 
         VINE_WHIP_FAST: { id: "VINE_WHIP_FAST", power: 6 },
       },
       cinematicMoves: ["POWER_WHIP"],
+      legacyQuickMoves: {
+        ACID_FAST: { id: "ACID_FAST" },
+      },
     },
   });
   assert.deepEqual(pokemon.data.quickMoves, ["VINE_WHIP_FAST"]);
   assert.deepEqual(pokemon.data.cinematicMoves, ["POWER_WHIP"]);
+  assert.deepEqual(pokemon.data.legacyQuickMoves, ["ACID_FAST"]);
 });
 
 test("les alias de ligue PvP sont normalisés", () => {

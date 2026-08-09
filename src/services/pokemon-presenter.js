@@ -3,6 +3,8 @@ const MOVE_FIELDS = [
   "cinematicMoves",
   "eliteQuickMoves",
   "eliteCinematicMoves",
+  "legacyQuickMoves",
+  "legacyCinematicMoves",
 ];
 
 function moveIds(value) {

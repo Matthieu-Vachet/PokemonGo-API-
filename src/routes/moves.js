@@ -34,7 +34,7 @@ router.get(
   asyncHandler(async (request, response) => {
     const id = String(request.params.identifier).toUpperCase();
     const data = await Pokemon.find({
-      $or: [{ moveIds: id }, { eliteMoveIds: id }, { maxMoveIds: id }],
+      $or: [{ moveIds: id }, { eliteMoveIds: id }, { legacyMoveIds: id }, { maxMoveIds: id }],
     })
       .sort({ dexNr: 1, form: 1 })
       .lean();

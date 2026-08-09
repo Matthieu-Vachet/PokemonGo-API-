@@ -281,6 +281,8 @@ sont centralises dans `data/moves/`.
   "cinematicMoves": ["SLUDGE_BOMB", "SEED_BOMB", "POWER_WHIP"],
   "eliteQuickMoves": [],
   "eliteCinematicMoves": [],
+  "legacyQuickMoves": [],
+  "legacyCinematicMoves": [],
   "maxBattle": {
     "moves": []
   }

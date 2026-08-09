@@ -82,6 +82,8 @@ function normalizePokemonMoveFields(data) {
     cinematicMoves: moveIds(data.cinematicMoves),
     eliteQuickMoves: moveIds(data.eliteQuickMoves),
     eliteCinematicMoves: moveIds(data.eliteCinematicMoves),
+    legacyQuickMoves: moveIds(data.legacyQuickMoves),
+    legacyCinematicMoves: moveIds(data.legacyCinematicMoves),
     maxBattle: data.maxBattle
       ? { ...data.maxBattle, moves: moveIds(data.maxBattle.moves) }
       : data.maxBattle,
@@ -189,6 +191,9 @@ function mergePokemon(parent, form) {
     eliteQuickMoves: form.eliteQuickMoves || parent.eliteQuickMoves,
     eliteCinematicMoves:
       form.eliteCinematicMoves || parent.eliteCinematicMoves,
+    legacyQuickMoves: form.legacyQuickMoves || parent.legacyQuickMoves,
+    legacyCinematicMoves:
+      form.legacyCinematicMoves || parent.legacyCinematicMoves,
     availability: {
       ...(parent.availability || {}),
       ...(form.availability || {}),
@@ -211,6 +216,8 @@ function mergePokemon(parent, form) {
     cinematicMoves: form.cinematicMoves || [],
     eliteQuickMoves: form.eliteQuickMoves || [],
     eliteCinematicMoves: form.eliteCinematicMoves || [],
+    legacyQuickMoves: form.legacyQuickMoves || [],
+    legacyCinematicMoves: form.legacyCinematicMoves || [],
     pvp: form.pvp === undefined ? null : form.pvp,
     evolutions: form.evolutions || [],
     regionForms: form.regionForms || [],
@@ -232,6 +239,8 @@ function toPokemonDocument(data, sourceFiles, hint, parentKey = null) {
   const chargedMoves = moveIds(data.cinematicMoves);
   const eliteQuickMoves = moveIds(data.eliteQuickMoves);
   const eliteChargedMoves = moveIds(data.eliteCinematicMoves);
+  const legacyQuickMoves = moveIds(data.legacyQuickMoves);
+  const legacyChargedMoves = moveIds(data.legacyCinematicMoves);
   const maxMoves = moveIds(data.maxBattle?.moves);
   const key = pokemonKey(data);
   const entityCategory = classifyEntity(data, { sourceFile: sourceFiles[0] });
@@ -247,6 +256,8 @@ function toPokemonDocument(data, sourceFiles, hint, parentKey = null) {
     ...namesToTerms(data.names),
     ...quickMoves,
     ...chargedMoves,
+    ...legacyQuickMoves,
+    ...legacyChargedMoves,
     ...maxMoves,
   ]
     .filter(Boolean)
@@ -274,6 +285,7 @@ function toPokemonDocument(data, sourceFiles, hint, parentKey = null) {
     weatherBoost: (data.weatherBoost || []).map(String),
     moveIds: [...new Set([...quickMoves, ...chargedMoves])],
     eliteMoveIds: [...new Set([...eliteQuickMoves, ...eliteChargedMoves])],
+    legacyMoveIds: [...new Set([...legacyQuickMoves, ...legacyChargedMoves])],
     maxMoveIds: [...new Set(maxMoves)],
     pvpLeagues:
       data.pvp && typeof data.pvp === "object"

@@ -28,6 +28,7 @@ const pokemonSchema = new mongoose.Schema(
     weatherBoost: { type: [String], default: [], index: true },
     moveIds: { type: [String], default: [], index: true },
     eliteMoveIds: { type: [String], default: [], index: true },
+    legacyMoveIds: { type: [String], default: [], index: true },
     maxMoveIds: { type: [String], default: [], index: true },
     pvpLeagues: { type: [String], default: [], index: true },
     stats: {
@@ -74,6 +75,7 @@ pokemonSchema.index({ dexNr: 1, form: 1 });
 pokemonSchema.index({ generation: 1, regionId: 1, types: 1 });
 pokemonSchema.index({ primaryType: 1, secondaryType: 1 });
 pokemonSchema.index({ moveIds: 1, form: 1 });
+pokemonSchema.index({ legacyMoveIds: 1, form: 1 });
 pokemonSchema.index({ "flags.released": 1, "flags.shinyReleased": 1 });
 pokemonSchema.index({ "flags.shadow": 1, "flags.shadowShinyReleased": 1 });
 pokemonSchema.index({ searchTerms: "text" }, { default_language: "none" });

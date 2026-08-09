@@ -118,6 +118,8 @@ Template complet:
   "cinematicMoves": [],
   "eliteQuickMoves": [],
   "eliteCinematicMoves": [],
+  "legacyQuickMoves": [],
+  "legacyCinematicMoves": [],
   "assets": {
     "image": "",
     "shinyImage": "",

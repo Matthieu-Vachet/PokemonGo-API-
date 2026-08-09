@@ -36,6 +36,8 @@ Les fiches Pokemon et leurs formes stockent uniquement des identifiants dans :
 - `cinematicMoves`
 - `eliteQuickMoves`
 - `eliteCinematicMoves`
+- `legacyQuickMoves` (optionnel, distinct d’Elite)
+- `legacyCinematicMoves` (optionnel, distinct d’Elite)
 - `maxBattle.moves`
 
 L'API recompose les details centralises via :

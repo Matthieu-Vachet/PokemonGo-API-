@@ -208,6 +208,8 @@ router.get(
       cinematicMoves: moveIds(pokemon.data?.cinematicMoves),
       eliteQuickMoves: moveIds(pokemon.data?.eliteQuickMoves),
       eliteCinematicMoves: moveIds(pokemon.data?.eliteCinematicMoves),
+      legacyQuickMoves: moveIds(pokemon.data?.legacyQuickMoves),
+      legacyCinematicMoves: moveIds(pokemon.data?.legacyCinematicMoves),
       maxMoves: moveIds(pokemon.data?.maxBattle?.moves),
     };
     const ids = [...new Set(Object.values(categories).flat())];

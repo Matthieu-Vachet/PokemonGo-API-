@@ -7,7 +7,9 @@ const {
   buildDiagnostics,
   datasetRunStatus,
   importCurrentDataset,
+  preserveCurrentDatasetSourceAvailability,
   serializeDatasetRun,
+  sourceAvailabilityDiagnostic,
   sourceMetadata,
   staleDatasetRunUpdate,
   unmatchedEntriesFromReport,
@@ -198,6 +200,63 @@ test("le rapport PvP expose séparément génération, ignorés, MAPPING_MISSING
   assert.equal(datasetRunStatus({ mappingMissingCount: 13, warningsCount: 0 }, { changed: false }), "partial");
   assert.equal(datasetRunStatus({ mappingMissingCount: 0, warningsCount: 2 }, { changed: false }), "partial");
   assert.equal(datasetRunStatus({ unmatchedCount: 0, warnings: [] }, { changed: false }), "unchanged");
+});
+
+test("les indisponibilités source distinguent protection et panne temporaire", () => {
+  const protectedSource = sourceAvailabilityDiagnostic({
+    code: "SOURCE_PROTECTED",
+    message: "Cloudflare challenge",
+    details: {
+      sourceUrl: "https://db.pokemongohub.net/fr/best/gym-defenders",
+      httpStatus: 403,
+      challenge: true,
+      retryable: false,
+      preservation: "Ne pas remplacer le dernier snapshot valide.",
+    },
+  }, new Date("2026-08-09T12:00:00.000Z"));
+  const temporary = sourceAvailabilityDiagnostic({
+    code: "SOURCE_TEMPORARILY_UNAVAILABLE",
+    message: "upstream timeout",
+    details: { retryable: true },
+  });
+
+  assert.deepEqual(protectedSource, {
+    code: "SOURCE_PROTECTED",
+    message: "Cloudflare challenge",
+    detectedAt: new Date("2026-08-09T12:00:00.000Z"),
+    retryable: false,
+    provider: null,
+    sourceUrl: "https://db.pokemongohub.net/fr/best/gym-defenders",
+    httpStatus: 403,
+    challenge: true,
+    preservation: "Ne pas remplacer le dernier snapshot valide.",
+  });
+  assert.equal(temporary.code, "SOURCE_TEMPORARILY_UNAVAILABLE");
+  assert.equal(temporary.retryable, true);
+  assert.equal(sourceAvailabilityDiagnostic({ code: "SOURCE_HTTP_ERROR" }), null);
+});
+
+test("une source protégée ajoute seulement un diagnostic au current MongoDB conservé", async () => {
+  const calls = [];
+  const adapter = {
+    domain: "best-defenders",
+    Model: {
+      async updateOne(filter, update) {
+        calls.push({ filter, update });
+      },
+    },
+  };
+  const diagnostic = await preserveCurrentDatasetSourceAvailability(adapter, {
+    code: "SOURCE_PROTECTED",
+    message: "Cloudflare challenge",
+    details: { sourceUrl: "https://example.test", httpStatus: 403, challenge: true },
+  });
+
+  assert.equal(diagnostic.code, "SOURCE_PROTECTED");
+  assert.deepEqual(calls[0].filter, { key: "current" });
+  assert.deepEqual(Object.keys(calls[0].update.$set), ["diagnostics.sourceAvailability"]);
+  assert.equal(calls[0].update.$set["diagnostics.sourceAvailability"].httpStatus, 403);
+  assert.equal("data" in calls[0].update.$set, false);
 });
 
 test("le pipeline upsert current, nettoie sourceFile et relit réellement MongoDB", async () => {

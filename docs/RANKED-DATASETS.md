@@ -50,6 +50,8 @@ Avant chaque génération, l'adaptateur charge le catalogue Identity Manager une
 
 Best Defenders applique le même chemin au provider `pokemon-go-hub`. L’audit Costumes applique le provider `margxt` et conserve les images externes comme preuve source uniquement. Les diagnostics des deux datasets sont persistés dans `pokemon_identity_diagnostics`; une nouvelle association d’alias devient effective à la prochaine régénération sans réécriture du scraper.
 
+Best Defenders ne transforme jamais le défi Cloudflare de Pokémon GO Hub en dataset vide. Une régénération bloquée termine son run avec `SOURCE_PROTECTED`; une panne réseau ou un contenu amont inattendu utilise `SOURCE_TEMPORARILY_UNAVAILABLE`. Dans les deux cas, l'API conserve le document `current` (données, hash et compteur) et met uniquement à jour `diagnostics.sourceAvailability`. Une régénération valide suivante remplace ce diagnostic avec les nouveaux diagnostics vérifiés.
+
 Une lecture privée sans secret est refusée avant tout accès MongoDB. La visibilité stockée est également relue avec le document afin qu'une erreur de routage ne puisse pas rendre un dataset privé public.
 
 Le presenter PvP conserve la pagination normale ; `full=true` renvoie le catalogue complet de la ligue sélectionnée pour les consommateurs qui doivent établir une checklist exacte. Les IV affichés viennent de `rank1`/`pvp.ivs`; le profil `pvp.simulationProfile` est une donnée d’audit distincte.

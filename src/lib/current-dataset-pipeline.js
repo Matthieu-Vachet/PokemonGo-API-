@@ -11,6 +11,7 @@ const { DatasetRun } = require("../models");
 // slightly above that ceiling so polling never fails a Function still running.
 const ACTIVE_REGENERATION_WINDOW_MS = 75 * 1000;
 const REGENERATION_TIMEOUT_CODE = "DATASET_REGENERATION_TIMEOUT";
+const SOURCE_AVAILABILITY_CODES = new Set(["SOURCE_PROTECTED", "SOURCE_TEMPORARILY_UNAVAILABLE"]);
 
 function asArray(value) {
   return Array.isArray(value) ? value : [];
@@ -206,6 +207,40 @@ function logRegenerationFailure(adapter, phase, error, startedAt) {
   });
 }
 
+function sourceAvailabilityDiagnostic(error, detectedAt = new Date()) {
+  const code = String(error?.code || "").trim().toUpperCase();
+  if (!SOURCE_AVAILABILITY_CODES.has(code)) return null;
+  return {
+    code,
+    message: error?.message || "La source externe est indisponible.",
+    detectedAt,
+    retryable: Boolean(error?.details?.retryable),
+    provider: error?.details?.provider || null,
+    sourceUrl: error?.details?.sourceUrl || null,
+    httpStatus: error?.details?.httpStatus ?? null,
+    challenge: Boolean(error?.details?.challenge),
+    preservation: error?.details?.preservation || "Le dernier snapshot MongoDB valide reste actif.",
+  };
+}
+
+async function preserveCurrentDatasetSourceAvailability(adapter, error) {
+  const diagnostic = sourceAvailabilityDiagnostic(error);
+  if (!diagnostic || !adapter?.Model?.updateOne) return null;
+  try {
+    await adapter.Model.updateOne(
+      { key: "current" },
+      { $set: { "diagnostics.sourceAvailability": diagnostic } },
+    );
+    return diagnostic;
+  } catch (persistenceError) {
+    console.warn(`[current-dataset:${adapter.domain}] Source availability diagnostic not persisted`, {
+      code: persistenceError?.code || persistenceError?.name || "UNKNOWN_ERROR",
+      message: persistenceError?.message || String(persistenceError),
+    });
+    return null;
+  }
+}
+
 async function startDatasetRun(adapter, mode = "regenerate") {
   const Model = datasetRunModel();
   if (!Model) return null;
@@ -367,6 +402,7 @@ async function stageCurrentDatasetRegeneration(adapter, run) {
       elapsedMs: Date.now() - regenerationStartedAt,
     });
   } catch (error) {
+    await preserveCurrentDatasetSourceAvailability(adapter, error);
     await failDatasetRun(run, error);
     logRegenerationFailure(adapter, "generation-or-staging", error, regenerationStartedAt);
     throw error;
@@ -392,6 +428,7 @@ async function persistStagedCurrentDatasetRegeneration(adapter, run) {
       elapsedMs: Date.now() - persistenceStartedAt,
     });
   } catch (error) {
+    await preserveCurrentDatasetSourceAvailability(adapter, error);
     await failDatasetRun(run, error);
     logRegenerationFailure(adapter, "staged-persistence", error, persistenceStartedAt);
     throw error;
@@ -620,6 +657,7 @@ async function regenerateCurrentDataset(adapter, options = {}) {
       source: adapter.domain,
     });
   } catch (error) {
+    await preserveCurrentDatasetSourceAvailability(adapter, error);
     await failDatasetRun(run, error);
     logRegenerationFailure(adapter, "source-generation", error, regenerationStartedAt);
     if (error instanceof ApiError) throw error;
@@ -706,8 +744,10 @@ module.exports = {
   getCurrentDatasetRegeneration,
   importCurrentDataset,
   persistCurrentDataset,
+  preserveCurrentDatasetSourceAvailability,
   regenerateCurrentDataset,
   serializeDatasetRun,
+  sourceAvailabilityDiagnostic,
   sourceMetadata,
   staleDatasetRunUpdate,
   unmatchedEntriesFromReport,

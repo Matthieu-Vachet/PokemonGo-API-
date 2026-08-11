@@ -4,7 +4,7 @@ title: Schéma canonique Pokemon GO
 status: canonical
 lang: fr
 version: 1.21.0
-updated_at: 2026-08-08
+updated_at: 2026-08-09
 author: MatWeb Innovation
 projects:
   - PokemonGo-API-
@@ -110,7 +110,7 @@ Les valeurs inconnues ou non applicables utilisent `null`. Les listes vides util
 | `dexId` | string | Numero Pokedex formate sur 4 chiffres. |
 | `names` | object | Noms localises par langue. |
 | `form` | string | Forme technique en minuscules, ex. `normal`, `alola`, `mega`. |
-| `regionId` | string | Référence vers la région centrale de `data/generations/`. |
+| `regionId` | string | Référence vers la région centrale de `PokemonGo-Data/generations/`. |
 | `pokemonClass` | string/null | Classe speciale si disponible, sinon `null`. |
 
 L'API et la checklist recomposent `region` et `generation` depuis `regionId`. Les formes
@@ -142,7 +142,7 @@ Les objets de noms utilisent ces cles:
 ### Types
 
 `primaryType` est obligatoire. `secondaryType` vaut `null` pour un Pokemon mono-type.
-Ces champs referencent les identifiants courts de `data/types/`.
+Ces champs referencent les identifiants courts de `PokemonGo-Data/types/`.
 
 ```json
 {
@@ -155,7 +155,7 @@ Ces champs referencent les identifiants courts de `data/types/`.
 
 | Champ | Type | Description |
 | --- | --- | --- |
-| `weatherBoost` | string[] | Références vers les identifiants de `data/weather/`. |
+| `weatherBoost` | string[] | Références vers les identifiants de `PokemonGo-Data/weather/`. |
 | `buddyDistance` | number | Distance en km pour obtenir un bonbon. |
 | `catchRate` | number | Taux de capture de base. |
 | `fleeRate` | number | Taux de fuite de base. |
@@ -273,7 +273,7 @@ Dynamax/Gigamax. Le validateur accepte donc `number` ou `null`.
 ## Attaques
 
 Les Pokemon stockent uniquement les identifiants de leurs attaques. Les details complets
-sont centralises dans `data/moves/`.
+sont centralises dans `PokemonGo-Data/moves/`.
 
 ```json
 {
@@ -309,12 +309,12 @@ Chaque fichier du catalogue central contient :
 Les quatre tableaux peuvent etre vides uniquement lorsque le Pokemon ne possede aucune
 attaque dans la categorie correspondante. Les references doivent exister dans :
 
-- `data/moves/fast/`
-- `data/moves/charged/`
-- `data/moves/fast_elite/`
-- `data/moves/charged_elite/`
-- `data/moves/max/`
-- `data/moves/gmax/`
+- `PokemonGo-Data/moves/fast/`
+- `PokemonGo-Data/moves/charged/`
+- `PokemonGo-Data/moves/fast_elite/`
+- `PokemonGo-Data/moves/charged_elite/`
+- `PokemonGo-Data/moves/max/`
+- `PokemonGo-Data/moves/gmax/`
 
 `maxBattle.moves` contient les attaques Max ou G-Max quand la fiche est compatible. Il
 reste present avec `[]` sur les fiches non Max pour garder un pattern uniforme.
@@ -428,7 +428,7 @@ duplique que les informations propres au combat Max et garde sa propre identite 
 | `maxCp.maxLevel50` | number | PC maximum au niveau 50 de cette fiche Max. |
 | `maxCp.maxLevel40` | number | PC maximum au niveau 40 de cette fiche Max. |
 | `maxCp.maxBattlesLevel20` | number/null | PC de rencontre en combat Max au niveau 20. |
-| `maxBattle.moves` | string[] | References vers `data/moves/max/` ou `data/moves/gmax/`. |
+| `maxBattle.moves` | string[] | References vers `PokemonGo-Data/moves/max/` ou `PokemonGo-Data/moves/gmax/`. |
 
 `maxCp` est obligatoire sur les formes Dynamax et Gigantamax et contient uniquement
 `maxLevel50`, `maxLevel40` et `maxBattlesLevel20`. Les champs propres aux Pokemon normaux,
@@ -514,20 +514,20 @@ Une fiche principale ne doit jamais réembarquer `assets.image`, `assets.shinyIm
 `assets.candy` ou les couleurs. Les visuels principaux, bonbons et portraits vivent
 dans le Core ; HOME, Shuffle, Location Cards et Variants vivent dans leurs familles.
 
-Les types vivent dans `data/types/<slug>.json`. Leur bloc `assets` contient `icon` et
-`background`. `data/types/types.json` reste un index complet compatible avec les anciens
-consommateurs. Leur champ `weatherBoost` contient un identifiant de `data/weather/`.
+Les types vivent dans `PokemonGo-Data/types/<slug>.json`. Leur bloc `assets` contient `icon` et
+`background`. `PokemonGo-Data/types/types.json` reste un index complet compatible avec les anciens
+consommateurs. Leur champ `weatherBoost` contient un identifiant de `PokemonGo-Data/weather/`.
 
-Les sept météos vivent dans `data/weather/<slug>.json`. Chaque entrée possède `id`,
-`slug`, `names`, `assets.icon` et `boostedTypes`. `data/weather/weather.json` reste
+Les sept météos vivent dans `PokemonGo-Data/weather/<slug>.json`. Chaque entrée possède `id`,
+`slug`, `names`, `assets.icon` et `boostedTypes`. `PokemonGo-Data/weather/weather.json` reste
 l'index complet de compatibilité.
 
-Le catalogue `data/stickers/stickers.json` expose pour chaque sticker `id`, `filename`,
+Le catalogue `PokemonGo-Data/stickers/stickers.json` expose pour chaque sticker `id`, `filename`,
 `category` et `image`.
 
 ## Formes Separees
 
-Les fiches de `data/pokemon-forms/` couvrent les formes Alola, Galar, Hisui, Paldea,
+Les fiches de `PokemonGo-Data/pokemon-forms/` couvrent les formes Alola, Galar, Hisui, Paldea,
 Dynamax, Gigantamax, Mega et Mega X/Y.
 
 - Une forme regionale utilise le schema Pokemon complet.
@@ -621,12 +621,7 @@ Dynamax, Gigantamax, Mega et Mega X/Y.
   "maxBattle": {
     "moves": []
   },
-  "assets": {
-    "image": "",
-    "shinyImage": "",
-    "candy": null,
-    "assetsRef": "pokemon-assets/core/normal/0001-bulbasaur.assets.json"
-  },
+  "assetsRef": "pokemon-assets/core/normal/0001-bulbasaur.assets.json",
   "regionForms": [],
   "evolutions": [],
   "hasMegaEvolution": false,

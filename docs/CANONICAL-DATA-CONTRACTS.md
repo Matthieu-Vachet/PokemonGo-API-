@@ -4,7 +4,7 @@ title: Contrats canoniques Pokemon GO
 status: canonical
 lang: fr
 version: 1.21.0
-updated_at: 2026-08-08
+updated_at: 2026-08-09
 author: MatWeb Innovation
 projects:
   - PokemonGo-API-
@@ -82,6 +82,12 @@ La synchronisation PvPoke mensuelle est un pipeline contrôlé : génération, v
 hash, diff, staging, persistance, relecture, rapport et publication. Un résultat vide ou
 ambigu échoue sans remplacer l’état valide précédent.
 
+Le snapshot stabilisé du 9 août 2026 référence 1 611 fiches dédiées. Il ne contient
+aucun mapping Pokémon manquant ni aucune attaque référencée sans mapping. Les attaques
+provider non référencées restent visibles dans l’audit sans devenir un warning de
+fiche. `SKIDDO`/`ROCK_SLIDE` est l’unique écart de movepool du snapshot et reste une
+information fournisseur `SOURCE_MISMATCH`, jamais une correction locale implicite.
+
 ## Assets et fiches Pokémon
 
 Le Core séparé contient les références légères et les métadonnées communes. `home`,
@@ -109,6 +115,11 @@ L’Identity Manager conserve séparément l’alias brut, l’alias normalisé,
 l’identité canonique. Les conflits nécessitent une résolution explicite. La Veille
 observe les fournisseurs et expose date, état, hash ou code HTTP ; une observation ne
 modifie jamais automatiquement un JSON canonique.
+
+Le registre `PokemonGo-Data/source-watch/sources.json` est l’autorité des datasets
+régénérables. `leekduck-eggs`, `leekduck-research` et `leekduck-rocket` conservent leur
+provenance mais sont canonisés vers l’unique provider Identity Manager `leekduck`.
+Un identifiant historique ne survit que comme alias explicite du registre.
 
 Le Dashboard ne possède plus de page autonome de vérification Pokémon. Les contrôles
 canoniques sont regroupés dans `PAGE-ADMIN-CONTROLS-001`, qui consomme le rapport Engine

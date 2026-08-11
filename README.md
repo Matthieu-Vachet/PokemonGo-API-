@@ -3,7 +3,7 @@ id: API-PROJECT-001
 title: Pokemon GO API
 status: canonical
 lang: fr
-version: 1.21.1
+version: 1.21.0
 updated_at: 2026-08-09
 author: MatWeb Innovation
 projects:
@@ -57,6 +57,8 @@ Documentation detaillee de l'API : [docs/API.md](docs/API.md)
 Import MongoDB depuis les JSON : [docs/MONGO-IMPORT.md](docs/MONGO-IMPORT.md)
 Contrats canoniques partagés :
 [docs/CANONICAL-DATA-CONTRACTS.md](docs/CANONICAL-DATA-CONTRACTS.md)
+État post-migration stabilisé, statuts, versionnement et rollback :
+[docs/POST-MIGRATION-STABILIZATION.md](docs/POST-MIGRATION-STABILIZATION.md)
 
 ## Points Forts
 
@@ -568,8 +570,9 @@ Les outils d'import et d'extraction manuels vivent dans `scripts/import/`.
 - `[]` pour une liste vide.
 - Identifiants techniques Pokemon GO en majuscules.
 - Slugs publics en anglais et en minuscules.
-- Images Pokémon GO principales via `assets.image` et `assets.shinyImage`.
-- Assets séparés via `assets.assetsRef` vers
+- Images Pokémon GO principales hydratées depuis le Core référencé ; elles ne sont plus
+  stockées dans la fiche Pokémon source.
+- Assets séparés via `assetsRef` à la racine vers
   `PokemonGo-Data/pokemon-assets/core/<catégorie>/*.assets.json`; le Core référence les
   familles HOME, Shuffle, Variants et Location Cards uniquement lorsqu’elles existent.
 - PvP dédié via `pvpRef` vers

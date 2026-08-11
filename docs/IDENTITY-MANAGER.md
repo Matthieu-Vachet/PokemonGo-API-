@@ -193,3 +193,6 @@ Résultat du 18 juillet 2026 : 1 391 documents reliés, 520 identités locales c
 - 2026-08-01 — ajout idempotent des alias déjà actifs afin qu’une association répétée ne déclenche plus une erreur de validation MongoDB.
 - 2026-08-09 — canonisation des identifiants de datasets LeekDuck vers le fournisseur `leekduck`, avec agrégation rétrocompatible des traces historiques.
 - 2026-08-09 — relink audité de `CORSOLA_SPRING_2026` depuis l’ancien costume Galarian vers la forme normale Game Master, sans perte d’alias ni règle heuristique générale.
+- 2026-08-09 — validation de stabilisation : 1 920 identités mises à jour, 5 créées,
+  2 anciennes entrées marquées orphelines sans suppression et zéro conflit ; Corsola
+  reste idempotent au second passage.

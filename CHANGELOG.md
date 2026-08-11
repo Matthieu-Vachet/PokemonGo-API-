@@ -15,13 +15,20 @@ related:
 
 # Changelog
 
-## 1.21.0 - 2026-08-08
+## 1.21.0 - 2026-08-09
 
 - Publie le contrat canonique transversal et les métadonnées documentaires permanentes.
 - Garantit par tests l’identité, la catégorie et les références Assets/PvP des 1 611
   entités exposées par le reader de synchronisation.
 - Aligne OpenAPI, package, erreurs, versioning, dépréciation, attribution et rollback
   avant publication de production.
+- Documente `assetsRef` et `pvpRef` à la racine comme seuls pointeurs canoniques et
+  retire des templates actifs les anciens blocs Assets/PvP embarqués.
+- Aligne l’Identity Manager et les régénérations sur le registre fermé des sources,
+  les états `success`, `partial`, `unchanged`, `failed` et `SOURCE_PROTECTED`, sans
+  écrasement du dernier snapshot valide.
+- Consigne le snapshot PvPoke stabilisé, l’Engine final, le calendrier, le
+  versionnement `1.21.0` et la procédure de rollback coordonnée.
 
 ## 1.20.0 - 2026-08-08
 

@@ -2,8 +2,10 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const { dataPath, dataPathFromRelative, dataRoot, relativeToData } = require("./data-repository");
-const { resolveEntityPath } = require(dataPath("tooling", "lib", "entity-paths.js"));
-const { writeManifest } = require(dataPath("tooling", "lib", "separated-asset-records.js"));
+const {
+  entityPaths: { resolveEntityPath },
+  separatedAssetRecords: { writeManifest },
+} = require("./data-tooling");
 
 const FAMILY_FIELDS = Object.freeze({
   home: "home",

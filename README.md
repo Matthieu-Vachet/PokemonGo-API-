@@ -116,7 +116,9 @@ Le depot `PokemonGo-Data` doit etre disponible a cote du projet, ou configure vi
 `POKEMON_GO_DATA_DIR`. En production Vercel, `npm run ensure:data` clone le depot dans
 `runtime-data/PokemonGo-Data`. Les fonctions REST et checklist sont des routes API Next.js
 dans `pages/api/`; elles embarquent le sous-ensemble requis via
-`outputFileTracingIncludes` dans `next.config.mjs`. `vercel.json` règle uniquement leur
+`outputFileTracingIncludes` dans `next.config.mjs`. Les modules de tooling charges au runtime
+passent par `src/lib/data-tooling.js`, dont les imports statiques garantissent leur presence
+dans les bundles serverless. `vercel.json` règle uniquement leur
 durée d'exécution : aucune fonction de production ne dépend du clone de build resté hors
 de son bundle d'exécution.
 

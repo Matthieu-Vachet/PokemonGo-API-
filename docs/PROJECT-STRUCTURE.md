@@ -28,6 +28,7 @@ lecture.
 | `app/` | Front public Next.js : accueil, checklist, bibliothèques, robots et sitemap. |
 | `components/` | Composants UI partages par la landing, la bibliotheque API et les fiches. |
 | `runtime-data/PokemonGo-Data/` | Clone de build ignoré et non caché, embarqué dans les Functions Vercel. |
+| `src/lib/data-tooling.js` | Point d'entrée statique des modules tooling Data pour les bundles serverless. |
 | `src/` | Coeur de l'API REST Express et synchronisation MongoDB. |
 | `api/` | Fonction Vercel minimale qui bloque l'accès direct aux chemins internes. |
 | `pages/api/` | Routes API Next.js REST et checklist, avec traçage explicite du dataset de production. |

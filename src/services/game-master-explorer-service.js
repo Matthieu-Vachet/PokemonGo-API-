@@ -1,6 +1,12 @@
 const { ApiError } = require("../lib/api-error");
 const { dataPath } = require("../lib/data-repository");
 const {
+  currentEventUtils: events,
+  gameMasterExplorer: explorer,
+  gameMasterGenerator: generator,
+  gameMasterMappings: mappings,
+} = require("../lib/data-tooling");
+const {
   GameMasterDiff,
   GameMasterLocalComparison,
   GameMasterSnapshot,
@@ -102,10 +108,6 @@ function storageError(error) {
 }
 
 function loadDataTools() {
-  const explorer = require(dataPath("tooling", "lib", "game-master-explorer.js"));
-  const generator = require(dataPath("tooling", "scripts", "generators", "generateGameMasterExplorerIndex.js"));
-  const mappings = require(dataPath("tooling", "scripts", "generators", "generateGameMasterPokemonMappings.js"));
-  const events = require(dataPath("tooling", "lib", "current-event-utils.js"));
   return { explorer, generator, mappings, events };
 }
 

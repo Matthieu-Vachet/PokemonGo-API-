@@ -19,9 +19,35 @@ function candidates() {
     process.env.POKEMON_GO_DATA_DIR,
     process.env.DATA_REPOSITORY_DIR,
     targetDir,
+    path.join(appRoot, ".data", "PokemonGo-Data"),
     path.resolve(appRoot, "..", "PokemonGo-Data"),
     path.join(appRoot, "data"),
   ].filter(Boolean);
+}
+
+function pathExists(value) {
+  try {
+    fs.lstatSync(value);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function materializeRuntimeData(sourceDir) {
+  const source = path.resolve(sourceDir);
+  if (source === targetDir) return targetDir;
+  if (pathExists(targetDir)) fs.rmSync(targetDir, { recursive: true, force: true });
+  fs.mkdirSync(path.dirname(targetDir), { recursive: true });
+  try {
+    fs.symlinkSync(source, targetDir, process.platform === "win32" ? "junction" : "dir");
+  } catch {
+    fs.cpSync(source, targetDir, {
+      recursive: true,
+      filter: (entry) => !String(entry).split(path.sep).includes(".git"),
+    });
+  }
+  return targetDir;
 }
 
 function authenticatedRepoUrl(repo, token) {
@@ -32,7 +58,8 @@ function authenticatedRepoUrl(repo, token) {
 function ensureData() {
   for (const candidate of candidates()) {
     if (hasDataShape(path.resolve(candidate))) {
-      console.log(`[data] dataset trouve: ${path.resolve(candidate)}`);
+      const runtimeDir = materializeRuntimeData(candidate);
+      console.log(`[data] dataset trouve: ${runtimeDir}`);
       return;
     }
   }

@@ -1,4 +1,8 @@
-const { dataPath, dataRoot } = require("../lib/data-repository");
+const { dataRoot } = require("../lib/data-repository");
+const {
+  currentEventUtils: { loadPokemonEntries },
+  pokemonAssetResolver: { resolvePokemonAssetByCanonicalIdentity },
+} = require("../lib/data-tooling");
 const { z } = require("zod");
 const { ApiError } = require("../lib/api-error");
 const identityService = require("./pokemon-identity-service");
@@ -6,11 +10,6 @@ const {
   pokemonResolutionRevision,
   registerPokemonResolutionInvalidator,
 } = require("./pokemon-resolution-cache-service");
-
-const { loadPokemonEntries } = require(dataPath("tooling", "lib", "current-event-utils.js"));
-const {
-  resolvePokemonAssetByCanonicalIdentity,
-} = require(dataPath("tooling", "lib", "pokemon-canonical-asset-resolver.js"));
 
 const cache = new Map();
 let entries = null;

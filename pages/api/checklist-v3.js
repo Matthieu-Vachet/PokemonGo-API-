@@ -74,7 +74,7 @@ async function handleGet(request, response, action) {
   return response.status(404).json({ error: "Action inconnue." });
 }
 
-module.exports = async function handler(request, response) {
+async function handler(request, response) {
   try {
     if (request.method === "OPTIONS") {
       response.setHeader("Allow", "GET, HEAD, OPTIONS");
@@ -88,4 +88,7 @@ module.exports = async function handler(request, response) {
   } catch (error) {
     return response.status(error.status || 500).json({ error: error.message });
   }
-};
+}
+
+module.exports = handler;
+module.exports.default = handler;

@@ -14,6 +14,10 @@ test("les fonctions API Next.js déclarent leur durée Vercel sans includeFiles 
   }
   assert.ok(fs.existsSync(path.resolve(__dirname, "../pages/api/rest.js")));
   assert.ok(fs.existsSync(path.resolve(__dirname, "../pages/api/checklist-v3.js")));
+  for (const page of ["rest.js", "checklist-v3.js"]) {
+    const source = fs.readFileSync(path.resolve(__dirname, "../pages/api", page), "utf8");
+    assert.match(source, /module\.exports\.default\s*=\s*handler/);
+  }
   assert.equal(fs.existsSync(path.resolve(__dirname, "../api/rest.js")), false);
   assert.equal(fs.existsSync(path.resolve(__dirname, "../api/checklist-v3.js")), false);
   assert.equal(packageJson.scripts.test, "node --test test/*.test.js");

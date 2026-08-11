@@ -535,6 +535,32 @@ function verifyReadback(adapter, document, expected) {
   }
 }
 
+function verifyCompressedReadback(adapter, document, expected) {
+  if (!document) {
+    throw new ApiError(
+      500,
+      `La relecture MongoDB a echoue pour ${adapter.domain}.`,
+      domainCode(adapter.domain, "READBACK_FAILED"),
+    );
+  }
+  if (document.sourceHash !== expected.sourceHash) {
+    throw new ApiError(
+      500,
+      `Le hash relu dans MongoDB ne correspond pas au dataset ecrit pour ${adapter.domain}.`,
+      domainCode(adapter.domain, "READBACK_HASH_MISMATCH"),
+      { expected: expected.sourceHash, stored: document.sourceHash || null },
+    );
+  }
+  if (Number(document.count) !== Number(expected.count)) {
+    throw new ApiError(
+      500,
+      `Le nombre relu dans MongoDB ne correspond pas au dataset ecrit pour ${adapter.domain}.`,
+      domainCode(adapter.domain, "READBACK_COUNT_MISMATCH"),
+      { expected: expected.count, stored: document.count },
+    );
+  }
+}
+
 async function persistCurrentDataset({ adapter, data, report = {}, summary, stats, source }) {
   const persistenceStartedAt = Date.now();
   adapter.validate(data, report, summary);
@@ -625,8 +651,11 @@ async function persistCurrentDataset({ adapter, data, report = {}, summary, stat
   }
 
   invalidateDatasetCache(adapter.domain);
-  const readback = await readStoredDocument(adapter);
-  verifyReadback(adapter, readback, { count, sourceHash: diff.newHash });
+  const readback = adapter.compressData
+    ? await readStoredMetadata(adapter)
+    : await readStoredDocument(adapter);
+  if (adapter.compressData) verifyCompressedReadback(adapter, readback, { count, sourceHash: diff.newHash });
+  else verifyReadback(adapter, readback, { count, sourceHash: diff.newHash });
 
   console.info(`[current-dataset:${adapter.domain}] MongoDB upsert verified`, {
     count,
@@ -639,7 +668,7 @@ async function persistCurrentDataset({ adapter, data, report = {}, summary, stat
   });
 
   return {
-    current: serializeCurrentDatasetDocument(readback),
+    current: serializeCurrentDatasetDocument(adapter.compressData ? document : readback),
     summary,
     stats,
     report,
@@ -752,4 +781,5 @@ module.exports = {
   staleDatasetRunUpdate,
   unmatchedEntriesFromReport,
   verifyReadback,
+  verifyCompressedReadback,
 };

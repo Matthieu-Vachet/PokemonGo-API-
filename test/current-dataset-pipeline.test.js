@@ -385,7 +385,7 @@ test("un import identique est idempotent et ne fabrique aucun changement", async
   );
 });
 
-test("un dataset volumineux peut être compressé puis vérifié après relecture MongoDB", async () => {
+test("un dataset volumineux est compressé puis vérifié par ses métadonnées MongoDB", async () => {
   const Model = createMemoryModel();
   const adapter = { ...createAdapter(Model), compressData: true };
   const data = { items: Array.from({ length: 250 }, (_, index) => ({ id: `entry-${index}`, label: "payload répétitif" })) };
@@ -395,7 +395,7 @@ test("un dataset volumineux peut être compressé puis vérifié après relectur
 
   assert.deepEqual(stored.data, { compressed: true, encoding: "gzip+json", schemaVersion: 1 });
   assert.ok(stored.compressedData, "le payload gzip doit être stocké séparément");
-  assert.deepEqual(result.current.data, data, "la relecture doit hydrater le JSON avant le contrôle du hash");
+  assert.deepEqual(result.current.data, { compressed: true, encoding: "gzip+json", schemaVersion: 1 });
   assert.equal(result.current.compressedData, undefined, "le binaire interne ne doit jamais sortir dans l'API");
 });
 
@@ -420,7 +420,20 @@ test("un dataset compressé inchangé utilise son hash sans hydrater une seconde
     removed: 0,
     modified: 0,
   });
-  assert.equal(Model.readCount, 2, "une lecture metadata et une relecture de vérification suffisent");
+  assert.equal(Model.readCount, 2, "une lecture metadata et une relecture metadata de vérification suffisent");
+});
+
+test("la vérification compressée échoue si le hash MongoDB relu est corrompu", async () => {
+  const Model = createMemoryModel(null, {
+    transformReadback(document) {
+      return { ...document, sourceHash: "corrupted" };
+    },
+  });
+  const adapter = { ...createAdapter(Model), compressData: true };
+  await assert.rejects(
+    () => importCurrentDataset(adapter, { items: [{ id: "alpha" }] }),
+    (error) => error.code === "TEST_DOMAIN_READBACK_HASH_MISMATCH",
+  );
 });
 
 test("la vérification échoue si le hash de la relecture MongoDB est corrompu", async () => {

@@ -1,10 +1,6 @@
-const fs = require("fs");
-// The current-data generators are loaded dynamically from the bundled
-// PokemonGo-Data checkout. Keep their shared HTML parser visible to Vercel's
-// static dependency tracer so it is present in the Function at runtime.
-require("cheerio");
 const { ApiError } = require("./api-error");
-const { dataPath } = require("./data-repository");
+const { dataRoot } = require("./data-repository");
+const { getGeneratorRegistration } = require("./generator-registry");
 
 function errorCode(source, suffix) {
   return `${String(source).toUpperCase().replace(/[^A-Z0-9]+/g, "_")}_${suffix}`;
@@ -16,22 +12,6 @@ function countArray(value) {
 
 function countBuckets(buckets = {}) {
   return Object.values(buckets).reduce((sum, count) => sum + Number(count || 0), 0);
-}
-
-function loadGenerator({ source, scriptName, exportName }) {
-  const generatorFile = dataPath("tooling", "scripts", "generators", scriptName);
-  if (!fs.existsSync(generatorFile)) {
-    throw new ApiError(500, `Generateur ${source} introuvable dans PokemonGo-Data.`, errorCode(source, "GENERATOR_NOT_FOUND"));
-  }
-
-  delete require.cache[require.resolve(generatorFile)];
-  const generatorModule = require(generatorFile);
-  const generator = generatorModule[exportName];
-  if (typeof generator !== "function") {
-    throw new ApiError(500, `Generateur ${source} invalide.`, errorCode(source, "GENERATOR_INVALID"));
-  }
-
-  return generator;
 }
 
 function buildPipelineReport({ source, report = {}, summary = {}, stats = {}, jsonPath, mongoUpdated = false, updatedAt }) {
@@ -51,7 +31,8 @@ function buildPipelineReport({ source, report = {}, summary = {}, stats = {}, js
 }
 
 async function generateCurrentData(options) {
-  const generator = loadGenerator(options);
+  const registration = getGeneratorRegistration(options.generatorKey || options.source);
+  const generator = registration.generator;
   const generatorOptionsStartedAt = Date.now();
   const generatorOptions = typeof options.generatorOptions === "function"
     ? await options.generatorOptions()
@@ -60,7 +41,7 @@ async function generateCurrentData(options) {
     identityCatalogSize: Array.isArray(generatorOptions.identityCatalog) ? generatorOptions.identityCatalog.length : 0,
     elapsedMs: Date.now() - generatorOptionsStartedAt,
   });
-  const result = await generator(generatorOptions);
+  const result = await generator({ ...generatorOptions, rootDir: dataRoot });
   const data = result?.data;
   const report = result?.report || {};
   if (!data || typeof data !== "object") {

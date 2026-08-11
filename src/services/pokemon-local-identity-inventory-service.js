@@ -1,5 +1,6 @@
 const { z } = require("zod");
-const { dataPath, dataRoot } = require("../lib/data-repository");
+const { dataRoot } = require("../lib/data-repository");
+const { pokemonLocalIdentityInventory } = require("../lib/data-tooling");
 
 const nullableString = z.string().nullable();
 const localAssetSchema = z.object({
@@ -59,14 +60,8 @@ const inventorySchema = z.object({
 
 let cache = null;
 
-function inventoryModule() {
-  const modulePath = dataPath("tooling", "lib", "pokemon-local-identity-inventory.js");
-  // Le module partagé vit dans PokemonGo-Data afin que l'API et les audits appliquent le même contrat.
-  return require(modulePath);
-}
-
 function normalizeToken(value) {
-  return inventoryModule().normalizeIdentityToken(value);
+  return pokemonLocalIdentityInventory.normalizeIdentityToken(value);
 }
 
 const regionalTokenRoots = new Map([
@@ -87,7 +82,7 @@ function comparableIdentityToken(value) {
 
 function loadLocalIdentityInventory({ force = false } = {}) {
   if (!force && cache) return cache;
-  const raw = inventoryModule().loadPokemonLocalIdentityInventory(dataRoot);
+  const raw = pokemonLocalIdentityInventory.loadPokemonLocalIdentityInventory(dataRoot);
   const parsed = inventorySchema.safeParse(raw);
   if (!parsed.success) {
     const error = new Error("Le contrat d'inventaire PokemonGo-Data est invalide.");

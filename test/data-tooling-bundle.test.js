@@ -14,6 +14,7 @@ test("les modules runtime PokemonGo-Data sont des dépendances statiques du bund
   assert.equal(typeof tooling.gameMasterGenerator.generateGameMasterExplorerIndex, "function");
   assert.equal(typeof tooling.gameMasterMappings.buildGameMasterPokemonMappings, "function");
   assert.equal(typeof tooling.pokemonAssetResolver.resolvePokemonAssetByCanonicalIdentity, "function");
+  assert.equal(typeof tooling.pokemonLocalIdentityInventory.loadPokemonLocalIdentityInventory, "function");
   assert.equal(typeof tooling.separatedAssetRecords.writeManifest, "function");
   assert.ok(fs.existsSync(path.join(dataRoot, "tooling", "lib", "current-event-utils.js")));
 });
@@ -40,6 +41,7 @@ test("aucun consommateur API ne charge un module tooling par chemin absolu dynam
     "src/lib/canonical-asset-writer.js",
     "src/services/game-master-explorer-service.js",
     "src/services/pokemon-canonical-asset-service.js",
+    "src/services/pokemon-local-identity-inventory-service.js",
   ];
   for (const file of files) {
     const source = fs.readFileSync(path.resolve(__dirname, "..", file), "utf8");

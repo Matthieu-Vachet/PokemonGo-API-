@@ -5,6 +5,7 @@ const gameMasterGenerator = require("../../runtime-data/PokemonGo-Data/tooling/s
 const gameMasterMappings = require("../../runtime-data/PokemonGo-Data/tooling/scripts/generators/generateGameMasterPokemonMappings.js");
 const pokemonAssetResolver = require("../../runtime-data/PokemonGo-Data/tooling/lib/pokemon-canonical-asset-resolver.js");
 const separatedAssetRecords = require("../../runtime-data/PokemonGo-Data/tooling/lib/separated-asset-records.js");
+const pokemonLocalIdentityInventory = require("../../runtime-data/PokemonGo-Data/tooling/lib/pokemon-local-identity-inventory.js");
 const { dataRoot } = require("./data-repository");
 
 const serverlessGameMasterGenerator = {
@@ -24,5 +25,6 @@ module.exports = {
   gameMasterGenerator: serverlessGameMasterGenerator,
   gameMasterMappings,
   pokemonAssetResolver,
+  pokemonLocalIdentityInventory,
   separatedAssetRecords,
 };

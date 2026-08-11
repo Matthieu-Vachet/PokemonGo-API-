@@ -8,10 +8,10 @@ test("les fonctions Next.js embarquent le dataset PokemonGo-Data requis", async 
 
   assert.equal(nextConfig.outputFileTracingRoot, path.resolve(__dirname, ".."));
   assert.ok(Array.isArray(tracedFiles));
-  assert.ok(tracedFiles.includes("./.data/PokemonGo-Data/data/pokemon/**/*"));
-  assert.ok(tracedFiles.includes("./.data/PokemonGo-Data/data/assets/**/*"));
-  assert.ok(tracedFiles.includes("./.data/PokemonGo-Data/data/reference/**/*"));
-  assert.ok(tracedFiles.includes("./.data/PokemonGo-Data/data/activities/research/**/*"));
-  assert.ok(tracedFiles.includes("./.data/PokemonGo-Data/mappings/**/*"));
-  assert.ok(tracedFiles.includes("./.data/PokemonGo-Data/tooling/**/*"));
+  assert.ok(tracedFiles.includes("./runtime-data/PokemonGo-Data/data/pokemon/**/*"));
+  assert.ok(tracedFiles.includes("./runtime-data/PokemonGo-Data/data/assets/**/*"));
+  assert.ok(tracedFiles.includes("./runtime-data/PokemonGo-Data/data/reference/**/*"));
+  assert.ok(tracedFiles.includes("./runtime-data/PokemonGo-Data/data/activities/research/**/*"));
+  assert.ok(tracedFiles.includes("./runtime-data/PokemonGo-Data/mappings/**/*"));
+  assert.ok(tracedFiles.includes("./runtime-data/PokemonGo-Data/tooling/**/*"));
 });

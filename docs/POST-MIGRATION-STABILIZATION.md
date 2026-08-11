@@ -22,8 +22,9 @@ PvP dédiée est l’unique autorité des ligues et statuts PvP. MongoDB conserv
 dans `data.assetsRef` et `data.pvpRef`. Les champs `assets` ou `pvp` exposés après
 hydratation sont des projections API dérivées, jamais une deuxième source modifiable.
 
-L’ordre de résolution est : `POKEMON_GO_DATA_DIR` explicite et valide, clone officiel
-`.data/PokemonGo-Data`, dépôt workspace voisin, puis compatibilité locale historique.
+L’ordre de résolution est : `POKEMON_GO_DATA_DIR` explicite et valide, clone de build
+`runtime-data/PokemonGo-Data`, clone local historique `.data/PokemonGo-Data`, dépôt
+workspace voisin, puis compatibilité locale historique.
 Une variable explicite invalide échoue clairement. Vercel clone la révision déclarée par
 `POKEMON_GO_DATA_REPO` et `POKEMON_GO_DATA_REF` ; aucun chemin absolu de machine n’est
 configuré en production.

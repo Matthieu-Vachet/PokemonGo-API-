@@ -27,7 +27,7 @@ lecture.
 | --- | --- |
 | `app/` | Front public Next.js : accueil, checklist, bibliothèques, robots et sitemap. |
 | `components/` | Composants UI partages par la landing, la bibliotheque API et les fiches. |
-| `.data/PokemonGo-Data/` | Clone local ignore du depot de donnees, cree par `npm run ensure:data` si besoin. |
+| `runtime-data/PokemonGo-Data/` | Clone de build ignoré et non caché, embarqué dans les Functions Vercel. |
 | `src/` | Coeur de l'API REST Express et synchronisation MongoDB. |
 | `api/` | Fonction Vercel minimale qui bloque l'accès direct aux chemins internes. |
 | `pages/api/` | Routes API Next.js REST et checklist, avec traçage explicite du dataset de production. |
@@ -44,7 +44,8 @@ lecture.
 
 Le dossier `config/` reste dans ce depot car il décrit les index Atlas Search. Les JSON
 metier vivent dans `PokemonGo-Data`. Les outils les trouvent via `POKEMON_GO_DATA_DIR`,
-le clone local `.data/PokemonGo-Data/` ou le depot voisin `../PokemonGo-Data`.
+le clone runtime `runtime-data/PokemonGo-Data/`, le clone local historique
+`.data/PokemonGo-Data/` ou le depot voisin `../PokemonGo-Data`.
 
 La synchronisation vers MongoDB ne modifie jamais ces sources. Le catalogue d'attaques
 central est dans `PokemonGo-Data/data/moves/`, avec les categories classiques, Elite, Max et

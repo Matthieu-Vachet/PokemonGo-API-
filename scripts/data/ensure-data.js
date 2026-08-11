@@ -4,7 +4,7 @@ const path = require("path");
 
 const appRoot = path.resolve(__dirname, "../..");
 const defaultRepo = "https://github.com/Matthieu-Vachet/PokemonGo-Data.git";
-const targetDir = path.join(appRoot, ".data", "PokemonGo-Data");
+const targetDir = path.join(appRoot, "runtime-data", "PokemonGo-Data");
 
 function hasDataShape(directory) {
   return directory

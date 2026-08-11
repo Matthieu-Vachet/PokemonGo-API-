@@ -46,7 +46,8 @@ export POKEMON_GO_DATA_DIR="/chemin/vers/PokemonGo-Data"
 ```
 
 Le script `npm run ensure:data` cherche d'abord `POKEMON_GO_DATA_DIR`, puis
-`../PokemonGo-Data`. Sur Vercel, il peut cloner le depot data dans `.data/PokemonGo-Data`.
+`../PokemonGo-Data`. Sur Vercel, il clone le depot data dans
+`runtime-data/PokemonGo-Data` afin que Next.js l'embarque dans la Function.
 
 ## 2. Tester sans ecrire
 

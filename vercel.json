@@ -13,7 +13,7 @@
     }
   },
   "routes": [
-    { "src": "^/(?:data|config|docs|src|test|apps)(?:/.*)?$", "dest": "/api/blocked" },
+    { "src": "^/(?:data|runtime-data|config|docs|src|test|apps)(?:/.*)?$", "dest": "/api/blocked" },
     { "handle": "filesystem" },
     { "src": "^/(api/v1(?:/.*)?|api-docs(?:/.*)?|api-docs\\.json|swagger(?:/.*)?|health)$", "dest": "/api/rest" }
   ]

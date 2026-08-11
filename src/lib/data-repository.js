@@ -30,6 +30,7 @@ function candidateRoots() {
   return [
     process.env.POKEMON_GO_DATA_DIR,
     process.env.DATA_REPOSITORY_DIR,
+    path.join(appRoot, "runtime-data", "PokemonGo-Data"),
     path.join(appRoot, ".data", "PokemonGo-Data"),
     path.resolve(appRoot, "..", "PokemonGo-Data"),
     path.join(appRoot, "data"),

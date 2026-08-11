@@ -67,7 +67,7 @@
     "import:pokemon-shuffle": "node scripts/import/pokemon-shuffle.js",
     "import:pokemon-shuffle:write": "node scripts/import/pokemon-shuffle.js --write",
     "pretest": "npm run ensure:data",
-    "test": "node --test",
+    "test": "node --test test/*.test.js",
     "check": "npm run ensure:data && npm run sync:dry && npm test && npm run build",
     "checklist": "node apps/checklist/server/local-server.js"
   },

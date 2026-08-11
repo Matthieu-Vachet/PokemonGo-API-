@@ -80,7 +80,8 @@ Contrats canoniques partagés :
 ```text
 PokemonGo-API-/
 ├── app.js
-├── api/                       # Fonctions serverless Vercel
+├── api/                       # Fonction Vercel de blocage des chemins internes
+├── pages/api/                 # Fonctions API Next.js tracées pour Vercel
 ├── src/
 │   ├── config/
 │   ├── docs/
@@ -113,10 +114,11 @@ PokemonGo-API-/
 
 Le depot `PokemonGo-Data` doit etre disponible a cote du projet, ou configure via
 `POKEMON_GO_DATA_DIR`. En production Vercel, `npm run ensure:data` peut cloner le depot
-dans `.data/PokemonGo-Data`. Les routes REST embarquent le depot via `vercel.json` et
-les pages Next.js embarquent le sous-ensemble requis via `outputFileTracingIncludes`
-dans `next.config.mjs`; aucune fonction de production ne doit dépendre du clone de build
-resté hors de son bundle d'exécution.
+dans `.data/PokemonGo-Data`. Les fonctions REST et checklist sont des routes API Next.js
+dans `pages/api/`; elles embarquent le sous-ensemble requis via
+`outputFileTracingIncludes` dans `next.config.mjs`. `vercel.json` règle uniquement leur
+durée d'exécution : aucune fonction de production ne dépend du clone de build resté hors
+de son bundle d'exécution.
 
 Le rôle détaillé de chaque dossier est expliqué dans
 [docs/PROJECT-STRUCTURE.md](docs/PROJECT-STRUCTURE.md).

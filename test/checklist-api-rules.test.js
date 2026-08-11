@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const checklistHandler = require("../api/checklist-v3");
+const checklistHandler = require("../pages/api/checklist-v3");
 
 function withAdminSecret(value) {
   const previous = process.env.API_ADMIN_SECRET;

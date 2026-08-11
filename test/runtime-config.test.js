@@ -3,18 +3,16 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 
-test("la fonction REST longue et la checklist déclarent leur durée Vercel", () => {
+test("les fonctions API Next.js déclarent leur durée Vercel sans includeFiles ignoré", () => {
   const config = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../vercel.json"), "utf8"));
 
-  assert.equal(config.functions["api/rest.js"].maxDuration, 60);
-  assert.equal(config.functions["api/checklist-v3.js"].maxDuration, 60);
+  assert.equal(config.functions["pages/api/rest.js"].maxDuration, 60);
+  assert.equal(config.functions["pages/api/checklist-v3.js"].maxDuration, 60);
   for (const functionConfig of Object.values(config.functions)) {
-    if (!functionConfig.includeFiles) continue;
-    assert.doesNotMatch(functionConfig.includeFiles, /PokemonGo-Data\/\*\*/);
-    assert.doesNotMatch(functionConfig.includeFiles, /pvp-rankings|archives|best-attackers/);
-    assert.match(functionConfig.includeFiles, /data\/\{pokemon,assets,moves,reference\}/);
-    assert.match(functionConfig.includeFiles, /mappings/);
-    assert.match(functionConfig.includeFiles, /tooling/);
-    assert.ok(functionConfig.includeFiles.length <= 256);
+    assert.equal(functionConfig.includeFiles, undefined);
   }
+  assert.ok(fs.existsSync(path.resolve(__dirname, "../pages/api/rest.js")));
+  assert.ok(fs.existsSync(path.resolve(__dirname, "../pages/api/checklist-v3.js")));
+  assert.equal(fs.existsSync(path.resolve(__dirname, "../api/rest.js")), false);
+  assert.equal(fs.existsSync(path.resolve(__dirname, "../api/checklist-v3.js")), false);
 });

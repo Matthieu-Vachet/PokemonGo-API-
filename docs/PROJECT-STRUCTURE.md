@@ -29,7 +29,8 @@ lecture.
 | `components/` | Composants UI partages par la landing, la bibliotheque API et les fiches. |
 | `.data/PokemonGo-Data/` | Clone local ignore du depot de donnees, cree par `npm run ensure:data` si besoin. |
 | `src/` | Coeur de l'API REST Express et synchronisation MongoDB. |
-| `api/` | Points d'entree serverless necessaires au deploiement Vercel. |
+| `api/` | Fonction Vercel minimale qui bloque l'accès direct aux chemins internes. |
+| `pages/api/` | Routes API Next.js REST et checklist, avec traçage explicite du dataset de production. |
 | `apps/checklist/` | Interface, moteur et serveur de la checklist. |
 | `scripts/sync/` | Commandes de synchronisation MongoDB. |
 | `scripts/import/` | Outils d'import et d'extraction des donnees. |
@@ -107,7 +108,7 @@ de `PokemonGo-Data/data/pokemon/`.
 - `components/` contient les cartes, modales et panneaux reutilises par le nouveau front.
 - `apps/checklist/` conserve l'ancienne interface statique et le moteur metier partage.
 - `apps/checklist/server/` contient le serveur local legacy, l'atelier d'audit et le moteur.
-- `api/checklist-v3.js` regroupe les actions serverless publiques exposees sur Vercel
+- `pages/api/checklist-v3.js` regroupe les actions serverless publiques exposees sur Vercel
   et protege les anciennes actions internes avec `x-api-admin-secret`.
 
 ## Commandes

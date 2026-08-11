@@ -681,8 +681,10 @@ watchers concurrents sur les memes sources.
 
 ### Vercel Et GitHub
 
-`api/rest.js` expose l'application Express comme Vercel Function. Les routes `/api/v1`,
+`pages/api/rest.js` expose l'application Express comme route API Next.js sur Vercel. Les routes `/api/v1`,
 `/api-docs`, `/swagger` et `/health` sont dirigees vers cette fonction par `vercel.json`.
+Le clone `.data/PokemonGo-Data` créé au build est inclus dans les fonctions par
+`outputFileTracingIncludes` dans `next.config.mjs`.
 Le front Next.js sert `/`, `/bibliotheque`, `/checklist` pour compatibilite,
 `/assets`, `/robots.txt` et `/sitemap.xml`.
 

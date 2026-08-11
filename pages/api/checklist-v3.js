@@ -1,7 +1,7 @@
-const { buildChecklist, detailForKey } = require("../apps/checklist/server/engine");
-const workshop = require("../apps/checklist/server/workshop");
-const { requireAdminSecret } = require("../src/lib/admin-auth");
-const { summarizeChecklist } = require("../src/lib/site-dashboard");
+const { buildChecklist, detailForKey } = require("../../apps/checklist/server/engine");
+const workshop = require("../../apps/checklist/server/workshop");
+const { requireAdminSecret } = require("../../src/lib/admin-auth");
+const { summarizeChecklist } = require("../../src/lib/site-dashboard");
 
 function actionFrom(request) {
   return String(request.query?.action || "bootstrap").trim();

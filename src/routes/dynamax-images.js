@@ -5,7 +5,7 @@ const {
   createDynamaxZip,
   dynamaxImagePath,
   readState,
-  scanDynamaxImages,
+  scanDynamaxImagesStep,
 } = require("../services/dynamax-images-service");
 
 const router = express.Router();
@@ -33,10 +33,11 @@ router.get("/", async (request, response, next) => {
   }
 });
 
-router.post("/scan", async (_request, response, next) => {
+router.post("/scan", async (request, response, next) => {
   try {
     response.setHeader("Cache-Control", "private, no-store");
-    return response.json({ success: true, data: await scanDynamaxImages() });
+    const result = await scanDynamaxImagesStep(request.body?.continuation || request.body || {});
+    return response.status(result.status === "running" ? 202 : 200).json({ success: true, data: result });
   } catch (error) {
     return next(error);
   }

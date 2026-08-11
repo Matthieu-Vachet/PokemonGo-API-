@@ -19,6 +19,7 @@ const MAX_PAGE_SIZE = 100;
 const MAX_EXPORT_SIZE = 10_000;
 const MAX_QUERY_LENGTH = 120;
 const MAX_SEARCH_TEXT_LENGTH = 16_000;
+const REINDEX_BATCH_SIZE = 500;
 const ORPHAN_STAGING_MINIMUM_AGE_MS = 15 * 60 * 1_000;
 const generationRanges = {
   1: [1, 151], 2: [152, 251], 3: [252, 386], 4: [387, 493], 5: [494, 649],
@@ -639,32 +640,82 @@ async function regenerate() {
   }
 }
 
-async function reindex() {
+function reindexContinuation(state, phase, offset) {
+  return {
+    phase,
+    offset,
+    snapshotId: state.snapshotId,
+  };
+}
+
+function reindexProgress(state, phase, offset, total) {
+  return {
+    success: true,
+    status: "running",
+    snapshotId: state.snapshotId,
+    phase,
+    processed: Math.min(offset, total),
+    total,
+    continuation: reindexContinuation(state, phase, offset),
+  };
+}
+
+async function reindex(options = {}) {
   const state = await requireCurrentState();
+  const phase = String(options.phase || "templates");
+  const offset = Math.max(0, Number.parseInt(options.offset, 10) || 0);
+  if (options.snapshotId && String(options.snapshotId) !== state.snapshotId) {
+    throw new ApiError(409, "Le snapshot Game Master a changé pendant la réindexation.", "GAME_MASTER_REINDEX_SNAPSHOT_CHANGED");
+  }
+  if (!["templates", "comparisons"].includes(phase)) {
+    throw new ApiError(400, "Phase de réindexation Game Master invalide.", "GAME_MASTER_REINDEX_PHASE_INVALID");
+  }
   const { explorer, mappings, events } = loadDataTools();
   const stored = await GameMasterTemplate.find({ snapshotId: state.snapshotId }).select("raw").lean();
   const gameMaster = stored.map((template) => template.raw);
   const indexed = explorer.buildGameMasterExplorerIndex(gameMaster, { sourceUpdatedAt: state.sourceUpdatedAt, retrievedAt: state.retrievedAt });
   const local = mappings.buildGameMasterPokemonMappings(gameMaster, events.loadPokemonEntries(dataPath()), { sourceUpdatedAt: state.sourceUpdatedAt, retrievedAt: state.retrievedAt });
-  const operations = indexed.templates.map((template) => ({
-    updateOne: {
-      filter: { snapshotId: state.snapshotId, templateId: template.templateId },
-      update: {
-        $set: compactTemplateDocument(template),
-        $unset: { searchTokens: "", flattenedPaths: "", flattenedText: "" },
+  if (phase === "templates") {
+    const batch = indexed.templates.slice(offset, offset + REINDEX_BATCH_SIZE);
+    const operations = batch.map((template) => ({
+      updateOne: {
+        filter: { snapshotId: state.snapshotId, templateId: template.templateId },
+        update: {
+          $set: compactTemplateDocument(template),
+          $unset: { searchTokens: "", flattenedPaths: "", flattenedText: "" },
+        },
       },
-    },
-  }));
-  if (operations.length) await GameMasterTemplate.bulkWrite(operations, { ordered: false });
-  await GameMasterLocalComparison.deleteMany({ snapshotId: state.snapshotId });
+    }));
+    if (operations.length) await GameMasterTemplate.bulkWrite(operations, { ordered: false });
+    const nextOffset = offset + batch.length;
+    if (nextOffset < indexed.templates.length) {
+      return reindexProgress(state, "templates", nextOffset, indexed.templates.length);
+    }
+    await GameMasterLocalComparison.deleteMany({ snapshotId: state.snapshotId });
+    return reindexProgress(state, "comparisons", 0, local.mappings.length);
+  }
+
   const comparisons = local.mappings.map((mapping, index) => comparisonDocument(mapping, state.snapshotId, index));
-  if (comparisons.length) await GameMasterLocalComparison.insertMany(comparisons, { ordered: false });
+  const comparisonBatch = comparisons.slice(offset, offset + REINDEX_BATCH_SIZE);
+  if (comparisonBatch.length) {
+    await GameMasterLocalComparison.bulkWrite(comparisonBatch.map((comparison) => ({
+      updateOne: {
+        filter: { snapshotId: state.snapshotId, comparisonKey: comparison.comparisonKey },
+        update: { $set: comparison },
+        upsert: true,
+      },
+    })), { ordered: false });
+  }
+  const nextOffset = offset + comparisonBatch.length;
+  if (nextOffset < comparisons.length) {
+    return reindexProgress(state, "comparisons", nextOffset, comparisons.length);
+  }
   const localSummary = localStatusCounts(comparisons);
   await Promise.all([
     GameMasterState.updateOne({ key: "current" }, { $set: { indexSchemaVersion: indexed.metadata.indexSchemaVersion, lastCheckedAt: new Date() } }),
     GameMasterSnapshot.updateOne({ snapshotId: state.snapshotId }, { $set: { indexSchemaVersion: indexed.metadata.indexSchemaVersion, categories: indexed.categories, localSummary } }),
   ]);
-  return { success: true, snapshotId: state.snapshotId, totalTemplates: indexed.templates.length, totalCategories: indexed.categories.length, localSummary };
+  return { success: true, status: "completed", snapshotId: state.snapshotId, totalTemplates: indexed.templates.length, totalCategories: indexed.categories.length, localSummary };
 }
 
 async function exportData(query = {}) {
@@ -697,6 +748,7 @@ async function exportData(query = {}) {
 
 module.exports = {
   MAX_EXPORT_SIZE,
+  REINDEX_BATCH_SIZE,
   categories,
   changeRows,
   cleanupOrphanedSnapshots,

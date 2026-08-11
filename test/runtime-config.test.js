@@ -7,7 +7,7 @@ test("les fonctions API Next.js déclarent leur durée Vercel sans includeFiles 
   const config = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../vercel.json"), "utf8"));
   const packageJson = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../package.json"), "utf8"));
 
-  assert.equal(config.functions["pages/api/rest.js"].maxDuration, 300);
+  assert.equal(config.functions["pages/api/rest.js"].maxDuration, 60);
   assert.equal(config.functions["pages/api/checklist-v3.js"].maxDuration, 60);
   for (const functionConfig of Object.values(config.functions)) {
     assert.equal(functionConfig.includeFiles, undefined);

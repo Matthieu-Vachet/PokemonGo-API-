@@ -51,3 +51,16 @@ test("aucun chargement dynamique des generateurs ne subsiste dans le pipeline", 
   assert.doesNotMatch(pipeline, /delete require\.cache/);
   assert.match(pipeline, /getGeneratorRegistration/);
 });
+
+test("les operations administratives longues restent reprises sous la limite Vercel", () => {
+  const gameMasterService = fs.readFileSync(path.resolve(__dirname, "../src/services/game-master-explorer-service.js"), "utf8");
+  const gameMasterRoute = fs.readFileSync(path.resolve(__dirname, "../src/routes/game-master.js"), "utf8");
+  const dynamaxService = fs.readFileSync(path.resolve(__dirname, "../src/services/dynamax-images-service.js"), "utf8");
+  const dynamaxRoute = fs.readFileSync(path.resolve(__dirname, "../src/routes/dynamax-images.js"), "utf8");
+  assert.match(gameMasterService, /REINDEX_BATCH_SIZE = 500/);
+  assert.match(gameMasterService, /status: "running"/);
+  assert.match(gameMasterRoute, /request\.body\?\.continuation/);
+  assert.match(dynamaxService, /SCAN_BATCH_SIZE = 16/);
+  assert.match(dynamaxService, /kind: "scan-job"/);
+  assert.match(dynamaxRoute, /scanDynamaxImagesStep/);
+});

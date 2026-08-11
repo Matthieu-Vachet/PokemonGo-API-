@@ -18,6 +18,8 @@ const MAX_REDIRECTS = 3;
 const CACHE_DATASET_KEY = "dynamax-images";
 const CACHE_COLLECTION = "admin_asset_cache";
 const CACHE_TTL_MS = 6 * 60 * 60 * 1000;
+const SCAN_JOB_TTL_MS = 30 * 60 * 1000;
+const SCAN_BATCH_SIZE = 16;
 const DASHBOARD_DB = process.env.DASHBOARD_MONGODB_DB || "matweb-dashboard-admin";
 
 let cacheIndexPromise;
@@ -45,6 +47,20 @@ function bufferFromMongo(value) {
   if (typeof value?.value === "function") return Buffer.from(value.value(true));
   if (Buffer.isBuffer(value?.buffer)) return Buffer.from(value.buffer);
   return value ? Buffer.from(value) : null;
+}
+
+function scanJobId(scanId) {
+  return `${CACHE_DATASET_KEY}:scan:${scanId}:job`;
+}
+
+function scanImageId(scanId, filename) {
+  return `${CACHE_DATASET_KEY}:scan:${scanId}:image:${filename}`;
+}
+
+function persistentImageId(state, filename) {
+  return state?.scanId
+    ? scanImageId(state.scanId, filename)
+    : `${CACHE_DATASET_KEY}:image:${filename}`;
 }
 
 function cleanText(value) {
@@ -237,15 +253,17 @@ async function fetchImage(url, options = {}) {
 }
 
 async function readState() {
+  const collection = persistentCacheCollection();
+  if (collection) {
+    const document = await collection.findOne({ _id: `${CACHE_DATASET_KEY}:state`, datasetKey: CACHE_DATASET_KEY });
+    if (document?.state) return document.state;
+  }
   try {
     return JSON.parse(await fsp.readFile(STATE_FILE, "utf8"));
   } catch (error) {
     if (error.code !== "ENOENT") throw error;
   }
-  const collection = persistentCacheCollection();
-  if (!collection) return null;
-  const document = await collection.findOne({ _id: `${CACHE_DATASET_KEY}:state`, datasetKey: CACHE_DATASET_KEY });
-  return document?.state || null;
+  return null;
 }
 
 async function writeState(state, cachedFiles = new Map()) {
@@ -355,21 +373,180 @@ async function scanDynamaxImages(options = {}) {
   return state;
 }
 
+function scanProgress(scanId, offset, total) {
+  return {
+    success: true,
+    status: "running",
+    scanId,
+    processed: Math.min(offset, total),
+    total,
+    continuation: { scanId, offset },
+  };
+}
+
+async function scanDynamaxImagesStep(options = {}) {
+  const collection = persistentCacheCollection();
+  if (!collection) {
+    return { ...(await scanDynamaxImages(options)), success: true, status: "completed" };
+  }
+  await preparePersistentCache(collection);
+  const requestedScanId = String(options.scanId || "").trim();
+  if (!requestedScanId) {
+    const collector = options.collector || collectDynamaxCards;
+    const detected = (await collector()).map(normalizeCard);
+    const uniqueByUrl = new Map();
+    for (const card of detected) if (!uniqueByUrl.has(card.sourceImageUrl)) uniqueByUrl.set(card.sourceImageUrl, card);
+    const usedFilenames = new Map();
+    const cards = [...uniqueByUrl.values()].map((card) => ({
+      ...card,
+      filename: filenameFor(card, "", usedFilenames),
+    }));
+    const scanId = crypto.randomUUID();
+    const now = new Date();
+    await collection.replaceOne(
+      { _id: scanJobId(scanId) },
+      {
+        _id: scanJobId(scanId),
+        datasetKey: CACHE_DATASET_KEY,
+        kind: "scan-job",
+        scanId,
+        source: SOURCE_URL,
+        detectedCount: detected.length,
+        duplicatesIgnored: detected.length - cards.length,
+        cards,
+        results: [],
+        nextOffset: 0,
+        createdAt: now,
+        updatedAt: now,
+        expiresAt: new Date(now.getTime() + SCAN_JOB_TTL_MS),
+      },
+      { upsert: true },
+    );
+    return scanProgress(scanId, 0, cards.length);
+  }
+
+  const job = await collection.findOne({
+    _id: scanJobId(requestedScanId),
+    datasetKey: CACHE_DATASET_KEY,
+    kind: "scan-job",
+  });
+  if (!job) throw new ApiError(404, "Étape de scan Dynamax expirée ou introuvable.", "DYNAMAX_SCAN_JOB_NOT_FOUND");
+  const requestedOffset = Math.max(0, Number.parseInt(options.offset, 10) || 0);
+  const currentOffset = Math.max(0, Number(job.nextOffset || 0));
+  if (requestedOffset > currentOffset) {
+    throw new ApiError(409, "Curseur de scan Dynamax en avance sur l'état persistant.", "DYNAMAX_SCAN_CURSOR_INVALID");
+  }
+  if (requestedOffset < currentOffset) {
+    return scanProgress(job.scanId, currentOffset, job.cards.length);
+  }
+
+  const downloader = options.downloader || fetchImage;
+  const batch = job.cards.slice(currentOffset, currentOffset + SCAN_BATCH_SIZE);
+  const results = new Array(batch.length);
+  await Promise.all(batch.map(async (card, index) => {
+    try {
+      const downloaded = await downloader(card.sourceImageUrl);
+      results[index] = {
+        ...card,
+        downloadStatus: "success",
+        contentType: downloaded.contentType,
+        error: null,
+        buffer: downloaded.buffer,
+      };
+    } catch (error) {
+      results[index] = {
+        ...card,
+        downloadStatus: "failed",
+        contentType: null,
+        error: error instanceof Error ? error.message : String(error),
+      };
+    }
+  }));
+
+  const expiresAt = new Date(Date.now() + CACHE_TTL_MS);
+  const successful = results.filter((result) => result.downloadStatus === "success");
+  if (successful.length) {
+    await collection.bulkWrite(successful.map((result) => ({
+      replaceOne: {
+        filter: { _id: scanImageId(job.scanId, result.filename) },
+        replacement: {
+          _id: scanImageId(job.scanId, result.filename),
+          datasetKey: CACHE_DATASET_KEY,
+          kind: "image",
+          scanId: job.scanId,
+          filename: result.filename,
+          contentType: result.contentType,
+          data: result.buffer,
+          updatedAt: new Date(),
+          expiresAt,
+        },
+        upsert: true,
+      },
+    })), { ordered: false });
+  }
+  const storedResults = results.map(({ buffer: _buffer, ...result }) => result);
+  const nextOffset = currentOffset + batch.length;
+  await collection.updateOne(
+    { _id: job._id, nextOffset: currentOffset },
+    {
+      $push: { results: { $each: storedResults } },
+      $set: { nextOffset, updatedAt: new Date(), expiresAt: new Date(Date.now() + SCAN_JOB_TTL_MS) },
+    },
+  );
+  if (nextOffset < job.cards.length) return scanProgress(job.scanId, nextOffset, job.cards.length);
+
+  const completedJob = await collection.findOne({ _id: job._id });
+  const images = [...completedJob.results]
+    .sort((left, right) => (left.dexNr || 99999) - (right.dexNr || 99999) || left.name.localeCompare(right.name));
+  const downloadedCount = images.filter((image) => image.downloadStatus === "success").length;
+  const state = {
+    scanId: job.scanId,
+    lastScanAt: new Date().toISOString(),
+    source: SOURCE_URL,
+    counts: {
+      detected: job.detectedCount,
+      downloaded: downloadedCount,
+      duplicatesIgnored: job.duplicatesIgnored,
+      failed: images.length - downloadedCount,
+    },
+    images,
+  };
+  await collection.replaceOne(
+    { _id: `${CACHE_DATASET_KEY}:state` },
+    {
+      _id: `${CACHE_DATASET_KEY}:state`,
+      datasetKey: CACHE_DATASET_KEY,
+      kind: "state",
+      state,
+      updatedAt: new Date(),
+      expiresAt,
+    },
+    { upsert: true },
+  );
+  await Promise.all([
+    collection.deleteMany({ datasetKey: CACHE_DATASET_KEY, kind: "image", scanId: { $ne: job.scanId } }),
+    collection.deleteMany({ datasetKey: CACHE_DATASET_KEY, kind: "scan-job" }),
+  ]);
+  return { ...state, success: true, status: "completed" };
+}
+
 async function dynamaxImagePath(filename) {
   const state = await readState();
   const safeName = path.basename(String(filename || ""));
   const item = state?.images?.find((image) => image.filename === safeName && image.downloadStatus === "success");
   if (!item || !safeName || safeName !== filename) throw new ApiError(404, "Image Dynamax introuvable.", "DYNAMAX_IMAGE_NOT_FOUND");
   const filePath = path.join(IMAGE_DIR, safeName);
-  try {
-    await fsp.access(filePath);
-    return { item, filePath };
-  } catch (error) {
-    if (error.code !== "ENOENT") throw error;
+  if (!state.scanId) {
+    try {
+      await fsp.access(filePath);
+      return { item, filePath };
+    } catch (error) {
+      if (error.code !== "ENOENT") throw error;
+    }
   }
   const collection = persistentCacheCollection();
   const document = collection ? await collection.findOne({
-    _id: `${CACHE_DATASET_KEY}:image:${safeName}`,
+    _id: persistentImageId(state, safeName),
     datasetKey: CACHE_DATASET_KEY,
     kind: "image",
   }) : null;
@@ -404,7 +581,12 @@ async function createDynamaxZip(response) {
   const collection = persistentCacheCollection();
   const persistentImages = new Map();
   if (collection && successful.length) {
-    const documents = await collection.find({
+    const documents = await collection.find(state.scanId ? {
+      datasetKey: CACHE_DATASET_KEY,
+      kind: "image",
+      scanId: state.scanId,
+      filename: { $in: successful.map((image) => image.filename) },
+    } : {
       datasetKey: CACHE_DATASET_KEY,
       kind: "image",
       filename: { $in: successful.map((image) => image.filename) },
@@ -414,7 +596,8 @@ async function createDynamaxZip(response) {
   for (const image of successful) {
     const buffer = persistentImages.get(image.filename);
     if (buffer) archive.append(buffer, { name: `dynamax-images/images/${image.filename}` });
-    else archive.file(path.join(IMAGE_DIR, image.filename), { name: `dynamax-images/images/${image.filename}` });
+    else if (!state.scanId) archive.file(path.join(IMAGE_DIR, image.filename), { name: `dynamax-images/images/${image.filename}` });
+    else throw new ApiError(503, `Image Dynamax persistante absente: ${image.filename}`, "DYNAMAX_IMAGE_CACHE_INCOMPLETE");
   }
   archive.append(`${JSON.stringify(manifest, null, 2)}\n`, { name: "dynamax-images/manifest.json" });
   archive.append(`${JSON.stringify(errors, null, 2)}\n`, { name: "dynamax-images/errors.json" });
@@ -434,4 +617,5 @@ module.exports = {
   readState,
   safeRemoteUrl,
   scanDynamaxImages,
+  scanDynamaxImagesStep,
 };

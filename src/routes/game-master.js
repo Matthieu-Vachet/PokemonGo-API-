@@ -73,8 +73,8 @@ router.post("/regenerate", asyncHandler(async (_request, response) => {
   response.json({ data: await service.regenerate() });
 }));
 
-router.post("/reindex", asyncHandler(async (_request, response) => {
-  response.json({ data: await service.reindex() });
+router.post("/reindex", asyncHandler(async (request, response) => {
+  response.json({ data: await service.reindex(request.body?.continuation || request.body || {}) });
 }));
 
 module.exports = router;

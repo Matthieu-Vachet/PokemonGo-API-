@@ -21,6 +21,7 @@ related:
 - Centralise la racine PokemonGo-Data, les fichiers et modules runtime avec validation, erreurs structurées et protection contre le path traversal.
 - Rend les validations registry, serverless-like et post-build bloquantes, ajoute la CI et les commandes `verify:regenerations` / `smoke:regenerations`.
 - Externalise `@sparticuz/chromium` et trace ses binaires uniquement dans la Function REST afin que le scan Dynamax fonctionne sur Vercel.
+- Porte la durée maximale de la Function REST à 300 secondes pour les réindexations et scans administratifs longs.
 
 ## 1.21.0 - 2026-08-09
 

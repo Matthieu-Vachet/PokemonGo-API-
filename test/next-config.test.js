@@ -5,6 +5,7 @@ const test = require("node:test");
 test("les fonctions Next.js embarquent le dataset PokemonGo-Data requis", async () => {
   const { default: nextConfig } = await import("../next.config.mjs");
   const tracedFiles = nextConfig.outputFileTracingIncludes?.["/*"];
+  const restTrace = nextConfig.outputFileTracingIncludes?.["/api/rest"];
 
   assert.equal(nextConfig.outputFileTracingRoot, path.resolve(__dirname, ".."));
   assert.ok(Array.isArray(tracedFiles));
@@ -14,4 +15,6 @@ test("les fonctions Next.js embarquent le dataset PokemonGo-Data requis", async 
   assert.ok(tracedFiles.includes("./runtime-data/PokemonGo-Data/data/activities/research/**/*"));
   assert.ok(tracedFiles.includes("./runtime-data/PokemonGo-Data/mappings/**/*"));
   assert.ok(tracedFiles.includes("./runtime-data/PokemonGo-Data/tooling/**/*"));
+  assert.deepEqual(nextConfig.serverExternalPackages, ["@sparticuz/chromium"]);
+  assert.ok(restTrace.includes("./node_modules/@sparticuz/chromium/bin/**/*"));
 });

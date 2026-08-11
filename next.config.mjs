@@ -61,9 +61,15 @@ const pokemonGoDataTrace = [
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  serverExternalPackages: ["@sparticuz/chromium"],
   outputFileTracingRoot: projectRoot,
   outputFileTracingIncludes: {
     "/*": pokemonGoDataTrace,
+    "/api/rest": [
+      "./node_modules/@sparticuz/chromium/bin/**/*",
+      "./node_modules/@sparticuz/chromium/build/**/*",
+      "./node_modules/@sparticuz/chromium/package.json",
+    ],
   },
   async headers() {
     return [

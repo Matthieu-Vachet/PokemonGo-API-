@@ -20,6 +20,7 @@ related:
 - Remplace le `require()` absolu dynamique des générateurs par un registre de 12 imports statiques traçables par Next/Vercel.
 - Centralise la racine PokemonGo-Data, les fichiers et modules runtime avec validation, erreurs structurées et protection contre le path traversal.
 - Rend les validations registry, serverless-like et post-build bloquantes, ajoute la CI et les commandes `verify:regenerations` / `smoke:regenerations`.
+- Externalise `@sparticuz/chromium` et trace ses binaires uniquement dans la Function REST afin que le scan Dynamax fonctionne sur Vercel.
 
 ## 1.21.0 - 2026-08-09
 

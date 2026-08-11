@@ -160,11 +160,25 @@ async function collectDynamaxCards() {
       // Only the image URLs in the rendered cards are needed here. Avoid
       // downloading the same files in Chromium before the validated server
       // downloader fetches them.
-      if (["font", "image", "media"].includes(request.resourceType())) request.abort();
+      const hostname = (() => {
+        try { return new URL(request.url()).hostname.toLowerCase(); } catch { return ""; }
+      })();
+      const thirdParty = hostname && !SOURCE_HOSTS.has(hostname) && hostname !== "challenges.cloudflare.com";
+      if (thirdParty || ["font", "image", "media", "stylesheet"].includes(request.resourceType())) request.abort();
       else request.continue();
     });
-    await page.goto(SOURCE_URL, { waitUntil: "domcontentloaded", timeout: 45_000 });
-    await page.waitForSelector("table tbody tr", { timeout: 30_000 });
+    await page.goto(SOURCE_URL, { waitUntil: "domcontentloaded", timeout: 30_000 });
+    await page.waitForSelector("table tbody tr", { timeout: 12_000 });
+    const previousCount = await page.$$eval("table tbody tr", (rows) => rows.length);
+    const pageSizeOptions = await page.$$eval("select option", (options) => options.map((option) => option.value));
+    if (pageSizeOptions.includes("200")) {
+      await page.select("select", "200");
+      await page.waitForFunction(
+        (count) => document.querySelectorAll("table tbody tr").length > count,
+        { timeout: 5_000 },
+        previousCount,
+      ).catch(() => undefined);
+    }
 
     const cards = [];
     for (let pageIndex = 0; pageIndex < 30; pageIndex += 1) {
@@ -200,7 +214,7 @@ async function collectDynamaxCards() {
         await nextImage.click();
         await page.waitForFunction(
           (previousMarker) => (document.querySelector("table tbody tr")?.textContent || "") !== previousMarker,
-          { timeout: 10_000 },
+          { timeout: 5_000 },
           marker,
         );
       } finally {

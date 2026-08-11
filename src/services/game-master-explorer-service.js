@@ -19,7 +19,7 @@ const MAX_PAGE_SIZE = 100;
 const MAX_EXPORT_SIZE = 10_000;
 const MAX_QUERY_LENGTH = 120;
 const MAX_SEARCH_TEXT_LENGTH = 16_000;
-const REINDEX_BATCH_SIZE = 500;
+const REINDEX_BATCH_SIZE = 2_000;
 const ORPHAN_STAGING_MINIMUM_AGE_MS = 15 * 60 * 1_000;
 const generationRanges = {
   1: [1, 151], 2: [152, 251], 3: [252, 386], 4: [387, 493], 5: [494, 649],

@@ -22,6 +22,7 @@ related:
 - Rend les validations registry, serverless-like et post-build bloquantes, ajoute la CI et les commandes `verify:regenerations` / `smoke:regenerations`.
 - Externalise `@sparticuz/chromium` et trace ses binaires uniquement dans la Function REST afin que le scan Dynamax fonctionne sur Vercel.
 - Fractionne la réindexation Game Master et le scan Dynamax en étapes MongoDB idempotentes, chacune bornée par la limite Vercel de 60 secondes.
+- Regroupe les écritures Game Master par 2 000 et force la table Pokémon GO Hub à 200 lignes en bloquant les scripts tiers pour terminer les parcours sous leurs budgets globaux.
 
 ## 1.21.0 - 2026-08-09
 

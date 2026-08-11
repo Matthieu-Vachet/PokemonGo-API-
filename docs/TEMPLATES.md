@@ -20,22 +20,22 @@ Ce fichier regroupe les templates a copier pour ajouter ou normaliser les donnee
 Les fichiers sources vivent dans le depot prive `PokemonGo-Data`.
 Le format de reference est construit a partir de:
 
-- `PokemonGo-Data/pokemon/0001-bulbasaur.json`: Pokemon de base avec evolution.
-- `PokemonGo-Data/pokemon/0002-ivysaur.json`: Pokemon intermediaire avec evolution.
-- `PokemonGo-Data/pokemon/0003-venusaur.json`: Pokemon final avec Mega-Evolution et Gigantamax.
+- `PokemonGo-Data/data/pokemon/normal/0001-bulbasaur.json`: Pokemon de base avec evolution.
+- `PokemonGo-Data/data/pokemon/normal/0002-ivysaur.json`: Pokemon intermediaire avec evolution.
+- `PokemonGo-Data/data/pokemon/normal/0003-venusaur.json`: Pokemon final avec Mega-Evolution et Gigantamax.
 
 ## Pokemon
 
 Nom du fichier:
 
 ```text
-PokemonGo-Data/pokemon/[dexId]-[slug].json
+PokemonGo-Data/data/pokemon/normal/[dexId]-[slug].json
 ```
 
 Exemple:
 
 ```text
-PokemonGo-Data/pokemon/0001-bulbasaur.json
+PokemonGo-Data/data/pokemon/normal/0001-bulbasaur.json
 ```
 
 Template complet:
@@ -105,7 +105,7 @@ Template complet:
     "raidLevel20": null,
     "researchLevel15": null
   },
-  "pvpRef": "pvp/pokemon/normal/0001-bulbasaur.pvp.json",
+  "pvpRef": "data/pvp/pokemon/normal/0001-bulbasaur.pvp.json",
   "stats": {
     "stamina": null,
     "attack": null,
@@ -120,7 +120,7 @@ Template complet:
   "eliteCinematicMoves": [],
   "legacyQuickMoves": [],
   "legacyCinematicMoves": [],
-  "assetsRef": "pokemon-assets/core/normal/0001-bulbasaur.assets.json",
+  "assetsRef": "data/assets/core/normal/0001-bulbasaur.assets.json",
   "regionForms": [],
   "evolutions": [],
   "hasMegaEvolution": false,
@@ -133,7 +133,7 @@ Template complet:
 
 ## Template Core Assets
 
-À placer dans `PokemonGo-Data/pokemon-assets/core/<catégorie>/[dexId]-[identité].assets.json`.
+À placer dans `PokemonGo-Data/data/assets/core/<catégorie>/[dexId]-[identité].assets.json`.
 Les catégories autorisées sont `normal`, `forms`, `mega`, `dynamax` et `gigantamax`.
 Le Core ne référence que les familles secondaires réellement présentes ; voir
 `ENTITY-CATEGORY-ARCHITECTURE.md`.
@@ -156,10 +156,10 @@ Le Core ne référence que les familles secondaires réellement présentes ; voi
     "candy": null
   },
   "assetRefs": {
-    "home": "pokemon-assets/home/normal/0001-bulbasaur.home.json",
-    "shuffle": "pokemon-assets/shuffle/normal/0001-bulbasaur.shuffle.json",
-    "variants": "pokemon-assets/variants/normal/0001-bulbasaur.variants.json",
-    "location-cards": "pokemon-assets/location-cards/normal/0001-bulbasaur.location-cards.json"
+    "home": "data/assets/home/normal/0001-bulbasaur.home.json",
+    "shuffle": "data/assets/shuffle/normal/0001-bulbasaur.shuffle.json",
+    "variants": "data/assets/variants/normal/0001-bulbasaur.variants.json",
+    "location-cards": "data/assets/location-cards/normal/0001-bulbasaur.location-cards.json"
   }
 }
 ```
@@ -167,7 +167,7 @@ Le Core ne référence que les familles secondaires réellement présentes ; voi
 ## Bloc Type
 
 A utiliser pour `primaryType`, `secondaryType` et le type d'une attaque. La valeur
-reference un fichier de `PokemonGo-Data/types/`.
+reference un fichier de `PokemonGo-Data/data/reference/types/`.
 
 ```json
 {
@@ -188,7 +188,7 @@ Pour un Pokemon mono-type:
 ## References D'Attaques
 
 Les fiches Pokemon stockent uniquement les identifiants. Les details complets sont dans
-`PokemonGo-Data/moves/`.
+`PokemonGo-Data/data/moves/`.
 
 ```json
 {
@@ -205,7 +205,7 @@ La fiche Pokémon ou forme conserve uniquement la référence racine :
 
 ```json
 {
-  "pvpRef": "pvp/pokemon/normal/0001-bulbasaur.pvp.json"
+  "pvpRef": "data/pvp/pokemon/normal/0001-bulbasaur.pvp.json"
 }
 ```
 
@@ -251,7 +251,7 @@ Regles selon le stade:
 
 ## Bloc Mega / Primo
 
-A créer dans `PokemonGo-Data/pokemon-forms/`, puis ajouter son `formId` à la liste
+A créer dans `PokemonGo-Data/data/pokemon/`, puis ajouter son `formId` à la liste
 `megaEvolutions` de la fiche principale.
 
 ```json
@@ -310,7 +310,7 @@ A créer dans `PokemonGo-Data/pokemon-forms/`, puis ajouter son `formId` à la l
     "primaryType": "",
     "secondaryType": null,
     "megaEnergyCost": null,
-    "assetsRef": "pokemon-assets/core/mega/0003-venusaur-mega.assets.json"
+    "assetsRef": "data/assets/core/mega/0003-venusaur-mega.assets.json"
   }
 }
 ```
@@ -327,8 +327,8 @@ référence sa région avec `regionId`.
 
 ## Dynamax Et Gigantamax
 
-Ces formes vivent dans `PokemonGo-Data/pokemon-forms/dynamax/` ou
-`PokemonGo-Data/pokemon-forms/gigantamax/`. Elles heritent du Pokemon normal et ne repetent que les
+Ces formes vivent dans `PokemonGo-Data/data/pokemon/dynamax/` ou
+`PokemonGo-Data/data/pokemon/gigantamax/`. Elles heritent du Pokemon normal et ne repetent que les
 champs differents.
 
 ```json
@@ -356,8 +356,8 @@ champs differents.
 ```
 
 Pour une forme Dynamax, utiliser `"form": "dynamax"` et des references vers
-`PokemonGo-Data/moves/max/`. Pour une forme Gigantamax, utiliser `"form": "gigantamax"` et des
-references vers `PokemonGo-Data/moves/gmax/`. Leur bloc `maxCp` contient uniquement
+`PokemonGo-Data/data/moves/max/`. Pour une forme Gigantamax, utiliser `"form": "gigantamax"` et des
+references vers `PokemonGo-Data/data/moves/gmax/`. Leur bloc `maxCp` contient uniquement
 `maxLevel50`, `maxLevel40` et `maxBattlesLevel20`.
 
 Le bloc `assets` de la fiche Max conserve seulement `image`, `shinyImage`, `candy` et
@@ -367,7 +367,7 @@ Dynamax conserve également son tableau `evolutions`.
 
 ## Bloc Variant Asset
 
-À ajouter dans `pokemon-assets/variants/<catégorie>/*.variants.json -> variants` pour les
+À ajouter dans `data/assets/variants/<catégorie>/*.variants.json -> variants` pour les
 costumes, formes visuelles ou variantes femelles. Aucun fichier n’est créé si la liste
 est vide.
 
@@ -383,8 +383,8 @@ est vide.
 
 ## Type
 
-Entrée individuelle du catalogue `PokemonGo-Data/types/<slug>.json`. L'index
-`PokemonGo-Data/types/types.json` est conservé pour compatibilité.
+Entrée individuelle du catalogue `PokemonGo-Data/data/reference/types/<slug>.json`. L'index
+`PokemonGo-Data/data/reference/types/types.json` est conservé pour compatibilité.
 
 ```json
 {
@@ -403,7 +403,7 @@ Entrée individuelle du catalogue `PokemonGo-Data/types/<slug>.json`. L'index
 }
 ```
 
-`weatherBoost` référence une entrée de `PokemonGo-Data/weather/`. Les traductions et l'icône de
+`weatherBoost` référence une entrée de `PokemonGo-Data/data/reference/weather/`. Les traductions et l'icône de
 la météo ne doivent pas être recopiées dans le type.
 
 ## Checklist Avant Ajout
@@ -414,8 +414,8 @@ la météo ne doivent pas être recopiées dans le type.
 - Le slug est en minuscules et en anglais.
 - Les langues de `names` sont toutes presentes.
 - Les tableaux vides sont `[]`, les valeurs inconnues sont `null`.
-- Les fiches complètes référencent `PokemonGo-Data/generations/` avec `regionId`.
-- Les Pokémon et les types référencent `PokemonGo-Data/weather/` avec leurs identifiants.
+- Les fiches complètes référencent `PokemonGo-Data/data/reference/generations/` avec `regionId`.
+- Les Pokémon et les types référencent `PokemonGo-Data/data/reference/weather/` avec leurs identifiants.
 - Les assets principaux et chromatiques sont renseignes quand ils existent.
 - Les attaques contiennent `id`, `slug`, donnees PvE, identifiant de type, traductions et donnees PvP.
 - Les evolutions contiennent `targetFormId`, `candies`, `item` et `quests`.

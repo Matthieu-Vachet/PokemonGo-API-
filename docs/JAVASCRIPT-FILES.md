@@ -37,7 +37,7 @@ imports, aux migrations, aux audits ou à la synchronisation.
 | Fichier | Rôle |
 | --- | --- |
 | `scripts/import/download-pokemon.js` | Télécharge les fiches Pokémon brutes. |
-| `scripts/import/extract-pokemon-forms.js` | Extrait et normalise les formes Pokémon. |
+| `scripts/migrate/extract-form-references.js` | Extrait les formes embarquées vers leur catégorie canonique et conserve les références `formId`. |
 | `scripts/import/enrich-pokemon.js` | Ajoute les informations générales, PC et PvP manquantes. |
 | `scripts/import/location-cards.js` | Associe les backgrounds aux Pokémon éligibles. |
 | `scripts/import/shadow-pokemon.js` | Synchronise les Pokémon Shadow sortis. |
@@ -90,7 +90,7 @@ Les commandes sans suffixe `:write` simulent généralement le résultat. Les co
 - `src/lib/*.js` contient les fonctions techniques réutilisables.
 - `apps/checklist/server/*.js` alimente la checklist locale et ses outils.
 - `apps/checklist/server/source-watch.js` vérifie les dépôts GitHub et sites déclarés
-  dans `PokemonGo-Data/source-watch/sources.json`; l'action publique Vercel est
+  dans `PokemonGo-Data/operations/audits/sources/current.json`; l'action publique Vercel est
   protegee par `x-api-admin-secret`, puis desactivee dans ce depot read-only.
 
 ## Commandes Sûres

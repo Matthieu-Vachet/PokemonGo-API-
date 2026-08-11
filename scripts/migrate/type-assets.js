@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const typesFile = dataPath("types", "types.json");
+const typesFile = dataPath("data", "reference", "types", "types.json");
 const assetsDir = path.join(rootDir, "asset", "Types");
 const remoteBase =
   "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/Types";

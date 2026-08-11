@@ -21,16 +21,16 @@ related:
 ## Sources De Vérité
 
 - Le depot prive `PokemonGo-Data` contient les JSON sources.
-- `PokemonGo-Data/pokemon/` contient uniquement les fiches principales.
-- `PokemonGo-Data/pokemon-forms/` contient les données complètes de chaque forme.
+- `PokemonGo-Data/data/pokemon/normal/` contient uniquement les fiches principales.
+- `PokemonGo-Data/data/pokemon/` contient les données complètes de chaque forme.
 - `regionForms`, `megaEvolutions`, `dynamaxForms` et `gigantamaxForms` sont des
   listes de références `formId`.
-- `PokemonGo-Data/moves/`, `PokemonGo-Data/types/`, `PokemonGo-Data/generations/` et `PokemonGo-Data/weather/` sont les
+- `PokemonGo-Data/data/moves/`, `PokemonGo-Data/data/reference/types/`, `PokemonGo-Data/data/reference/generations/` et `PokemonGo-Data/data/reference/weather/` sont les
   catalogues centraux.
 - Les fiches complètes utilisent `regionId`; ne jamais recopier l'objet région ni
   la génération. Les formes Méga et Max héritent ces informations de leur base.
-- `weatherBoost` et `PokemonGo-Data/types/*/weatherBoost` utilisent les identifiants de
-  `PokemonGo-Data/weather/`.
+- `weatherBoost` et `PokemonGo-Data/data/reference/types/*/weatherBoost` utilisent les identifiants de
+  `PokemonGo-Data/data/reference/weather/`.
 
 Ne jamais recopier les données complètes d'une forme dans une fiche principale.
 

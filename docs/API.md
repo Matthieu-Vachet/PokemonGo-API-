@@ -21,7 +21,7 @@ related:
 L'API publique vit dans `src/` et reste separee des outils de controle du Dashboard Admin.
 Les fichiers du depot prive `PokemonGo-Data` restent la source de verite et ne sont
 jamais modifies par la synchronisation. Les details des attaques vivent dans
-`PokemonGo-Data/moves/`; les Pokemon ne conservent que leurs identifiants.
+`PokemonGo-Data/data/moves/`; les Pokemon ne conservent que leurs identifiants.
 Le contrat de publication transversal est défini dans
 [CANONICAL-DATA-CONTRACTS.md](CANONICAL-DATA-CONTRACTS.md).
 
@@ -61,8 +61,8 @@ Depuis la refonte du modele Pokemon, MongoDB separe les donnees en deux collecti
   document `{ key: "current" }` produit par le pipeline de regeneration externe.
   MongoDB est leur unique source de lecture ; les JSON locaux ne sont que des
   references, fixtures ou exports explicites.
-- `items` contient les objets canoniques de `PokemonGo-Data/items/items.json`, un document par objet.
-- `rocket_texts` contient les phrases Team GO Rocket de `PokemonGo-Data/rocket/rocketTexts.json`, un document par texte.
+- `items` contient les objets canoniques de `PokemonGo-Data/data/reference/items/items.json`, un document par objet.
+- `rocket_texts` contient les phrases Team GO Rocket de `PokemonGo-Data/data/battles/rocket/texts.json`, un document par texte.
 
 Les routes publiques joignent automatiquement `pokemons.formId` avec `pokemonAssets.formId`
 sur les fiches de detail et les routes d'assets. La liste `/pokemon` reste legere pour
@@ -498,7 +498,7 @@ uniquement MongoDB, sans fallback fichier.
 ## Items
 
 `GET /api/v1/items` expose les objets canoniques utiles aux recompenses Research.
-Les donnees viennent de `PokemonGo-Data/items/items.json` puis sont synchronisees
+Les donnees viennent de `PokemonGo-Data/data/reference/items/items.json` puis sont synchronisees
 dans MongoDB, collection `items`.
 
 Champs principaux :
@@ -519,7 +519,7 @@ curl "https://domain.com/api/v1/items/ITEM_ULTRA_BALL"
 ## Rocket Texts
 
 `GET /api/v1/rocket-texts` expose les traductions officielles des phrases Team GO
-Rocket. Les donnees viennent de `PokemonGo-Data/rocket/rocketTexts.json` puis sont
+Rocket. Les donnees viennent de `PokemonGo-Data/data/battles/rocket/texts.json` puis sont
 synchronisees dans MongoDB, collection `rocket_texts`.
 
 Champs principaux :

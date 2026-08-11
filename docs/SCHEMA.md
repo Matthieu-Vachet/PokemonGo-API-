@@ -28,39 +28,46 @@ ainsi que les Mega-Evolutions, Gigantamax, attaques Elite et formes visuelles.
 
 ```text
 PokemonGo-Data/
-├── pokemon/
-│   ├── 0001-bulbasaur.json
-│   ├── 0002-ivysaur.json
-│   └── 0003-venusaur.json
-├── pokemon-forms/
-│   ├── alola/
-│   ├── galar/
-│   ├── hisui/
-│   ├── paldea/
-│   ├── dynamax/
-│   ├── gigantamax/
-│   ├── mega/
-│   ├── mega-x/
-│   └── mega-y/
-├── moves/
-│   ├── fast/
-│   ├── charged/
-│   ├── fast_elite/
-│   ├── charged_elite/
-│   ├── max/
-│   └── gmax/
-└── types/
+├── data/
+│   ├── pokemon/
+│   │   ├── normal/
+│   │   ├── alola/
+│   │   ├── galar/
+│   │   ├── hisui/
+│   │   ├── paldea/
+│   │   ├── forms/
+│   │   ├── mega/
+│   │   ├── primal/
+│   │   ├── dynamax/
+│   │   └── gigantamax/
+│   ├── moves/
+│   │   ├── fast/
+│   │   ├── charged/
+│   │   ├── fast-elite/
+│   │   ├── charged-elite/
+│   │   ├── charged-plus/
+│   │   ├── max/
+│   │   └── gmax/
+│   ├── assets/
+│   ├── pvp/
+│   └── reference/
+├── mappings/
+├── operations/
+├── tooling/
+├── schemas/
+├── tests/
+└── docs/
 ```
 
 ## Regles Generales
 
-Chaque Pokemon est stocke dans `PokemonGo-Data/pokemon/[dexId]-[slug].json`.
+Chaque Pokemon est stocke dans `PokemonGo-Data/data/pokemon/normal/[dexId]-[slug].json`.
 
 Exemple:
 
 ```text
-PokemonGo-Data/pokemon/0001-bulbasaur.json
-PokemonGo-Data/pokemon/0002-ivysaur.json
+PokemonGo-Data/data/pokemon/normal/0001-bulbasaur.json
+PokemonGo-Data/data/pokemon/normal/0002-ivysaur.json
 ```
 
 Les identifiants techniques issus du Game Master restent en majuscules:
@@ -110,7 +117,7 @@ Les valeurs inconnues ou non applicables utilisent `null`. Les listes vides util
 | `dexId` | string | Numero Pokedex formate sur 4 chiffres. |
 | `names` | object | Noms localises par langue. |
 | `form` | string | Forme technique en minuscules, ex. `normal`, `alola`, `mega`. |
-| `regionId` | string | Référence vers la région centrale de `PokemonGo-Data/generations/`. |
+| `regionId` | string | Référence vers la région centrale de `PokemonGo-Data/data/reference/generations/`. |
 | `pokemonClass` | string/null | Classe speciale si disponible, sinon `null`. |
 
 L'API et la checklist recomposent `region` et `generation` depuis `regionId`. Les formes
@@ -142,7 +149,7 @@ Les objets de noms utilisent ces cles:
 ### Types
 
 `primaryType` est obligatoire. `secondaryType` vaut `null` pour un Pokemon mono-type.
-Ces champs referencent les identifiants courts de `PokemonGo-Data/types/`.
+Ces champs referencent les identifiants courts de `PokemonGo-Data/data/reference/types/`.
 
 ```json
 {
@@ -155,7 +162,7 @@ Ces champs referencent les identifiants courts de `PokemonGo-Data/types/`.
 
 | Champ | Type | Description |
 | --- | --- | --- |
-| `weatherBoost` | string[] | Références vers les identifiants de `PokemonGo-Data/weather/`. |
+| `weatherBoost` | string[] | Références vers les identifiants de `PokemonGo-Data/data/reference/weather/`. |
 | `buddyDistance` | number | Distance en km pour obtenir un bonbon. |
 | `catchRate` | number | Taux de capture de base. |
 | `fleeRate` | number | Taux de fuite de base. |
@@ -273,7 +280,7 @@ Dynamax/Gigamax. Le validateur accepte donc `number` ou `null`.
 ## Attaques
 
 Les Pokemon stockent uniquement les identifiants de leurs attaques. Les details complets
-sont centralises dans `PokemonGo-Data/moves/`.
+sont centralises dans `PokemonGo-Data/data/moves/`.
 
 ```json
 {
@@ -309,12 +316,12 @@ Chaque fichier du catalogue central contient :
 Les quatre tableaux peuvent etre vides uniquement lorsque le Pokemon ne possede aucune
 attaque dans la categorie correspondante. Les references doivent exister dans :
 
-- `PokemonGo-Data/moves/fast/`
-- `PokemonGo-Data/moves/charged/`
-- `PokemonGo-Data/moves/fast_elite/`
-- `PokemonGo-Data/moves/charged_elite/`
-- `PokemonGo-Data/moves/max/`
-- `PokemonGo-Data/moves/gmax/`
+- `PokemonGo-Data/data/moves/fast/`
+- `PokemonGo-Data/data/moves/charged/`
+- `PokemonGo-Data/data/moves/fast-elite/`
+- `PokemonGo-Data/data/moves/charged-elite/`
+- `PokemonGo-Data/data/moves/max/`
+- `PokemonGo-Data/data/moves/gmax/`
 
 `maxBattle.moves` contient les attaques Max ou G-Max quand la fiche est compatible. Il
 reste present avec `[]` sur les fiches non Max pour garder un pattern uniforme.
@@ -322,14 +329,14 @@ reste present avec `[]` sur les fiches non Max pour garder un pattern uniforme.
 ## PvP séparé
 
 `pvpRef` vaut `null` ou référence une fiche
-`pvp/pokemon/<catégorie>/<fichier>.pvp.json`. La fiche séparée porte les quatre ligues,
+`data/pvp/pokemon/<catégorie>/<fichier>.pvp.json`. La fiche séparée porte les quatre ligues,
 les profils Rank 1, les movesets réellement observés, la provenance PvPoke et les
 statuts `RANKED`, `NOT_RANKED`, `UNSUPPORTED_FORM` ou `MAPPING_MISSING`. Une absence ne
 doit jamais être convertie en classement artificiel.
 
 ```json
 {
-  "pvpRef": "pvp/pokemon/normal/0001-bulbasaur.pvp.json"
+  "pvpRef": "data/pvp/pokemon/normal/0001-bulbasaur.pvp.json"
 }
 ```
 
@@ -369,7 +376,7 @@ elle n’est pas stockée dans la fiche Pokémon canonique.
 
 Lorsque `hasGigantamaxEvolution` vaut `true`, `gigantamaxForms` pointe vers les fiches
 Gigamax séparées. Les visuels Gigamax lourds vivent dans le fichier
-`pokemon-assets/core/gigantamax/*.assets.json`. Le champ `availability.gigantamax` indique
+`data/assets/core/gigantamax/*.assets.json`. Le champ `availability.gigantamax` indique
 séparément si cette forme est disponible dans Pokemon GO.
 
 ### Profils D'Evolution
@@ -416,7 +423,7 @@ duplique que les informations propres au combat Max et garde sa propre identite 
   "maxBattle": {
     "moves": ["GMAX_VINE_LASH"]
   },
-  "assetsRef": "pokemon-assets/core/gigantamax/0003-venusaur-gigantamax.assets.json"
+  "assetsRef": "data/assets/core/gigantamax/0003-venusaur-gigantamax.assets.json"
 }
 ```
 
@@ -428,7 +435,7 @@ duplique que les informations propres au combat Max et garde sa propre identite 
 | `maxCp.maxLevel50` | number | PC maximum au niveau 50 de cette fiche Max. |
 | `maxCp.maxLevel40` | number | PC maximum au niveau 40 de cette fiche Max. |
 | `maxCp.maxBattlesLevel20` | number/null | PC de rencontre en combat Max au niveau 20. |
-| `maxBattle.moves` | string[] | References vers `PokemonGo-Data/moves/max/` ou `PokemonGo-Data/moves/gmax/`. |
+| `maxBattle.moves` | string[] | References vers `PokemonGo-Data/data/moves/max/` ou `PokemonGo-Data/data/moves/gmax/`. |
 
 `maxCp` est obligatoire sur les formes Dynamax et Gigantamax et contient uniquement
 `maxLevel50`, `maxLevel40` et `maxBattlesLevel20`. Les champs propres aux Pokemon normaux,
@@ -445,11 +452,11 @@ La fiche Pokemon principale ne garde qu’un pointeur racine vers son Core :
 
 ```json
 {
-  "assetsRef": "pokemon-assets/core/normal/0001-bulbasaur.assets.json"
+  "assetsRef": "data/assets/core/normal/0001-bulbasaur.assets.json"
 }
 ```
 
-Le Core correspondant vit dans `PokemonGo-Data/pokemon-assets/core/<catégorie>/` et dans
+Le Core correspondant vit dans `PokemonGo-Data/data/assets/core/<catégorie>/` et dans
 MongoDB `pokemonAssets.data`. Les payloads HOME, Shuffle, Variants et Location Cards sont
 des documents séparés référencés par `assetRefs` et persistés dans
 `pokemonAssetFamilies` :
@@ -472,22 +479,22 @@ des documents séparés référencés par `assetRefs` et persistés dans
     "candy": null
   },
   "assetRefs": {
-    "home": "pokemon-assets/home/normal/0001-bulbasaur.home.json",
-    "shuffle": "pokemon-assets/shuffle/normal/0001-bulbasaur.shuffle.json",
-    "variants": "pokemon-assets/variants/normal/0001-bulbasaur.variants.json",
-    "location-cards": "pokemon-assets/location-cards/normal/0001-bulbasaur.location-cards.json"
+    "home": "data/assets/home/normal/0001-bulbasaur.home.json",
+    "shuffle": "data/assets/shuffle/normal/0001-bulbasaur.shuffle.json",
+    "variants": "data/assets/variants/normal/0001-bulbasaur.variants.json",
+    "location-cards": "data/assets/location-cards/normal/0001-bulbasaur.location-cards.json"
   }
 }
 ```
 
 | Champ | Type | Description |
 | --- | --- | --- |
-| `assetsRef` | string | Chemin racine vers le Core `pokemon-assets/core/<catégorie>/*.assets.json`. |
+| `assetsRef` | string | Chemin racine vers le Core `data/assets/core/<catégorie>/*.assets.json`. |
 | Core `assets.image` | string/null | Image principale, stockée uniquement dans le Core. |
 | Core `assets.shinyImage` | string/null | Image chromatique principale, stockée uniquement dans le Core. |
 | Core `assets.candy` | object/null | Bonbon, XL et couleurs, stockés uniquement dans le Core. |
 
-Les assets sont séparés par famille et catégorie dans `PokemonGo-Data/pokemon-assets`.
+Les assets sont séparés par famille et catégorie dans `PokemonGo-Data/data/assets`.
 Les routes de détail et le Dashboard hydratent le Core depuis `assetsRef`, puis
 les familles depuis ses `assetRefs`. La convention complète est décrite dans
 `docs/ENTITY-CATEGORY-ARCHITECTURE.md`.
@@ -514,21 +521,22 @@ Une fiche principale ne doit jamais réembarquer `assets.image`, `assets.shinyIm
 `assets.candy` ou les couleurs. Les visuels principaux, bonbons et portraits vivent
 dans le Core ; HOME, Shuffle, Location Cards et Variants vivent dans leurs familles.
 
-Les types vivent dans `PokemonGo-Data/types/<slug>.json`. Leur bloc `assets` contient `icon` et
-`background`. `PokemonGo-Data/types/types.json` reste un index complet compatible avec les anciens
-consommateurs. Leur champ `weatherBoost` contient un identifiant de `PokemonGo-Data/weather/`.
+Les types vivent dans `PokemonGo-Data/data/reference/types/<slug>.json`. Leur bloc `assets` contient `icon` et
+`background`. `PokemonGo-Data/data/reference/types/types.json` reste un index complet compatible avec les anciens
+consommateurs. Leur champ `weatherBoost` contient un identifiant de `PokemonGo-Data/data/reference/weather/`.
 
-Les sept météos vivent dans `PokemonGo-Data/weather/<slug>.json`. Chaque entrée possède `id`,
-`slug`, `names`, `assets.icon` et `boostedTypes`. `PokemonGo-Data/weather/weather.json` reste
+Les sept météos vivent dans `PokemonGo-Data/data/reference/weather/<slug>.json`. Chaque entrée possède `id`,
+`slug`, `names`, `assets.icon` et `boostedTypes`. `PokemonGo-Data/data/reference/weather/weather.json` reste
 l'index complet de compatibilité.
 
-Le catalogue `PokemonGo-Data/stickers/stickers.json` expose pour chaque sticker `id`, `filename`,
+Le catalogue `PokemonGo-Data/data/reference/stickers/stickers.json` expose pour chaque sticker `id`, `filename`,
 `category` et `image`.
 
 ## Formes Separees
 
-Les fiches de `PokemonGo-Data/pokemon-forms/` couvrent les formes Alola, Galar, Hisui, Paldea,
-Dynamax, Gigantamax, Mega et Mega X/Y.
+Les fiches de `PokemonGo-Data/data/pokemon/forms/` couvrent uniquement les formes
+alternatives sans catégorie dédiée. Alola, Galar, Hisui, Paldea, Dynamax,
+Gigantamax, Méga et Primo vivent dans leurs répertoires dédiés.
 
 - Une forme regionale utilise le schema Pokemon complet.
 - Une forme Dynamax ou Gigantamax utilise le schema minimal `baseFormId` + `maxCp` + `maxBattle`.
@@ -605,7 +613,7 @@ Dynamax, Gigantamax, Mega et Mega X/Y.
     "researchLevel15": 477,
     "maxBattlesLevel20": null
   },
-  "pvpRef": "pvp/pokemon/normal/0001-bulbasaur.pvp.json",
+  "pvpRef": "data/pvp/pokemon/normal/0001-bulbasaur.pvp.json",
   "stats": {
     "stamina": 128,
     "attack": 118,
@@ -621,7 +629,7 @@ Dynamax, Gigantamax, Mega et Mega X/Y.
   "maxBattle": {
     "moves": []
   },
-  "assetsRef": "pokemon-assets/core/normal/0001-bulbasaur.assets.json",
+  "assetsRef": "data/assets/core/normal/0001-bulbasaur.assets.json",
   "regionForms": [],
   "evolutions": [],
   "hasMegaEvolution": false,

@@ -2,11 +2,11 @@ const fs = require("fs");
 const path = require("path");
 const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const pokemonDir = dataPath("pokemon");
-const formsDir = dataPath("pokemon-forms");
-const typesFile = dataPath("types", "types.json");
-const pokemonReportFile = dataPath("pokemon-enrichment-report.json");
-const formsReportFile = dataPath("forms-enrichment-report.json");
+const pokemonDir = dataPath("data", "pokemon", "normal");
+const formsDir = dataPath("data", "pokemon");
+const typesFile = dataPath("data", "reference", "types", "types.json");
+const pokemonReportFile = dataPath("operations", "reports", "imports", "pokemon-enrichment-report.json");
+const formsReportFile = dataPath("operations", "reports", "imports", "forms-enrichment-report.json");
 const enrichableFormKinds = new Set([
   "normal",
   "alola",
@@ -128,9 +128,9 @@ function moveCatalog() {
   const directories = [
     "fast",
     "charged",
-    "fast_elite",
-    "charged_elite",
-  ].map((directory) => dataPath("moves", directory));
+    "fast-elite",
+    "charged-elite",
+  ].map((directory) => dataPath("data", "moves", directory));
   const ids = new Set();
   for (const directory of directories) {
     for (const file of fs.readdirSync(directory).filter((entry) => entry.endsWith(".json"))) {
@@ -371,7 +371,7 @@ async function main() {
     warnings: [],
   };
   let files = args.forms
-    ? listJsonFiles(formsDir).filter((file) =>
+    ? listJsonFiles(formsDir).filter((file) => !file.startsWith(`${pokemonDir}${path.sep}`) &&
         enrichableFormKinds.has(JSON.parse(fs.readFileSync(file, "utf8")).form),
       )
     : fs

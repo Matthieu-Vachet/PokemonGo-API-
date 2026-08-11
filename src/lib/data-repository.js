@@ -5,19 +5,17 @@ const appRoot = path.resolve(process.env.POKEMON_GO_APP_ROOT || process.cwd());
 const packageName = "pokemon-go-data";
 
 function hasDataShape(directory) {
-  return (
-    directory &&
-    fs.existsSync(path.join(directory, "pokemon")) &&
-    fs.existsSync(path.join(directory, "pokemon-forms")) &&
-    fs.existsSync(path.join(directory, "pokemon-assets")) &&
-    fs.existsSync(path.join(directory, "pvp", "manifest.json")) &&
-    fs.existsSync(path.join(directory, "moves")) &&
-    fs.existsSync(path.join(directory, "raids", "currentRaids.json")) &&
-    fs.existsSync(path.join(directory, "eggs", "currentEggs.json")) &&
-    fs.existsSync(path.join(directory, "max-battles", "currentsMaxBattle.json")) &&
-    fs.existsSync(path.join(directory, "rocket", "currentRocket.json")) &&
-    fs.existsSync(path.join(directory, "research", "currentResearch.json"))
-  );
+  if (!directory) return false;
+  try {
+    if (JSON.parse(fs.readFileSync(path.join(directory, "package.json"), "utf8")).name !== packageName) return false;
+  } catch {
+    return false;
+  }
+  return fs.existsSync(path.join(directory, "data", "pokemon"))
+    && fs.existsSync(path.join(directory, "data", "assets"))
+    && fs.existsSync(path.join(directory, "data", "pvp"))
+    && fs.existsSync(path.join(directory, "data", "moves"))
+    && fs.existsSync(path.join(directory, "data", "reference"));
 }
 
 function optionalPackageRoot() {
@@ -55,7 +53,14 @@ function resolveDataRoot() {
 const dataRoot = resolveDataRoot();
 
 function dataPath(...segments) {
-  return path.join(dataRoot, ...segments);
+  const target = path.resolve(dataRoot, ...segments);
+  const relative = path.relative(dataRoot, target);
+  if (relative.startsWith("..") || path.isAbsolute(relative)) {
+    const error = new Error("Lecture refusée en dehors du dépôt PokemonGo-Data.");
+    error.code = "POKEMON_DATA_PATH_OUTSIDE_ROOT";
+    throw error;
+  }
+  return target;
 }
 
 function appPath(...segments) {
@@ -65,7 +70,8 @@ function appPath(...segments) {
 function stripDataPrefix(relativePath) {
   return String(relativePath || "")
     .replace(/\\/g, "/")
-    .replace(/^\.?\/*data\//, "")
+    .replace(/^\.?\/*data\/data\//, "data/")
+    .replace(/^\.?\/*repository\//, "")
     .replace(/^\.?\/*/, "");
 }
 
@@ -81,7 +87,7 @@ function relativeToApp(file) {
   const absolute = path.resolve(file);
   const dataRelative = relativeToData(absolute);
   if (dataRelative && !dataRelative.startsWith("..") && !path.isAbsolute(dataRelative))
-    return `data/${dataRelative}`;
+    return dataRelative.startsWith("data/") ? dataRelative : `repository/${dataRelative}`;
   return path.relative(appRoot, absolute).replace(/\\/g, "/");
 }
 
@@ -105,4 +111,5 @@ module.exports = {
   relativeToData,
   resolveDataFile,
   stripDataPrefix,
+  hasDataShape,
 };

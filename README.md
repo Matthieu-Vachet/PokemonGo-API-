@@ -170,7 +170,7 @@ http://localhost:3000/swagger
 
 ## Exemple De Donnee
 
-Les fichiers Pokemon vivent dans `PokemonGo-Data/pokemon/`.
+Les fichiers Pokemon vivent dans `PokemonGo-Data/data/pokemon/normal/`.
 
 ```json
 {
@@ -204,13 +204,13 @@ Les templates de creation sont disponibles dans [docs/TEMPLATES.md](docs/TEMPLAT
 Chaque fichier suit le nommage:
 
 ```text
-PokemonGo-Data/pokemon/[dexId]-[slug].json
+PokemonGo-Data/data/pokemon/normal/[dexId]-[slug].json
 ```
 
 Exemple:
 
 ```text
-PokemonGo-Data/pokemon/0001-bulbasaur.json
+PokemonGo-Data/data/pokemon/normal/0001-bulbasaur.json
 ```
 
 Les grandes sections du JSON sont:
@@ -232,7 +232,7 @@ Les references principales du schema sont:
 - `0001-bulbasaur.json`: profil de base.
 - `0002-ivysaur.json`: profil intermediaire.
 - `0003-venusaur.json`: profil final avec Mega-Evolution et Gigantamax.
-- `PokemonGo-Data/pokemon-forms/dynamax/0001-bulbasaur-dynamax.json`: forme Max qui herite de Bulbasaur.
+- `PokemonGo-Data/data/pokemon/dynamax/0001-bulbasaur-dynamax.json`: forme Max qui herite de Bulbasaur.
 
 ## Scripts
 
@@ -469,8 +469,8 @@ MongoDB stricte, sans parametre de bascule et sans fallback fichier.
 ## Items Et Textes Rocket
 
 Les routes publiques `GET /api/v1/items` et `GET /api/v1/rocket-texts` exposent
-les sources de verite `PokemonGo-Data/items/items.json` et
-`PokemonGo-Data/rocket/rocketTexts.json` apres synchronisation MongoDB.
+les sources de verite `PokemonGo-Data/data/reference/items/items.json` et
+`PokemonGo-Data/data/battles/rocket/texts.json` apres synchronisation MongoDB.
 
 `/api/v1/items` sert notamment aux recompenses item Research. Chaque entree garde
 `id`, `templateId`, `itemId`, `category`, `itemType`, `names`, `description`,
@@ -557,7 +557,7 @@ Les outils d'import et d'extraction manuels vivent dans `scripts/import/`.
 
 ## Ajouter Un Pokemon
 
-1. Creer un fichier dans `PokemonGo-Data/pokemon/`.
+1. Creer un fichier dans `PokemonGo-Data/data/pokemon/normal/`.
 2. Utiliser le template Pokemon dans [docs/TEMPLATES.md](docs/TEMPLATES.md).
 3. Renseigner les identifiants techniques en majuscules.
 4. Garder le slug en anglais, en minuscules et avec des tirets.
@@ -573,22 +573,22 @@ Les outils d'import et d'extraction manuels vivent dans `scripts/import/`.
 - Images Pokémon GO principales hydratées depuis le Core référencé ; elles ne sont plus
   stockées dans la fiche Pokémon source.
 - Assets séparés via `assetsRef` à la racine vers
-  `PokemonGo-Data/pokemon-assets/core/<catégorie>/*.assets.json`; le Core référence les
+  `PokemonGo-Data/data/assets/core/<catégorie>/*.assets.json`; le Core référence les
   familles HOME, Shuffle, Variants et Location Cards uniquement lorsqu’elles existent.
 - PvP dédié via `pvpRef` vers
-  `PokemonGo-Data/pvp/pokemon/<catégorie>/*.pvp.json` sans classement artificiel.
+  `PokemonGo-Data/data/pvp/pokemon/<catégorie>/*.pvp.json` sans classement artificiel.
 - Traductions principales dans les objets `names`.
 - `regionForms`, `megaEvolutions`, `dynamaxForms` et `gigantamaxForms` sont des listes de références `formId`.
-- Les données complètes de chaque forme vivent uniquement dans `PokemonGo-Data/pokemon-forms/`.
-- `regionId` référence `PokemonGo-Data/generations/`; l'API recompose la région traduite et la génération.
-- `weatherBoost` référence les identifiants du catalogue `PokemonGo-Data/weather/`.
+- Les données complètes de chaque entité vivent uniquement dans la catégorie correspondante de `PokemonGo-Data/data/pokemon/`.
+- `regionId` référence `PokemonGo-Data/data/reference/generations/`; l'API recompose la région traduite et la génération.
+- `weatherBoost` référence les identifiants du catalogue `PokemonGo-Data/data/reference/weather/`.
 - Les icônes Pokémon Shuffle vivent dans le fichier `.shuffle.json` de leur fiche exacte,
-  sous la même catégorie (normale, forme, Méga, Dynamax ou Gigamax), et sont importées avec
+  sous la même catégorie canonique, et sont importées avec
   `npm run import:pokemon-shuffle:write`. Les fichiers sans fiche compatible restent
-  dans la galerie globale et dans `PokemonGo-Data/pokemon-shuffle-import-report.json`.
+  dans la galerie globale et dans `PokemonGo-Data/operations/reports/imports/pokemon-shuffle-import-report.json`.
 - Les quatre champs d'attaques des Pokemon sont des tableaux d'identifiants.
-- Les details des attaques vivent uniquement dans `PokemonGo-Data/moves/`, y compris `max/` et `gmax/`.
-- `primaryType`, `secondaryType` et `type` d'attaque utilisent les identifiants courts de `PokemonGo-Data/types/`, par exemple `"GRASS"`.
+- Les details des attaques vivent uniquement dans `PokemonGo-Data/data/moves/`, y compris `max/` et `gmax/`.
+- `primaryType`, `secondaryType` et `type` d'attaque utilisent les identifiants courts de `PokemonGo-Data/data/reference/types/`, par exemple `"GRASS"`.
 - `pvpRef` référence la fiche PvP séparée de la même catégorie ; la projection `pvp`
   éventuellement hydratée par l’API est dérivée et ne constitue jamais une seconde source.
 - `megaEnergyReward` peut valoir `null` lorsqu'il n'y a pas d'energie Mega a gagner.
@@ -596,7 +596,7 @@ Les outils d'import et d'extraction manuels vivent dans `scripts/import/`.
 - Les formes Dynamax et Gigantamax utilisent `baseFormId`, leur propre `slug`, leur propre bloc `maxCp` (`maxLevel50`, `maxLevel40`, `maxBattlesLevel20`) et `maxBattle`.
 - `hasGigantamaxEvolution: true` implique une référence canonique dans
   `gigantamaxForms`; la fiche Gigamax possède son propre Core sous
-  `pokemon-assets/core/gigantamax/`.
+  `data/assets/core/gigantamax/`.
 
 La convention complète de classification, résolution, import, Engine et rollback est
 décrite dans [docs/ENTITY-CATEGORY-ARCHITECTURE.md](docs/ENTITY-CATEGORY-ARCHITECTURE.md).

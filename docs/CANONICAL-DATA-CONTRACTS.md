@@ -49,8 +49,8 @@ Les identifiants permanents structurent les décisions et contrats :
 ## Identité et catégories Pokémon
 
 Une entité est identifiée par `id`, `formId`, `baseFormId`, `slug`, `dexId` et ses
-relations canoniques. `entityCategory` vaut exclusivement `NORMAL`, `FORM`, `MEGA`,
-`DYNAMAX` ou `GIGANTAMAX`. La classification partagée exploite le contenu canonique et
+relations canoniques. `entityCategory` vaut exclusivement `NORMAL`, `ALOLA`, `GALAR`,
+`HISUI`, `PALDEA`, `FORM`, `MEGA`, `PRIMAL`, `DYNAMAX` ou `GIGANTAMAX`. La classification partagée exploite le contenu canonique et
 les relations `hasMegaEvolution`, `megaEvolutions`, `dynamaxForms`,
 `hasGigantamaxEvolution` et `gigantamaxForms`; le nom du fichier seul ne décide jamais.
 Une ambiguïté produit `ENTITY_CLASSIFICATION_AMBIGUOUS` et bloque l’écriture.
@@ -60,8 +60,9 @@ La résolution de chemin est centralisée sous la forme
 imports, caches, index et générateurs utilisent la même fonction. Les répertoires sont :
 
 ```text
-pokemon-assets/<core|home|shuffle|location-cards|variants>/<normal|forms|mega|dynamax|gigantamax>/
-pvp/pokemon/<normal|forms|mega|dynamax|gigantamax>/
+data/pokemon/<normal|alola|galar|hisui|paldea|forms|mega|primal|dynamax|gigantamax>/
+data/assets/<core|home|shuffle|location-cards|variants>/<même taxonomie>/
+data/pvp/pokemon/<même taxonomie>/
 ```
 
 `assetsRef`, `assetRefs.*` et `pvpRef` incluent toujours la catégorie. Une ressource
@@ -116,7 +117,7 @@ l’identité canonique. Les conflits nécessitent une résolution explicite. La
 observe les fournisseurs et expose date, état, hash ou code HTTP ; une observation ne
 modifie jamais automatiquement un JSON canonique.
 
-Le registre `PokemonGo-Data/source-watch/sources.json` est l’autorité des datasets
+Le registre `PokemonGo-Data/operations/audits/sources/current.json` est l’autorité des datasets
 régénérables. `leekduck-eggs`, `leekduck-research` et `leekduck-rocket` conservent leur
 provenance mais sont canonisés vers l’unique provider Identity Manager `leekduck`.
 Un identifiant historique ne survit que comme alias explicite du registre.

@@ -3,7 +3,7 @@ const path = require("path");
 const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
 const write = process.argv.includes("--write");
-const sourceDirectories = ["data/pokemon", "data/pokemon-forms", "data/moves"];
+const sourceDirectories = ["data/pokemon", "data/moves"];
 
 function jsonFiles(directory) {
   const absolute = dataPathFromRelative(directory);

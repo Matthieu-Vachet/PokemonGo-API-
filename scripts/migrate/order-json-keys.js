@@ -6,12 +6,11 @@ const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = requ
 const write = process.argv.includes("--write");
 const directories = [
   "data/pokemon",
-  "data/pokemon-forms",
   "data/moves",
-  "data/generations",
-  "data/types",
-  "data/weather",
-  "data/stickers",
+  "data/reference/generations",
+  "data/reference/types",
+  "data/reference/weather",
+  "data/reference/stickers",
 ];
 const keys = [
   "id", "formId", "form", "slug", "dexNr", "dexId", "generation", "regionId",

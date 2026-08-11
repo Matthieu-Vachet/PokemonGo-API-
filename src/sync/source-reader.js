@@ -312,8 +312,8 @@ function resolveRegionReference(data, regions, parent = {}) {
 }
 
 function collectPokemonDocuments(generations = collectGenerationDocuments()) {
-  const pokemonDir = dataPath("pokemon");
-  const formsDir = dataPath("pokemon-forms");
+  const pokemonRoot = dataPath("data", "pokemon");
+  const pokemonDir = dataPath("data", "pokemon", "normal");
   const documents = new Map();
   const parents = new Map();
   const regions = new Map(generations.map((entry) => [entry.id, entry.data]));
@@ -321,7 +321,7 @@ function collectPokemonDocuments(generations = collectGenerationDocuments()) {
   for (const file of listJsonFiles(pokemonDir)) {
     const data = hydratePokemonPvp(resolveRegionReference(readJson(file), regions));
     const source = relative(file);
-    const sourceFiles = [source, ...(data.pvpRef ? [`data/${data.pvpRef}`] : [])];
+    const sourceFiles = [source, ...(data.pvpRef ? [data.pvpRef] : [])];
     const parentKey = pokemonKey(data);
     parents.set(data.dexId, data);
     parents.set(data.id, data);
@@ -330,7 +330,7 @@ function collectPokemonDocuments(generations = collectGenerationDocuments()) {
 
   }
 
-  for (const file of listJsonFiles(formsDir)) {
+  for (const file of listJsonFiles(pokemonRoot).filter((file) => !file.startsWith(`${pokemonDir}${path.sep}`))) {
     const form = hydratePokemonPvp(readJson(file));
     const parent =
       parents.get(form.baseFormId) ||
@@ -349,7 +349,7 @@ function collectPokemonDocuments(generations = collectGenerationDocuments()) {
       key,
       toPokemonDocument(
         merged,
-        [...(existing?.sourceFiles || []), relative(file), ...(merged.pvpRef ? [`data/${merged.pvpRef}`] : [])],
+        [...(existing?.sourceFiles || []), relative(file), ...(merged.pvpRef ? [merged.pvpRef] : [])],
         pokemonKind(form),
         parentKey,
       ),
@@ -359,17 +359,14 @@ function collectPokemonDocuments(generations = collectGenerationDocuments()) {
 }
 
 function collectPokemonAssetDocuments() {
-  const coreDirectory = dataPath("pokemon-assets", "core");
-  const legacyDirectory = dataPath("pokemon-assets");
-  const files = fs.existsSync(coreDirectory)
-    ? listJsonFiles(coreDirectory)
-    : listJsonFiles(legacyDirectory);
+  const coreDirectory = dataPath("data", "assets", "core");
+  const files = listJsonFiles(coreDirectory);
   return files.map((file) => {
     const data = readJson(file);
     const sourceFile = relative(file);
     const classification = classifyEntity(data);
     if (classification.ambiguous) throw new Error(`${data.formId}: ENTITY_CLASSIFICATION_AMBIGUOUS.`);
-    if (categoryFromReference(sourceFile.replace(/^data\//, "")) !== classification.category) throw new Error(`${data.formId}: ASSET_WRONG_CATEGORY_DIRECTORY.`);
+    if (categoryFromReference(sourceFile) !== classification.category) throw new Error(`${data.formId}: ASSET_WRONG_CATEGORY_DIRECTORY.`);
     return {
       key: data.formId,
       id: data.id,
@@ -391,12 +388,12 @@ function collectPokemonAssetDocuments() {
 
 function collectPokemonAssetFamilyDocuments() {
   return Object.entries(ASSET_FAMILY_FIELDS).flatMap(([family, field]) =>
-    listJsonFiles(dataPath("pokemon-assets", family)).map((file) => {
+    listJsonFiles(dataPath("data", "assets", family)).map((file) => {
       const data = readJson(file);
       const sourceFile = relative(file);
       const classification = classifyEntity(data);
       if (classification.ambiguous) throw new Error(`${data.formId}: ENTITY_CLASSIFICATION_AMBIGUOUS.`);
-      if (categoryFromReference(sourceFile.replace(/^data\//, "")) !== classification.category) throw new Error(`${data.formId}: ASSET_WRONG_CATEGORY_DIRECTORY.`);
+      if (categoryFromReference(sourceFile) !== classification.category) throw new Error(`${data.formId}: ASSET_WRONG_CATEGORY_DIRECTORY.`);
       return {
         key: `${family}:${data.formId}`,
         family,
@@ -421,8 +418,9 @@ function collectMoveDocuments() {
   const directories = [
     ["data/moves/fast", "fast", false],
     ["data/moves/charged", "charged", false],
-    ["data/moves/fast_elite", "fast", true],
-    ["data/moves/charged_elite", "charged", true],
+    ["data/moves/fast-elite", "fast", true],
+    ["data/moves/charged-elite", "charged", true],
+    ["data/moves/charged-plus", "charged", false],
     ["data/moves/max", "max", false],
     ["data/moves/gmax", "gmax", false],
   ];
@@ -471,7 +469,7 @@ function collectMoveDocuments() {
 }
 
 function collectTypeDocuments() {
-  const directory = dataPath("types");
+  const directory = dataPath("data", "reference", "types");
   const files = listJsonFiles(directory).filter(
     (file) => path.basename(file) !== "types.json",
   );
@@ -494,7 +492,7 @@ function collectTypeDocuments() {
 }
 
 function collectWeatherDocuments() {
-  const directory = dataPath("weather");
+  const directory = dataPath("data", "reference", "weather");
   const files = listJsonFiles(directory).filter(
     (file) => path.basename(file) !== "weather.json",
   );
@@ -520,7 +518,7 @@ function collectWeatherDocuments() {
 }
 
 function collectGenerationDocuments() {
-  return listJsonFiles(dataPath("generations")).map((file) => {
+  return listJsonFiles(dataPath("data", "reference", "generations")).map((file) => {
     const data = readJson(file);
     return {
       id: data.id,
@@ -549,7 +547,7 @@ function collectRegionDocuments(generations) {
 }
 
 function collectItemDocuments() {
-  const file = dataPath("items", "items.json");
+  const file = dataPath("data", "reference", "items", "items.json");
   if (!fs.existsSync(file)) return [];
   const data = readJson(file);
   const items = Array.isArray(data.items) ? data.items : [];
@@ -566,7 +564,7 @@ function collectItemDocuments() {
 }
 
 function collectRocketTextDocuments() {
-  const file = dataPath("rocket", "rocketTexts.json");
+  const file = dataPath("data", "battles", "rocket", "texts.json");
   if (!fs.existsSync(file)) return [];
   const data = readJson(file);
   const rocketTexts = Array.isArray(data.rocketTexts) ? data.rocketTexts : [];

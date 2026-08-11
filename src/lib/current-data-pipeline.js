@@ -19,7 +19,7 @@ function countBuckets(buckets = {}) {
 }
 
 function loadGenerator({ source, scriptName, exportName }) {
-  const generatorFile = dataPath("scripts", scriptName);
+  const generatorFile = dataPath("tooling", "scripts", "generators", scriptName);
   if (!fs.existsSync(generatorFile)) {
     throw new ApiError(500, `Generateur ${source} introuvable dans PokemonGo-Data.`, errorCode(source, "GENERATOR_NOT_FOUND"));
   }

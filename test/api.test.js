@@ -240,9 +240,9 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   assert.equal(bulbasaur.regionId, "KANTO");
   assert.equal(bulbasaur.data.region.names.French, "Kanto");
   assert.equal(bulbasaur.data.assets, undefined);
-  assert.match(bulbasaur.data.assetsRef, /pokemon-assets\/core\/normal\/0001-bulbasaur\.assets\.json/);
-  assert.equal(bulbasaurCore.sourceFile, "data/pokemon-assets/core/normal/0001-bulbasaur.assets.json");
-  assert.equal(bulbasaurCore.assetRefs.home, "pokemon-assets/home/normal/0001-bulbasaur.home.json");
+  assert.match(bulbasaur.data.assetsRef, /data\/assets\/core\/normal\/0001-bulbasaur\.assets\.json/);
+  assert.equal(bulbasaurCore.sourceFile, "data/assets/core/normal/0001-bulbasaur.assets.json");
+  assert.equal(bulbasaurCore.assetRefs.home, "data/assets/home/normal/0001-bulbasaur.home.json");
   assert.equal(bulbasaurHome.source, "pokemon-home");
   assert.ok(Array.isArray(bulbasaurHome.variants));
   assert.equal(bulbasaurHome.variants.length, 0);
@@ -428,17 +428,17 @@ test("les formes séparées sont référencées sans données dupliquées", () =
   const mega = data.pokemon.find((pokemon) => pokemon.key === "VENUSAUR_MEGA");
   assert.deepEqual(venusaur.data.megaEvolutions, ["VENUSAUR_MEGA"]);
   assert.deepEqual(mega.sourceFiles, [
-    "data/pokemon-forms/mega/0003-venusaur-mega.json",
+    "data/pokemon/mega/0003-venusaur-mega.json",
     "data/pvp/pokemon/mega/0003-venusaur-mega.pvp.json",
   ]);
   assert.equal(mega.data.formId, "VENUSAUR_MEGA");
 });
 
 test("les régions et générations sont centralisées dans leurs catalogues", () => {
-  const bulbasaur = readDataJson("pokemon/0001-bulbasaur.json");
-  const rattataAlola = readDataJson("pokemon-forms/alola/0019-rattata-alola.json");
-  const venusaurMega = readDataJson("pokemon-forms/mega/0003-venusaur-mega.json");
-  const bulbasaurDynamax = readDataJson("pokemon-forms/dynamax/0001-bulbasaur-dynamax.json");
+  const bulbasaur = readDataJson("data/pokemon/normal/0001-bulbasaur.json");
+  const rattataAlola = readDataJson("data/pokemon/alola/0019-rattata-alola.json");
+  const venusaurMega = readDataJson("data/pokemon/mega/0003-venusaur-mega.json");
+  const bulbasaurDynamax = readDataJson("data/pokemon/dynamax/0001-bulbasaur-dynamax.json");
 
   assert.equal(bulbasaur.regionId, "KANTO");
   assert.equal(bulbasaur.region, undefined);
@@ -563,31 +563,31 @@ test("les assets Shuffle sont associés une seule fois à leur forme exacte", ()
 });
 
 test("une forme Pokémon Home peut déclarer une liste de variantes vide", () => {
-  const unownA = readDataJson("pokemon-forms/normal/0201-unown-a.json");
+  const unownA = readDataJson("data/pokemon/forms/0201-unown-a.json");
   const issues = validateSourceData(
     unownA,
-    "data/pokemon-forms/normal/0201-unown-a.json",
+    "data/pokemon/forms/0201-unown-a.json",
     "form",
   );
   assert.ok(!issues.some((issue) => issue.path === "assets.home.variants"));
 });
 
 test("assetsRef est obligatoire pour une forme sortie ou non sortie", () => {
-  const unreleased = readDataJson("pokemon-forms/normal/0327-spinda-10.json");
-  const released = readDataJson("pokemon-forms/normal/0327-spinda-00.json");
+  const unreleased = readDataJson("data/pokemon/forms/0327-spinda-10.json");
+  const released = readDataJson("data/pokemon/forms/0327-spinda-00.json");
   const unreleasedIssues = validateSourceData(
     unreleased,
-    "data/pokemon-forms/normal/0327-spinda-10.json",
+    "data/pokemon/forms/0327-spinda-10.json",
     "form",
   );
   const releasedIssues = validateSourceData(
     { ...released, assetsRef: null },
-    "data/pokemon-forms/normal/0327-spinda-00.json",
+    "data/pokemon/forms/0327-spinda-00.json",
     "form",
   );
   const missingUnreleasedIssues = validateSourceData(
     { ...unreleased, assetsRef: null },
-    "data/pokemon-forms/normal/0327-spinda-10.json",
+    "data/pokemon/forms/0327-spinda-10.json",
     "form",
   );
   assert.ok(!unreleasedIssues.some((issue) => issue.path === "assetsRef"));
@@ -597,12 +597,12 @@ test("assetsRef est obligatoire pour une forme sortie ou non sortie", () => {
 
 test("une copie embarquée est diagnostiquée et ne remplace pas le core", () => {
   const released = structuredClone(
-    readDataJson("pokemon-forms/normal/0201-unown-a.json"),
+    readDataJson("data/pokemon/forms/0201-unown-a.json"),
   );
   released.assets = { image: "https://provider.invalid/wrong.png" };
   const issues = validateSourceData(
     released,
-    "data/pokemon-forms/normal/0201-unown-a.json",
+    "data/pokemon/forms/0201-unown-a.json",
     "form",
   );
   assert.ok(issues.some((issue) => issue.issue === "LEGACY_EMBEDDED_ASSET_DUPLICATE"));
@@ -612,32 +612,32 @@ test("une copie embarquée est diagnostiquée et ne remplace pas le core", () =>
 test("la checklist exige les champs propres à chaque famille Pokémon", () => {
   const cases = [
     {
-      source: readDataJson("pokemon/0001-bulbasaur.json"),
-      file: "data/pokemon/0001-bulbasaur.json",
+      source: readDataJson("data/pokemon/normal/0001-bulbasaur.json"),
+      file: "data/pokemon/normal/0001-bulbasaur.json",
       kind: "pokemon",
       removed: "size",
     },
     {
-      source: readDataJson("pokemon-forms/alola/0019-rattata-alola.json"),
-      file: "data/pokemon-forms/alola/0019-rattata-alola.json",
+      source: readDataJson("data/pokemon/alola/0019-rattata-alola.json"),
+      file: "data/pokemon/alola/0019-rattata-alola.json",
       kind: "form",
       removed: "baseFormId",
     },
     {
-      source: readDataJson("pokemon-forms/mega/0003-venusaur-mega.json"),
-      file: "data/pokemon-forms/mega/0003-venusaur-mega.json",
+      source: readDataJson("data/pokemon/mega/0003-venusaur-mega.json"),
+      file: "data/pokemon/mega/0003-venusaur-mega.json",
       kind: "mega",
       removed: "dexId",
     },
     {
-      source: readDataJson("pokemon-forms/dynamax/0001-bulbasaur-dynamax.json"),
-      file: "data/pokemon-forms/dynamax/0001-bulbasaur-dynamax.json",
+      source: readDataJson("data/pokemon/dynamax/0001-bulbasaur-dynamax.json"),
+      file: "data/pokemon/dynamax/0001-bulbasaur-dynamax.json",
       kind: "dynamax",
       removed: "assetsRef",
     },
     {
-      source: readDataJson("pokemon-forms/dynamax/0001-bulbasaur-dynamax.json"),
-      file: "data/pokemon-forms/dynamax/0001-bulbasaur-dynamax.json",
+      source: readDataJson("data/pokemon/dynamax/0001-bulbasaur-dynamax.json"),
+      file: "data/pokemon/dynamax/0001-bulbasaur-dynamax.json",
       kind: "dynamax",
       removed: "evolutions",
     },
@@ -694,15 +694,15 @@ test("le provider Pokémon transmet exclusivement le candy du core", () => {
     secondaryColor: { r: 4, g: 5, b: 6, a: 1 },
   };
   const coreCandy = { ...candy, familyId: 999 };
-  const fromPokemon = attachPokemonAssets({ data: { assetsRef: "pokemon-assets/core/normal/0001.assets.json", assets: { candy } } }, { assets: { candy: coreCandy } });
+  const fromPokemon = attachPokemonAssets({ data: { assetsRef: "data/assets/core/normal/0001.assets.json", assets: { candy } } }, { assets: { candy: coreCandy } });
   assert.deepEqual(fromPokemon.data.assets.candy, coreCandy);
-  assert.equal(fromPokemon.data.assetsRef, "pokemon-assets/core/normal/0001.assets.json");
-  const fromAssetDocument = attachPokemonAssets({ data: { assetsRef: "pokemon-assets/core/normal/0001.assets.json" } }, { assets: { candy } });
+  assert.equal(fromPokemon.data.assetsRef, "data/assets/core/normal/0001.assets.json");
+  const fromAssetDocument = attachPokemonAssets({ data: { assetsRef: "data/assets/core/normal/0001.assets.json" } }, { assets: { candy } });
   assert.deepEqual(fromAssetDocument.data.assets.candy, candy);
 
   const fromCanonicalJson = attachPokemonAssets({
     sourceFiles: ["data/pokemon/0001-bulbasaur.json"],
-    data: { assetsRef: "pokemon-assets/core/normal/0001-bulbasaur.assets.json" },
+    data: { assetsRef: "data/assets/core/normal/0001-bulbasaur.assets.json" },
   }, { assets: { candy } });
   assert.equal(fromCanonicalJson.data.assets.candy.xlImage, candy.xlImage);
 });

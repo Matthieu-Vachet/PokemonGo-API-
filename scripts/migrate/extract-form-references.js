@@ -2,8 +2,8 @@ const fs = require("fs");
 const path = require("path");
 const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const pokemonDir = dataPath("pokemon");
-const formsDir = dataPath("pokemon-forms");
+const pokemonDir = dataPath("data", "pokemon", "normal");
+const formsDir = dataPath("data", "pokemon");
 const write = process.argv.includes("--write");
 
 function read(file) {
@@ -35,7 +35,7 @@ function writeJson(file, data) {
 }
 
 const dedicatedByFormId = new Map(
-  jsonFiles(formsDir).map((file) => {
+  jsonFiles(formsDir).filter((file) => !file.startsWith(`${pokemonDir}${path.sep}`)).map((file) => {
     const form = read(file);
     return [form.formId, { file, form }];
   }),
@@ -81,7 +81,7 @@ for (const filename of fs
         existing?.file ||
         path.join(
           formsDir,
-          folder,
+          ["mega-x", "mega-y"].includes(folder) ? "mega" : folder,
           `${pokemon.dexId}-${slug(complete.slug || formId)}.json`,
         );
       if (!existing) created.push(relativeToApp(formFile));
@@ -102,7 +102,7 @@ const sourceFiles = [
   ...fs.readdirSync(pokemonDir)
     .filter((name) => name.endsWith(".json"))
     .map((name) => path.join(pokemonDir, name)),
-  ...jsonFiles(formsDir),
+  ...jsonFiles(formsDir).filter((file) => !file.startsWith(`${pokemonDir}${path.sep}`)),
 ];
 const parentsById = new Map();
 const maxReferences = new Map();

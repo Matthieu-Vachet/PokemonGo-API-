@@ -21,7 +21,7 @@ related:
 
 ## Objectif
 
-L’Identity Manager est la référence privée qui relie les identifiants originaux des fournisseurs à une identité canonique PokemonGo-Data. Le catalogue fonctionnel est inventorié directement depuis `pokemon/`, `pokemon-forms/` et `pokemon-assets/` ; les anciens mappings ne créent plus d’identité. La valeur fournisseur brute, sa valeur normalisée et le fournisseur restent séparés.
+L’Identity Manager est la référence privée qui relie les identifiants originaux des fournisseurs à une identité canonique PokemonGo-Data. Le catalogue fonctionnel est inventorié directement depuis `data/pokemon/` et `data/assets/` ; les anciens mappings ne créent plus d’identité. La valeur fournisseur brute, sa valeur normalisée et le fournisseur restent séparés.
 
 ## Architecture
 
@@ -157,7 +157,7 @@ npm run sync:pokemon-identities:write
 
 Les anciens noms `migrate:pokemon-identities*` restent des alias de compatibilité. Le script exporte la collection avant écriture, recalcule le plan depuis les 1 920 identités locales, conserve les alias et métadonnées manuelles, relie les anciens documents, marque les orphelins en brouillon sans les supprimer, écrit en lots et vérifie un second dry-run.
 
-La transition historique `CORSOLA_SPRING_2026` est la seule reclassification canonique explicitement auditée. Le document MongoDB ancien utilisait `222|none|SPRING_2026|none`, rangeait la variante dans `costume` et pointait vers le core Galarian. Le Game Master et l’inventaire local courant prouvent une forme normale unique `222|SPRING_2026|none|none`, portée par `pokemon-assets/core/normal/0222-corsola.assets.json`. Le relink exige simultanément le canonicalId, le dex, les deux clés exactes, l’alias Game Master actif et les fichiers source attendus. Il met à jour la forme et la référence locale, conserve tous les alias MongoDB, écrit un historique `sync-relink` et devient idempotent. Toute combinaison forme + costume ou toute autre divergence reste un conflit manuel sans sélection automatique.
+La transition historique `CORSOLA_SPRING_2026` est la seule reclassification canonique explicitement auditée. Le document MongoDB ancien utilisait `222|none|SPRING_2026|none`, rangeait la variante dans `costume` et pointait vers le core Galarian. Le Game Master et l’inventaire local courant prouvent une forme normale unique `222|SPRING_2026|none|none`, portée par `data/assets/core/normal/0222-corsola.assets.json`. Le relink exige simultanément le canonicalId, le dex, les deux clés exactes, l’alias Game Master actif et les fichiers source attendus. Il met à jour la forme et la référence locale, conserve tous les alias MongoDB, écrit un historique `sync-relink` et devient idempotent. Toute combinaison forme + costume ou toute autre divergence reste un conflit manuel sans sélection automatique.
 
 Résultat du 18 juillet 2026 : 1 391 documents reliés, 520 identités locales créées, 1 396 alias conservés, zéro conflit, zéro orphelin, 1 911 événements d’historique et second passage entièrement inchangé. `MEWTWO_NORMAL` et `MEWTWO_ARMORED` sont deux identités actives distinctes ; `pvpoke:mewtwo_armored` se résout de manière déterministe vers la seconde.
 

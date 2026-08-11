@@ -3,11 +3,11 @@
   "framework": "nextjs",
   "functions": {
     "api/rest.js": {
-      "includeFiles": "{.data/PokemonGo-Data/{pokemon,pokemon-forms,pokemon-assets,pvp,moves,generations,types,weather,stickers,raids,eggs,max-battles,rocket,research,items,mappings,scripts,game-master,checklist,schemas,source-watch}/**,.data/PokemonGo-Data/*report.json,data/**}",
+      "includeFiles": "{.data/PokemonGo-Data/{data/{pokemon,assets,moves,reference},mappings,tooling,schemas,operations/audits}/**,.data/PokemonGo-Data/data/pvp/{pokemon,manifests}/**,.data/PokemonGo-Data/data/{battles,activities}/**,data/**}",
       "maxDuration": 60
     },
     "api/checklist-v3.js": {
-      "includeFiles": "{.data/PokemonGo-Data/{pokemon,pokemon-forms,pokemon-assets,pvp,moves,generations,types,weather,stickers,raids,eggs,max-battles,rocket,research,items,mappings,scripts,game-master,checklist,schemas,source-watch}/**,.data/PokemonGo-Data/*report.json,data/**}",
+      "includeFiles": "{.data/PokemonGo-Data/{data/{pokemon,assets,moves,reference},mappings,tooling,schemas,operations/audits}/**,.data/PokemonGo-Data/data/pvp/{pokemon,manifests}/**,.data/PokemonGo-Data/data/{battles,activities}/**,data/**}",
       "maxDuration": 60
     },
     "api/blocked.js": {

@@ -7,10 +7,10 @@ const {
   registerPokemonResolutionInvalidator,
 } = require("./pokemon-resolution-cache-service");
 
-const { loadPokemonEntries } = require(dataPath("scripts", "lib", "current-event-utils.js"));
+const { loadPokemonEntries } = require(dataPath("tooling", "lib", "current-event-utils.js"));
 const {
   resolvePokemonAssetByCanonicalIdentity,
-} = require(dataPath("scripts", "lib", "pokemon-canonical-asset-resolver.js"));
+} = require(dataPath("tooling", "lib", "pokemon-canonical-asset-resolver.js"));
 
 const cache = new Map();
 let entries = null;

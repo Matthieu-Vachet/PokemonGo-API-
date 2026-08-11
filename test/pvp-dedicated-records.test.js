@@ -9,7 +9,7 @@ const {
 } = require("../src/sync/source-reader");
 
 test("le reader API hydrate pvpRef avec le contrat dédié", () => {
-  const source = readJson(dataPath("pokemon", "0001-bulbasaur.json"));
+  const source = readJson(dataPath("data", "pokemon", "normal", "0001-bulbasaur.json"));
   const hydrated = hydratePokemonPvp(source);
   assert.equal(hydrated.pvpRecord.pvpId, "BULBASAUR");
   assert.equal(hydrated.pvpRecord.source.commit, "ea8f7691cdee95cb33a485b8e89ff39819d41ba4");

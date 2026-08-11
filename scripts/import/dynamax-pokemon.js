@@ -2,14 +2,14 @@ const fs = require("fs");
 const path = require("path");
 const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const pokemonDir = dataPath("pokemon");
-const dynamaxDir = dataPath("pokemon-forms", "dynamax");
+const pokemonDir = dataPath("data", "pokemon", "normal");
+const dynamaxDir = dataPath("data", "pokemon", "dynamax");
 const fastMoveDirectories = [
-  dataPath("moves", "fast"),
-  dataPath("moves", "fast_elite"),
+  dataPath("data", "moves", "fast"),
+  dataPath("data", "moves", "fast-elite"),
 ];
-const maxMoveDir = dataPath("moves", "max");
-const reportFile = dataPath("dynamax-pokemon-import-report.json");
+const maxMoveDir = dataPath("data", "moves", "max");
+const reportFile = dataPath("operations", "reports", "imports", "dynamax-pokemon-import-report.json");
 const source = "https://www.margxt.fr/pokemon-go-liste-des-pokemon-dynamax/";
 const asOf = "2026-06-14";
 
@@ -278,7 +278,6 @@ async function main() {
       form.stats = sourceForm.stats;
       form.primaryType = sourceForm.primaryType;
       form.secondaryType = sourceForm.secondaryType;
-      form.assets = sourceForm.assets;
     }
     const previous = fs.existsSync(file) ? read(file) : null;
     if (!same(previous, form)) {

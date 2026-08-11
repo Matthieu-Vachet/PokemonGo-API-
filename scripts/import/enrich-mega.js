@@ -2,9 +2,9 @@ const fs = require("fs");
 const path = require("path");
 const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const formsDir = dataPath("pokemon-forms");
-const pokemonDir = dataPath("pokemon");
-const reportFile = dataPath("mega-enrichment-report.json");
+const formsDir = dataPath("data", "pokemon");
+const pokemonDir = dataPath("data", "pokemon", "normal");
+const reportFile = dataPath("operations", "reports", "imports", "mega-enrichment-report.json");
 const write = process.argv.includes("--write");
 const megaKinds = new Set(["mega", "mega-x", "mega-y", "primal"]);
 const sources = {

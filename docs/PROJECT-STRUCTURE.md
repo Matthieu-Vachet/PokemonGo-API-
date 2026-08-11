@@ -43,14 +43,13 @@ lecture.
 
 Le dossier `config/` reste dans ce depot car il décrit les index Atlas Search. Les JSON
 metier vivent dans `PokemonGo-Data`. Les outils les trouvent via `POKEMON_GO_DATA_DIR`,
-le clone local `.data/PokemonGo-Data/`, le depot voisin `../PokemonGo-Data` ou, en
-dernier recours historique, un ancien dossier `data/`.
+le clone local `.data/PokemonGo-Data/` ou le depot voisin `../PokemonGo-Data`.
 
 La synchronisation vers MongoDB ne modifie jamais ces sources. Le catalogue d'attaques
-central est dans `PokemonGo-Data/moves/`, avec les categories classiques, Elite, Max et
+central est dans `PokemonGo-Data/data/moves/`, avec les categories classiques, Elite, Max et
 G-Max. Les formes Dynamax et Gigantamax minimales vivent dans
-`PokemonGo-Data/pokemon-forms/dynamax/` et
-`PokemonGo-Data/pokemon-forms/gigantamax/`.
+`PokemonGo-Data/data/pokemon/dynamax/` et
+`PokemonGo-Data/data/pokemon/gigantamax/`.
 
 Les images de backgrounds de lieu et spéciaux sont rangées dans
 `asset/LocationCards/`. Le script `scripts/import/location-cards.js` associe ces
@@ -58,18 +57,18 @@ fichiers aux Pokémon éligibles depuis Serebii et conserve leurs dates et forme
 
 Les portraits Méga/Primo vivent dans `asset/MegaPortraits/`, les fonds de types dans
 `asset/TypeBackgrounds/` et les stickers distants dans le catalogue
-`PokemonGo-Data/stickers/stickers.json`. Le script `scripts/import/visual-assets.js`
+`PokemonGo-Data/data/reference/stickers/stickers.json`. Le script `scripts/import/visual-assets.js`
 associe ces ressources aux données. Chaque type possède un fichier dans
-`PokemonGo-Data/types/<slug>.json`; `PokemonGo-Data/types/types.json` reste un index
+`PokemonGo-Data/data/reference/types/<slug>.json`; `PokemonGo-Data/data/reference/types/types.json` reste un index
 compatible avec les anciens outils.
 
-Les régions et générations sont centralisées dans `PokemonGo-Data/generations/`. Les fiches
+Les régions et générations sont centralisées dans `PokemonGo-Data/data/reference/generations/`. Les fiches
 Pokémon complètes conservent uniquement `regionId`; l'API et la checklist recomposent
-la région traduite et la génération. Les sept météos vivent dans `PokemonGo-Data/weather/`,
+la région traduite et la génération. Les sept météos vivent dans `PokemonGo-Data/data/reference/weather/`,
 référencent leurs types boostés et exposent les icônes de `asset/weather/`.
 
 Les sources externes surveillées par la checklist vivent dans
-`PokemonGo-Data/source-watch/sources.json`. Dans ce depot public read-only, l'action
+`PokemonGo-Data/operations/audits/sources/current.json`. Dans ce depot public read-only, l'action
 `source-watch` de `/api/checklist-v3` est protegee par `x-api-admin-secret`, puis
 desactivee avec une reponse `410 Gone` : les outils de correction et de surveillance
 sont geres dans le dashboard prive.
@@ -83,15 +82,15 @@ Le rôle détaillé de chaque fichier JavaScript est documenté dans
 
 Les icônes de style Pokémon Shuffle vivent dans `asset/pokemonShuffle/`.
 `scripts/import/pokemon-shuffle.js` les associe une seule fois à la fiche JSON exacte
-dans `pokemon-assets/shuffle/<catégorie>/*.shuffle.json`, référencé par le Core indiqué
+dans `data/assets/shuffle/<catégorie>/*.shuffle.json`, référencé par le Core indiqué
 par `assetsRef` à la racine.
 Une image Dynamax va uniquement dans une fiche Dynamax, une Méga dans sa fiche Méga
 et une forme régionale dans sa fiche régionale. Les images Shadow et purifiées restent
 regroupées sur la fiche asset de leur forme.
 
 Les fiches principales ne dupliquent plus les données de formes. `regionForms` et
-`megaEvolutions` contiennent uniquement des références vers
-`PokemonGo-Data/pokemon-forms/`.
+`megaEvolutions` contiennent uniquement des références `formId` vers les catégories
+de `PokemonGo-Data/data/pokemon/`.
 
 ## API
 

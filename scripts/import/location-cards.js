@@ -1,11 +1,12 @@
 const fs = require("fs");
 const path = require("path");
-const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
+const { appRoot: rootDir, dataPath } = require("../../src/lib/data-repository");
+const { refreshAssetManifest, writeFamilyAsset } = require("../../src/lib/canonical-asset-writer");
 const cheerio = require("cheerio");
 
-const pokemonDir = dataPath("pokemon");
+const pokemonDir = dataPath("data", "pokemon", "normal");
 const cardsDir = path.join(rootDir, "asset", "LocationCards");
-const reportFile = dataPath("location-cards-import-report.json");
+const reportFile = dataPath("operations", "reports", "imports", "location-cards-import-report.json");
 const source = "https://www.serebii.net/pokemongo/backgrounds.shtml";
 const imageBase =
   "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/LocationCards";
@@ -228,15 +229,6 @@ function matchFile(file, cards) {
   return { ...best, method: "automatic" };
 }
 
-function orderedAssets(assets, locationCards) {
-  const result = {};
-  for (const [key, value] of Object.entries(assets || {})) {
-    if (key !== "locationCards") result[key] = value;
-  }
-  result.locationCards = locationCards;
-  return result;
-}
-
 async function main() {
   const write = process.argv.includes("--write");
   const html = await fetchPage();
@@ -290,11 +282,10 @@ async function main() {
       (left, right) => left.type.localeCompare(right.type) || left.name.localeCompare(right.name),
     );
     if (!locationCards.length) continue;
-    const next = { ...pokemon, assets: orderedAssets(pokemon.assets, locationCards) };
-    if (JSON.stringify(next) === JSON.stringify(pokemon)) continue;
-    changedPokemon += 1;
-    if (write) fs.writeFileSync(fullPath, `${JSON.stringify(next, null, 2)}\n`);
+    const update = writeFamilyAsset(pokemon, "location-cards", locationCards, { write });
+    if (update.changed) changedPokemon += 1;
   }
+  refreshAssetManifest({ write });
 
   const report = {
     generatedAt: new Date().toISOString(),
@@ -324,7 +315,7 @@ async function main() {
       eligibleDexNumbers,
     })),
   };
-  fs.writeFileSync(reportFile, `${JSON.stringify(report, null, 2)}\n`);
+  if (write) fs.writeFileSync(reportFile, `${JSON.stringify(report, null, 2)}\n`);
   console.log(
     `${write ? "Écriture" : "Simulation"}: ${matched.length}/${files.length} cartes associées, ` +
       `${changedPokemon} Pokémon ${write ? "modifiés" : "à modifier"}, ${unmatched.length} non associées.`,

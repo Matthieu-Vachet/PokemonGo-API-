@@ -35,7 +35,7 @@ test("le reader sépare le core et les quatre familles sans collision", () => {
   );
   assert.ok(data.pokemonAssets.every((document) => /\/core\//.test(document.sourceFile)));
   assert.ok(data.pokemon.every((document) => document.data.assets === undefined));
-  assert.ok(data.pokemon.every((document) => /^pokemon-assets\/core\//.test(document.data.assetsRef)));
+  assert.ok(data.pokemon.every((document) => /^data\/assets\/core\//.test(document.data.assetsRef)));
   assert.ok(data.pokemonAssets.every((document) => document.sourceFile.includes(`/${document.entityCategory === "FORM" ? "forms" : document.entityCategory.toLowerCase()}/`)));
   assert.ok(data.pokemonAssetFamilies.every((document) => document.payload !== null));
 });

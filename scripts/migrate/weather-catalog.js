@@ -3,9 +3,9 @@ const path = require("path");
 const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
 const write = process.argv.includes("--write");
-const typesDir = dataPath("types");
+const typesDir = dataPath("data", "reference", "types");
 const typesIndex = path.join(typesDir, "types.json");
-const weatherDir = dataPath("weather");
+const weatherDir = dataPath("data", "reference", "weather");
 const weatherIndex = path.join(weatherDir, "weather.json");
 const remoteBase =
   "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/weather";

@@ -3,7 +3,7 @@ const path = require("path");
 const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
 const write = process.argv.includes("--write");
-const pokemonDir = dataPath("pokemon");
+const pokemonDir = dataPath("data", "pokemon", "normal");
 const forms = ["dynamax", "gigantamax"];
 
 function read(file) {
@@ -85,7 +85,7 @@ function normalize(form, parent) {
 const report = { mode: write ? "write" : "dry-run", files: [], errors: [] };
 
 for (const folder of forms) {
-  const directory = dataPath("pokemon-forms", folder);
+  const directory = dataPath("data", "pokemon", folder);
   if (!fs.existsSync(directory)) continue;
   for (const name of fs.readdirSync(directory).filter((file) => file.endsWith(".json"))) {
     const file = path.join(directory, name);

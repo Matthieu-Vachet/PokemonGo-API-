@@ -13,7 +13,7 @@ const {
   saveCustomRule,
 } = require("../apps/checklist/server/custom-rules");
 
-const bulbasaurFile = dataPath("pokemon", "0001-bulbasaur.json");
+const bulbasaurFile = dataPath("data", "pokemon", "normal", "0001-bulbasaur.json");
 const bulbasaur = JSON.parse(fs.readFileSync(bulbasaurFile, "utf8"));
 const originalRules = fs.existsSync(rulesFile)
   ? fs.readFileSync(rulesFile, "utf8")
@@ -58,7 +58,7 @@ test("une règle custom ajoute des problèmes et un patch suggéré", () => {
 
   const issues = validateSourceData(
     bulbasaur,
-    "data/pokemon/0001-bulbasaur.json",
+    "data/pokemon/normal/0001-bulbasaur.json",
   );
   const descriptionIssue = issues.find((issue) => issue.path === "description");
 

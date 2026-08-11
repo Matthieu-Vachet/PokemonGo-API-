@@ -8,8 +8,13 @@ const { collectAllDocuments } = require("../src/sync/source-reader");
 
 const categoryDirectories = Object.freeze({
   NORMAL: "normal",
+  ALOLA: "alola",
+  GALAR: "galar",
+  HISUI: "hisui",
+  PALDEA: "paldea",
   FORM: "forms",
   MEGA: "mega",
+  PRIMAL: "primal",
   DYNAMAX: "dynamax",
   GIGANTAMAX: "gigantamax",
 });
@@ -23,12 +28,12 @@ test("OpenAPI est versionné avec le package et ne publie aucun contrat privé",
   assert.ok(specification.paths["/api/v1/pvp/{league}/{identifier}"]);
   assert.equal(specification.paths["/api/v1/admin/pokemon-identities"], undefined);
   assert.equal(specification.paths["/api/v1/admin/game-master/summary"], undefined);
-  assert.ok(serialized.includes("pokemon-assets/core/normal/0006-charizard.assets.json"));
-  assert.ok(serialized.includes("pvp/pokemon/normal/0006-charizard.pvp.json"));
+  assert.ok(serialized.includes("data/assets/core/normal/0006-charizard.assets.json"));
+  assert.ok(serialized.includes("data/pvp/pokemon/normal/0006-charizard.pvp.json"));
   assert.match(serialized, /entityCategory/);
 });
 
-test("les cinq catégories conservent leur identité et leurs références publiques", () => {
+test("les dix catégories conservent leur identité et leurs références publiques", () => {
   const data = collectAllDocuments();
   const pokemonByFormId = new Map(data.pokemon.map((entry) => [entry.formId, entry]));
   const coreByFormId = new Map(data.pokemonAssets.map((entry) => [entry.formId, entry]));
@@ -48,8 +53,8 @@ test("les cinq catégories conservent leur identité et leurs références publi
     assert.ok(pokemon.slug);
     assert.ok(pokemon.formId);
     assert.equal(pokemon.data.assets, undefined);
-    assert.match(pokemon.data.assetsRef, new RegExp(`^pokemon-assets/core/${directory}/`));
-    assert.match(pokemon.data.pvpRef, new RegExp(`^pvp/pokemon/${directory}/`));
+    assert.match(pokemon.data.assetsRef, new RegExp(`^data/assets/core/${directory}/`));
+    assert.match(pokemon.data.pvpRef, new RegExp(`^data/pvp/pokemon/${directory}/`));
     assert.equal(assetReferences.has(pokemon.data.assetsRef), false, `${pokemon.formId}: collision assetsRef`);
     assert.equal(pvpReferences.has(pokemon.data.pvpRef), false, `${pokemon.formId}: collision pvpRef`);
     assetReferences.add(pokemon.data.assetsRef);
@@ -59,7 +64,7 @@ test("les cinq catégories conservent leur identité et leurs références publi
     assert.ok(core, `${pokemon.formId}: Core absent`);
     assert.equal(core.entityCategory, pokemon.entityCategory);
     for (const reference of Object.values(core.assetRefs || {})) {
-      assert.match(reference, new RegExp(`^pokemon-assets/(?:home|shuffle|location-cards|variants)/${directory}/`));
+      assert.match(reference, new RegExp(`^data/assets/(?:home|shuffle|location-cards|variants)/${directory}/`));
     }
 
     const presented = presentPokemon(pokemon);
@@ -77,10 +82,15 @@ test("les cinq catégories conservent leur identité et leurs références publi
   for (const [formId, expectedCategory] of [
     ["BULBASAUR", "NORMAL"],
     ["VENUSAUR", "NORMAL"],
-    ["RATTATA_ALOLA", "FORM"],
+    ["RATTATA_ALOLA", "ALOLA"],
+    ["MEOWTH_GALARIAN", "GALAR"],
+    ["GROWLITHE_HISUIAN", "HISUI"],
+    ["TAUROS_PALDEA_COMBAT", "PALDEA"],
+    ["UNOWN_A", "FORM"],
     ["VENUSAUR_MEGA", "MEGA"],
     ["CHARIZARD_MEGA_X", "MEGA"],
     ["CHARIZARD_MEGA_Y", "MEGA"],
+    ["KYOGRE_PRIMAL", "PRIMAL"],
     ["BULBASAUR_DYNAMAX", "DYNAMAX"],
     ["VENUSAUR_GIGANTAMAX", "GIGANTAMAX"],
   ]) {

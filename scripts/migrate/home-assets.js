@@ -1,9 +1,10 @@
 const fs = require("fs");
 const path = require("path");
-const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
+const { appRoot: rootDir, dataPath } = require("../../src/lib/data-repository");
+const { refreshAssetManifest, writeFamilyAsset } = require("../../src/lib/canonical-asset-writer");
 
 const sourceDir = path.join(rootDir, "asset", "HD");
-const pokemonDir = dataPath("pokemon");
+const pokemonDir = dataPath("data", "pokemon", "normal");
 const write = process.argv.includes("--write");
 const remoteBase =
   "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd";
@@ -136,21 +137,10 @@ for (const file of pokemonFiles) {
   availableDex.add(data.dexId);
   const home = byDex.get(data.dexId);
   if (!home) continue;
-  const next = {
-    ...data,
-    assets: {
-      ...(data.assets || {}),
-      home: homeAssets(home),
-    },
-  };
-  delete next.assetHd;
-  if (JSON.stringify(data) !== JSON.stringify(next)) changed.push({ file, data: next });
+  const update = writeFamilyAsset(data, "home", homeAssets(home), { write });
+  if (update.changed) changed.push(update.reference);
 }
-
-if (write) {
-  for (const { file, data } of changed)
-    fs.writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`);
-}
+refreshAssetManifest({ write });
 
 const skippedDex = [...byDex.keys()].filter((dexId) => !availableDex.has(dexId)).sort();
 console.log(

@@ -20,9 +20,10 @@ related:
 
 ## Contrat partagé
 
-L’API consomme l’architecture canonique PokemonGo-Data avec cinq catégories :
-`NORMAL`, `FORM`, `MEGA`, `DYNAMAX` et `GIGANTAMAX`, respectivement stockées dans
-`normal`, `forms`, `mega`, `dynamax` et `gigantamax`.
+L’API consomme l’architecture canonique PokemonGo-Data avec dix catégories :
+`NORMAL`, `ALOLA`, `GALAR`, `HISUI`, `PALDEA`, `FORM`, `MEGA`, `PRIMAL`,
+`DYNAMAX` et `GIGANTAMAX`, respectivement stockées dans `normal`, `alola`, `galar`,
+`hisui`, `paldea`, `forms`, `mega`, `primal`, `dynamax` et `gigantamax`.
 
 `src/lib/entity-category.js` centralise la classification et la construction de chemin
 `family + entityCategory + canonicalFilename`. Les routes, le sync, l’Engine et les
@@ -33,8 +34,8 @@ services ne doivent pas concaténer ces chemins eux-mêmes.
 Le sync parcourt récursivement :
 
 ```text
-pokemon-assets/<famille>/<catégorie>/
-pvp/pokemon/<catégorie>/
+data/assets/<famille>/<catégorie>/
+data/pvp/pokemon/<catégorie>/
 ```
 
 Chaque document Pokémon, Core et famille MongoDB conserve `entityCategory`. Le Core est

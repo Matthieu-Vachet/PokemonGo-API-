@@ -60,7 +60,7 @@ const inventorySchema = z.object({
 let cache = null;
 
 function inventoryModule() {
-  const modulePath = dataPath("scripts", "lib", "pokemon-local-identity-inventory.js");
+  const modulePath = dataPath("tooling", "lib", "pokemon-local-identity-inventory.js");
   // Le module partagé vit dans PokemonGo-Data afin que l'API et les audits appliquent le même contrat.
   return require(modulePath);
 }

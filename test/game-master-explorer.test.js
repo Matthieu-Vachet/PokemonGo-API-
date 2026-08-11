@@ -4,6 +4,7 @@ const request = require("supertest");
 const fs = require("node:fs");
 const path = require("node:path");
 const { createApp } = require("../src/app");
+const { dataPath } = require("../src/lib/data-repository");
 const {
   changeRows,
   compactTemplateDocument,
@@ -14,7 +15,7 @@ const {
   snapshotIdFor,
   storageError,
 } = require("../src/services/game-master-explorer-service");
-const { structuredDiff } = require(path.join(process.env.POKEMON_GO_DATA_DIR || path.resolve(__dirname, "../../PokemonGo-Data"), "scripts/lib/game-master-explorer.js"));
+const { structuredDiff } = require(dataPath("tooling", "lib", "game-master-explorer.js"));
 
 test("échappe les recherches Game Master avant toute regex MongoDB", () => {
   assert.equal(escapedRegex("PIKACHU.*(COPY)"), "PIKACHU\\.\\*\\(COPY\\)");
@@ -107,7 +108,7 @@ test("conserve dans la comparaison l’asset local exact et sa provenance", () =
     resolutionSource: "pokemon.formId",
     localAsset: { image: "bulbasaur.png", source: "pokemon.formId" },
     localFile: "pokemon/0001-bulbasaur.json",
-    localAssetsRef: "pokemon-assets/core/normal/0001-bulbasaur.assets.json",
+    localAssetsRef: "data/assets/core/normal/0001-bulbasaur.assets.json",
     gameAvailability: { released: false },
     assetAvailability: { normal: true, shiny: false, independentFromGameRelease: true },
     assetBundleSource: "pokemonSettings",

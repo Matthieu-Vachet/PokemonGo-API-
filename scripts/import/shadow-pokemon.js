@@ -3,8 +3,8 @@ const path = require("path");
 const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 const cheerio = require("cheerio");
 
-const pokemonDir = dataPath("pokemon");
-const reportFile = dataPath("shadow-pokemon-import-report.json");
+const pokemonDir = dataPath("data", "pokemon", "normal");
+const reportFile = dataPath("operations", "reports", "imports", "shadow-pokemon-import-report.json");
 const source =
   "https://bulbapedia.bulbagarden.net/wiki/List_of_Shadow_Pok%C3%A9mon_in_Pok%C3%A9mon_GO";
 const today = new Date("2026-06-14T23:59:59Z");

@@ -159,7 +159,7 @@ function mergeAssetData(
   const assets = { ...coreAssets, candy: coreAssets.candy ?? null };
   const assetRefs = assetDocument?.assetRefs || assetDocument?.data?.assetRefs || {};
   const separatedCore = Object.keys(assetRefs).length > 0 ||
-    /(?:^|\/)pokemon-assets\/core\//.test(String(assetDocument?.sourceFile || ""));
+    /(?:^|\/)data\/assets\/core\//.test(String(assetDocument?.sourceFile || ""));
   const legacyHeavyAssets = assetDocument && !separatedCore ? coreAssets : {};
   const home = familyPayload(byFamily.get("home"), "home") ?? legacyHeavyAssets.home;
   const shuffle = familyPayload(byFamily.get("shuffle"), "shuffle") ?? legacyHeavyAssets.shuffle;

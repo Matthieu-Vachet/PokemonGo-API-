@@ -1,11 +1,12 @@
 const fs = require("fs");
 const path = require("path");
-const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
+const { appRoot: rootDir, dataPath, relativeToApp } = require("../../src/lib/data-repository");
+const { refreshAssetManifest, writeFamilyAsset } = require("../../src/lib/canonical-asset-writer");
 
 const sourceDir = path.join(rootDir, "asset", "pokemonShuffle");
-const pokemonDir = dataPath("pokemon");
-const formsDir = dataPath("pokemon-forms");
-const reportFile = dataPath("pokemon-shuffle-import-report.json");
+const pokemonDir = dataPath("data", "pokemon", "normal");
+const formsDir = dataPath("data", "pokemon");
+const reportFile = dataPath("operations", "reports", "imports", "pokemon-shuffle-import-report.json");
 const remoteBase =
   "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/pokemonShuffle";
 const write = process.argv.includes("--write");
@@ -163,19 +164,14 @@ function variantFor(image, record) {
   };
 }
 
-function withShuffle(record, variants) {
-  const assets =
-    record.data.assets && typeof record.data.assets === "object"
-      ? { ...record.data.assets }
-      : {};
-  assets.shuffle = {
+function shufflePayload(variants) {
+  return {
     source: "pokemon-shuffle",
     variants: variants.sort((left, right) => left.filename.localeCompare(right.filename)),
   };
-  return { ...record.data, assets };
 }
 
-const records = [...files(pokemonDir), ...files(formsDir)].map((file) => {
+const records = files(formsDir).map((file) => {
   const data = read(file);
   return {
     file,
@@ -221,22 +217,10 @@ for (const filename of fs.readdirSync(sourceDir).filter((name) => name.endsWith(
 const changedFiles = [];
 for (const record of records) {
   const variants = assigned.get(record.file);
-  const hadShuffle = Boolean(record.data.assets?.shuffle);
-  if (!variants && !hadShuffle) continue;
-  const next = variants
-    ? withShuffle(record, variants)
-    : {
-        ...record.data,
-        assets: { ...record.data.assets },
-      };
-  if (!variants) {
-    delete next.assets.shuffle;
-    if (!Object.keys(next.assets).length) next.assets = null;
-  }
-  if (JSON.stringify(next) === JSON.stringify(record.data)) continue;
-  changedFiles.push(record.relative);
-  if (write) writeJson(record.file, next);
+  const update = writeFamilyAsset(record.data, "shuffle", variants ? shufflePayload(variants) : null, { write });
+  if (update.changed) changedFiles.push(update.reference);
 }
+refreshAssetManifest({ write });
 
 const assignedFilenames = [...assigned.values()].flat().map(({ filename }) => filename);
 const duplicateAssignments = assignedFilenames.filter(

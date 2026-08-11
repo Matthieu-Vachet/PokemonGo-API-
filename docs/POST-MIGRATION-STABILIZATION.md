@@ -30,7 +30,7 @@ configuré en production.
 
 ## Sources et Identity Manager
 
-`PokemonGo-Data/source-watch/sources.json` est le registre fermé des sources de
+`PokemonGo-Data/operations/audits/sources/current.json` est le registre fermé des sources de
 régénération. Les provenances `leekduck-eggs`, `leekduck-research` et
 `leekduck-rocket` sont résolues vers l’unique provider Identity Manager `leekduck`.
 La synchronisation du 9 août a appliqué 1 920 mises à jour et 5 créations, marqué 2

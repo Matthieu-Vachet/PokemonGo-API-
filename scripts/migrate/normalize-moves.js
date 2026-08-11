@@ -3,12 +3,12 @@ const path = require("path");
 const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
 const write = process.argv.includes("--write");
-const sourceDirectories = ["data/pokemon", "data/pokemon-forms"];
+const sourceDirectories = ["data/pokemon"];
 const moveFields = {
   quickMoves: "fast",
   cinematicMoves: "charged",
-  eliteQuickMoves: "fast_elite",
-  eliteCinematicMoves: "charged_elite",
+  eliteQuickMoves: "fast-elite",
+  eliteCinematicMoves: "charged-elite",
 };
 
 function readJson(file) {

@@ -83,7 +83,7 @@ function normalizePokemon(data, parent = null) {
   return normalized;
 }
 
-const pokemonDirectory = dataPath("pokemon");
+const pokemonDirectory = dataPath("data", "pokemon", "normal");
 const pokemonFiles = jsonFiles(pokemonDirectory);
 const parents = new Map();
 for (const file of pokemonFiles) {
@@ -111,7 +111,7 @@ for (const file of pokemonFiles) {
   if (JSON.stringify(before) !== JSON.stringify(after)) transformed.push({ file, data: after });
 }
 
-for (const file of jsonFiles(dataPath("pokemon-forms"))) {
+for (const file of jsonFiles(dataPath("data", "pokemon")).filter((file) => !file.startsWith(`${pokemonDirectory}${path.sep}`))) {
   const before = read(file);
   const parent =
     parents.get(before.baseFormId) ||
@@ -137,7 +137,7 @@ for (const file of jsonFiles(dataPath("pokemon-forms"))) {
   if (JSON.stringify(before) !== JSON.stringify(after)) transformed.push({ file, data: after });
 }
 
-for (const file of jsonFiles(dataPath("moves"))) {
+for (const file of jsonFiles(dataPath("data", "moves"))) {
   const before = read(file);
   const canonicalSlug = slug(before.slug || before.id);
   const after = { ...before, slug: canonicalSlug };
@@ -148,7 +148,7 @@ for (const file of jsonFiles(dataPath("moves"))) {
   if (JSON.stringify(before) !== JSON.stringify(after)) transformed.push({ file, data: after });
 }
 
-const typeFile = dataPath("types", "types.json");
+const typeFile = dataPath("data", "reference", "types", "types.json");
 const beforeTypes = read(typeFile);
 const afterTypes = beforeTypes.map((type) => ({
   ...type,

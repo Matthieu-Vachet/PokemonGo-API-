@@ -60,7 +60,7 @@ Cette commande lit tous les JSON et affiche les compteurs, mais ne se connecte p
 MongoDB. C'est le bon controle apres un ajout comme `damageMultiplier` dans les types
 ou `assets.candy` dans les fiches Pokemon. Le dry-run doit aussi afficher
 `pokemonAssets` et `pokemonAssetFamilies`, générés récursivement depuis les Core et les
-familles catégorisées de `PokemonGo-Data/pokemon-assets`.
+familles catégorisées de `PokemonGo-Data/data/assets`.
 
 ## 3. Importer dans MongoDB
 

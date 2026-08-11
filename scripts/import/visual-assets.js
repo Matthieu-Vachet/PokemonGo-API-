@@ -1,16 +1,19 @@
 const fs = require("fs");
 const path = require("path");
-const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
+const { appRoot: rootDir, dataPath, relativeToApp } = require("../../src/lib/data-repository");
+const { refreshAssetManifest, updateCoreAssets } = require("../../src/lib/canonical-asset-writer");
 
-const pokemonDir = dataPath("pokemon");
-const megaFormsDir = dataPath("pokemon-forms", "mega");
-const typesDir = dataPath("types");
+const specialFormDirs = [
+  dataPath("data", "pokemon", "mega"),
+  dataPath("data", "pokemon", "primal"),
+];
+const typesDir = dataPath("data", "reference", "types");
 const typesIndex = path.join(typesDir, "types.json");
 const portraitsDir = path.join(rootDir, "asset", "MegaPortraits");
 const typeBackgroundsDir = path.join(rootDir, "asset", "TypeBackgrounds");
 const stickersDir = path.join(rootDir, "asset", "Stickers");
-const stickersCatalog = dataPath("stickers", "stickers.json");
-const reportFile = dataPath("visual-assets-import-report.json");
+const stickersCatalog = dataPath("data", "reference", "stickers", "stickers.json");
+const reportFile = dataPath("operations", "reports", "imports", "visual-assets-import-report.json");
 const remoteBase =
   "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main";
 const treeSource =
@@ -103,32 +106,9 @@ async function main() {
   const matchedMegas = [];
   const unmatchedMegas = [];
 
-  for (const filename of fs.readdirSync(pokemonDir).filter((name) => name.endsWith(".json"))) {
-    const file = path.join(pokemonDir, filename);
-    const pokemon = read(file);
-    if (!pokemon.megaEvolutions || Array.isArray(pokemon.megaEvolutions)) continue;
-    let changed = false;
-    for (const [formId, mega] of Object.entries(pokemon.megaEvolutions)) {
-      const assets = portraits.get(megaKey(pokemon.dexNr, formId));
-      if (!assets) {
-        unmatchedMegas.push(formId);
-        continue;
-      }
-      matchedMegas.push(formId);
-      const nextAssets = { ...(mega.assets || {}), ...assets };
-      if (!same(mega.assets, nextAssets)) {
-        mega.assets = nextAssets;
-        changed = true;
-      }
-    }
-    if (!changed) continue;
-    pokemonChanges.push(relativeToApp(file));
-    if (write) writeJson(file, pokemon);
-  }
-
-  if (fs.existsSync(megaFormsDir)) {
-    for (const filename of fs.readdirSync(megaFormsDir).filter((name) => name.endsWith(".json"))) {
-      const file = path.join(megaFormsDir, filename);
+  for (const specialFormDir of specialFormDirs.filter((directory) => fs.existsSync(directory))) {
+    for (const filename of fs.readdirSync(specialFormDir).filter((name) => name.endsWith(".json"))) {
+      const file = path.join(specialFormDir, filename);
       const mega = read(file);
       const assets = portraits.get(megaKey(mega.dexNr, mega.formId || mega.id));
       if (!assets) {
@@ -136,11 +116,8 @@ async function main() {
         continue;
       }
       matchedMegas.push(mega.formId || mega.id);
-      const nextAssets = { ...(mega.assets || {}), ...assets };
-      if (same(mega.assets, nextAssets)) continue;
-      mega.assets = nextAssets;
-      megaFormChanges.push(relativeToApp(file));
-      if (write) writeJson(file, mega);
+      const update = updateCoreAssets(mega, assets, { write });
+      if (update.changed) megaFormChanges.push(update.reference);
     }
   }
 
@@ -173,6 +150,7 @@ async function main() {
   }));
   const stickersChanged = !fs.existsSync(stickersCatalog) || !same(read(stickersCatalog), stickers);
   if (write && stickersChanged) writeJson(stickersCatalog, stickers);
+  refreshAssetManifest({ write });
 
   const report = {
     generatedAt: new Date().toISOString(),
@@ -194,7 +172,7 @@ async function main() {
     stickers: stickers.length,
     stickersChanged,
   };
-  writeJson(reportFile, report);
+  if (write) writeJson(reportFile, report);
   console.log(
     `${write ? "Écriture" : "Simulation"}: ${matchedMegas.length} Méga associées, ` +
       `${nextTypes.length} types, ${stickers.length} stickers.`,

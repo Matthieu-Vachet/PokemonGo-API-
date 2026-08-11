@@ -63,7 +63,7 @@ async function downloadPokemon(id) {
     // SAVE PATH
     // ==============================
 
-    const pokemonDir = dataPath("pokemon");
+    const pokemonDir = dataPath("data", "pokemon", "normal");
     const filePath = path.join(pokemonDir, filename);
 
     // Ensure directory exists

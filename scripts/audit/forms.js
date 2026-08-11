@@ -2,8 +2,8 @@ const fs = require("fs");
 const path = require("path");
 const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
-const pokemonDir = dataPath("pokemon");
-const formsDir = dataPath("pokemon-forms");
+const pokemonDir = dataPath("data", "pokemon", "normal");
+const formsDir = dataPath("data", "pokemon");
 
 function read(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
@@ -21,7 +21,7 @@ function files(directory) {
 }
 
 const formIds = new Map(
-  files(formsDir).map((file) => {
+  files(formsDir).filter((file) => !file.startsWith(`${pokemonDir}${path.sep}`)).map((file) => {
     const form = read(file);
     return [form.formId, relativeToApp(file)];
   }),
@@ -51,7 +51,7 @@ for (const file of files(pokemonDir)) {
   }
 }
 
-const sources = [...files(pokemonDir), ...files(formsDir)].map((file) => ({
+const sources = files(formsDir).map((file) => ({
   file,
   data: read(file),
 }));

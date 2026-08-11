@@ -102,10 +102,10 @@ function storageError(error) {
 }
 
 function loadDataTools() {
-  const explorer = require(dataPath("scripts", "lib", "game-master-explorer.js"));
-  const generator = require(dataPath("scripts", "generateGameMasterExplorerIndex.js"));
-  const mappings = require(dataPath("scripts", "generateGameMasterPokemonMappings.js"));
-  const events = require(dataPath("scripts", "lib", "current-event-utils.js"));
+  const explorer = require(dataPath("tooling", "lib", "game-master-explorer.js"));
+  const generator = require(dataPath("tooling", "scripts", "generators", "generateGameMasterExplorerIndex.js"));
+  const mappings = require(dataPath("tooling", "scripts", "generators", "generateGameMasterPokemonMappings.js"));
+  const events = require(dataPath("tooling", "lib", "current-event-utils.js"));
   return { explorer, generator, mappings, events };
 }
 

@@ -6,11 +6,16 @@ const { classifyEntity, resolveCanonicalReference } = require("../src/lib/entity
 
 const data = collectAllDocuments();
 
-test("l'API indexe les cinq catégories et conserve leurs chemins canoniques", () => {
+test("l'API indexe les dix catégories et conserve leurs chemins canoniques", () => {
   const expected = new Map([
     ["BULBASAUR", "NORMAL"],
-    ["RATTATA_ALOLA", "FORM"],
+    ["RATTATA_ALOLA", "ALOLA"],
+    ["MEOWTH_GALARIAN", "GALAR"],
+    ["GROWLITHE_HISUIAN", "HISUI"],
+    ["TAUROS_PALDEA_COMBAT", "PALDEA"],
+    ["UNOWN_A", "FORM"],
     ["VENUSAUR_MEGA", "MEGA"],
+    ["KYOGRE_PRIMAL", "PRIMAL"],
     ["BULBASAUR_DYNAMAX", "DYNAMAX"],
     ["VENUSAUR_GIGANTAMAX", "GIGANTAMAX"],
   ]);

@@ -36,7 +36,7 @@ test("le service API résout l'asset shiny canonique sans revenir aux champs pro
   const result = resolveCanonicalPokemonAsset(flyingIdentity(), { shiny: true });
   assert.equal(result.status, "matched");
   assert.equal(result.canonicalId, "PIKACHU_COSTUME_2020");
-  assert.equal(result.assetBundle, "pokemon-assets/core/normal/0025-pikachu.assets.json");
+  assert.equal(result.assetBundle, "data/assets/core/normal/0025-pikachu.assets.json");
   assert.match(result.resolvedImage, /pm25\.fCOSTUME_2020\.s\.icon\.png$/);
 });
 

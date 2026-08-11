@@ -3,12 +3,12 @@ const path = require("path");
 const { appRoot: rootDir, dataPath, dataPathFromRelative, relativeToApp } = require("../../src/lib/data-repository");
 
 const write = process.argv.includes("--write");
-const sourceDirectories = ["data/pokemon", "data/pokemon-forms"];
+const sourceDirectories = ["data/pokemon"];
 const moveFields = {
   quickMoves: "fast",
   cinematicMoves: "charged",
-  eliteQuickMoves: "fast_elite",
-  eliteCinematicMoves: "charged_elite",
+  eliteQuickMoves: "fast-elite",
+  eliteCinematicMoves: "charged-elite",
 };
 
 function readJson(file) {
@@ -36,7 +36,7 @@ function collect(value, location) {
     const category = moveFields[key];
     if (category && child && !Array.isArray(child) && typeof child === "object") {
       for (const [id, move] of Object.entries(child)) {
-        const target = dataPath("moves", category, `${id}.json`);
+        const target = dataPath("data", "moves", category, `${id}.json`);
         if (fs.existsSync(target)) continue;
         const catalogKey = `${category}:${id}`;
         const existing = missing.get(catalogKey);

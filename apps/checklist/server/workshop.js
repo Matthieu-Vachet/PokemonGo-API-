@@ -24,11 +24,11 @@ const notesFile = path.join(rootDir, ".checklist-notes.json");
 const reviewsFile = path.join(rootDir, ".checklist-image-reviews.json");
 const hdDir = path.join(rootDir, "asset", "HD");
 const shuffleDir = path.join(rootDir, "asset", "pokemonShuffle");
-const typesDir = dataPath("types");
-const typesFile = dataPath("types", "types.json");
-const weatherFile = dataPath("weather", "weather.json");
-const stickersFile = dataPath("stickers", "stickers.json");
-const movesDir = dataPath("moves");
+const typesDir = dataPath("data", "reference", "types");
+const typesFile = dataPath("data", "reference", "types", "types.json");
+const weatherFile = dataPath("data", "reference", "weather", "weather.json");
+const stickersFile = dataPath("data", "reference", "stickers", "stickers.json");
+const movesDir = dataPath("data", "moves");
 const remoteHd =
   "https://raw.githubusercontent.com/Matthieu-Vachet/PokemonGo-Assets-API/refs/heads/main/PokemonHd";
 const remoteShuffle =
@@ -102,10 +102,7 @@ async function allHdAssets() {
 
 function usedAssetUrls() {
   const urls = [];
-  for (const file of [
-    ...listFiles(dataPath("pokemon")),
-    ...listFiles(dataPath("pokemon-forms")),
-  ]) {
+  for (const file of listFiles(dataPath("data", "pokemon"))) {
     const text = fs.readFileSync(file, "utf8");
     for (const match of text.matchAll(/https?:[^"\\]+poke_capture_[^"\\]+\.png/g))
       urls.push({ url: match[0], file: relativeToApp(file) });
@@ -129,10 +126,7 @@ function allGoAssets() {
       file: relativeToApp(file),
     });
   };
-  for (const file of [
-    ...listFiles(dataPath("pokemon")),
-    ...listFiles(dataPath("pokemon-forms")),
-  ]) {
+  for (const file of listFiles(dataPath("data", "pokemon"))) {
     const data = readJson(file, {});
     add(data, file, "Image principale", data.assets?.image);
     add(data, file, "Image principale shiny", data.assets?.shinyImage, true);

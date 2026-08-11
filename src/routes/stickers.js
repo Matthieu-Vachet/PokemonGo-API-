@@ -5,7 +5,7 @@ const { dataPath } = require("../lib/data-repository");
 const { pagination, paginatedResponse } = require("../lib/http");
 
 const router = express.Router();
-const catalogFile = dataPath("stickers", "stickers.json");
+const catalogFile = dataPath("data", "reference", "stickers", "stickers.json");
 
 function stickers() {
   return JSON.parse(fs.readFileSync(catalogFile, "utf8"));

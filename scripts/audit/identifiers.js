@@ -31,10 +31,7 @@ function duplicates(items, field) {
 
 const pokemonKeys = new Set(data.pokemon.map((pokemon) => pokemon.key));
 const rawPokemonKeys = new Map();
-for (const file of [
-  ...jsonFiles(dataPath("pokemon")),
-  ...jsonFiles(dataPath("pokemon-forms")),
-]) {
+for (const file of jsonFiles(dataPath("data", "pokemon"))) {
   const source = JSON.parse(fs.readFileSync(file, "utf8"));
   const key = source.formId || source.id;
   if (!rawPokemonKeys.has(key)) rawPokemonKeys.set(key, []);

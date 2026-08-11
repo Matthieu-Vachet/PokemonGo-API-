@@ -13,11 +13,12 @@ const {
   enabledCustomRules,
 } = require("./custom-rules");
 
-const pokemonDir = dataPath("pokemon");
-const formsDir = dataPath("pokemon-forms");
-const movesDir = dataPath("moves");
-const generationsDir = dataPath("generations");
-const assetsDir = dataPath("pokemon-assets");
+const pokemonRoot = dataPath("data", "pokemon");
+const pokemonDir = dataPath("data", "pokemon", "normal");
+const formsDir = pokemonRoot;
+const movesDir = dataPath("data", "moves");
+const generationsDir = dataPath("data", "reference", "generations");
+const assetsDir = dataPath("data", "assets");
 const languages = [
   "English",
   "German",
@@ -40,6 +41,10 @@ function listJsonFiles(directory) {
       ? [entryPath]
       : [];
   });
+}
+
+function listFormJsonFiles() {
+  return listJsonFiles(formsDir).filter((file) => !file.startsWith(`${pokemonDir}${path.sep}`));
 }
 
 function readJson(file) {
@@ -803,7 +808,7 @@ function createValidator() {
       add(
         `${prefix}regionForms`,
         "invalid",
-        "tableau de formId, les donnees vivent dans data/pokemon-forms",
+        "tableau de formId, les données vivent dans data/pokemon/<catégorie>",
         "objet imbrique",
       );
     } else if (Array.isArray(regionForms)) {
@@ -835,7 +840,7 @@ function createValidator() {
       add(
         `${prefix}megaEvolutions`,
         "invalid",
-        "tableau de formId, les donnees Mega vivent dans data/pokemon-forms/mega",
+        "tableau de formId, les données Méga vivent dans data/pokemon/mega",
         "objet imbrique",
       );
     } else if (Array.isArray(megas)) {
@@ -877,17 +882,14 @@ function validateSourceData(data, relativeFile = "", kindHint = "", options = {}
     .filter((field) => Object.hasOwn(data?.assets || {}, field));
   data = hydrateSourceData(data);
   const validator = createValidator();
-  const kind =
-    relativeFile.startsWith("data/pokemon/") ? "pokemon" :
-    kindHint ||
-    (relativeFile.startsWith("data/pokemon-forms/")
-      ? String(data.form || "").startsWith("mega") || data.form === "primal"
-        ? "mega"
-        : ["dynamax", "gigantamax"].includes(data.form)
-          ? data.form
-          : "form"
-      : "pokemon");
-  if (kind === "mega" && relativeFile.startsWith("data/pokemon-forms/"))
+  const category = classifyEntity(data).category;
+  const kind = kindHint || (
+    ["MEGA", "PRIMAL"].includes(category) ? "mega"
+      : category === "DYNAMAX" ? "dynamax"
+        : category === "GIGANTAMAX" ? "gigantamax"
+          : category === "NORMAL" ? "pokemon" : "form"
+  );
+  if (kind === "mega")
     validator.mega(data, "");
   else if (kind === "dynamax" || kind === "gigantamax")
     validator.maxForm(data, "");
@@ -910,7 +912,7 @@ function validateSourceData(data, relativeFile = "", kindHint = "", options = {}
     issue.path = issue.path.replace(/^\./, "");
   const moveIds = new Set(buildMoveCatalog().keys());
   const formIds = new Set();
-  for (const directory of [pokemonDir, formsDir]) {
+  for (const directory of [pokemonRoot]) {
     for (const file of listJsonFiles(directory)) {
       const source = readJson(file);
       for (const value of [source.id, source.formId, source.baseFormId])
@@ -1305,7 +1307,7 @@ function buildChecklist(customRulesOverride = null) {
     const sourceData = readJson(file);
     sources.push({ file, kind: "pokemon", sourceData, data: hydrateSourceData(sourceData) });
   }
-  for (const file of listJsonFiles(formsDir).sort()) {
+  for (const file of listFormJsonFiles().sort()) {
     const sourceData = readJson(file);
     const data = hydrateSourceData(sourceData);
     const form = String(data.form || "");
@@ -1458,7 +1460,7 @@ function detailForKey(key) {
   const assetSourceData = readAssetRecord(sourceData);
   let data = hydrateSourceData(sourceData);
 
-  if (relativeFile.startsWith("data/pokemon-forms/")) {
+  if (classifyEntity(sourceData).category !== "NORMAL") {
     const parent = fs
       .readdirSync(pokemonDir)
       .filter((name) => name.endsWith(".json") && !copySuffix.test(name))

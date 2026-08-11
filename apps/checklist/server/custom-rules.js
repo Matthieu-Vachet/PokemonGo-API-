@@ -3,7 +3,7 @@ const path = require("path");
 const vm = require("vm");
 const { dataPath } = require("../../../src/lib/data-repository");
 
-const rulesDir = dataPath("checklist");
+const rulesDir = dataPath("operations", "audits", "architecture");
 const rulesFile = path.join(rulesDir, "custom-rules.json");
 const allowedKinds = [
   "pokemon",

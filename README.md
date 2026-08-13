@@ -4,7 +4,7 @@ title: Pokemon GO API
 status: canonical
 lang: fr
 version: 1.21.0
-updated_at: 2026-08-09
+updated_at: 2026-08-13
 author: MatWeb Innovation
 projects:
   - PokemonGo-API-
@@ -29,7 +29,7 @@ Les referentiels statiques vivent dans le depot prive `PokemonGo-Data`. Les cinq
 datasets courants raids, oeufs, Max Battles, Rocket et Research sont regeneres depuis
 leurs sources externes puis lus exclusivement dans MongoDB.
 
-Les classements Best Attackers et Best Defenders suivent le même contrat MongoDB (`best_attackers` et `best_defenders`, gzip, hash, diff et relecture). `GET /api/v1/best-defenders` expose les six tiers Pokémon GO Hub après résolution canonique. Le diagnostic privé `pokemon-identity-mappings` et l’audit Margxt `costume_audits` restent protégés par le secret admin ; aucun endpoint Costume Audit n’est déclaré dans la découverte publique.
+Les classements Best Attackers et Best Defenders suivent le même contrat MongoDB (`best_attackers` et `best_defenders`, gzip, hash, diff et relecture). `GET /api/v1/best-defenders` expose les six tiers Pokémon GO Hub après résolution canonique. Le diagnostic privé `pokemon-identity-mappings` reste protégé par le secret admin. Les costumes et événements sont maintenus manuellement dans PokemonGo-Data : l'API n'exécute plus d'audit externe dédié.
 
 `GET /api/v1/pvp-rankings` expose les classements PvPoke avec leur profil Rank 1 exact. `GET /api/v1/gbl-calendar` expose les rotations Battleflow persistées dans `gbl_calendar`; les deux domaines sont publics et leurs mutations restent sous `/api/v1/admin/*`.
 

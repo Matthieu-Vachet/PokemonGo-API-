@@ -41,7 +41,7 @@ const providerCatalog = Object.freeze([
   { id: "battleflow", label: "Battleflow", domains: ["gbl-calendar"], visibility: "public" },
   { id: "dialgadex-official-repository", label: "DialgaDex · dépôt officiel", domains: ["pve"], visibility: "private" },
   { id: "pokemon-go-hub", label: "Pokémon GO Hub", domains: ["best-defenders"], visibility: "public" },
-  { id: "margxt", label: "Margxt", domains: ["pokemon-availability", "pokemon-shiny-availability", "pokemon-costumes", "pokemon-shadow-availability"], visibility: "private" },
+  { id: "margxt", label: "Margxt", domains: ["pokemon-availability", "pokemon-shiny-availability", "pokemon-shadow-availability"], visibility: "private" },
   { id: "pogoapi", label: "Pokémon GO API", domains: ["catalogs"], visibility: "public" },
 ]);
 

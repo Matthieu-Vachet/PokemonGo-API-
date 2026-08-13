@@ -9,7 +9,6 @@ const domains = [
   "gbl-calendar",
   "best-attackers",
   "best-defenders",
-  "costume-audit",
   "eggs",
   "research",
   "shiny",

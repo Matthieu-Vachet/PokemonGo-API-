@@ -10,7 +10,7 @@ const { getCurrentDatasetAdapter } = require("../src/current-datasets/adapters")
 test("le registre statique couvre tous les adaptateurs de regeneration", () => {
   const validation = validateGeneratorRegistry();
   assert.equal(validation.valid, true, JSON.stringify(validation.errors));
-  assert.equal(validation.count, 12);
+  assert.equal(validation.count, 11);
   for (const key of validation.keys) {
     const adapter = getCurrentDatasetAdapter(key);
     assert.equal(adapter.generatorKey, key);

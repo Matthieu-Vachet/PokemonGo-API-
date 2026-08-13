@@ -227,7 +227,6 @@ PRIVATE :
 - `POST /api/v1/admin/rocket/import` et `/api/v1/admin/rocket/regenerate`.
 - `POST /api/v1/admin/research/import` et `/api/v1/admin/research/regenerate`.
 - `POST /api/v1/admin/best-defenders/import` et `/api/v1/admin/best-defenders/regenerate`.
-- Toutes les lectures et écritures `/api/v1/admin/costume-audit/*` ; aucune route publique Costume Audit n’existe.
 - Toutes les routes `/api/v1/admin/pokemon-identities/*`, notamment la liste centralisée des providers, la résolution d’assets et les diagnostics groupés.
 - Toutes les lectures et écritures sous `/api/v1/admin/game-master/*`, y compris
   résumé, catégories, recherche, détail, comparaison locale, snapshots, diff,
@@ -284,7 +283,6 @@ Contrat des wrappers courants :
 | Rocket | `/rocket`, `/admin/rocket/import`, `/admin/rocket/regenerate` |
 | Research | `/research`, `/admin/research/import`, `/admin/research/regenerate` |
 | Best Defenders | `/best-defenders`, `/admin/best-defenders/import`, `/admin/best-defenders/regenerate` |
-| Audit Costumes privé | `/admin/costume-audit`, `/admin/costume-audit/import`, `/admin/costume-audit/regenerate` |
 | Identity Manager privé | `/admin/pokemon-identities/providers`, `/resolve-assets`, `/diagnostics`, `/diagnostics/batch` |
 | Game Master privé | `/admin/game-master/summary`, `/categories`, `/templates`, `/search`, `/local-comparison`, `/snapshots`, `/diff`, `/export`, `/regenerate`, `/reindex` |
 | Regions | `/regions`, `/regions/:identifier/pokemon` |

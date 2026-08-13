@@ -8,7 +8,7 @@ const {
 const { computeDatasetHash } = require("../src/lib/current-dataset-hash");
 const { dataPathFromRelative } = require("../src/lib/data-repository");
 
-const DOMAINS = ["raids", "eggs", "max-battles", "research", "rocket", "shiny", "pvp-rankings", "gbl-calendar", "best-attackers", "best-defenders", "costume-audit", "pokemon-identity-mappings"];
+const DOMAINS = ["raids", "eggs", "max-battles", "research", "rocket", "shiny", "pvp-rankings", "gbl-calendar", "best-attackers", "best-defenders", "pokemon-identity-mappings"];
 
 function localFixture(adapter) {
   return JSON.parse(fs.readFileSync(dataPathFromRelative(adapter.jsonPath), "utf8"));
@@ -17,7 +17,7 @@ function localFixture(adapter) {
 test("les adaptateurs valident leurs fixtures locales sans en faire une source runtime", () => {
   for (const domain of DOMAINS) {
     const adapter = getCurrentDatasetAdapter(domain);
-    assert.equal(adapter.visibility, ["shiny", "costume-audit", "pokemon-identity-mappings"].includes(domain) ? "private" : "public");
+    assert.equal(adapter.visibility, ["shiny", "pokemon-identity-mappings"].includes(domain) ? "private" : "public");
     const data = localFixture(adapter);
     const summary = adapter.summarize(data);
     adapter.validate(data, {}, summary);
@@ -43,7 +43,6 @@ test("chaque adaptateur cible la collection et la racine de données attendues",
     "gbl-calendar": ["gbl_calendar", "periods"],
     "best-attackers": ["best_attackers", "rankings"],
     "best-defenders": ["best_defenders", "tiers"],
-    "costume-audit": ["costume_audits", "items"],
     "pokemon-identity-mappings": ["pokemon_identity_mappings", "mappings"],
   };
 
@@ -55,7 +54,7 @@ test("chaque adaptateur cible la collection et la racine de données attendues",
 });
 
 test("les générateurs qui résolvent des identités reçoivent le catalogue Identity Manager", () => {
-  for (const domain of ["shiny", "pvp-rankings", "raids", "eggs", "max-battles", "research", "rocket", "best-defenders", "costume-audit", "pokemon-identity-mappings"]) {
+  for (const domain of ["shiny", "pvp-rankings", "raids", "eggs", "max-battles", "research", "rocket", "best-defenders", "pokemon-identity-mappings"]) {
     assert.equal(typeof getCurrentDatasetAdapter(domain).generatorOptions, "function", domain);
   }
 });
@@ -67,82 +66,6 @@ test("Best Defenders filtre par tier et hydrate uniquement l'asset canonique", (
   assert.equal(presented.data.rankings.length, 2);
   assert.ok(presented.data.rankings.every((entry) => entry.tier === "S"));
   assert.ok(presented.data.rankings.every((entry) => !String(entry.pokemon.assets.image || "").includes("pokemongohub.net")));
-});
-
-test("Costume Audit reste privé et paginé", async () => {
-  const adapter = getCurrentDatasetAdapter("costume-audit");
-  const data = localFixture(adapter);
-  const presented = await adapter.present(data, { status: "missing", limit: "5" }, {
-    resolveAliasesBatch: async (entries) => entries.map(() => ({ status: "unmatched", reason: "ALIAS_UNKNOWN" })),
-  });
-  assert.equal(presented.data.items.length, 5);
-  assert.ok(presented.data.items.every((entry) => entry.pokemonGoData.status !== "present"));
-});
-
-test("Costume Audit résout une variante avec sa forme contextuelle quand elle existe", async () => {
-  const adapter = getCurrentDatasetAdapter("costume-audit");
-  const data = {
-    metadata: { visibility: "private", statusCounts: {} },
-    items: [{
-      id: "dedenne-holidays",
-      sourceIndex: 1,
-      source: { pokemonName: "Dedenne", costumeName: "Tenue des fêtes", title: "Dedenne – Tenue des fêtes" },
-      events: [],
-      shinyAvailable: true,
-      identity: { pokemonId: 702, form: "DEDENNE_TENUE_DES_FETES", costume: "TENUE_DES_FETES" },
-      pokemonGoData: { status: "unresolved", exactNormalAsset: null, exactShinyAsset: null },
-    }],
-  };
-  let requests = [];
-  await adapter.present(data, {}, {
-    resolveAliasesBatch: async (entries) => {
-      requests = entries;
-      return entries.map(() => ({ status: "unmatched", reason: "ALIAS_UNKNOWN" }));
-    },
-  });
-
-  assert.equal(requests[0].rawAlias, "DEDENNE_TENUE_DES_FETES");
-  assert.equal(requests[0].costume, "TENUE_DES_FETES");
-});
-
-test("Costume Audit réhydrate immédiatement un alias Margxt résolu et applique les tris", async () => {
-  const adapter = getCurrentDatasetAdapter("costume-audit");
-  const data = {
-    metadata: { visibility: "private", statusCounts: {} },
-    items: [{
-      id: "willow",
-      sourceIndex: 1,
-      source: { pokemonName: "Pikachu", costumeName: "Assistant du Professeur Willow", title: "Pikachu – Assistant du Professeur Willow" },
-      events: ["Ultra Bonus (21 au 27 juillet 2026)"],
-      shinyAvailable: true,
-      identity: { pokemonId: 25, costume: "ASSISTANT_DU_PROFESSEUR_WILLOW" },
-      pokemonGoData: { status: "unresolved", exactNormalAsset: null, exactShinyAsset: null },
-    }],
-  };
-  const presented = await adapter.present(data, { sort: "pokemonId", order: "asc", type: "ELECTRIC" }, {
-    resolveAliasesBatch: async () => [{
-      status: "matched",
-      strategy: "provider-exact",
-      confidence: 1,
-      selectedAsset: { gender: "MALE", image: "https://assets.example/pm25.willow.png", shinyImage: "https://assets.example/pm25.willow.s.png" },
-      identity: {
-        identityId: "identity-willow",
-        canonicalId: "PIKACHU_ANNIVERSARY_2026",
-        pokemonId: 25,
-        form: "normal",
-        costume: "ANNIVERSARY_2026",
-        localIdentity: { pokemonKey: "PIKACHU", pokemonName: "Pikachu", types: ["ELECTRIC"], sourceFile: "data/pokemon/normal/0025-pikachu.json", assetsRef: "data/assets/core/normal/0025-pikachu.assets.json", assets: {} },
-      },
-    }],
-  });
-  const item = presented.data.items[0];
-  assert.equal(item.pokemonGoData.status, "present");
-  assert.equal(item.pokemonGoData.canonicalId, "PIKACHU_ANNIVERSARY_2026");
-  assert.equal(item.pokemonGoData.exactNormalAsset, "https://assets.example/pm25.willow.png");
-  assert.deepEqual(item.types, ["ELECTRIC"]);
-  assert.equal(presented.data.metadata.statusCounts.present, 1);
-  assert.deepEqual(presented.data.metadata.availableTypes, ["ELECTRIC"]);
-  assert.equal(presented.meta.filters.sort, "pokemonId");
 });
 
 test("les mappings Game Master filtrent les variantes non résolues", () => {

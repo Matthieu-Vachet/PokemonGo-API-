@@ -4,7 +4,7 @@ title: Changelog Pokemon GO API
 status: active
 lang: fr
 version: 1.21.0
-updated_at: 2026-08-08
+updated_at: 2026-08-13
 author: MatWeb Innovation
 projects:
   - PokemonGo-API-
@@ -15,7 +15,9 @@ related:
 
 # Changelog
 
-## Unreleased - 2026-08-11
+## Unreleased
+
+### Changed
 
 - Remplace le `require()` absolu dynamique des générateurs par un registre de 12 imports statiques traçables par Next/Vercel.
 - Centralise la racine PokemonGo-Data, les fichiers et modules runtime avec validation, erreurs structurées et protection contre le path traversal.
@@ -24,6 +26,11 @@ related:
 - Fractionne la réindexation Game Master et le scan Dynamax en étapes MongoDB idempotentes, chacune bornée par la limite Vercel de 60 secondes.
 - Regroupe les écritures Game Master par 2 000 et force la table Pokémon GO Hub à 200 lignes en bloquant les scripts tiers pour terminer les parcours sous leurs budgets globaux.
 - Vérifie les datasets MongoDB compressés par `sourceHash` et `count` sans réhydrater une seconde copie complète, afin de borner la mémoire de la persistance PvP.
+
+### Removed
+
+- Supprime la route admin privée, le modèle `costume_audits`, l'adaptateur, le générateur enregistré et les tests exclusivement dédiés à l'ancien audit Costumes / Event.
+- Retire l'appel Margxt Costumes tout en conservant Margxt pour les autres domaines de l'Identity Manager.
 
 ## 1.21.0 - 2026-08-09
 

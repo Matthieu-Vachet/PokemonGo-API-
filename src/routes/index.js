@@ -27,7 +27,6 @@ const pvpRankings = require("./pvp-rankings");
 const gblCalendar = require("./gbl-calendar");
 const bestAttackers = require("./best-attackers");
 const bestDefenders = require("./best-defenders");
-const costumeAudit = require("./costume-audit");
 const pokemonIdentityMappings = require("./pokemon-identity-mappings");
 const pokemonIdentities = require("./pokemon-identities");
 const gameMaster = require("./game-master");
@@ -117,8 +116,6 @@ router.use("/admin/best-attackers", bestAttackers);
 // Les tiers GO Hub sont publics; leur régénération reste protégée.
 router.use("/best-defenders", bestDefenders);
 router.use("/admin/best-defenders", bestDefenders);
-// L'audit Margxt des costumes est strictement privé et absent de la découverte publique.
-router.use("/admin/costume-audit", costumeAudit);
 // Diagnostic privé de résolution Game Master.
 router.use("/pokemon-identity-mappings", pokemonIdentityMappings);
 router.use("/admin/pokemon-identity-mappings", pokemonIdentityMappings);

@@ -18,7 +18,7 @@ related:
 
 # Architecture Mongo des classements
 
-Les domaines `shiny`, `pvp-rankings`, `gbl-calendar`, `best-defenders` et `costume-audit` réutilisent le pipeline `current-dataset` existant : génération PokemonGo-Data, validation d'adaptateur, hash/diff, upsert Mongo et relecture de contrôle.
+Les domaines `shiny`, `pvp-rankings`, `gbl-calendar` et `best-defenders` réutilisent le pipeline `current-dataset` existant : génération PokemonGo-Data, validation d'adaptateur, hash/diff, upsert Mongo et relecture de contrôle.
 
 Collections :
 
@@ -27,7 +27,6 @@ Collections :
 - `pvp_rankings` : vue courante PvPoke ;
 - `gbl_calendar` : rotations GBL publiques Battleflow ;
 - `best_defenders` : tiers publics Pokémon GO Hub ;
-- `costume_audits` : comparaison privée Margxt / PokemonGo-Data.
 
 Les réponses sont paginées par les presenters des adaptateurs. Le document `current` renvoyé est compact et ne duplique pas le payload. Le payload PvP complet est stocké en gzip dans `compressedData`, puis hydraté et vérifié par hash lors de la lecture afin de rester sous la limite BSON MongoDB de 16 Mo.
 
@@ -47,14 +46,13 @@ La visibilité est un contrat du modèle et de l'adaptateur :
 - `pvp-rankings` est public. `/api/v1/pvp-rankings` figure dans OpenAPI et la découverte de l'API ;
 - `gbl-calendar` est public. `/api/v1/gbl-calendar` expose saison, périodes, statuts, bonus et compétitions avec filtres `status`, `tier` et `cup` ;
 - `best-defenders` est public. `/api/v1/best-defenders` accepte tier, type, recherche et pagination ;
-- `costume-audit` est privé. Il n’existe ni `/api/v1/costume-audit` public, ni schéma Margxt dans OpenAPI ;
 - les routes de régénération restent privées dans tous les cas.
 
 Chaque régénération Shiny conserve un snapshot complet. L'historique ne calcule aucun point antérieur à la première collecte du projet. Moyenne, variation, meilleure/pire valeur, fenêtres 7/30 jours et évolution quotidienne sont dérivées à la lecture uniquement à partir de ces snapshots.
 
 Avant chaque génération, l'adaptateur charge le catalogue Identity Manager une seule fois et le transmet au générateur PokemonGo-Data. Shiny et PvPoke résolvent ainsi leurs alias par provider vers un `canonicalId`, puis vers l'asset local exact. Ce chargement groupé évite une requête MongoDB par classement et garantit que la même identité produit la même image dans tous les consommateurs.
 
-Best Defenders applique le même chemin au provider `pokemon-go-hub`. L’audit Costumes applique le provider `margxt` et conserve les images externes comme preuve source uniquement. Les diagnostics des deux datasets sont persistés dans `pokemon_identity_diagnostics`; une nouvelle association d’alias devient effective à la prochaine régénération sans réécriture du scraper.
+Best Defenders applique le même chemin au provider `pokemon-go-hub`. Les diagnostics du dataset sont persistés dans `pokemon_identity_diagnostics`; une nouvelle association d’alias devient effective à la prochaine régénération sans réécriture du scraper. Les costumes et événements restent gérés manuellement dans les données canoniques et ne possèdent plus de pipeline externe dédié.
 
 Best Defenders ne transforme jamais le défi Cloudflare de Pokémon GO Hub en dataset vide. Une régénération bloquée termine son run avec `SOURCE_PROTECTED`; une panne réseau ou un contenu amont inattendu utilise `SOURCE_TEMPORARILY_UNAVAILABLE`. Dans les deux cas, l'API conserve le document `current` (données, hash et compteur) et met uniquement à jour `diagnostics.sourceAvailability`. Une régénération valide suivante remplace ce diagnostic avec les nouveaux diagnostics vérifiés.
 

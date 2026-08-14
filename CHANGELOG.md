@@ -3,7 +3,7 @@ id: RULE-CHANGELOG-001
 title: Changelog Pokemon GO API
 status: active
 lang: fr
-version: 1.22.0
+version: 1.22.1
 updated_at: 2026-08-14
 author: MatWeb Innovation
 projects:
@@ -16,6 +16,12 @@ related:
 # Changelog
 
 ## Unreleased
+
+## 1.22.1 - 2026-08-14
+
+### Fixed
+
+- Rattache la synchronisation Identity Manager de `CORSOLA_SPRING_2026` au Core galarien, préserve les alias existants et aligne les contrôles Assets sur les 1 614 fiches canoniques de PokemonGo-Data 1.25.0.
 
 ## 1.22.0 - 2026-08-14
 

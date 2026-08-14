@@ -21,9 +21,9 @@ const AUDITED_CANONICAL_RELINKS = Object.freeze({
     formId: "CORSOLA_SPRING_2026",
     previousCostume: "CORSOLA_SPRING_2026",
     previousSourceFile: "pokemon-assets/galar/0222-corsola-galarian.assets.json",
-    sourceFile: "data/assets/core/normal/0222-corsola.assets.json",
+    sourceFile: "data/assets/core/galar/0222-corsola-galarian.assets.json",
     gameMasterAlias: "CORSOLA_SPRING_2026",
-    reason: "Le Game Master et l'asset form normal identifient une forme; l'ancien document l'avait classée comme costume Galarian.",
+    reason: "Le Game Master et l'asset form Galarian identifient une forme événementielle; l'ancien document l'avait classée comme costume.",
   }),
 });
 

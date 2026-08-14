@@ -183,7 +183,7 @@ test("Corsola normal, Galarian et SPRING_2026 réparent le modèle historique sa
   assert.equal(update.payload.formId || update.payload.form, "CORSOLA_SPRING_2026");
   assert.equal(update.payload.costume, null);
   assert.equal(update.payload.localReference.key, "222|SPRING_2026|none|none");
-  assert.equal(update.payload.localReference.file, "data/assets/core/normal/0222-corsola.assets.json");
+  assert.equal(update.payload.localReference.file, "data/assets/core/galar/0222-corsola-galarian.assets.json");
   assert.equal(Object.hasOwn(update.payload, "aliases"), false);
   assert.deepEqual(update.before.aliases.map((alias) => alias.provider), ["game-master", "margxt"]);
 

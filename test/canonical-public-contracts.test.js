@@ -41,7 +41,7 @@ test("les dix catégories conservent leur identité et leurs références publiq
   const assetReferences = new Set();
   const pvpReferences = new Set();
 
-  assert.equal(data.pokemon.length, 1611);
+  assert.equal(data.pokemon.length, 1614);
   assert.equal(data.pokemonAssets.length, data.pokemon.length);
 
   for (const pokemon of data.pokemon) {

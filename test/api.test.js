@@ -53,6 +53,16 @@ test("GET /api/v1 présente les routes v1", async () => {
   assert.match(response.body.data.routes.pokemon, /pokemon/);
 });
 
+test("GET /api/v1/meta expose les versions applicative, Data et schéma", async () => {
+  const response = await request(app).get("/api/v1/meta").expect(200);
+  const dataVersion = readDataJson("version.json");
+  assert.equal(response.body.meta.apiVersion, require("../package.json").version);
+  assert.equal(response.body.meta.dataVersion, dataVersion.dataVersion);
+  assert.equal(response.body.meta.schemaVersion, dataVersion.schemaVersion);
+  assert.equal(response.body.meta.generatedAt, dataVersion.generatedAt);
+  assert.equal(response.body.meta.dataAppVersion, dataVersion.appVersion);
+});
+
 test("GET /api-docs.json fournit OpenAPI 3", async () => {
   const response = await request(app).get("/api-docs.json").expect(200);
   assert.equal(response.body.openapi, "3.0.3");
@@ -85,6 +95,7 @@ test("GET /api-docs.json fournit OpenAPI 3", async () => {
   assert.ok(response.body.paths["/api/v1/gbl-calendar"]);
   assert.ok(response.body.paths["/api/v1/best-attackers"]);
   assert.ok(response.body.paths["/api/v1/best-defenders"]);
+  assert.ok(response.body.paths["/api/v1/meta"]);
   assert.equal(response.body.paths["/api/v1/costume-audit"], undefined);
 });
 
@@ -213,7 +224,7 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   );
   assert.ok(data.pokemon.length >= 1000);
   assert.equal(data.pokemonAssets.length, data.pokemon.length);
-  assert.equal(data.pokemonAssetFamilies.length, 3147);
+  assert.equal(data.pokemonAssetFamilies.length, 3033);
   assert.ok(data.moves.length >= 250);
   assert.equal(data.types.length, 18);
   assert.equal(data.weather.length, 7);

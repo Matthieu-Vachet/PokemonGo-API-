@@ -3,8 +3,8 @@ id: RULE-CHANGELOG-001
 title: Changelog Pokemon GO API
 status: active
 lang: fr
-version: 1.21.0
-updated_at: 2026-08-13
+version: 1.22.0
+updated_at: 2026-08-14
 author: MatWeb Innovation
 projects:
   - PokemonGo-API-
@@ -17,8 +17,17 @@ related:
 
 ## Unreleased
 
+## 1.22.0 - 2026-08-14
+
+### Added
+
+- Expose `GET /api/v1/meta` avec `apiVersion`, `dataVersion`, `schemaVersion`, `generatedAt` et la version applicative Data.
+- Ajoute une garde CI intelligente qui exige une version et un changelog pour le code produit sans bloquer les changements de documentation ou de tests seuls.
+
 ### Changed
 
+- Expose les 531 variantes secondaires nettoyées avec leurs champs explicites `kind` et `gender`, sans réintroduire les formes Pokémon canoniques dans `assetForms`.
+- Dérive désormais la version OpenAPI de `package.json`, source unique de la version applicative API.
 - Remplace le `require()` absolu dynamique des générateurs par un registre de 12 imports statiques traçables par Next/Vercel.
 - Centralise la racine PokemonGo-Data, les fichiers et modules runtime avec validation, erreurs structurées et protection contre le path traversal.
 - Rend les validations registry, serverless-like et post-build bloquantes, ajoute la CI et les commandes `verify:regenerations` / `smoke:regenerations`.

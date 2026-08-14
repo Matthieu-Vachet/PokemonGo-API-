@@ -77,6 +77,7 @@ router.get("/", (_request, response) => {
         shuffle: "/api/v1/shuffle",
         pokemonAssets: "/api/v1/pokemon/bulbasaur/assets?include=home,shuffle,variants,location-cards",
         pokemonAssetFamily: "/api/v1/pokemon/bulbasaur/assets/home",
+        meta: "/api/v1/meta",
       },
     },
   });

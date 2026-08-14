@@ -1,8 +1,13 @@
 const express = require("express");
 const { Move, Pokemon, Weather } = require("../models");
 const { asyncHandler } = require("../lib/async-handler");
+const { versionMetadata } = require("../lib/version-metadata");
 
 const router = express.Router();
+
+router.get("/", (_request, response) => {
+  response.json({ meta: versionMetadata() });
+});
 
 router.get(
   "/filters",

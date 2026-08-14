@@ -10,11 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: npm
       - run: npm ci
+      - name: Vérifier version et changelog quand une release est requise
+        env:
+          RELEASE_GUARD_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: npm run verify:release-change
       - run: npm run verify:regenerations
         env:
           POKEMON_GO_DATA_TOKEN: ${{ secrets.POKEMON_GO_DATA_TOKEN }}

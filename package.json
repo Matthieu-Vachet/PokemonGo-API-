@@ -1,6 +1,6 @@
 {
   "name": "pokemon-go-api",
-  "version": "1.21.0",
+  "version": "1.22.0",
   "description": "API REST publique et multilingue pour Pokemon GO",
   "main": "src/server.js",
   "scripts": {
@@ -11,6 +11,7 @@
     "build": "next build",
     "postbuild": "node scripts/verify-regeneration-bundle.js",
     "verify:regenerations": "npm run ensure:data && node scripts/verify-regeneration-runtime.js && node --test test/regeneration-runtime.test.js && npm run build",
+    "verify:release-change": "node scripts/verify-release-change.js",
     "smoke:regenerations": "node scripts/smoke-regenerations.js",
     "api:start": "node src/server.js",
     "api:dev": "nodemon src/server.js",

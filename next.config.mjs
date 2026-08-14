@@ -39,6 +39,7 @@ const securityHeaders = [
 
 const pokemonGoDataTrace = [
   "./runtime-data/PokemonGo-Data/package.json",
+  "./runtime-data/PokemonGo-Data/version.json",
   "./runtime-data/PokemonGo-Data/.dashboard-data-snapshot.json",
   "./runtime-data/PokemonGo-Data/data/pokemon/**/*",
   "./runtime-data/PokemonGo-Data/data/assets/**/*",

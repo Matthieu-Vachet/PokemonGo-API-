@@ -32,7 +32,7 @@ const traced = manifests.flatMap((manifest) => {
     return [];
   }
 }).join("\n");
-for (const marker of ["PokemonGo-Data/package.json", "PokemonGo-Data/data/pokemon", "PokemonGo-Data/data/reference"]) {
+for (const marker of ["PokemonGo-Data/package.json", "PokemonGo-Data/version.json", "PokemonGo-Data/data/pokemon", "PokemonGo-Data/data/reference"]) {
   if (!traced.includes(marker)) throw new Error(`Ressource runtime non tracee: ${marker}`);
 }
 for (const marker of [

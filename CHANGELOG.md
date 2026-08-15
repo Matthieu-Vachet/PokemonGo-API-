@@ -30,7 +30,7 @@ related:
 
 ### Fixed
 
-- Relie déterministement les anciens tuples MongoDB `NEUTRAL`, `GORGING_FORM` et `GULPING_FORM` aux identités locales `XERNEAS_NEUTRAL`, `CRAMORANT_GORGING_FORM` et `CRAMORANT_GULPING_FORM`, sans supprimer ni réécrire leurs alias.
+- Relie déterministement les anciens tuples MongoDB `NEUTRAL`, `GORGING_FORM` et `GULPING_FORM` aux identités locales `XERNEAS_NEUTRAL`, `CRAMORANT_GORGING_FORM` et `CRAMORANT_GULPING_FORM`, y compris lorsque `form` est déjà canonique mais que seule `identityKey` reste suffixée, sans supprimer ni réécrire leurs alias.
 - Empêche une page Snacknap HTTP 200 dont `Today` est annoncé vide d’écraser le dernier classement Shiny valide ou de rester présentée comme une erreur HTTP générique.
 
 ## 1.22.1 - 2026-08-14

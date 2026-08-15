@@ -218,7 +218,7 @@ function canonicalFormPrefixRelink(candidate, document) {
     || !legacyForm
     || canonicalForm === legacyForm
     || !canonicalForm.endsWith(`_${legacyForm}`)
-    || documentForm !== legacyForm
+    || ![legacyForm, canonicalForm].includes(documentForm)
     || normalized(candidate.formId) !== canonicalForm
   ) return null;
   return Object.freeze({

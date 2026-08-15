@@ -248,6 +248,52 @@ test("Xerneas Neutral et les formes Cramorant réparent le suffixe MongoDB histo
   }
 });
 
+test("les formes Cramorant déjà canoniques réparent une identityKey MongoDB encore suffixée", () => {
+  const inventory = inventoryService.loadLocalIdentityInventory();
+  const fixtures = [
+    ["CRAMORANT_GORGING_FORM", "GORGING_FORM", mongoId(9360)],
+    ["CRAMORANT_GULPING_FORM", "GULPING_FORM", mongoId(9361)],
+  ];
+  const identities = fixtures.map(([canonicalId]) => inventory.indexes.byCanonicalId.get(canonicalId));
+  assert.ok(identities.every(Boolean));
+  const documents = fixtures.map(([canonicalId, legacyForm, _id], index) => {
+    const local = identities[index];
+    return {
+      _id,
+      canonicalId,
+      pokemonId: local.pokemonId,
+      form: canonicalId,
+      formId: canonicalId,
+      costume: null,
+      transformation: null,
+      status: "active",
+      syncStatus: "synchronized",
+      aliases: [],
+      localReference: {
+        key: `${local.pokemonId}|${legacyForm}|none|none`,
+        formId: canonicalId,
+        file: "data/assets/core/normal/0845-cramorant.assets.json",
+      },
+    };
+  });
+
+  const plan = syncService.buildIdentitySyncPlan({
+    inventory: { ...inventory, identities },
+    existingIdentities: documents,
+    validatedAt: "2026-08-15T01:00:00.000Z",
+  });
+  assert.equal(plan.summary.conflict, 0);
+  assert.equal(plan.summary.update, 2);
+  assert.equal(plan.summary.aliasesPreserved, 0);
+  for (const update of plan.updates) {
+    const local = identities.find((identity) => identity.canonicalId === update.canonicalId);
+    assert.equal(update.auditedRelink.kind, "canonical-form-prefix-relink");
+    assert.equal(update.payload.localReference.key, local.identityKey);
+    assert.equal(update.payload.localReference.assetsRef, local.assetsRef);
+    assert.equal(Object.hasOwn(update.payload, "aliases"), false);
+  }
+});
+
 test("une combinaison forme + costume Corsola reste distincte et ne déclenche aucun relink audité", () => {
   const inventory = inventoryService.loadLocalIdentityInventory();
   const spring = inventory.indexes.byCanonicalId.get("CORSOLA_SPRING_2026");

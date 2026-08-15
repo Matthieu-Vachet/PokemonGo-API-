@@ -3,8 +3,8 @@ id: API-PUBLIC-001
 title: Pokemon GO API REST
 status: canonical
 lang: fr
-version: 1.21.0
-updated_at: 2026-08-08
+version: 1.23.0
+updated_at: 2026-08-15
 author: MatWeb Innovation
 projects:
   - PokemonGo-API-
@@ -24,6 +24,8 @@ jamais modifies par la synchronisation. Les details des attaques vivent dans
 `PokemonGo-Data/data/moves/`; les Pokemon ne conservent que leurs identifiants.
 Le contrat de publication transversal est défini dans
 [CANONICAL-DATA-CONTRACTS.md](CANONICAL-DATA-CONTRACTS.md).
+
+Le filtre `type` de Best Attackers porte exclusivement sur `pokemon.types` après hydratation canonique et avant pagination. Il ne filtre ni le type du move, ni `effectiveAgainst`. Les régénérations Shiny peuvent retourner un état terminal `partial` avec `mongoUpdated: false` lorsque la source déclare `Today` temporairement vide ; le document MongoDB courant reste alors inchangé.
 
 ## Architecture
 

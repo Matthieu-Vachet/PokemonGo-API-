@@ -202,6 +202,52 @@ test("Corsola normal, Galarian et SPRING_2026 réparent le modèle historique sa
   assert.equal(idempotent.summary.unchanged, 3);
 });
 
+test("Xerneas Neutral et les formes Cramorant réparent le suffixe MongoDB historique sans perdre les alias", () => {
+  const inventory = inventoryService.loadLocalIdentityInventory();
+  const canonicalIds = ["XERNEAS_NEUTRAL", "CRAMORANT_GORGING_FORM", "CRAMORANT_GULPING_FORM"];
+  const legacyForms = ["NEUTRAL", "GORGING_FORM", "GULPING_FORM"];
+  const identities = canonicalIds.map((canonicalId) => inventory.indexes.byCanonicalId.get(canonicalId));
+  assert.ok(identities.every(Boolean));
+  const documents = identities.map((local, index) => ({
+    _id: mongoId(9350 + index),
+    canonicalId: local.canonicalId,
+    pokemonId: local.pokemonId,
+    form: legacyForms[index],
+    costume: null,
+    transformation: null,
+    status: "active",
+    syncStatus: "synchronized",
+    aliases: [
+      { provider: "game-master", value: canonicalIds[index], status: "active" },
+      { provider: "margxt", value: `legacy-${canonicalIds[index]}`, status: "active" },
+    ],
+    localReference: {
+      key: `${local.pokemonId}|${legacyForms[index]}|none|none`,
+      formId: legacyForms[index],
+      file: `data/assets/core/normal/${String(local.pokemonId).padStart(4, "0")}-legacy.assets.json`,
+    },
+  }));
+
+  const plan = syncService.buildIdentitySyncPlan({
+    inventory: { ...inventory, identities },
+    existingIdentities: documents,
+    validatedAt: "2026-08-15T00:00:00.000Z",
+  });
+  assert.equal(plan.summary.conflict, 0);
+  assert.equal(plan.summary.create, 0);
+  assert.equal(plan.summary.update, 3);
+  assert.equal(plan.summary.aliasesPreserved, 6);
+  for (const update of plan.updates) {
+    const local = identities.find((identity) => identity.canonicalId === update.canonicalId);
+    assert.equal(update.auditedRelink.kind, "canonical-form-prefix-relink");
+    assert.equal(update.payload.localReference.key, local.identityKey);
+    assert.equal(update.payload.localReference.file, local.sourceFile);
+    assert.equal(update.payload.localReference.assetsRef, local.assetsRef);
+    assert.equal(Object.hasOwn(update.payload, "aliases"), false);
+    assert.equal(update.before.aliases.length, 2);
+  }
+});
+
 test("une combinaison forme + costume Corsola reste distincte et ne déclenche aucun relink audité", () => {
   const inventory = inventoryService.loadLocalIdentityInventory();
   const spring = inventory.indexes.byCanonicalId.get("CORSOLA_SPRING_2026");

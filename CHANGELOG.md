@@ -3,8 +3,8 @@ id: RULE-CHANGELOG-001
 title: Changelog Pokemon GO API
 status: active
 lang: fr
-version: 1.22.1
-updated_at: 2026-08-14
+version: 1.23.0
+updated_at: 2026-08-15
 author: MatWeb Innovation
 projects:
   - PokemonGo-API-
@@ -16,6 +16,22 @@ related:
 # Changelog
 
 ## Unreleased
+
+## 1.23.0 - 2026-08-15
+
+### Added
+
+- Ajoute un état terminal `partial` pour une source Shiny temporairement indisponible : le `DatasetRun` conserve données, hash, compteur et date du document MongoDB courant avec un diagnostic structuré.
+
+### Changed
+
+- Applique le filtre Best Attackers `type` aux types exacts du Pokémon hydraté, avant pagination, tout en conservant le tri de la métrique demandée.
+- Marque explicitement `mongoUpdated: false` lorsqu’une régénération Shiny partielle préserve le snapshot existant.
+
+### Fixed
+
+- Relie déterministement les anciens tuples MongoDB `NEUTRAL`, `GORGING_FORM` et `GULPING_FORM` aux identités locales `XERNEAS_NEUTRAL`, `CRAMORANT_GORGING_FORM` et `CRAMORANT_GULPING_FORM`, sans supprimer ni réécrire leurs alias.
+- Empêche une page Snacknap HTTP 200 dont `Today` est annoncé vide d’écraser le dernier classement Shiny valide ou de rester présentée comme une erreur HTTP générique.
 
 ## 1.22.1 - 2026-08-14
 

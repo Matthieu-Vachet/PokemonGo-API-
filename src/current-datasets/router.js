@@ -60,7 +60,7 @@ function actionPayload(adapter, result, action) {
     itemsParsed: Number(stats.itemsParsed || 0),
     itemsMatched: Number(stats.itemsMatched || 0),
     itemsUnmatched: Number(stats.itemsUnmatched || 0),
-    mongoUpdated: true,
+    mongoUpdated: report?.preserved !== true,
     changed: Boolean(current.diagnostics?.diff?.changed),
     diff: current.diagnostics?.diff || null,
     report,

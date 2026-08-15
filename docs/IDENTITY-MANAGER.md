@@ -3,8 +3,8 @@ id: ADR-IDENTITY-001
 title: Identity Manager Pokémon GO
 status: active
 lang: fr
-version: 2.2.0
-updated_at: 2026-08-09
+version: 2.3.0
+updated_at: 2026-08-15
 author: MatWeb Innovation
 projects:
   - PokemonGo-API-
@@ -157,7 +157,9 @@ npm run sync:pokemon-identities:write
 
 Les anciens noms `migrate:pokemon-identities*` restent des alias de compatibilité. Le script exporte la collection avant écriture, recalcule le plan depuis les 1 920 identités locales, conserve les alias et métadonnées manuelles, relie les anciens documents, marque les orphelins en brouillon sans les supprimer, écrit en lots et vérifie un second dry-run.
 
-La transition historique `CORSOLA_SPRING_2026` est la seule reclassification canonique explicitement auditée. Le document MongoDB ancien utilisait `222|none|SPRING_2026|none`, rangeait la variante dans `costume` et pointait vers le core Galarian. Le Game Master et l’inventaire local courant prouvent une forme normale unique `222|SPRING_2026|none|none`, portée par `data/assets/core/normal/0222-corsola.assets.json`. Le relink exige simultanément le canonicalId, le dex, les deux clés exactes, l’alias Game Master actif et les fichiers source attendus. Il met à jour la forme et la référence locale, conserve tous les alias MongoDB, écrit un historique `sync-relink` et devient idempotent. Toute combinaison forme + costume ou toute autre divergence reste un conflit manuel sans sélection automatique.
+La transition historique `CORSOLA_SPRING_2026` reste une reclassification canonique explicitement auditée. Le document MongoDB ancien utilisait `222|none|SPRING_2026|none`, rangeait la variante dans `costume` et pointait vers le core Galarian. Le Game Master et l’inventaire local courant prouvent une forme normale unique `222|SPRING_2026|none|none`, portée par `data/assets/core/normal/0222-corsola.assets.json`. Le relink exige simultanément le canonicalId, le dex, les deux clés exactes, l’alias Game Master actif et les fichiers source attendus. Il met à jour la forme et la référence locale, conserve tous les alias MongoDB, écrit un historique `sync-relink` et devient idempotent. Toute combinaison forme + costume ou toute autre divergence reste un conflit manuel sans sélection automatique.
+
+Les anciens tuples Xerneas/Cramorant suivent une seconde règle générique bornée. Elle ne s’applique que si un même `canonicalId` unique, un même numéro Pokédex et des dimensions costume/transformation vides convergent vers une fiche locale dont l’ancien formId finit exactement par le token MongoDB suivi de `_LEGACYFORM`. Ainsi `716|NEUTRAL|none|none`, `845|GORGING_FORM|none|none` et `845|GULPING_FORM|none|none` sont reliés à `XERNEAS_NEUTRAL`, `CRAMORANT_GORGING_FORM` et `CRAMORANT_GULPING_FORM`, avec leurs `assetsRef` de forme. Les alias, métadonnées et références externes sont fusionnés sans suppression. Une pluralité de candidats, un costume, une transformation ou un suffixe non exact conserve le conflit bloquant.
 
 Résultat du 18 juillet 2026 : 1 391 documents reliés, 520 identités locales créées, 1 396 alias conservés, zéro conflit, zéro orphelin, 1 911 événements d’historique et second passage entièrement inchangé. `MEWTWO_NORMAL` et `MEWTWO_ARMORED` sont deux identités actives distinctes ; `pvpoke:mewtwo_armored` se résout de manière déterministe vers la seconde.
 
@@ -196,3 +198,4 @@ Résultat du 18 juillet 2026 : 1 391 documents reliés, 520 identités locales c
 - 2026-08-09 — validation de stabilisation : 1 920 identités mises à jour, 5 créées,
   2 anciennes entrées marquées orphelines sans suppression et zéro conflit ; Corsola
   reste idempotent au second passage.
+- 2026-08-15 — réparation déterministe des anciennes clés Neutral/Gorging/Gulping, avec six alias de fixtures préservés et second passage idempotent.

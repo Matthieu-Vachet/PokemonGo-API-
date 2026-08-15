@@ -342,12 +342,14 @@ function presentBestAttackers(data, query = {}) {
   const globalRank = new Map(ordered.map((entry, index) => [entry.pokemonKey, index + 1]));
   const filtered = ordered.filter((entry) => {
     const pokemon = data.entities[entry.pokemonKey] || {};
+    const pokemonTypes = values(pokemon.types).map((value) => String(value).toUpperCase());
     const haystack = normalizeIdentity([
       pokemon.pokemonId, pokemon.formId, pokemon.names?.French, pokemon.names?.English, pokemon.dexNr,
       data.moves?.[entry.fastMoveId]?.names?.French, data.moves?.[entry.fastMoveId]?.names?.English,
       data.moves?.[entry.chargedMoveId]?.names?.French, data.moves?.[entry.chargedMoveId]?.names?.English,
     ].filter(Boolean).join(" "));
-    return (!search || haystack.includes(search))
+    return (type === "ANY" || pokemonTypes.includes(type))
+      && (!search || haystack.includes(search))
       && (shadow === null || Boolean(pokemon.shadow) === shadow)
       && (mega === null || Boolean(pokemon.mega) === mega)
       && (elite === null || Boolean(entry.eliteFast || entry.eliteCharged) === elite)
@@ -383,6 +385,7 @@ function presentBestAttackers(data, query = {}) {
       metric,
       filters: {
         search: query.search || null,
+        pokemonType: type,
         shadow,
         mega,
         elite,
@@ -761,6 +764,7 @@ const adapters = {
     compactCurrent: true,
     compressData: true,
     generatorKey: "shiny",
+    preserveTemporarySourceAsPartial: true,
     generatorOptions: identityGeneratorOptions,
     jsonPath: "operations/audits/shiny/current.json",
     summarize: shinySummary,

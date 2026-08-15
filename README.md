@@ -3,8 +3,8 @@ id: API-PROJECT-001
 title: Pokemon GO API
 status: canonical
 lang: fr
-version: 1.21.0
-updated_at: 2026-08-13
+version: 1.23.0
+updated_at: 2026-08-15
 author: MatWeb Innovation
 projects:
   - PokemonGo-API-
@@ -30,6 +30,8 @@ datasets courants raids, oeufs, Max Battles, Rocket et Research sont regeneres d
 leurs sources externes puis lus exclusivement dans MongoDB.
 
 Les classements Best Attackers et Best Defenders suivent le même contrat MongoDB (`best_attackers` et `best_defenders`, gzip, hash, diff et relecture). `GET /api/v1/best-defenders` expose les six tiers Pokémon GO Hub après résolution canonique. Le diagnostic privé `pokemon-identity-mappings` reste protégé par le secret admin. Les costumes et événements sont maintenus manuellement dans PokemonGo-Data : l'API n'exécute plus d'audit externe dédié.
+
+Le filtre Best Attackers `type` signifie « type du Pokémon » et est appliqué exactement aux types de l’identité hydratée avant pagination. Shiny conserve son dernier document MongoDB valide lorsqu’un panneau fournisseur `Today` est temporairement vide : le run devient `partial`, sans écriture ni faux snapshot vide. Identity Manager relie de façon bornée les anciens tuples Xerneas Neutral et Cramorant Gorging/Gulping à leurs fiches de forme tout en préservant les alias.
 
 `GET /api/v1/pvp-rankings` expose les classements PvPoke avec leur profil Rank 1 exact. `GET /api/v1/gbl-calendar` expose les rotations Battleflow persistées dans `gbl_calendar`; les deux domaines sont publics et leurs mutations restent sous `/api/v1/admin/*`.
 

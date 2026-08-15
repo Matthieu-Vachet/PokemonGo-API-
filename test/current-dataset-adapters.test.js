@@ -100,6 +100,27 @@ test("les filtres Best Attackers obscur, Méga, élite et classe de moveset sont
   assert.ok(mixed.data.rankings.every((entry) => entry.movesetClass === "mixed"));
 });
 
+test("le filtre Type Best Attackers porte exactement sur les types du Pokémon", () => {
+  const adapter = getCurrentDatasetAdapter("best-attackers");
+  const data = localFixture(adapter);
+  for (const type of ["NORMAL", "GRASS", "PSYCHIC", "FIRE", "WATER"]) {
+    const presented = adapter.present(data, { type, level: "40", metric: "edps", limit: "100" });
+    assert.ok(presented.data.rankings.length > 0, type);
+    assert.ok(
+      presented.data.rankings.every((entry) => entry.pokemon.types.includes(type)),
+      `${type} ne doit contenir aucun Pokémon hors type`,
+    );
+    assert.ok(
+      presented.data.rankings.every((entry, index, rows) => index === 0 || rows[index - 1].edps >= entry.edps),
+      `${type} reste trié après filtrage`,
+    );
+    assert.equal(presented.meta.filters.pokemonType, type);
+  }
+  const normal = adapter.present(data, { type: "NORMAL", full: "true" });
+  assert.ok(normal.data.rankings.every((entry) => !/MEWTWO/i.test(entry.pokemon.formId || "")));
+  assert.ok(normal.data.rankings.every((entry) => entry.pokemon.types.includes("NORMAL")));
+});
+
 test("le presenter PvP hydrate la fiche Pokémon centralisée sans dupliquer les matchups", () => {
   const adapter = getCurrentDatasetAdapter("pvp-rankings");
   const data = localFixture(adapter);

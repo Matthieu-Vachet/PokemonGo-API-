@@ -193,15 +193,57 @@ function candidateMatchesDocument(candidate, document) {
   return false;
 }
 
+function canonicalFormPrefixRelink(candidate, document) {
+  if (
+    document.canonicalId !== candidate.canonicalId
+    || Number(document.pokemonId) !== Number(candidate.pokemonId)
+    || candidate.costume != null
+    || candidate.transformation != null
+    || document.costume != null
+    || document.transformation != null
+  ) return null;
+  const localKeyParts = String(candidate.identityKey || "").split("|");
+  const legacyKeyParts = String(legacyIdentityKey(document) || "").split("|");
+  if (localKeyParts.length !== 4 || legacyKeyParts.length !== 4) return null;
+  if (
+    localKeyParts[0] !== legacyKeyParts[0]
+    || localKeyParts[2] !== legacyKeyParts[2]
+    || localKeyParts[3] !== legacyKeyParts[3]
+  ) return null;
+  const canonicalForm = normalized(localKeyParts[1]);
+  const legacyForm = normalized(legacyKeyParts[1]);
+  const documentForm = normalized(document.form || document.localIdentity?.formId || document.localReference?.formId);
+  if (
+    !canonicalForm
+    || !legacyForm
+    || canonicalForm === legacyForm
+    || !canonicalForm.endsWith(`_${legacyForm}`)
+    || documentForm !== legacyForm
+    || normalized(candidate.formId) !== canonicalForm
+  ) return null;
+  return Object.freeze({
+    kind: "canonical-form-prefix-relink",
+    previousIdentityKey: legacyIdentityKey(document),
+    identityKey: candidate.identityKey,
+    previousForm: document.form || null,
+    formId: candidate.formId,
+    previousSourceFile: mongoIdentitySummary(document).sourceFile,
+    sourceFile: candidate.sourceFile,
+    reason: "Le canonicalId et le Pokémon sont identiques et la forme MongoDB est l'ancien suffixe non préfixé de la forme canonique locale; le document est relié sans toucher à ses alias.",
+  });
+}
+
 function auditedCanonicalRelink(candidate, document) {
   const rule = AUDITED_CANONICAL_RELINKS[candidate.canonicalId];
-  if (!rule || document.canonicalId !== candidate.canonicalId) return null;
+  if (!rule || document.canonicalId !== candidate.canonicalId) {
+    return canonicalFormPrefixRelink(candidate, document);
+  }
   const gameMasterAlias = (document.aliases || []).some((alias) => (
     alias.provider === "game-master"
     && alias.status === "active"
     && normalized(alias.value) === rule.gameMasterAlias
   ));
-  if (
+  const exactRuleMatch = (
     Number(candidate.pokemonId) !== rule.pokemonId
     || Number(document.pokemonId) !== rule.pokemonId
     || candidate.identityKey !== rule.identityKey
@@ -214,8 +256,8 @@ function auditedCanonicalRelink(candidate, document) {
     || normalized(document.costume) !== rule.previousCostume
     || mongoIdentitySummary(document).sourceFile !== rule.previousSourceFile
     || !gameMasterAlias
-  ) return null;
-  return rule;
+  ) === false;
+  return exactRuleMatch ? rule : canonicalFormPrefixRelink(candidate, document);
 }
 
 function bucketBy(items, selector) {
@@ -528,6 +570,7 @@ function syncPlanDigest(plan) {
 module.exports = {
   applyIdentitySync,
   auditedCanonicalRelink,
+  canonicalFormPrefixRelink,
   buildIdentitySyncPlan,
   candidateMatchesDocument,
   localCandidateSummary,

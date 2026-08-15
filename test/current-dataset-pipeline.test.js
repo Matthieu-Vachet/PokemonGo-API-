@@ -6,6 +6,7 @@ const { createCurrentDatasetRouter } = require("../src/current-datasets/router")
 const {
   buildDiagnostics,
   datasetRunStatus,
+  finishPreservedDatasetRun,
   importCurrentDataset,
   preserveCurrentDatasetSourceAvailability,
   serializeDatasetRun,
@@ -14,6 +15,7 @@ const {
   staleDatasetRunUpdate,
   unmatchedEntriesFromReport,
 } = require("../src/lib/current-dataset-pipeline");
+const { DatasetRun } = require("../src/models");
 const { computeDatasetHash } = require("../src/lib/current-dataset-hash");
 const { errorHandler } = require("../src/middleware/errors");
 
@@ -257,6 +259,44 @@ test("une source protégée ajoute seulement un diagnostic au current MongoDB co
   assert.deepEqual(Object.keys(calls[0].update.$set), ["diagnostics.sourceAvailability"]);
   assert.equal(calls[0].update.$set["diagnostics.sourceAvailability"].httpStatus, 403);
   assert.equal("data" in calls[0].update.$set, false);
+});
+
+test("une indisponibilité Shiny temporaire termine en partial sans réécrire le snapshot", async () => {
+  const Model = createMemoryModel({
+    key: "current",
+    domain: "shiny",
+    sourceHash: "kept-hash",
+    count: 3,
+    source: { provider: "snacknap", fetchedAt: new Date("2026-08-11T16:13:28.719Z") },
+    savedAt: new Date("2026-08-11T16:13:30.000Z"),
+    data: { items: [{ id: "today" }, { id: "total" }, { id: "rare" }] },
+  });
+  const adapter = createAdapter(Model);
+  adapter.domain = "shiny";
+  adapter.provider = "snacknap";
+  const calls = [];
+  const originalUpdateOne = DatasetRun.updateOne;
+  DatasetRun.updateOne = async (filter, update) => calls.push({ filter, update });
+  try {
+    const diagnostic = sourceAvailabilityDiagnostic({
+      code: "SOURCE_TEMPORARILY_UNAVAILABLE",
+      message: "Today indisponible",
+      details: { retryable: true, reason: "SOURCE_DECLARED_TODAY_EMPTY" },
+    });
+    const result = await finishPreservedDatasetRun({
+      _id: "run-shiny",
+      startedAt: new Date(Date.now() - 100),
+      datasetKey: "shiny",
+    }, adapter, { details: { reason: "SOURCE_DECLARED_TODAY_EMPTY" } }, diagnostic);
+    assert.equal(result.run.status, "partial");
+    assert.equal(result.current.sourceHash, "kept-hash");
+    assert.equal(result.report.preserved, true);
+    assert.equal(result.stats.itemsParsed, 3);
+    assert.equal(calls[0].update.$set.changed, false);
+    assert.equal(Model.updateCalls.length, 0, "aucun upsert du current ne doit avoir lieu");
+  } finally {
+    DatasetRun.updateOne = originalUpdateOne;
+  }
 });
 
 test("le pipeline upsert current, nettoie sourceFile et relit réellement MongoDB", async () => {

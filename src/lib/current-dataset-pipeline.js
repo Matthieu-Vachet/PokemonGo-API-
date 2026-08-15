@@ -321,6 +321,57 @@ async function failDatasetRun(run, error) {
   }, $unset: { stagedPayload: "" } }).catch(() => undefined);
 }
 
+async function finishPreservedDatasetRun(run, adapter, error, diagnostic) {
+  if (!run || !diagnostic) return null;
+  const document = await readStoredDocument(adapter).catch(() => null);
+  if (!document?.data || document.key !== "current") return null;
+  const completedAt = new Date();
+  const warning = {
+    code: diagnostic.code,
+    message: diagnostic.message,
+    details: error?.details || null,
+    preserved: true,
+  };
+  const update = {
+    status: "partial",
+    phase: "completed",
+    phaseStartedAt: completedAt,
+    completedAt,
+    durationMs: completedAt.getTime() - new Date(run.startedAt).getTime(),
+    retrievedAt: document.source?.fetchedAt || null,
+    savedAt: document.savedAt || null,
+    hashAfter: document.sourceHash || null,
+    changed: false,
+    totalAfter: Number(document.count || 0),
+    warningsCount: 1,
+    errorsCount: 0,
+    warnings: [warning],
+    errors: [],
+    sourceAvailability: diagnostic,
+    diffUnavailableReason: "Source temporairement indisponible; dernier snapshot valide conservé sans écriture de données.",
+  };
+  await DatasetRun.updateOne(
+    { _id: run._id },
+    { $set: update, $unset: { stagedPayload: "" } },
+  );
+  const summary = adapter.summarize(document.data);
+  const stats = adapter.stats(document.data, {}, summary);
+  const source = typeof run.toObject === "function" ? run.toObject() : run;
+  return {
+    current: serializeCurrentDatasetDocument(document),
+    summary,
+    stats,
+    report: {
+      provider: adapter.provider,
+      source: adapter.sourceUrl,
+      preserved: true,
+      sourceAvailability: diagnostic,
+      warnings: [warning],
+    },
+    run: serializeDatasetRun({ ...source, ...update }),
+  };
+}
+
 async function getCurrentDatasetRegeneration(adapter, runId) {
   const Model = datasetRunModel();
   if (!Model) {
@@ -402,7 +453,18 @@ async function stageCurrentDatasetRegeneration(adapter, run) {
       elapsedMs: Date.now() - regenerationStartedAt,
     });
   } catch (error) {
-    await preserveCurrentDatasetSourceAvailability(adapter, error);
+    const diagnostic = await preserveCurrentDatasetSourceAvailability(adapter, error);
+    if (adapter.preserveTemporarySourceAsPartial && diagnostic) {
+      const preserved = await finishPreservedDatasetRun(run, adapter, error, diagnostic);
+      if (preserved) {
+        console.warn(`[current-dataset:${adapter.domain}] Source temporarily unavailable; current snapshot preserved`, {
+          code: diagnostic.code,
+          count: preserved.current.count,
+          elapsedMs: Date.now() - regenerationStartedAt,
+        });
+        return preserved;
+      }
+    }
     await failDatasetRun(run, error);
     logRegenerationFailure(adapter, "generation-or-staging", error, regenerationStartedAt);
     throw error;
@@ -686,7 +748,18 @@ async function regenerateCurrentDataset(adapter, options = {}) {
       source: adapter.domain,
     });
   } catch (error) {
-    await preserveCurrentDatasetSourceAvailability(adapter, error);
+    const diagnostic = await preserveCurrentDatasetSourceAvailability(adapter, error);
+    if (adapter.preserveTemporarySourceAsPartial && diagnostic) {
+      const preserved = await finishPreservedDatasetRun(run, adapter, error, diagnostic);
+      if (preserved) {
+        console.warn(`[current-dataset:${adapter.domain}] Source temporarily unavailable; current snapshot preserved`, {
+          code: diagnostic.code,
+          count: preserved.current.count,
+          elapsedMs: Date.now() - regenerationStartedAt,
+        });
+        return preserved;
+      }
+    }
     await failDatasetRun(run, error);
     logRegenerationFailure(adapter, "source-generation", error, regenerationStartedAt);
     if (error instanceof ApiError) throw error;
@@ -770,6 +843,7 @@ module.exports = {
   datasetRunStatus,
   enqueueCurrentDatasetRegeneration,
   finishDatasetRun,
+  finishPreservedDatasetRun,
   getCurrentDatasetRegeneration,
   importCurrentDataset,
   persistCurrentDataset,

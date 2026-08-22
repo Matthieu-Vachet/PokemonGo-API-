@@ -16,7 +16,10 @@ class PokemonGoDataRuntimeError extends Error {
 function hasDataShape(directory) {
   if (!directory) return false;
   try {
-    if (JSON.parse(fs.readFileSync(path.join(directory, "package.json"), "utf8")).name !== packageName) return false;
+    const packageMetadata = JSON.parse(fs.readFileSync(path.join(directory, "package.json"), "utf8"));
+    const versionMetadata = JSON.parse(fs.readFileSync(path.join(directory, "version.json"), "utf8"));
+    if (packageMetadata.name !== packageName) return false;
+    if (!versionMetadata.appVersion || !versionMetadata.dataVersion || !versionMetadata.schemaVersion) return false;
   } catch {
     return false;
   }

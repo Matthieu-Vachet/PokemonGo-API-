@@ -7,11 +7,24 @@ const defaultRepo = "https://github.com/Matthieu-Vachet/PokemonGo-Data.git";
 const targetDir = path.join(appRoot, "runtime-data", "PokemonGo-Data");
 
 function hasDataShape(directory) {
-  return directory
-    && fs.existsSync(path.join(directory, "data", "pokemon"))
-    && fs.existsSync(path.join(directory, "data", "assets"))
-    && fs.existsSync(path.join(directory, "data", "pvp"))
-    && fs.existsSync(path.join(directory, "tooling", "lib"));
+  if (!directory) return false;
+  try {
+    const packageMetadata = JSON.parse(fs.readFileSync(path.join(directory, "package.json"), "utf8"));
+    const versionMetadata = JSON.parse(fs.readFileSync(path.join(directory, "version.json"), "utf8"));
+    if (packageMetadata.name !== "pokemon-go-data") return false;
+    if (!versionMetadata.appVersion || !versionMetadata.dataVersion || !versionMetadata.schemaVersion) return false;
+  } catch {
+    return false;
+  }
+  return [
+    ["data", "pokemon"],
+    ["data", "assets"],
+    ["data", "pvp"],
+    ["data", "moves"],
+    ["data", "reference"],
+    ["tooling", "lib"],
+    ["tooling", "scripts", "generators"],
+  ].every((segments) => fs.existsSync(path.join(directory, ...segments)));
 }
 
 function candidates() {

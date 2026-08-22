@@ -4,7 +4,7 @@ const os = require("node:os");
 const path = require("node:path");
 const test = require("node:test");
 
-const { dataRoot } = require("../src/lib/data-repository");
+const { dataRoot, hasDataShape } = require("../src/lib/data-repository");
 const tooling = require("../src/lib/data-tooling");
 const { readDataVersion } = require("../src/lib/version-metadata");
 
@@ -25,6 +25,32 @@ test("la version Data canonique reste une dépendance statique du bundle Next.js
   assert.deepEqual(readDataVersion(), expected);
   const source = fs.readFileSync(path.resolve(__dirname, "../src/lib/version-metadata.js"), "utf8");
   assert.match(source, /runtime-data\/PokemonGo-Data\/version\.json/);
+});
+
+test("un snapshot Data sans métadonnées de version est refusé avant le build", () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), "pokemon-go-api-partial-data-"));
+  try {
+    fs.writeFileSync(path.join(directory, "package.json"), JSON.stringify({ name: "pokemon-go-data" }));
+    for (const relative of [
+      "data/pokemon", "data/assets", "data/pvp", "data/moves", "data/reference",
+      "tooling/lib", "tooling/scripts/generators",
+    ]) fs.mkdirSync(path.join(directory, relative), { recursive: true });
+    assert.equal(hasDataShape(directory), false);
+    fs.writeFileSync(path.join(directory, "version.json"), JSON.stringify({
+      appVersion: "1.0.0",
+      dataVersion: "2026.08.22.1",
+      schemaVersion: "1.0.0",
+    }));
+    assert.equal(hasDataShape(directory), true);
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test("le bootstrap Data applique le même contrat de métadonnées", () => {
+  const source = fs.readFileSync(path.resolve(__dirname, "../scripts/data/ensure-data.js"), "utf8");
+  assert.match(source, /version\.json/);
+  assert.match(source, /versionMetadata\.dataVersion/);
 });
 
 test("le wrapper serverless force la racine Data canonique pour le générateur Game Master", async () => {

@@ -3,8 +3,8 @@ id: DATASET-RANKED-001
 title: Architecture Mongo des classements
 status: canonical
 lang: fr
-version: 1.23.0
-updated_at: 2026-08-15
+version: 1.24.0
+updated_at: 2026-08-22
 author: MatWeb Innovation
 projects:
   - PokemonGo-API-
@@ -32,7 +32,7 @@ Les réponses sont paginées par les presenters des adaptateurs. Le document `cu
 
 La régénération PvP est une tâche longue. `POST /api/v1/admin/pvp-rankings/regenerate` crée ou réutilise une exécution récente, la confie au mécanisme de tâche de fond Vercel et répond `202 Accepted` avec `run.id` et `statusPath`. La première invocation génère les données dans le plafond Vercel de 60 secondes puis stocke dans le `DatasetRun` un staging `gzip+json` inférieur à la limite BSON ; le provider charge pour cela tous les classements découverts en une seule vague concurrente bornée. Son catalogue Identity Manager est projeté sur les seules identités portant un alias `pvpoke` ou `pvpoke-official-repository`; les autres espèces continuent d'utiliser le résolveur local déterministe. Le polling suivant revendique atomiquement la phase `generated`, persiste et relit MongoDB dans une seconde invocation. `GET /api/v1/admin/pvp-rankings/regenerate/:runId` n'expose jamais le staging : uniquement l'état sérialisé (`running`, puis `success`, `partial`, `unchanged` ou `failed`), la phase, les métriques, le diff, les avertissements et les erreurs. `partial` est terminal et non bloquant : MongoDB a été écrit puis relu, mais le rapport conserve des mappings ou warnings. Il expose séparément `totalAfter`, `ignoredCount`, `mappingMissingCount` et `warningsCount`; un second passage inchangé reste `partial` tant que ces diagnostics subsistent. L'exécution reste protégée par le secret Admin et dédupliquée ; une persistance interrompue est récupérable et idempotente. La détection d'une génération orpheline attend 75 secondes, au-delà du plafond de la Function active. Si le runtime interrompt tout de même la génération, le polling transforme ensuite le `running` périmé en `failed` avec le code `DATASET_REGENERATION_TIMEOUT` au lieu de laisser un job fantôme bloquer les relances.
 
-Le snapshot Data du 15 août 2026 épingle PvPoke au commit `f754cd6fc819ad065f1f00df1036ade36c57c022`, publie 1 614 fiches dédiées et garde zéro mapping référencé manquant. L’écriture locale cache/mappings/records/manifeste/rapports est atomique ; l’API ne persiste qu’après génération et validation complètes du staging.
+Le snapshot Data du 22 août 2026 épingle PvPoke au commit `f754cd6fc819ad065f1f00df1036ade36c57c022`, publie 1 617 fiches dédiées et garde zéro mapping référencé manquant. Méga-Blindépique, Méga-Goupelin et Méga-Amphinobi sont des fiches status-only `UNRELEASED` sans ranking fabriqué. L’écriture locale cache/mappings/records/manifeste/rapports est atomique ; l’API ne persiste qu’après génération et validation complètes du staging.
 
 La validation de production du 9 août 2026 a persisté puis relu 20 436 lignes avec
 `mappingMissingCount: 0` et `unmatchedCount: 0`. Son statut reste `partial` à cause d’un

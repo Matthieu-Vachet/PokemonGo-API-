@@ -3,8 +3,8 @@ id: API-PROJECT-001
 title: Pokemon GO API
 status: canonical
 lang: fr
-version: 1.23.0
-updated_at: 2026-08-15
+version: 1.24.0
+updated_at: 2026-08-22
 author: MatWeb Innovation
 projects:
   - PokemonGo-API-
@@ -37,10 +37,7 @@ Le filtre Best Attackers `type` signifie « type du Pokémon » et est appliqué
 
 Les référentiels permanents Community Days et Historique Events sont exposés en lecture
 seule par `/api/v1/community-days` et `/api/v1/events/history`. Ils lisent les collections
-Dashboard partagées sans déclencher de synchronisation. Le scraping d’images Dynamax
-reste strictement privé sous `/api/v1/admin/dynamax-images/*`, hors OpenAPI et sans
-collection de référentiel ou JSON Dynamax public. Le cache serverless utilise uniquement
-`admin_asset_cache`, stockage technique privé avec expiration automatique après 6 heures.
+Dashboard partagées sans déclencher de synchronisation.
 
 ## Game Master Explorer privé
 

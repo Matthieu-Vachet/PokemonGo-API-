@@ -3,8 +3,8 @@ id: API-PUBLIC-001
 title: Pokemon GO API REST
 status: canonical
 lang: fr
-version: 1.23.0
-updated_at: 2026-08-15
+version: 1.24.0
+updated_at: 2026-08-22
 author: MatWeb Innovation
 projects:
   - PokemonGo-API-
@@ -624,16 +624,6 @@ disparaissent de leur source. Dans l’archive, `activeInCurrentFeed: false` sig
 « absent du flux actuel ». Les projections publiques excluent les payloads source,
 hashes, diagnostics, propriétaires et valeurs précédentes internes.
 
-## Images Dynamax privées
-
-Les quatre routes `/api/v1/admin/dynamax-images/*` exigent `x-api-admin-secret`, sont
-absentes d’OpenAPI et n’écrivent aucun référentiel Dynamax. Le scan récupère uniquement
-nom, numéro et URL d’image depuis GO Hub. Les fichiers et le petit état technique sont
-conservés dans le cache privé générique `admin_asset_cache`, avec un TTL de 6 heures, afin
-de rester disponibles entre deux invocations serverless. L’export produit
-`dynamax-images.zip` avec `images/`, `manifest.json` et `errors.json`. Aucune statistique
-ou donnée de combat Pokémon n’est extraite.
-
 ## Securite Et Performance
 
 - Helmet et suppression de `X-Powered-By`
@@ -646,6 +636,24 @@ ou donnée de combat Pokémon n’est extraite.
 - Erreurs JSON uniformes avec identifiant de requete
 - Protection globale des routes privees avec `x-api-admin-secret`
 - Index MongoDB reconstruits par `npm run sync`
+
+Les actions administratives acceptent `x-operation-id` et répondent avec le même
+identifiant. Leur erreur publique est toujours structurée :
+
+```json
+{
+  "success": false,
+  "error": {
+    "code": "CANONICAL_SYNC_FAILED",
+    "message": "La synchronisation canonique a échoué.",
+    "details": {}
+  },
+  "operationId": "catalog-sync-..."
+}
+```
+
+La stack et les secrets restent exclusivement dans les logs serveur. Le Dashboard peut
+ainsi afficher la cause et retrouver l’exécution exacte sans sérialiser un objet brut.
 
 Pour un deploiement horizontal, remplacer le cache memoire et le rate limiter par Redis.
 

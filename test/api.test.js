@@ -224,7 +224,7 @@ test("les sources JSON sont lisibles et dédupliquées", () => {
   );
   assert.ok(data.pokemon.length >= 1000);
   assert.equal(data.pokemonAssets.length, data.pokemon.length);
-  assert.equal(data.pokemonAssetFamilies.length, 3027);
+  assert.equal(data.pokemonAssetFamilies.length, 3030);
   assert.ok(data.moves.length >= 250);
   assert.equal(data.types.length, 18);
   assert.equal(data.weather.length, 7);

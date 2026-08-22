@@ -3,8 +3,8 @@ id: RULE-CHANGELOG-001
 title: Changelog Pokemon GO API
 status: active
 lang: fr
-version: 1.23.0
-updated_at: 2026-08-15
+version: 1.24.0
+updated_at: 2026-08-22
 author: MatWeb Innovation
 projects:
   - PokemonGo-API-
@@ -16,6 +16,17 @@ related:
 # Changelog
 
 ## Unreleased
+
+## 1.24.0 - 2026-08-22
+
+### Changed
+
+- Aligne la lecture canonique sur les 1 617 identités, références Assets et fiches PvP séparées de PokemonGo-Data 1.28.0.
+- Met à jour les contrats et tests de référence afin que la suppression d’une route exclusive ne retire aucun générateur ou resolver partagé.
+
+### Removed
+
+- Supprime les routes, le service, le cache, l’export ZIP et les tests exclusivement dédiés à Images Dynamax ; les routes Pokémon Dynamax et Max Battles partagées restent intactes.
 
 ## 1.23.0 - 2026-08-15
 

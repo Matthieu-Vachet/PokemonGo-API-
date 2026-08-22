@@ -30,7 +30,6 @@ const bestDefenders = require("./best-defenders");
 const pokemonIdentityMappings = require("./pokemon-identity-mappings");
 const pokemonIdentities = require("./pokemon-identities");
 const gameMaster = require("./game-master");
-const dynamaxImages = require("./dynamax-images");
 const communityDays = require("./community-days");
 const eventsHistory = require("./events-history");
 
@@ -124,8 +123,6 @@ router.use("/admin/pokemon-identity-mappings", pokemonIdentityMappings);
 router.use("/admin/pokemon-identities", pokemonIdentities);
 // Explorer Game Master strictement privé, absent de la découverte et de l'OpenAPI publics.
 router.use("/admin/game-master", gameMaster);
-// Scraping d'images Dynamax strictement privé, sans route publique ni dataset Pokémon.
-router.use("/admin/dynamax-images", dynamaxImages);
 router.use("/community-days", communityDays);
 router.use("/events/history", eventsHistory);
 router.use("/search", search);

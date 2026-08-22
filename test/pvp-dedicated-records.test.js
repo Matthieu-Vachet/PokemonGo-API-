@@ -12,8 +12,8 @@ test("le reader API hydrate pvpRef avec le contrat dédié", () => {
   const source = readJson(dataPath("data", "pokemon", "normal", "0001-bulbasaur.json"));
   const hydrated = hydratePokemonPvp(source);
   assert.equal(hydrated.pvpRecord.pvpId, "BULBASAUR");
-  assert.equal(hydrated.pvpRecord.source.commit, "f754cd6fc819ad065f1f00df1036ade36c57c022");
-  assert.equal(hydrated.pvpRecord.source.syncedAt, "2026-08-15T00:08:44.720Z");
+  assert.equal(hydrated.pvpRecord.source.commit, "78c64048aebeb9265e1a090137c5463880fb6fa2");
+  assert.equal(hydrated.pvpRecord.source.syncedAt, "2026-08-22T00:11:42.328Z");
   assert.equal(hydrated.pvp.greatLeague.status, "RANKED");
   assert.equal(hydrated.pvp.greatLeague.bestMovesets.fast, "VINE_WHIP_FAST");
 });

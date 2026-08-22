@@ -29,5 +29,4 @@ test("OpenAPI expose uniquement les lectures Community Days et archive Events", 
     assert.ok(response.body.paths[route]?.get, `${route} doit documenter GET`);
     assert.deepEqual(Object.keys(response.body.paths[route]), ["get"]);
   }
-  assert.equal(response.body.paths["/api/v1/admin/dynamax-images"], undefined);
 });

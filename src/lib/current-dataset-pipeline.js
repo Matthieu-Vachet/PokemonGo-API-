@@ -11,7 +11,13 @@ const { DatasetRun } = require("../models");
 // slightly above that ceiling so polling never fails a Function still running.
 const ACTIVE_REGENERATION_WINDOW_MS = 75 * 1000;
 const REGENERATION_TIMEOUT_CODE = "DATASET_REGENERATION_TIMEOUT";
-const SOURCE_AVAILABILITY_CODES = new Set(["SOURCE_PROTECTED", "SOURCE_TEMPORARILY_UNAVAILABLE"]);
+const SOURCE_AVAILABILITY_CODES = new Set([
+  "SOURCE_PROTECTED",
+  "SOURCE_TEMPORARILY_UNAVAILABLE",
+  "SOURCE_UNAVAILABLE",
+  "SOURCE_SCHEMA_CHANGED",
+  "VALIDATION_FAILED",
+]);
 
 function asArray(value) {
   return Array.isArray(value) ? value : [];

@@ -204,12 +204,12 @@ test("le rapport PvP expose séparément génération, ignorés, MAPPING_MISSING
   assert.equal(datasetRunStatus({ unmatchedCount: 0, warnings: [] }, { changed: false }), "unchanged");
 });
 
-test("les indisponibilités source distinguent protection et panne temporaire", () => {
+test("les indisponibilités source couvrent protection, panne, schéma et validation", () => {
   const protectedSource = sourceAvailabilityDiagnostic({
     code: "SOURCE_PROTECTED",
     message: "Cloudflare challenge",
     details: {
-      sourceUrl: "https://db.pokemongohub.net/fr/best/gym-defenders",
+      sourceUrl: "https://db.pokemongohub.net/best/gym-defenders",
       httpStatus: 403,
       challenge: true,
       retryable: false,
@@ -228,13 +228,16 @@ test("les indisponibilités source distinguent protection et panne temporaire", 
     detectedAt: new Date("2026-08-09T12:00:00.000Z"),
     retryable: false,
     provider: null,
-    sourceUrl: "https://db.pokemongohub.net/fr/best/gym-defenders",
+    sourceUrl: "https://db.pokemongohub.net/best/gym-defenders",
     httpStatus: 403,
     challenge: true,
     preservation: "Ne pas remplacer le dernier snapshot valide.",
   });
   assert.equal(temporary.code, "SOURCE_TEMPORARILY_UNAVAILABLE");
   assert.equal(temporary.retryable, true);
+  assert.equal(sourceAvailabilityDiagnostic({ code: "SOURCE_UNAVAILABLE" }).code, "SOURCE_UNAVAILABLE");
+  assert.equal(sourceAvailabilityDiagnostic({ code: "SOURCE_SCHEMA_CHANGED" }).code, "SOURCE_SCHEMA_CHANGED");
+  assert.equal(sourceAvailabilityDiagnostic({ code: "VALIDATION_FAILED" }).code, "VALIDATION_FAILED");
   assert.equal(sourceAvailabilityDiagnostic({ code: "SOURCE_HTTP_ERROR" }), null);
 });
 

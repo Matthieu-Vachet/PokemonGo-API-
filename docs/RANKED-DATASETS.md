@@ -3,7 +3,7 @@ id: DATASET-RANKED-001
 title: Architecture Mongo des classements
 status: canonical
 lang: fr
-version: 1.24.0
+version: 1.25.0
 updated_at: 2026-08-22
 author: MatWeb Innovation
 projects:
@@ -26,7 +26,7 @@ Collections :
 - `shiny_snapshots` : snapshots immuables utilisés pour l'historique du projet ;
 - `pvp_rankings` : vue courante PvPoke ;
 - `gbl_calendar` : rotations GBL publiques Battleflow ;
-- `best_defenders` : tiers publics Pokémon GO Hub ;
+- `best_defenders` : tiers publics Pokémon GO Hub depuis la page canonique anglaise pré-rendue ;
 
 Les réponses sont paginées par les presenters des adaptateurs. Le document `current` renvoyé est compact et ne duplique pas le payload. Le payload PvP complet est stocké en gzip dans `compressedData`, puis hydraté et vérifié par hash lors de la lecture afin de rester sous la limite BSON MongoDB de 16 Mo.
 
@@ -56,9 +56,9 @@ Lorsque Snacknap répond HTTP 200 mais annonce son panneau `Today` vide tout en 
 
 Avant chaque génération, l'adaptateur charge le catalogue Identity Manager une seule fois et le transmet au générateur PokemonGo-Data. Shiny et PvPoke résolvent ainsi leurs alias par provider vers un `canonicalId`, puis vers l'asset local exact. Ce chargement groupé évite une requête MongoDB par classement et garantit que la même identité produit la même image dans tous les consommateurs.
 
-Best Defenders applique le même chemin au provider `pokemon-go-hub`. Les diagnostics du dataset sont persistés dans `pokemon_identity_diagnostics`; une nouvelle association d’alias devient effective à la prochaine régénération sans réécriture du scraper. Les costumes et événements restent gérés manuellement dans les données canoniques et ne possèdent plus de pipeline externe dédié.
+Best Defenders applique le même chemin au provider `pokemon-go-hub-best-defenders`, tout en conservant `pokemon-go-hub` comme identifiant d’Identity Manager et contrat public. Le provider lit le HTML pré-rendu de `https://db.pokemongohub.net/best/gym-defenders`; aucun endpoint privé ni contournement Cloudflare n’est utilisé. Les diagnostics du dataset sont persistés dans `pokemon_identity_diagnostics`; une nouvelle association d’alias devient effective à la prochaine régénération sans réécriture du scraper.
 
-Best Defenders ne transforme jamais le défi Cloudflare de Pokémon GO Hub en dataset vide. Une régénération bloquée termine son run avec `SOURCE_PROTECTED`; une panne réseau ou un contenu amont inattendu utilise `SOURCE_TEMPORARILY_UNAVAILABLE`. Dans les deux cas, l'API conserve le document `current` (données, hash et compteur) et met uniquement à jour `diagnostics.sourceAvailability`. Une régénération valide suivante remplace ce diagnostic avec les nouveaux diagnostics vérifiés.
+Best Defenders ne transforme jamais une panne ou un changement de structure en dataset vide. `SOURCE_UNAVAILABLE`, `SOURCE_SCHEMA_CHANGED`, `VALIDATION_FAILED` et l’historique `SOURCE_PROTECTED` terminent en `partial` avec conservation du document `current` (données, hash et compteur) ; seul `diagnostics.sourceAvailability` est mis à jour. Une régénération valide suivante remplace atomiquement le dataset et efface le diagnostic obsolète.
 
 Une lecture privée sans secret est refusée avant tout accès MongoDB. La visibilité stockée est également relue avec le document afin qu'une erreur de routage ne puisse pas rendre un dataset privé public.
 

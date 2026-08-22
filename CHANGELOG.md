@@ -3,7 +3,7 @@ id: RULE-CHANGELOG-001
 title: Changelog Pokemon GO API
 status: active
 lang: fr
-version: 1.24.0
+version: 1.25.0
 updated_at: 2026-08-22
 author: MatWeb Innovation
 projects:
@@ -14,6 +14,17 @@ related:
 ---
 
 # Changelog
+
+## 1.25.0 - 2026-08-22
+
+### Changed
+
+- Aligne Best Defenders sur la page canonique anglaise Pokémon GO Hub et le provider `pokemon-go-hub-best-defenders`.
+- Conserve le dernier snapshot MongoDB en run `partial` pour `SOURCE_UNAVAILABLE`, `SOURCE_SCHEMA_CHANGED`, `VALIDATION_FAILED` et l’historique `SOURCE_PROTECTED`.
+
+### Fixed
+
+- Évite qu’un changement de schéma ou une validation de régression n’écrase le dataset `best_defenders` courant.
 
 ## Unreleased
 

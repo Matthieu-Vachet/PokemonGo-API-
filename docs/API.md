@@ -3,7 +3,7 @@ id: API-PUBLIC-001
 title: Pokemon GO API REST
 status: canonical
 lang: fr
-version: 1.24.0
+version: 1.25.0
 updated_at: 2026-08-22
 author: MatWeb Innovation
 projects:

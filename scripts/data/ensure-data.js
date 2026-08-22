@@ -83,7 +83,10 @@ function ensureData() {
   const cloneUrl = authenticatedRepoUrl(repo, token);
 
   fs.mkdirSync(path.dirname(targetDir), { recursive: true });
-  if (fs.existsSync(targetDir))
+  // existsSync() retourne false pour un lien symbolique cassé. Les uploads
+  // Vercel peuvent matérialiser runtime-data comme un tel lien résiduel : il
+  // faut le supprimer avec lstat avant de cloner le snapshot canonique.
+  if (pathExists(targetDir))
     fs.rmSync(targetDir, { recursive: true, force: true });
 
   try {

@@ -51,6 +51,8 @@ test("le bootstrap Data applique le même contrat de métadonnées", () => {
   const source = fs.readFileSync(path.resolve(__dirname, "../scripts/data/ensure-data.js"), "utf8");
   assert.match(source, /version\.json/);
   assert.match(source, /versionMetadata\.dataVersion/);
+  assert.match(source, /if \(pathExists\(targetDir\)\)/);
+  assert.doesNotMatch(source, /if \(fs\.existsSync\(targetDir\)\)/);
 });
 
 test("le wrapper serverless force la racine Data canonique pour le générateur Game Master", async () => {

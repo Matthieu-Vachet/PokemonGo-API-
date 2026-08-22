@@ -1,10 +1,11 @@
-const fs = require("node:fs");
-
 const packageMetadata = require("../../package.json");
-const { dataPath } = require("./data-repository");
+// Keep the canonical Data version in Next.js' static dependency graph. Dynamic
+// fs reads alone can be omitted from a serverless function trace even when the
+// rest of the runtime dataset is covered by outputFileTracingIncludes.
+const dataVersionMetadata = require("../../runtime-data/PokemonGo-Data/version.json");
 
 function readDataVersion() {
-  return JSON.parse(fs.readFileSync(dataPath("version.json"), "utf8"));
+  return dataVersionMetadata;
 }
 
 function versionMetadata() {

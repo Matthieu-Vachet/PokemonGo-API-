@@ -6,6 +6,7 @@ const test = require("node:test");
 
 const { dataRoot } = require("../src/lib/data-repository");
 const tooling = require("../src/lib/data-tooling");
+const { readDataVersion } = require("../src/lib/version-metadata");
 
 test("les modules runtime PokemonGo-Data sont des dépendances statiques du bundle Next.js", () => {
   assert.equal(typeof tooling.currentEventUtils.loadPokemonEntries, "function");
@@ -17,6 +18,13 @@ test("les modules runtime PokemonGo-Data sont des dépendances statiques du bund
   assert.equal(typeof tooling.pokemonLocalIdentityInventory.loadPokemonLocalIdentityInventory, "function");
   assert.equal(typeof tooling.separatedAssetRecords.writeManifest, "function");
   assert.ok(fs.existsSync(path.join(dataRoot, "tooling", "lib", "current-event-utils.js")));
+});
+
+test("la version Data canonique reste une dépendance statique du bundle Next.js", () => {
+  const expected = JSON.parse(fs.readFileSync(path.join(dataRoot, "version.json"), "utf8"));
+  assert.deepEqual(readDataVersion(), expected);
+  const source = fs.readFileSync(path.resolve(__dirname, "../src/lib/version-metadata.js"), "utf8");
+  assert.match(source, /runtime-data\/PokemonGo-Data\/version\.json/);
 });
 
 test("le wrapper serverless force la racine Data canonique pour le générateur Game Master", async () => {

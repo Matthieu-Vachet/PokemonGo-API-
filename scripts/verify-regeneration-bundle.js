@@ -35,18 +35,9 @@ const traced = manifests.flatMap((manifest) => {
 for (const marker of ["PokemonGo-Data/package.json", "PokemonGo-Data/version.json", "PokemonGo-Data/data/pokemon", "PokemonGo-Data/data/reference"]) {
   if (!traced.includes(marker)) throw new Error(`Ressource runtime non tracee: ${marker}`);
 }
-for (const marker of [
-  "node_modules/@sparticuz/chromium/bin/chromium.br",
-  "node_modules/@sparticuz/chromium/bin/al2023.tar.br",
-  "node_modules/@sparticuz/chromium/build/index.js",
-]) {
-  if (!traced.includes(marker)) throw new Error(`Ressource navigateur serverless non tracee: ${marker}`);
-}
-
 console.log(JSON.stringify({
   success: true,
   bundledGenerators: Object.keys(generatorRegistry).length,
   serverJavaScriptFiles: JavaScriptFiles.length,
   manifests: manifests.length,
-  chromiumRuntime: true,
 }, null, 2));

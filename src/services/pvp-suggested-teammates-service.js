@@ -1,11 +1,9 @@
-const fs = require("node:fs");
 const { ApiError } = require("../lib/api-error");
 const { PvpTeammateCache } = require("../models");
 const identityService = require("./pokemon-identity-service");
 
 const sourceBaseUrl = "https://pvpoke.com";
 const cacheTtlMs = 24 * 60 * 60 * 1000;
-const sourceReadyTimeoutMs = 48_000;
 const safeTokenPattern = /^[a-z0-9_]+$/;
 
 function safeToken(value, field) {
@@ -28,101 +26,131 @@ function sourceUrlFor({ sourceGroup, cp, speciesId }) {
   return `${sourceBaseUrl}/rankings/${group}/${cap}/overall/${species}/`;
 }
 
-async function launchBrowser() {
-  const [{ default: chromium }, puppeteer] = await Promise.all([
-    import("@sparticuz/chromium"),
-    import("puppeteer-core"),
-  ]);
-  const localCandidates = process.platform === "darwin" ? [
-    process.env.CHROMIUM_EXECUTABLE_PATH,
-    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-    "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
-    "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
-    "/Applications/Chromium.app/Contents/MacOS/Chromium",
-  ].filter(Boolean) : [];
-  const localExecutable = localCandidates.find((candidate) => {
-    try {
-      return fs.statSync(candidate).isFile() && !fs.accessSync(candidate, fs.constants.X_OK);
-    } catch {
-      return false;
-    }
-  });
-  return puppeteer.launch({
-    args: localExecutable ? ["--no-sandbox", "--disable-setuid-sandbox"] : chromium.args,
-    defaultViewport: { width: 1280, height: 900 },
-    executablePath: localExecutable || await chromium.executablePath(),
-    headless: "shell",
-  });
-}
-
-function shouldBlockPvpokeRequest(url, resourceType) {
-  if (["font", "image", "media"].includes(resourceType)) return true;
-  try {
-    const hostname = new URL(url).hostname.toLowerCase();
-    return hostname !== "pvpoke.com" && hostname !== "www.pvpoke.com";
-  } catch {
-    return true;
-  }
-}
-
-async function waitForSuggestedTeammates(page, { sourceUrl, timeout = sourceReadyTimeoutMs, browserErrors = [] } = {}) {
-  try {
-    await page.waitForFunction(
-      () => document.querySelectorAll(".partner-pokemon .list a").length > 0
-        || !document.querySelector(".partner-pokemon"),
-      { polling: 250, timeout },
-    );
-  } catch (error) {
-    throw new ApiError(
-      504,
-      "PvPoke n'a pas terminé le calcul des coéquipiers suggérés dans le délai imparti.",
-      "PVP_TEAMMATE_SOURCE_TIMEOUT",
-      {
-        sourceUrl,
-        timeout,
-        browserErrors: browserErrors.slice(-5),
-        cause: error instanceof Error ? error.message : String(error),
-      },
-    );
-  }
-}
-
-async function scrapeSuggestedTeammates(context) {
-  const sourceUrl = sourceUrlFor(context);
-  const browser = await launchBrowser();
-  try {
-    const page = await browser.newPage();
-    const browserErrors = [];
-    page.on("pageerror", (error) => browserErrors.push(error instanceof Error ? error.message : String(error)));
-    await page.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/149 Safari/537.36");
-    await page.setRequestInterception(true);
-    page.on("request", (request) => {
-      if (shouldBlockPvpokeRequest(request.url(), request.resourceType())) request.abort();
-      else request.continue();
-    });
-    await page.goto(sourceUrl, { waitUntil: "domcontentloaded", timeout: 40_000 });
-    await waitForSuggestedTeammates(page, { sourceUrl, browserErrors });
-    const items = await page.$$eval(".partner-pokemon .list a", (links) => links.slice(0, 5).map((link, index) => ({
-      rawName: String(link.textContent || "").replace(/\s*→\s*$/, "").trim(),
-      providerAlias: link.getAttribute("data") || "",
-      rankOrOrder: index + 1,
-    })));
-    return {
-      sourceUrl,
-      items,
-      emptyReason: items.length ? null : "SOURCE_RETURNED_NO_SUGGESTIONS",
-    };
-  } finally {
-    await browser.close();
-  }
-}
-
 function normalizedAlias(item) {
   const providerAlias = safeToken(item.providerAlias, "Alias");
   return {
     providerAlias,
     identityAlias: providerAlias.replace(/_shadow$/, ""),
     shadow: providerAlias.endsWith("_shadow"),
+  };
+}
+
+function rankingAlias(ranking) {
+  return String(ranking?.sourceIdentity?.speciesId || "").trim().toLowerCase();
+}
+
+function rankingDex(ranking) {
+  return Number(ranking?.pokemon?.dexNr || ranking?.pokemon?.identity?.pokemonId) || null;
+}
+
+function rankedCandidateScore(candidate, sourceCounters) {
+  const covered = (candidate.matchups || []).filter((matchup) => sourceCounters.has(matchup.sourceId));
+  const coverage = covered.reduce((total, matchup) => {
+    const counter = sourceCounters.get(matchup.sourceId);
+    const urgency = Math.max(0.5, (1000 - Number(counter?.rating || 500)) / 500);
+    const certainty = Math.max(0.5, Number(matchup.rating || 500) / 500);
+    return total + (urgency * certainty);
+  }, 0);
+  const sharedWeaknesses = (candidate.counters || []).filter((counter) => sourceCounters.has(counter.sourceId)).length;
+  return {
+    coverage,
+    sharedWeaknesses,
+    value: (coverage * 1000) + (Number(candidate.score || 0) * 10) - (sharedWeaknesses * 250) - Number(candidate.rank || 9999),
+  };
+}
+
+function rankingToSuggestedItem(ranking, rankOrOrder) {
+  const providerAlias = safeToken(rankingAlias(ranking), "Alias");
+  const identity = ranking.pokemon?.identity || {};
+  const image = ranking.pokemon?.assets?.image || identity.image || null;
+  const shinyImage = ranking.pokemon?.assets?.shinyImage || identity.shinyImage || null;
+  const canonicalId = identity.canonicalId || ranking.pokemonRef || ranking.pokemon?.id || null;
+  const assetStatus = image ? "matched" : "missing-asset";
+  return {
+    rawName: ranking.sourceIdentity?.speciesName || ranking.pokemon?.names?.English || providerAlias,
+    providerAlias,
+    canonicalId,
+    pokemonId: rankingDex(ranking),
+    form: identity.form || ranking.pokemon?.formId || null,
+    costume: identity.costume || null,
+    shadow: ranking.variant === "shadow" || providerAlias.endsWith("_shadow"),
+    rankOrOrder,
+    resolutionStatus: assetStatus,
+    resolutionReason: assetStatus === "matched" ? null : "CANONICAL_ASSET_MISSING",
+    pokemon: {
+      id: ranking.pokemon?.id || canonicalId,
+      dexNr: rankingDex(ranking),
+      formId: ranking.pokemon?.formId || identity.form || canonicalId,
+      names: ranking.pokemon?.names || { English: ranking.sourceIdentity?.speciesName || providerAlias },
+      types: ranking.pokemon?.types || [],
+      assets: { image, shinyImage },
+      identity: {
+        ...identity,
+        canonicalId,
+        pokemon: identity.pokemon || ranking.pokemon?.id || canonicalId,
+        form: identity.form || ranking.pokemon?.formId || null,
+        provider: "pvpoke",
+        rawAlias: providerAlias.replace(/_shadow$/, ""),
+        image,
+        shinyImage,
+        resolutionStatus: assetStatus,
+        assetResolution: {
+          status: assetStatus,
+          image,
+          shinyImage,
+          reason: assetStatus === "matched" ? null : "CANONICAL_ASSET_MISSING",
+        },
+      },
+    },
+  };
+}
+
+function suggestedTeammatesFromRankings(context) {
+  if (!Array.isArray(context.rankings)) {
+    throw new ApiError(
+      502,
+      "Le snapshot PvPoke synchronisé ne contient pas le classement requis.",
+      "PVP_TEAMMATE_RANKING_SNAPSHOT_INVALID",
+    );
+  }
+  const source = context.rankings.find((ranking) => rankingAlias(ranking) === context.speciesId);
+  if (!source) return { items: [], diagnostics: [], emptyReason: "RANKING_NOT_FOUND" };
+  const sourceCounters = new Map((source.counters || []).map((counter) => [counter.sourceId, counter]));
+  const sourceDex = rankingDex(source);
+  const candidates = context.rankings
+    .filter((candidate) => rankingAlias(candidate) && rankingAlias(candidate) !== context.speciesId)
+    .filter((candidate) => !sourceDex || rankingDex(candidate) !== sourceDex)
+    .map((candidate) => ({ candidate, ...rankedCandidateScore(candidate, sourceCounters) }))
+    .sort((left, right) => right.value - left.value || Number(left.candidate.rank || 9999) - Number(right.candidate.rank || 9999));
+
+  const selected = [];
+  const usedDex = new Set();
+  for (const entry of candidates) {
+    const dex = rankingDex(entry.candidate);
+    if (dex && usedDex.has(dex)) continue;
+    selected.push(entry.candidate);
+    if (dex) usedDex.add(dex);
+    if (selected.length === 5) break;
+  }
+  const items = selected.map((ranking, index) => rankingToSuggestedItem(ranking, index + 1));
+  const diagnostics = items.filter((item) => item.resolutionStatus !== "matched").map((item) => ({
+    provider: "pvpoke",
+    sourceId: item.providerAlias,
+    rawAlias: item.providerAlias.replace(/_shadow$/, ""),
+    pokemonId: item.pokemonId,
+    pokemon: item.rawName,
+    form: item.form,
+    costume: item.costume,
+    reason: item.resolutionReason,
+    confidence: 0,
+    candidates: [],
+    proposedAction: "associate",
+    sourcePayload: { domain: "pvp-rankings", league: context.league, speciesId: context.speciesId },
+  }));
+  return {
+    items,
+    diagnostics,
+    emptyReason: items.length ? null : "SOURCE_RETURNED_NO_SUGGESTIONS",
   };
 }
 
@@ -199,7 +227,7 @@ async function suggestedTeammatesFor(context, options = {}) {
   const sourceHash = String(context.sourceHash || "");
   const league = safeContextId(context.league, "Ligue");
   const speciesId = safeToken(context.speciesId, "SpeciesId");
-  const key = `v2:${sourceHash}:${league}:${speciesId}`;
+  const key = `v3:${sourceHash}:${league}:${speciesId}`;
   const now = new Date();
   const cacheModel = options.cacheModel || PvpTeammateCache;
   const persistenceWarnings = [];
@@ -214,8 +242,14 @@ async function suggestedTeammatesFor(context, options = {}) {
   }
   if (cached) return { ...cached, cache: "hit" };
 
-  const scraped = await (options.scrape || scrapeSuggestedTeammates)({ ...context, league, speciesId });
-  const resolved = await resolveSuggestedTeammates(scraped.items, { league, speciesId }, options.resolveAliasesBatch);
+  const sourceUrl = sourceUrlFor({ ...context, speciesId });
+  const ranked = options.scrape
+    ? null
+    : suggestedTeammatesFromRankings({ ...context, league, speciesId });
+  const scraped = ranked || await options.scrape({ ...context, league, speciesId });
+  const resolved = ranked
+    ? { items: ranked.items, diagnostics: ranked.diagnostics }
+    : await resolveSuggestedTeammates(scraped.items, { league, speciesId }, options.resolveAliasesBatch);
   if (resolved.diagnostics.length) {
     try {
       await (options.recordDiagnosticsBatch || identityService.recordDiagnosticsBatch)(resolved.diagnostics);
@@ -231,7 +265,8 @@ async function suggestedTeammatesFor(context, options = {}) {
     league,
     speciesId,
     sourceHash,
-    sourceUrl: scraped.sourceUrl,
+    sourceUrl: scraped.sourceUrl || sourceUrl,
+    sourceStrategy: ranked ? "ranked-dataset-complement" : "browser-team-ranker",
     fetchedAt: now,
     expiresAt: new Date(now.getTime() + cacheTtlMs),
     items: resolved.items,
@@ -251,10 +286,10 @@ async function suggestedTeammatesFor(context, options = {}) {
 
 module.exports = {
   normalizedAlias,
+  rankedCandidateScore,
+  rankingToSuggestedItem,
   resolveSuggestedTeammates,
-  scrapeSuggestedTeammates,
-  shouldBlockPvpokeRequest,
   sourceUrlFor,
   suggestedTeammatesFor,
-  waitForSuggestedTeammates,
+  suggestedTeammatesFromRankings,
 };

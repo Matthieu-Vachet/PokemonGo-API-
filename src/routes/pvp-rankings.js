@@ -12,7 +12,8 @@ const router = express.Router();
 function teammateContext(current, league, speciesId) {
   const format = (current.data.formats || []).find((item) => item.id === league);
   if (!format) throw new ApiError(404, "Format PvPoke introuvable.", "PVP_FORMAT_NOT_FOUND");
-  const ranking = current.data.leagues?.[league]?.rankings?.find((item) => item.sourceIdentity?.speciesId === speciesId);
+  const rankings = current.data.leagues?.[league]?.rankings || [];
+  const ranking = rankings.find((item) => item.sourceIdentity?.speciesId === speciesId);
   if (!ranking) return null;
   return {
     league: format.id,
@@ -20,6 +21,7 @@ function teammateContext(current, league, speciesId) {
     cp: format.cp,
     speciesId: ranking.sourceIdentity.speciesId,
     sourceHash: current.document.sourceHash,
+    rankings,
   };
 }
 
@@ -32,7 +34,7 @@ router.get("/:league/:speciesId/teammates", asyncHandler(async (request, respons
     return response.json({
       data: [],
       meta: {
-        source: "pvpoke-browser",
+        source: "pvpoke-ranked-dataset",
         sourceUrl: null,
         fetchedAt: null,
         cache: "not-applicable",
@@ -47,7 +49,8 @@ router.get("/:league/:speciesId/teammates", asyncHandler(async (request, respons
   return response.json({
     data: result.items,
     meta: {
-      source: "pvpoke-browser",
+      source: "pvpoke-ranked-dataset",
+      strategy: result.sourceStrategy,
       sourceUrl: result.sourceUrl,
       fetchedAt: result.fetchedAt,
       cache: result.cache,

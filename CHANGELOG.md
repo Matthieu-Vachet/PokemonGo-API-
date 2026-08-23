@@ -15,6 +15,12 @@ related:
 
 # Changelog
 
+## 1.25.0 — Correctif Suggested Teammates serverless
+
+- Remplacement du Team Ranker Chromium, trop lent dans la Function Vercel, par un calcul déterministe sur le snapshot PvPoke synchronisé.
+- Conservation du contexte Great/Ultra/Master, des formes régionales, des identités et assets canoniques.
+- État vide réservé aux espèces absentes du classement ; snapshot invalide signalé explicitement.
+
 ## 1.25.0 - 2026-08-22
 
 ### Changed

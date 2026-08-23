@@ -3,10 +3,9 @@ const assert = require("node:assert/strict");
 const {
   normalizedAlias,
   resolveSuggestedTeammates,
-  shouldBlockPvpokeRequest,
+  suggestedTeammatesFromRankings,
   sourceUrlFor,
   suggestedTeammatesFor,
-  waitForSuggestedTeammates,
 } = require("../src/services/pvp-suggested-teammates-service");
 const { teammateContext } = require("../src/routes/pvp-rankings");
 
@@ -15,23 +14,6 @@ test("l'URL Suggested Teammates est dérivée uniquement du format PvPoke valid�
   assert.equal(sourceUrlFor({ sourceGroup: "all", cp: 2500, speciesId: "ninetales_alolan" }), "https://pvpoke.com/rankings/all/2500/overall/ninetales_alolan/");
   assert.equal(sourceUrlFor({ sourceGroup: "all", cp: 10000, speciesId: "dragonite" }), "https://pvpoke.com/rankings/all/10000/overall/dragonite/");
   assert.throws(() => sourceUrlFor({ sourceGroup: "../evil", cp: 1500, speciesId: "mimikyu" }), /invalide/);
-});
-
-test("le navigateur conserve les ressources PvPoke utiles et bloque les tiers lourds", () => {
-  assert.equal(shouldBlockPvpokeRequest("https://pvpoke.com/js/RankingMain.js", "script"), false);
-  assert.equal(shouldBlockPvpokeRequest("https://pvpoke.com/data/rankings/all/overall/rankings-1500.json", "fetch"), false);
-  assert.equal(shouldBlockPvpokeRequest("https://s.nitropay.com/ads.js", "script"), true);
-  assert.equal(shouldBlockPvpokeRequest("https://pvpoke.com/img/pokemon.png", "image"), true);
-});
-
-test("l'attente PvPoke distingue le résultat vide d'un timeout source réel", async () => {
-  const readyPage = { waitForFunction: async () => undefined };
-  await waitForSuggestedTeammates(readyPage, { sourceUrl: "https://pvpoke.com/test", timeout: 1 });
-  const timeoutPage = { waitForFunction: async () => { throw new Error("selector timeout"); } };
-  await assert.rejects(
-    waitForSuggestedTeammates(timeoutPage, { sourceUrl: "https://pvpoke.com/test", timeout: 1 }),
-    (error) => error.code === "PVP_TEAMMATE_SOURCE_TIMEOUT" && error.status === 504,
-  );
 });
 
 test("Great, Ultra, Master, forme régionale et non classé utilisent le contexte exact", () => {
@@ -51,11 +33,60 @@ test("Great, Ultra, Master, forme régionale et non classé utilisent le context
     },
   };
   assert.equal(teammateContext(current, "great", "lickilicky").cp, 1500);
+  assert.equal(teammateContext(current, "great", "lickilicky").rankings.length, 2);
   assert.equal(teammateContext(current, "ultra", "lickilicky").cp, 2500);
   assert.equal(teammateContext(current, "master", "dragonite").cp, 10000);
   assert.equal(teammateContext(current, "great", "ninetales_alolan").speciesId, "ninetales_alolan");
   assert.equal(teammateContext(current, "great", "unranked"), null);
   assert.throws(() => teammateContext(current, "missing", "lickilicky"), (error) => error.code === "PVP_FORMAT_NOT_FOUND");
+});
+
+test("le calcul serverless choisit cinq partenaires complémentaires sans Chromium", () => {
+  const pokemon = (speciesId, dexNr, rank, score, matchups = [], counters = []) => ({
+    rank,
+    score,
+    sourceIdentity: { speciesId, speciesName: speciesId },
+    pokemonRef: speciesId.toUpperCase(),
+    variant: speciesId.endsWith("_shadow") ? "shadow" : "normal",
+    matchups: matchups.map((sourceId) => ({ sourceId, rating: 700 })),
+    counters: counters.map((sourceId) => ({ sourceId, rating: 300 })),
+    pokemon: {
+      id: speciesId.toUpperCase(),
+      formId: speciesId.toUpperCase(),
+      dexNr,
+      names: { English: speciesId },
+      types: ["Normal"],
+      assets: { image: `https://assets.example/${speciesId}.png`, shinyImage: null },
+      identity: { pokemonId: dexNr, form: speciesId.toUpperCase() },
+    },
+  });
+  const rankings = [
+    pokemon("source", 1, 1, 95, [], ["threat_a", "threat_b"]),
+    pokemon("partner_a", 2, 2, 90, ["threat_a", "threat_b"]),
+    pokemon("partner_a_shadow", 2, 3, 89, ["threat_a", "threat_b"]),
+    pokemon("partner_b", 3, 4, 88, ["threat_a"]),
+    pokemon("partner_c", 4, 5, 87, ["threat_b"]),
+    pokemon("partner_d", 5, 6, 86, ["threat_a"]),
+    pokemon("partner_e", 6, 7, 85, ["threat_b"]),
+    pokemon("partner_f", 7, 8, 84),
+  ];
+  const result = suggestedTeammatesFromRankings({ league: "great", speciesId: "source", rankings });
+  assert.equal(result.items.length, 5);
+  assert.deepEqual(result.items.map((item) => item.pokemonId), [2, 3, 4, 5, 6]);
+  assert.equal(result.items[0].pokemon.identity.image, "https://assets.example/partner_a.png");
+  assert.equal(result.items[0].resolutionStatus, "matched");
+  assert.equal(result.emptyReason, null);
+});
+
+test("le calcul serverless refuse un snapshot invalide et distingue un classement absent", () => {
+  assert.throws(
+    () => suggestedTeammatesFromRankings({ league: "great", speciesId: "source" }),
+    (error) => error.code === "PVP_TEAMMATE_RANKING_SNAPSHOT_INVALID" && error.status === 502,
+  );
+  assert.deepEqual(
+    suggestedTeammatesFromRankings({ league: "great", speciesId: "source", rankings: [] }),
+    { items: [], diagnostics: [], emptyReason: "RANKING_NOT_FOUND" },
+  );
 });
 
 test("un échec d'écriture du cache ne transforme pas des suggestions valides en HTTP 500", async () => {

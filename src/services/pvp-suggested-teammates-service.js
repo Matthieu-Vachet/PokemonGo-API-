@@ -5,6 +5,7 @@ const identityService = require("./pokemon-identity-service");
 
 const sourceBaseUrl = "https://pvpoke.com";
 const cacheTtlMs = 24 * 60 * 60 * 1000;
+const sourceReadyTimeoutMs = 48_000;
 const safeTokenPattern = /^[a-z0-9_]+$/;
 
 function safeToken(value, field) {
@@ -54,25 +55,63 @@ async function launchBrowser() {
   });
 }
 
+function shouldBlockPvpokeRequest(url, resourceType) {
+  if (["font", "image", "media"].includes(resourceType)) return true;
+  try {
+    const hostname = new URL(url).hostname.toLowerCase();
+    return hostname !== "pvpoke.com" && hostname !== "www.pvpoke.com";
+  } catch {
+    return true;
+  }
+}
+
+async function waitForSuggestedTeammates(page, { sourceUrl, timeout = sourceReadyTimeoutMs, browserErrors = [] } = {}) {
+  try {
+    await page.waitForFunction(
+      () => document.querySelectorAll(".partner-pokemon .list a").length > 0
+        || !document.querySelector(".partner-pokemon"),
+      { polling: 250, timeout },
+    );
+  } catch (error) {
+    throw new ApiError(
+      504,
+      "PvPoke n'a pas terminé le calcul des coéquipiers suggérés dans le délai imparti.",
+      "PVP_TEAMMATE_SOURCE_TIMEOUT",
+      {
+        sourceUrl,
+        timeout,
+        browserErrors: browserErrors.slice(-5),
+        cause: error instanceof Error ? error.message : String(error),
+      },
+    );
+  }
+}
+
 async function scrapeSuggestedTeammates(context) {
   const sourceUrl = sourceUrlFor(context);
   const browser = await launchBrowser();
   try {
     const page = await browser.newPage();
+    const browserErrors = [];
+    page.on("pageerror", (error) => browserErrors.push(error instanceof Error ? error.message : String(error)));
     await page.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/149 Safari/537.36");
     await page.setRequestInterception(true);
     page.on("request", (request) => {
-      if (["font", "image", "media"].includes(request.resourceType())) request.abort();
+      if (shouldBlockPvpokeRequest(request.url(), request.resourceType())) request.abort();
       else request.continue();
     });
     await page.goto(sourceUrl, { waitUntil: "domcontentloaded", timeout: 40_000 });
-    await page.waitForSelector(".partner-pokemon .list a", { timeout: 20_000 });
+    await waitForSuggestedTeammates(page, { sourceUrl, browserErrors });
     const items = await page.$$eval(".partner-pokemon .list a", (links) => links.slice(0, 5).map((link, index) => ({
       rawName: String(link.textContent || "").replace(/\s*→\s*$/, "").trim(),
       providerAlias: link.getAttribute("data") || "",
       rankOrOrder: index + 1,
     })));
-    return { sourceUrl, items };
+    return {
+      sourceUrl,
+      items,
+      emptyReason: items.length ? null : "SOURCE_RETURNED_NO_SUGGESTIONS",
+    };
   } finally {
     await browser.close();
   }
@@ -162,12 +201,31 @@ async function suggestedTeammatesFor(context, options = {}) {
   const speciesId = safeToken(context.speciesId, "SpeciesId");
   const key = `v2:${sourceHash}:${league}:${speciesId}`;
   const now = new Date();
-  const cached = await PvpTeammateCache.findOne({ key, expiresAt: { $gt: now } }).lean();
+  const cacheModel = options.cacheModel || PvpTeammateCache;
+  const persistenceWarnings = [];
+  let cached = null;
+  try {
+    cached = await cacheModel.findOne({ key, expiresAt: { $gt: now } }).lean();
+  } catch (error) {
+    persistenceWarnings.push({
+      code: "PVP_TEAMMATE_CACHE_READ_FAILED",
+      message: error instanceof Error ? error.message : String(error),
+    });
+  }
   if (cached) return { ...cached, cache: "hit" };
 
   const scraped = await (options.scrape || scrapeSuggestedTeammates)({ ...context, league, speciesId });
   const resolved = await resolveSuggestedTeammates(scraped.items, { league, speciesId }, options.resolveAliasesBatch);
-  if (resolved.diagnostics.length) await (options.recordDiagnosticsBatch || identityService.recordDiagnosticsBatch)(resolved.diagnostics);
+  if (resolved.diagnostics.length) {
+    try {
+      await (options.recordDiagnosticsBatch || identityService.recordDiagnosticsBatch)(resolved.diagnostics);
+    } catch (error) {
+      persistenceWarnings.push({
+        code: "PVP_TEAMMATE_DIAGNOSTICS_WRITE_FAILED",
+        message: error instanceof Error ? error.message : String(error),
+      });
+    }
+  }
   const payload = {
     key,
     league,
@@ -178,15 +236,25 @@ async function suggestedTeammatesFor(context, options = {}) {
     expiresAt: new Date(now.getTime() + cacheTtlMs),
     items: resolved.items,
     diagnostics: resolved.diagnostics,
+    emptyReason: scraped.emptyReason || null,
   };
-  await PvpTeammateCache.findOneAndUpdate({ key }, { $set: payload }, { upsert: true, returnDocument: "after" });
-  return { ...payload, cache: "miss" };
+  try {
+    await cacheModel.findOneAndUpdate({ key }, { $set: payload }, { upsert: true, returnDocument: "after" });
+  } catch (error) {
+    persistenceWarnings.push({
+      code: "PVP_TEAMMATE_CACHE_WRITE_FAILED",
+      message: error instanceof Error ? error.message : String(error),
+    });
+  }
+  return { ...payload, cache: persistenceWarnings.length ? "miss-unpersisted" : "miss", persistenceWarnings };
 }
 
 module.exports = {
   normalizedAlias,
   resolveSuggestedTeammates,
   scrapeSuggestedTeammates,
+  shouldBlockPvpokeRequest,
   sourceUrlFor,
   suggestedTeammatesFor,
+  waitForSuggestedTeammates,
 };

@@ -28,6 +28,11 @@ related:
 
 ## Unreleased
 
+### Fixed
+
+- Restaure les Suggested Teammates PvPoke en bloquant les ressources tierces qui retardaient le Team Ranker jusqu'au timeout serverless, sans masquer un vrai timeout source.
+- Retourne un état vide explicite pour un Pokémon non classé et rend la persistance du cache de suggestions non bloquante après un calcul valide.
+
 ## 1.24.0 - 2026-08-22
 
 ### Changed

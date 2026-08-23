@@ -1,10 +1,83 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { normalizedAlias, resolveSuggestedTeammates, sourceUrlFor } = require("../src/services/pvp-suggested-teammates-service");
+const {
+  normalizedAlias,
+  resolveSuggestedTeammates,
+  shouldBlockPvpokeRequest,
+  sourceUrlFor,
+  suggestedTeammatesFor,
+  waitForSuggestedTeammates,
+} = require("../src/services/pvp-suggested-teammates-service");
+const { teammateContext } = require("../src/routes/pvp-rankings");
 
 test("l'URL Suggested Teammates est dérivée uniquement du format PvPoke validé", () => {
   assert.equal(sourceUrlFor({ sourceGroup: "all", cp: 1500, speciesId: "mimikyu" }), "https://pvpoke.com/rankings/all/1500/overall/mimikyu/");
+  assert.equal(sourceUrlFor({ sourceGroup: "all", cp: 2500, speciesId: "ninetales_alolan" }), "https://pvpoke.com/rankings/all/2500/overall/ninetales_alolan/");
+  assert.equal(sourceUrlFor({ sourceGroup: "all", cp: 10000, speciesId: "dragonite" }), "https://pvpoke.com/rankings/all/10000/overall/dragonite/");
   assert.throws(() => sourceUrlFor({ sourceGroup: "../evil", cp: 1500, speciesId: "mimikyu" }), /invalide/);
+});
+
+test("le navigateur conserve les ressources PvPoke utiles et bloque les tiers lourds", () => {
+  assert.equal(shouldBlockPvpokeRequest("https://pvpoke.com/js/RankingMain.js", "script"), false);
+  assert.equal(shouldBlockPvpokeRequest("https://pvpoke.com/data/rankings/all/overall/rankings-1500.json", "fetch"), false);
+  assert.equal(shouldBlockPvpokeRequest("https://s.nitropay.com/ads.js", "script"), true);
+  assert.equal(shouldBlockPvpokeRequest("https://pvpoke.com/img/pokemon.png", "image"), true);
+});
+
+test("l'attente PvPoke distingue le résultat vide d'un timeout source réel", async () => {
+  const readyPage = { waitForFunction: async () => undefined };
+  await waitForSuggestedTeammates(readyPage, { sourceUrl: "https://pvpoke.com/test", timeout: 1 });
+  const timeoutPage = { waitForFunction: async () => { throw new Error("selector timeout"); } };
+  await assert.rejects(
+    waitForSuggestedTeammates(timeoutPage, { sourceUrl: "https://pvpoke.com/test", timeout: 1 }),
+    (error) => error.code === "PVP_TEAMMATE_SOURCE_TIMEOUT" && error.status === 504,
+  );
+});
+
+test("Great, Ultra, Master, forme régionale et non classé utilisent le contexte exact", () => {
+  const current = {
+    document: { sourceHash: "hash" },
+    data: {
+      formats: [
+        { id: "great", sourceGroup: "all", cp: 1500 },
+        { id: "ultra", sourceGroup: "all", cp: 2500 },
+        { id: "master", sourceGroup: "all", cp: 10000 },
+      ],
+      leagues: {
+        great: { rankings: [{ sourceIdentity: { speciesId: "lickilicky" } }, { sourceIdentity: { speciesId: "ninetales_alolan" } }] },
+        ultra: { rankings: [{ sourceIdentity: { speciesId: "lickilicky" } }] },
+        master: { rankings: [{ sourceIdentity: { speciesId: "dragonite" } }] },
+      },
+    },
+  };
+  assert.equal(teammateContext(current, "great", "lickilicky").cp, 1500);
+  assert.equal(teammateContext(current, "ultra", "lickilicky").cp, 2500);
+  assert.equal(teammateContext(current, "master", "dragonite").cp, 10000);
+  assert.equal(teammateContext(current, "great", "ninetales_alolan").speciesId, "ninetales_alolan");
+  assert.equal(teammateContext(current, "great", "unranked"), null);
+  assert.throws(() => teammateContext(current, "missing", "lickilicky"), (error) => error.code === "PVP_FORMAT_NOT_FOUND");
+});
+
+test("un échec d'écriture du cache ne transforme pas des suggestions valides en HTTP 500", async () => {
+  const cacheModel = {
+    findOne: () => ({ lean: async () => null }),
+    findOneAndUpdate: async () => { throw new Error("quota cache"); },
+  };
+  const result = await suggestedTeammatesFor(
+    { league: "great", sourceGroup: "all", cp: 1500, speciesId: "lickilicky", sourceHash: "hash" },
+    {
+      cacheModel,
+      scrape: async () => ({
+        sourceUrl: "https://pvpoke.com/rankings/all/1500/overall/lickilicky/",
+        items: [{ rawName: "Mimikyu", providerAlias: "mimikyu", rankOrOrder: 1 }],
+      }),
+      resolveAliasesBatch: async () => [{ status: "unmatched", reason: "ALIAS_UNKNOWN" }],
+      recordDiagnosticsBatch: async () => undefined,
+    },
+  );
+  assert.equal(result.items.length, 1);
+  assert.equal(result.cache, "miss-unpersisted");
+  assert.equal(result.persistenceWarnings[0].code, "PVP_TEAMMATE_CACHE_WRITE_FAILED");
 });
 
 test("les partenaires PvPoke conservent ordre, Shadow, canonicalId et asset exact", async () => {

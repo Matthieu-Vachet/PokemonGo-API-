@@ -143,6 +143,8 @@ test("les routes Identity Manager sont privées et valident le serveur avant Mon
     await request(app).get("/api/v1/admin/pokemon-identities/inventory").expect(401);
     await request(app).get("/api/v1/admin/pokemon-identities/sync/preview").expect(401);
     await request(app).post("/api/v1/admin/pokemon-identities/sync/apply").expect(401);
+    await request(app).get("/api/v1/admin/pokemon-identities/diagnostics/summary").expect(401);
+    await request(app).post("/api/v1/admin/pokemon-identities/diagnostics/reconcile").expect(401);
     await request(app).post("/api/v1/admin/pokemon-identities/resolve-assets").expect(401);
     await request(app)
       .post("/api/v1/admin/pokemon-identities")

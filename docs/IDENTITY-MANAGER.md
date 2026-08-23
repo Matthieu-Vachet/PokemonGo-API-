@@ -65,6 +65,10 @@ Chaque création, modification, alias, fusion, dépréciation, restauration ou s
 
 Les alias non résolus sont agrégés par fournisseur, alias normalisé et identifiant source. La première et dernière détection, le nombre d’occurrences, la cause exacte, la confiance et les candidats sont conservés.
 
+Chaque cause historique est projetée vers un code fonctionnel stable et une sévérité (`info`, `warning` ou `error`). La synthèse distingue, pour chaque fournisseur, les diagnostics ouverts, résolus, actionnables et ceux déjà couverts par un alias actif. Cette dernière catégorie n’est pas supprimée : une réconciliation explicite la clôt en conservant le diagnostic, l’identité résolue, l’utilisateur et la date.
+
+La réconciliation ne traite que les causes liées aux alias et identités. Une alerte d’asset telle que `CANONICAL_ASSET_MISSING` reste ouverte même si l’alias est valide, car elle exige une correction du chemin ou du fichier canonique.
+
 ### Fournisseurs canoniques et alias de source
 
 `providerCatalog` est l’autorité fermée des fournisseurs Identity Manager. Un fournisseur peut déclarer des alias d’entrée pour les identifiants de provenance employés par un dataset, sans créer de fournisseur supplémentaire. `leekduck-eggs`, `leekduck-research`, `leekduck-rocket` et l’ancien `leekduck-rocket-lineups` convergent ainsi vers l’unique fournisseur canonique `leekduck`; `leekduck-raids` reste un fournisseur privé distinct pour préserver son contrat existant.
@@ -88,7 +92,9 @@ Préfixe : `/api/v1/admin/pokemon-identities`.
 - `GET /inventory` : recherche paginée dans l’inventaire local sans passer par les anciens mappings ;
 - `GET /sync/preview` : plan de synchronisation sans écriture et empreinte du plan ;
 - `POST /sync/apply` : application groupée, historisée et idempotente ;
-- `GET /conflicts`, `GET /history`, `GET /diagnostics` ;
+- `GET /conflicts`, `GET /history`, `GET /diagnostics` ; la liste des diagnostics accepte aussi `code` et `severity` et retourne le code, la sévérité, la cause expliquée, l’action attendue et l’éventuelle identité déjà associée ;
+- `GET /diagnostics/summary` : synthèse par fournisseur/code/sévérité/cause, compteurs d’alias actifs et contrôle d’intégrité des références et chemins locaux ;
+- `POST /diagnostics/reconcile` : clôt uniquement les diagnostics ouverts dont l’alias actif exact est déjà relié à une identité canonique ; l’opération est idempotente et traçable ;
 - `GET /providers` : registre central fermé et compteurs d’alias/diagnostics pour les seuls providers déclarés dans `providerCatalog` ;
 - `POST /diagnostics`, `POST /diagnostics/batch` (1 à 500 anomalies agrégées et idempotentes) et `PATCH /diagnostics/:id` ;
 - `GET /export` ;

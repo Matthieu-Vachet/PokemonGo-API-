@@ -3,6 +3,7 @@ const assert = require("node:assert/strict");
 const {
   normalizedAlias,
   resolveSuggestedTeammates,
+  selectUniqueResolvedTeammates,
   suggestedTeammatesFromRankings,
   sourceUrlFor,
   suggestedTeammatesFor,
@@ -70,12 +71,24 @@ test("le calcul serverless choisit cinq partenaires complémentaires sans Chromi
     pokemon("partner_e", 6, 7, 85, ["threat_b"]),
     pokemon("partner_f", 7, 8, 84),
   ];
-  const result = suggestedTeammatesFromRankings({ league: "great", speciesId: "source", rankings });
+  const result = suggestedTeammatesFromRankings({ league: "great", speciesId: "source", rankings }, 5);
   assert.equal(result.items.length, 5);
-  assert.deepEqual(result.items.map((item) => item.pokemonId), [2, 3, 4, 5, 6]);
-  assert.equal(result.items[0].pokemon.identity.image, "https://assets.example/partner_a.png");
-  assert.equal(result.items[0].resolutionStatus, "matched");
+  assert.deepEqual(result.items.map((item) => item.providerAlias), ["partner_a", "partner_b", "partner_c", "partner_d", "partner_e"]);
+  assert.equal(result.sourceItem.providerAlias, "source");
   assert.equal(result.emptyReason, null);
+});
+
+test("la sélection finale déduplique les formes par numéro Pokédex après résolution", () => {
+  const items = [
+    { providerAlias: "keldeo_resolute", pokemonId: 647, canonicalId: "KELDEO_RESOLUTE" },
+    { providerAlias: "keldeo_ordinary", pokemonId: 647, canonicalId: "KELDEO_ORDINARY" },
+    { providerAlias: "dragonite", pokemonId: 149, canonicalId: "DRAGONITE" },
+  ];
+  assert.deepEqual(
+    selectUniqueResolvedTeammates(items, null).map((item) => item.providerAlias),
+    ["keldeo_resolute", "dragonite"],
+  );
+  assert.deepEqual(selectUniqueResolvedTeammates(items, 647).map((item) => item.providerAlias), ["dragonite"]);
 });
 
 test("le calcul serverless refuse un snapshot invalide et distingue un classement absent", () => {

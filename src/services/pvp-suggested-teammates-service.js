@@ -59,53 +59,16 @@ function rankedCandidateScore(candidate, sourceCounters) {
   };
 }
 
-function rankingToSuggestedItem(ranking, rankOrOrder) {
+function rankingToRawSuggestedItem(ranking, rankOrOrder) {
   const providerAlias = safeToken(rankingAlias(ranking), "Alias");
-  const identity = ranking.pokemon?.identity || {};
-  const image = ranking.pokemon?.assets?.image || identity.image || null;
-  const shinyImage = ranking.pokemon?.assets?.shinyImage || identity.shinyImage || null;
-  const canonicalId = identity.canonicalId || ranking.pokemonRef || ranking.pokemon?.id || null;
-  const assetStatus = image ? "matched" : "missing-asset";
   return {
     rawName: ranking.sourceIdentity?.speciesName || ranking.pokemon?.names?.English || providerAlias,
     providerAlias,
-    canonicalId,
-    pokemonId: rankingDex(ranking),
-    form: identity.form || ranking.pokemon?.formId || null,
-    costume: identity.costume || null,
-    shadow: ranking.variant === "shadow" || providerAlias.endsWith("_shadow"),
     rankOrOrder,
-    resolutionStatus: assetStatus,
-    resolutionReason: assetStatus === "matched" ? null : "CANONICAL_ASSET_MISSING",
-    pokemon: {
-      id: ranking.pokemon?.id || canonicalId,
-      dexNr: rankingDex(ranking),
-      formId: ranking.pokemon?.formId || identity.form || canonicalId,
-      names: ranking.pokemon?.names || { English: ranking.sourceIdentity?.speciesName || providerAlias },
-      types: ranking.pokemon?.types || [],
-      assets: { image, shinyImage },
-      identity: {
-        ...identity,
-        canonicalId,
-        pokemon: identity.pokemon || ranking.pokemon?.id || canonicalId,
-        form: identity.form || ranking.pokemon?.formId || null,
-        provider: "pvpoke",
-        rawAlias: providerAlias.replace(/_shadow$/, ""),
-        image,
-        shinyImage,
-        resolutionStatus: assetStatus,
-        assetResolution: {
-          status: assetStatus,
-          image,
-          shinyImage,
-          reason: assetStatus === "matched" ? null : "CANONICAL_ASSET_MISSING",
-        },
-      },
-    },
   };
 }
 
-function suggestedTeammatesFromRankings(context) {
+function suggestedTeammatesFromRankings(context, limit = 20) {
   if (!Array.isArray(context.rankings)) {
     throw new ApiError(
       502,
@@ -130,28 +93,31 @@ function suggestedTeammatesFromRankings(context) {
     if (dex && usedDex.has(dex)) continue;
     selected.push(entry.candidate);
     if (dex) usedDex.add(dex);
-    if (selected.length === 5) break;
+    if (selected.length === limit) break;
   }
-  const items = selected.map((ranking, index) => rankingToSuggestedItem(ranking, index + 1));
-  const diagnostics = items.filter((item) => item.resolutionStatus !== "matched").map((item) => ({
-    provider: "pvpoke",
-    sourceId: item.providerAlias,
-    rawAlias: item.providerAlias.replace(/_shadow$/, ""),
-    pokemonId: item.pokemonId,
-    pokemon: item.rawName,
-    form: item.form,
-    costume: item.costume,
-    reason: item.resolutionReason,
-    confidence: 0,
-    candidates: [],
-    proposedAction: "associate",
-    sourcePayload: { domain: "pvp-rankings", league: context.league, speciesId: context.speciesId },
-  }));
+  const items = selected.map((ranking, index) => rankingToRawSuggestedItem(ranking, index + 1));
   return {
     items,
-    diagnostics,
+    sourceItem: rankingToRawSuggestedItem(source, 0),
     emptyReason: items.length ? null : "SOURCE_RETURNED_NO_SUGGESTIONS",
   };
+}
+
+function selectUniqueResolvedTeammates(items, sourcePokemonId, limit = 5) {
+  const selected = [];
+  const usedPokemonIds = new Set();
+  const usedFallbacks = new Set();
+  for (const item of items) {
+    if (sourcePokemonId != null && item.pokemonId === sourcePokemonId) continue;
+    const fallback = item.canonicalId || item.providerAlias;
+    if (item.pokemonId != null && usedPokemonIds.has(item.pokemonId)) continue;
+    if (item.pokemonId == null && usedFallbacks.has(fallback)) continue;
+    selected.push({ ...item, rankOrOrder: selected.length + 1 });
+    if (item.pokemonId != null) usedPokemonIds.add(item.pokemonId);
+    else usedFallbacks.add(fallback);
+    if (selected.length === limit) break;
+  }
+  return selected;
 }
 
 async function resolveSuggestedTeammates(rawItems, context, resolver = identityService.resolveAliasesBatch) {
@@ -247,9 +213,22 @@ async function suggestedTeammatesFor(context, options = {}) {
     ? null
     : suggestedTeammatesFromRankings({ ...context, league, speciesId });
   const scraped = ranked || await options.scrape({ ...context, league, speciesId });
+  const resolvedBatch = await resolveSuggestedTeammates(
+    ranked ? [ranked.sourceItem, ...ranked.items] : scraped.items,
+    { league, speciesId },
+    options.resolveAliasesBatch,
+  );
   const resolved = ranked
-    ? { items: ranked.items, diagnostics: ranked.diagnostics }
-    : await resolveSuggestedTeammates(scraped.items, { league, speciesId }, options.resolveAliasesBatch);
+    ? (() => {
+      const source = resolvedBatch.items[0];
+      const items = selectUniqueResolvedTeammates(resolvedBatch.items.slice(1), source?.pokemonId);
+      const selectedAliases = new Set(items.map((item) => item.providerAlias));
+      return {
+        items,
+        diagnostics: resolvedBatch.diagnostics.filter((diagnostic) => selectedAliases.has(diagnostic.sourceId)),
+      };
+    })()
+    : resolvedBatch;
   if (resolved.diagnostics.length) {
     try {
       await (options.recordDiagnosticsBatch || identityService.recordDiagnosticsBatch)(resolved.diagnostics);
@@ -287,9 +266,10 @@ async function suggestedTeammatesFor(context, options = {}) {
 module.exports = {
   normalizedAlias,
   rankedCandidateScore,
-  rankingToSuggestedItem,
+  rankingToRawSuggestedItem,
   resolveSuggestedTeammates,
   sourceUrlFor,
   suggestedTeammatesFor,
   suggestedTeammatesFromRankings,
+  selectUniqueResolvedTeammates,
 };

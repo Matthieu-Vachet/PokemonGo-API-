@@ -98,6 +98,15 @@ Toutes les routes exigent `x-api-admin-secret`. Le Dashboard ajoute également l
 
 La liste accepte notamment `status` et `syncStatus` (`synchronized`, `orphaned`, `draft`, `conflict`) ainsi qu’un tri `sort=syncStatus`, afin que l’interface puisse isoler les entrées qui exigent une intervention.
 
+L'état global de synchronisation est calculé par l'API et exposé dans `synchronization`.
+L'empreinte locale et l'empreinte de la projection MongoDB utilisent SHA-256, une
+sérialisation JSON aux clés triées et l'ordre `pokemonId`, `canonicalId`, `identityKey`.
+`SYNCED` exige des empreintes égales et aucun create, update, conflit ou orphelin encore
+à marquer. Les documents déjà `orphaned` restent comptés comme « conservés », mais ne
+rendent plus le catalogue sale et ne sont ni réécrits ni historisés lors d'une seconde
+application. `lastSyncedAt` provient du dernier `localIdentity.lastValidatedAt` portant
+l'empreinte d'inventaire courante.
+
 ## Resolver
 
 ### RULE-IDENTITY-001 — ordre de résolution

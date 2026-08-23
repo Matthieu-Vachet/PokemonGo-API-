@@ -64,9 +64,18 @@ test("le plan de synchronisation crée tout le catalogue puis devient idempotent
     update: 0,
     unchanged: inventory.stats.totalIdentities,
     orphan: 0,
+    orphanUpdate: 0,
     conflict: 0,
     aliasesPreserved: 0,
   });
+  assert.equal(first.synchronization.state, "CHANGES_REQUIRED");
+  assert.equal(first.synchronization.dirty, true);
+  assert.equal(second.synchronization.state, "SYNCED");
+  assert.equal(second.synchronization.dirty, false);
+  assert.equal(second.synchronization.hashesMatch, true);
+  assert.equal(second.synchronization.localHash, inventory.metadata.fingerprint);
+  assert.equal(second.synchronization.mongoHash, inventory.metadata.fingerprint);
+  assert.equal(second.synchronization.lastSyncedAt, "2026-07-18T00:00:00.000Z");
 });
 
 test("Sneasler et Gimmighoul séparent leur forme précise du document NORMAL historique", () => {
@@ -174,6 +183,7 @@ test("Corsola normal, Galarian et SPRING_2026 réparent le modèle historique sa
     update: 1,
     unchanged: 2,
     orphan: 0,
+    orphanUpdate: 0,
     conflict: 0,
     aliasesPreserved: 2,
   });
@@ -423,9 +433,59 @@ test("la synchronisation conserve les alias et marque sans suppression une ident
   const plan = syncService.buildIdentitySyncPlan({ inventory: reducedInventory, existingIdentities: existing });
   assert.equal(plan.summary.update, 1);
   assert.equal(plan.summary.orphan, 1);
+  assert.equal(plan.summary.orphanUpdate, 1);
   assert.equal(plan.summary.aliasesPreserved, 1);
   assert.equal(plan.orphans[0].payload.status, "draft");
   assert.equal(plan.orphans[0].payload.syncStatus, "orphaned");
+});
+
+test("un orphelin déjà conservé ne salit plus le catalogue et le digest ignore l'ordre MongoDB", () => {
+  const inventory = inventoryService.loadLocalIdentityInventory();
+  const first = syncService.buildIdentitySyncPlan({
+    inventory,
+    existingIdentities: [],
+    validatedAt: "2026-08-23T02:00:00.000Z",
+  });
+  const synchronized = first.creates.map((entry, index) => ({ _id: mongoId(index + 1), ...entry.payload }));
+  const activeOrphan = {
+    _id: mongoId(9998),
+    canonicalId: "INVENTED_VARIANT",
+    pokemonId: 25,
+    form: "INVENTED",
+    costume: null,
+    status: "active",
+    syncStatus: "draft",
+    aliases: [{ provider: "legacy", value: "invented", status: "active" }],
+  };
+  const preview = syncService.buildIdentitySyncPlan({
+    inventory,
+    existingIdentities: [activeOrphan, ...synchronized],
+    validatedAt: "2026-08-23T03:00:00.000Z",
+  });
+  assert.equal(preview.summary.create, 0);
+  assert.equal(preview.summary.update, 0);
+  assert.equal(preview.summary.orphan, 1);
+  assert.equal(preview.summary.orphanUpdate, 1);
+  assert.equal(preview.synchronization.state, "CHANGES_REQUIRED");
+
+  const retainedOrphan = { ...activeOrphan, ...preview.orphanUpdates[0].payload };
+  const secondPreview = syncService.buildIdentitySyncPlan({
+    inventory,
+    existingIdentities: [...synchronized, retainedOrphan],
+    validatedAt: "2026-08-23T04:00:00.000Z",
+  });
+  const reversedPreview = syncService.buildIdentitySyncPlan({
+    inventory,
+    existingIdentities: [retainedOrphan, ...synchronized.toReversed()],
+    validatedAt: "2026-08-23T04:00:00.000Z",
+  });
+  assert.equal(secondPreview.summary.orphan, 1);
+  assert.equal(secondPreview.summary.orphanUpdate, 0);
+  assert.equal(secondPreview.summary.aliasesPreserved, 1);
+  assert.equal(secondPreview.synchronization.state, "SYNCED");
+  assert.equal(secondPreview.synchronization.dirty, false);
+  assert.equal(secondPreview.synchronization.hashesMatch, true);
+  assert.equal(syncService.syncPlanDigest(secondPreview), syncService.syncPlanDigest(reversedPreview));
 });
 
 test("les canonical IDs officiels MALE/FEMALE restent distincts", () => {

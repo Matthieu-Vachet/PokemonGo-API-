@@ -19,3 +19,5 @@ Le normaliseur accepte les causes historiques des générateurs (`unknown-form`,
 Le rapport expose `total`, `detailedCount`, `missingDetailCount` et `complete`. Les anciennes exécutions qui ne contenaient qu’un compteur restent lisibles mais sont signalées comme incomplètes. Toute nouvelle exécution stocke les entrées normalisées dans le document `current`, le `DatasetRun` et la réponse de polling asynchrone.
 
 Le Game Master Explorer suit le même contrat. Les exécutions Dashboard natives (Events et Community Days) normalisent également leur tableau avant persistance.
+
+Pour les mappings Game Master, le total inclut également les identités `local-only` de PokemonGo-Data. Elles sont détaillées avec le provider `PokemonGo-Data`, leur clé locale comme `sourceId`, la cause `SOURCE_ID_UNKNOWN` et leur fichier canonique comme destination. Le compteur et `detailedCount` restent ainsi strictement alignés après chaque nouvelle régénération.

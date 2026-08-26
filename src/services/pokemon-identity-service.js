@@ -83,6 +83,7 @@ function isAliasResolvableDiagnostic(reason) {
 }
 
 const providerCatalog = Object.freeze([
+  { id: "pokemongo-data", label: "PokemonGo-Data", domains: ["pokemon-identity-mappings"], visibility: "private" },
   { id: "game-master", label: "Game Master · PokeMiners", domains: ["pokemon-identity-mappings"], visibility: "private" },
   { id: "pokeminers-game-masters", label: "PokeMiners Game Masters", domains: ["game-master"], visibility: "private" },
   {

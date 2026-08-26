@@ -67,7 +67,7 @@ test("le registre refuse une source inconnue ou retirée", async () => {
 });
 
 test("les fournisseurs encore utilisés sont enregistrés explicitement", () => {
-  for (const provider of ["game-master", "pokeminers-game-masters", "leekduck", "leekduck-raids", "snacknap", "snacknap-max-battles", "margxt", "pvpoke", "pogoapi"]) {
+  for (const provider of ["pokemongo-data", "game-master", "pokeminers-game-masters", "leekduck", "leekduck-raids", "snacknap", "snacknap-max-battles", "margxt", "pvpoke", "pogoapi"]) {
     assert.equal(assertRegisteredProvider(provider), provider);
   }
   assert.equal(providerCatalog.some((provider) => provider.id === "ma-collection"), false);

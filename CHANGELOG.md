@@ -4,7 +4,7 @@ title: Changelog Pokemon GO API
 status: active
 lang: fr
 version: 1.25.0
-updated_at: 2026-08-22
+updated_at: 2026-08-27
 author: MatWeb Innovation
 projects:
   - PokemonGo-API-
@@ -15,11 +15,23 @@ related:
 
 # Changelog
 
-## 1.25.0 — Correctif Suggested Teammates serverless
+## Unreleased
+
+### Added
+
+- Publie `UnmatchedEntriesReport@1` dans les documents current, les runs et le polling, avec taxonomie fermée, détails complets et conservation des occurrences Shiny.
+- Enregistre `pokemongo-data` comme provider diagnostique afin que les identités locales absentes d’un flux soient actionnables dans l’Identity Manager.
+
+### Changed
 
 - Remplacement du Team Ranker Chromium, trop lent dans la Function Vercel, par un calcul déterministe sur le snapshot PvPoke synchronisé.
 - Conservation du contexte Great/Ultra/Master, des formes régionales, des identités et assets canoniques.
 - État vide réservé aux espèces absentes du classement ; snapshot invalide signalé explicitement.
+
+### Fixed
+
+- Préserve chaque occurrence non matchée Shiny grâce à `occurrenceId` au lieu de fusionner des lignes partageant un nom ou un sprite.
+- Aligne les compteurs Game Master sur les détails exposés, y compris les identités `local-only`.
 
 ## 1.25.0 - 2026-08-22
 
@@ -31,13 +43,6 @@ related:
 ### Fixed
 
 - Évite qu’un changement de schéma ou une validation de régression n’écrase le dataset `best_defenders` courant.
-
-## Unreleased
-
-### Fixed
-
-- Restaure les Suggested Teammates PvPoke en bloquant les ressources tierces qui retardaient le Team Ranker jusqu'au timeout serverless, sans masquer un vrai timeout source.
-- Retourne un état vide explicite pour un Pokémon non classé et rend la persistance du cache de suggestions non bloquante après un calcul valide.
 
 ## 1.24.0 - 2026-08-22
 

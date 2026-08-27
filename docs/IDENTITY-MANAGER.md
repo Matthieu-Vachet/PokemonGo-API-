@@ -3,8 +3,8 @@ id: ADR-IDENTITY-001
 title: Identity Manager Pokémon GO
 status: active
 lang: fr
-version: 2.3.0
-updated_at: 2026-08-15
+version: 2.4.0
+updated_at: 2026-08-27
 author: MatWeb Innovation
 projects:
   - PokemonGo-API-
@@ -64,6 +64,12 @@ Chaque création, modification, alias, fusion, dépréciation, restauration ou s
 ### `pokemon_identity_diagnostics`
 
 Les alias non résolus sont agrégés par fournisseur, alias normalisé et identifiant source. La première et dernière détection, le nombre d’occurrences, la cause exacte, la confiance et les candidats sont conservés.
+
+Les régénérations exposent aussi `UnmatchedEntriesReport@1`. Ce contrat conserve pour
+chaque ligne provider, identifiant et valeur source, nom, raison, candidats, confiance,
+destination et statut. `occurrenceId` distingue les occurrences légitimes qui partagent
+un alias ou un sprite, notamment dans Shiny Tracker. Ces entrées alimentent les actions
+Associer, Créer, Ignorer et Faux positif sans modifier la valeur fournisseur.
 
 Chaque cause historique est projetée vers un code fonctionnel stable et une sévérité (`info`, `warning` ou `error`). La synthèse distingue, pour chaque fournisseur, les diagnostics ouverts, résolus, actionnables et ceux déjà couverts par un alias actif. Cette dernière catégorie n’est pas supprimée : une réconciliation explicite la clôt en conservant le diagnostic, l’identité résolue, l’utilisateur et la date.
 
@@ -170,7 +176,7 @@ Application contrôlée :
 npm run sync:pokemon-identities:write
 ```
 
-Les anciens noms `migrate:pokemon-identities*` restent des alias de compatibilité. Le script exporte la collection avant écriture, recalcule le plan depuis les 1 920 identités locales, conserve les alias et métadonnées manuelles, relie les anciens documents, marque les orphelins en brouillon sans les supprimer, écrit en lots et vérifie un second dry-run.
+Les anciens noms `migrate:pokemon-identities*` restent des alias de compatibilité. Le script exporte la collection avant écriture, recalcule le plan depuis l’inventaire local courant, conserve les alias et métadonnées manuelles, relie les anciens documents, marque les orphelins en brouillon sans les supprimer, écrit en lots et vérifie un second dry-run. L’interface affiche séparément le total MongoDB, le total local et le plan avant/après afin qu’un écart ne soit jamais présenté comme synchronisé.
 
 La transition historique `CORSOLA_SPRING_2026` reste une reclassification canonique explicitement auditée. Le document MongoDB ancien utilisait `222|none|SPRING_2026|none`, rangeait la variante dans `costume` et pointait vers le core Galarian. Le Game Master et l’inventaire local courant prouvent une forme normale unique `222|SPRING_2026|none|none`, portée par `data/assets/core/normal/0222-corsola.assets.json`. Le relink exige simultanément le canonicalId, le dex, les deux clés exactes, l’alias Game Master actif et les fichiers source attendus. Il met à jour la forme et la référence locale, conserve tous les alias MongoDB, écrit un historique `sync-relink` et devient idempotent. Toute combinaison forme + costume ou toute autre divergence reste un conflit manuel sans sélection automatique.
 
@@ -214,3 +220,4 @@ Résultat du 18 juillet 2026 : 1 391 documents reliés, 520 identités locales c
   2 anciennes entrées marquées orphelines sans suppression et zéro conflit ; Corsola
   reste idempotent au second passage.
 - 2026-08-15 — réparation déterministe des anciennes clés Neutral/Gorging/Gulping, avec six alias de fixtures préservés et second passage idempotent.
+- 2026-08-27 — intégration des rapports non matchés complets, conservation des occurrences Shiny et provider diagnostique PokemonGo-Data.

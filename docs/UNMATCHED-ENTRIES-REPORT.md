@@ -2,7 +2,7 @@
 
 Les régénérations `current` ne publient plus un compteur de non-matchés sans contexte. Le pipeline construit un rapport versionné `UnmatchedEntriesReport@1` dans `current.diagnostics.unmatchedReport` et conserve `unmatchedEntries` comme façade de compatibilité.
 
-Chaque entrée contient obligatoirement `provider`, `sourceId`, `name`, `sourceValue`, `reason`, `candidates`, `confidence`, `destination` et `status`. Les informations de forme, costume, image, fichier local et payload source restent disponibles pour l’audit.
+Chaque entrée contient obligatoirement `provider`, `sourceId`, `name`, `sourceValue`, `reason`, `candidates`, `confidence`, `destination` et `status`. `occurrenceId` est conservé lorsqu’un provider distingue plusieurs occurrences partageant la même valeur normalisée. Les informations de forme, costume, image, fichier local et payload source restent disponibles pour l’audit.
 
 La raison appartient à une taxonomie fermée :
 
@@ -19,5 +19,10 @@ Le normaliseur accepte les causes historiques des générateurs (`unknown-form`,
 Le rapport expose `total`, `detailedCount`, `missingDetailCount` et `complete`. Les anciennes exécutions qui ne contenaient qu’un compteur restent lisibles mais sont signalées comme incomplètes. Toute nouvelle exécution stocke les entrées normalisées dans le document `current`, le `DatasetRun` et la réponse de polling asynchrone.
 
 Le Game Master Explorer suit le même contrat. Les exécutions Dashboard natives (Events et Community Days) normalisent également leur tableau avant persistance.
+
+Shiny Tracker ne déduplique plus deux observations uniquement parce qu’elles partagent
+un nom ou un sprite. Le rapport de réconciliation conserve 18 occurrences historiques
+correspondant à 15 identités uniques; les mappings confirmés sont déterministes et
+aucune forme normale approximative n’est créée.
 
 Pour les mappings Game Master, le total inclut également les identités `local-only` de PokemonGo-Data. Elles sont détaillées avec le provider enregistré `pokemongo-data`, leur clé locale comme `sourceId`, la cause `SOURCE_ID_UNKNOWN` et leur fichier canonique comme destination. Le compteur et `detailedCount` restent ainsi strictement alignés après chaque nouvelle régénération, et leur diagnostic peut être persisté par l’Identity Manager sans source implicite.

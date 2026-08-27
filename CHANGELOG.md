@@ -3,7 +3,7 @@ id: RULE-CHANGELOG-001
 title: Changelog Pokemon GO API
 status: active
 lang: fr
-version: 1.25.0
+version: 1.26.0
 updated_at: 2026-08-27
 author: MatWeb Innovation
 projects:
@@ -16,6 +16,8 @@ related:
 # Changelog
 
 ## Unreleased
+
+## 1.26.0 - 2026-08-27
 
 ### Added
 

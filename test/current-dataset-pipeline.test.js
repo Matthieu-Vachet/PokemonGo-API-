@@ -135,6 +135,7 @@ test("normalise les non-matchés en diagnostics détaillés et dédupliqués", (
   assert.equal(entries.length, 2);
   assert.deepEqual(entries[0], {
     provider: "pokeminers-game-masters",
+    occurrenceId: null,
     sourceId: "PIKACHU_FALL_2019",
     name: "Pikachu",
     sourceValue: "PIKACHU_FALL_2019",
@@ -148,6 +149,11 @@ test("normalise les non-matchés en diagnostics détaillés et dédupliqués", (
     sourceForm: "PIKACHU_NORMAL",
     sourceCostume: "FALL_2019",
     sourceImage: "pikachu.png",
+    shiny: false,
+    shinyDetails: null,
+    dexNr: null,
+    bucket: null,
+    rank: null,
     localFile: "pokemon/0025-pikachu.json",
     sourcePayload: {
       status: "ambiguous",
@@ -163,6 +169,46 @@ test("normalise les non-matchés en diagnostics détaillés et dédupliqués", (
   assert.equal(entries[1].sourceName, "Rare Candy XL");
   assert.equal(entries[1].reason, "NO_CANONICAL_MATCH");
   assert.equal(entries[1].provider, "pokeminers-game-masters");
+});
+
+test("préserve les 18 occurrences Shiny lorsque le rapport du générateur est complet", () => {
+  const entries = unmatchedEntriesFromReport({
+    unmatchedEntriesComplete: true,
+    unmatchedEntries: [
+      {
+        provider: "snacknap",
+        occurrenceId: "total:24:39_c74_s:0",
+        sourceId: "39_c74_s",
+        sourceName: "Jigglypuff (Ribbon)",
+        shiny: true,
+        dexNr: 39,
+        bucket: "total",
+        rank: 24,
+        reason: "missing-asset",
+      },
+      {
+        provider: "snacknap",
+        occurrenceId: "total:304:39_c74_s:1",
+        sourceId: "39_c74_s",
+        sourceName: "Jigglypuff (Ribbon)",
+        shiny: true,
+        dexNr: 39,
+        bucket: "total",
+        rank: 304,
+        reason: "missing-asset",
+      },
+    ],
+    unmatched: ["Jigglypuff (Ribbon)"],
+    resolutionReport: {
+      details: [{ status: "missing-asset", sourceId: "39_c74_s" }],
+    },
+  });
+
+  assert.equal(entries.length, 2);
+  assert.notEqual(entries[0].occurrenceId, entries[1].occurrenceId);
+  assert.equal(entries[0].shiny, true);
+  assert.equal(entries[0].dexNr, 39);
+  assert.equal(entries[1].rank, 304);
 });
 
 test("produit le contrat UnmatchedEntriesReport complet et sa taxonomie stable", () => {

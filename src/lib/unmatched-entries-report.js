@@ -84,6 +84,7 @@ function normalizeUnmatchedEntry(entry = {}, options = {}) {
 
   return {
     provider: firstDefined(entry.provider, options.provider, null),
+    occurrenceId: firstDefined(entry.occurrenceId, entry.entryId) ?? null,
     sourceId,
     name,
     sourceValue,
@@ -97,6 +98,11 @@ function normalizeUnmatchedEntry(entry = {}, options = {}) {
     sourceForm: firstDefined(entry.sourceForm, entry.rawForm, entry.form, entry.requestedVariant, null),
     sourceCostume: firstDefined(entry.sourceCostume, entry.rawCostume, entry.costume, null),
     sourceImage: firstDefined(entry.sourceImage, entry.rawImage, entry.image, null),
+    shiny: Boolean(firstDefined(entry.shiny, entry.isShiny, false)),
+    shinyDetails: firstDefined(entry.shinyDetails) ?? null,
+    dexNr: firstDefined(entry.dexNr, entry.pokemonId) ?? null,
+    bucket: firstDefined(entry.bucket) ?? null,
+    rank: firstDefined(entry.rank) ?? null,
     localFile: firstDefined(entry.localFile, null),
     sourcePayload: firstDefined(entry.sourcePayload, entry.raw, entry),
   };
@@ -108,6 +114,7 @@ function createUnmatchedEntriesReport(entries = [], options = {}) {
     .map((entry) => normalizeUnmatchedEntry(entry, options))
     .filter((entry) => {
       const key = JSON.stringify([
+        entry.occurrenceId,
         entry.provider,
         entry.sourceId,
         entry.name,

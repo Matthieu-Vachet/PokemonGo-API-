@@ -82,6 +82,10 @@ function reportWarnings(report = {}) {
 }
 
 function unmatchedEntriesFromReport(report = {}, options = {}) {
+  const authoritativeEntries = report.unmatchedEntriesComplete === true
+    ? asArray(report.unmatchedEntries)
+    : null;
+  if (authoritativeEntries) return createUnmatchedEntriesReport(authoritativeEntries, options).entries;
   const entries = [...asArray(report.unmatchedEntries), ...asArray(report.unmatched)];
   for (const entry of asArray(report.resolutionReport?.details)) {
     if (entry?.status && entry.status !== "matched") entries.push(entry);

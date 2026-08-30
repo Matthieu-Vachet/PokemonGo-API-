@@ -130,17 +130,30 @@ test("normalise les non-matchés en diagnostics détaillés et dédupliqués", (
       ],
     },
     unmatchedItems: ["Rare Candy XL"],
-  });
+  }, { provider: "pokeminers-game-masters" });
 
   assert.equal(entries.length, 2);
   assert.deepEqual(entries[0], {
+    provider: "pokeminers-game-masters",
+    occurrenceId: null,
     sourceId: "PIKACHU_FALL_2019",
+    name: "Pikachu",
+    sourceValue: "PIKACHU_FALL_2019",
+    reason: "AMBIGUOUS_MATCH",
+    reasonDetails: "ambiguous",
+    candidates: [{ costume: "FALL_2019" }, { costume: "WINTER_2020" }],
+    confidence: 0,
+    destination: "pokemon/0025-pikachu.json",
+    status: "open",
     sourceName: "Pikachu",
     sourceForm: "PIKACHU_NORMAL",
     sourceCostume: "FALL_2019",
     sourceImage: "pikachu.png",
-    reason: "ambiguous",
-    candidates: [{ costume: "FALL_2019" }, { costume: "WINTER_2020" }],
+    shiny: false,
+    shinyDetails: null,
+    dexNr: null,
+    bucket: null,
+    rank: null,
     localFile: "pokemon/0025-pikachu.json",
     sourcePayload: {
       status: "ambiguous",
@@ -154,7 +167,74 @@ test("normalise les non-matchés en diagnostics détaillés et dédupliqués", (
     },
   });
   assert.equal(entries[1].sourceName, "Rare Candy XL");
-  assert.equal(entries[1].reason, "missing-local-item");
+  assert.equal(entries[1].reason, "NO_CANONICAL_MATCH");
+  assert.equal(entries[1].provider, "pokeminers-game-masters");
+});
+
+test("préserve les 18 occurrences Shiny lorsque le rapport du générateur est complet", () => {
+  const entries = unmatchedEntriesFromReport({
+    unmatchedEntriesComplete: true,
+    unmatchedEntries: [
+      {
+        provider: "snacknap",
+        occurrenceId: "total:24:39_c74_s:0",
+        sourceId: "39_c74_s",
+        sourceName: "Jigglypuff (Ribbon)",
+        shiny: true,
+        dexNr: 39,
+        bucket: "total",
+        rank: 24,
+        reason: "missing-asset",
+      },
+      {
+        provider: "snacknap",
+        occurrenceId: "total:304:39_c74_s:1",
+        sourceId: "39_c74_s",
+        sourceName: "Jigglypuff (Ribbon)",
+        shiny: true,
+        dexNr: 39,
+        bucket: "total",
+        rank: 304,
+        reason: "missing-asset",
+      },
+    ],
+    unmatched: ["Jigglypuff (Ribbon)"],
+    resolutionReport: {
+      details: [{ status: "missing-asset", sourceId: "39_c74_s" }],
+    },
+  });
+
+  assert.equal(entries.length, 2);
+  assert.notEqual(entries[0].occurrenceId, entries[1].occurrenceId);
+  assert.equal(entries[0].shiny, true);
+  assert.equal(entries[0].dexNr, 39);
+  assert.equal(entries[1].rank, 304);
+});
+
+test("produit le contrat UnmatchedEntriesReport complet et sa taxonomie stable", () => {
+  const diagnostics = buildDiagnostics({
+    provider: "snacknap",
+    report: {
+      resolutionReport: {
+        details: [
+          { status: "unmatched", sourceId: "PIKACHU_PARTY", sourceName: "Pikachu", rawAlias: "pikachu-party", reason: "ALIAS_UNKNOWN" },
+          { status: "ambiguous", sourceId: "025", sourceName: "Pikachu", sourceForm: "party", candidates: [{ canonicalId: "pokemon:0025:normal:party_2020", confidence: 0.72 }] },
+        ],
+      },
+    },
+    stats: { itemsParsed: 2, itemsMatched: 0, itemsUnmatched: 2 },
+    diff: { changed: false, added: 0, removed: 0, modified: 0 },
+  });
+
+  assert.equal(diagnostics.unmatchedReport.schema, "UnmatchedEntriesReport@1");
+  assert.equal(diagnostics.unmatchedReport.complete, true);
+  assert.equal(diagnostics.unmatchedReport.total, 2);
+  assert.deepEqual(diagnostics.unmatchedReport.reasonCounts, { MISSING_ALIAS: 1, AMBIGUOUS_MATCH: 1 });
+  for (const entry of diagnostics.unmatchedReport.entries) {
+    for (const field of ["provider", "sourceId", "name", "sourceValue", "reason", "candidates", "confidence", "destination", "status"]) {
+      assert.ok(Object.hasOwn(entry, field), `champ ${field} manquant`);
+    }
+  }
 });
 
 test("le rapport PvP expose séparément génération, ignorés, MAPPING_MISSING et WARNING", () => {
@@ -204,12 +284,12 @@ test("le rapport PvP expose séparément génération, ignorés, MAPPING_MISSING
   assert.equal(datasetRunStatus({ unmatchedCount: 0, warnings: [] }, { changed: false }), "unchanged");
 });
 
-test("les indisponibilités source distinguent protection et panne temporaire", () => {
+test("les indisponibilités source couvrent protection, panne, schéma et validation", () => {
   const protectedSource = sourceAvailabilityDiagnostic({
     code: "SOURCE_PROTECTED",
     message: "Cloudflare challenge",
     details: {
-      sourceUrl: "https://db.pokemongohub.net/fr/best/gym-defenders",
+      sourceUrl: "https://db.pokemongohub.net/best/gym-defenders",
       httpStatus: 403,
       challenge: true,
       retryable: false,
@@ -228,13 +308,16 @@ test("les indisponibilités source distinguent protection et panne temporaire", 
     detectedAt: new Date("2026-08-09T12:00:00.000Z"),
     retryable: false,
     provider: null,
-    sourceUrl: "https://db.pokemongohub.net/fr/best/gym-defenders",
+    sourceUrl: "https://db.pokemongohub.net/best/gym-defenders",
     httpStatus: 403,
     challenge: true,
     preservation: "Ne pas remplacer le dernier snapshot valide.",
   });
   assert.equal(temporary.code, "SOURCE_TEMPORARILY_UNAVAILABLE");
   assert.equal(temporary.retryable, true);
+  assert.equal(sourceAvailabilityDiagnostic({ code: "SOURCE_UNAVAILABLE" }).code, "SOURCE_UNAVAILABLE");
+  assert.equal(sourceAvailabilityDiagnostic({ code: "SOURCE_SCHEMA_CHANGED" }).code, "SOURCE_SCHEMA_CHANGED");
+  assert.equal(sourceAvailabilityDiagnostic({ code: "VALIDATION_FAILED" }).code, "VALIDATION_FAILED");
   assert.equal(sourceAvailabilityDiagnostic({ code: "SOURCE_HTTP_ERROR" }), null);
 });
 

@@ -14,10 +14,32 @@ test("les modules runtime PokemonGo-Data sont des dépendances statiques du bund
   assert.equal(typeof tooling.gameMasterExplorer.buildGameMasterExplorerIndex, "function");
   assert.equal(typeof tooling.gameMasterGenerator.generateGameMasterExplorerIndex, "function");
   assert.equal(typeof tooling.gameMasterMappings.buildGameMasterPokemonMappings, "function");
+  assert.equal(typeof tooling.gameMasterMappings.unmatchedResolutionDetails, "function");
   assert.equal(typeof tooling.pokemonAssetResolver.resolvePokemonAssetByCanonicalIdentity, "function");
   assert.equal(typeof tooling.pokemonLocalIdentityInventory.loadPokemonLocalIdentityInventory, "function");
   assert.equal(typeof tooling.separatedAssetRecords.writeManifest, "function");
   assert.ok(fs.existsSync(path.join(dataRoot, "tooling", "lib", "current-event-utils.js")));
+});
+
+test("le rapport Game Master détaille aussi les identités locales absentes du flux", () => {
+  const payload = tooling.gameMasterMappings.buildGameMasterPokemonMappings([], [{
+    dexNr: 25,
+    id: "PIKACHU",
+    baseFormId: "PIKACHU",
+    formId: "PIKACHU",
+    form: "normal",
+    file: "data/pokemon/normal/0025-pikachu.json",
+    assets: {
+      image: "pikachu.png",
+      assetForms: [{ costume: "PIKACHU_LOCAL_ONLY", image: "pikachu-local-only.png" }],
+    },
+  }]);
+  const expected = payload.mappings.filter((mapping) => mapping.mappingStatus !== "matched");
+  const details = tooling.gameMasterMappings.unmatchedResolutionDetails(payload);
+
+  assert.equal(details.length, expected.length);
+  assert.ok(details.some((entry) => entry.provider === "PokemonGo-Data"));
+  assert.ok(details.every((entry) => entry.sourceId && entry.rawAlias && entry.status));
 });
 
 test("la version Data canonique reste une dépendance statique du bundle Next.js", () => {

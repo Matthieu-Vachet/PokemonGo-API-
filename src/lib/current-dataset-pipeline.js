@@ -6,12 +6,19 @@ const { generateCurrentData } = require("./current-data-pipeline");
 const { computeDatasetHash, diffDatasets } = require("./current-dataset-hash");
 const { compressedBuffer, hydrateCurrentDatasetDocument, serializeCurrentDatasetDocument } = require("./current-dataset-reader");
 const { DatasetRun } = require("../models");
+const { createUnmatchedEntriesReport, normalizeUnmatchedEntry } = require("./unmatched-entries-report");
 
 // The generation stage runs in api/rest.js (60 s max). Keep the orphan window
 // slightly above that ceiling so polling never fails a Function still running.
 const ACTIVE_REGENERATION_WINDOW_MS = 75 * 1000;
 const REGENERATION_TIMEOUT_CODE = "DATASET_REGENERATION_TIMEOUT";
-const SOURCE_AVAILABILITY_CODES = new Set(["SOURCE_PROTECTED", "SOURCE_TEMPORARILY_UNAVAILABLE"]);
+const SOURCE_AVAILABILITY_CODES = new Set([
+  "SOURCE_PROTECTED",
+  "SOURCE_TEMPORARILY_UNAVAILABLE",
+  "SOURCE_UNAVAILABLE",
+  "SOURCE_SCHEMA_CHANGED",
+  "VALIDATION_FAILED",
+]);
 
 function asArray(value) {
   return Array.isArray(value) ? value : [];
@@ -74,43 +81,37 @@ function reportWarnings(report = {}) {
   return [...new Set(warnings.map((warning) => String(warning).trim()).filter(Boolean))];
 }
 
-function normalizeUnmatchedEntry(entry = {}, fallbackReason = "unknown") {
-  return {
-    sourceId: entry.sourceId ?? entry.rawId ?? entry.id ?? null,
-    sourceName: entry.sourceName ?? entry.rawName ?? entry.name ?? null,
-    sourceForm: entry.sourceForm ?? entry.rawForm ?? entry.form ?? entry.requestedVariant ?? null,
-    sourceCostume: entry.sourceCostume ?? entry.rawCostume ?? entry.costume ?? null,
-    sourceImage: entry.sourceImage ?? entry.rawImage ?? entry.image ?? null,
-    reason: entry.reason ?? entry.status ?? fallbackReason,
-    candidates: asArray(entry.candidates ?? entry.ambiguousCandidates),
-    localFile: entry.localFile ?? null,
-    sourcePayload: entry.sourcePayload ?? entry.raw ?? entry,
-  };
-}
-
-function unmatchedEntriesFromReport(report = {}) {
-  const entries = asArray(report.unmatchedEntries).map((entry) => normalizeUnmatchedEntry(entry));
+function unmatchedEntriesFromReport(report = {}, options = {}) {
+  const authoritativeEntries = report.unmatchedEntriesComplete === true
+    ? asArray(report.unmatchedEntries)
+    : null;
+  if (authoritativeEntries) return createUnmatchedEntriesReport(authoritativeEntries, options).entries;
+  const entries = [...asArray(report.unmatchedEntries), ...asArray(report.unmatched)];
   for (const entry of asArray(report.resolutionReport?.details)) {
-    if (entry?.status && entry.status !== "matched") entries.push(normalizeUnmatchedEntry(entry, entry.status));
+    if (entry?.status && entry.status !== "matched") entries.push(entry);
   }
   for (const name of asArray(report.unmatchedPokemon)) {
-    entries.push(normalizeUnmatchedEntry({ sourceName: name, reason: "missing-local-pokemon" }));
+    entries.push(typeof name === "object" ? name : { sourceName: name, reason: "missing-local-pokemon" });
   }
   for (const name of asArray(report.unmatchedItems)) {
-    entries.push(normalizeUnmatchedEntry({ sourceName: name, reason: "missing-local-item" }));
+    entries.push(typeof name === "object" ? name : { sourceName: name, reason: "missing-local-item" });
   }
-  const seen = new Set();
-  return entries.filter((entry) => {
-    const key = JSON.stringify([entry.sourceId, entry.sourceName, entry.sourceForm, entry.sourceCostume, entry.reason]);
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
+  for (const entry of asArray(report.unmatchedPokemonRewards)) {
+    entries.push(typeof entry === "object" ? entry : { sourceName: entry, reason: "missing-local-pokemon" });
+  }
+  for (const entry of asArray(report.unmatchedItemRewards)) {
+    entries.push(typeof entry === "object" ? entry : { sourceName: entry, reason: "missing-local-item" });
+  }
+  return createUnmatchedEntriesReport(entries, options).entries;
 }
 
-function buildDiagnostics({ report = {}, stats, diff }) {
+function buildDiagnostics({ report = {}, stats, diff, provider = null }) {
   const warnings = reportWarnings(report);
-  const unmatchedEntries = unmatchedEntriesFromReport(report);
+  const unmatchedReport = createUnmatchedEntriesReport(
+    unmatchedEntriesFromReport(report, { provider }),
+    { provider, expectedCount: Number(stats.itemsUnmatched || 0) },
+  );
+  const unmatchedEntries = unmatchedReport.entries;
   if (Number(stats.itemsUnmatched || 0) > 0) {
     warnings.push(`${Number(stats.itemsUnmatched)} entree(s) non matchee(s) conservee(s).`);
   }
@@ -124,6 +125,7 @@ function buildDiagnostics({ report = {}, stats, diff }) {
     warnings: [...new Set(warnings)],
     warningsCount: [...new Set(warnings)].length,
     unmatchedEntries,
+    unmatchedReport,
     details: {
       timezone: report.timezone || report.event?.timezone || null,
       dynamicShellDetected: Boolean(report.dynamicShellDetected),
@@ -154,6 +156,8 @@ function serializeDatasetRun(run) {
   return {
     id: String(value._id),
     datasetKey: value.datasetKey,
+    provider: value.provider || null,
+    sourceUrl: value.sourceUrl || null,
     status: value.status,
     phase: value.phase || null,
     startedAt: value.startedAt,
@@ -175,6 +179,7 @@ function serializeDatasetRun(run) {
     errorsCount: Number(value.errorsCount || 0),
     warnings: asArray(value.warnings),
     errors: asArray(value.errors),
+    unmatchedEntries: asArray(value.unmatchedEntries).map((entry) => normalizeUnmatchedEntry(entry, { provider: value.provider })),
   };
 }
 
@@ -671,7 +676,7 @@ async function persistCurrentDataset({ adapter, data, report = {}, summary, stat
     sourceHash: diff.newHash,
     status: "success",
     data,
-    diagnostics: buildDiagnostics({ report, stats, diff }),
+    diagnostics: buildDiagnostics({ report, stats, diff, provider: adapter.provider }),
   };
   if (adapter.compressData) {
     document.compressedData = zlib.gzipSync(Buffer.from(JSON.stringify(data)));

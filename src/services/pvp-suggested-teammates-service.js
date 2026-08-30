@@ -1,4 +1,3 @@
-const fs = require("node:fs");
 const { ApiError } = require("../lib/api-error");
 const { PvpTeammateCache } = require("../models");
 const identityService = require("./pokemon-identity-service");
@@ -27,57 +26,6 @@ function sourceUrlFor({ sourceGroup, cp, speciesId }) {
   return `${sourceBaseUrl}/rankings/${group}/${cap}/overall/${species}/`;
 }
 
-async function launchBrowser() {
-  const [{ default: chromium }, puppeteer] = await Promise.all([
-    import("@sparticuz/chromium"),
-    import("puppeteer-core"),
-  ]);
-  const localCandidates = process.platform === "darwin" ? [
-    process.env.CHROMIUM_EXECUTABLE_PATH,
-    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-    "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
-    "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
-    "/Applications/Chromium.app/Contents/MacOS/Chromium",
-  ].filter(Boolean) : [];
-  const localExecutable = localCandidates.find((candidate) => {
-    try {
-      return fs.statSync(candidate).isFile() && !fs.accessSync(candidate, fs.constants.X_OK);
-    } catch {
-      return false;
-    }
-  });
-  return puppeteer.launch({
-    args: localExecutable ? ["--no-sandbox", "--disable-setuid-sandbox"] : chromium.args,
-    defaultViewport: { width: 1280, height: 900 },
-    executablePath: localExecutable || await chromium.executablePath(),
-    headless: "shell",
-  });
-}
-
-async function scrapeSuggestedTeammates(context) {
-  const sourceUrl = sourceUrlFor(context);
-  const browser = await launchBrowser();
-  try {
-    const page = await browser.newPage();
-    await page.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/149 Safari/537.36");
-    await page.setRequestInterception(true);
-    page.on("request", (request) => {
-      if (["font", "image", "media"].includes(request.resourceType())) request.abort();
-      else request.continue();
-    });
-    await page.goto(sourceUrl, { waitUntil: "domcontentloaded", timeout: 40_000 });
-    await page.waitForSelector(".partner-pokemon .list a", { timeout: 20_000 });
-    const items = await page.$$eval(".partner-pokemon .list a", (links) => links.slice(0, 5).map((link, index) => ({
-      rawName: String(link.textContent || "").replace(/\s*→\s*$/, "").trim(),
-      providerAlias: link.getAttribute("data") || "",
-      rankOrOrder: index + 1,
-    })));
-    return { sourceUrl, items };
-  } finally {
-    await browser.close();
-  }
-}
-
 function normalizedAlias(item) {
   const providerAlias = safeToken(item.providerAlias, "Alias");
   return {
@@ -85,6 +33,91 @@ function normalizedAlias(item) {
     identityAlias: providerAlias.replace(/_shadow$/, ""),
     shadow: providerAlias.endsWith("_shadow"),
   };
+}
+
+function rankingAlias(ranking) {
+  return String(ranking?.sourceIdentity?.speciesId || "").trim().toLowerCase();
+}
+
+function rankingDex(ranking) {
+  return Number(ranking?.pokemon?.dexNr || ranking?.pokemon?.identity?.pokemonId) || null;
+}
+
+function rankedCandidateScore(candidate, sourceCounters) {
+  const covered = (candidate.matchups || []).filter((matchup) => sourceCounters.has(matchup.sourceId));
+  const coverage = covered.reduce((total, matchup) => {
+    const counter = sourceCounters.get(matchup.sourceId);
+    const urgency = Math.max(0.5, (1000 - Number(counter?.rating || 500)) / 500);
+    const certainty = Math.max(0.5, Number(matchup.rating || 500) / 500);
+    return total + (urgency * certainty);
+  }, 0);
+  const sharedWeaknesses = (candidate.counters || []).filter((counter) => sourceCounters.has(counter.sourceId)).length;
+  return {
+    coverage,
+    sharedWeaknesses,
+    value: (coverage * 1000) + (Number(candidate.score || 0) * 10) - (sharedWeaknesses * 250) - Number(candidate.rank || 9999),
+  };
+}
+
+function rankingToRawSuggestedItem(ranking, rankOrOrder) {
+  const providerAlias = safeToken(rankingAlias(ranking), "Alias");
+  return {
+    rawName: ranking.sourceIdentity?.speciesName || ranking.pokemon?.names?.English || providerAlias,
+    providerAlias,
+    rankOrOrder,
+  };
+}
+
+function suggestedTeammatesFromRankings(context, limit = 20) {
+  if (!Array.isArray(context.rankings)) {
+    throw new ApiError(
+      502,
+      "Le snapshot PvPoke synchronisé ne contient pas le classement requis.",
+      "PVP_TEAMMATE_RANKING_SNAPSHOT_INVALID",
+    );
+  }
+  const source = context.rankings.find((ranking) => rankingAlias(ranking) === context.speciesId);
+  if (!source) return { items: [], diagnostics: [], emptyReason: "RANKING_NOT_FOUND" };
+  const sourceCounters = new Map((source.counters || []).map((counter) => [counter.sourceId, counter]));
+  const sourceDex = rankingDex(source);
+  const candidates = context.rankings
+    .filter((candidate) => rankingAlias(candidate) && rankingAlias(candidate) !== context.speciesId)
+    .filter((candidate) => !sourceDex || rankingDex(candidate) !== sourceDex)
+    .map((candidate) => ({ candidate, ...rankedCandidateScore(candidate, sourceCounters) }))
+    .sort((left, right) => right.value - left.value || Number(left.candidate.rank || 9999) - Number(right.candidate.rank || 9999));
+
+  const selected = [];
+  const usedDex = new Set();
+  for (const entry of candidates) {
+    const dex = rankingDex(entry.candidate);
+    if (dex && usedDex.has(dex)) continue;
+    selected.push(entry.candidate);
+    if (dex) usedDex.add(dex);
+    if (selected.length === limit) break;
+  }
+  const items = selected.map((ranking, index) => rankingToRawSuggestedItem(ranking, index + 1));
+  return {
+    items,
+    sourceItem: rankingToRawSuggestedItem(source, 0),
+    emptyReason: items.length ? null : "SOURCE_RETURNED_NO_SUGGESTIONS",
+  };
+}
+
+function selectUniqueResolvedTeammates(items, sourcePokemonId, limit = 5) {
+  const selected = [];
+  const usedPokemonIds = new Set();
+  const usedFallbacks = new Set();
+  for (const item of items) {
+    if (sourcePokemonId != null && item.pokemonId === sourcePokemonId) continue;
+    const fallback = item.canonicalId || item.providerAlias;
+    if (item.pokemonId != null && usedPokemonIds.has(item.pokemonId)) continue;
+    if (item.pokemonId == null && usedFallbacks.has(fallback)) continue;
+    selected.push({ ...item, rankOrOrder: selected.length + 1 });
+    if (item.pokemonId != null) usedPokemonIds.add(item.pokemonId);
+    else usedFallbacks.add(fallback);
+    if (selected.length === limit) break;
+  }
+  return selected;
 }
 
 async function resolveSuggestedTeammates(rawItems, context, resolver = identityService.resolveAliasesBatch) {
@@ -160,33 +193,83 @@ async function suggestedTeammatesFor(context, options = {}) {
   const sourceHash = String(context.sourceHash || "");
   const league = safeContextId(context.league, "Ligue");
   const speciesId = safeToken(context.speciesId, "SpeciesId");
-  const key = `v2:${sourceHash}:${league}:${speciesId}`;
+  const key = `v4:${sourceHash}:${league}:${speciesId}`;
   const now = new Date();
-  const cached = await PvpTeammateCache.findOne({ key, expiresAt: { $gt: now } }).lean();
+  const cacheModel = options.cacheModel || PvpTeammateCache;
+  const persistenceWarnings = [];
+  let cached = null;
+  try {
+    cached = await cacheModel.findOne({ key, expiresAt: { $gt: now } }).lean();
+  } catch (error) {
+    persistenceWarnings.push({
+      code: "PVP_TEAMMATE_CACHE_READ_FAILED",
+      message: error instanceof Error ? error.message : String(error),
+    });
+  }
   if (cached) return { ...cached, cache: "hit" };
 
-  const scraped = await (options.scrape || scrapeSuggestedTeammates)({ ...context, league, speciesId });
-  const resolved = await resolveSuggestedTeammates(scraped.items, { league, speciesId }, options.resolveAliasesBatch);
-  if (resolved.diagnostics.length) await (options.recordDiagnosticsBatch || identityService.recordDiagnosticsBatch)(resolved.diagnostics);
+  const sourceUrl = sourceUrlFor({ ...context, speciesId });
+  const ranked = options.scrape
+    ? null
+    : suggestedTeammatesFromRankings({ ...context, league, speciesId });
+  const scraped = ranked || await options.scrape({ ...context, league, speciesId });
+  const resolvedBatch = await resolveSuggestedTeammates(
+    ranked ? [ranked.sourceItem, ...ranked.items] : scraped.items,
+    { league, speciesId },
+    options.resolveAliasesBatch,
+  );
+  const resolved = ranked
+    ? (() => {
+      const source = resolvedBatch.items[0];
+      const items = selectUniqueResolvedTeammates(resolvedBatch.items.slice(1), source?.pokemonId);
+      const selectedAliases = new Set(items.map((item) => item.providerAlias));
+      return {
+        items,
+        diagnostics: resolvedBatch.diagnostics.filter((diagnostic) => selectedAliases.has(diagnostic.sourceId)),
+      };
+    })()
+    : resolvedBatch;
+  if (resolved.diagnostics.length) {
+    try {
+      await (options.recordDiagnosticsBatch || identityService.recordDiagnosticsBatch)(resolved.diagnostics);
+    } catch (error) {
+      persistenceWarnings.push({
+        code: "PVP_TEAMMATE_DIAGNOSTICS_WRITE_FAILED",
+        message: error instanceof Error ? error.message : String(error),
+      });
+    }
+  }
   const payload = {
     key,
     league,
     speciesId,
     sourceHash,
-    sourceUrl: scraped.sourceUrl,
+    sourceUrl: scraped.sourceUrl || sourceUrl,
+    sourceStrategy: ranked ? "ranked-dataset-complement" : "browser-team-ranker",
     fetchedAt: now,
     expiresAt: new Date(now.getTime() + cacheTtlMs),
     items: resolved.items,
     diagnostics: resolved.diagnostics,
+    emptyReason: scraped.emptyReason || null,
   };
-  await PvpTeammateCache.findOneAndUpdate({ key }, { $set: payload }, { upsert: true, returnDocument: "after" });
-  return { ...payload, cache: "miss" };
+  try {
+    await cacheModel.findOneAndUpdate({ key }, { $set: payload }, { upsert: true, returnDocument: "after" });
+  } catch (error) {
+    persistenceWarnings.push({
+      code: "PVP_TEAMMATE_CACHE_WRITE_FAILED",
+      message: error instanceof Error ? error.message : String(error),
+    });
+  }
+  return { ...payload, cache: persistenceWarnings.length ? "miss-unpersisted" : "miss", persistenceWarnings };
 }
 
 module.exports = {
   normalizedAlias,
+  rankedCandidateScore,
+  rankingToRawSuggestedItem,
   resolveSuggestedTeammates,
-  scrapeSuggestedTeammates,
   sourceUrlFor,
   suggestedTeammatesFor,
+  suggestedTeammatesFromRankings,
+  selectUniqueResolvedTeammates,
 };

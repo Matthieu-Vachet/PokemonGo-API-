@@ -1,5 +1,6 @@
 const { ApiError } = require("../lib/api-error");
 const { dataPath } = require("../lib/data-repository");
+const { normalizeUnmatchedEntry } = require("../lib/unmatched-entries-report");
 const {
   currentEventUtils: events,
   gameMasterExplorer: explorer,
@@ -620,17 +621,21 @@ async function regenerate() {
       retention,
       cleanup,
     };
-    const unmatchedEntries = comparisons.filter((comparison) => comparison.mappingStatus !== "matched").map((comparison) => ({
-      sourceId: comparison.templateId,
-      sourceName: comparison.pokemon,
-      sourceForm: comparison.form,
-      sourceCostume: comparison.costume,
-      sourceImage: comparison.localAsset?.image || null,
-      reason: comparison.mappingStatus,
-      candidates: comparison.ambiguousCandidates || [],
-      localFile: comparison.localFile || null,
-      sourcePayload: comparison.raw || {},
-    }));
+    const unmatchedEntries = comparisons
+      .filter((comparison) => comparison.mappingStatus !== "matched")
+      .map((comparison) => normalizeUnmatchedEntry({
+        sourceId: comparison.templateId,
+        sourceName: comparison.pokemon,
+        sourceValue: comparison.templateId,
+        sourceForm: comparison.form,
+        sourceCostume: comparison.costume,
+        sourceImage: comparison.localAsset?.image || null,
+        reason: comparison.mappingStatus,
+        candidates: comparison.ambiguousCandidates || [],
+        destination: comparison.localFile || null,
+        localFile: comparison.localFile || null,
+        sourcePayload: comparison.raw || {},
+      }, { provider: "pokeminers-game-masters" }));
     await DatasetRun.updateOne({ _id: run._id }, { $set: { status: result.unmatchedLocal ? "partial" : "success", completedAt: new Date(), durationMs: result.durationMs, retrievedAt: payload.metadata.retrievedAt, savedAt: indexedAt, hashBefore: existingState?.sourceHash || null, hashAfter: payload.metadata.sourceHash, changed: true, totalBefore: Number(existingState?.totalTemplates || 0), totalAfter: payload.metadata.totalTemplates, added: result.added, removed: result.removed, modified: result.modified, matchedCount: result.matchedLocal, unmatchedCount: result.unmatchedLocal, warningsCount: 0, errorsCount: 0, unmatchedEntries, warnings: [], errors: [] } });
     return result;
   } catch (error) {

@@ -38,6 +38,10 @@ router.get("/diagnostics", asyncHandler(async (request, response) => {
   response.json({ data: result.items, meta: { ...result.pagination, source: "mongodb", visibility: "private" } });
 }));
 
+router.get("/diagnostics/summary", asyncHandler(async (_request, response) => {
+  response.json({ data: await service.diagnosticSummary(), meta: { source: "identity-manager", visibility: "private" } });
+}));
+
 router.get("/providers", asyncHandler(async (_request, response) => {
   response.json({ data: await service.listProviders(), meta: { source: "identity-manager", visibility: "private" } });
 }));
@@ -102,6 +106,10 @@ router.post("/diagnostics/batch", asyncHandler(async (request, response) => {
     throw new ApiError(422, "Le lot de diagnostics doit contenir entre 1 et 500 entrées.", "IDENTITY_DIAGNOSTIC_BATCH_INVALID");
   }
   response.status(201).json({ data: await service.recordDiagnosticsBatch(entries), meta: { visibility: "private", limit: 500 } });
+}));
+
+router.post("/diagnostics/reconcile", asyncHandler(async (request, response) => {
+  response.json({ data: await service.reconcileDiagnosticsWithAliases(user(request)), meta: { visibility: "private" } });
 }));
 
 router.patch("/diagnostics/:diagnosticId", asyncHandler(async (request, response) => {

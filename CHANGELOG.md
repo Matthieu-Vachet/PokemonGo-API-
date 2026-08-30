@@ -3,8 +3,8 @@ id: RULE-CHANGELOG-001
 title: Changelog Pokemon GO API
 status: active
 lang: fr
-version: 1.24.0
-updated_at: 2026-08-22
+version: 1.26.0
+updated_at: 2026-08-27
 author: MatWeb Innovation
 projects:
   - PokemonGo-API-
@@ -16,6 +16,35 @@ related:
 # Changelog
 
 ## Unreleased
+
+## 1.26.0 - 2026-08-27
+
+### Added
+
+- Publie `UnmatchedEntriesReport@1` dans les documents current, les runs et le polling, avec taxonomie fermée, détails complets et conservation des occurrences Shiny.
+- Enregistre `pokemongo-data` comme provider diagnostique afin que les identités locales absentes d’un flux soient actionnables dans l’Identity Manager.
+
+### Changed
+
+- Remplacement du Team Ranker Chromium, trop lent dans la Function Vercel, par un calcul déterministe sur le snapshot PvPoke synchronisé.
+- Conservation du contexte Great/Ultra/Master, des formes régionales, des identités et assets canoniques.
+- État vide réservé aux espèces absentes du classement ; snapshot invalide signalé explicitement.
+
+### Fixed
+
+- Préserve chaque occurrence non matchée Shiny grâce à `occurrenceId` au lieu de fusionner des lignes partageant un nom ou un sprite.
+- Aligne les compteurs Game Master sur les détails exposés, y compris les identités `local-only`.
+
+## 1.25.0 - 2026-08-22
+
+### Changed
+
+- Aligne Best Defenders sur la page canonique anglaise Pokémon GO Hub et le provider `pokemon-go-hub-best-defenders`.
+- Conserve le dernier snapshot MongoDB en run `partial` pour `SOURCE_UNAVAILABLE`, `SOURCE_SCHEMA_CHANGED`, `VALIDATION_FAILED` et l’historique `SOURCE_PROTECTED`.
+
+### Fixed
+
+- Évite qu’un changement de schéma ou une validation de régression n’écrase le dataset `best_defenders` courant.
 
 ## 1.24.0 - 2026-08-22
 

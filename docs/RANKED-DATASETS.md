@@ -3,8 +3,8 @@ id: DATASET-RANKED-001
 title: Architecture Mongo des classements
 status: canonical
 lang: fr
-version: 1.24.0
-updated_at: 2026-08-22
+version: 1.26.0
+updated_at: 2026-08-27
 author: MatWeb Innovation
 projects:
   - PokemonGo-API-
@@ -26,19 +26,20 @@ Collections :
 - `shiny_snapshots` : snapshots immuables utilisés pour l'historique du projet ;
 - `pvp_rankings` : vue courante PvPoke ;
 - `gbl_calendar` : rotations GBL publiques Battleflow ;
-- `best_defenders` : tiers publics Pokémon GO Hub ;
+- `best_defenders` : tiers publics Pokémon GO Hub depuis la page canonique anglaise pré-rendue ;
 
 Les réponses sont paginées par les presenters des adaptateurs. Le document `current` renvoyé est compact et ne duplique pas le payload. Le payload PvP complet est stocké en gzip dans `compressedData`, puis hydraté et vérifié par hash lors de la lecture afin de rester sous la limite BSON MongoDB de 16 Mo.
 
 La régénération PvP est une tâche longue. `POST /api/v1/admin/pvp-rankings/regenerate` crée ou réutilise une exécution récente, la confie au mécanisme de tâche de fond Vercel et répond `202 Accepted` avec `run.id` et `statusPath`. La première invocation génère les données dans le plafond Vercel de 60 secondes puis stocke dans le `DatasetRun` un staging `gzip+json` inférieur à la limite BSON ; le provider charge pour cela tous les classements découverts en une seule vague concurrente bornée. Son catalogue Identity Manager est projeté sur les seules identités portant un alias `pvpoke` ou `pvpoke-official-repository`; les autres espèces continuent d'utiliser le résolveur local déterministe. Le polling suivant revendique atomiquement la phase `generated`, persiste et relit MongoDB dans une seconde invocation. `GET /api/v1/admin/pvp-rankings/regenerate/:runId` n'expose jamais le staging : uniquement l'état sérialisé (`running`, puis `success`, `partial`, `unchanged` ou `failed`), la phase, les métriques, le diff, les avertissements et les erreurs. `partial` est terminal et non bloquant : MongoDB a été écrit puis relu, mais le rapport conserve des mappings ou warnings. Il expose séparément `totalAfter`, `ignoredCount`, `mappingMissingCount` et `warningsCount`; un second passage inchangé reste `partial` tant que ces diagnostics subsistent. L'exécution reste protégée par le secret Admin et dédupliquée ; une persistance interrompue est récupérable et idempotente. La détection d'une génération orpheline attend 75 secondes, au-delà du plafond de la Function active. Si le runtime interrompt tout de même la génération, le polling transforme ensuite le `running` périmé en `failed` avec le code `DATASET_REGENERATION_TIMEOUT` au lieu de laisser un job fantôme bloquer les relances.
 
-Le snapshot Data du 22 août 2026 épingle PvPoke au commit `f754cd6fc819ad065f1f00df1036ade36c57c022`, publie 1 617 fiches dédiées et garde zéro mapping référencé manquant. Méga-Blindépique, Méga-Goupelin et Méga-Amphinobi sont des fiches status-only `UNRELEASED` sans ranking fabriqué. L’écriture locale cache/mappings/records/manifeste/rapports est atomique ; l’API ne persiste qu’après génération et validation complètes du staging.
+Le commit, le volume et la date du snapshot Data sont lus dans ses métadonnées et ne sont pas figés dans le code API. Les identités non classées restent des fiches status-only explicites sans ranking fabriqué. L’écriture locale cache/mappings/records/manifeste/rapports est atomique ; l’API ne persiste qu’après génération et validation complètes du staging.
 
-La validation de production du 9 août 2026 a persisté puis relu 20 436 lignes avec
-`mappingMissingCount: 0` et `unmatchedCount: 0`. Son statut reste `partial` à cause d’un
-warning métier unique (`bayou-1500: volcarona sans Rank 1 calculable`) ; ce warning de
-classement est distinct de l’information fournisseur Engine
-`SKIDDO`/`ROCK_SLIDE`.
+Un run `partial` expose les compteurs bruts et des warnings structurés. Le cas connu de
+Volcarona en `bayou-1500` est `RANK1_INELIGIBLE_AT_SOURCE_LEVEL_FLOOR`: le classement
+reste utilisable mais aucun IV Rank 1 légal ne tient sous 1 500 PC au niveau plancher
+source. La sentinelle PvPoke `none`, qui signifie l’absence de seconde attaque chargée,
+est informative et ne dégrade pas seule le statut. Une anomalie inconnue reste
+actionnable par défaut.
 
 Le pipeline encadre aussi l'enrichissement Identity Manager et la persistance : toute exception marque le `DatasetRun` en échec et produit un log structuré avec le domaine et l'identifiant d'exécution. Les diagnostics d'identité incrémentent `occurrences` uniquement via `$inc`; aucune valeur concurrente n'est écrite sur le même chemin lors de l'upsert.
 
@@ -56,14 +57,18 @@ Lorsque Snacknap répond HTTP 200 mais annonce son panneau `Today` vide tout en 
 
 Avant chaque génération, l'adaptateur charge le catalogue Identity Manager une seule fois et le transmet au générateur PokemonGo-Data. Shiny et PvPoke résolvent ainsi leurs alias par provider vers un `canonicalId`, puis vers l'asset local exact. Ce chargement groupé évite une requête MongoDB par classement et garantit que la même identité produit la même image dans tous les consommateurs.
 
-Best Defenders applique le même chemin au provider `pokemon-go-hub`. Les diagnostics du dataset sont persistés dans `pokemon_identity_diagnostics`; une nouvelle association d’alias devient effective à la prochaine régénération sans réécriture du scraper. Les costumes et événements restent gérés manuellement dans les données canoniques et ne possèdent plus de pipeline externe dédié.
+Best Defenders applique le même chemin au provider `pokemon-go-hub-best-defenders`, tout en conservant `pokemon-go-hub` comme identifiant d’Identity Manager et contrat public. Le provider lit le HTML pré-rendu de `https://db.pokemongohub.net/best/gym-defenders`; aucun endpoint privé ni contournement Cloudflare n’est utilisé. Les diagnostics du dataset sont persistés dans `pokemon_identity_diagnostics`; une nouvelle association d’alias devient effective à la prochaine régénération sans réécriture du scraper.
 
-Best Defenders ne transforme jamais le défi Cloudflare de Pokémon GO Hub en dataset vide. Une régénération bloquée termine son run avec `SOURCE_PROTECTED`; une panne réseau ou un contenu amont inattendu utilise `SOURCE_TEMPORARILY_UNAVAILABLE`. Dans les deux cas, l'API conserve le document `current` (données, hash et compteur) et met uniquement à jour `diagnostics.sourceAvailability`. Une régénération valide suivante remplace ce diagnostic avec les nouveaux diagnostics vérifiés.
+Best Defenders ne transforme jamais une panne ou un changement de structure en dataset vide. `SOURCE_UNAVAILABLE`, `SOURCE_SCHEMA_CHANGED`, `VALIDATION_FAILED` et l’historique `SOURCE_PROTECTED` terminent en `partial` avec conservation du document `current` (données, hash et compteur) ; seul `diagnostics.sourceAvailability` est mis à jour. Une régénération valide suivante remplace atomiquement le dataset et efface le diagnostic obsolète.
 
 Une lecture privée sans secret est refusée avant tout accès MongoDB. La visibilité stockée est également relue avec le document afin qu'une erreur de routage ne puisse pas rendre un dataset privé public.
 
 Le presenter PvP conserve la pagination normale ; `full=true` renvoie le catalogue complet de la ligue sélectionnée pour les consommateurs qui doivent établir une checklist exacte. Les IV affichés viennent de `rank1`/`pvp.ivs`; le profil `pvp.simulationProfile` est une donnée d’audit distincte.
 
-`GET /api/v1/pvp-rankings/:league/:speciesId/teammates` ouvre la fiche de détail canonique PvPoke correspondant au format, extrait les cinq liens `.partner-pokemon .list a`, résout leurs alias par Identity Manager et persiste le résultat dans `pvp_teammate_cache`. La clé inclut le `sourceHash` du classement ; le cache expire après 24 heures. Une identité non résolue reste visible comme diagnostic et n’obtient aucun asset arbitraire.
+`GET /api/v1/pvp-rankings/:league/:speciesId/teammates` calcule cinq partenaires depuis le snapshot PvPoke déjà synchronisé pour la ligue demandée. Le score de complémentarité combine les `counters` de la fiche source, les `matchups` des candidats, leur score global, leurs faiblesses communes et leur rang. Les doublons d'un même numéro Pokédex sont écartés. Ce chemin `ranked-dataset-complement` remplace l'exécution du Team Ranker client dans Chromium : sur Vercel, le démarrage du navigateur et les simulations dépassaient le plafond de 60 secondes alors que la même information canonique était déjà disponible dans MongoDB. Il ne dépend donc ni d'un sélecteur DOM ni d'un navigateur serverless et conserve les assets/identités exacts du dataset courant.
+
+La fiche PvPoke canonique reste exposée dans `meta.sourceUrl` pour l'audit. La clé de schéma `v4` inclut le `sourceHash` du classement et le cache expire après 24 heures ; cette version invalide les anciennes projections non hydratées. Une panne d'écriture de ce cache n'annule pas un calcul valide : la réponse signale `miss-unpersisted` et `persistenceWarnings`. Un snapshot de classement absent ou mal formé produit l'erreur explicite `PVP_TEAMMATE_RANKING_SNAPSHOT_INVALID` ; il n'est jamais converti en faux résultat vide.
+
+Un format inconnu reste une erreur `PVP_FORMAT_NOT_FOUND`. En revanche, un identifiant absent du classement synchronisé est un cas métier sans suggestion : la route répond `200`, `data: []` et `meta.emptyReason: RANKING_NOT_FOUND`. Les identifiants régionaux à underscore suivent le même chemin validé que les espèces normales.
 
 Le contrat de chaque partenaire résolu transporte le même asset exact à deux niveaux compatibles : `pokemon.assets` pour les consommateurs historiques et `pokemon.identity.image/shinyImage/resolutionStatus/assetResolution` pour la chaîne canonique du Dashboard. Cette duplication de projection ne crée pas une seconde autorité : les deux valeurs proviennent du `selectedAsset` retourné par Identity Manager. Un asset absent conserve `missing-asset` et `CANONICAL_ASSET_MISSING` ; aucune URL probable n’est fabriquée.

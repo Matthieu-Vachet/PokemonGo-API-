@@ -26,7 +26,7 @@ const modules = Object.freeze({
 const definitions = Object.freeze({
   "pokemon-identity-mappings": ["generateGameMasterPokemonMappings.js", "generateGameMasterPokemonMappings", "data/reference/game-master/gameMasterPokemonMappings.json", "PokeMiners-game_masters", 180],
   "best-attackers": ["generateBestAttackers.js", "generateBestAttackers", "data/rankings/pve/attackers.json", "dialgadex-official-repository", 300],
-  "best-defenders": ["generateBestDefenders.js", "generateBestDefenders", "data/rankings/pve/defenders.json", "pokemon-go-hub", 180],
+  "best-defenders": ["generateBestDefenders.js", "generateBestDefenders", "data/rankings/pve/defenders.json", "pokemon-go-hub-best-defenders", 180],
   shiny: ["generateShinyTracker.js", "generateShinyTracker", "operations/audits/shiny/current.json", "snacknap", 180],
   "pvp-rankings": ["generatePvpRankings.js", "generatePvpRankings", "data/pvp/rankings/current.json", "pvpoke-official-repository", 600],
   "gbl-calendar": ["generateGblCalendar.js", "generateGblCalendar", "data/battles/gbl/calendar.json", "battleflow", 180],

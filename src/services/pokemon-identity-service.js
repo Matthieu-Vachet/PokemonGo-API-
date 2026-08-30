@@ -21,9 +21,69 @@ const diagnosticStatuses = ["open", "resolved", "ignored", "false-positive"];
 const diagnosticReasons = [
   "unknown-alias", "unknown-pokemon", "unknown-form", "unknown-costume", "missing-canonical-id", "duplicate", "conflict", "multiple-candidates", "ambiguous-gender", "deprecated-identity", "ignored-alias", "incomplete-source", "missing-local-match",
   "ALIAS_UNKNOWN", "POKEMON_UNKNOWN", "FORM_UNKNOWN", "COSTUME_UNKNOWN", "CANONICAL_ID_MISSING", "CANONICAL_ID_NOT_SYNCHRONIZED", "DUPLICATE_ALIAS", "ALIAS_CONFLICT", "MULTIPLE_FUNCTIONAL_IDENTITIES", "GENDER_ASSET_UNAVAILABLE", "IDENTITY_DEPRECATED", "ALIAS_IGNORED", "SOURCE_DATA_INCOMPLETE", "LOCAL_IDENTITY_MISSING", "VARIANT_NOT_FOUND",
+  "ambiguous", "multiple-local-identities", "multiple-canonical-identities", "CANONICAL_ASSET_MISSING",
 ];
 
+const diagnosticCodeByReason = Object.freeze({
+  "unknown-alias": "ALIAS_UNKNOWN",
+  "unknown-pokemon": "POKEMON_UNKNOWN",
+  "unknown-form": "FORM_UNKNOWN",
+  "unknown-costume": "COSTUME_UNKNOWN",
+  "missing-canonical-id": "CANONICAL_ID_MISSING",
+  duplicate: "DUPLICATE_ALIAS",
+  conflict: "ALIAS_CONFLICT",
+  "multiple-candidates": "MULTIPLE_FUNCTIONAL_IDENTITIES",
+  ambiguous: "MULTIPLE_FUNCTIONAL_IDENTITIES",
+  "multiple-local-identities": "MULTIPLE_FUNCTIONAL_IDENTITIES",
+  "multiple-canonical-identities": "MULTIPLE_FUNCTIONAL_IDENTITIES",
+  "ambiguous-gender": "GENDER_ASSET_UNAVAILABLE",
+  "deprecated-identity": "IDENTITY_DEPRECATED",
+  "ignored-alias": "ALIAS_IGNORED",
+  "incomplete-source": "SOURCE_DATA_INCOMPLETE",
+  "missing-local-match": "LOCAL_IDENTITY_MISSING",
+});
+
+const diagnosticSeverityByCode = Object.freeze({
+  DUPLICATE_ALIAS: "error",
+  ALIAS_CONFLICT: "error",
+  MULTIPLE_FUNCTIONAL_IDENTITIES: "error",
+  CANONICAL_ASSET_MISSING: "error",
+  GENDER_ASSET_UNAVAILABLE: "warning",
+  SOURCE_DATA_INCOMPLETE: "warning",
+  IDENTITY_DEPRECATED: "warning",
+  ALIAS_IGNORED: "info",
+});
+
+const aliasResolvableDiagnosticCodes = new Set([
+  "ALIAS_UNKNOWN",
+  "POKEMON_UNKNOWN",
+  "FORM_UNKNOWN",
+  "COSTUME_UNKNOWN",
+  "CANONICAL_ID_MISSING",
+  "CANONICAL_ID_NOT_SYNCHRONIZED",
+  "DUPLICATE_ALIAS",
+  "ALIAS_CONFLICT",
+  "MULTIPLE_FUNCTIONAL_IDENTITIES",
+  "IDENTITY_DEPRECATED",
+  "ALIAS_IGNORED",
+  "LOCAL_IDENTITY_MISSING",
+  "VARIANT_NOT_FOUND",
+]);
+
+function diagnosticCode(reason) {
+  return diagnosticCodeByReason[reason] || String(reason || "ALIAS_UNKNOWN").trim().toUpperCase().replace(/[^A-Z0-9]+/g, "_");
+}
+
+function diagnosticSeverity(reason) {
+  return diagnosticSeverityByCode[diagnosticCode(reason)] || "warning";
+}
+
+function isAliasResolvableDiagnostic(reason) {
+  return aliasResolvableDiagnosticCodes.has(diagnosticCode(reason));
+}
+
 const providerCatalog = Object.freeze([
+  { id: "pokemongo-data", label: "PokemonGo-Data", domains: ["pokemon-identity-mappings"], visibility: "private" },
   { id: "game-master", label: "Game Master · PokeMiners", domains: ["pokemon-identity-mappings"], visibility: "private" },
   { id: "pokeminers-game-masters", label: "PokeMiners Game Masters", domains: ["game-master"], visibility: "private" },
   {
@@ -458,11 +518,13 @@ async function updateIdentity(identifier, payload, requestedBy) {
 async function resolveDiagnosticsForAlias(identity, alias, requestedBy) {
   if (alias.status !== "active") return { matchedCount: 0, modifiedCount: 0 };
   const now = new Date();
+  const resolvableReasons = diagnosticReasons.filter(isAliasResolvableDiagnostic);
   const result = await PokemonIdentityDiagnostic.updateMany(
     {
       provider: providerStorageFilter(alias.provider),
       normalizedAlias: alias.normalizedValue,
       status: "open",
+      reason: { $in: resolvableReasons },
     },
     {
       $set: {
@@ -476,6 +538,47 @@ async function resolveDiagnosticsForAlias(identity, alias, requestedBy) {
   return {
     matchedCount: Number(result.matchedCount || 0),
     modifiedCount: Number(result.modifiedCount || 0),
+  };
+}
+
+async function reconcileDiagnosticsWithAliases(requestedBy) {
+  const [openDiagnostics, aliases] = await Promise.all([
+    PokemonIdentityDiagnostic.find({ status: "open", reason: { $in: diagnosticReasons.filter(isAliasResolvableDiagnostic) } })
+      .select({ _id: 1, provider: 1, normalizedAlias: 1 })
+      .lean(),
+    activeAliasRows(),
+  ]);
+  const activeByKey = new Map();
+  for (const alias of aliases) {
+    const provider = normalizeProvider(alias.provider);
+    activeByKey.set(`${provider}:${normalizeAlias(alias.normalizedValue || alias.value)}`, alias);
+  }
+  const matchesByIdentity = new Map();
+  const providers = new Map();
+  for (const diagnostic of openDiagnostics) {
+    const provider = normalizeProvider(diagnostic.provider);
+    const alias = activeByKey.get(`${provider}:${diagnostic.normalizedAlias}`);
+    if (!alias) continue;
+    const identityId = String(alias._id);
+    if (!matchesByIdentity.has(identityId)) matchesByIdentity.set(identityId, []);
+    matchesByIdentity.get(identityId).push(diagnostic._id);
+    providers.set(provider, (providers.get(provider) || 0) + 1);
+  }
+  const now = new Date();
+  const user = actor(requestedBy);
+  const operations = [...matchesByIdentity].map(([identityId, diagnosticIds]) => ({
+    updateMany: {
+      filter: { _id: { $in: diagnosticIds }, status: "open" },
+      update: { $set: { status: "resolved", resolvedIdentityId: identityId, resolvedAt: now, resolvedBy: user, updatedAt: now } },
+    },
+  }));
+  if (!operations.length) return { scanned: openDiagnostics.length, matched: 0, modified: 0, providers: [] };
+  const result = await PokemonIdentityDiagnostic.bulkWrite(operations, { ordered: false });
+  return {
+    scanned: openDiagnostics.length,
+    matched: [...matchesByIdentity.values()].reduce((sum, ids) => sum + ids.length, 0),
+    modified: Number(result.modifiedCount || 0),
+    providers: [...providers].map(([provider, count]) => ({ provider, count })).sort((left, right) => right.count - left.count || left.provider.localeCompare(right.provider)),
   };
 }
 
@@ -784,19 +887,229 @@ async function resolveAliasesBatch(payloads = []) {
   return payloads.map((payload) => resolveAliasAgainstCatalog(payload, catalog));
 }
 
+const diagnosticReasonLabels = Object.freeze({
+  ALIAS_UNKNOWN: "Aucun alias actif ne correspond à l’entrée source.",
+  POKEMON_UNKNOWN: "Le Pokémon source n’est pas identifié.",
+  FORM_UNKNOWN: "La forme source n’est reliée à aucune identité canonique.",
+  COSTUME_UNKNOWN: "Le costume source n’est relié à aucune identité canonique.",
+  CANONICAL_ID_MISSING: "Le fournisseur ne fournit pas d’identité canonique exploitable.",
+  CANONICAL_ID_NOT_SYNCHRONIZED: "L’identité locale existe mais n’est pas synchronisée dans MongoDB.",
+  DUPLICATE_ALIAS: "Le même alias apparaît plusieurs fois.",
+  ALIAS_CONFLICT: "L’alias contredit une association existante.",
+  MULTIPLE_FUNCTIONAL_IDENTITIES: "Plusieurs identités canoniques restent possibles.",
+  GENDER_ASSET_UNAVAILABLE: "L’asset du genre demandé n’est pas disponible.",
+  IDENTITY_DEPRECATED: "L’identité associée est dépréciée.",
+  ALIAS_IGNORED: "L’alias a été explicitement ignoré.",
+  SOURCE_DATA_INCOMPLETE: "La source ne contient pas assez d’informations pour conclure.",
+  LOCAL_IDENTITY_MISSING: "Aucune identité locale exacte n’a été trouvée.",
+  VARIANT_NOT_FOUND: "La variante fournisseur n’existe pas dans le catalogue canonique.",
+  CANONICAL_ASSET_MISSING: "L’identité est résolue mais son asset canonique est absent.",
+});
+
+function diagnosticIdentitySummary(identity) {
+  if (!identity) return null;
+  return {
+    identityId: String(identity._id || identity.id),
+    canonicalId: identity.canonicalId,
+    pokemonId: Number(identity.pokemonId) || null,
+    form: identity.form || null,
+    costume: identity.costume || null,
+    sourceFile: identity.localIdentity?.sourceFile || identity.localReference?.file || null,
+    identityKey: identity.localIdentity?.identityKey || identity.localReference?.key || null,
+  };
+}
+
+function diagnosticAction(document, identity) {
+  const code = diagnosticCode(document.reason);
+  if (document.status !== "open") {
+    return { kind: "none", required: false, label: "Aucune action : diagnostic déjà traité.", identity: diagnosticIdentitySummary(identity) };
+  }
+  if (identity && isAliasResolvableDiagnostic(document.reason)) {
+    return { kind: "reconcile-alias", required: true, label: `Marquer résolu avec l’alias actif de ${identity.canonicalId}.`, identity: diagnosticIdentitySummary(identity) };
+  }
+  if (code === "CANONICAL_ASSET_MISSING") {
+    return { kind: "verify-canonical-asset", required: true, label: "Vérifier le chemin et l’asset canonique de cette identité.", identity: null };
+  }
+  if ((document.candidates || []).length) {
+    return { kind: "review-candidates", required: true, label: "Comparer les candidats puis associer explicitement la bonne identité.", identity: null };
+  }
+  return { kind: "associate", required: true, label: "Rechercher puis associer l’identité canonique exacte, ou créer un brouillon justifié.", identity: null };
+}
+
+async function decorateDiagnostics(documents) {
+  if (!documents.length) return [];
+  const normalizedAliases = [...new Set(documents.map((document) => document.normalizedAlias).filter(Boolean))];
+  const resolvedIds = [...new Set(documents.map((document) => document.resolvedIdentityId).filter(Boolean).map(String))];
+  const clauses = [];
+  if (normalizedAliases.length) clauses.push({ "aliases.normalizedValue": { $in: normalizedAliases } });
+  if (resolvedIds.length) clauses.push({ _id: { $in: resolvedIds } });
+  const identities = clauses.length
+    ? await PokemonIdentity.find({ $or: clauses }).select({ canonicalId: 1, pokemonId: 1, form: 1, costume: 1, aliases: 1, localReference: 1, localIdentity: 1 }).lean()
+    : [];
+  const byId = new Map(identities.map((identity) => [String(identity._id), identity]));
+  const byActiveAlias = new Map();
+  for (const identity of identities) {
+    for (const alias of identity.aliases || []) {
+      if (alias.status !== "active") continue;
+      byActiveAlias.set(`${normalizeProvider(alias.provider)}:${normalizeAlias(alias.normalizedValue || alias.value)}`, identity);
+    }
+  }
+  return documents.map((document) => {
+    const provider = normalizeProvider(document.provider);
+    const activeIdentity = byActiveAlias.get(`${provider}:${document.normalizedAlias}`) || null;
+    const resolvedIdentity = document.resolvedIdentityId ? byId.get(String(document.resolvedIdentityId)) || null : null;
+    const code = diagnosticCode(document.reason);
+    return {
+      ...serialize(document),
+      provider,
+      code,
+      severity: diagnosticSeverity(document.reason),
+      reasonDetails: diagnosticReasonLabels[code] || "Le diagnostic doit être examiné avec sa source et ses candidats.",
+      action: diagnosticAction(document, activeIdentity || resolvedIdentity),
+    };
+  });
+}
+
+async function activeAliasRows() {
+  return PokemonIdentity.aggregate([
+    { $unwind: "$aliases" },
+    { $match: { "aliases.status": "active" } },
+    {
+      $project: {
+        _id: 1,
+        canonicalId: 1,
+        pokemonId: 1,
+        form: 1,
+        costume: 1,
+        provider: "$aliases.provider",
+        normalizedValue: "$aliases.normalizedValue",
+        value: "$aliases.value",
+        sourceFile: { $ifNull: ["$localIdentity.sourceFile", "$localReference.file"] },
+        identityKey: { $ifNull: ["$localIdentity.identityKey", "$localReference.key"] },
+      },
+    },
+  ]);
+}
+
+function emptyDiagnosticProviderSummary(definition) {
+  return {
+    id: definition.id,
+    label: definition.label,
+    activeAliases: 0,
+    activeAliasesWithLocalPath: 0,
+    totalDiagnostics: 0,
+    open: 0,
+    resolved: 0,
+    ignored: 0,
+    falsePositive: 0,
+    actionable: 0,
+    alreadyAssociated: 0,
+    sourceIdsPresent: 0,
+    withCandidates: 0,
+    occurrences: 0,
+    codes: new Map(),
+  };
+}
+
+async function diagnosticSummary() {
+  const [diagnostics, aliases] = await Promise.all([
+    PokemonIdentityDiagnostic.find({}).select({ provider: 1, normalizedAlias: 1, sourceId: 1, reason: 1, status: 1, candidates: 1, occurrences: 1, resolvedIdentityId: 1, lastDetectedAt: 1 }).lean(),
+    activeAliasRows(),
+  ]);
+  const providers = new Map(providerCatalog.map((definition) => [definition.id, emptyDiagnosticProviderSummary(definition)]));
+  const activeByKey = new Map();
+  for (const alias of aliases) {
+    const provider = normalizeProvider(alias.provider);
+    if (!providers.has(provider)) continue;
+    const summary = providers.get(provider);
+    summary.activeAliases += 1;
+    if (alias.sourceFile && alias.identityKey) summary.activeAliasesWithLocalPath += 1;
+    activeByKey.set(`${provider}:${normalizeAlias(alias.normalizedValue || alias.value)}`, alias);
+  }
+
+  const resolvedIds = [...new Set(diagnostics.filter((entry) => entry.status === "resolved" && entry.resolvedIdentityId).map((entry) => String(entry.resolvedIdentityId)))];
+  const existingResolvedIds = new Set((resolvedIds.length
+    ? await PokemonIdentity.find({ _id: { $in: resolvedIds } }).select({ _id: 1 }).lean()
+    : []).map((identity) => String(identity._id)));
+  const integrity = {
+    resolvedIdentityReferences: 0,
+    invalidResolvedIdentityReferences: 0,
+    resolvedWithoutIdentity: 0,
+    activeAliases: aliases.length,
+    activeAliasesWithLocalPath: aliases.filter((alias) => alias.sourceFile && alias.identityKey).length,
+    activeAliasesWithoutLocalPath: aliases.filter((alias) => !alias.sourceFile || !alias.identityKey).length,
+  };
+
+  for (const diagnostic of diagnostics) {
+    const provider = normalizeProvider(diagnostic.provider);
+    if (!providers.has(provider)) continue;
+    const summary = providers.get(provider);
+    const code = diagnosticCode(diagnostic.reason);
+    const severity = diagnosticSeverity(diagnostic.reason);
+    const codeKey = `${code}:${severity}:${diagnostic.reason}`;
+    const codeSummary = summary.codes.get(codeKey) || { code, severity, reason: diagnostic.reason, total: 0, open: 0, resolved: 0, occurrences: 0 };
+    codeSummary.total += 1;
+    codeSummary[diagnostic.status] = Number(codeSummary[diagnostic.status] || 0) + 1;
+    codeSummary.occurrences += Number(diagnostic.occurrences || 0);
+    summary.codes.set(codeKey, codeSummary);
+    summary.totalDiagnostics += 1;
+    summary[diagnostic.status === "false-positive" ? "falsePositive" : diagnostic.status] += 1;
+    summary.occurrences += Number(diagnostic.occurrences || 0);
+    if (diagnostic.sourceId) summary.sourceIdsPresent += 1;
+    if ((diagnostic.candidates || []).length) summary.withCandidates += 1;
+    if (diagnostic.status === "open") {
+      const alreadyAssociated = isAliasResolvableDiagnostic(diagnostic.reason)
+        && activeByKey.has(`${provider}:${diagnostic.normalizedAlias}`);
+      if (alreadyAssociated) summary.alreadyAssociated += 1;
+      else summary.actionable += 1;
+    }
+    if (diagnostic.status === "resolved") {
+      if (!diagnostic.resolvedIdentityId) integrity.resolvedWithoutIdentity += 1;
+      else {
+        integrity.resolvedIdentityReferences += 1;
+        if (!existingResolvedIds.has(String(diagnostic.resolvedIdentityId))) integrity.invalidResolvedIdentityReferences += 1;
+      }
+    }
+  }
+
+  const providerSummaries = [...providers.values()]
+    .map((summary) => ({
+      ...summary,
+      codes: [...summary.codes.values()].sort((left, right) => right.open - left.open || right.total - left.total || left.code.localeCompare(right.code)),
+    }))
+    .filter((summary) => summary.totalDiagnostics || summary.activeAliases)
+    .sort((left, right) => right.open - left.open || right.totalDiagnostics - left.totalDiagnostics || left.label.localeCompare(right.label, "fr"));
+  const totals = providerSummaries.reduce((result, summary) => {
+    for (const field of ["activeAliases", "totalDiagnostics", "open", "resolved", "ignored", "falsePositive", "actionable", "alreadyAssociated", "occurrences"]) {
+      result[field] += Number(summary[field] || 0);
+    }
+    return result;
+  }, { activeAliases: 0, activeAliasesWithLocalPath: integrity.activeAliasesWithLocalPath, totalDiagnostics: 0, open: 0, resolved: 0, ignored: 0, falsePositive: 0, actionable: 0, alreadyAssociated: 0, occurrences: 0 });
+  return { totals, providers: providerSummaries, integrity };
+}
+
 async function listDiagnostics(query = {}) {
   const page = Math.max(1, Number(query.page) || 1);
   const limit = Math.min(200, Math.max(1, Number(query.limit) || 50));
   const filter = {};
   if (query.provider) filter.provider = providerStorageFilter(query.provider);
-  for (const field of ["reason", "status"]) if (query[field]) filter[field] = String(query[field]);
+  if (query.status) filter.status = String(query.status);
+  if (query.reason || query.code || query.severity) {
+    filter.reason = {
+      $in: diagnosticReasons.filter((reason) => (
+        (!query.reason || reason === String(query.reason))
+        && (!query.code || diagnosticCode(reason) === String(query.code).toUpperCase())
+        && (!query.severity || diagnosticSeverity(reason) === String(query.severity).toLowerCase())
+      )),
+    };
+  }
   for (const field of ["pokemonId", "form", "costume"]) if (query[field]) filter[field] = field === "pokemonId" ? Number(query[field]) : { $regex: String(query[field]), $options: "i" };
   if (query.confidence) filter.confidence = { $gte: Number(query.confidence) };
   const [items, total] = await Promise.all([
-    PokemonIdentityDiagnostic.find(filter).sort({ lastDetectedAt: -1 }).skip((page - 1) * limit).limit(limit).lean(),
+    PokemonIdentityDiagnostic.find(filter).sort({ lastDetectedAt: -1, _id: 1 }).skip((page - 1) * limit).limit(limit).lean(),
     PokemonIdentityDiagnostic.countDocuments(filter),
   ]);
-  return { items: items.map(serialize), pagination: { page, limit, total, pages: Math.ceil(total / limit) } };
+  return { items: await decorateDiagnostics(items), pagination: { page, limit, total, pages: Math.ceil(total / limit) } };
 }
 
 async function recordDiagnostic(payload = {}) {
@@ -928,6 +1241,9 @@ module.exports = {
   conflicts,
   createIdentity,
   deprecateIdentity,
+  diagnosticCode,
+  diagnosticSeverity,
+  diagnosticSummary,
   getIdentity,
   identityInputSchema,
   importIdentities,
@@ -944,6 +1260,7 @@ module.exports = {
   providerCatalog,
   recordDiagnostic,
   recordDiagnosticsBatch,
+  reconcileDiagnosticsWithAliases,
   resolveDiagnosticsForAlias,
   resolveAlias,
   resolveAliasesBatch,

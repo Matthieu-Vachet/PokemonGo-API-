@@ -2,6 +2,27 @@ const crypto = require("node:crypto");
 const { PokemonIdentity, PokemonIdentityHistory } = require("../models");
 const { loadLocalIdentityInventory } = require("./pokemon-local-identity-inventory-service");
 
+function stableValue(value) {
+  if (Array.isArray(value)) return value.map(stableValue);
+  if (!value || typeof value !== "object") return value;
+  return Object.fromEntries(
+    Object.keys(value)
+      .sort()
+      .map((key) => [key, stableValue(value[key])]),
+  );
+}
+
+function stableFingerprint(value) {
+  return crypto.createHash("sha256").update(JSON.stringify(stableValue(value))).digest("hex");
+}
+
+function compareIdentityOrder(left, right) {
+  return Number(left.pokemonId || left.localIdentity?.pokemonId || 0) - Number(right.pokemonId || right.localIdentity?.pokemonId || 0)
+    || String(left.canonicalId || "").localeCompare(String(right.canonicalId || ""))
+    || String(left.localIdentity?.identityKey || left.identityKey || left._id || left.id || "")
+      .localeCompare(String(right.localIdentity?.identityKey || right.identityKey || right._id || right.id || ""));
+}
+
 function normalized(value) {
   return String(value || "")
     .normalize("NFKD")
@@ -272,7 +293,8 @@ function bucketBy(items, selector) {
 }
 
 function buildIdentitySyncPlan({ inventory, existingIdentities, validatedAt = new Date().toISOString() }) {
-  const existing = existingIdentities.map(serializable);
+  const existing = existingIdentities.map(serializable).sort(compareIdentityOrder);
+  const localIdentities = [...inventory.identities].sort(compareIdentityOrder);
   const byCanonical = bucketBy(existing, (identity) => identity.canonicalId);
   const byIdentityKey = bucketBy(existing, legacyIdentityKey);
   const byPokemonId = new Map();
@@ -285,11 +307,12 @@ function buildIdentitySyncPlan({ inventory, existingIdentities, validatedAt = ne
   const updates = [];
   const unchanged = [];
   const conflicts = [];
+  const matchedMongoByLocalCanonical = new Map();
   const seenCanonical = new Set();
   const seenIdentityKey = new Set();
   const date = new Date(validatedAt);
 
-  for (const local of inventory.identities) {
+  for (const local of localIdentities) {
     if (seenCanonical.has(local.canonicalId) || seenIdentityKey.has(local.identityKey)) {
       conflicts.push({
         code: "LOCAL_INVENTORY_DUPLICATE",
@@ -414,6 +437,7 @@ function buildIdentitySyncPlan({ inventory, existingIdentities, validatedAt = ne
       continue;
     }
     matchedExistingClaims.set(currentId, localCandidateSummary(local));
+    matchedMongoByLocalCanonical.set(local.canonicalId, current);
     const renamed = current.canonicalId !== local.canonicalId;
     const auditedRelink = auditedCanonicalRelink(local, current);
     const nextPayload = {
@@ -448,8 +472,38 @@ function buildIdentitySyncPlan({ inventory, existingIdentities, validatedAt = ne
         status: identity.status === "active" ? "draft" : identity.status,
       },
     }));
+  const orphanUpdates = orphans.filter((entry) => (
+    entry.before.syncStatus !== entry.payload.syncStatus
+    || entry.before.status !== entry.payload.status
+  ));
 
   const aliasesPreserved = existing.reduce((sum, identity) => sum + (identity.aliases || []).length, 0);
+  const mongoProjection = localIdentities.map((local) => {
+    const document = matchedMongoByLocalCanonical.get(local.canonicalId);
+    return document ? {
+      canonicalId: document.canonicalId,
+      identityKey: legacyIdentityKey(document),
+      fingerprint: document.localIdentity?.fingerprint || null,
+    } : {
+      canonicalId: null,
+      identityKey: null,
+      fingerprint: null,
+    };
+  });
+  const mongoHash = stableFingerprint(mongoProjection);
+  const localHash = inventory.metadata.fingerprint;
+  const hashesMatch = localHash === mongoHash;
+  const validationDates = [...matchedMongoByLocalCanonical.values()]
+    .filter((identity) => identity.localIdentity?.inventoryFingerprint === localHash)
+    .map((identity) => identity.localIdentity?.lastValidatedAt)
+    .filter(Boolean)
+    .map((value) => new Date(value).toISOString())
+    .sort();
+  const state = conflicts.length
+    ? "CONFLICT"
+    : creates.length || updates.length || orphanUpdates.length || !hashesMatch
+      ? "CHANGES_REQUIRED"
+      : "SYNCED";
   return {
     inventory: {
       schemaVersion: inventory.metadata.schemaVersion,
@@ -463,12 +517,25 @@ function buildIdentitySyncPlan({ inventory, existingIdentities, validatedAt = ne
     updates,
     unchanged,
     orphans,
+    orphanUpdates,
     conflicts,
+    synchronization: {
+      state,
+      dirty: state !== "SYNCED",
+      localHash,
+      mongoHash,
+      hashesMatch,
+      lastSyncedAt: validationDates.at(-1) || null,
+      algorithm: "sha256",
+      serialization: "stable-json-v1",
+      ordering: "pokemonId:asc,canonicalId:asc,identityKey:asc",
+    },
     summary: {
       create: creates.length,
       update: updates.length,
       unchanged: unchanged.length,
       orphan: orphans.length,
+      orphanUpdate: orphanUpdates.length,
       conflict: conflicts.length,
       aliasesPreserved,
     },
@@ -493,6 +560,7 @@ function reportFromPlan(plan, mode) {
     before: plan.before,
     after: plan.after,
     ...plan.summary,
+    synchronization: plan.synchronization,
     conflicts: plan.conflicts,
     mewtwoArmored: mewtwoArmored ? "present" : "missing",
   };
@@ -516,7 +584,7 @@ async function applyIdentitySync({ requestedBy = "sync:pokemon-identities", forc
   for (const entry of plan.updates) {
     operations.push({ updateOne: { filter: { _id: entry.identityId }, update: { $set: { ...entry.payload, updatedBy: requestedBy, updatedAt: now } } } });
   }
-  for (const entry of plan.orphans) {
+  for (const entry of plan.orphanUpdates) {
     operations.push({ updateOne: { filter: { _id: entry.identityId }, update: { $set: { ...entry.payload, updatedBy: requestedBy, updatedAt: now } } } });
   }
   if (operations.length) await PokemonIdentity.bulkWrite(operations, { ordered: false });
@@ -524,7 +592,7 @@ async function applyIdentitySync({ requestedBy = "sync:pokemon-identities", forc
   const affectedCanonicalIds = [...new Set([
     ...plan.creates.map((entry) => entry.canonicalId),
     ...plan.updates.map((entry) => entry.canonicalId),
-    ...plan.orphans.map((entry) => entry.canonicalId),
+    ...plan.orphanUpdates.map((entry) => entry.canonicalId),
   ])];
   const affected = affectedCanonicalIds.length
     ? await PokemonIdentity.find({ canonicalId: { $in: affectedCanonicalIds } }).lean()
@@ -549,7 +617,7 @@ async function applyIdentitySync({ requestedBy = "sync:pokemon-identities", forc
         : `Inventaire local ${plan.inventory.fingerprint}`,
     });
   }
-  for (const entry of plan.orphans) {
+  for (const entry of plan.orphanUpdates) {
     const identity = byCanonical.get(entry.canonicalId);
     if (identity) history.push({ identityId: identity._id, canonicalId: identity.canonicalId, action: "sync-orphan", before: entry.before, after: identity, user: requestedBy, reason: "Identité absente de l'inventaire PokemonGo-Data; conservation en brouillon orphelin." });
   }
@@ -558,13 +626,14 @@ async function applyIdentitySync({ requestedBy = "sync:pokemon-identities", forc
 }
 
 function syncPlanDigest(plan) {
-  return crypto.createHash("sha256").update(JSON.stringify({
+  return stableFingerprint({
     fingerprint: plan.inventory.fingerprint,
-    creates: plan.creates.map((entry) => entry.canonicalId),
-    updates: plan.updates.map((entry) => [entry.identityId, entry.canonicalId]),
-    orphans: plan.orphans.map((entry) => entry.identityId),
+    creates: plan.creates.map((entry) => entry.canonicalId).sort(),
+    updates: plan.updates.map((entry) => [entry.identityId, entry.canonicalId]).sort(([left], [right]) => left.localeCompare(right)),
+    orphanUpdates: plan.orphanUpdates.map((entry) => entry.identityId).sort(),
     conflicts: plan.conflicts,
-  })).digest("hex");
+    synchronization: plan.synchronization,
+  });
 }
 
 module.exports = {

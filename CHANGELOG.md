@@ -29,6 +29,10 @@ related:
 
 - Exige désormais le domaine `data/adventure-effects` dans le snapshot PokemonGo-Data embarqué et traçable par Vercel.
 
+### Fixed
+
+- Inclut explicitement les JSON Adventure Effects dans la fonction REST Vercel et vérifie chaque fiche, le manifeste, les sources et le schéma dans son propre bundle.
+
 ## 1.26.0 - 2026-08-27
 
 ### Added

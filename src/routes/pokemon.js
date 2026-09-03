@@ -21,6 +21,7 @@ const {
   presentPokemon,
   presentPokemonList,
 } = require("../services/pokemon-presenter");
+const { effectsForPokemon } = require("../services/adventure-effect-service");
 
 const router = express.Router();
 
@@ -75,6 +76,14 @@ for (const [route, field] of [
     }),
   );
 }
+
+router.get(
+  "/:identifier/adventure-effects",
+  asyncHandler(async (request, response) => {
+    const data = effectsForPokemon(request.params.identifier, request.query);
+    response.json({ data, meta: { total: data.length, locale: request.query.locale || "en", formId: request.query.formId || null } });
+  }),
+);
 
 router.get(
   "/:identifier/forms",

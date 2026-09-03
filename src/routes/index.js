@@ -32,6 +32,7 @@ const pokemonIdentities = require("./pokemon-identities");
 const gameMaster = require("./game-master");
 const communityDays = require("./community-days");
 const eventsHistory = require("./events-history");
+const adventureEffects = require("./adventure-effects");
 
 const router = express.Router();
 
@@ -46,6 +47,7 @@ router.get("/", (_request, response) => {
         pokemon: "/api/v1/pokemon",
         search: "/api/v1/search?q=dracaufeu",
         moves: "/api/v1/moves",
+        adventureEffects: "/api/v1/adventure-effects?locale=fr",
         pvp: "/api/v1/pvp/great/rankings",
         pvpRankings: "/api/v1/pvp-rankings?league=great",
         gblCalendar: "/api/v1/gbl-calendar",
@@ -83,6 +85,8 @@ router.get("/", (_request, response) => {
 });
 
 router.use("/pokemon", pokemon);
+router.use("/adventure-effects", adventureEffects);
+router.use("/admin/adventure-effects", adventureEffects);
 router.use("/backgrounds", backgrounds);
 router.use("/shadow", shadow);
 router.use("/stickers", stickers);

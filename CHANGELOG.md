@@ -3,8 +3,8 @@ id: RULE-CHANGELOG-001
 title: Changelog Pokemon GO API
 status: active
 lang: fr
-version: 1.26.0
-updated_at: 2026-08-27
+version: 1.27.0
+updated_at: 2026-09-02
 author: MatWeb Innovation
 projects:
   - PokemonGo-API-
@@ -16,6 +16,18 @@ related:
 # Changelog
 
 ## Unreleased
+
+## 1.27.0 - 2026-09-02
+
+### Added
+
+- Expose la liste, le détail et les relations Pokémon/Move des 11 Adventure Effects canoniques, hydratés avec localisations, coûts, durées, bonus, assets et provenance.
+- Ajoute la synchronisation Admin GO Hub/Margxt avec statuts structurés, rapport détaillé et préservation du dernier dataset versionné.
+- Documente les routes publiques dans OpenAPI et couvre locale, fallback, forme exacte, ID manquant et ID malformé.
+
+### Changed
+
+- Exige désormais le domaine `data/adventure-effects` dans le snapshot PokemonGo-Data embarqué et traçable par Vercel.
 
 ## 1.26.0 - 2026-08-27
 

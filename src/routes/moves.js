@@ -3,6 +3,7 @@ const { Move, Pokemon } = require("../models");
 const { asyncHandler } = require("../lib/async-handler");
 const { ApiError } = require("../lib/api-error");
 const { pagination, paginatedResponse, sortFromQuery } = require("../lib/http");
+const { effectForMove } = require("../services/adventure-effect-service");
 
 const router = express.Router();
 
@@ -26,6 +27,13 @@ router.get(
       Move.countDocuments(filter),
     ]);
     response.json(paginatedResponse(items, total, page, limit));
+  }),
+);
+
+router.get(
+  "/:identifier/adventure-effect",
+  asyncHandler(async (request, response) => {
+    response.json({ data: effectForMove(request.params.identifier, request.query) });
   }),
 );
 

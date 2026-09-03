@@ -28,6 +28,7 @@ function hasDataShape(directory) {
     ["data", "assets"],
     ["data", "pvp"],
     ["data", "moves"],
+    ["data", "adventure-effects"],
     ["data", "reference"],
     ["tooling", "lib"],
     ["tooling", "scripts", "generators"],

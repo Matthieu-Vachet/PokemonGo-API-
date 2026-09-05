@@ -97,8 +97,9 @@ function effectsForPokemon(identifier, query = {}) {
   const formId = String(query.formId || "").toUpperCase();
   const matches = effectsCatalog().filter((effect) => effect.pokemonRefs.some((reference) => {
     const pokemon = readJson(path.join(dataRoot, reference.pokemonRef));
-    const identityMatch = [reference.pokemonId, reference.formId, pokemon.id, pokemon.formId].includes(upper) || pokemon.slug === slug || String(pokemon.dexNr) === value;
-    return identityMatch && (!formId || reference.formId === formId);
+    const exactReference = reference.pokemonId === pokemon.id && reference.formId === pokemon.formId;
+    const identityMatch = reference.formId === upper || pokemon.formId === upper || pokemon.slug === slug;
+    return exactReference && identityMatch && (!formId || reference.formId === formId);
   }));
   return matches.map((effect) => hydrate(effect, query.locale || "en"));
 }

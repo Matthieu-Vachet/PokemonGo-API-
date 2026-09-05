@@ -29,6 +29,7 @@ test("GET /adventure-effects expose les 11 fiches hydratées", async () => {
   assert.equal(response.body.meta.total, 11);
   assert.equal(response.body.data.length, 11);
   assert.equal(response.body.data.every((effect) => effect.move && effect.pokemon.length === 1), true);
+  assert.equal(response.body.data.every((effect) => !("sources" in effect) && !("metadata" in effect)), true);
 });
 
 test("GET /adventure-effects/:id résout ID, slug et locale", async () => {
@@ -52,6 +53,20 @@ test("la relation Pokémon respecte la forme exacte", async () => {
   assert.equal(response.body.meta.total, 1);
   assert.equal(response.body.data[0].id, "ADVENTURE_EFFECT_SPACIAL_REND");
   assert.equal(response.body.data[0].pokemon[0].formId, "PALKIA_ORIGIN");
+});
+
+test("Méga-Mewtwo X/Y et Zacian couronné restent isolés de leurs formes normales", async () => {
+  const megaX = await request(app).get("/api/v1/pokemon/mewtwo-mega-x/adventure-effects?formId=MEWTWO_MEGA_X").expect(200);
+  const megaY = await request(app).get("/api/v1/pokemon/mewtwo-mega-y/adventure-effects?formId=MEWTWO_MEGA_Y").expect(200);
+  const mewtwo = await request(app).get("/api/v1/pokemon/mewtwo/adventure-effects").expect(200);
+  const crowned = await request(app).get("/api/v1/pokemon/zacian-crowned-sword/adventure-effects?formId=ZACIAN_CROWNED_SWORD").expect(200);
+  const zacian = await request(app).get("/api/v1/pokemon/zacian/adventure-effects").expect(200);
+
+  assert.deepEqual(megaX.body.data.map((effect) => effect.id), ["ADVENTURE_EFFECT_MEGA_MEWTWO_X"]);
+  assert.deepEqual(megaY.body.data.map((effect) => effect.id), ["ADVENTURE_EFFECT_MEGA_MEWTWO_Y"]);
+  assert.deepEqual(mewtwo.body.data, []);
+  assert.deepEqual(crowned.body.data.map((effect) => effect.id), ["ADVENTURE_EFFECT_BEHEMOTH_BLADE"]);
+  assert.deepEqual(zacian.body.data, []);
 });
 
 test("la relation Move hydrate le Pokémon et l’effet", async () => {

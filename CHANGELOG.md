@@ -3,7 +3,7 @@ id: RULE-CHANGELOG-001
 title: Changelog Pokemon GO API
 status: active
 lang: fr
-version: 1.27.0
+version: 1.28.0
 updated_at: 2026-09-02
 author: MatWeb Innovation
 projects:
@@ -16,6 +16,17 @@ related:
 # Changelog
 
 ## Unreleased
+
+## 1.28.0 - 2026-09-05
+
+### Changed
+
+- Retire `sources` et `metadata` des réponses Adventure Effects tout en conservant la provenance dans la synchronisation Admin.
+- Résout les relations Pokémon par identité et forme exactes afin d’isoler Méga-Mewtwo X/Y et les formes couronnées de leurs formes normales.
+
+### Fixed
+
+- Empêche une recherche Pokémon par simple numéro de Pokédex de rattacher implicitement les effets d’une autre catégorie de forme.
 
 ## 1.27.0 - 2026-09-02
 

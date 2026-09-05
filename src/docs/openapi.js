@@ -320,7 +320,7 @@ function createOpenApi() {
       ["Gigantamax", "Formes Gigantamax."],
       ["PvP", "Classements, IV et movesets par ligue."],
       ["Attaques", "Attaques rapides, chargées et élite."],
-      ["Effets d’aventure", "Effets canoniques, coûts, durées, bonus, sources et relations Pokémon/Move."],
+      ["Effets d’aventure", "Effets canoniques, coûts, durées, bonus et relations Pokémon/Move."],
       ["Types", "Types, faiblesses, résistances et Pokémon associés."],
       ["Météo", "Météos Pokémon GO, icônes et ressources boostées."],
       ["Candy", "Couleurs et images de bonbons groupées par famille d'évolution."],

@@ -46,6 +46,7 @@ const pokemonGoDataTrace = [
   "./runtime-data/PokemonGo-Data/data/pvp/pokemon/**/*",
   "./runtime-data/PokemonGo-Data/data/pvp/manifests/**/*",
   "./runtime-data/PokemonGo-Data/data/moves/**/*",
+  "./runtime-data/PokemonGo-Data/data/adventure-effects/**/*",
   "./runtime-data/PokemonGo-Data/data/reference/**/*",
   "./runtime-data/PokemonGo-Data/data/battles/raids/**/*",
   "./runtime-data/PokemonGo-Data/data/battles/max-battles/**/*",

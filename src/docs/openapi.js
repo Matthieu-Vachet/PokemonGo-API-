@@ -320,6 +320,7 @@ function createOpenApi() {
       ["Gigantamax", "Formes Gigantamax."],
       ["PvP", "Classements, IV et movesets par ligue."],
       ["Attaques", "Attaques rapides, chargées et élite."],
+      ["Effets d’aventure", "Effets canoniques, coûts, durées, bonus, sources et relations Pokémon/Move."],
       ["Types", "Types, faiblesses, résistances et Pokémon associés."],
       ["Météo", "Météos Pokémon GO, icônes et ressources boostées."],
       ["Candy", "Couleurs et images de bonbons groupées par famille d'évolution."],
@@ -438,6 +439,10 @@ function createOpenApi() {
           legacyCinematicMoves: [],
         }),
       }),
+      [`${api}/pokemon/{identifier}/adventure-effects`]: detail("Effets d’aventure", "Lister les Effets d’aventure d’un Pokémon et de sa forme exacte", "palkia-origin", {
+        parameters: [parameter("formId", "query", "PALKIA_ORIGIN", "Forme canonique exacte."), parameter("locale", "query", "fr", "Locale demandée.", { enum: ["en", "de", "es", "pt", "fr", "nl"] })],
+        response: listResponse(),
+      }),
       [`${api}/search`]: operation("Recherche", "Rechercher Pokémon et attaques en français ou autre langue", {
         parameters: [
           requiredParameter("q", "query", "dracaufeu", "Recherche d'au moins deux caractères.", { minLength: 2 }),
@@ -454,6 +459,21 @@ function createOpenApi() {
       ], examples.move),
       [`${api}/moves/{identifier}`]: detail("Attaques", "Afficher une attaque", "BLAST_BURN", { description: "ID technique ou slug.", response: dataResponse(examples.move) }),
       [`${api}/moves/{identifier}/pokemon`]: detail("Attaques", "Lister les Pokémon apprenant une attaque", "BLAST_BURN", { description: "ID technique de l'attaque.", response: listResponse() }),
+      [`${api}/moves/{identifier}/adventure-effect`]: detail("Effets d’aventure", "Afficher l’Effet d’aventure associé à une attaque", "BEHEMOTH_BLADE", {
+        parameters: [parameter("locale", "query", "fr", "Locale demandée.", { enum: ["en", "de", "es", "pt", "fr", "nl"] })],
+      }),
+      [`${api}/adventure-effects`]: list("Effets d’aventure", "Lister et filtrer les Effets d’aventure canoniques", [
+        parameter("locale", "query", "fr", "Locale demandée.", { enum: ["en", "de", "es", "pt", "fr", "nl"] }),
+        parameter("q", "query", "Gladius Maximus", "Recherche sur les IDs, slugs, Moves et noms localisés."),
+        parameter("type", "query", "ATTACK_BONUS", "Type de renderer."),
+        parameter("moveRef", "query", "BEHEMOTH_BLADE", "ID Move canonique."),
+        parameter("pokemonId", "query", "ZACIAN", "ID Pokémon canonique."),
+        parameter("formId", "query", "ZACIAN_CROWNED_SWORD", "Forme canonique exacte."),
+      ]),
+      [`${api}/adventure-effects/{identifier}`]: detail("Effets d’aventure", "Afficher un Effet d’aventure hydraté", "ADVENTURE_EFFECT_BEHEMOTH_BLADE", {
+        description: "ID stable ou slug.",
+        parameters: [parameter("locale", "query", "fr", "Locale demandée.", { enum: ["en", "de", "es", "pt", "fr", "nl"] })],
+      }),
       [`${api}/mega`]: list("Méga", "Lister les Méga et Primo"),
       [`${api}/mega/{identifier}`]: detail("Méga", "Afficher une Méga ou Primo", "charizard", { parameters: [parameter("form", "query", "mega-x", "Forme Méga souhaitée.")] }),
       [`${api}/dynamax`]: list("Dynamax", "Lister les Dynamax"),
@@ -858,7 +878,7 @@ function createOpenApi() {
   specification["x-tagGroups"] = [
     { name: "Commencer", tags: ["System", "Recherche"] },
     { name: "Pokédex", tags: ["Pokémon", "Évolutions", "Méga", "Dynamax", "Gigantamax", "Shadow", "Assets", "Backgrounds", "Candy", "Stickers", "Shuffle"] },
-    { name: "Combat", tags: ["PvP", "Raid", "Attaques", "Types", "Statistiques", "Comparaison"] },
+    { name: "Combat", tags: ["PvP", "Raid", "Attaques", "Effets d’aventure", "Types", "Statistiques", "Comparaison"] },
     { name: "Univers", tags: ["Régions", "Générations", "Collection", "Community Days", "Historique Events"] },
     { name: "Données vivantes", tags: ["Items", "Rocket Texts"] },
     { name: "Métadonnées publiques", tags: ["Métadonnées"] },

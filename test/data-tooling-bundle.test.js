@@ -54,7 +54,7 @@ test("un snapshot Data sans métadonnées de version est refusé avant le build"
   try {
     fs.writeFileSync(path.join(directory, "package.json"), JSON.stringify({ name: "pokemon-go-data" }));
     for (const relative of [
-      "data/pokemon", "data/assets", "data/pvp", "data/moves", "data/reference",
+      "data/pokemon", "data/assets", "data/pvp", "data/moves", "data/adventure-effects", "data/reference",
       "tooling/lib", "tooling/scripts/generators",
     ]) fs.mkdirSync(path.join(directory, relative), { recursive: true });
     assert.equal(hasDataShape(directory), false);
